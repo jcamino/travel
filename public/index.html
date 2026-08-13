@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>jcamino · travel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,650&amp;family=Instrument+Sans:wght@400;600&amp;display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; }
   body {
@@ -12,35 +15,55 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(160deg, #0a4f66 0%, #0e6e8c 70%, #12809f 100%);
-    color: #fff;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: linear-gradient(168deg, #0e3b32 0%, #1a5a4c 90%);
+    color: #fdfcf8;
+    font-family: "Instrument Sans", -apple-system, "Segoe UI", sans-serif;
     padding: 1.5rem;
   }
-  .wrap { max-width: 26rem; width: 100%; text-align: center; }
-  h1 { font-size: 1.6rem; margin: 0 0 1.4rem; letter-spacing: .02em; }
+  .wrap { max-width: 27rem; width: 100%; }
+  p.eyebrow {
+    font-family: ui-monospace, Consolas, monospace;
+    font-size: .7rem;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: #dfa32b;
+    margin: 0 0 .5rem;
+  }
+  h1 {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 650;
+    font-size: 2rem;
+    margin: 0 0 1.4rem;
+  }
   a.card {
     display: block;
-    background: rgba(255,255,255,.1);
-    border: 1px solid rgba(255,255,255,.25);
-    border-radius: 14px;
-    padding: 1.2rem 1.4rem;
-    color: #fff;
+    background: rgba(253,252,248,.07);
+    border: 1px solid rgba(253,252,248,.25);
+    border-radius: 10px;
+    padding: 1.2rem 1.3rem;
+    color: #fdfcf8;
     text-decoration: none;
-    text-align: left;
-    transition: background .15s ease;
+    transition: background .15s ease, border-color .15s ease;
   }
-  a.card:hover { background: rgba(255,255,255,.18); }
-  a.card strong { display: block; font-size: 1.1rem; margin-bottom: .25rem; }
-  a.card span { font-size: .88rem; opacity: .85; }
+  a.card:hover { background: rgba(253,252,248,.14); border-color: #dfa32b; }
+  a.card:focus-visible { outline: 3px solid #dfa32b; outline-offset: 2px; }
+  a.card strong {
+    display: block;
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 650;
+    font-size: 1.2rem;
+    margin-bottom: .3rem;
+  }
+  a.card span { font-size: .88rem; opacity: .85; line-height: 1.5; }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <h1>Travel guides</h1>
+  <p class="eyebrow">jcamino · travel</p>
+  <h1>Guides</h1>
   <a class="card" href="/trasvia/">
     <strong>Trasvía · Comillas, Cantabria</strong>
-    <span>Guest guide for 13–16 August 2026 — monuments, tours, beaches, tides &amp; day trips</span>
+    <span>Guest guide, 13–16 August 2026 — monuments, free tours, tides &amp; day trips, every time and price verified.</span>
   </a>
 </div>
 </body>

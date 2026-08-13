@@ -4,58 +4,84 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Comillas Visitor Guide — 13–16 August 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&amp;family=Instrument+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
 <style>
   :root {
-    --ink: #1e2a32;
-    --ink-soft: #4a5b66;
-    --paper: #f6f3ec;
-    --card: #ffffff;
-    --line: #e2ddd2;
-    --sea: #0e6e8c;
-    --sea-deep: #0a4f66;
-    --sand: #c98a2d;
-    --ok: #1e7d46;
-    --ok-bg: #e2f3e8;
-    --warn: #8a5a00;
-    --warn-bg: #fdeecb;
-    --note-bg: #eef6f9;
+    --ink: #1d2b27;
+    --ink-soft: #51635c;
+    --plaster: #eef1ea;
+    --foam: #fdfcf8;
+    --line: #dce2d8;
+    --verdigris: #1a5a4c;
+    --verdigris-deep: #0e3b32;
+    --brick: #a9502b;
+    --sunflower: #dfa32b;
+    --ok-ink: #175e43;   --ok-bg: #e1efe7;
+    --warn-ink: #7a5710; --warn-bg: #f7e9c8;
+    --closed-ink: #8e3a22; --closed-bg: #f6e0da;
+    --display: "Fraunces", Georgia, "Times New Roman", serif;
+    --body: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --mono: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, "Liberation Mono", monospace;
   }
   * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   body {
     margin: 0;
-    background: var(--paper);
+    background: var(--plaster);
     color: var(--ink);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: var(--body);
     font-size: 16px;
     line-height: 1.55;
   }
-  a { color: var(--sea); }
-  a:hover { color: var(--sea-deep); }
+  a { color: var(--verdigris); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:hover { color: var(--brick); }
+  :focus-visible { outline: 3px solid var(--sunflower); outline-offset: 2px; }
 
-  /* ---------- Header ---------- */
+  /* ---------- Hero ---------- */
   header.hero {
-    background: linear-gradient(160deg, var(--sea-deep) 0%, var(--sea) 70%, #12809f 100%);
-    color: #fff;
-    padding: 2.2rem 1.2rem 1.8rem;
-    text-align: center;
+    background: linear-gradient(168deg, var(--verdigris-deep) 0%, var(--verdigris) 85%);
+    color: var(--foam);
+    padding: 2.4rem 1.2rem 1.2rem;
+  }
+  .hero-inner { max-width: 760px; margin: 0 auto; }
+  p.eyebrow {
+    font-family: var(--mono);
+    font-size: .72rem;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--sunflower);
+    margin: 0 0 .6rem;
   }
   header.hero h1 {
-    margin: 0 0 .4rem;
-    font-size: 1.7rem;
-    line-height: 1.25;
-    letter-spacing: .01em;
+    font-family: var(--display);
+    font-weight: 650;
+    font-size: 2.3rem;
+    line-height: 1.08;
+    margin: 0 0 .55rem;
+    letter-spacing: .005em;
   }
   header.hero p.sub {
-    margin: 0 auto;
-    max-width: 34rem;
-    font-size: .98rem;
+    margin: 0;
+    max-width: 36rem;
+    font-size: .97rem;
     opacity: .92;
   }
-  header.hero p.stamp {
-    margin: .9rem auto 0;
-    font-size: .8rem;
-    opacity: .75;
+  .tidechart { margin: 1.4rem 0 .3rem; }
+  .tidechart svg { display: block; width: 100%; height: auto; }
+  p.tide-caption {
+    font-size: .78rem;
+    opacity: .8;
+    margin: .3rem 0 0;
+  }
+  p.stamp {
+    font-family: var(--mono);
+    font-size: .68rem;
+    letter-spacing: .06em;
+    opacity: .65;
+    margin: 1rem 0 0;
   }
 
   /* ---------- Nav ---------- */
@@ -63,52 +89,61 @@
     position: sticky;
     top: 0;
     z-index: 50;
-    background: var(--sea-deep);
+    background: var(--verdigris-deep);
     overflow-x: auto;
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
+    box-shadow: 0 1px 0 rgba(255,255,255,.08) inset;
   }
   nav.jump::-webkit-scrollbar { display: none; }
   nav.jump a {
     display: inline-block;
-    color: #e8f4f8;
+    color: #e9f1ec;
     text-decoration: none;
-    font-size: .88rem;
+    font-size: .86rem;
     font-weight: 600;
-    padding: .65rem .85rem;
+    padding: .68rem .85rem .58rem;
+    border-bottom: 3px solid transparent;
   }
-  nav.jump a:hover { background: rgba(255,255,255,.12); color: #fff; }
+  nav.jump a:hover { color: #fff; border-bottom-color: var(--sunflower); }
 
-  main {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 0 .8rem 3rem;
-  }
+  main { max-width: 760px; margin: 0 auto; padding: 0 .8rem 3rem; }
+  section.zone, article.card { scroll-margin-top: 3.2rem; }
 
   /* ---------- Section headings ---------- */
-  section.zone, article.card { scroll-margin-top: 3rem; }
-  section.zone > h2 {
-    font-size: 1.35rem;
-    color: var(--sea-deep);
-    border-bottom: 3px solid var(--sand);
-    padding: 1.6rem 0 .35rem;
-    margin: .8rem 0 .4rem;
+  section.zone > .zone-head { padding-top: 2rem; }
+  .zone-head p.eyebrow { color: var(--brick); margin-bottom: .25rem; }
+  section.zone h2 {
+    font-family: var(--display);
+    font-weight: 650;
+    font-size: 1.65rem;
+    color: var(--verdigris-deep);
+    margin: 0 0 .35rem;
+    position: relative;
+    padding-bottom: .45rem;
   }
-  section.zone > p.zone-intro {
-    margin: .2rem 0 1rem;
+  section.zone h2::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 52px; height: 4px;
+    background: var(--sunflower);
+  }
+  section.zone p.zone-intro {
+    margin: .5rem 0 1rem;
     color: var(--ink-soft);
     font-size: .95rem;
   }
 
   /* ---------- Cards ---------- */
   article.card {
-    background: var(--card);
+    background: var(--foam);
     border: 1px solid var(--line);
-    border-radius: 14px;
+    border-radius: 10px;
     overflow: hidden;
-    margin: 1.1rem 0;
-    box-shadow: 0 1px 4px rgba(30,42,50,.07);
+    margin: 1.15rem 0;
+    box-shadow: 0 1px 3px rgba(14,59,50,.08);
   }
   .photo-strip { display: grid; grid-template-columns: 1fr; }
   .photo-strip.two { grid-template-columns: 1fr 1fr; gap: 2px; }
@@ -116,31 +151,41 @@
   figure.photo img {
     display: block;
     width: 100%;
-    height: 210px;
+    height: 215px;
     object-fit: cover;
-    background: #d8e4ea;
+    background: #d5ddd4;
   }
   figure.photo figcaption {
     position: absolute;
     left: 0; right: 0; bottom: 0;
-    padding: .8rem .6rem .3rem;
-    font-size: .62rem;
-    line-height: 1.3;
+    padding: .9rem .6rem .3rem;
+    font-size: .6rem;
+    line-height: 1.35;
     color: #fff;
-    background: linear-gradient(transparent, rgba(0,0,0,.72));
+    background: linear-gradient(transparent, rgba(10,26,22,.78));
   }
-  figure.photo figcaption a { color: #cfe8f2; text-decoration: none; }
-  .card-body { padding: .9rem 1rem 1.1rem; }
+  figure.photo figcaption a { color: #f0d9a1; text-decoration: none; }
+  .card-body { padding: 1rem 1.05rem 1.15rem; }
+  p.kicker {
+    font-family: var(--mono);
+    font-size: .66rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--brick);
+    margin: 0 0 .3rem;
+  }
   .card-body h3 {
-    margin: 0 0 .15rem;
-    font-size: 1.18rem;
-    color: var(--sea-deep);
+    font-family: var(--display);
+    font-weight: 650;
+    margin: 0 0 .2rem;
+    font-size: 1.32rem;
+    line-height: 1.15;
+    color: var(--verdigris-deep);
   }
   p.tagline {
-    margin: .1rem 0 .6rem;
-    font-size: .92rem;
+    margin: .15rem 0 .65rem;
+    font-size: .93rem;
     color: var(--ink-soft);
-    font-style: italic;
   }
 
   /* ---------- Facts table ---------- */
@@ -149,113 +194,133 @@
     border-collapse: collapse;
     font-size: .9rem;
     margin: .5rem 0 .7rem;
+    font-variant-numeric: tabular-nums;
   }
   table.facts th, table.facts td {
     text-align: left;
     vertical-align: top;
-    padding: .38rem .5rem;
+    padding: .42rem .5rem;
     border-top: 1px solid var(--line);
   }
   table.facts tr:last-child th, table.facts tr:last-child td { border-bottom: 1px solid var(--line); }
   table.facts th {
-    width: 34%;
-    font-weight: 600;
+    width: 31%;
+    font-family: var(--mono);
+    font-weight: 500;
+    font-size: .72rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
     color: var(--ink-soft);
-    white-space: nowrap;
+    padding-top: .55rem;
   }
   table.facts td { word-break: break-word; }
 
   /* ---------- Badges ---------- */
   .badge {
     display: inline-block;
-    font-size: .68rem;
-    font-weight: 700;
-    letter-spacing: .04em;
+    font-family: var(--mono);
+    font-size: .62rem;
+    font-weight: 600;
+    letter-spacing: .08em;
     text-transform: uppercase;
-    border-radius: 999px;
-    padding: .12rem .55rem;
+    border-radius: 3px;
+    padding: .1rem .4rem;
     vertical-align: middle;
   }
-  .badge.ok { color: var(--ok); background: var(--ok-bg); }
-  .badge.unconfirmed { color: var(--warn); background: var(--warn-bg); }
-  .badge.closed { color: #8c1d2f; background: #fbe3e7; }
+  .badge.ok { color: var(--ok-ink); background: var(--ok-bg); }
+  .badge.unconfirmed { color: var(--warn-ink); background: var(--warn-bg); }
+  .badge.closed { color: var(--closed-ink); background: var(--closed-bg); }
 
   /* ---------- Notes / callouts ---------- */
   .notes { font-size: .92rem; margin: .4rem 0 0; }
   .notes ul { margin: .3rem 0 .3rem 1.1rem; padding: 0; }
-  .notes li { margin: .3rem 0; }
+  .notes li { margin: .32rem 0; }
   .callout {
-    background: var(--note-bg);
-    border-left: 4px solid var(--sea);
-    border-radius: 0 8px 8px 0;
-    padding: .6rem .8rem;
+    background: #e8efe9;
+    border-left: 4px solid var(--verdigris);
+    border-radius: 0 6px 6px 0;
+    padding: .65rem .85rem;
     font-size: .9rem;
-    margin: .7rem 0;
+    margin: .75rem 0;
   }
-  .callout.warn { background: var(--warn-bg); border-left-color: var(--sand); }
+  .callout.warn { background: var(--warn-bg); border-left-color: var(--sunflower); }
   p.verified {
-    margin: .7rem 0 0;
-    font-size: .74rem;
+    font-family: var(--mono);
+    margin: .75rem 0 0;
+    font-size: .66rem;
+    letter-spacing: .02em;
     color: var(--ink-soft);
   }
+  p.verified a { color: var(--verdigris); }
 
-  /* ---------- Tide table ---------- */
+  /* ---------- Timetable tables ---------- */
   table.tides {
     width: 100%;
     border-collapse: collapse;
-    font-size: .85rem;
+    font-size: .84rem;
     margin: .6rem 0;
+    font-variant-numeric: tabular-nums;
   }
   table.tides th, table.tides td {
     border: 1px solid var(--line);
-    padding: .4rem .45rem;
+    padding: .42rem .5rem;
     text-align: left;
     vertical-align: top;
   }
-  table.tides thead th { background: var(--sea-deep); color: #fff; font-weight: 600; }
-  table.tides tbody tr:nth-child(even) { background: #faf8f3; }
+  table.tides thead th {
+    background: var(--verdigris-deep);
+    color: var(--foam);
+    font-family: var(--mono);
+    font-weight: 500;
+    font-size: .68rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    border-color: var(--verdigris-deep);
+  }
+  table.tides tbody tr:nth-child(even) { background: #f4f4ec; }
   .table-scroll { overflow-x: auto; }
 
   /* ---------- Day plan ---------- */
   .dayplan {
-    background: var(--card);
+    background: var(--foam);
     border: 1px solid var(--line);
-    border-radius: 14px;
+    border-radius: 10px;
     margin: 1.1rem 0;
     overflow: hidden;
   }
-  .dayplan .day {
-    padding: .9rem 1rem;
-    border-top: 1px solid var(--line);
-  }
+  .dayplan .day { padding: 1rem 1.05rem; border-top: 1px solid var(--line); }
   .dayplan .day:first-child { border-top: none; }
   .dayplan h3 {
-    margin: 0 0 .4rem;
-    font-size: 1.02rem;
-    color: var(--sea-deep);
+    font-family: var(--display);
+    font-weight: 650;
+    margin: 0 0 .45rem;
+    font-size: 1.08rem;
+    color: var(--verdigris-deep);
   }
   .dayplan ul { margin: .2rem 0 .2rem 1.1rem; padding: 0; font-size: .92rem; }
-  .dayplan li { margin: .32rem 0; }
-  .dayplan .t { font-weight: 700; color: var(--sand); font-variant-numeric: tabular-nums; }
+  .dayplan li { margin: .34rem 0; }
+  .dayplan .t {
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: .84rem;
+    color: var(--brick);
+  }
 
   /* ---------- Sources ---------- */
-  #sources ol {
-    font-size: .84rem;
-    margin: .6rem 0 0 1.2rem;
-    padding: 0;
-  }
-  #sources li { margin: .3rem 0; word-break: break-all; }
+  #sources ol { font-size: .84rem; margin: .6rem 0 0 1.2rem; padding: 0; }
+  #sources li { margin: .32rem 0; word-break: break-word; }
 
   footer {
     text-align: center;
-    font-size: .78rem;
+    font-family: var(--mono);
+    font-size: .7rem;
     color: var(--ink-soft);
     padding: 1.5rem 1rem 2.5rem;
   }
 
   @media (min-width: 560px) {
-    header.hero h1 { font-size: 2.1rem; }
-    figure.photo img { height: 260px; }
+    header.hero h1 { font-size: 3rem; }
+    figure.photo img { height: 265px; }
   }
   @media print {
     nav.jump { display: none; }
@@ -266,9 +331,32 @@
 <body>
 
 <header class="hero">
-  <h1>Comillas &amp; Around</h1>
-  <p class="sub">A visitor guide for guests staying in Trasvía · Thursday 13 – Sunday 16 August 2026</p>
-  <p class="stamp">Researched and verified 13 August 2026 · times in 24h · prices in EUR · distances from Trasvía (39528)</p>
+  <div class="hero-inner">
+    <p class="eyebrow">Guest guide · Trasvía, Cantabria</p>
+    <h1>Comillas &amp; Around</h1>
+    <p class="sub">Everything worth doing within reach of the house, Thursday 13 – Sunday 16 August 2026 — monuments, free tours, caves, mountains, and the beach at the end of the lane.</p>
+    <div class="tidechart">
+      <svg viewBox="0 0 800 132" role="img" aria-label="Tide curve for 13 to 16 August. Daytime low tides: Thursday 11:35, Friday 12:18, Saturday 12:59, Sunday 13:39.">
+        <line x1="201" y1="8" x2="201" y2="98" stroke="rgba(253,252,248,.18)" stroke-dasharray="2 4"/>
+        <line x1="407" y1="8" x2="407" y2="98" stroke="rgba(253,252,248,.18)" stroke-dasharray="2 4"/>
+        <line x1="612" y1="8" x2="612" y2="98" stroke="rgba(253,252,248,.18)" stroke-dasharray="2 4"/>
+        <path d="M0,75 C18.8,75 28.2,24 47,24 C67,24 77,90 97,90 C117.8,90 128.2,17 149,17 C169.8,17 180.2,93 201,93 C221.8,93 232.2,22 253,22 C273,22 283,90 303,90 C323.8,90 334.2,17 355,17 C375.8,17 386.2,91 407,91 C427.8,91 438.2,22 459,22 C478.6,22 488.4,90 508,90 C529.2,90 539.8,19 561,19 C581.4,19 591.6,90 612,90 C632.8,90 643.2,26 664,26 C684,26 694,86 714,86 C734.8,86 745.2,22 766,22 C779.6,22 789,40 800,40 L800,132 L0,132 Z" fill="rgba(223,163,43,.10)" stroke="none"/>
+        <path d="M0,75 C18.8,75 28.2,24 47,24 C67,24 77,90 97,90 C117.8,90 128.2,17 149,17 C169.8,17 180.2,93 201,93 C221.8,93 232.2,22 253,22 C273,22 283,90 303,90 C323.8,90 334.2,17 355,17 C375.8,17 386.2,91 407,91 C427.8,91 438.2,22 459,22 C478.6,22 488.4,90 508,90 C529.2,90 539.8,19 561,19 C581.4,19 591.6,90 612,90 C632.8,90 643.2,26 664,26 C684,26 694,86 714,86 C734.8,86 745.2,22 766,22 C779.6,22 789,40 800,40" fill="none" stroke="rgba(253,252,248,.85)" stroke-width="2.5"/>
+        <circle cx="97" cy="90" r="4.5" fill="#dfa32b" stroke="#0e3b32" stroke-width="1.5"/>
+        <circle cx="303" cy="90" r="4.5" fill="#dfa32b" stroke="#0e3b32" stroke-width="1.5"/>
+        <circle cx="508" cy="90" r="4.5" fill="#dfa32b" stroke="#0e3b32" stroke-width="1.5"/>
+        <circle cx="714" cy="86" r="4.5" fill="#dfa32b" stroke="#0e3b32" stroke-width="1.5"/>
+        <g font-family="ui-monospace, Consolas, monospace" font-size="11" fill="rgba(253,252,248,.78)" text-anchor="middle">
+          <text x="97" y="116">THU 11:35</text>
+          <text x="303" y="116">FRI 12:18</text>
+          <text x="508" y="116">SAT 12:59</text>
+          <text x="714" y="116">SUN 13:39</text>
+        </g>
+      </svg>
+      <p class="tide-caption">The week's water: spring tides (coefficients 82–101). Gold marks the daytime lows — the windows for the coastal platform walk.</p>
+    </div>
+    <p class="stamp">Verified 13 Aug 2026 · 24h times · EUR · distances from Trasvía (39528)</p>
+  </div>
 </header>
 
 <nav class="jump">
@@ -281,7 +369,10 @@
 
 <main>
 <section class="zone" id="comillas">
-  <h2>In Comillas</h2>
+  <div class="zone-head">
+    <p class="eyebrow">Walkable or a five-minute drive</p>
+    <h2>In Comillas</h2>
+  </div>
   <p class="zone-intro">The three big monuments (El Capricho, Palacio de Sobrellano, Seminario Mayor) sit within a few hundred meters of each other, 2–3 km from Trasvía. Important: Sobrellano and the Seminario <strong>do not sell same-day tickets online</strong> — book the day before at centros.culturadecantabria.com, or take your chances at the box office.</p>
 
   <article class="card" id="walking-tours">
@@ -289,6 +380,7 @@
       <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/J23_085e_Comillas%2C_Plaza_de_la_Constituci%C3%B3n.jpg/960px-J23_085e_Comillas%2C_Plaza_de_la_Constituci%C3%B3n.jpg" alt="Plaza de la Constitución, Comillas" loading="lazy"><figcaption>Falk2 · CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:J23_085e_Comillas,_Plaza_de_la_Constituci%C3%B3n.jpg">Wikimedia Commons</a></figcaption></figure>
     </div>
     <div class="card-body">
+      <p class="kicker">Free tours · Plaza de la Constitución</p>
       <h3>Free walking tours</h3>
       <p class="tagline">Three tip-based tours cover the town's golden triangle — El Capricho, Sobrellano, the Pontificia — from different angles, all departing from around Plaza de la Constitución. Free to book; tip the guide in cash.</p>
       <div class="callout warn"><strong>English:</strong> no guaranteed English departures exist this week — the Civitatis English listing's booking calendar is empty for these dates and every GuruWalk slot is listed as Spanish. Elia's tour is "occasionally bilingual" per its Civitatis page: if you need English, book hers and message ahead.</div>
@@ -324,6 +416,7 @@
       <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Capricho_Gaud%C3%AD_Comillas_exterior.jpg/960px-Capricho_Gaud%C3%AD_Comillas_exterior.jpg" alt="El Capricho exterior with sunflower tiles" loading="lazy"><figcaption>Respinya · CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Capricho_Gaud%C3%AD_Comillas_exterior.jpg">Wikimedia Commons</a></figcaption></figure>
     </div>
     <div class="card-body">
+      <p class="kicker">Monument · 3.0 km · 5 min</p>
       <h3>El Capricho de Gaudí</h3>
       <p class="tagline">Gaudí's 1883–85 orientalist summer villa — minaret tower, sunflower tiles, Persian and Mudéjar flourishes. One of only three Gaudí buildings outside Catalonia, and 2026 is officially "Gaudí Year".</p>
       <table class="facts">
@@ -332,7 +425,7 @@
         <tr><th>Spanish tours</th><td>Roughly hourly 11:00–18:00 <span class="badge unconfirmed">Unconfirmed</span> — confirm at +34 942 720 365</td></tr>
         <tr><th>Price</th><td>7 EUR with audioguide (5 reduced, 3 child 7–12, under 7 free) · 10 EUR guided tour (8 reduced, 6 child) <span class="badge ok">Confirmed</span></td></tr>
         <tr><th>Booking</th><td><a href="https://tickets.elcaprichodegaudi.com/en">tickets.elcaprichodegaudi.com</a></td></tr>
-        <tr><th>Distance</th><td>3.0 km · ~5 min drive (or ~30 min walk)</td></tr>
+        <tr><th>From Trasvía</th><td>3.0 km · ~5 min drive, or ~30 min on foot</td></tr>
       </table>
       <div class="notes">
         <ul>
@@ -352,6 +445,7 @@
       <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Fachada_del_Palacio_de_Sobrellano%2C_Comillas.jpg/960px-Fachada_del_Palacio_de_Sobrellano%2C_Comillas.jpg" alt="Facade of Palacio de Sobrellano" loading="lazy"><figcaption>Jl FilpoC · CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Fachada_del_Palacio_de_Sobrellano,_Comillas.jpg">Wikimedia Commons</a></figcaption></figure>
     </div>
     <div class="card-body">
+      <p class="kicker">Monument · 2.5 km · 5 min</p>
       <h3>Palacio de Sobrellano</h3>
       <p class="tagline">Joan Martorell's neo-Gothic palace (1888) for the first Marqués de Comillas — marble staircase, polychrome stained glass, and Gaudí-designed furniture. Right next to El Capricho.</p>
       <table class="facts">
@@ -360,7 +454,7 @@
         <tr><th>English</th><td>No — tours in Spanish only <span class="badge unconfirmed">Per visitor reports; not stated officially</span></td></tr>
         <tr><th>Price</th><td>7 EUR (5 EUR reduced / groups from 11 people) <span class="badge ok">Confirmed</span></td></tr>
         <tr><th>Booking</th><td><a href="https://centros.culturadecantabria.com/reservas/">centros.culturadecantabria.com/reservas</a> · +34 942 59 84 25 · <strong>no same-day online sales</strong></td></tr>
-        <tr><th>Distance</th><td>~2.5 km · ~5 min drive <span class="badge unconfirmed">Estimate</span></td></tr>
+        <tr><th>From Trasvía</th><td>~2.5 km · ~5 min drive <span class="badge unconfirmed">Estimate</span></td></tr>
       </table>
       <div class="callout"><strong>Availability snapshot (13 Aug):</strong> Fri 14 was nearly sold out online (two sessions with 1 seat left); Sat 15 and Sun 16 still had wide availability morning and afternoon (no 18:00 tour on Sunday). Book Friday immediately if you want it.</div>
       <div class="notes">
@@ -380,8 +474,9 @@
       <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Universidad_Pontificia_de_Comillas._Fachada.jpg/960px-Universidad_Pontificia_de_Comillas._Fachada.jpg" alt="Facade by Domènech i Montaner" loading="lazy"><figcaption>Jose Luis Filpo Cabana · CC BY 3.0 · <a href="https://commons.wikimedia.org/wiki/File:Universidad_Pontificia_de_Comillas._Fachada.jpg">Wikimedia Commons</a></figcaption></figure>
     </div>
     <div class="card-body">
+      <p class="kicker">Monument · 1.5 km · 4 min · nearest to the house</p>
       <h3>Seminario Mayor — former Universidad Pontificia</h3>
-      <p class="tagline">The monumental hilltop seminary (1883, Martorell) whose facade and doorway are by Lluís Domènech i Montaner — one of the great Catalan-Modernisme ensembles outside Catalonia, with sweeping views over Comillas and the coast. The closest monument to Trasvía.</p>
+      <p class="tagline">The monumental hilltop seminary (1883, Martorell) whose facade and doorway are by Lluís Domènech i Montaner — one of the great Catalan-Modernisme ensembles outside Catalonia, with sweeping views over Comillas and the coast.</p>
       <table class="facts">
         <tr><th>Hours (Aug)</th><td>Mon–Sat 10:00–19:00 · Sun 10:00–18:00 · grounds daily 09:30–19:00 <span class="badge ok">Confirmed</span></td></tr>
         <tr><th>Visit</th><td>Interior by guided tour only, ~45 min, max 40 people per session</td></tr>
@@ -389,25 +484,76 @@
         <tr><th>Price</th><td>7 EUR (5 EUR reduced / groups from 11) <span class="badge ok">Confirmed</span></td></tr>
         <tr><th>Booking</th><td><a href="https://centros.culturadecantabria.com/reservas/">centros.culturadecantabria.com/reservas</a> · same rules as Sobrellano (no same-day online)</td></tr>
         <tr><th>Parking</th><td>On-site, 2 EUR cash (1 EUR back if you visit; free with blue disability card) <span class="badge ok">Confirmed</span></td></tr>
-        <tr><th>Distance</th><td>~1.5–2 km · ~4 min drive <span class="badge unconfirmed">Estimate</span></td></tr>
+        <tr><th>From Trasvía</th><td>~1.5–2 km · ~4 min drive <span class="badge unconfirmed">Estimate</span></td></tr>
       </table>
       <div class="callout"><strong>Combining with Sobrellano:</strong> the official rule — online bookings must leave <strong>at least 90–120 min between the two start times</strong>. Pairings that worked in the live engine on 13 Aug: Sat — Sobrellano 10:10 + Seminario 12:45; Sun — Seminario 10:10 + Sobrellano 12:40 (or Sobrellano 10:40 + Seminario 12:30).</div>
       <div class="notes">
         <ul>
           <li>Availability was wide open on all four days (sessions roughly 10:15–17:40; Sunday 10:10–17:00) — the easy one to slot around everything else.</li>
           <li>Even without a tour, the grounds (09:30–19:00) and the view over town are worth the stop.</li>
+          <li>Concert nights at the Seminario church (Fri 14, Sat 15 — see events below) may alter late-day visiting, per the town bulletin.</li>
         </ul>
       </div>
       <p class="verified">Verified 13 Aug 2026 (incl. live booking-engine query) · <a href="https://www.comillas.es/comillas/web_php/index.php?contenido=subapartados_coconut&amp;id_boto=96&amp;title=horarios-monumentos-diciembre-2025&amp;lang=1">comillas.es (Agosto 2026)</a> · <a href="https://centros.culturadecantabria.com/seminario-mayor-de-comillas/regimen-de-visitas/">centros.culturadecantabria.com</a></p>
     </div>
   </article>
 
-  <!-- CARD: festival -->
-  <!-- CARD: minor-sights -->
+  <article class="card" id="events">
+    <div class="card-body">
+      <p class="kicker">This week · concerts &amp; shows</p>
+      <h3>What's on, 13–16 August</h3>
+      <p class="tagline">The XXIII Caprichos Musicales festival closes tonight — its last night is the only one in your window. The rest of the week belongs to Carlos Núñez, two Seminario shows, and a free open-air send-off in the plaza.</p>
+      <div class="table-scroll">
+      <table class="tides">
+        <thead><tr><th>When</th><th>What</th><th>Where</th><th>Tickets</th></tr></thead>
+        <tbody>
+          <tr><td>Thu 13 · 21:00</td><td>Caprichos Musicales — closing gala: opera &amp; zarzuela (Imanol Laura, tenor; Rosa Gomariz, soprano; Ruzan Badalian, piano)</td><td>Centro Cultural El Espolón</td><td>Online sales closed — box office at El Espolón (10:00–14:00; Sat/Sun also 17:00–21:00) · price <span class="badge unconfirmed">Unconfirmed</span></td></tr>
+          <tr><td>Thu 13 · 21:15</td><td>Noches de Capricho: "Las Noches del Café La Perla" — theatre, live music &amp; circus</td><td>El Capricho de Gaudí</td><td><a href="https://www.elcaprichodegaudi.com">elcaprichodegaudi.com</a> + box office</td></tr>
+          <tr><td>Fri 14 · 20:00 &amp; 22:30</td><td>Carlos Núñez — "Lugares Mágicos 2026" (the 20:00 show is <strong>sold out</strong>)</td><td>Iglesia del Seminario Mayor · free shuttle from La Portalada</td><td><a href="https://entradas.ataquilla.com/es/ventaentradas">ataquilla.com</a> · price <span class="badge unconfirmed">Unconfirmed</span></td></tr>
+          <tr><td>Sat 15 · 19:00</td><td>"Universo Musical Pop Kids" — children's show (Velas y Candelas)</td><td>Seminario Mayor</td><td><a href="https://www.giglon.com">giglon.com</a> · price <span class="badge unconfirmed">Unconfirmed</span></td></tr>
+          <tr><td>Sat 15 · 22:00</td><td>"Grandes éxitos de los 60 a los 2000" — 30 voices live (Velas y Candelas)</td><td>Seminario Mayor</td><td><a href="https://www.giglon.com">giglon.com</a> · price <span class="badge unconfirmed">Unconfirmed</span></td></tr>
+          <tr><td>Sun 16 · 22:00</td><td>"La última y nos vamos" — open-air concert</td><td>Plaza de la Constitución</td><td>Free</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="notes">
+        <ul>
+          <li>The festival ran 3–13 Aug: <strong>no Caprichos Musicales concerts on the 14th–16th</strong> — tonight or never.</li>
+          <li>No fiestas patronales fall in this window; Sat 15 is the Assumption national holiday, so expect the town full anyway.</li>
+        </ul>
+      </div>
+      <p class="verified">Verified 13 Aug 2026 · <a href="https://comillas.es/comillas/uploaded/33-BOLETIN_SEMANAL.pdf">comillas.es weekly bulletin (Semana 33, 10–16 Aug)</a> · <a href="https://comillas.es/comillas/Web_php/index.php?contenido=maseventos_coconut&amp;idCat=todos">comillas.es agenda</a> · <a href="https://entradium.com/es/organizers/caprichos-musicales-de-comillas">entradium.com</a></p>
+    </div>
+  </article>
+
+  <article class="card" id="sights">
+    <div class="photo-strip two">
+      <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/El_%C3%A1ngel_exterminador_de_Llimona_en_el_cementerio_de_Comillas.jpg/960px-El_%C3%A1ngel_exterminador_de_Llimona_en_el_cementerio_de_Comillas.jpg" alt="El Ángel Exterminador in the Comillas cemetery" loading="lazy"><figcaption>xavi lópez · CC BY-SA 3.0 es · <a href="https://commons.wikimedia.org/wiki/File:El_%C3%A1ngel_exterminador_de_Llimona_en_el_cementerio_de_Comillas.jpg">Wikimedia Commons</a></figcaption></figure>
+      <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Iglesia_de_San_Crist%C3%B3bal%2C_Comillas.jpg/960px-Iglesia_de_San_Crist%C3%B3bal%2C_Comillas.jpg" alt="Iglesia de San Cristóbal, Comillas" loading="lazy"><figcaption>Rodelar · CC BY-SA 3.0 · <a href="https://commons.wikimedia.org/wiki/File:Iglesia_de_San_Crist%C3%B3bal,_Comillas.jpg">Wikimedia Commons</a></figcaption></figure>
+    </div>
+    <div class="card-body">
+      <p class="kicker">Around town · mostly free</p>
+      <h3>Smaller sights &amp; the Friday market</h3>
+      <p class="tagline">The in-between stops that make the town: a marble angel over a Gothic ruin, an indiano mansion that opens its doors on your last day, and Domènech i Montaner details scattered through the streets.</p>
+      <table class="facts">
+        <tr><th>San Cristóbal</th><td>Parish church, interior open daily 10:00–13:30 &amp; 16:00–19:00 · 2 EUR (under-12 and pilgrims free) <span class="badge ok">Confirmed</span></td></tr>
+        <tr><th>Cemetery &amp; Ángel</th><td>Josep Llimona's marble Ángel Exterminador (1895) crowning a walled Gothic church ruin redesigned by Domènech i Montaner — free, daylight hours (formal gate times unpublished)</td></tr>
+        <tr><th>El Espolón</th><td>Cultural center, exhibitions daily 10:00–14:00 &amp; 17:00–21:00: "Veneno que cura, veneno que mata" (450-piece history of poisons, ticketed, price <span class="badge unconfirmed">Unconfirmed</span>) plus two free painting shows (Eduardo Pisano; González–Castañeda) <span class="badge ok">Hours confirmed</span></td></tr>
+        <tr><th>La Portilla</th><td>One of the best-preserved indiano mansions, attributed to Oriol Mestres · <strong>opens Sun 16 Aug</strong> (then daily to 31 Aug) · ~70 min guided visit, max 15 · 12 EUR (9 reduced) · booking essential: <a href="https://laportilla-comillas.com/visitas-guiadas-la-portilla-comillas/">laportilla-comillas.com</a> · +34 605 127 849 <span class="badge ok">Dates confirmed</span></td></tr>
+        <tr><th>Friday market</th><td>Fri 14, ~09:00–14:00 at the Campa de Sobrellano — 30+ stalls of local food, textiles and flowers <span class="badge ok">Confirmed</span></td></tr>
+        <tr><th>Always free</th><td>Fuente de los Tres Caños (Domènech i Montaner) · Puerta de los Pájaros (replica of a 1904 Gaudí gate) · Monumento al Marqués on its seafront hill · Mirador de Santa Lucía — the sunset viewpoint over the bay</td></tr>
+      </table>
+      <div class="callout"><strong>Practical:</strong> zona azul paid street parking runs daily incl. holidays 10:00–20:00 (EasyPark app). Tourist office: Mon–Sat 09:00–21:00, Sun 09:00–15:00 · +34 942 722 591. There's also an exhibition at the old Town Hall ("Los colores de Julio de Pablo", Tue–Sun 19:00–21:00, free, until 17 Aug).</div>
+      <p class="verified">Verified 13 Aug 2026 · <a href="https://comillas.es/comillas/uploaded/33-BOLETIN_SEMANAL.pdf">comillas.es weekly bulletin</a> · <a href="https://comillas.es/comillas/uploaded/2026/AUGUST_2026_PAG.pdf">August 2026 monuments PDF</a> · <a href="https://laportilla-comillas.com/visitas-guiadas-la-portilla-comillas/">laportilla-comillas.com</a></p>
+    </div>
+  </article>
 </section>
 
 <section class="zone" id="daytrips">
-  <h2>Day trips</h2>
+  <div class="zone-head">
+    <p class="eyebrow">30–90 minutes by car</p>
+    <h2>Day trips</h2>
+  </div>
   <p class="zone-intro">All reachable by car in 30–90 min. Note that Saturday 15 August is a national holiday (Assumption) — everything is open, but expect peak crowds and full car parks.</p>
 
   <article class="card" id="soplao">
@@ -416,6 +562,7 @@
       <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/EL_SOPLAO%2C_LOS_TRES_REYES_MAGOS.jpg/960px-EL_SOPLAO%2C_LOS_TRES_REYES_MAGOS.jpg" alt="Los Tres Reyes Magos formation, El Soplao" loading="lazy"><figcaption>HENCHE · CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:EL_SOPLAO,_LOS_TRES_REYES_MAGOS.jpg">Wikimedia Commons</a></figcaption></figure>
     </div>
     <div class="card-body">
+      <p class="kicker">Cave · 19.4 km · 30 min</p>
       <h3>Cueva El Soplao</h3>
       <p class="tagline">One of Spain's most spectacular show caves — an extraordinary density of "eccentric" helictite formations reached through old mining galleries, with coastal views from the 540 m entrance.</p>
       <table class="facts">
@@ -423,7 +570,7 @@
         <tr><th>Tours</th><td><strong>Turística</strong>: ~55 min, 1.2 km, wheelchair-accessible — 15 EUR (12.50 child 4–16, 12 reduced) · <strong>Espeleológica</strong> ("adventure"): ~2.5 h in original galleries, suit/helmet/boots provided — 36 EUR, age 12+, departures 10:00/11:00/15:00/16:00 · <strong>Ferrata minera</strong>: 45 EUR, age 14+, Thu–Sun 11:00 &amp; 16:30</td></tr>
         <tr><th>English</th><td>No — tours in Spanish (other languages only for groups by prior arrangement)</td></tr>
         <tr><th>Booking</th><td><a href="https://uniticket.janto.es/elsoplao/public/janto/main.php?Nivel=Evento&amp;idEvento=VISITA">Tourist</a> · <a href="https://uniticket.janto.es/elsoplao/public/janto/main.php?Nivel=Evento&amp;idEvento=AVENTURA">Adventure</a> · <a href="https://uniticket.janto.es/elsoplao/public/janto/main.php?Nivel=Evento&amp;idEvento=VMINERA">Ferrata</a> — advance purchase officially recommended; this week's availability <span class="badge unconfirmed">Unconfirmed</span></td></tr>
-        <tr><th>Distance</th><td>19.4 km · ~30 min drive · free parking</td></tr>
+        <tr><th>From Trasvía</th><td>19.4 km · ~30 min drive · free parking</td></tr>
       </table>
       <div class="notes">
         <ul>
@@ -441,13 +588,14 @@
       <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Colegiata_Santa_Juliana%2C_Santillana_del_Mar%2C_Cantabria%2C_Espa%C3%B1a14.jpg/960px-Colegiata_Santa_Juliana%2C_Santillana_del_Mar%2C_Cantabria%2C_Espa%C3%B1a14.jpg" alt="Colegiata de Santa Juliana, Santillana del Mar" loading="lazy"><figcaption>Diego Delso · CC BY-SA 3.0 · <a href="https://commons.wikimedia.org/wiki/File:Colegiata_Santa_Juliana,_Santillana_del_Mar,_Cantabria,_Espa%C3%B1a14.jpg">Wikimedia Commons</a></figcaption></figure>
     </div>
     <div class="card-body">
+      <p class="kicker">Town + museum · 20.1 km · 25 min</p>
       <h3>Santillana del Mar + Museo de Altamira</h3>
       <p class="tagline">One of Spain's best-preserved medieval towns — cobbles, Romanesque Colegiata, stone manors — with the museum of the "Sistine Chapel of cave art" 2 km up the hill: the Neocueva is an exact replica of Altamira's painted ceiling.</p>
       <table class="facts">
         <tr><th>Museum hours</th><td>Thu 13 &amp; Fri 14: 09:30–20:00 · Sat 15 (holiday): 09:30–20:00, explicitly open <span class="badge ok">Confirmed</span> · Sun 16: 09:30–18:00 · ticket desk closes 30 min before · closed Mondays</td></tr>
         <tr><th>Price</th><td>3 EUR (1.50 reduced) · <strong>free for everyone Sat from 14:00 and all day Sun</strong> — free tickets are desk-only, first-come <span class="badge ok">Confirmed</span></td></tr>
         <tr><th>Booking</th><td>Paid advance tickets (timed Neocueva slot included) via the <a href="https://entradasmuseo.bancosantander.es/#/open/checkout/product/00-00089Fl/express">official Santander ticketing platform</a> — must be bought <strong>at least one day ahead</strong>, never same-day; arrive 15 min early or lose the slot</td></tr>
-        <tr><th>Distance</th><td>20.1 km · ~25 min drive (town and museum are 2 km apart)</td></tr>
+        <tr><th>From Trasvía</th><td>20.1 km · ~25 min drive (town and museum are 2 km apart)</td></tr>
       </table>
       <div class="callout"><strong>The real cave:</strong> the old Friday lottery no longer exists — original-cave access is limited to a long-closed waiting list, so the Neocueva replica <em>is</em> the visit (and it's excellent).</div>
       <div class="notes">
@@ -467,14 +615,14 @@
       <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/ES1200001_Cantabria%2C_Picos_de_Europa%2C_Fuente_D%C3%A9%2C_telef%C3%A9rico.jpg/960px-ES1200001_Cantabria%2C_Picos_de_Europa%2C_Fuente_D%C3%A9%2C_telef%C3%A9rico.jpg" alt="Fuente Dé cable car" loading="lazy"><figcaption>Papm1949 · CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:ES1200001_Cantabria,_Picos_de_Europa,_Fuente_D%C3%A9,_telef%C3%A9rico.jpg">Wikimedia Commons</a></figcaption></figure>
     </div>
     <div class="card-body">
+      <p class="kicker">Mountains · 82.3 km · 1 h 20</p>
       <h3>Teleférico de Fuente Dé (Picos de Europa)</h3>
       <p class="tagline">A 3 min 40 s cable-car leap up ~750 m of vertical rock to El Cable at 1,823 m — instant high-mountain scenery, with walks into the Áliva meadows from the top. The drive there through the La Hermida gorge is a highlight in itself.</p>
       <table class="facts">
         <tr><th>Hours (Aug)</th><td>Daily 08:00–19:00 · last ascent 18:45 · last descent 18:50 <span class="badge ok">Confirmed</span></td></tr>
         <tr><th>Price</th><td>Return 30 EUR adult / 15 EUR child 4–12 (one-way 17 / 8, station-only) <span class="badge ok">Confirmed</span> — ignore the widespread outdated 17–20 EUR figures online</td></tr>
-        <tr><th>English</th><td>No tour involved — it's a ride; signage bilingual enough</td></tr>
         <tr><th>Booking</th><td><a href="https://entradas.telefericofuentede.com/">entradas.telefericofuentede.com</a> — dated tickets with 30-min entry slots, online sales close <strong>24 h ahead</strong>; same-day only at the base ticket office</td></tr>
-        <tr><th>Distance</th><td>82.3 km · ~1 h 20 (A-8 to Unquera, N-621 through the gorge, Potes, CA-185)</td></tr>
+        <tr><th>From Trasvía</th><td>82.3 km · ~1 h 20 (A-8 to Unquera, N-621 through the gorge, Potes, CA-185)</td></tr>
       </table>
       <div class="callout warn"><strong>August queue reality:</strong> walk-up waits of 2–3 h are routinely reported, and online slots sell out days ahead — book now for the earliest slot you can get (it opens at 08:00; mornings also beat the afternoon cloud). The descent has no timed slot — it's a first-come queue, so start heading down well before the 18:50 last cabin.</div>
       <div class="notes">
@@ -495,6 +643,7 @@
       <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Spain.Cantabria.Cab%C3%A1rceno.Parque.01.JPG/960px-Spain.Cantabria.Cab%C3%A1rceno.Parque.01.JPG" alt="Cabárceno park landscape" loading="lazy"><figcaption>Yearofthedragon · CC BY-SA 3.0 · <a href="https://commons.wikimedia.org/wiki/File:Spain.Cantabria.Cab%C3%A1rceno.Parque.01.JPG">Wikimedia Commons</a></figcaption></figure>
     </div>
     <div class="card-body">
+      <p class="kicker">Wildlife · 57.1 km · 50 min</p>
       <h3>Parque de la Naturaleza de Cabárceno</h3>
       <p class="tagline">A drive-through wildlife park in a vast former open-cast iron mine: ~20 km of roads winding between semi-free-roaming elephants (one of Europe's leading herds), a basin of 60+ brown bears, gorillas, rhinos and giraffes among red-rock karst.</p>
       <table class="facts">
@@ -502,7 +651,7 @@
         <tr><th>Price</th><td>High season: 45 EUR adult (13+) / 25 EUR child 4–12 / under 4 free <span class="badge unconfirmed">Re-verify at checkout</span> (official price page blocks robots; figures from the official sales portal as of 3 Aug)</td></tr>
         <tr><th>Cable car</th><td>The 8-station telecabina is <strong>included</strong> in the general ticket</td></tr>
         <tr><th>Booking</th><td><a href="https://entradas.parquedecabarceno.com/">entradas.parquedecabarceno.com</a> — dated day tickets, online up to 1 day ahead; same-day tickets at the gate</td></tr>
-        <tr><th>Distance</th><td>57.1 km · ~50 min (A-8 east past Torrelavega, exit for Obregón)</td></tr>
+        <tr><th>From Trasvía</th><td>57.1 km · ~50 min (A-8 east past Torrelavega, exit for Obregón)</td></tr>
       </table>
       <div class="notes">
         <ul>
@@ -520,10 +669,11 @@
       <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Hills_-_San_Vicente_de_la_Barquera%2C_Spain_-_July_25%2C_2024_01.jpg/960px-Hills_-_San_Vicente_de_la_Barquera%2C_Spain_-_July_25%2C_2024_01.jpg" alt="San Vicente de la Barquera" loading="lazy"><figcaption>Giorgio Galeotti · CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Hills_-_San_Vicente_de_la_Barquera,_Spain_-_July_25,_2024_01.jpg">Wikimedia Commons</a></figcaption></figure>
     </div>
     <div class="card-body">
-      <h3>Bonus idea: San Vicente de la Barquera</h3>
+      <p class="kicker">Bonus · ~12 km · 15 min</p>
+      <h3>San Vicente de la Barquera</h3>
       <p class="tagline">The working fishing port just past Oyambre — medieval Puente de la Maza, the Castillo del Rey on its ridge, and harbor-front seafood restaurants, with the Picos de Europa as a backdrop on clear days.</p>
       <table class="facts">
-        <tr><th>Distance</th><td>~12 km · ~15 min drive <span class="badge unconfirmed">Estimate</span></td></tr>
+        <tr><th>From Trasvía</th><td>~12 km · ~15 min drive <span class="badge unconfirmed">Estimate</span></td></tr>
         <tr><th>Price</th><td>Free to wander; combine with Oyambre/Gerra beaches on the way</td></tr>
       </table>
       <p class="verified">General suggestion — check restaurant/castle hours locally.</p>
@@ -532,7 +682,10 @@
 </section>
 
 <section class="zone" id="beaches">
-  <h2>Beaches, surf &amp; the low-tide walk</h2>
+  <div class="zone-head">
+    <p class="eyebrow">Sand, surf &amp; the tide clock</p>
+    <h2>Beaches, surf &amp; the low-tide walk</h2>
+  </div>
   <p class="zone-intro">Trasvía sits on the coast road between Comillas and Oyambre — both beaches are minutes away. This week has spring tides (coefficients 82–101), the best possible conditions for the low-tide coastal walk.</p>
 
   <article class="card" id="playa-comillas">
@@ -541,11 +694,12 @@
       <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Spain.Cantabria.Comillas.JPG/960px-Spain.Cantabria.Comillas.JPG" alt="Comillas beach and harbor" loading="lazy"><figcaption>Yearofthedragon · CC BY-SA 3.0 · <a href="https://commons.wikimedia.org/wiki/File:Spain.Cantabria.Comillas.JPG">Wikimedia Commons</a></figcaption></figure>
     </div>
     <div class="card-body">
+      <p class="kicker">Beach · 2 km · 5 min</p>
       <h3>Playa de Comillas</h3>
       <p class="tagline">The town beach: ~900 m of fine golden sand with a promenade to the harbor, gentle beginner-friendly waves.</p>
       <table class="facts">
-        <tr><th>Distance</th><td>~2 km · ~5 min by car from Trasvía (or walk down through town)</td></tr>
-        <tr><th>Lifeguards</th><td>Cruz Roja daily 11:30–19:30 (15 Jun–15 Sep) <span class="badge ok">Confirmed</span></td></tr>
+        <tr><th>From Trasvía</th><td>~2 km · ~5 min by car (or walk down through town)</td></tr>
+        <tr><th>Lifeguards</th><td>Cruz Roja daily 11:30–19:30 (until late Sep) <span class="badge ok">Confirmed</span></td></tr>
         <tr><th>Facilities</th><td>Blue Flag · toilets, showers, sunshade/lounger rental · fully adapted access (amphibious chair available) · no dogs</td></tr>
         <tr><th>Price</th><td>Free (paid parking lot adjacent)</td></tr>
       </table>
@@ -566,10 +720,11 @@
       <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Vida_en_Oyambre%2C_San_Vicente_de_la_Barquera%2C_Playa_de_Mer%C3%B3n.jpg/960px-Vida_en_Oyambre%2C_San_Vicente_de_la_Barquera%2C_Playa_de_Mer%C3%B3n.jpg" alt="Oyambre dunes toward Playa de Merón" loading="lazy"><figcaption>Spinor69 · CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Vida_en_Oyambre,_San_Vicente_de_la_Barquera,_Playa_de_Mer%C3%B3n.jpg">Wikimedia Commons</a></figcaption></figure>
     </div>
     <div class="card-body">
+      <p class="kicker">Beach · 3–4 km · 7 min</p>
       <h3>Playa de Oyambre (&amp; Playa de Gerra)</h3>
       <p class="tagline">Nearly 2 km of wild sand backed by live dunes and the La Rabia estuary marshes, inside the Parque Natural de Oyambre — a designated World Surfing Reserve, with the Picos de Europa on the horizon.</p>
       <table class="facts">
-        <tr><th>Distance</th><td>~3–4 km · ~5–7 min by car from Trasvía <span class="badge unconfirmed">Estimate</span></td></tr>
+        <tr><th>From Trasvía</th><td>~3–4 km · ~5–7 min by car <span class="badge unconfirmed">Estimate</span></td></tr>
         <tr><th>Lifeguards</th><td>July–August only</td></tr>
         <tr><th>Facilities</th><td>Seasonal beach bar + portable toilets at the main access · adapted access · otherwise unspoiled</td></tr>
         <tr><th>Price</th><td>Free · parking lots off the CA-236 (last stretch partly unpaved); full by mid-morning in August</td></tr>
@@ -587,12 +742,13 @@
 
   <article class="card" id="surf">
     <div class="card-body">
+      <p class="kicker">Surf · lessons from 35 EUR</p>
       <h3>Surf schools (August 2026)</h3>
       <p class="tagline">Three schools verified operating at Comillas/Oyambre this season — 2 h group lessons run ~35 EUR with wetsuit, board and insurance included.</p>
       <table class="facts">
         <tr><th>Oyambre Surf House</th><td>On Playa de Oyambre (El Tejo, 39528). Group 2 h: 35 EUR (2 days 60 / 5 days 130) · private 2 h: 80 EUR. August slots: 09:30, 10:00, 12:00, 12:30, 16:30, 17:00 (arrive 30 min early). Board rental 15 EUR/2 h, board+wetsuit 20 EUR/2 h. Multiple languages on request. <a href="https://oyambresurf.com/en/">oyambresurf.com</a> · +34 645 829 185 <span class="badge ok">Confirmed</span></td></tr>
         <tr><th>Escuela de Surf h2o</th><td>San Vicente / Oyambre park &amp; Comillas. Group 2 h: 35 EUR (5 days 150) · private 80 EUR · SUP from 35 EUR. Board+wetsuit 20 EUR/2 h. <a href="https://escueladesurfh2o.com/tarifas/">escueladesurfh2o.com</a> · WhatsApp +34 618 858 033. English <span class="badge unconfirmed">Unconfirmed</span></td></tr>
-        <tr><th>North Ocean Surf</th><td>In Comillas town (C/ Marqués de Comillas 8), teaches at both beaches, max 6 per instructor, shuttle to Oyambre, "classes in different languages". Prices not published — call 634 427 409. <a href="https://northoceansurf.com/">northoceansurf.com</a> <span class="badge unconfirmed">Prices unconfirmed</span></td></tr>
+        <tr><th>North Ocean Surf</th><td>In Comillas town (C/ Marqués de Comillas 8), teaches at both beaches, max 6 per instructor, shuttle to Oyambre, "classes in different languages". Prices not published — call +34 634 427 409. <a href="https://northoceansurf.com/">northoceansurf.com</a> <span class="badge unconfirmed">Prices unconfirmed</span></td></tr>
       </table>
       <div class="notes"><ul><li>Note: the well-known Escuela de Surf Los Locos is in Suances, ~30 km east — it does not operate here.</li></ul></div>
       <p class="verified">Verified 13 Aug 2026 · prices from each school's live tariff page.</p>
@@ -601,16 +757,17 @@
 
   <article class="card" id="rasa">
     <div class="card-body">
+      <p class="kicker">Low tide · free · this week's best show</p>
       <h3>Rasa mareal — the low-tide coastal walk</h3>
       <p class="tagline">At low tide the sea peels back off a flat rocky platform of folded, layered strata between Comillas and Oyambre: tide pools full of crabs, urchins, anemones and the odd octopus. This week's spring tides expose it exceptionally well.</p>
       <table class="facts">
         <tr><th>Route</th><td>Drop onto the platform at Playa de Comillas and head west toward the Ría de La Rabia and Oyambre; ~4–5 km one way. Clifftop path (Senda Costera, ~5.5 km circular) runs parallel as an escape/return route.</td></tr>
-        <tr><th>Price</th><td>Free · guided interpretive outings via Red Cambera / PROVOCA (608 137 582)</td></tr>
+        <tr><th>Price</th><td>Free · guided interpretive outings via Red Cambera / PROVOCA (+34 608 137 582)</td></tr>
         <tr><th>Best window</th><td>Roughly low tide ±1.75 h — see table below</td></tr>
       </table>
       <div class="table-scroll">
       <table class="tides">
-        <thead><tr><th>Date</th><th>Daytime low tide</th><th>High tides</th><th>Coeff.</th><th>Best walk window</th></tr></thead>
+        <thead><tr><th>Date</th><th>Daytime low</th><th>High tides</th><th>Coeff.</th><th>Best walk window</th></tr></thead>
         <tbody>
           <tr><td>Thu 13 Aug</td><td><strong>11:35</strong> (−1.9 m)</td><td>05:38 · 17:55</td><td>101</td><td><strong>09:45–13:15</strong></td></tr>
           <tr><td>Fri 14 Aug</td><td><strong>12:18</strong> (−1.9 m)</td><td>06:20 · 18:37</td><td>99</td><td><strong>10:30–14:00</strong></td></tr>
@@ -632,7 +789,10 @@
 </section>
 
 <section class="zone" id="plan">
-  <h2>Suggested plan, Thursday–Sunday</h2>
+  <div class="zone-head">
+    <p class="eyebrow">Thursday to Sunday, tide-aware</p>
+    <h2>Suggested plan</h2>
+  </div>
   <p class="zone-intro">Built around three fixed points: the 11:30 walking tours end ~13:00 and clash with the 12:30 English tour at El Capricho (so English Capricho slots are always the 16:30); Sobrellano and the Seminario sell no same-day online tickets; and the low-tide walk window slides ~40 min later each day. Sobrellano is closed Mondays — this week that only matters if you stay past Sunday.</p>
   <div class="dayplan">
     <div class="day">
@@ -642,15 +802,18 @@
         <li><span class="t">Midday</span> Book ahead online for the rest of the stay: Sobrellano (Friday is nearly sold out), Seminario, Altamira, Capricho — and a Fuente Dé slot if you want the Picos (online sales close 24 h ahead and August slots sell out days early).</li>
         <li><span class="t">16:30</span> El Capricho — English guided tour.</li>
         <li><span class="t">17:30 / 19:30</span> Elia's free walking tour (Moncho's 18:00 as alternative).</li>
+        <li><span class="t">21:00</span> Caprichos Musicales closing gala at El Espolón (box-office tickets) — or "Las Noches del Café La Perla" at El Capricho, 21:15. Tonight is the festival's last night.</li>
       </ul>
     </div>
     <div class="day">
-      <h3>Friday 14 — monuments day (or El Soplao)</h3>
+      <h3>Friday 14 — market &amp; monuments (or El Soplao)</h3>
       <ul>
+        <li><span class="t">09:00–14:00</span> Friday market at the Campa de Sobrellano — 30+ stalls below the palace.</li>
         <li><span class="t">10:15</span> Seminario Mayor guided tour, then the grounds and the view.</li>
         <li><span class="t">12:18</span> Low tide — short platform wander below the town, or beach time.</li>
         <li><span class="t">16:10</span> Sobrellano guided tour (satisfies the 90–120 min spacing rule; book the moment you can — Friday had 1-seat sessions on 13 Aug).</li>
         <li><span class="t">17:30</span> Alternative: Emilio's 2 h storytelling tour — his only departure this week.</li>
+        <li><span class="t">22:30</span> Carlos Núñez at the Seminario church (the 20:00 show is sold out); free shuttle from La Portalada.</li>
         <li><span class="t">All day</span> Swap: El Soplao (~30 min drive) — book the tourist visit online a day ahead; fleece required.</li>
       </ul>
     </div>
@@ -660,7 +823,7 @@
         <li><span class="t">10:10</span> Sobrellano tour + <span class="t">12:45</span> Seminario tour — the pairing that satisfies the spacing rule; or take the 11:30 free walking tour instead.</li>
         <li><span class="t">11:00–14:45</span> Low-tide window (low 12:59) if you skipped the tours.</li>
         <li><span class="t">16:30</span> El Capricho English tour (the 12:30 clashes with everything above).</li>
-        <li><span class="t">Evening</span> Oyambre for sunset; Elia's 19:30 walk as a nightcap.</li>
+        <li><span class="t">Evening</span> Oyambre for sunset; Elia's 19:30 walk, or "Grandes éxitos" at the Seminario, 22:00.</li>
       </ul>
     </div>
     <div class="day">
@@ -668,41 +831,48 @@
       <ul>
         <li><span class="t">09:15</span> Drive to Altamira — free all Sunday, desk-only tickets from 09:30, so arrive at opening; then wander Santillana del Mar.</li>
         <li><span class="t">11:45–15:20</span> Back for the last (and latest) low-tide window (low 13:39), or lunch in Santillana.</li>
+        <li><span class="t">Afternoon</span> La Portilla's first open day of the season — ~70 min guided visit of the indiano mansion, 12 EUR, booking essential.</li>
         <li><span class="t">17:30</span> Elia's walking tour — the only guide running Sunday.</li>
+        <li><span class="t">22:00</span> Free open-air send-off: "La última y nos vamos", Plaza de la Constitución.</li>
         <li><span class="t">All day</span> Big-mountain swap: Teleférico de Fuente Dé (~1 h 20 drive) — needs a timed slot booked by Friday; leave early for the 08:00–09:00 cabins and lunch in Potes on the way back.</li>
         <li><span class="t">Note</span> Sobrellano's Sunday hours are shorter (last tour 17:10); Monday it's closed — Capricho (daily) and the Seminario (Mon–Sat) are the Monday options if you stay on.</li>
       </ul>
     </div>
   </div>
-  <div class="callout">Caprichos Musicales concert listings and the remaining minor sights (San Cristóbal, El Espolón, La Portilla) will be added shortly.</div>
 </section>
 
 <section class="zone" id="sources">
-  <h2>Sources</h2>
+  <div class="zone-head">
+    <p class="eyebrow">Every time and price, receipted</p>
+    <h2>Sources</h2>
+  </div>
   <p class="zone-intro">Everything above was verified against these pages on 13 August 2026. Times and availability change — recheck the booking link before setting out.</p>
   <ol>
     <li><a href="https://www.comillas.es/comillas/web_php/index.php?contenido=subapartados_coconut&amp;id_boto=96&amp;title=horarios-monumentos-diciembre-2025&amp;lang=1">comillas.es — Horarios monumentos (Agosto 2026)</a></li>
     <li><a href="https://comillas.es/comillas/uploaded/2026/AUGUST_2026_PAG.pdf">comillas.es — Visiting hours of monuments in Comillas, August 2026 (PDF, English)</a></li>
+    <li><a href="https://comillas.es/comillas/uploaded/33-BOLETIN_SEMANAL.pdf">comillas.es — weekly tourist bulletin, Semana 33 (10–16 Aug 2026)</a> · <a href="https://comillas.es/comillas/Web_php/index.php?contenido=maseventos_coconut&amp;idCat=todos">events agenda</a></li>
     <li><a href="https://www.elcaprichodegaudi.com/en/plan-your-visit">elcaprichodegaudi.com — plan your visit</a> · <a href="https://tickets.elcaprichodegaudi.com/en">tickets.elcaprichodegaudi.com</a></li>
     <li><a href="https://centros.culturadecantabria.com/palacio-de-sobrellano/regimen-de-visitas/">centros.culturadecantabria.com — Palacio de Sobrellano</a> · <a href="https://centros.culturadecantabria.com/seminario-mayor-de-comillas/regimen-de-visitas/">Seminario Mayor</a> · <a href="https://centros.culturadecantabria.com/reservas/">booking engine</a></li>
     <li><a href="https://www.civitatis.com/es/comillas/free-tour-comillas/">civitatis.com — Free tour por Comillas</a> (plus its live calendar API)</li>
     <li><a href="https://www.guruwalk.com/comillas">guruwalk.com/comillas</a> — walks <a href="https://www.guruwalk.com/walks/41658-free-tour-comillas-modernist-maritime-and-cinematic">41658 (Elia)</a>, <a href="https://www.guruwalk.com/walks/35713-comillas-and-its-charms-free-tour">35713 (Moncho)</a>, <a href="https://www.guruwalk.com/walks/64666-quotation-marks-like-you-ve-never-been-told">64666 (Emilio)</a> (plus live availability API)</li>
     <li><a href="https://www.elsoplao.es/es/informacion-visita/horarios-visita">elsoplao.es — hours</a> · <a href="https://www.elsoplao.es/es/informacion-visita/informacion">visitor info</a> · <a href="https://www.elsoplao.es/es/informacion-visita/preguntas-frecuentes">FAQ</a> · <a href="https://uniticket.janto.es/elsoplao/public/janto/main.php?Nivel=Evento&amp;idEvento=VISITA">booking</a></li>
     <li><a href="https://www.cultura.gob.es/mnaltamira/visita/horario.html">Museo de Altamira — hours</a> · <a href="https://www.cultura.gob.es/mnaltamira/visita/tarifas.html">prices</a> · <a href="https://www.cultura.gob.es/mnaltamira/visita/compra-entradas.html">tickets</a> · <a href="https://www.cultura.gob.es/mnaltamira/cueva-altamira/visita-a-la-cueva.html">cave-access policy</a> · <a href="https://entradasmuseo.bancosantander.es/#/open/checkout/product/00-00089Fl/express">official ticket platform</a></li>
+    <li><a href="https://telefericodefuentede.com/preguntas-frecuentes/">telefericodefuentede.com — FAQ</a> · <a href="https://telefericodefuentede.com/tarifas/">tarifas 2026</a> · <a href="https://entradas.telefericofuentede.com/">entradas.telefericofuentede.com (official tickets)</a></li>
+    <li><a href="https://entradas.parquedecabarceno.com/">entradas.parquedecabarceno.com — official ticket shop</a> · <a href="https://parquecabarceno.com/">hours</a> · <a href="https://www.pa-community.com/parques/parque-de-la-naturaleza-de-cabarceno/horarios-calendario">2026 timetable</a></li>
     <li><a href="https://tablademareas.com/es/cantabria/comillas">tablademareas.com — Comillas tide table</a> · <a href="https://tides4fishing.com/es/cantabria/san-vicente-de-la-barquera">tides4fishing.com — San Vicente de la Barquera</a></li>
     <li><a href="https://oyambresurf.com/en/surf-school-in-oyambre-cantabria/surf-school/surf-lessons-prices-and-timetables/">oyambresurf.com — prices &amp; timetables</a> · <a href="https://escueladesurfh2o.com/tarifas/">escueladesurfh2o.com — tarifas</a> · <a href="https://northoceansurf.com/la-escuela-de-surf-en-comillas/">northoceansurf.com</a></li>
     <li><a href="https://playas.es/cantabria/comillas/playa-comillas.htm">playas.es — Playa de Comillas</a> · <a href="https://playas.es/cantabria/valdaliga/playa-oyambre.htm">Playa de Oyambre</a> · <a href="https://www.aytocomillas.es/comillas/opencms/Noticias/CruzRojaVerano.html">aytocomillas.es — lifeguard service</a></li>
     <li><a href="https://provoca.cantabria.es/home/-/provoca/actuacion/8558">provoca.cantabria.es — guided coastal outings</a> · <a href="https://web.unican.es/campuscultural/huellas/Paginas/OYAMBRE/oyambre_recorrido.aspx">unican.es — Oyambre coastal route</a></li>
+    <li><a href="https://laportilla-comillas.com/visitas-guiadas-la-portilla-comillas/">laportilla-comillas.com — guided visits</a> · <a href="https://entradium.com/es/organizers/caprichos-musicales-de-comillas">entradium.com — Caprichos Musicales</a> · <a href="https://entradas.ataquilla.com/es/ventaentradas">ataquilla.com</a> · <a href="https://www.giglon.com">giglon.com</a></li>
     <li><a href="https://www.spain.info/en/top/camino-gaudi/">spain.info — Gaudí outside Catalonia</a> · <a href="https://en.wikipedia.org/wiki/El_Capricho">Wikipedia — El Capricho</a></li>
     <li>Photos: Wikimedia Commons — author and license credited on each image, linked to its file page.</li>
     <li>Driving distances/times: OSRM routing (router.project-osrm.org), queried 13 Aug 2026; entries marked "Estimate" were not live-routed.</li>
   </ol>
 </section>
-
 </main>
 
 <footer>
-  Private guide prepared for guests in Trasvía · verified 13 August 2026 · double-check times on the linked official pages before setting out.
+  Private guide for guests in Trasvía · verified 13 Aug 2026 · recheck times on the linked official pages before setting out.
 </footer>
 
 </body>
