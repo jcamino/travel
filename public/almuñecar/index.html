@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Almuñécar — A Month on the Costa Tropical</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&amp;family=Instrument+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #202633;
+    --ink-soft: #5a6270;
+    --plaster: #eff0ec;
+    --foam: #fdfdfa;
+    --line: #dcdfd8;
+    --indigo: #26476b;
+    --indigo-deep: #16293f;
+    --chirimoya: #5f8a3d;
+    --sun: #d98e32;
+    --ok-ink: #3d6626;   --ok-bg: #e7efdd;
+    --warn-ink: #7a5710; --warn-bg: #f6ead0;
+    --closed-ink: #8e3a22; --closed-bg: #f6e0da;
+    --display: "Fraunces", Georgia, "Times New Roman", serif;
+    --body: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --mono: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, "Liberation Mono", monospace;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body { margin: 0; background: var(--plaster); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.55; }
+  a { color: var(--indigo); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:hover { color: var(--chirimoya); }
+  :focus-visible { outline: 3px solid var(--sun); outline-offset: 2px; }
+
+  header.hero { background: linear-gradient(168deg, var(--indigo-deep) 0%, var(--indigo) 88%); color: var(--foam); padding: 2.4rem 1.2rem 1.2rem; }
+  .hero-inner { max-width: 760px; margin: 0 auto; }
+  p.eyebrow { font-family: var(--mono); font-size: .72rem; letter-spacing: .22em; text-transform: uppercase; color: var(--sun); margin: 0 0 .6rem; }
+  header.hero h1 { font-family: var(--display); font-weight: 650; font-size: 2.3rem; line-height: 1.08; margin: 0 0 .55rem; }
+  header.hero p.sub { margin: 0; max-width: 37rem; font-size: .97rem; opacity: .92; }
+  .climate { margin: 1.4rem 0 .3rem; }
+  .climate svg { display: block; width: 100%; height: auto; }
+  p.climate-caption { font-size: .78rem; opacity: .8; margin: .3rem 0 0; }
+  p.stamp { font-family: var(--mono); font-size: .68rem; letter-spacing: .06em; opacity: .65; margin: 1rem 0 0; }
+
+  nav.jump { position: sticky; top: 0; z-index: 50; background: var(--indigo-deep); overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  nav.jump::-webkit-scrollbar { display: none; }
+  nav.jump a { display: inline-block; color: #e9edf1; text-decoration: none; font-size: .86rem; font-weight: 600; padding: .68rem .85rem .58rem; border-bottom: 3px solid transparent; }
+  nav.jump a:hover { color: #fff; border-bottom-color: var(--sun); }
+
+  main { max-width: 760px; margin: 0 auto; padding: 0 .8rem 3rem; }
+  section.zone, article.card { scroll-margin-top: 3.2rem; }
+
+  section.zone > .zone-head { padding-top: 2rem; }
+  .zone-head p.eyebrow { color: var(--chirimoya); margin-bottom: .25rem; }
+  section.zone h2 { font-family: var(--display); font-weight: 650; font-size: 1.65rem; color: var(--indigo-deep); margin: 0 0 .35rem; position: relative; padding-bottom: .45rem; }
+  section.zone h2::after { content: ""; position: absolute; left: 0; bottom: 0; width: 52px; height: 4px; background: var(--sun); }
+  section.zone p.zone-intro { margin: .5rem 0 1rem; color: var(--ink-soft); font-size: .95rem; }
+
+  article.card { background: var(--foam); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; margin: 1.15rem 0; box-shadow: 0 1px 3px rgba(22,41,63,.08); }
+  .photo-strip { display: grid; grid-template-columns: 1fr; }
+  .photo-strip.two { grid-template-columns: 1fr 1fr; gap: 2px; }
+  figure.photo { margin: 0; position: relative; }
+  figure.photo img { display: block; width: 100%; height: 215px; object-fit: cover; background: #d3d9de; cursor: zoom-in; }
+  figure.photo figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: .9rem .6rem .3rem; font-size: .6rem; line-height: 1.35; color: #fff; background: linear-gradient(transparent, rgba(12,22,36,.78)); }
+  figure.photo figcaption a { color: #f0d9a1; text-decoration: none; }
+  .card-body { padding: 1rem 1.05rem 1.15rem; }
+  p.kicker { font-family: var(--mono); font-size: .66rem; letter-spacing: .2em; text-transform: uppercase; color: var(--chirimoya); margin: 0 0 .3rem; }
+  .card-body h3 { font-family: var(--display); font-weight: 650; margin: 0 0 .2rem; font-size: 1.32rem; line-height: 1.15; color: var(--indigo-deep); }
+  p.tagline { margin: .15rem 0 .65rem; font-size: .93rem; color: var(--ink-soft); }
+
+  table.facts { width: 100%; border-collapse: collapse; font-size: .9rem; margin: .5rem 0 .7rem; font-variant-numeric: tabular-nums; }
+  table.facts th, table.facts td { text-align: left; vertical-align: top; padding: .42rem .5rem; border-top: 1px solid var(--line); }
+  table.facts tr:last-child th, table.facts tr:last-child td { border-bottom: 1px solid var(--line); }
+  table.facts th { width: 31%; font-family: var(--mono); font-weight: 500; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); padding-top: .55rem; }
+  table.facts td { word-break: break-word; }
+
+  .badge { display: inline-block; font-family: var(--mono); font-size: .62rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; border-radius: 3px; padding: .1rem .4rem; vertical-align: middle; }
+  .badge.ok { color: var(--ok-ink); background: var(--ok-bg); }
+  .badge.unconfirmed { color: var(--warn-ink); background: var(--warn-bg); }
+  .badge.closed { color: var(--closed-ink); background: var(--closed-bg); }
+
+  .notes { font-size: .92rem; margin: .4rem 0 0; }
+  .notes ul { margin: .3rem 0 .3rem 1.1rem; padding: 0; }
+  .notes li { margin: .32rem 0; }
+  .callout { background: #e7ecf1; border-left: 4px solid var(--indigo); border-radius: 0 6px 6px 0; padding: .65rem .85rem; font-size: .9rem; margin: .75rem 0; }
+  .callout.warn { background: var(--warn-bg); border-left-color: var(--sun); }
+  p.verified { font-family: var(--mono); margin: .75rem 0 0; font-size: .66rem; color: var(--ink-soft); }
+  p.verified a { color: var(--indigo); }
+
+  table.tt { width: 100%; border-collapse: collapse; font-size: .84rem; margin: .6rem 0; font-variant-numeric: tabular-nums; }
+  table.tt th, table.tt td { border: 1px solid var(--line); padding: .42rem .5rem; text-align: left; vertical-align: top; }
+  table.tt thead th { background: var(--indigo-deep); color: var(--foam); font-family: var(--mono); font-weight: 500; font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; border-color: var(--indigo-deep); }
+  table.tt tbody tr:nth-child(even) { background: #f4f4ef; }
+  .table-scroll { overflow-x: auto; }
+
+  #sources ol { font-size: .84rem; margin: .6rem 0 0 1.2rem; padding: 0; }
+  #sources li { margin: .32rem 0; word-break: break-word; }
+
+  footer { text-align: center; font-family: var(--mono); font-size: .7rem; color: var(--ink-soft); padding: 1.5rem 1rem 2.5rem; }
+
+  .lightbox { position: fixed; inset: 0; z-index: 100; display: none; flex-direction: column; align-items: center; justify-content: center; gap: .7rem; background: rgba(12,22,36,.93); padding: 1rem; }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 100%; max-height: 82vh; object-fit: contain; border-radius: 4px; cursor: zoom-out; }
+  .lightbox .lb-caption { color: rgba(253,253,250,.85); font-family: var(--mono); font-size: .72rem; text-align: center; max-width: 90%; }
+  .lightbox .lb-caption a { color: #f0d9a1; }
+  .lightbox button.lb-close { position: absolute; top: .7rem; right: .7rem; background: none; border: 1px solid rgba(253,253,250,.4); color: #fdfdfa; font-size: 1.05rem; line-height: 1; padding: .45rem .6rem; border-radius: 6px; cursor: pointer; font-family: var(--mono); }
+  .lightbox button.lb-close:hover { border-color: var(--sun); color: var(--sun); }
+  body.lb-lock { overflow: hidden; }
+
+  @media (min-width: 560px) {
+    header.hero h1 { font-size: 3rem; }
+    figure.photo img { height: 265px; }
+  }
+  @media print { nav.jump { display: none; } article.card { box-shadow: none; break-inside: avoid; } }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow">A month on the Costa Tropical</p>
+    <h1>Almuñécar</h1>
+    <p class="sub">Phoenician town, Moorish castle, gray-shingle coves and Europe's only subtropical farm belt — everything worth knowing for a month here, in any season.</p>
+    <!-- CLIMATE CHART -->
+    <p class="stamp">Verified 13 Aug 2026 · 24h times · EUR · distances from Almuñécar centro</p>
+  </div>
+</header>
+
+<nav class="jump">
+  <a href="#town">In town</a>
+  <a href="#water">Beaches &amp; water</a>
+  <a href="#daytrips">Day trips</a>
+  <a href="#year">The year here</a>
+  <a href="#month">Month-stay practical</a>
+  <a href="#sources">Sources</a>
+</nav>
+
+<main>
+<!-- SECTION: TOWN -->
+<!-- SECTION: WATER -->
+<!-- SECTION: DAYTRIPS -->
+<!-- SECTION: YEAR -->
+<!-- SECTION: MONTH -->
+<!-- SECTION: SOURCES -->
+</main>
+
+<footer>
+  Private guide · verified 13 Aug 2026 · recheck times on the linked official pages before setting out.
+</footer>
+
+<script>
+(function () {
+  var lb = document.createElement('div');
+  lb.className = 'lightbox';
+  lb.setAttribute('role', 'dialog');
+  lb.setAttribute('aria-label', 'Photo viewer');
+  lb.innerHTML = '<button class="lb-close" aria-label="Close photo">✕</button><img alt=""><div class="lb-caption"></div>';
+  document.body.appendChild(lb);
+  var lbImg = lb.querySelector('img');
+  var lbCap = lb.querySelector('.lb-caption');
+  var lbClose = lb.querySelector('.lb-close');
+  var lastFocus = null;
+  function openLb(fig) {
+    var img = fig.querySelector('img');
+    var cap = fig.querySelector('figcaption');
+    lastFocus = document.activeElement;
+    lbImg.src = img.src.replace('/960px-', '/1280px-');
+    lbImg.alt = img.alt;
+    lbCap.innerHTML = cap ? cap.innerHTML : '';
+    lb.classList.add('open');
+    document.body.classList.add('lb-lock');
+    lbClose.focus();
+  }
+  function closeLb() {
+    lb.classList.remove('open');
+    document.body.classList.remove('lb-lock');
+    lbImg.removeAttribute('src');
+    if (lastFocus) lastFocus.focus();
+  }
+  document.querySelectorAll('figure.photo').forEach(function (fig) {
+    var img = fig.querySelector('img');
+    img.setAttribute('tabindex', '0');
+    img.setAttribute('role', 'button');
+    img.setAttribute('aria-label', 'Expand photo: ' + img.alt);
+    img.addEventListener('click', function () { openLb(fig); });
+    img.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLb(fig); } });
+  });
+  lbClose.addEventListener('click', closeLb);
+  lb.addEventListener('click', function (e) { if (e.target === lb || e.target === lbImg) closeLb(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && lb.classList.contains('open')) closeLb(); });
+})();
+</script>
+
+</body>
+</html>
