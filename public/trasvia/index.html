@@ -154,7 +154,53 @@
     height: 215px;
     object-fit: cover;
     background: #d5ddd4;
+    cursor: zoom-in;
   }
+
+  /* ---------- Lightbox ---------- */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .7rem;
+    background: rgba(10,26,22,.93);
+    padding: 1rem;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img {
+    max-width: 100%;
+    max-height: 82vh;
+    object-fit: contain;
+    border-radius: 4px;
+    cursor: zoom-out;
+  }
+  .lightbox .lb-caption {
+    color: rgba(253,252,248,.85);
+    font-family: var(--mono);
+    font-size: .72rem;
+    text-align: center;
+    max-width: 90%;
+  }
+  .lightbox .lb-caption a { color: #f0d9a1; }
+  .lightbox button.lb-close {
+    position: absolute;
+    top: .7rem; right: .7rem;
+    background: none;
+    border: 1px solid rgba(253,252,248,.4);
+    color: #fdfcf8;
+    font-size: 1.05rem;
+    line-height: 1;
+    padding: .45rem .6rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: var(--mono);
+  }
+  .lightbox button.lb-close:hover { border-color: var(--sunflower); color: var(--sunflower); }
+  body.lb-lock { overflow: hidden; }
   figure.photo figcaption {
     position: absolute;
     left: 0; right: 0; bottom: 0;
@@ -874,6 +920,54 @@
 <footer>
   Private guide for guests in Trasvía · verified 13 Aug 2026 · recheck times on the linked official pages before setting out.
 </footer>
+
+<script>
+(function () {
+  var lb = document.createElement('div');
+  lb.className = 'lightbox';
+  lb.setAttribute('role', 'dialog');
+  lb.setAttribute('aria-label', 'Photo viewer');
+  lb.innerHTML = '<button class="lb-close" aria-label="Close photo">✕</button><img alt=""><div class="lb-caption"></div>';
+  document.body.appendChild(lb);
+  var lbImg = lb.querySelector('img');
+  var lbCap = lb.querySelector('.lb-caption');
+  var lbClose = lb.querySelector('.lb-close');
+  var lastFocus = null;
+
+  function openLb(fig) {
+    var img = fig.querySelector('img');
+    var cap = fig.querySelector('figcaption');
+    lastFocus = document.activeElement;
+    lbImg.src = img.src.replace('/960px-', '/1280px-');
+    lbImg.alt = img.alt;
+    lbCap.innerHTML = cap ? cap.innerHTML : '';
+    lb.classList.add('open');
+    document.body.classList.add('lb-lock');
+    lbClose.focus();
+  }
+  function closeLb() {
+    lb.classList.remove('open');
+    document.body.classList.remove('lb-lock');
+    lbImg.removeAttribute('src');
+    if (lastFocus) lastFocus.focus();
+  }
+  document.querySelectorAll('figure.photo').forEach(function (fig) {
+    var img = fig.querySelector('img');
+    img.setAttribute('tabindex', '0');
+    img.setAttribute('role', 'button');
+    img.setAttribute('aria-label', 'Expand photo: ' + img.alt);
+    img.addEventListener('click', function () { openLb(fig); });
+    img.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLb(fig); }
+    });
+  });
+  lbClose.addEventListener('click', closeLb);
+  lb.addEventListener('click', function (e) { if (e.target === lb || e.target === lbImg) closeLb(); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && lb.classList.contains('open')) closeLb();
+  });
+})();
+</script>
 
 </body>
 </html>
