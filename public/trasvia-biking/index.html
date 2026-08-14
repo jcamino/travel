@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Road Rides from Trasvía — 14–16 August 2026</title>
+<title>Road Rides from Trasvía — 15–18 August 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&amp;family=Instrument+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
@@ -311,6 +311,49 @@
     white-space: nowrap;
   }
 
+  /* ---------- Filter bar ---------- */
+  .filterbar {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: .7rem .9rem .75rem;
+    margin: 1.7rem 0 .2rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    box-shadow: 0 1px 3px rgba(20,24,27,.08);
+  }
+  .fgroup { display: flex; align-items: center; flex-wrap: wrap; gap: .4rem; }
+  .flabel {
+    font-family: var(--mono);
+    font-size: .62rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    min-width: 3.6rem;
+  }
+  .fchip {
+    font-family: var(--mono);
+    font-size: .72rem;
+    padding: .28rem .62rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: #fff;
+    color: var(--ink);
+    cursor: pointer;
+  }
+  .fchip:hover { border-color: var(--pine); }
+  .fchip.active { background: var(--pine-deep); border-color: var(--pine-deep); color: #f3f1ea; }
+  .filter-empty {
+    font-size: .9rem;
+    color: var(--ink-soft);
+    background: var(--card);
+    border: 1px dashed var(--line);
+    border-radius: 10px;
+    padding: .9rem 1rem;
+    margin: 1rem 0;
+  }
+
   /* ---------- Notes / callouts ---------- */
   .notes { font-size: .92rem; margin: .4rem 0 0; }
   .notes ul { margin: .3rem 0 .3rem 1.1rem; padding: 0; }
@@ -449,7 +492,7 @@
     figure.photo img { height: 265px; }
   }
   @media (min-width: 640px) {
-    .days { grid-template-columns: repeat(3, 1fr); }
+    .days { grid-template-columns: repeat(2, 1fr); }
   }
   @media print {
     nav.jump { display: none; }
@@ -463,7 +506,7 @@
   <div class="hero-inner">
     <p class="eyebrow">Route book · Trasvía, Cantabria</p>
     <h1>Road Rides from Trasvía</h1>
-    <p class="sub">Nine rides from the front door for a strong rider — coastal rollers over the rías, near-empty cols in the Nansa and Saja valleys, and the long road through the La Hermida gorge into the Picos de Europa. Friday 14 – Sunday 16 August 2026.</p>
+    <p class="sub">Twelve rides from the front door for a strong rider — coastal rollers over the rías, near-empty cols in the Nansa and Saja valleys, and the long road through the La Hermida gorge into the Picos de Europa. Saturday afternoon 15 – Tuesday 18 August 2026: weekdays out from 06:00 and home by 15:00, Sunday for the big one.</p>
     <div class="heroprofile">
       <svg viewBox="0 0 800 232" role="img" aria-label="Schematic elevation profile, Trasvía to Fuente Dé one-way: rolling coast to Panes, false-flat gorge to Potes at 291 m, then a 22.7 km climb to Fuente Dé at 1101 m, steepest in the final 3 km.">
 <line x1="24" y1="45.0" x2="776" y2="45.0" stroke="rgba(243,241,234,.22)" stroke-dasharray="3 5"/>
@@ -482,7 +525,7 @@
 <text x="76" y="152.5" font-family="ui-monospace, Consolas, monospace" font-size="11" fill="rgba(243,241,234,.82)" text-anchor="middle">TRASVÍA</text>
 <text x="268.4" y="153.1" font-family="ui-monospace, Consolas, monospace" font-size="11" fill="rgba(243,241,234,.82)" text-anchor="middle">PANES</text>
 <text x="550.4" y="123.6" font-family="ui-monospace, Consolas, monospace" font-size="11" fill="rgba(243,241,234,.82)" text-anchor="middle">POTES</text>
-<text x="724" y="22.4" font-family="ui-monospace, Consolas, monospace" font-size="11" fill="rgba(243,241,234,.82)" text-anchor="middle">FUENTE DÉ 1101</text>
+<text x="722" y="22.4" font-family="ui-monospace, Consolas, monospace" font-size="11" fill="rgba(243,241,234,.82)" text-anchor="middle">FUENTE DÉ 1101</text>
 </svg>
       <p class="hero-caption">The queen stage, drawn to scale: Trasvía → Fuente Dé, ≈80 km one-way. Flat to Panes, false-flat through the gorge to Potes, then 22.7 km up the Liébana — the last 3 km after Espinama ramp toward 9%.</p>
       <div class="glegend">
@@ -494,15 +537,16 @@
         <span>· leg averages, schematic</span>
       </div>
     </div>
-    <p class="stamp">Verified 14 Aug 2026 · 24h times · EUR · km · from Trasvía (39528)</p>
+    <p class="stamp">Verified 14 Aug 2026 · updated for 15–18 Aug · 24h times · EUR · km · from Trasvía (39528)</p>
   </div>
 </header>
 
 <nav class="jump">
-  <a href="#days">The three days</a>
+  <a href="#days">The four days</a>
   <a href="#bigdays">Big days</a>
   <a href="#cols">Cols &amp; loops</a>
   <a href="#coast">Coast &amp; valley</a>
+  <a href="#short">Short rides</a>
   <a href="#climbs">Climb table</a>
   <a href="#logistics">Logistics</a>
   <a href="#rules">Rules</a>
@@ -514,39 +558,64 @@
 <!-- ================= DAYS ================= -->
 <section class="zone" id="days">
   <div class="zone-head">
-    <p class="eyebrow">Weather, holiday &amp; the smart order</p>
-    <h2>The three days</h2>
-    <p class="zone-intro">Saturday 15 is the Assumption — a national holiday that shuts shops and fills the coast road and the Picos funnel. The forecast (AEMET, taken 14 Aug 09:05) shapes the rest.</p>
+    <p class="eyebrow">Weather, the weekday box &amp; the smart order</p>
+    <h2>The four days</h2>
+    <p class="zone-intro">The window: Saturday afternoon to a ~17:00 departure on Tuesday 18. Weekday rule — rolling as early as 06:00, home by 15:00; that box fits everything except the big days, which need the one full day: Sunday. Forecast: AEMET, refreshed 14 Aug 21:03.</p>
   </div>
   <div class="days">
     <div class="day-card">
-      <h3>Fri 14 Aug</h3>
-      <p class="wx">21–25 °C · rain 50% from evening<br>wind SW→NW 10–15 km/h<br>sun 07:20–21:24</p>
-      <p class="pick"><strong>Dry until evening.</strong> Coast day — the <a href="#e1">East Rollers</a> or the <a href="#w1">Three Rías</a> — and be back before the evening rain. Save the mountains for the weekend.</p>
-    </div>
-    <div class="day-card">
-      <h3>Sat 15 Aug <span class="badge unconfirmed">Holiday</span></h3>
-      <p class="wx">20–25 °C · rain 95% pre-dawn, improving midday<br>wind NW 15 km/h, easing<br>sun 07:21–21:22</p>
-      <p class="pick"><strong>Wet roads early, jammed coast all day.</strong> Go inland once it dries: the <a href="#b">Carmona loop</a> or <a href="#c">Palombera</a> — the CA-180/182/280 network is the quiet corner of Cantabria today.</p>
+      <h3>Sat 15 Aug <span class="badge unconfirmed">Holiday · PM only</span></h3>
+      <p class="wx">20–25 °C · storms/rain to midday, drying 12–18 (25%)<br>shower risk returns evening (60%)<br>wind NW 15 km/h · sun 07:21–21:22</p>
+      <p class="pick"><strong>Afternoon opener.</strong> Once the roads dry (~13:00): the <a href="#b">Carmona loop</a> (3–4 h) — inland and empty while the holiday coast is jammed — or the <a href="#s2">Ruiloba Ring</a> if the sky looks short. Shops are shut today.</p>
     </div>
     <div class="day-card">
       <h3>Sun 16 Aug</h3>
-      <p class="wx">20–26 °C · light rain possible early, drier PM<br>wind N 10 km/h<br>sun 07:22–21:21</p>
-      <p class="pick"><strong>The big one.</strong> If dawn is dry, roll by 08:00 for <a href="#a">Fuente Dé</a> or the <a href="#d">Ozalba + Hoz loop</a> and beat the gorge traffic. If it isn't, Palombera from midday.</p>
+      <p class="wx">20–25 °C · light rain likely before midday (80%), clearing after (20%)<br>wind N 10 km/h · sun 07:22–21:21</p>
+      <p class="pick"><strong>The whole-day ride.</strong> <a href="#a">Fuente Dé</a>, <a href="#e">Piedrasluengas</a>, or <a href="#d">Ozalba + Hoz</a>. The morning rain is forecast <em>escasa</em> (light) — roll by 08:00 anyway; the afternoon dries.</p>
+    </div>
+    <div class="day-card">
+      <h3>Mon 17 Aug</h3>
+      <p class="wx">19–26 °C · rain 65% before midday, 0% after<br>wind NE 15 km/h · sun 07:23–21:19</p>
+      <p class="pick"><strong>The gamble morning.</strong> If dawn is dry, <a href="#c">Palombera</a> fits the 06:30→15:00 box with margin. If the early showers land, wait them out and take the <a href="#s3">Fuentona Espresso Run</a> or <a href="#e1">East Rollers</a> from ~10:00.</p>
+    </div>
+    <div class="day-card">
+      <h3>Tue 18 Aug <span class="badge est">Home by 15:00</span></h3>
+      <p class="wx">19–25 °C · rain 10% — best sky of the window<br>wind NE 20 km/h (breezy) · sun 07:24–21:18</p>
+      <p class="pick"><strong>Best forecast, last morning</strong> (departure ~17:00). <a href="#b">Carmona</a> or <a href="#c">Palombera</a> on a 06:30 start; <a href="#d">Ozalba + Hoz</a> only if rolling by 06:00 — it gets home ~13:30.</p>
     </div>
   </div>
   <div class="callout">Forecast is a snapshot — recheck at <a href="https://www.aemet.es/es/eltiempo/prediccion/municipios/comillas-id39024">AEMET Comillas (id 39024)</a> each morning, and the gorge road status at <a href="https://www.obrasn621.es/">obrasn621.es</a> before any Picos ride.</div>
 </section>
+
+<!-- ================= FILTER ================= -->
+<div class="filterbar" role="group" aria-label="Filter rides">
+  <div class="fgroup" data-facet="time">
+    <span class="flabel">Time</span>
+    <button class="fchip active" data-val="all" aria-pressed="true">All</button>
+    <button class="fchip" data-val="t1" aria-pressed="false">≤ 2 h</button>
+    <button class="fchip" data-val="t2" aria-pressed="false">2–4 h</button>
+    <button class="fchip" data-val="t3" aria-pressed="false">4–7 h</button>
+    <button class="fchip" data-val="t4" aria-pressed="false">7 h +</button>
+  </div>
+  <div class="fgroup" data-facet="diff">
+    <span class="flabel">Terrain</span>
+    <button class="fchip active" data-val="all" aria-pressed="true">All</button>
+    <button class="fchip" data-val="d1" aria-pressed="false">Rollers</button>
+    <button class="fchip" data-val="d2" aria-pressed="false">Cols</button>
+    <button class="fchip" data-val="d3" aria-pressed="false">Big mountain</button>
+  </div>
+</div>
+<p class="filter-empty" id="filter-empty" hidden>No rides match — clear a filter above.</p>
 
 <!-- ================= BIG DAYS ================= -->
 <section class="zone" id="bigdays">
   <div class="zone-head">
     <p class="eyebrow">150–170 km · the Picos &amp; Liébana</p>
     <h2>Big days</h2>
-    <p class="zone-intro">Every big day funnels through the Desfiladero de La Hermida — 20 km of limestone gorge on the N-621, rebuilt and widened for cyclists in works finished summer 2025, with no closures in force on 14 Aug. Lights for the short tunnels, early starts to beat the tourist wave.</p>
+    <p class="zone-intro">Every big day funnels through the Desfiladero de La Hermida — 20 km of limestone gorge on the N-621, rebuilt and widened for cyclists in works finished summer 2025, with no closures in force on 14 Aug. Lights for the short tunnels, early starts to beat the tourist wave. <strong>These need the full day — with the 15:00 weekday ceiling, they're Sunday rides.</strong></p>
   </div>
 
-  <article class="card" id="a">
+  <article class="card" id="a" data-time="t4" data-diff="d3">
     <div class="photo-strip two">
       <figure class="photo">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Desfiladero_de_la_Hermida-N-621.png/960px-Desfiladero_de_la_Hermida-N-621.png" alt="The N-621 road running between sheer limestone walls in the Desfiladero de La Hermida" loading="lazy">
@@ -584,7 +653,7 @@
 <text x="32" y="73.4" font-family="ui-monospace, Consolas, monospace" font-size="9" fill="#5a6259" text-anchor="middle">TRASVÍA</text>
 <text x="132.1" y="73.7" font-family="ui-monospace, Consolas, monospace" font-size="9" fill="#5a6259" text-anchor="middle">PANES</text>
 <text x="277.6" y="59.5" font-family="ui-monospace, Consolas, monospace" font-size="9" fill="#5a6259" text-anchor="middle">POTES</text>
-<text x="368" y="12" font-family="ui-monospace, Consolas, monospace" font-size="9" fill="#5a6259" text-anchor="middle">FUENTE DÉ 1101</text>
+<text x="349" y="12" font-family="ui-monospace, Consolas, monospace" font-size="9" fill="#5a6259" text-anchor="middle">FUENTE DÉ 1101</text>
 </svg></div>
       <p class="profile-note">Schematic profile, one-way · totals are estimates</p>
       <p class="refs"><span class="ref">CA-131</span> → <span class="ref">N-634</span> → <span class="ref">N-621</span> → <span class="ref">CA-185</span></p>
@@ -592,7 +661,7 @@
         <tr><th>Key climb</th><td>Potes → Fuente Dé: <strong>22.7 km · 809 m+ · 3.6% avg · 9.1% max</strong> — easy to Espinama, then the ramp (<a href="https://climbfinder.com/en/climbs/fuente-de-potes">climbfinder</a>)</td></tr>
         <tr><th>Totals</th><td>≈170 km · ≈2,300–2,600 m+ <span class="badge est">Estimate</span></td></tr>
         <tr><th>Fuel</th><td>San Vicente, Panes, Potes (towns). Cafetería at the Fuente Dé cable-car base <span class="badge ok">Confirmed</span> (t. 942 736 610). Espinama / La Hermida bars <span class="badge unconfirmed">Unconfirmed</span></td></tr>
-        <tr><th>Best day</th><td>Sun 16 with an 08:00 start. Avoid Sat 15 — holiday peak in the Picos funnel.</td></tr>
+        <tr><th>Best day</th><td><span class="badge ok">Sun 16</span> The only day long enough. Roll by 08:00 to beat the gorge wave.</td></tr>
       </table>
       <div class="notes"><ul>
         <li><strong>Lights required:</strong> short tunnels in the gorge — front white + rear red is the law in tunnels.</li>
@@ -603,7 +672,7 @@
     </div>
   </article>
 
-  <article class="card" id="e">
+  <article class="card" id="e" data-time="t4" data-diff="d3">
     <div class="photo-strip">
       <figure class="photo">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Puente_sobre_el_r%C3%ADo_Quiviesa%2C_Potes%2C_Cantabria.jpg/960px-Puente_sobre_el_r%C3%ADo_Quiviesa%2C_Potes%2C_Cantabria.jpg" alt="Stone bridge over the río Quiviesa with the old town of Potes behind" loading="lazy">
@@ -648,6 +717,7 @@
         <tr><th>Descent</th><td>CA-281 north — the reverse of a 37.4 km / 1,188 m climb, so expect real counter-climbs on the way down</td></tr>
         <tr><th>Totals</th><td>≈170 km · ≈2,600–3,000 m+ <span class="badge est">Estimate</span></td></tr>
         <tr><th>Fuel</th><td><span class="badge closed">Gap</span> No verified services for ~70 km between Ojedo and Puentenansa — load full bottles and food in Potes. Tudanca / Piedrasluengas bars <span class="badge unconfirmed">Unconfirmed</span></td></tr>
+        <tr><th>Best day</th><td><span class="badge ok">Sun 16</span> Needs the full day.</td></tr>
       </table>
       <div class="notes"><ul>
         <li>CA-281 is narrow, remote and near-empty (rider traffic votes 100% "great") — carry tools, tube, wind layer; phone coverage in Polaciones patchy <span class="badge unconfirmed">Unconfirmed</span>.</li>
@@ -657,7 +727,7 @@
     </div>
   </article>
 
-  <article class="card" id="s">
+  <article class="card" id="s" data-time="t4" data-diff="d3">
     <div class="card-body">
       <p class="kicker">Hardest climb in range · out-and-back · Asturias</p>
       <h3>Sotres — Jitu de Escarandi</h3>
@@ -696,7 +766,7 @@
         <tr><th>Fuel</th><td>Panes, Arenas de Cabrales (towns); Sotres bars <span class="badge unconfirmed">Unconfirmed</span></td></tr>
       </table>
       <div class="notes"><ul>
-        <li><span class="badge closed">Not on the 15th</span> The AS-264 below Poncebos is the only road to the Cares gorge walk — near-saturation car traffic and parked cars in mid-August, worst on the holiday.</li>
+        <li><span class="badge closed">Sunday only</span> Needs the full day — and the AS-264 below Poncebos is the only road to the Cares gorge walk: near-saturation car traffic and parked cars in mid-August. If Sunday is the big day, this one waits for another trip.</li>
         <li>Short rock tunnels above Poncebos — lights.</li>
       </ul></div>
       <p class="verified">Verified 14 Aug 2026 · <a href="https://climbfinder.com/en/climbs/alto-de-sotres">climbfinder</a></p>
@@ -712,7 +782,7 @@
     <p class="zone-intro">The middle distances, on roads rider votes call near-empty. This is the network to use on the holiday, when the coast and the Picos funnel are full.</p>
   </div>
 
-  <article class="card" id="d">
+  <article class="card" id="d" data-time="t3" data-diff="d2">
     <div class="photo-strip">
       <figure class="photo">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Desfiladero_de_La_Hermida_1.jpg/960px-Desfiladero_de_La_Hermida_1.jpg" alt="Limestone walls of the Desfiladero de La Hermida looking toward Potes" loading="lazy">
@@ -759,7 +829,7 @@
         <tr><th>Climb 2</th><td>Sobrelapeña → Collado de la Hoz: <strong>7.7 km · 440 m+ · 5.7% avg · 13.2% max</strong> (<a href="https://climbfinder.com/en/climbs/collado-de-hoz-sobrelapena">climbfinder</a>)</td></tr>
         <tr><th>Totals</th><td>≈120 km · ≈1,700–2,000 m+ <span class="badge est">Estimate</span></td></tr>
         <tr><th>Fuel</th><td>San Vicente, Panes (towns); Puentenansa / La Hermida bars <span class="badge unconfirmed">Unconfirmed</span></td></tr>
-        <tr><th>Best day</th><td>Sun 16 early, or Fri 14 — the gorge leg wants a pre-midday passage</td></tr>
+        <tr><th>Best day</th><td>Sun 16 as the shorter big day, or Tue 18 rolling by 06:00 — home ~13:30, inside the 15:00 cut-off. Either way the gorge leg wants a pre-midday passage.</td></tr>
       </table>
       <div class="notes"><ul>
         <li>The CA-282 is remote and near-empty — full mechanical self-sufficiency.</li>
@@ -769,7 +839,7 @@
     </div>
   </article>
 
-  <article class="card" id="c">
+  <article class="card" id="c" data-time="t3" data-diff="d2">
     <div class="photo-strip two">
       <figure class="photo">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Carretera_del_puerto_de_Palombera.jpg/960px-Carretera_del_puerto_de_Palombera.jpg" alt="The CA-280 pass road curving through open upland toward Puerto de Palombera" loading="lazy">
@@ -819,13 +889,13 @@
       <div class="notes"><ul>
         <li>Free-roaming cattle on the open upper slopes — give them room, especially descending.</li>
         <li>Surface voted "ok" rather than great — watch the fast hairpins.</li>
-        <li>Good Sat 15 pick: inland, high, quiet.</li>
+        <li>Fits the weekday box with margin: 06:30 start → home before 14:00. Also the strongest Mon/Tue pick.</li>
       </ul></div>
       <p class="verified">Verified 14 Aug 2026 · <a href="https://climbfinder.com/en/climbs/puerto-de-palombera-saja">climbfinder (Saja)</a> · <a href="https://climbfinder.com/en/climbs/puerto-de-palombera-espinilla">climbfinder (Espinilla)</a> · <a href="https://www.dangerousroads.org/europe/spain/4345-puerto-de-palombera.html">dangerousroads (fully paved, 1,260 m)</a></p>
     </div>
   </article>
 
-  <article class="card" id="b">
+  <article class="card" id="b" data-time="t2" data-diff="d2">
     <div class="photo-strip two">
       <figure class="photo">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Carmona_%28Cabuerniga%29_-_001_%2830075077853%29.jpg/960px-Carmona_%28Cabuerniga%29_-_001_%2830075077853%29.jpg" alt="The village of Carmona in the Cabuérniga valley seen from above" loading="lazy">
@@ -871,7 +941,7 @@
         <tr><th>Ridden reversed</th><td>Puentenansa side: 10.4 km · 446 m+ · 4.3% avg · 10.9% max (<a href="https://climbfinder.com/en/climbs/collado-carmona-puentenansa">climbfinder</a>)</td></tr>
         <tr><th>Totals</th><td>≈78 km · ≈1,000–1,200 m+ <span class="badge est">Estimate</span></td></tr>
         <tr><th>Fuel</th><td>Cabezón de la Sal (town); Carmona / Puentenansa bars <span class="badge unconfirmed">Unconfirmed</span></td></tr>
-        <tr><th>Best day</th><td><span class="badge ok">Sat 15</span> Rider traffic votes 100% "great" (near-empty) — the holiday-proof ride</td></tr>
+        <tr><th>Best day</th><td><span class="badge ok">Sat 15 PM</span> The holiday-proof afternoon opener (3–4 h from a ~13:00 start) — rider traffic votes 100% "great" (near-empty). Also an easy fit for any weekday morning.</td></tr>
       </table>
       <div class="notes"><ul>
         <li>Carmona village is worth five minutes off the bike — one of the best-kept montañesa villages in Cantabria.</li>
@@ -890,7 +960,7 @@
     <p class="zone-intro">Shorter days that still bite — the coast here is never flat. All three fit a morning, and all three end at the beach below the house.</p>
   </div>
 
-  <article class="card" id="w1">
+  <article class="card" id="w1" data-time="t2" data-diff="d1">
     <div class="photo-strip two">
       <figure class="photo">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Cantabria_infinita_%2816412920092%29.jpg/960px-Cantabria_infinita_%2816412920092%29.jpg" alt="San Vicente de la Barquera across the ría with the snow-capped Picos de Europa behind" loading="lazy">
@@ -940,7 +1010,7 @@
     </div>
   </article>
 
-  <article class="card" id="e1">
+  <article class="card" id="e1" data-time="t2" data-diff="d1">
     <div class="photo-strip two">
       <figure class="photo">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Cobreces%2C_Alfoz_de_Lloredo.jpg/960px-Cobreces%2C_Alfoz_de_Lloredo.jpg" alt="Cóbreces village skyline with the abbey church seen from Luaña beach" loading="lazy">
@@ -989,7 +1059,7 @@
     </div>
   </article>
 
-  <article class="card" id="v1">
+  <article class="card" id="v1" data-time="t2" data-diff="d1">
     <div class="photo-strip two">
       <figure class="photo">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/B%C3%A1rcena_Mayor_%28Los_Tojos%29.jpg/960px-B%C3%A1rcena_Mayor_%28Los_Tojos%29.jpg" alt="The stone village of Bárcena Mayor in the Saja valley" loading="lazy">
@@ -1036,6 +1106,129 @@
         <li>CA-817 is narrow with blind bends (rider report) — and it's a honeypot: expect car traffic midday, worst Sat 15.</li>
       </ul></div>
       <p class="verified">Verified 14 Aug 2026 · <a href="https://en.wikipedia.org/wiki/B%C3%A1rcena_Mayor">Bárcena Mayor (access + paved)</a> · <a href="https://lospueblosmasbonitosdeespana.org/en/pueblos/barcena-mayor">lospueblosmasbonitos</a> · <a href="https://www.turicantabria.com/la-fuentona-de-ruente/">turicantabria</a></p>
+    </div>
+  </article>
+</section>
+
+<!-- ================= SHORT RIDES ================= -->
+<section class="zone" id="short">
+  <div class="zone-head">
+    <p class="eyebrow">24–35 km · under two hours</p>
+    <h2>Short &amp; sharp</h2>
+    <p class="zone-intro">For the rain-delayed morning, the pre-departure spin, or the second ride of a day. All three start rolling from the door and none needs a café stop to justify itself — though each has one.</p>
+  </div>
+
+  <article class="card" id="s1" data-time="t1" data-diff="d1">
+    <div class="photo-strip">
+      <figure class="photo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Playa_de_Comillas_1.jpg/960px-Playa_de_Comillas_1.jpg" alt="Panoramic view of Comillas beach and the coast the ride follows west" loading="lazy">
+        <figcaption>Photo: Luis Fermín TURIEL PEREDO · CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Playa_de_Comillas_1.jpg">Commons</a></figcaption>
+      </figure>
+    </div>
+    <div class="card-body">
+      <p class="kicker">Coast west · out-and-back</p>
+      <h3>Postcard Run</h3>
+      <p class="tagline">Out past the Oyambre dunes to the Mirador de Gerra — the San Vicente-with-Picos view — down to the 28-arch bridge, coffee, and home.</p>
+      <div class="stats">
+        <div class="stat"><span class="v">≈30</span><span class="l">km</span></div>
+        <div class="stat"><span class="v">≈350</span><span class="l">m+</span></div>
+        <div class="stat"><span class="v">1–1½</span><span class="l">h riding est.</span></div>
+      </div>
+      <div class="profile"><svg viewBox="0 0 400 112" role="img" aria-label="Schematic elevation profile of the Postcard Run: short coastal rollers out past the Mirador de Gerra to San Vicente de la Barquera and back.">
+<line x1="6" y1="48.0" x2="394" y2="48.0" stroke="rgba(90,98,89,.35)" stroke-dasharray="3 5"/>
+<text x="394" y="44.0" font-family="ui-monospace, Consolas, monospace" font-size="8" fill="#5a6259" text-anchor="end">100 m</text>
+<path d="M6.0,62.4 L57.7,81.1 L109.5,57.0 L148.3,55.2 L200.0,79.7 L251.7,55.2 L290.5,57.0 L342.3,81.1 L394.0,62.4 L394.0,84 L6.0,84 Z" fill="rgba(47,93,69,.10)" stroke="none"/>
+<path d="M6.0,62.4 L57.7,81.1 L109.5,57.0 L148.3,55.2 L200.0,79.7 L251.7,55.2 L290.5,57.0 L342.3,81.1 L394.0,62.4" fill="none" stroke="#2f5d45" stroke-width="2" stroke-linejoin="round"/>
+<line x1="6" y1="84" x2="394" y2="84" stroke="rgba(90,98,89,.35)"/>
+<rect x="6.0" y="90" width="388.0" height="7" rx="1.5" fill="#d9a62b"/>
+<circle cx="148.3" cy="55.2" r="3" fill="#d9a62b" stroke="#1e4030" stroke-width="1.5"/>
+<circle cx="200.0" cy="79.7" r="3" fill="#d9a62b" stroke="#1e4030" stroke-width="1.5"/>
+<text x="148.3" y="48.2" font-family="ui-monospace, Consolas, monospace" font-size="9" fill="#5a6259" text-anchor="middle">GERRA</text>
+<text x="200.0" y="72.7" font-family="ui-monospace, Consolas, monospace" font-size="9" fill="#5a6259" text-anchor="middle">SAN VICENTE</text>
+</svg></div>
+      <p class="profile-note">Schematic profile · totals are estimates</p>
+      <p class="refs"><span class="ref">CA-131</span> → <span class="ref">N-634</span> → back</p>
+      <table class="facts">
+        <tr><th>Stops</th><td>Mirador de Gerra (right on the CA-131); Puente de la Maza; cafés in San Vicente (town)</td></tr>
+        <tr><th>Totals</th><td>≈30 km · ≈350 m+ <span class="badge est">Estimate</span></td></tr>
+      </table>
+      <div class="notes"><ul>
+        <li>Same CA-131 shoulder pinch west of Comillas as the Three Rías — the 2.5 km shared-use path parallels it; gentle riding among walkers.</li>
+      </ul></div>
+      <p class="verified">Verified 14 Aug 2026 · <a href="https://enbiciacomillas.com/san-vicente-de-la-barquera/mirador-de-gerra/">Mirador de Gerra</a> · <a href="https://www.comillas.es/en/route-2-cycle-path-from-comillas-to-la-rabia/">comillas.es (path)</a></p>
+    </div>
+  </article>
+
+  <article class="card" id="s2" data-time="t1" data-diff="d1">
+    <div class="photo-strip">
+      <figure class="photo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Cobreces.jpg/960px-Cobreces.jpg" alt="The village of Cóbreces with its abbey church towers" loading="lazy">
+        <figcaption>Photo: Juan José Hernández Rodríguez · CC BY 2.0 · <a href="https://commons.wikimedia.org/wiki/File:Cobreces.jpg">Commons</a></figcaption>
+      </figure>
+    </div>
+    <div class="card-body">
+      <p class="kicker">Coast east · loop</p>
+      <h3>Ruiloba Ring</h3>
+      <p class="tagline">The hour of power: rollers to Cóbreces, cheese at the abbey door if the timing works, then the quiet CA-359 inland and a fast drop home on the CA-135.</p>
+      <div class="stats">
+        <div class="stat"><span class="v">≈24</span><span class="l">km</span></div>
+        <div class="stat"><span class="v">≈400</span><span class="l">m+</span></div>
+        <div class="stat"><span class="v">~1</span><span class="l">h riding est.</span></div>
+      </div>
+      <div class="profile"><svg viewBox="0 0 400 112" role="img" aria-label="Schematic elevation profile of the Ruiloba Ring: coastal rollers to Cóbreces, a short inland climb on the CA-359, and back down to Comillas.">
+<line x1="6" y1="48.0" x2="394" y2="48.0" stroke="rgba(90,98,89,.35)" stroke-dasharray="3 5"/>
+<text x="394" y="44.0" font-family="ui-monospace, Consolas, monospace" font-size="8" fill="#5a6259" text-anchor="end">100 m</text>
+<path d="M6.0,62.4 L54.5,75.0 L135.3,44.4 L183.8,62.4 L216.2,55.2 L264.7,33.6 L329.3,44.4 L394.0,62.4 L394.0,84 L6.0,84 Z" fill="rgba(47,93,69,.10)" stroke="none"/>
+<path d="M6.0,62.4 L54.5,75.0 L135.3,44.4 L183.8,62.4 L216.2,55.2 L264.7,33.6 L329.3,44.4 L394.0,62.4" fill="none" stroke="#2f5d45" stroke-width="2" stroke-linejoin="round"/>
+<line x1="6" y1="84" x2="394" y2="84" stroke="rgba(90,98,89,.35)"/>
+<rect x="6.0" y="90" width="388.0" height="7" rx="1.5" fill="#d9a62b"/>
+<circle cx="183.8" cy="62.4" r="3" fill="#d9a62b" stroke="#1e4030" stroke-width="1.5"/>
+<circle cx="264.7" cy="33.6" r="3" fill="#d9a62b" stroke="#1e4030" stroke-width="1.5"/>
+<text x="183.8" y="55.4" font-family="ui-monospace, Consolas, monospace" font-size="9" fill="#5a6259" text-anchor="middle">CÓBRECES</text>
+<text x="264.7" y="26.6" font-family="ui-monospace, Consolas, monospace" font-size="9" fill="#5a6259" text-anchor="middle">CA-359</text>
+</svg></div>
+      <p class="profile-note">Schematic profile · totals are estimates</p>
+      <p class="refs"><span class="ref">CA-131</span> → <span class="ref">CA-359</span> → <span class="ref">CA-135</span></p>
+      <table class="facts">
+        <tr><th>Stops</th><td><a href="https://www.monasterioviaceli.com/abadia-de-viaceli-queso-trapa">Abadía de Viaceli</a> Queso Trapa shop, Cóbreces</td></tr>
+        <tr><th>Totals</th><td>≈24 km · ≈400 m+ <span class="badge est">Estimate</span> · CA-359 Liandres–Peñacastillo is catalogue-verified (4.2 km)</td></tr>
+      </table>
+      <p class="verified">Verified 14 Aug 2026 · <a href="https://es.wikipedia.org/wiki/Anexo:Red_local_de_carreteras_de_Cantabria">Cantabria road catalogue</a> · <a href="https://www.monasterioviaceli.com/abadia-de-viaceli-queso-trapa">monasterioviaceli.com</a></p>
+    </div>
+  </article>
+
+  <article class="card" id="s3" data-time="t1" data-diff="d1">
+    <div class="card-body">
+      <p class="kicker">Valley · out-and-back</p>
+      <h3>Fuentona Espresso Run</h3>
+      <p class="tagline">The rain-dodger: inland up the CA-135 and the valley road to Ruente's karst spring and 9-arch bridge, coffee, and back with the legs still fresh.</p>
+      <div class="stats">
+        <div class="stat"><span class="v">≈35</span><span class="l">km</span></div>
+        <div class="stat"><span class="v">≈350</span><span class="l">m+</span></div>
+        <div class="stat"><span class="v">1¼–1¾</span><span class="l">h riding est.</span></div>
+      </div>
+      <div class="profile"><svg viewBox="0 0 400 112" role="img" aria-label="Schematic elevation profile of the Fuentona Espresso Run: gently rising valley road to Ruente at about 200 m, return the same way.">
+<line x1="6" y1="36.0" x2="394" y2="36.0" stroke="rgba(90,98,89,.35)" stroke-dasharray="3 5"/>
+<text x="394" y="32.0" font-family="ui-monospace, Consolas, monospace" font-size="8" fill="#5a6259" text-anchor="end">200 m</text>
+<path d="M6.0,69.6 L61.4,79.2 L127.9,52.8 L161.2,44.4 L194.5,36.0 L227.7,44.4 L272.1,52.8 L338.6,79.2 L394.0,69.6 L394.0,84 L6.0,84 Z" fill="rgba(47,93,69,.10)" stroke="none"/>
+<path d="M6.0,69.6 L61.4,79.2 L127.9,52.8 L161.2,44.4 L194.5,36.0 L227.7,44.4 L272.1,52.8 L338.6,79.2 L394.0,69.6" fill="none" stroke="#2f5d45" stroke-width="2" stroke-linejoin="round"/>
+<line x1="6" y1="84" x2="394" y2="84" stroke="rgba(90,98,89,.35)"/>
+<rect x="6.0" y="90" width="388.0" height="7" rx="1.5" fill="#5b8c5a"/>
+<circle cx="127.9" cy="52.8" r="3" fill="#d9a62b" stroke="#1e4030" stroke-width="1.5"/>
+<circle cx="194.5" cy="36.0" r="3" fill="#d9a62b" stroke="#1e4030" stroke-width="1.5"/>
+<text x="127.9" y="45.8" font-family="ui-monospace, Consolas, monospace" font-size="9" fill="#5a6259" text-anchor="middle">CABEZÓN</text>
+<text x="194.5" y="29.0" font-family="ui-monospace, Consolas, monospace" font-size="9" fill="#5a6259" text-anchor="middle">RUENTE</text>
+</svg></div>
+      <p class="profile-note">Schematic profile · totals are estimates</p>
+      <p class="refs"><span class="ref">CA-135</span> → <span class="ref">CA-180</span> → back</p>
+      <table class="facts">
+        <tr><th>Stops</th><td><a href="https://www.turicantabria.com/la-fuentona-de-ruente/">La Fuentona de Ruente</a> — the intermittent spring beside the medieval bridge; Ruente bars <span class="badge unconfirmed">Unconfirmed</span>, Cabezón de la Sal is a full town</td></tr>
+        <tr><th>Totals</th><td>≈35 km · ≈350 m+ <span class="badge est">Estimate</span></td></tr>
+      </table>
+      <div class="notes"><ul>
+        <li>First 17 km of the <a href="#v1">Cabuérniga ride</a> — extend to Bárcena Mayor any time the clock allows.</li>
+      </ul></div>
+      <p class="verified">Verified 14 Aug 2026 · <a href="https://www.turicantabria.com/la-fuentona-de-ruente/">turicantabria</a> · <a href="https://es.wikipedia.org/wiki/Anexo:Red_primaria_de_carreteras_de_Cantabria">road catalogue</a></p>
     </div>
   </article>
 </section>
@@ -1167,6 +1360,44 @@
 </footer>
 
 <script>
+(function () {
+  var state = { time: 'all', diff: 'all' };
+  var rideSections = ['bigdays', 'cols', 'coast', 'short'].map(function (id) {
+    return document.getElementById(id);
+  });
+  var emptyMsg = document.getElementById('filter-empty');
+
+  function applyFilters() {
+    var visible = 0;
+    rideSections.forEach(function (sec) {
+      var any = false;
+      sec.querySelectorAll('article.card[data-time]').forEach(function (card) {
+        var show = (state.time === 'all' || card.dataset.time === state.time) &&
+                   (state.diff === 'all' || card.dataset.diff === state.diff);
+        card.hidden = !show;
+        if (show) { any = true; visible++; }
+      });
+      sec.hidden = !any;
+    });
+    emptyMsg.hidden = visible > 0;
+  }
+
+  document.querySelectorAll('.fgroup').forEach(function (group) {
+    var facet = group.dataset.facet;
+    group.querySelectorAll('.fchip').forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        state[facet] = chip.dataset.val;
+        group.querySelectorAll('.fchip').forEach(function (c) {
+          var on = c === chip;
+          c.classList.toggle('active', on);
+          c.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+        applyFilters();
+      });
+    });
+  });
+})();
+
 (function () {
   var lb = document.createElement('div');
   lb.className = 'lightbox';
