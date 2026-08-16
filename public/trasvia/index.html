@@ -276,6 +276,65 @@
   .badge.ok { color: var(--ok-ink); background: var(--ok-bg); }
   .badge.unconfirmed { color: var(--warn-ink); background: var(--warn-bg); }
   .badge.closed { color: var(--closed-ink); background: var(--closed-bg); }
+  .badge.warn { color: var(--warn-ink); background: var(--warn-bg); }
+
+  /* ---------- Filters ---------- */
+  .filterbar {
+    background: var(--foam);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: .75rem .9rem .8rem;
+    margin: 1.4rem 0 .4rem;
+    display: flex;
+    flex-direction: column;
+    gap: .55rem;
+    box-shadow: 0 1px 3px rgba(29,43,39,.06);
+  }
+  .fgroup { display: flex; align-items: center; flex-wrap: wrap; gap: .4rem; }
+  .flabel {
+    font-family: var(--mono);
+    font-size: .62rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    min-width: 5.2rem;
+  }
+  .fchip {
+    font-family: var(--mono);
+    font-size: .72rem;
+    padding: .28rem .62rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: #fff;
+    color: var(--ink);
+    cursor: pointer;
+  }
+  .fchip:hover { border-color: var(--verdigris); }
+  .fchip.active { background: var(--verdigris-deep); border-color: var(--verdigris-deep); color: var(--foam); }
+  .filter-empty {
+    font-size: .9rem;
+    color: var(--ink-soft);
+    background: var(--foam);
+    border: 1px dashed var(--line);
+    border-radius: 10px;
+    padding: .9rem 1rem;
+    margin: 1rem 0;
+  }
+  .fcount { font-family: var(--mono); font-size: .68rem; color: var(--ink-soft); }
+
+  /* ---------- Off-hours marker (for the guest who works days) ---------- */
+  .owl {
+    font-family: var(--mono);
+    font-size: .62rem;
+    letter-spacing: .08em;
+    padding: .06rem .34rem;
+    border-radius: 4px;
+    background: var(--warn-bg);
+    color: var(--warn-ink);
+    white-space: nowrap;
+  }
+  .dayplan li.offhours { border-left: 2px solid var(--sunflower); padding-left: .5rem; margin-left: -.7rem; }
+  .plan-toggle { display: flex; align-items: center; flex-wrap: wrap; gap: .4rem; margin: .2rem 0 1rem; }
 
   /* ---------- Notes / callouts ---------- */
   .notes { font-size: .92rem; margin: .4rem 0 0; }
@@ -424,6 +483,32 @@
 </nav>
 
 <main>
+<div class="filterbar" role="group" aria-label="Filter activities">
+  <div class="fgroup" data-facet="type">
+    <span class="flabel">Type</span>
+    <button class="fchip active" data-val="all" aria-pressed="true">All</button>
+    <button class="fchip" data-val="monument" aria-pressed="false">Monuments</button>
+    <button class="fchip" data-val="walk" aria-pressed="false">Walks &amp; coast</button>
+    <button class="fchip" data-val="beach" aria-pressed="false">Beach &amp; surf</button>
+    <button class="fchip" data-val="trip" aria-pressed="false">Day trips</button>
+    <button class="fchip" data-val="town" aria-pressed="false">Town &amp; events</button>
+  </div>
+  <div class="fgroup" data-facet="dur">
+    <span class="flabel">Time needed</span>
+    <button class="fchip active" data-val="all" aria-pressed="true">All</button>
+    <button class="fchip" data-val="d1" aria-pressed="false">≤ 1 h</button>
+    <button class="fchip" data-val="d2" aria-pressed="false">1–3 h</button>
+    <button class="fchip" data-val="d3" aria-pressed="false">Half day</button>
+    <button class="fchip" data-val="d4" aria-pressed="false">Full day</button>
+  </div>
+  <div class="fgroup" data-facet="when">
+    <span class="flabel">Around work</span>
+    <button class="fchip active" data-val="all" aria-pressed="true">Any time</button>
+    <button class="fchip" data-val="off" aria-pressed="false">☾ Early or evening only</button>
+    <span class="fcount" id="filter-count"></span>
+  </div>
+</div>
+<p class="filter-empty" id="filter-empty" hidden>Nothing matches that combination — clear a filter above.</p>
 <section class="zone" id="comillas">
   <div class="zone-head">
     <p class="eyebrow">Walkable or a five-minute drive</p>
@@ -431,7 +516,7 @@
   </div>
   <p class="zone-intro">The three big monuments (El Capricho, Palacio de Sobrellano, Seminario Mayor) sit within a few hundred meters of each other, 2–3 km from Trasvía. Important: Sobrellano and the Seminario <strong>do not sell same-day tickets online</strong> — book the day before at centros.culturadecantabria.com, or take your chances at the box office.</p>
 
-  <article class="card" id="walking-tours">
+  <article class="card" id="walking-tours" data-type="town" data-dur="d2" data-when="off">
     <div class="photo-strip">
       <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/J23_085e_Comillas%2C_Plaza_de_la_Constituci%C3%B3n.jpg/960px-J23_085e_Comillas%2C_Plaza_de_la_Constituci%C3%B3n.jpg" alt="Plaza de la Constitución, Comillas" loading="lazy"><figcaption>Falk2 · CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:J23_085e_Comillas,_Plaza_de_la_Constituci%C3%B3n.jpg">Wikimedia Commons</a></figcaption></figure>
     </div>
@@ -472,7 +557,7 @@
     </div>
   </article>
 
-  <article class="card" id="capricho">
+  <article class="card" id="capricho" data-type="monument" data-dur="d1" data-when="off">
     <div class="photo-strip two">
       <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/El_Capricho_Gaud%C3%AD.jpg/960px-El_Capricho_Gaud%C3%AD.jpg" alt="El Capricho de Gaudí" loading="lazy"><figcaption>Respinya · CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:El_Capricho_Gaud%C3%AD.jpg">Wikimedia Commons</a></figcaption></figure>
       <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Capricho_Gaud%C3%AD_Comillas_exterior.jpg/960px-Capricho_Gaud%C3%AD_Comillas_exterior.jpg" alt="El Capricho exterior with sunflower tiles" loading="lazy"><figcaption>Respinya · CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Capricho_Gaud%C3%AD_Comillas_exterior.jpg">Wikimedia Commons</a></figcaption></figure>
@@ -494,7 +579,7 @@
           <li>Allow ~1 h: the visit itself is ~30 min with audioguide (~45 min guided) plus the gardens.</li>
           <li>Quietest windows: right at 10:00, or 18:30–20:00 when the coach crowds are gone and the evening light hits the sunflower tiles.</li>
           <li>The English tour slots are the scarce item in August — book before you arrive.</li>
-          <li><strong>Tue 18 – Thu 20 are "Noches de Capricho" nights</strong>: ticket-holders get in from 20:00, theatre and live film-soundtrack music from 21:30, doors until 23:00. Best evening of the week to see the building lit — see the events card.</li>
+          <li>Evening slots are the ones to take: after ~18:30 the coach crowds are gone, and the last entry is 20:30.</li>
           <li>Minor caveat: some third-party sites list a 10:30 opening; the official municipal August schedule says 10:00.</li>
         </ul>
       </div>
@@ -502,7 +587,7 @@
     </div>
   </article>
 
-  <article class="card" id="sobrellano">
+  <article class="card" id="sobrellano" data-type="monument" data-dur="d1">
     <div class="photo-strip two">
       <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Palacio_de_Sobrellano_2021.jpg/960px-Palacio_de_Sobrellano_2021.jpg" alt="Palacio de Sobrellano" loading="lazy"><figcaption>Fernando · CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Palacio_de_Sobrellano_2021.jpg">Wikimedia Commons</a></figcaption></figure>
       <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Fachada_del_Palacio_de_Sobrellano%2C_Comillas.jpg/960px-Fachada_del_Palacio_de_Sobrellano%2C_Comillas.jpg" alt="Facade of Palacio de Sobrellano" loading="lazy"><figcaption>Jl FilpoC · CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Fachada_del_Palacio_de_Sobrellano,_Comillas.jpg">Wikimedia Commons</a></figcaption></figure>
@@ -531,7 +616,7 @@
     </div>
   </article>
 
-  <article class="card" id="seminario">
+  <article class="card" id="seminario" data-type="monument" data-dur="d1">
     <div class="photo-strip two">
       <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Universidad_Pontificia_de_Comillas._Panor%C3%A1mica.jpg/960px-Universidad_Pontificia_de_Comillas._Panor%C3%A1mica.jpg" alt="Universidad Pontificia de Comillas, panoramic view" loading="lazy"><figcaption>José Luis Filpo Cabana · CC BY 3.0 · <a href="https://commons.wikimedia.org/wiki/File:Universidad_Pontificia_de_Comillas._Panor%C3%A1mica.jpg">Wikimedia Commons</a></figcaption></figure>
       <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Universidad_Pontificia_de_Comillas._Fachada.jpg/960px-Universidad_Pontificia_de_Comillas._Fachada.jpg" alt="Facade by Domènech i Montaner" loading="lazy"><figcaption>Jose Luis Filpo Cabana · CC BY 3.0 · <a href="https://commons.wikimedia.org/wiki/File:Universidad_Pontificia_de_Comillas._Fachada.jpg">Wikimedia Commons</a></figcaption></figure>
@@ -561,11 +646,11 @@
     </div>
   </article>
 
-  <article class="card" id="events">
+  <article class="card" id="events" data-type="town" data-dur="d2" data-when="off">
     <div class="card-body">
       <p class="kicker">This week · concerts &amp; shows</p>
       <h3>What's on, 17–23 August</h3>
-      <p class="tagline">A quieter week than the last one: the Caprichos Musicales festival is over and the Assumption crowds have gone home. What's left is three nights of Gaudí-by-dusk at El Capricho, a couple of workshops, and three long-running exhibitions.</p>
+      <p class="tagline">A quieter week than the last one: the Caprichos Musicales festival is over and the Assumption crowds have gone home. What's left is a couple of workshops, the Friday market and three long-running exhibitions — plus the chance of a late candlelit concert in the Seminario church.</p>
       <div class="table-scroll">
       <table class="tides">
         <thead><tr><th>When</th><th>What</th><th>Where</th><th>Tickets</th></tr></thead>
@@ -573,24 +658,25 @@
           <tr><td>Mon 17</td><td>Taller de bailes latinos — Latin dance workshop</td><td>Comillas <span class="badge unconfirmed">Venue &amp; time unpublished</span></td><td>Ask the tourist office · +34 942 722 591</td></tr>
           <tr><td>Mon 17 – Wed 19</td><td>Masterclass de interpretación "Reyes &amp; Princesas" (Maskarade) — children's drama workshop</td><td>Comillas <span class="badge unconfirmed">Venue &amp; time unpublished</span></td><td>Ask the tourist office</td></tr>
           <tr><td>Mon 17</td><td><strong>Last day</strong> — "Los colores de Julio de Pablo" painting exhibition</td><td>Old Town Hall · 19:00–21:00</td><td>Free</td></tr>
-          <tr><td>Tue 18 · Wed 19 · Thu 20</td><td><strong>Noches de Capricho</strong> — El Capricho at dusk with theatre and live film-soundtrack music. Access from 20:00, performances from 21:30, open until 23:00</td><td>El Capricho de Gaudí</td><td><a href="https://www.elcaprichodegaudi.com">elcaprichodegaudi.com</a> · price <span class="badge unconfirmed">Unconfirmed</span></td></tr>
           <tr><td>Tue 18</td><td>Book presentation — "Tras el rastro de Madrid"</td><td>Comillas <span class="badge unconfirmed">Venue &amp; time unpublished</span></td><td>Free <span class="badge unconfirmed">Assumed</span></td></tr>
           <tr><td>Fri 21 · 09:00–14:00</td><td>Weekly Friday market — 30+ stalls of local food, textiles and flowers</td><td>Campa de Sobrellano</td><td>Free</td></tr>
+          <tr><td>Watch this one</td><td><strong>Candlelit concerts in the Seminario church</strong> — the "Velas y Candelas" series: tribute programmes (Mecano/Luz Casal/Sinatra, film scores, Disney for children, bolero) played by candlelight in the Iglesia del Seminario Mayor. Typically 22:00, doors 21:45, ~60–70 min, no entry once it starts, age 8+</td><td>Iglesia del Seminario Mayor</td><td><a href="https://www.giglon.com">giglon.com</a> (sole seller) · <a href="https://velasycandelas.com/">velasycandelas.com</a> <span class="badge unconfirmed">No date listed in your window yet</span></td></tr>
           <tr><td>All week</td><td>"Veneno que cura, veneno que mata" (450-piece history of poisons, ticketed) · Eduardo Pisano painting exhibition (free)</td><td>Centro Cultural El Espolón · 10:00–14:00 &amp; 17:00–21:00</td><td>Prices <span class="badge unconfirmed">Unconfirmed</span></td></tr>
         </tbody>
       </table>
       </div>
       <div class="notes">
         <ul>
+          <li><span class="badge warn">Candlelight</span> <strong>The Seminario church really does do candlelit concerts</strong> — confirmed 2026 dates there were 1 Aug (Mecano/Luz Casal/Sinatra, 22:00) and 15 Aug, both sold through giglon.com. As of 16 Aug <strong>no date in the 17–23 window is publicly listed</strong>, but this series announces only days ahead and two of its ticket pages (giglon event pages, tomaticket) are bot-blocked, so I could not rule it out. Worth re-checking giglon and asking the tourist office — a late concert in that church is the one genuinely special evening on offer, and it starts at 22:00, so it suits a working day.</li>
           <li><span class="badge unconfirmed">Gap</span> <strong>Fri 21 – Sun 23 have no events listed yet.</strong> The town publishes a weekly bulletin, but the Semana 34 issue (17–23 Aug) was not online as of 16 Aug — only Semana 33. Weekend concerts are typically announced a few days ahead, so re-check the agenda mid-week or call the tourist office.</li>
           <li>No national or regional holidays fall in this window, and no fiestas patronales — expect noticeably thinner crowds than the 15 August weekend.</li>
         </ul>
       </div>
-      <p class="verified">Verified 16 Aug 2026 · <a href="https://comillas.es/comillas/Web_php/index.php?contenido=maseventos_coconut&amp;idCat=todos">comillas.es events agenda</a> · <a href="https://www.comillas.es/comillas/web_php/index.php?contenido=subapartados_coconut&amp;id_boto=104&amp;title=boletn-turstico&amp;lang=1">weekly bulletin index</a> · <a href="https://turismodecantabria.com/proximamente-evento/noches-de-capricho-2/">turismodecantabria.com (Noches de Capricho)</a></p>
+      <p class="verified">Verified 16 Aug 2026 · <a href="https://comillas.es/comillas/Web_php/index.php?contenido=maseventos_coconut&amp;idCat=todos">comillas.es events agenda</a> · <a href="https://www.comillas.es/comillas/web_php/index.php?contenido=subapartados_coconut&amp;id_boto=104&amp;title=boletn-turstico&amp;lang=1">weekly bulletin index</a> · <a href="https://velasycandelas.com/">velasycandelas.com</a> · <a href="https://www.giglon.com">giglon.com</a></p>
     </div>
   </article>
 
-  <article class="card" id="sights">
+  <article class="card" id="sights" data-type="town" data-dur="d1" data-when="off">
     <div class="photo-strip two">
       <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/El_%C3%A1ngel_exterminador_de_Llimona_en_el_cementerio_de_Comillas.jpg/960px-El_%C3%A1ngel_exterminador_de_Llimona_en_el_cementerio_de_Comillas.jpg" alt="El Ángel Exterminador in the Comillas cemetery" loading="lazy"><figcaption>xavi lópez · CC BY-SA 3.0 es · <a href="https://commons.wikimedia.org/wiki/File:El_%C3%A1ngel_exterminador_de_Llimona_en_el_cementerio_de_Comillas.jpg">Wikimedia Commons</a></figcaption></figure>
       <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Iglesia_de_San_Crist%C3%B3bal%2C_Comillas.jpg/960px-Iglesia_de_San_Crist%C3%B3bal%2C_Comillas.jpg" alt="Iglesia de San Cristóbal, Comillas" loading="lazy"><figcaption>Rodelar · CC BY-SA 3.0 · <a href="https://commons.wikimedia.org/wiki/File:Iglesia_de_San_Crist%C3%B3bal,_Comillas.jpg">Wikimedia Commons</a></figcaption></figure>
@@ -620,7 +706,7 @@
   </div>
   <p class="zone-intro">Comillas waymarks ten local footpaths (SL — <em>sendero local</em>), and five of them fit inside an afternoon. Every one starts within a few minutes of Trasvía, needs no booking and costs nothing; each route page has a downloadable KML/GPX track. Distances and times below are the town's own published figures.</p>
 
-  <article class="card" id="senderos">
+  <article class="card" id="senderos" data-type="walk" data-dur="d2" data-when="off">
     <div class="photo-strip two">
       <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Acantilados_de_To%C3%B1anes_en_la_Costa_occidental_de_Cantabria%2C_entre_Santillana_del_mar_y_Comillas.jpg/960px-Acantilados_de_To%C3%B1anes_en_la_Costa_occidental_de_Cantabria%2C_entre_Santillana_del_mar_y_Comillas.jpg" alt="Cliffs of the western Cantabrian coast between Santillana del Mar and Comillas" loading="lazy"><figcaption>Hotelpalacion · CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Acantilados_de_To%C3%B1anes_en_la_Costa_occidental_de_Cantabria,_entre_Santillana_del_mar_y_Comillas.jpg">Wikimedia Commons</a></figcaption></figure>
       <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Ria_de_La_Rabia%2C_Comillas.jpg/960px-Ria_de_La_Rabia%2C_Comillas.jpg" alt="Ría de La Rabia estuary, Comillas" loading="lazy"><figcaption>Luis Fermín Turiel Peredo · CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Ria_de_La_Rabia,_Comillas.jpg">Wikimedia Commons</a></figcaption></figure>
@@ -666,7 +752,7 @@
   </div>
   <p class="zone-intro">All reachable by car in 30–90 min. No public holidays fall in this window, so crowds should be milder than the 15 August weekend — but Saturday 22 and Sunday 23 are still August weekend days at the headline sights, and Altamira is <strong>closed Monday 17</strong>.</p>
 
-  <article class="card" id="soplao">
+  <article class="card" id="soplao" data-type="trip" data-dur="d3">
     <div class="photo-strip two">
       <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/EL_SOPLAO%2C_SANTANDER.jpg/960px-EL_SOPLAO%2C_SANTANDER.jpg" alt="El Soplao cave formations" loading="lazy"><figcaption>HENCHE · CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:EL_SOPLAO,_SANTANDER.jpg">Wikimedia Commons</a></figcaption></figure>
       <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/EL_SOPLAO%2C_LOS_TRES_REYES_MAGOS.jpg/960px-EL_SOPLAO%2C_LOS_TRES_REYES_MAGOS.jpg" alt="Los Tres Reyes Magos formation, El Soplao" loading="lazy"><figcaption>HENCHE · CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:EL_SOPLAO,_LOS_TRES_REYES_MAGOS.jpg">Wikimedia Commons</a></figcaption></figure>
@@ -692,7 +778,7 @@
     </div>
   </article>
 
-  <article class="card" id="altamira">
+  <article class="card" id="altamira" data-type="trip" data-dur="d3">
     <div class="photo-strip two">
       <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Bisonte_en_el_Techo_de_Policromos%2C_Neocueva_de_Altamira.jpg/960px-Bisonte_en_el_Techo_de_Policromos%2C_Neocueva_de_Altamira.jpg" alt="Bison on the polychrome ceiling replica, Neocueva de Altamira" loading="lazy"><figcaption>Jl FilpoC · CC BY 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Bisonte_en_el_Techo_de_Policromos,_Neocueva_de_Altamira.jpg">Wikimedia Commons</a></figcaption></figure>
       <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Colegiata_Santa_Juliana%2C_Santillana_del_Mar%2C_Cantabria%2C_Espa%C3%B1a14.jpg/960px-Colegiata_Santa_Juliana%2C_Santillana_del_Mar%2C_Cantabria%2C_Espa%C3%B1a14.jpg" alt="Colegiata de Santa Juliana, Santillana del Mar" loading="lazy"><figcaption>Diego Delso · CC BY-SA 3.0 · <a href="https://commons.wikimedia.org/wiki/File:Colegiata_Santa_Juliana,_Santillana_del_Mar,_Cantabria,_Espa%C3%B1a14.jpg">Wikimedia Commons</a></figcaption></figure>
@@ -719,7 +805,7 @@
     </div>
   </article>
 
-  <article class="card" id="fuente-de">
+  <article class="card" id="fuente-de" data-type="trip" data-dur="d4">
     <div class="photo-strip two">
       <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Picos_de_Europa_-_Fuente_D%C3%A9_-_01.jpg/960px-Picos_de_Europa_-_Fuente_D%C3%A9_-_01.jpg" alt="Picos de Europa above Fuente Dé" loading="lazy"><figcaption>Carlos Delgado · CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Picos_de_Europa_-_Fuente_D%C3%A9_-_01.jpg">Wikimedia Commons</a></figcaption></figure>
       <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/ES1200001_Cantabria%2C_Picos_de_Europa%2C_Fuente_D%C3%A9%2C_telef%C3%A9rico.jpg/960px-ES1200001_Cantabria%2C_Picos_de_Europa%2C_Fuente_D%C3%A9%2C_telef%C3%A9rico.jpg" alt="Fuente Dé cable car" loading="lazy"><figcaption>Papm1949 · CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:ES1200001_Cantabria,_Picos_de_Europa,_Fuente_D%C3%A9,_telef%C3%A9rico.jpg">Wikimedia Commons</a></figcaption></figure>
@@ -747,7 +833,7 @@
     </div>
   </article>
 
-  <article class="card" id="cabarceno">
+  <article class="card" id="cabarceno" data-type="trip" data-dur="d4">
     <div class="photo-strip two">
       <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Elefantes_en_el_Parque_de_la_naturaleza_de_Cab%C3%A1rceno_-_2013-Aug-12_-_by_Stromare.jpg/960px-Elefantes_en_el_Parque_de_la_naturaleza_de_Cab%C3%A1rceno_-_2013-Aug-12_-_by_Stromare.jpg" alt="Elephants at Cabárceno" loading="lazy"><figcaption>Stromare · CC BY-SA 3.0 · <a href="https://commons.wikimedia.org/wiki/File:Elefantes_en_el_Parque_de_la_naturaleza_de_Cab%C3%A1rceno_-_2013-Aug-12_-_by_Stromare.jpg">Wikimedia Commons</a></figcaption></figure>
       <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Spain.Cantabria.Cab%C3%A1rceno.Parque.01.JPG/960px-Spain.Cantabria.Cab%C3%A1rceno.Parque.01.JPG" alt="Cabárceno park landscape" loading="lazy"><figcaption>Yearofthedragon · CC BY-SA 3.0 · <a href="https://commons.wikimedia.org/wiki/File:Spain.Cantabria.Cab%C3%A1rceno.Parque.01.JPG">Wikimedia Commons</a></figcaption></figure>
@@ -774,7 +860,7 @@
     </div>
   </article>
 
-  <article class="card" id="san-vicente">
+  <article class="card" id="san-vicente" data-type="trip" data-dur="d2" data-when="off">
     <div class="photo-strip">
       <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Hills_-_San_Vicente_de_la_Barquera%2C_Spain_-_July_25%2C_2024_01.jpg/960px-Hills_-_San_Vicente_de_la_Barquera%2C_Spain_-_July_25%2C_2024_01.jpg" alt="San Vicente de la Barquera" loading="lazy"><figcaption>Giorgio Galeotti · CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Hills_-_San_Vicente_de_la_Barquera,_Spain_-_July_25,_2024_01.jpg">Wikimedia Commons</a></figcaption></figure>
     </div>
@@ -798,7 +884,7 @@
   </div>
   <p class="zone-intro">Trasvía sits on the coast road between Comillas and Oyambre — both beaches are minutes away. This week runs the opposite way to the last one: coefficients fall from 69 to 29, so these are <strong>neap tides</strong>. Less rock platform on show, but calmer water and a gentler flood — and the daytime lows land in the afternoon rather than at lunchtime.</p>
 
-  <article class="card" id="playa-comillas">
+  <article class="card" id="playa-comillas" data-type="beach" data-dur="d2" data-when="off">
     <div class="photo-strip two">
       <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Playa_Comillas.jpg/960px-Playa_Comillas.jpg" alt="Playa de Comillas" loading="lazy"><figcaption>Nurfermi · CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Playa_Comillas.jpg">Wikimedia Commons</a></figcaption></figure>
       <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Spain.Cantabria.Comillas.JPG/960px-Spain.Cantabria.Comillas.JPG" alt="Comillas beach and harbor" loading="lazy"><figcaption>Yearofthedragon · CC BY-SA 3.0 · <a href="https://commons.wikimedia.org/wiki/File:Spain.Cantabria.Comillas.JPG">Wikimedia Commons</a></figcaption></figure>
@@ -824,7 +910,7 @@
     </div>
   </article>
 
-  <article class="card" id="oyambre">
+  <article class="card" id="oyambre" data-type="beach" data-dur="d2" data-when="off">
     <div class="photo-strip two">
       <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Atardecer_en_Oyambre_-_panoramio.jpg/960px-Atardecer_en_Oyambre_-_panoramio.jpg" alt="Sunset at Playa de Oyambre" loading="lazy"><figcaption>ferdee2 · CC BY 3.0 · <a href="https://commons.wikimedia.org/wiki/File:Atardecer_en_Oyambre_-_panoramio.jpg">Wikimedia Commons</a></figcaption></figure>
       <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Vida_en_Oyambre%2C_San_Vicente_de_la_Barquera%2C_Playa_de_Mer%C3%B3n.jpg/960px-Vida_en_Oyambre%2C_San_Vicente_de_la_Barquera%2C_Playa_de_Mer%C3%B3n.jpg" alt="Oyambre dunes toward Playa de Merón" loading="lazy"><figcaption>Spinor69 · CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Vida_en_Oyambre,_San_Vicente_de_la_Barquera,_Playa_de_Mer%C3%B3n.jpg">Wikimedia Commons</a></figcaption></figure>
@@ -850,7 +936,7 @@
     </div>
   </article>
 
-  <article class="card" id="surf">
+  <article class="card" id="surf" data-type="beach" data-dur="d2">
     <div class="card-body">
       <p class="kicker">Surf · lessons from 35 EUR</p>
       <h3>Surf schools (August 2026)</h3>
@@ -865,7 +951,7 @@
     </div>
   </article>
 
-  <article class="card" id="rasa">
+  <article class="card" id="rasa" data-type="walk" data-dur="d2" data-when="off">
     <div class="card-body">
       <p class="kicker">Low tide · free · best Mon–Tue</p>
       <h3>Rasa mareal — the low-tide coastal walk</h3>
@@ -909,7 +995,11 @@
     <p class="eyebrow">Monday to Sunday, tide-aware</p>
     <h2>Suggested plan</h2>
   </div>
-  <p class="zone-intro">Four fixed points shape the week: <strong>Monday closes both Sobrellano and Altamira</strong>, so day one is the Seminario, the coast and the town; the rasa mareal is strongest on Mon–Tue and fades to nothing by Friday; Noches de Capricho runs Tue–Thu only; and the free Altamira windows land on the final weekend. As before, Sobrellano and the Seminario sell no same-day online tickets, and the 11:30 walking tours clash with El Capricho's 12:30 English slot — so take the 16:30.</p>
+  <p class="zone-intro">Four fixed points shape the week: <strong>Monday closes both Sobrellano and Altamira</strong>, so day one is the Seminario, the coast and the town; the rasa mareal is strongest on Mon–Tue and fades to nothing by Friday; and the free Altamira windows land on the final weekend. As before, Sobrellano and the Seminario sell no same-day online tickets, and the 11:30 walking tours clash with El Capricho's 12:30 English slot — so take the 16:30.</p>
+  <p class="zone-intro"><strong>One of you is working days.</strong> Items marked <span class="owl">☾</span> start before 09:00 or after 18:00, so they work around a normal working day — every day has at least one. Use the toggle to strip the plan down to just those.</p>
+  <div class="plan-toggle">
+    <button class="fchip" id="offhours-toggle" aria-pressed="false">☾ Show only early &amp; evening items</button>
+  </div>
   <div class="dayplan">
     <div class="day">
       <h3>Monday 17 — the closed day, so take the coast</h3>
@@ -919,17 +1009,18 @@
         <li><span class="t">12:35–16:05</span> <strong>Rasa mareal at its best</strong> (low 14:19, coefficient 69). This is the strongest tide of your whole stay — don't save it for later in the week, it only gets weaker.</li>
         <li><span class="t">16:30</span> El Capricho — English guided tour.</li>
         <li><span class="t">17:30</span> Elia's free walking tour (Moncho's 18:00 as alternative).</li>
-        <li><span class="t">19:00–21:00</span> Last night of "Los colores de Julio de Pablo" at the old Town Hall — free, and gone tomorrow.</li>
+        <li class="offhours"><span class="owl">☾</span> <span class="t">18:30–20:30</span> El Capricho with the audioguide (7 EUR, last entry 20:30) — the version of the visit that fits a working day, and the best light on the sunflower tiles.</li>
+        <li class="offhours"><span class="owl">☾</span> <span class="t">19:00–21:00</span> Last night of "Los colores de Julio de Pablo" at the old Town Hall — free, and gone tomorrow.</li>
         <li><span class="t">Note</span> Sobrellano and the Museo de Altamira are both closed today. Don't drive to Santillana.</li>
       </ul>
     </div>
     <div class="day">
-      <h3>Tuesday 18 — Sobrellano opens, Gaudí after dark</h3>
+      <h3>Tuesday 18 — Sobrellano opens</h3>
       <ul>
         <li><span class="t">10:1x</span> Sobrellano guided tour — first chance of the week. Pair with the Seminario at ~12:4x if you skipped it yesterday (90–120 min spacing rule).</li>
         <li><span class="t">13:15–16:45</span> Second-best tide of the week (low 15:00) — platform walk or Oyambre.</li>
-        <li><span class="t">Afternoon</span> Alternative: La Portilla, the indiano mansion — 16:30 or 18:05 slot, 70 min, 12 EUR, max 15 people, booking obligatory.</li>
-        <li><span class="t">20:00 →</span> <strong>Noches de Capricho</strong>: doors at 20:00, theatre and live film-soundtrack music from 21:30, open to 23:00. First of only three nights.</li>
+        <li class="offhours"><span class="owl">☾</span> <span class="t">Afternoon</span> Alternative: La Portilla, the indiano mansion — 16:30 or 18:05 slot, 70 min, 12 EUR, max 15 people, booking obligatory.</li>
+        <li class="offhours"><span class="owl">☾</span> <span class="t">Evening</span> Book presentation, "Tras el rastro de Madrid" — time and venue unpublished, ask the tourist office.</li>
       </ul>
     </div>
     <div class="day">
@@ -937,17 +1028,16 @@
       <ul>
         <li><span class="t">Morning</span> Monte Corona (8 km, 2 h 30, moderate) from Rioturbio — coastal oak and low-altitude beech, down to the Ría de La Rabia. Or Ruiseñada (8 km, 2 h 30, easy) if you want it gentler.</li>
         <li><span class="t">14:00–17:30</span> Low tide 15:46, coefficient 43 — thinner platform now; treat it as a beach afternoon with rock pools rather than the main event.</li>
-        <li><span class="t">19:30</span> Elia's evening walking tour — one of only three 19:30 departures this week.</li>
-        <li><span class="t">20:00 →</span> Noches de Capricho, night two.</li>
+        <li class="offhours"><span class="owl">☾</span> <span class="t">19:30</span> Elia's evening walking tour — one of only three 19:30 departures this week.</li>
         <li><span class="t">All day</span> Swap: El Soplao (~30 min drive) — book the tourist visit online a day ahead; 12–14 °C inside, bring a fleece.</li>
       </ul>
     </div>
     <div class="day">
-      <h3>Thursday 20 — the Picos, or the last Capricho night</h3>
+      <h3>Thursday 20 — the Picos</h3>
       <ul>
         <li><span class="t">All day</span> Teleférico de Fuente Dé (~1 h 20 drive) — book the timed slot by Wednesday, aim for the 08:00–09:00 cabins to beat the queue and the afternoon cloud, lunch in Potes on the way back.</li>
         <li><span class="t">15:00–18:30</span> If you stay local: low 16:44 but only −0.8 m — marginal for the rasa. Playa de Comillas or Oyambre is the better call.</li>
-        <li><span class="t">20:00 →</span> <strong>Last</strong> Noches de Capricho. If you've not done it yet, tonight is the night.</li>
+        <li class="offhours"><span class="owl">☾</span> <span class="t">Evening</span> El Capricho stays open to 21:00 (last entry 20:30) — the quietest hour to see it, and the sunflower tiles catch the low light.</li>
         <li><span class="t">Note</span> Elia's schedule advertises a 19:30 today but the booking engine returns no seats — assume 11:30 and 17:30 only.</li>
       </ul>
     </div>
@@ -957,7 +1047,7 @@
         <li><span class="t">09:00–14:00</span> Friday market at the Campa de Sobrellano — 30+ stalls of local food, textiles and flowers, below the palace.</li>
         <li><span class="t">Midday</span> Ruta Costera on foot (7 km, ~2 h 22, easy) out past the Mirador de Santa Lucía — the tide is the weakest of the week (coefficient 29), so stay on the clifftop path rather than the rocks.</li>
         <li><span class="t">Afternoon</span> Good day for Cabárceno (~1 h) — a full 4–6 h; birds-of-prey demos 12:00, 15:45, 17:30.</li>
-        <li><span class="t">19:30</span> Elia's evening tour, or Moncho's 18:00.</li>
+        <li class="offhours"><span class="owl">☾</span> <span class="t">19:30</span> Elia's evening tour, or Moncho's 18:00.</li>
       </ul>
     </div>
     <div class="day">
@@ -965,14 +1055,14 @@
       <ul>
         <li><span class="t">Morning</span> Book Sobrellano/Seminario for today if you haven't — Saturday is the busiest day of your week at both.</li>
         <li><span class="t">From 14:00</span> Museo de Altamira free for everyone until 20:00 — but free tickets are desk-only and first-come, so join the queue early afternoon; then wander Santillana del Mar.</li>
-        <li><span class="t">17:45–21:00</span> Low tide 19:30 into a 21:10 sunset — the golden-hour coast walk. Little rock exposed, excellent light.</li>
-        <li><span class="t">19:30</span> Or Elia's evening walking tour back in town.</li>
+        <li class="offhours"><span class="owl">☾</span> <span class="t">17:45–21:00</span> Low tide 19:30 into a 21:10 sunset — the golden-hour coast walk. Little rock exposed, excellent light.</li>
+        <li class="offhours"><span class="owl">☾</span> <span class="t">19:30</span> Or Elia's evening walking tour back in town.</li>
       </ul>
     </div>
     <div class="day">
       <h3>Sunday 23 — early tide, free museum</h3>
       <ul>
-        <li><span class="t">07:31–09:40</span> The week's only morning low (07:54) — a quiet pre-breakfast platform walk with the beach to yourselves.</li>
+        <li class="offhours"><span class="owl">☾</span> <span class="t">07:31–09:40</span> The week's only morning low (07:54) — a quiet pre-breakfast platform walk with the beach to yourselves.</li>
         <li><span class="t">09:30</span> Drive to Altamira: <strong>free all day</strong>, open 09:30–18:00 (an August extension on the usual 15:00 Sunday close). Desk-only tickets, so arrive at opening.</li>
         <li><span class="t">Afternoon</span> Lunch in Santillana, or back for La Portilla's 16:30 slot.</li>
         <li><span class="t">17:30</span> Elia's walking tour — last chance; all three guides run today, unlike last week.</li>
@@ -992,7 +1082,7 @@
     <li><a href="https://www.comillas.es/comillas/web_php/index.php?contenido=subapartados_coconut&amp;id_boto=96&amp;title=horarios-monumentos-diciembre-2025&amp;lang=1">comillas.es — Horarios monumentos (Agosto 2026)</a></li>
     <li><a href="https://comillas.es/comillas/uploaded/2026/AUGUST_2026_PAG.pdf">comillas.es — Visiting hours of monuments in Comillas, August 2026 (PDF, English)</a></li>
     <li><a href="https://comillas.es/comillas/Web_php/index.php?contenido=maseventos_coconut&amp;idCat=todos">comillas.es — events agenda</a> · <a href="https://www.comillas.es/comillas/web_php/index.php?contenido=subapartados_coconut&amp;id_boto=104&amp;title=boletn-turstico&amp;lang=1">weekly tourist bulletin index</a> (Semana 34, 17–23 Aug, not yet published as of 16 Aug — latest online is Semana 33)</li>
-    <li><a href="https://comillas.es/comillas/web_php/index.php?contenido=subapartados_coconut&amp;id_boto=15&amp;title=hiking&amp;lang=1">comillas.es — senderismo (the ten official SL routes)</a>, with per-route distance, time, difficulty and KML/GPX downloads · <a href="https://turismodecantabria.com/proximamente-evento/noches-de-capricho-2/">turismodecantabria.com — Noches de Capricho</a></li>
+    <li><a href="https://comillas.es/comillas/web_php/index.php?contenido=subapartados_coconut&amp;id_boto=15&amp;title=hiking&amp;lang=1">comillas.es — senderismo (the ten official SL routes)</a>, with per-route distance, time, difficulty and KML/GPX downloads</li>
     <li><a href="https://www.elcaprichodegaudi.com/en/plan-your-visit">elcaprichodegaudi.com — plan your visit</a> · <a href="https://tickets.elcaprichodegaudi.com/en">tickets.elcaprichodegaudi.com</a></li>
     <li><a href="https://centros.culturadecantabria.com/palacio-de-sobrellano/regimen-de-visitas/">centros.culturadecantabria.com — Palacio de Sobrellano</a> · <a href="https://centros.culturadecantabria.com/seminario-mayor-de-comillas/regimen-de-visitas/">Seminario Mayor</a> · <a href="https://centros.culturadecantabria.com/reservas/">booking engine</a></li>
     <li><a href="https://www.civitatis.com/es/comillas/free-tour-comillas/">civitatis.com — Free tour por Comillas</a> (plus its live calendar API)</li>
@@ -1005,7 +1095,7 @@
     <li><a href="https://oyambresurf.com/en/surf-school-in-oyambre-cantabria/surf-school/surf-lessons-prices-and-timetables/">oyambresurf.com — prices &amp; timetables</a> · <a href="https://escueladesurfh2o.com/tarifas/">escueladesurfh2o.com — tarifas</a> · <a href="https://northoceansurf.com/la-escuela-de-surf-en-comillas/">northoceansurf.com</a></li>
     <li><a href="https://playas.es/cantabria/comillas/playa-comillas.htm">playas.es — Playa de Comillas</a> · <a href="https://playas.es/cantabria/valdaliga/playa-oyambre.htm">Playa de Oyambre</a> · <a href="https://www.aytocomillas.es/comillas/opencms/Noticias/CruzRojaVerano.html">aytocomillas.es — lifeguard service</a></li>
     <li><a href="https://provoca.cantabria.es/home/-/provoca/actuacion/8558">provoca.cantabria.es — guided coastal outings</a> · <a href="https://web.unican.es/campuscultural/huellas/Paginas/OYAMBRE/oyambre_recorrido.aspx">unican.es — Oyambre coastal route</a></li>
-    <li><a href="https://laportilla-comillas.com/visitas-guiadas-la-portilla-comillas/">laportilla-comillas.com — guided visits and live slot calendar</a> · <a href="https://www.elcaprichodegaudi.com">elcaprichodegaudi.com — Noches de Capricho tickets</a></li>
+    <li><a href="https://laportilla-comillas.com/visitas-guiadas-la-portilla-comillas/">laportilla-comillas.com — guided visits and live slot calendar</a> · <a href="https://velasycandelas.com/">velasycandelas.com — candlelit concert series</a> · <a href="https://www.giglon.com">giglon.com — its sole ticket seller</a></li>
     <li><a href="https://www.spain.info/en/top/camino-gaudi/">spain.info — Gaudí outside Catalonia</a> · <a href="https://en.wikipedia.org/wiki/El_Capricho">Wikipedia — El Capricho</a></li>
     <li>Photos: Wikimedia Commons — author and license credited on each image, linked to its file page.</li>
     <li>Driving distances/times: OSRM routing (router.project-osrm.org), queried 13 Aug 2026; entries marked "Estimate" were not live-routed.</li>
@@ -1018,6 +1108,66 @@
 </footer>
 
 <script>
+(function () {
+  var state = { type: 'all', dur: 'all', when: 'all' };
+  var sections = ['comillas', 'walks', 'daytrips', 'beaches'].map(function (id) {
+    return document.getElementById(id);
+  }).filter(Boolean);
+  var emptyMsg = document.getElementById('filter-empty');
+  var countEl = document.getElementById('filter-count');
+  var total = document.querySelectorAll('article.card[data-type]').length;
+
+  function applyFilters() {
+    var visible = 0;
+    sections.forEach(function (sec) {
+      var any = false;
+      sec.querySelectorAll('article.card[data-type]').forEach(function (card) {
+        var show = (state.type === 'all' || card.dataset.type === state.type) &&
+                   (state.dur === 'all' || card.dataset.dur === state.dur) &&
+                   (state.when === 'all' || card.dataset.when === 'off');
+        card.hidden = !show;
+        if (show) { any = true; visible++; }
+      });
+      sec.hidden = !any;
+    });
+    emptyMsg.hidden = visible > 0;
+    countEl.textContent = visible === total ? '' : visible + ' of ' + total;
+  }
+
+  document.querySelectorAll('.filterbar .fgroup').forEach(function (group) {
+    var facet = group.dataset.facet;
+    group.querySelectorAll('.fchip').forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        state[facet] = chip.dataset.val;
+        group.querySelectorAll('.fchip').forEach(function (c) {
+          var on = c === chip;
+          c.classList.toggle('active', on);
+          c.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+        applyFilters();
+      });
+    });
+  });
+  applyFilters();
+})();
+
+(function () {
+  var btn = document.getElementById('offhours-toggle');
+  if (!btn) return;
+  var plan = document.getElementById('plan');
+  btn.addEventListener('click', function () {
+    var on = btn.classList.toggle('active');
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    plan.querySelectorAll('.dayplan li').forEach(function (li) {
+      li.hidden = on && !li.classList.contains('offhours');
+    });
+    plan.querySelectorAll('.dayplan .day').forEach(function (day) {
+      var any = Array.prototype.some.call(day.querySelectorAll('li'), function (li) { return !li.hidden; });
+      day.hidden = on && !any;
+    });
+  });
+})();
+
 (function () {
   var lb = document.createElement('div');
   lb.className = 'lightbox';
