@@ -21,10 +21,12 @@
   --rule:#ddd8cc; --muted:#5d6b78;
   --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,"Times New Roman",serif;
   --han:"Songti SC","STSong","PingFang SC","Hiragino Sans GB","Noto Serif SC","Microsoft YaHei",var(--serif);
-  --bar:clamp(96px,15vh,128px);
+  --bar:clamp(94px,12.4vh,110px);
+  --maph:min(30svh,252px);
 }
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
+html{-webkit-text-size-adjust:100%; touch-action:manipulation}
+body,button,input,a,summary,label{touch-action:manipulation}
 body{
   margin:0; background:var(--paper); color:var(--ink);
   font-family:var(--serif); font-size:17px; line-height:1.68;
@@ -62,11 +64,25 @@ a{color:var(--indigo)}
 
 /* ---------- stage: sticky map + chapters ---------- */
 .stage{display:block; position:relative}
-.mapwrap{position:sticky; top:0; z-index:6; height:40svh; background:var(--paper);
+.mapwrap{position:sticky; top:0; z-index:6; height:var(--maph); background:var(--paper);
   border-bottom:1px solid var(--rule); box-shadow:0 10px 22px -18px rgba(22,41,74,.6)}
 .mapwrap svg{width:100%; height:100%; display:block}
-.maptag{position:absolute; left:12px; top:10px; font-size:12px; letter-spacing:.15em;
-  text-transform:uppercase; color:var(--muted)}
+body.map-mini{--maph:48px}
+body.map-mini .maptag{display:none}
+body.map-mini #mapSvg{display:none}
+.mapbar{position:absolute; top:0; left:0; right:0; height:48px; z-index:2;
+  display:flex; align-items:center; gap:10px; padding:0 8px 0 13px;
+  background:linear-gradient(180deg,var(--paper) 58%,rgba(252,252,249,.72) 82%,rgba(252,252,249,0))}
+body.map-mini .mapbar{background:var(--paper)}
+.maptag{font-size:12px; letter-spacing:.15em; text-transform:uppercase; color:var(--muted);
+  white-space:nowrap; flex:0 0 auto}
+.miniinfo{flex:1 1 auto; min-width:0; font-size:15.5px; color:var(--ink); white-space:nowrap;
+  overflow:hidden; text-overflow:ellipsis; opacity:0; transition:opacity .2s ease}
+body.map-mini .miniinfo{opacity:1}
+.maptoggle{margin-left:auto; flex:0 0 auto; min-height:44px; padding:9px 15px;
+  border:1px solid var(--rule); background:#fff; border-radius:999px;
+  font-size:14.5px; letter-spacing:.02em; color:var(--indigo); white-space:nowrap}
+.maptoggle:active{background:#f1ede2}
 
 /* map ink */
 .terrain{fill:#f2efe6}
@@ -74,18 +90,20 @@ a{color:var(--indigo)}
 .river{fill:none; stroke:#8fb3c4; stroke-width:2.2; stroke-linecap:round}
 .ridge{fill:none; stroke:#c8c0ac; stroke-width:1.6; stroke-linecap:round}
 .border{fill:none; stroke:#b6a98d; stroke-width:1.8; stroke-dasharray:7 6}
+.seg-ghost{fill:none; stroke:var(--gold); stroke-width:3.2; stroke-linecap:round;
+  stroke-linejoin:round; opacity:.26}
+.seg-ghost.ret{stroke-dasharray:9 8; stroke-width:2.6}
 .seg{fill:none; stroke:var(--gold); stroke-width:3.4; stroke-linecap:round; stroke-linejoin:round;
   stroke-dasharray:var(--len); stroke-dashoffset:var(--len); transition:stroke-dashoffset 1.15s ease}
 .seg.on{stroke-dashoffset:0}
 .seg.ret{stroke-dasharray:9 8; stroke-dashoffset:0; opacity:0; stroke-width:2.8;
   transition:opacity .7s ease}
 .seg.ret.on{opacity:.85}
-.air{fill:none; stroke:var(--indigo); stroke-width:1.8; stroke-dasharray:5 6; opacity:0; transition:opacity .6s ease}
-.air.on{opacity:.7}
-.airlab{opacity:0; transition:opacity .6s ease}
+.air{fill:none; stroke:var(--indigo); stroke-width:1.8; stroke-dasharray:5 6; opacity:.3; transition:opacity .6s ease}
+.air.on{opacity:.72}
+.airlab{opacity:.5; transition:opacity .6s ease}
 .airlab.on{opacity:1}
-.stop{opacity:0; transition:opacity .5s ease}
-.stop.on{opacity:1}
+.stop{opacity:1}
 .stop circle.pin{fill:var(--paper); stroke:var(--indigo); stroke-width:2.6}
 .stop.cur circle.pin{fill:var(--madder); stroke:var(--madder)}
 .stop text{font-family:var(--serif); font-size:15px; fill:var(--ink); paint-order:stroke;
@@ -134,7 +152,9 @@ figcaption a{color:#5b6b7a; display:inline-block; padding:8px 3px; margin:-8px -
 
 /* day list */
 .days{list-style:none; margin:1.8rem 0 0; padding:0}
-.day{display:block; padding:15px 2px; border-top:1px solid var(--rule)}
+.day{display:block; padding:15px 2px; border-top:1px solid var(--rule);
+  scroll-margin-top:calc(var(--maph) + 16px)}
+.chapter{scroll-margin-top:calc(var(--maph) + 8px)}
 .day:last-child{border-bottom:1px solid var(--rule)}
 .day.now{background:linear-gradient(90deg,rgba(232,182,76,.19),rgba(232,182,76,0) 72%)}
 .dnum{display:block; font-size:15px; letter-spacing:.11em; color:var(--indigo);
@@ -237,15 +257,23 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
   .cover .rule{margin:1.05rem 0 .9rem}
   .scrollcue{left:auto; right:clamp(24px,4vw,54px); transform:none}
   .cover-img::after{background:linear-gradient(180deg,rgba(22,41,74,.44) 0%,rgba(22,41,74,.16) 18%,rgba(22,41,74,.52) 36%,rgba(22,41,74,.84) 50%,rgba(22,41,74,.94) 68%,rgba(22,41,74,.98) 100%)}
-  .stage{display:grid; grid-template-columns:minmax(330px,40vw) 1fr; align-items:start}
-  .mapwrap{height:100svh; border-bottom:0; border-right:1px solid var(--rule); box-shadow:none}
+  :root{--maph:100svh}
+  .stage{display:grid; grid-template-columns:clamp(320px,30vw,440px) 1fr;
+         align-items:start; max-width:1440px; margin:0 auto}
+  .mapwrap{height:auto; padding:clamp(52px,7vh,74px) 0 clamp(18px,3vh,34px);
+           border-bottom:0; border-right:1px solid var(--rule); box-shadow:none}
+  #mapSvg{height:auto; aspect-ratio:620/600; max-height:calc(100svh - clamp(74px,11vh,112px))}
+  .maptoggle{display:none}
+  body.map-mini{--maph:100svh}
+  body.map-mini #mapSvg{display:block}
+  body.map-mini .miniinfo{opacity:0}
+  .day,.chapter{scroll-margin-top:24px}
   .chapters{padding-right:clamp(10px,3vw,40px)}
-  .wrap{max-width:38rem; margin:0; padding:0 clamp(24px,4vw,44px)}
+  .wrap{max-width:45rem; margin:0 auto; padding:0 clamp(26px,3vw,56px)}
   footer .wrap{margin:0 auto}
   .collage{gap:12px}
   .scrub-bot{padding:0 4px}
 }
-@media (min-width:1500px){ .stage{grid-template-columns:minmax(360px,34vw) 1fr} }
 
 /* ---------- reduced motion ---------- */
 @media (prefers-reduced-motion:reduce){
@@ -264,7 +292,7 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
 @media print{
   :root{--bar:0px}
   body{background:#fff; font-size:11pt; padding-bottom:0}
-  .scrub,.lb,.scrollcue,.pc,.tapnote{display:none !important}
+  .scrub,.lb,.scrollcue,.pc,.tapnote,.maptoggle,.miniinfo{display:none !important}
   .cover{min-height:auto; color:#111; background:#fff; page-break-after:always}
   .cover-img{position:relative; height:auto; inset:auto}
   .cover-img::after{display:none}
@@ -274,8 +302,12 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
   .cover .han-big{color:var(--tea)} .cover .sub{color:#333} .cover .sub b{color:#111}
   .stage{display:block}
   .mapwrap{position:static; height:auto; page-break-after:always; border:0}
+  body.map-mini #mapSvg{display:block !important}
+  .mapbar{position:static; height:auto; background:none; padding:0 0 6pt}
+  .day,.chapter{scroll-margin-top:0}
   .mapwrap svg{height:15cm}
   .seg,.seg.ret,.air,.airlab,.stop{opacity:1 !important; stroke-dashoffset:0 !important}
+  .seg-ghost{display:none}
   .stop.cur circle.halo{display:none}
   #dayMark{display:none}
   .chapter{page-break-before:always; padding:0 0 12pt}
@@ -309,8 +341,12 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
 
 <main class="stage">
   <div class="mapwrap">
-    <div class="maptag">Western Yunnan</div>
-    <svg viewBox="0 0 620 600" role="img" aria-label="Hand drawn map of western Yunnan showing the route from Dali north to Lijiang, Tiger Leaping Gorge and Shangri-La, then south to Shaxi, Baoshan and Tengchong, and back to Dali.">
+    <div class="mapbar">
+      <span class="maptag">Western Yunnan</span>
+      <span class="miniinfo" id="miniInfo"></span>
+      <button class="maptoggle" id="mapToggle" type="button" aria-expanded="true" aria-controls="mapSvg">Hide map</button>
+    </div>
+    <svg id="mapSvg" viewBox="0 0 620 600" role="img" aria-label="Hand drawn map of western Yunnan showing the route from Dali north to Lijiang, Tiger Leaping Gorge and Shangri-La, then south to Shaxi, Baoshan and Tengchong, and back to Dali.">
       <path class="terrain" d="M126,52 C216,34 336,46 424,82 C474,102 504,148 490,204 C478,252 444,280 428,328 C412,376 424,428 396,468 C364,514 302,540 238,556 C178,570 112,566 74,532 C36,498 28,438 42,382 C56,326 70,268 78,206 C84,148 90,70 126,52 Z"/>
 
       <path class="ridge" d="M276,352 l7,-11 l7,11"/>
@@ -334,6 +370,15 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
       <path class="border" d="M86,296 C66,338 51,381 47,424 C43,467 51,508 67,550"/>
       <text class="mlab" transform="translate(30,462) rotate(-74)" text-anchor="middle">MYANMAR</text>
 
+      <g id="ghost" aria-hidden="true">
+        <path class="seg-ghost" d="M300,430 C288,394 284,330 292,286 C295,268 298,256 300,246"/>
+        <path class="seg-ghost" d="M300,246 C298,232 294,214 287,199"/>
+        <path class="seg-ghost" d="M287,199 C272,178 254,144 239,107"/>
+        <path class="seg-ghost" d="M239,107 C228,166 224,236 236,286 C242,310 250,320 257,327"/>
+        <path class="seg-ghost" d="M257,327 C238,368 210,432 190,470 C184,482 181,494 178,501"/>
+        <path class="seg-ghost" d="M178,501 C154,506 126,511 100,514"/>
+        <path class="seg-ghost ret" d="M100,522 C162,550 234,552 281,494 C291,482 297,452 300,438"/>
+      </g>
       <g id="route">
         <path class="air" id="air-in"  d="M498,300 C450,330 380,382 317,421"/>
         <path class="air" id="air-out" d="M313,419 C382,392 452,368 520,350"/>
@@ -358,7 +403,7 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
 
       <g id="dayMark" transform="translate(300,430)"><circle r="6.5"/></g>
 
-      <g transform="translate(560,86)" aria-hidden="true">
+      <g transform="translate(566,506)" aria-hidden="true">
         <path class="ridge" d="M0,26 L0,-14 M-6,-6 L0,-16 L6,-6" style="stroke:#948a74;stroke-width:1.6"/>
         <text class="mlab" x="0" y="42" text-anchor="middle" style="letter-spacing:.08em">N</text>
       </g>
@@ -398,7 +443,7 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
       </div>
       <p class="tapnote">Tap any photograph to see it full screen, then swipe left or right for the next one.</p>
       <ol class="days">
-        <li class="day" data-day="1">
+        <li class="day" id="day-1" data-day="1">
           <span class="dnum">Day 1 <span class="ddate">&middot; Wednesday, September 24</span></span>
           <div class="dbody">
             <h3>Beijing to Dali</h3>
@@ -407,7 +452,7 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
             <p class="flag">Icíar's birthday. The first evening of the trip, and the best possible place to spend it.</p>
           </div>
         </li>
-        <li class="day" data-day="2">
+        <li class="day" id="day-2" data-day="2">
           <span class="dnum">Day 2 <span class="ddate">&middot; Thursday, September 25</span></span>
           <div class="dbody">
             <h3>Around Erhai with the Bai</h3>
@@ -451,7 +496,7 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
         </figure>
       </div>
       <ol class="days">
-        <li class="day" data-day="3">
+        <li class="day" id="day-3" data-day="3">
           <span class="dnum">Day 3 <span class="ddate">&middot; Friday, September 26</span></span>
           <div class="dbody">
             <h3>North to Shuhe</h3>
@@ -460,21 +505,21 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
             <p class="flag j">Javier lands at Lijiang at 20:50 tonight, in from Osaka.</p>
           </div>
         </li>
-        <li class="day" data-day="4">
+        <li class="day" id="day-4" data-day="4">
           <span class="dnum">Day 4 <span class="ddate">&middot; Saturday, September 27</span></span>
           <div class="dbody">
             <h3>Jade Dragon Snow Mountain</h3>
             <p>Spruce Meadow and Blue Moon Valley under the mountain, and the Impression Lijiang show in the open-air theatre.</p>
           </div>
         </li>
-        <li class="day" data-day="5">
+        <li class="day" id="day-5" data-day="5">
           <span class="dnum">Day 5 <span class="ddate">&middot; Sunday, September 28</span></span>
           <div class="dbody">
             <h3>Yuhu and Baisha</h3>
             <p>Yuhu village, where Joseph Rock kept his house at the foot of the mountain, and then Baisha ancient town.</p>
           </div>
         </li>
-        <li class="day" data-day="6">
+        <li class="day" id="day-6" data-day="6">
           <span class="dnum">Day 6 <span class="ddate">&middot; Monday, September 29</span></span>
           <div class="dbody">
             <h3>A day off in Shuhe</h3>
@@ -523,7 +568,7 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
         </figure>
       </div>
       <ol class="days">
-        <li class="day" data-day="7">
+        <li class="day" id="day-7" data-day="7">
           <span class="dnum">Day 7 <span class="ddate">&middot; Tuesday, September 30</span></span>
           <div class="dbody">
             <h3>The gorge, then the plateau</h3>
@@ -532,7 +577,7 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
             <p class="flag">Tonight you sleep at 3,160 m. Walk slowly, drink more water than you feel like drinking, and take stairs gently.</p>
           </div>
         </li>
-        <li class="day" data-day="8">
+        <li class="day" id="day-8" data-day="8">
           <span class="dnum">Day 8 <span class="ddate">&middot; Wednesday, October 1</span></span>
           <div class="dbody">
             <h3>Pudacuo and Songtsam</h3>
@@ -571,7 +616,7 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
         </figure>
       </div>
       <ol class="days">
-        <li class="day" data-day="9">
+        <li class="day" id="day-9" data-day="9">
           <span class="dnum">Day 9 <span class="ddate">&middot; Thursday, October 2</span></span>
           <div class="dbody">
             <h3>Down to Shaxi</h3>
@@ -579,7 +624,7 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
             <p class="dmeta"><span class="stay">Stay: Daoxiang residents' guesthouse, Shaxi (nights 9 and 10)</span></p>
           </div>
         </li>
-        <li class="day" data-day="10">
+        <li class="day" id="day-10" data-day="10">
           <span class="dnum">Day 10 <span class="ddate">&middot; Friday, October 3</span></span>
           <div class="dbody">
             <h3>The Tea Horse Road town</h3>
@@ -619,7 +664,7 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
         </figure>
       </div>
       <ol class="days">
-        <li class="day" data-day="11">
+        <li class="day" id="day-11" data-day="11">
           <span class="dnum">Day 11 <span class="ddate">&middot; Saturday, October 4</span></span>
           <div class="dbody">
             <h3>The long drive to Baoshan</h3>
@@ -627,7 +672,7 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
             <p class="dmeta"><span class="stay">Stay: Vienna International Hotel, Baoshan</span></p>
           </div>
         </li>
-        <li class="day" data-day="12">
+        <li class="day" id="day-12" data-day="12">
           <span class="dnum">Day 12 <span class="ddate">&middot; Sunday, October 5</span></span>
           <div class="dbody">
             <h3>Into volcanic country</h3>
@@ -635,7 +680,7 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
             <p class="dmeta"><span class="stay">Stay: A panoramic boutique inn, Tengchong (nights 12 to 14)</span></p>
           </div>
         </li>
-        <li class="day" data-day="13">
+        <li class="day" id="day-13" data-day="13">
           <span class="dnum">Day 13 <span class="ddate">&middot; Monday, October 6</span></span>
           <div class="dbody">
             <h3>Heshun, and goodbye to Javier</h3>
@@ -643,14 +688,14 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
             <p class="flag j">Javier flies home around midday, out of Tengchong to Los Angeles via Chengdu.</p>
           </div>
         </li>
-        <li class="day" data-day="14">
+        <li class="day" id="day-14" data-day="14">
           <span class="dnum">Day 14 <span class="ddate">&middot; Tuesday, October 7</span></span>
           <div class="dbody">
             <h3>Slow travel</h3>
             <p>The volcanic park or the wetland park, a spa afternoon, and nothing in a hurry.</p>
           </div>
         </li>
-        <li class="day" data-day="15">
+        <li class="day" id="day-15" data-day="15">
           <span class="dnum">Day 15 <span class="ddate">&middot; Wednesday, October 8</span></span>
           <div class="dbody">
             <h3>Tengchong to Dali, and on to Shanghai</h3>
@@ -752,13 +797,13 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
 var RM = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /* ---------- trip data ---------- */
-var DAYS = [{"n":1,"date":"Wednesday, September 24","sum":"Fly Beijing to Dali, land 18:30, taxi to the hotel, then the first walk in the old town.","alt":1980,"mx":300,"my":430,"stop":"dali"},{"n":2,"date":"Thursday, September 25","sum":"Fengyangyi, Xizhou, Panxi S-Bay, Zhoucheng tie-dye, and the shore of Erhai.","alt":1980,"mx":296,"my":398,"stop":"dali"},{"n":3,"date":"Friday, September 26","sum":"Free morning in Dali, then three hours north to Shuhe. Javier lands at 20:50.","alt":2400,"mx":290,"my":340,"stop":"lijiang"},{"n":4,"date":"Saturday, September 27","sum":"Jade Dragon Snow Mountain: Spruce Meadow, Blue Moon Valley, Impression Lijiang.","alt":2400,"mx":296,"my":226,"stop":"lijiang"},{"n":5,"date":"Sunday, September 28","sum":"Yuhu village, where Joseph Rock lived, and Baisha ancient town.","alt":2400,"mx":298,"my":238,"stop":"lijiang"},{"n":6,"date":"Monday, September 29","sum":"A leisure day in Shuhe. Rest at 2,400 m before the plateau.","alt":2400,"mx":300,"my":246,"stop":"lijiang"},{"n":7,"date":"Tuesday, September 30","sum":"Walk the upper Tiger Leaping Gorge, then climb to Shangri-La and Dukezong.","alt":3160,"mx":262,"my":158,"stop":"shangrila"},{"n":8,"date":"Wednesday, October 1","sum":"Pudacuo National Park, Songtsam Monastery, and Napa Lake if the weather allows.","alt":3160,"mx":239,"my":107,"stop":"shangrila"},{"n":9,"date":"Thursday, October 2","sum":"The scenic drive down off the plateau to Shaxi.","alt":2100,"mx":233,"my":225,"stop":"shaxi"},{"n":10,"date":"Friday, October 3","sum":"Sideng Street, the Ancient Theatre Stage, Yujin Bridge, temples and valley villages.","alt":2100,"mx":257,"my":327,"stop":"shaxi"},{"n":11,"date":"Saturday, October 4","sum":"A long drive south to Baoshan, one night to break the journey.","alt":1650,"mx":178,"my":501,"stop":"baoshan"},{"n":12,"date":"Sunday, October 5","sum":"On to Tengchong through volcanic country.","alt":1640,"mx":100,"my":514,"stop":"tengchong"},{"n":13,"date":"Monday, October 6","sum":"Heshun Ancient Town and, if you like, the hot springs. Javier flies home at midday.","alt":1640,"mx":100,"my":514,"stop":"tengchong"},{"n":14,"date":"Tuesday, October 7","sum":"Volcanic park or wetland park, a spa, and nothing in a hurry.","alt":1640,"mx":100,"my":514,"stop":"tengchong"},{"n":15,"date":"Wednesday, October 8","sum":"Tengchong to Dali airport, four to five hours, then the 17:40 flight to Shanghai.","alt":1980,"mx":205,"my":520,"stop":"dali"}];
+var DAYS = [{"n":1,"date":"Wednesday, September 24","sum":"Fly Beijing to Dali, land 18:30, taxi to the hotel, then the first walk in the old town.","alt":1980,"mx":300,"my":430,"stop":"dali","place":"Dali"},{"n":2,"date":"Thursday, September 25","sum":"Fengyangyi, Xizhou, Panxi S-Bay, Zhoucheng tie-dye, and the shore of Erhai.","alt":1980,"mx":296,"my":398,"stop":"dali","place":"Dali and Erhai"},{"n":3,"date":"Friday, September 26","sum":"Free morning in Dali, then three hours north to Shuhe. Javier lands at 20:50.","alt":2400,"mx":290,"my":340,"stop":"lijiang","place":"Dali to Shuhe"},{"n":4,"date":"Saturday, September 27","sum":"Jade Dragon Snow Mountain: Spruce Meadow, Blue Moon Valley, Impression Lijiang.","alt":2400,"mx":296,"my":226,"stop":"lijiang","place":"Jade Dragon"},{"n":5,"date":"Sunday, September 28","sum":"Yuhu village, where Joseph Rock lived, and Baisha ancient town.","alt":2400,"mx":298,"my":238,"stop":"lijiang","place":"Yuhu and Baisha"},{"n":6,"date":"Monday, September 29","sum":"A leisure day in Shuhe. Rest at 2,400 m before the plateau.","alt":2400,"mx":300,"my":246,"stop":"lijiang","place":"Shuhe"},{"n":7,"date":"Tuesday, September 30","sum":"Walk the upper Tiger Leaping Gorge, then climb to Shangri-La and Dukezong.","alt":3160,"mx":262,"my":158,"stop":"shangrila","place":"Gorge, then Shangri-La"},{"n":8,"date":"Wednesday, October 1","sum":"Pudacuo National Park, Songtsam Monastery, and Napa Lake if the weather allows.","alt":3160,"mx":239,"my":107,"stop":"shangrila","place":"Shangri-La"},{"n":9,"date":"Thursday, October 2","sum":"The scenic drive down off the plateau to Shaxi.","alt":2100,"mx":233,"my":225,"stop":"shaxi","place":"Down to Shaxi"},{"n":10,"date":"Friday, October 3","sum":"Sideng Street, the Ancient Theatre Stage, Yujin Bridge, temples and valley villages.","alt":2100,"mx":257,"my":327,"stop":"shaxi","place":"Shaxi"},{"n":11,"date":"Saturday, October 4","sum":"A long drive south to Baoshan, one night to break the journey.","alt":1650,"mx":178,"my":501,"stop":"baoshan","place":"Baoshan"},{"n":12,"date":"Sunday, October 5","sum":"On to Tengchong through volcanic country.","alt":1640,"mx":100,"my":514,"stop":"tengchong","place":"Tengchong"},{"n":13,"date":"Monday, October 6","sum":"Heshun Ancient Town and, if you like, the hot springs. Javier flies home at midday.","alt":1640,"mx":100,"my":514,"stop":"tengchong","place":"Heshun"},{"n":14,"date":"Tuesday, October 7","sum":"Volcanic park or wetland park, a spa, and nothing in a hurry.","alt":1640,"mx":100,"my":514,"stop":"tengchong","place":"Tengchong"},{"n":15,"date":"Wednesday, October 8","sum":"Tengchong to Dali airport, four to five hours, then the 17:40 flight to Shanghai.","alt":1980,"mx":205,"my":520,"stop":"dali","place":"Tengchong to Dali"}];
 var CH = [
-  {first:1, segs:["air-in","lab-in"],                 stops:["dali"]},
-  {first:3, segs:["seg1"],                            stops:["lijiang"]},
-  {first:7, segs:["seg2","seg3"],                     stops:["tlg","shangrila"]},
-  {first:9, segs:["seg4"],                            stops:["shaxi"]},
-  {first:11,segs:["seg5","seg6","seg7","air-out","lab-out"], stops:["baoshan","tengchong"]}
+  {first:1,  last:2,  segs:["air-in","lab-in"]},
+  {first:3,  last:6,  segs:["seg1"]},
+  {first:7,  last:8,  segs:["seg2","seg3"]},
+  {first:9,  last:10, segs:["seg4"]},
+  {first:11, last:15, segs:["seg5","seg6","seg7","air-out","lab-out"]}
 ];
 var PROF = [[1,1980],[2,1980],[3,2400],[4,2400],[5,2400],[6,2400],[6.45,1800],
             [7,3160],[8,3160],[9,2100],[10,2100],[11,1650],[12,1640],[13,1640],[14,1640],[15,1980]];
@@ -779,7 +824,6 @@ function revealTo(i){
   CH.forEach(function(c, ci){
     var on = ci <= i;
     c.segs.forEach(function(id){ var el = document.getElementById(id); if (el) el.classList.toggle("on", on); });
-    c.stops.forEach(function(id){ var el = document.getElementById("stop-"+id); if (el) el.classList.toggle("on", on); });
   });
 }
 function chapterOf(n){
@@ -799,8 +843,22 @@ var PY = function(a){ return 40 - (a - 1500) / 1800 * 32; };
 
 /* ---------- day scrubber ---------- */
 var slider = $("#slider"), sday = $("#sday"), ssum = $("#ssum"), salt = $("#salt"),
-    prevB = $("#prev"), nextB = $("#next"), mark = $("#dayMark"), dot = $("#profDot");
-var cur = 0;
+    prevB = $("#prev"), nextB = $("#next"), mark = $("#dayMark"), dot = $("#profDot"),
+    mini = $("#miniInfo"), cover = $(".cover"), chapters = $$(".chapter");
+var cur = 0, navLock = 0;
+function scrollToDay(n){
+  var el = document.getElementById("day-" + n);
+  if (!el) return;
+  navLock = Date.now() + 1400;
+  el.scrollIntoView({behavior: RM ? "auto" : "smooth", block: "start"});
+}
+function scrollToChapter(i){
+  var el = chapters[i];
+  if (!el) return;
+  navLock = Date.now() + 1400;
+  el.scrollIntoView({behavior: RM ? "auto" : "smooth", block: "start"});
+}
+function onCover(){ return window.scrollY < cover.offsetHeight * 0.55; }
 function setDay(n, quiet){
   n = Math.max(1, Math.min(15, n|0));
   if (n === cur) return;
@@ -811,6 +869,7 @@ function setDay(n, quiet){
   sday.textContent = "Day " + n;
   ssum.textContent = d.sum;
   salt.textContent = d.alt.toLocaleString("en-US") + " m";
+  mini.textContent = "Day " + n + " \u00b7 " + d.place;
   mark.setAttribute("transform", "translate(" + d.mx + "," + d.my + ")");
   dot.setAttribute("cx", PX(n).toFixed(1));
   dot.setAttribute("cy", PY(d.alt).toFixed(1));
@@ -820,11 +879,16 @@ function setDay(n, quiet){
   if (!quiet) revealTo(chapterOf(n));
 }
 slider.addEventListener("input", function(){ setDay(+slider.value); });
-prevB.addEventListener("click", function(){ setDay(cur - 1); });
-nextB.addEventListener("click", function(){ setDay(cur + 1); });
+slider.addEventListener("change", function(){ setDay(+slider.value); scrollToDay(cur); });
+prevB.addEventListener("click", function(){ setDay(cur - 1); scrollToDay(cur); });
+nextB.addEventListener("click", function(){
+  /* first press from the cover opens the chapter rather than skipping its essay */
+  if (onCover()) { scrollToChapter(chapterOf(cur)); return; }
+  setDay(cur + 1); scrollToDay(cur);
+});
 
 /* ---------- scroll sync ---------- */
-var chapters = $$(".chapter"), cover = $(".cover"), active = -2;
+var active = -2;
 if ("IntersectionObserver" in window){
   var io = new IntersectionObserver(function(es){
     es.forEach(function(e){
@@ -833,6 +897,8 @@ if ("IntersectionObserver" in window){
       if (i === active) return;
       active = i;
       revealTo(i < 0 ? 0 : i);
+      if (Date.now() < navLock) return;
+      if (i >= 0 && cur >= CH[i].first && cur <= CH[i].last) return;
       setDay(i < 0 ? 1 : CH[i].first, true);
     });
   }, {rootMargin: "-45% 0px -45% 0px", threshold: 0});
@@ -843,6 +909,28 @@ if ("IntersectionObserver" in window){
 }
 setDay(1);
 revealTo(0);
+
+/* ---------- map collapse ---------- */
+var mapT = $("#mapToggle"), isMini = false;
+try { isMini = localStorage.getItem("yn-map") === "mini"; } catch (e) {}
+function setMini(v, quiet){
+  /* the pane sits in flow, so resizing it shifts everything below. Some browsers
+     anchor the scroll for us and some do not, so measure the real shift and
+     correct only what is left over. */
+  var ref = (!quiet && window.scrollY > cover.offsetHeight) ? document.getElementById("day-" + cur) : null;
+  var t0 = ref ? ref.getBoundingClientRect().top : 0;
+  isMini = v;
+  document.body.classList.toggle("map-mini", v);
+  if (ref) {
+    var t1 = ref.getBoundingClientRect().top;
+    if (t1 !== t0) window.scrollBy(0, t1 - t0);
+  }
+  mapT.textContent = v ? "Show map" : "Hide map";
+  mapT.setAttribute("aria-expanded", v ? "false" : "true");
+  try { localStorage.setItem("yn-map", v ? "mini" : "full"); } catch (e) {}
+}
+mapT.addEventListener("click", function(){ setMini(!isMini); });
+setMini(isMini, true);
 
 /* ---------- lightbox ---------- */
 var shots = $$(".photo"), lb = $("#lb"), lbImg = $("#lbImg"), lbCap = $("#lbCap"),
