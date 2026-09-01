@@ -25,8 +25,8 @@
   --maph:min(25svh,222px);
 }
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%; touch-action:manipulation}
-body,button,input,a,summary,label{touch-action:manipulation}
+html{-webkit-text-size-adjust:100%}
+html,body,body *,svg *{touch-action:manipulation}
 body{
   margin:0; background:var(--paper); color:var(--ink);
   font-family:var(--serif); font-size:17px; line-height:1.68;
@@ -233,7 +233,7 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
 
 /* ---------- lightbox ---------- */
 .lb{position:fixed; inset:0; z-index:90; background:#0c121c; display:none;
-  flex-direction:column; touch-action:pan-y}
+  flex-direction:column; touch-action:manipulation}
 .lb.open{display:flex}
 .lb-stage{flex:1 1 auto; display:grid; place-items:center; padding:calc(56px + env(safe-area-inset-top)) 8px 4px; min-height:0}
 .lb-stage img{max-width:100%; max-height:100%; object-fit:contain; width:auto; height:auto}
@@ -372,7 +372,7 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
       <text class="mlab" x="358" y="66">Yangtze</text>
 
       <path class="border" d="M62,150 C40,190 28,228 26,258 C24,290 32,316 44,340"/>
-      <text class="mlab" transform="translate(20,246) rotate(-76)" text-anchor="middle">MYANMAR</text>
+      <text class="mlab" transform="translate(22,198) rotate(-76)" text-anchor="middle">MYANMAR</text>
 
       <g id="ghost" aria-hidden="true">
         <path class="seg-ghost" d="M300,250 C289,222 285,170 292,146 C295,136 298,132 300,128"/>
@@ -969,9 +969,14 @@ document.addEventListener("keydown", function(e){
   else if (e.key === "ArrowRight") show(at + 1);
   else if (e.key === "ArrowLeft") show(at - 1);
 });
-var tx = 0, ty = 0;
-lb.addEventListener("touchstart", function(e){ tx = e.changedTouches[0].clientX; ty = e.changedTouches[0].clientY; }, {passive:true});
+var tx = 0, ty = 0, multi = false;
+lb.addEventListener("touchstart", function(e){
+  if (e.touches.length > 1) { multi = true; return; }
+  multi = false; tx = e.changedTouches[0].clientX; ty = e.changedTouches[0].clientY;
+}, {passive:true});
 lb.addEventListener("touchend", function(e){
+  /* a pinch to zoom the photograph must not read as a swipe to the next one */
+  if (multi || e.touches.length) { multi = e.touches.length > 0; return; }
   var dx = e.changedTouches[0].clientX - tx, dy = e.changedTouches[0].clientY - ty;
   if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.4) show(at + (dx < 0 ? 1 : -1));
 }, {passive:true});
