@@ -173,6 +173,9 @@ figcaption a{color:#5b6b7a; display:inline-block; padding:8px 3px; margin:-8px -
 .dbody p{margin:.1rem 0 0; font-size:16.5px; text-wrap:pretty}
 .dmeta{margin-top:.4rem; font-size:15px; color:var(--muted)}
 .dmeta .stay{color:var(--tea)}
+.dbody .wx{margin:.4rem 0 0; font-size:15px; color:var(--muted); text-wrap:pretty}
+.dbody .wx b{font-weight:600; color:var(--ink); font-variant-numeric:tabular-nums}
+.wxnote:not(:empty)::before{content:" · "}
 .flag{display:inline-block; margin-top:.5rem; font-size:15px; background:#fbf0d8; color:#7a5a15;
   border:1px solid #e8d5a2; border-radius:2px; padding:5px 10px; line-height:1.35}
 .flag.j{background:#eef2f8; color:#2c4a72; border-color:#cdd8e6}
@@ -449,7 +452,7 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
         <div class="ch-han" aria-hidden="true">大理</div>
         <h2 class="ch-title" id="ch0t">Dali</h2>
         <div class="ch-days">Days 1 to 2 &middot; September 24 to 25</div>
-        <div class="ch-meta">1,980 m &middot; about 14 to 24 &deg;C, with showers still likely</div>
+        <div class="ch-meta">1,980 m &middot; about 14 to 24 &deg;C, with showers still likely<span class="wxnote"></span></div>
       </div>
       <div class="essay">
         <p>For five hundred years this valley, not Beijing, was the centre of its own world. The Nanzhao kingdom rose here in the 8th century and twice destroyed invading Tang Chinese armies; its successor, the Kingdom of Dali, ruled from 937 until 1253, when Kublai Khan's Mongol cavalry came over the mountains.</p>
@@ -481,6 +484,7 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
           <div class="dbody">
             <h3>Beijing to Dali</h3>
             <p>Fly down from Beijing and land at 18:30. Your own taxi to the hotel, then the first walk through Dali Ancient Town.</p>
+            <p class="wx" data-day="1" hidden></p>
             <p class="dmeta"><span class="stay">Stay: Spirited Silky Inn, Dali (nights 1 and 2)</span></p>
             <p class="flag">Icíar's birthday. The first evening of the trip, and the best possible place to spend it.</p>
           </div>
@@ -490,6 +494,7 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
           <div class="dbody">
             <h3>Around Erhai with the Bai</h3>
             <p>The private car and driver start today: Fengyangyi village, Xizhou, the Panxi S-Bay, the tie-dye workshops at Zhoucheng, and the shore of Erhai.</p>
+            <p class="wx" data-day="2" hidden></p>
             <p class="flag">Mid-Autumn Festival, and the first day of a three-day national holiday (September 25 to 27). Mooncakes everywhere, and the lakeshore villages will be full of Chinese visitors: the earlier you start, the more of Erhai you get to yourselves.</p>
           </div>
         </li>
@@ -509,7 +514,7 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
         <div class="ch-han" aria-hidden="true">丽江</div>
         <h2 class="ch-title" id="ch1t">Lijiang</h2>
         <div class="ch-days">Days 3 to 6 &middot; September 26 to 29</div>
-        <div class="ch-meta">2,400 m &middot; about 12 to 22 &deg;C, cool once the sun goes</div>
+        <div class="ch-meta">2,400 m &middot; about 12 to 22 &deg;C, cool once the sun goes<span class="wxnote"></span></div>
       </div>
       <div class="essay">
         <p>Lijiang was the great entrepôt of the Tea Horse Road, the caravan network that carried Yunnan tea north into Tibet and brought Tibetan warhorses south, from the Tang dynasty until trucks ended it after the Second World War. Its builders and rulers were the Naxi, whose priests still use the Dongba script, the last pictographic writing system in the world in living use.</p>
@@ -536,6 +541,7 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
           <div class="dbody">
             <h3>North to Shuhe</h3>
             <p>A free morning in Dali, then the private transfer north, about three hours, to Shuhe.</p>
+            <p class="wx" data-day="3" hidden></p>
             <p class="dmeta"><span class="stay">Stay: Haitang Bay Resort, Shuhe (nights 3 to 6)</span></p>
             <p class="flag j">Javier lands at Lijiang at 20:50 tonight, in from Osaka.</p>
           </div>
@@ -545,6 +551,7 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
           <div class="dbody">
             <h3>Jade Dragon Snow Mountain</h3>
             <p>Spruce Meadow and Blue Moon Valley under the mountain, and the Impression Lijiang show in the open-air theatre. It is the last day of the holiday weekend, so go up early; the mountain limits how many people it admits each day, and the morning light is the best anyway.</p>
+            <p class="wx" data-day="4" hidden></p>
           </div>
         </li>
         <li class="day" id="day-5" data-day="5">
@@ -552,6 +559,7 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
           <div class="dbody">
             <h3>Yuhu and Baisha</h3>
             <p>Yuhu village, where Joseph Rock kept his house at the foot of the mountain, and then Baisha ancient town.</p>
+            <p class="wx" data-day="5" hidden></p>
           </div>
         </li>
         <li class="day" id="day-6" data-day="6">
@@ -559,6 +567,7 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
           <div class="dbody">
             <h3>A day off in Shuhe</h3>
             <p>Nothing scheduled. This is the acclimatisation day: rest at 2,400 m before the plateau.</p>
+            <p class="wx" data-day="6" hidden></p>
           </div>
         </li>
       </ol>
@@ -577,7 +586,7 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
         <div class="ch-han" aria-hidden="true">香格里拉</div>
         <h2 class="ch-title" id="ch2t">Tiger Leaping Gorge and Shangri-La</h2>
         <div class="ch-days">Days 7 to 8 &middot; September 30 to October 1</div>
-        <div class="ch-meta">3,160 m &middot; about 4 to 17 &deg;C, close to freezing at night</div>
+        <div class="ch-meta">3,160 m &middot; about 4 to 17 &deg;C, close to freezing at night<span class="wxnote"></span></div>
       </div>
       <div class="essay">
         <p>The road north crosses one of the deepest gorges on Earth: Tiger Leaping Gorge, where the young Yangtze squeezes between two 5,000-metre massifs, nearly 3,900 metres from river to summit. Then the road climbs onto the edge of the Tibetan plateau and into what Tibetans call Gyalthang, part of the old Kham region.</p>
@@ -608,6 +617,7 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
           <div class="dbody">
             <h3>The gorge, then the plateau</h3>
             <p>Walk the upper Tiger Leaping Gorge, then carry on north and up to Shangri-La, checking in inside Dukezong old town.</p>
+            <p class="wx" data-day="7" hidden></p>
             <p class="dmeta"><span class="stay">Stay: Half View Vacation Homestay, Shangri-La (nights 7 and 8)</span></p>
             <p class="flag">Tonight you sleep at 3,160 m. Walk slowly, drink more water than you feel like drinking, and take stairs gently.</p>
           </div>
@@ -617,6 +627,7 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
           <div class="dbody">
             <h3>Pudacuo and Songzanlin</h3>
             <p>Pudacuo National Park, Songzanlin Monastery (Ganden Sumtseling, the one built to look like the Potala), and Napa Lake if the weather allows.</p>
+            <p class="wx" data-day="8" hidden></p>
             <p class="flag">National Day, and the start of Golden Week (October 1 to 7), the busiest travelling week of the Chinese year. Be at the Pudacuo gate when it opens, ahead of the coaches.</p>
           </div>
         </li>
@@ -636,7 +647,7 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
         <div class="ch-han" aria-hidden="true">沙溪</div>
         <h2 class="ch-title" id="ch3t">Shaxi</h2>
         <div class="ch-days">Days 9 to 10 &middot; October 2 to 3</div>
-        <div class="ch-meta">2,100 m &middot; warm days and cool nights, much like Lijiang</div>
+        <div class="ch-meta">2,100 m &middot; warm days and cool nights, much like Lijiang<span class="wxnote"></span></div>
       </div>
       <div class="essay">
         <p>Of all the market towns that once punctuated the Tea Horse Road, Shaxi is the only one that survives essentially intact: the cobbled square at Sideng, the open-air theatre stage, the temple, the caravanserai inns where muleteers slept beside their loads.</p>
@@ -658,6 +669,7 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
           <div class="dbody">
             <h3>Down to Shaxi</h3>
             <p>The scenic drive down off the plateau and south into the Shaxi valley.</p>
+            <p class="wx" data-day="9" hidden></p>
             <p class="dmeta"><span class="stay">Stay: Daoxiang residents' guesthouse, Shaxi (nights 9 and 10)</span></p>
             <p class="flag">Friday is market day in Shaxi, the one morning a week the whole valley comes down to Sideng square, Bai and Yi farmers in their best. It runs from about 10:00 into early afternoon and is gone by Saturday. Leave Shangri-La early and you will catch the end of it.</p>
           </div>
@@ -667,6 +679,7 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
           <div class="dbody">
             <h3>The Tea Horse Road town</h3>
             <p>Sideng Street, the Ancient Theatre Stage, Yujin Bridge, the temples and the villages up the valley, all of it on the old Tea Horse Road.</p>
+            <p class="wx" data-day="10" hidden></p>
           </div>
         </li>
       </ol>
@@ -685,7 +698,7 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
         <div class="ch-han" aria-hidden="true">腾冲</div>
         <h2 class="ch-title" id="ch4t">Baoshan and Tengchong</h2>
         <div class="ch-days">Days 11 to 15 &middot; October 4 to 8</div>
-        <div class="ch-meta">1,640 m &middot; about 14 to 23 &deg;C, the wettest stop of the trip</div>
+        <div class="ch-meta">1,640 m &middot; about 14 to 23 &deg;C, the wettest stop of the trip<span class="wxnote"></span></div>
       </div>
       <div class="essay">
         <p>The last leg runs southwest to within about fifty kilometres of Myanmar. Tengchong grew rich for centuries on the jade trade: Burmese jadeite came over the passes here to be cut and sold into China. Heshun, the town next door, was built by those merchant families, and their remittances gave a farming village what is still the largest rural library in China, opened in 1928.</p>
@@ -708,6 +721,7 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
           <div class="dbody">
             <h3>The long drive to Baoshan</h3>
             <p>A long day in the car, southwest to Baoshan, with a night there to break the journey.</p>
+            <p class="wx" data-day="11" hidden></p>
             <p class="dmeta"><span class="stay">Stay: Vienna International Hotel, Baoshan</span></p>
           </div>
         </li>
@@ -716,6 +730,7 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
           <div class="dbody">
             <h3>Into volcanic country</h3>
             <p>On west to Tengchong, through the cinder cones and hot ground of the volcanic field.</p>
+            <p class="wx" data-day="12" hidden></p>
             <p class="dmeta"><span class="stay">Stay: A panoramic boutique inn, Tengchong (nights 12 to 14)</span></p>
           </div>
         </li>
@@ -724,6 +739,7 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
           <div class="dbody">
             <h3>Heshun, and goodbye to Javier</h3>
             <p>Heshun Ancient Town in the morning, and the hot springs in the afternoon if you want them.</p>
+            <p class="wx" data-day="13" hidden></p>
             <p class="flag j">Javier flies home around midday, out of Tengchong to Los Angeles via Chengdu.</p>
           </div>
         </li>
@@ -732,6 +748,7 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
           <div class="dbody">
             <h3>Slow travel</h3>
             <p>The volcanic park or the wetland park, a spa afternoon, and nothing in a hurry.</p>
+            <p class="wx" data-day="14" hidden></p>
           </div>
         </li>
         <li class="day" id="day-15" data-day="15">
@@ -739,6 +756,7 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
           <div class="dbody">
             <h3>Tengchong to Dali, and on to Shanghai</h3>
             <p>The transfer back to Dali airport, four to five hours, then the 17:40 flight to Shanghai, where the coastal China leg of the trip begins.</p>
+            <p class="wx" data-day="15" hidden></p>
           </div>
         </li>
       </ol>
@@ -794,6 +812,7 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
     <p class="credits">
       Photographs from Wikimedia Commons, reused under the Creative Commons licences noted beneath each one, or in the public domain. Photographer and licence are credited with every image; tap a photo to see the full caption.
       <br><br>Route sketch drawn for this page. Distances and shapes are approximate, the map is for reading, not for navigating.
+      <br><br>Daily forecasts come from <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a> whenever the phone is online, and the last one fetched is kept for reading offline. They reach about sixteen days ahead; until then each chapter shows the usual climate for these weeks.
     </p>
   </div>
 </footer>
@@ -1130,6 +1149,82 @@ $$(".pc").forEach(function(box){
     postcard(ci, (inp.value || inp.placeholder).trim(), function(t){ msg.textContent = t; });
   });
 });
+
+/* ---------- weather ---------- */
+/* Open-Meteo, one request for all six stops, sixteen days ahead. The result is
+   kept in localStorage so the last forecast fetched still shows offline. Until
+   the trip is inside the window, each chapter says when its forecast starts and
+   the climate line above stands in. */
+var WX_LOC = {
+  dali:      {lat:25.69, lon:100.16, elev:1980},
+  lijiang:   {lat:26.87, lon:100.23, elev:2400},
+  shangrila: {lat:27.83, lon:99.70,  elev:3160},
+  shaxi:     {lat:26.32, lon:99.85,  elev:2100},
+  baoshan:   {lat:25.11, lon:99.16,  elev:1650},
+  tengchong: {lat:25.02, lon:98.49,  elev:1640}
+};
+var WX_DAY = ["dali","dali","lijiang","lijiang","lijiang","lijiang","shangrila","shangrila",
+              "shaxi","shaxi","baoshan","tengchong","tengchong","tengchong","dali"];
+var T0 = Date.UTC(2026, 8, 24), DAY = 864e5;
+function isoDay(n){ return new Date(T0 + (n - 1) * DAY).toISOString().slice(0, 10); }
+function wxWords(c){
+  if (c === 0) return "clear"; if (c === 1) return "mostly clear"; if (c === 2) return "partly cloudy"; if (c === 3) return "overcast";
+  if (c === 45 || c === 48) return "fog";
+  if (c >= 51 && c <= 57) return "drizzle";
+  if (c === 61) return "light rain"; if (c === 63) return "rain"; if (c === 65) return "heavy rain";
+  if (c === 66 || c === 67) return "freezing rain";
+  if (c >= 71 && c <= 77) return "snow";
+  if (c === 80) return "light showers"; if (c === 81) return "showers"; if (c === 82) return "heavy showers";
+  if (c === 85 || c === 86) return "snow showers";
+  if (c >= 95) return "thunderstorms";
+  return "";
+}
+function wxLoad(){ try { return JSON.parse(localStorage.getItem("yn-wx") || "null"); } catch (e) { return null; } }
+function wxRender(store){
+  var data = (store && store.data) || {}, covered = [];
+  $$(".wx").forEach(function(p){
+    var n = +p.dataset.day, loc = data[WX_DAY[n - 1]], d = loc && loc[isoDay(n)];
+    if (!d || d.hi == null || d.lo == null) { p.hidden = true; return; }
+    var w = wxWords(d.code), pp = d.pp;
+    p.innerHTML = "Forecast <b>" + Math.round(d.lo) + " to " + Math.round(d.hi) + " &deg;C</b>" +
+      (w ? ", " + w : "") + (pp != null && pp >= 30 ? ", " + Math.round(pp) + "% chance of rain" : "");
+    p.hidden = false; covered.push(n);
+  });
+  var asOf = store && store.at ? new Date(store.at).toLocaleString("en-GB", {day:"numeric", month:"short", hour:"2-digit", minute:"2-digit"}) : "";
+  $$(".wxnote").forEach(function(sp, i){
+    var c = CH[i], all = true, none = true, k;
+    for (k = c.first; k <= c.last; k++) { if (covered.indexOf(k) < 0) all = false; else none = false; }
+    var opens = new Date(T0 + (c.first - 1) * DAY - 15 * DAY).toLocaleDateString("en-GB", {day:"numeric", month:"long", timeZone:"UTC"});
+    sp.textContent = none ? "forecast from " + opens : (all ? "forecast as of " + asOf : "forecast as of " + asOf + ", rest from " + opens);
+  });
+}
+function wxFetch(){
+  var keys = Object.keys(WX_LOC), q = function(f){ return keys.map(function(k){ return WX_LOC[k][f]; }).join(","); };
+  var url = "https://api.open-meteo.com/v1/forecast?latitude=" + q("lat") + "&longitude=" + q("lon") + "&elevation=" + q("elev") +
+    "&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia%2FShanghai&forecast_days=16";
+  return fetch(url).then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); }).then(function(j){
+    var arr = Array.isArray(j) ? j : [j], data = {};
+    arr.forEach(function(loc, i){
+      var dd = loc.daily || {}, m = {};
+      (dd.time || []).forEach(function(t, k){
+        m[t] = {hi: dd.temperature_2m_max[k], lo: dd.temperature_2m_min[k], code: dd.weather_code[k],
+                pp: dd.precipitation_probability_max ? dd.precipitation_probability_max[k] : null};
+      });
+      data[keys[i]] = m;
+    });
+    var store = {at: Date.now(), data: data};
+    try { localStorage.setItem("yn-wx", JSON.stringify(store)); } catch (e) {}
+    return store;
+  });
+}
+(function(){
+  var cached = wxLoad();
+  wxRender(cached);
+  var stale = !cached || !cached.at || (Date.now() - cached.at) > 3 * 3600e3;
+  if (stale && navigator.onLine !== false && typeof fetch === "function") {
+    wxFetch().then(wxRender).catch(function(){});
+  }
+})();
 
 /* ---------- offline / home screen ---------- */
 if ("serviceWorker" in navigator && /^https?:$/.test(location.protocol)) {
