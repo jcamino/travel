@@ -22,7 +22,7 @@
   --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,"Times New Roman",serif;
   --han:"Songti SC","STSong","PingFang SC","Hiragino Sans GB","Noto Serif SC","Microsoft YaHei",var(--serif);
   --bar:clamp(94px,12.4vh,110px);
-  --maph:min(30svh,252px);
+  --maph:min(25svh,222px);
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%; touch-action:manipulation}
@@ -72,50 +72,54 @@ body.map-mini .maptag{display:none}
 body.map-mini #mapSvg{display:none}
 .mapbar{position:absolute; top:0; left:0; right:0; height:48px; z-index:2;
   display:flex; align-items:center; gap:10px; padding:0 8px 0 13px;
-  background:linear-gradient(180deg,var(--paper) 58%,rgba(252,252,249,.72) 82%,rgba(252,252,249,0))}
+  background:none; pointer-events:none}
+.mapbar>*{pointer-events:auto}
+.maptag{display:none}
 body.map-mini .mapbar{background:var(--paper)}
 .maptag{font-size:12px; letter-spacing:.15em; text-transform:uppercase; color:var(--muted);
   white-space:nowrap; flex:0 0 auto}
+body.map-mini .maptag{display:none}
 .miniinfo{flex:1 1 auto; min-width:0; font-size:15.5px; color:var(--ink); white-space:nowrap;
   overflow:hidden; text-overflow:ellipsis; opacity:0; transition:opacity .2s ease}
 body.map-mini .miniinfo{opacity:1}
 .maptoggle{margin-left:auto; flex:0 0 auto; min-height:44px; padding:9px 15px;
-  border:1px solid var(--rule); background:#fff; border-radius:999px;
-  font-size:14.5px; letter-spacing:.02em; color:var(--indigo); white-space:nowrap}
+  border:1px solid var(--rule); background:rgba(255,255,255,.93); border-radius:999px;
+  font-size:14.5px; letter-spacing:.02em; color:var(--indigo); white-space:nowrap;
+  box-shadow:0 1px 6px rgba(22,41,74,.14)}
 .maptoggle:active{background:#f1ede2}
 
 /* map ink */
 .terrain{fill:#f2efe6}
 .lake{fill:#cfe0e8; stroke:#9dbccb; stroke-width:1.2}
-.river{fill:none; stroke:#8fb3c4; stroke-width:2.2; stroke-linecap:round}
-.ridge{fill:none; stroke:#c8c0ac; stroke-width:1.6; stroke-linecap:round}
-.border{fill:none; stroke:#b6a98d; stroke-width:1.8; stroke-dasharray:7 6}
-.seg-ghost{fill:none; stroke:var(--gold); stroke-width:3.2; stroke-linecap:round;
+.river{fill:none; stroke:#8fb3c4; stroke-width:3; stroke-linecap:round}
+.ridge{fill:none; stroke:#c8c0ac; stroke-width:2.2; stroke-linecap:round}
+.border{fill:none; stroke:#b6a98d; stroke-width:2.4; stroke-dasharray:9 7}
+.seg-ghost{fill:none; stroke:var(--gold); stroke-width:4.4; stroke-linecap:round;
   stroke-linejoin:round; opacity:.26}
-.seg-ghost.ret{stroke-dasharray:9 8; stroke-width:2.6}
-.seg{fill:none; stroke:var(--gold); stroke-width:3.4; stroke-linecap:round; stroke-linejoin:round;
+.seg-ghost.ret{stroke-dasharray:11 9; stroke-width:3.6}
+.seg{fill:none; stroke:var(--gold); stroke-width:4.6; stroke-linecap:round; stroke-linejoin:round;
   stroke-dasharray:var(--len); stroke-dashoffset:var(--len); transition:stroke-dashoffset 1.15s ease}
 .seg.on{stroke-dashoffset:0}
-.seg.ret{stroke-dasharray:9 8; stroke-dashoffset:0; opacity:0; stroke-width:2.8;
+.seg.ret{stroke-dasharray:11 9; stroke-dashoffset:0; opacity:0; stroke-width:3.8;
   transition:opacity .7s ease}
 .seg.ret.on{opacity:.85}
-.air{fill:none; stroke:var(--indigo); stroke-width:1.8; stroke-dasharray:5 6; opacity:.3; transition:opacity .6s ease}
+.air{fill:none; stroke:var(--indigo); stroke-width:2.4; stroke-dasharray:7 7; opacity:.3; transition:opacity .6s ease}
 .air.on{opacity:.72}
 .airlab{opacity:.5; transition:opacity .6s ease}
 .airlab.on{opacity:1}
 .stop{opacity:1}
-.stop circle.pin{fill:var(--paper); stroke:var(--indigo); stroke-width:2.6}
+.stop circle.pin{fill:var(--paper); stroke:var(--indigo); stroke-width:3.4}
 .stop.cur circle.pin{fill:var(--madder); stroke:var(--madder)}
-.stop text{font-family:var(--serif); font-size:15px; fill:var(--ink); paint-order:stroke;
-  stroke:var(--paper); stroke-width:3.5px; stroke-linejoin:round}
-.stop .hz{font-family:var(--han); font-size:13px; fill:var(--indigo)}
-.stop.cur circle.halo{fill:none; stroke:var(--madder); stroke-width:2; opacity:0;
+.stop text{font-family:var(--serif); font-size:20px; fill:var(--ink); paint-order:stroke;
+  stroke:var(--paper); stroke-width:5px; stroke-linejoin:round}
+.stop .hz{font-family:var(--han); font-size:17px; fill:var(--indigo)}
+.stop.cur circle.halo{fill:none; stroke:var(--madder); stroke-width:2.6; opacity:0;
   animation:pulse 2.1s ease-out infinite}
-@keyframes pulse{0%{r:9;opacity:.75}100%{r:22;opacity:0}}
-.mlab{font-family:var(--serif); font-size:12.5px; fill:#8d8371; letter-spacing:.16em;
-  paint-order:stroke; stroke:var(--paper); stroke-width:3.2px; stroke-linejoin:round}
+@keyframes pulse{0%{r:11;opacity:.75}100%{r:28;opacity:0}}
+.mlab{font-family:var(--serif); font-size:17px; fill:#8d8371; letter-spacing:.12em;
+  paint-order:stroke; stroke:var(--paper); stroke-width:4.2px; stroke-linejoin:round}
 #dayMark{transition:transform .45s cubic-bezier(.4,0,.2,1)}
-#dayMark circle{fill:var(--madder); stroke:var(--paper); stroke-width:3}
+#dayMark circle{fill:var(--madder); stroke:var(--paper); stroke-width:3.6}
 
 
 /* ---------- chapters ---------- */
@@ -262,8 +266,9 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
          align-items:start; max-width:1440px; margin:0 auto}
   .mapwrap{height:auto; padding:clamp(52px,7vh,74px) 0 clamp(18px,3vh,34px);
            border-bottom:0; border-right:1px solid var(--rule); box-shadow:none}
-  #mapSvg{height:auto; aspect-ratio:620/600; max-height:calc(100svh - clamp(74px,11vh,112px))}
+  #mapSvg{height:auto; aspect-ratio:620/350; max-height:calc(100svh - clamp(74px,11vh,112px))}
   .maptoggle{display:none}
+  .maptag{display:block}
   body.map-mini{--maph:100svh}
   body.map-mini #mapSvg{display:block}
   body.map-mini .miniinfo{opacity:0}
@@ -305,7 +310,7 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
   body.map-mini #mapSvg{display:block !important}
   .mapbar{position:static; height:auto; background:none; padding:0 0 6pt}
   .day,.chapter{scroll-margin-top:0}
-  .mapwrap svg{height:15cm}
+  .mapwrap svg{width:100%; height:auto}
   .seg,.seg.ret,.air,.airlab,.stop{opacity:1 !important; stroke-dashoffset:0 !important}
   .seg-ghost{display:none}
   .stop.cur circle.halo{display:none}
@@ -346,66 +351,66 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
       <span class="miniinfo" id="miniInfo"></span>
       <button class="maptoggle" id="mapToggle" type="button" aria-expanded="true" aria-controls="mapSvg">Hide map</button>
     </div>
-    <svg id="mapSvg" viewBox="0 0 620 600" role="img" aria-label="Hand drawn map of western Yunnan showing the route from Dali north to Lijiang, Tiger Leaping Gorge and Shangri-La, then south to Shaxi, Baoshan and Tengchong, and back to Dali.">
-      <path class="terrain" d="M126,52 C216,34 336,46 424,82 C474,102 504,148 490,204 C478,252 444,280 428,328 C412,376 424,428 396,468 C364,514 302,540 238,556 C178,570 112,566 74,532 C36,498 28,438 42,382 C56,326 70,268 78,206 C84,148 90,70 126,52 Z"/>
+    <svg id="mapSvg" viewBox="0 0 620 350" role="img" aria-label="Hand drawn map of western Yunnan showing the route from Dali north to Lijiang, Tiger Leaping Gorge and Shangri-La, then south to Shaxi, Baoshan and Tengchong, and back to Dali.">
+      <path class="terrain" d="M150,20 C260,10 372,24 448,62 C498,88 516,140 494,190 C472,240 440,258 420,290 C398,326 340,348 258,348 C176,348 92,338 56,304 C20,270 18,214 34,170 C50,128 84,42 150,20 Z"/>
 
-      <path class="ridge" d="M276,352 l7,-11 l7,11"/>
-      <path class="ridge" d="M272,376 l7,-12 l7,12"/>
-      <path class="ridge" d="M270,400 l7,-11 l7,11"/>
-      <path class="ridge" d="M272,424 l7,-12 l7,12"/>
-      <path class="ridge" d="M286,232 l9,-15 l9,15"/>
-      <path class="ridge" d="M306,220 l7,-12 l7,12"/>
-      <path class="ridge" d="M212,132 l8,-13 l8,13"/>
-      <path class="ridge" d="M232,148 l7,-11 l7,11"/>
-      <path class="ridge" d="M144,470 l7,-11 l7,11"/>
-      <path class="ridge" d="M120,486 l7,-11 l7,11"/>
+      <path class="ridge" d="M270,214 l10,-15 l10,15"/>
+      <path class="ridge" d="M266,238 l10,-15 l10,15"/>
+      <path class="ridge" d="M270,260 l10,-15 l10,15"/>
+      <path class="ridge" d="M284,116 l12,-18 l12,18"/>
+      <path class="ridge" d="M308,104 l9,-13 l9,13"/>
+      <path class="ridge" d="M206,74 l10,-15 l10,15"/>
+      <path class="ridge" d="M228,86 l9,-13 l9,13"/>
+      <path class="ridge" d="M132,252 l10,-15 l10,15"/>
+      <path class="ridge" d="M156,262 l9,-13 l9,13"/>
 
-      <path class="lake" d="M293,356 C304,368 308,388 304,404 C301,417 297,426 292,426 C286,426 282,410 283,393 C284,375 288,362 293,356 Z"/>
-      <text class="mlab" x="311" y="392" style="letter-spacing:.06em">Erhai</text>
-      <text class="mlab" transform="translate(252,400) rotate(-78)" text-anchor="middle" style="letter-spacing:.06em">Cangshan</text>
+      <path class="lake" d="M296,212 C303,220 306,231 304,240 C302,246 299,248 296,247 C292,246 289,238 290,227 C291,218 293,214 296,212 Z"/>
+      <text class="mlab" x="313" y="220">Erhai</text>
+      <text class="mlab" x="228" y="214" text-anchor="end">Cangshan</text>
 
-      <path class="river" d="M241,86 C249,128 255,174 261,214 C264,237 267,252 272,250 C278,247 282,225 287,199 C296,168 312,142 336,124 C352,112 368,104 386,98"/>
-      <text class="mlab" x="352" y="140" style="letter-spacing:.05em">Yangtze</text>
+      <path class="river" d="M236,16 C248,52 258,96 268,128 C272,140 279,118 287,97 C298,72 318,58 342,50 C356,45 368,42 380,40"/>
+      <text class="mlab" x="358" y="66">Yangtze</text>
 
-      <path class="border" d="M86,296 C66,338 51,381 47,424 C43,467 51,508 67,550"/>
-      <text class="mlab" transform="translate(30,462) rotate(-74)" text-anchor="middle">MYANMAR</text>
+      <path class="border" d="M62,150 C40,190 28,228 26,258 C24,290 32,316 44,340"/>
+      <text class="mlab" transform="translate(20,246) rotate(-76)" text-anchor="middle">MYANMAR</text>
 
       <g id="ghost" aria-hidden="true">
-        <path class="seg-ghost" d="M300,430 C288,394 284,330 292,286 C295,268 298,256 300,246"/>
-        <path class="seg-ghost" d="M300,246 C298,232 294,214 287,199"/>
-        <path class="seg-ghost" d="M287,199 C272,178 254,144 239,107"/>
-        <path class="seg-ghost" d="M239,107 C228,166 224,236 236,286 C242,310 250,320 257,327"/>
-        <path class="seg-ghost" d="M257,327 C238,368 210,432 190,470 C184,482 181,494 178,501"/>
-        <path class="seg-ghost" d="M178,501 C154,506 126,511 100,514"/>
-        <path class="seg-ghost ret" d="M100,522 C162,550 234,552 281,494 C291,482 297,452 300,438"/>
+        <path class="seg-ghost" d="M300,250 C289,222 285,170 292,146 C295,136 298,132 300,128"/>
+        <path class="seg-ghost" d="M300,128 C298,118 294,106 287,97"/>
+        <path class="seg-ghost" d="M287,97 C272,84 254,58 239,36"/>
+        <path class="seg-ghost" d="M239,36 C227,78 223,134 235,162 C241,174 250,178 257,182"/>
+        <path class="seg-ghost" d="M257,182 C238,214 210,262 190,282 C184,289 181,293 178,297"/>
+        <path class="seg-ghost" d="M178,297 C154,300 126,303 100,306"/>
+        <path class="seg-ghost ret" d="M100,316 C164,344 240,342 284,288 C293,278 298,266 300,258"/>
       </g>
+
       <g id="route">
-        <path class="air" id="air-in"  d="M498,300 C450,330 380,382 317,421"/>
-        <path class="air" id="air-out" d="M313,419 C382,392 452,368 520,350"/>
-        <path class="seg" id="seg1" d="M300,430 C288,394 284,330 292,286 C295,268 298,256 300,246"/>
-        <path class="seg" id="seg2" d="M300,246 C298,232 294,214 287,199"/>
-        <path class="seg" id="seg3" d="M287,199 C272,178 254,144 239,107"/>
-        <path class="seg" id="seg4" d="M239,107 C228,166 224,236 236,286 C242,310 250,320 257,327"/>
-        <path class="seg" id="seg5" d="M257,327 C238,368 210,432 190,470 C184,482 181,494 178,501"/>
-        <path class="seg" id="seg6" d="M178,501 C154,506 126,511 100,514"/>
-        <path class="seg ret" id="seg7" d="M100,522 C162,550 234,552 281,494 C291,482 297,452 300,438"/>
+        <path class="air" id="air-in"  d="M506,164 C454,186 384,212 316,242"/>
+        <path class="air" id="air-out" d="M313,254 C380,240 440,226 496,214"/>
+        <path class="seg" id="seg1" d="M300,250 C289,222 285,170 292,146 C295,136 298,132 300,128"/>
+        <path class="seg" id="seg2" d="M300,128 C298,118 294,106 287,97"/>
+        <path class="seg" id="seg3" d="M287,97 C272,84 254,58 239,36"/>
+        <path class="seg" id="seg4" d="M239,36 C227,78 223,134 235,162 C241,174 250,178 257,182"/>
+        <path class="seg" id="seg5" d="M257,182 C238,214 210,262 190,282 C184,289 181,293 178,297"/>
+        <path class="seg" id="seg6" d="M178,297 C154,300 126,303 100,306"/>
+        <path class="seg ret" id="seg7" d="M100,316 C164,344 240,342 284,288 C293,278 298,266 300,258"/>
       </g>
-      <text class="mlab airlab" id="lab-in" x="504" y="292" text-anchor="end">from Beijing</text>
-      <text class="mlab airlab" id="lab-out" x="524" y="346">to Shanghai</text>
+      <text class="mlab airlab" id="lab-in" x="612" y="158" text-anchor="end">from Beijing</text>
+      <text class="mlab airlab" id="lab-out" x="612" y="212" text-anchor="end">to Shanghai</text>
 
-      <g class="stop" id="stop-dali"><circle class="halo" cx="300" cy="430" r="9"/><circle class="pin" cx="300" cy="430" r="6.5"/><text x="313" y="427">Dali</text><text class="hz" x="313" y="444">大理</text></g>
-      <g class="stop" id="stop-lijiang"><circle class="halo" cx="300" cy="246" r="9"/><circle class="pin" cx="300" cy="246" r="6.5"/><text x="313" y="243">Lijiang &#183; Shuhe</text><text class="hz" x="313" y="260">丽江</text></g>
-      <g class="stop" id="stop-tlg"><circle class="halo" cx="287" cy="199" r="9"/><circle class="pin" cx="287" cy="199" r="6.5"/><text x="300" y="190">Tiger Leaping</text><text x="300" y="207">Gorge</text></g>
-      <g class="stop" id="stop-shangrila"><circle class="halo" cx="239" cy="107" r="9"/><circle class="pin" cx="239" cy="107" r="6.5"/><text x="252" y="104">Shangri-La</text><text class="hz" x="252" y="121">香格里拉</text></g>
-      <g class="stop" id="stop-shaxi"><circle class="halo" cx="257" cy="327" r="9"/><circle class="pin" cx="257" cy="327" r="6.5"/><text x="244" y="324" text-anchor="end">Shaxi</text><text class="hz" x="244" y="341" text-anchor="end">沙溪</text></g>
-      <g class="stop" id="stop-baoshan"><circle class="halo" cx="178" cy="501" r="9"/><circle class="pin" cx="178" cy="501" r="6.5"/><text x="191" y="498">Baoshan</text><text class="hz" x="191" y="515">保山</text></g>
-      <g class="stop" id="stop-tengchong"><circle class="halo" cx="100" cy="514" r="9"/><circle class="pin" cx="100" cy="514" r="6.5"/><text x="100" y="546" text-anchor="middle">Tengchong</text><text class="hz" x="100" y="563" text-anchor="middle">腾冲</text></g>
+      <g class="stop" id="stop-shangrila"><circle class="halo" cx="239" cy="36" r="11"/><circle class="pin" cx="239" cy="36" r="8"/><text x="225" y="32" text-anchor="end">Shangri-La <tspan class="hz">香格里拉</tspan></text></g>
+      <g class="stop" id="stop-tlg"><circle class="halo" cx="287" cy="97" r="11"/><circle class="pin" cx="287" cy="97" r="8"/><text x="302" y="93">Tiger Leaping Gorge</text></g>
+      <g class="stop" id="stop-lijiang"><circle class="halo" cx="300" cy="128" r="11"/><circle class="pin" cx="300" cy="128" r="8"/><text x="315" y="126">Lijiang &#183; Shuhe <tspan class="hz">丽江</tspan></text></g>
+      <g class="stop" id="stop-shaxi"><circle class="halo" cx="257" cy="182" r="11"/><circle class="pin" cx="257" cy="182" r="8"/><text x="242" y="180" text-anchor="end">Shaxi <tspan class="hz">沙溪</tspan></text></g>
+      <g class="stop" id="stop-dali"><circle class="halo" cx="300" cy="250" r="11"/><circle class="pin" cx="300" cy="250" r="8"/><text x="315" y="252">Dali <tspan class="hz">大理</tspan></text></g>
+      <g class="stop" id="stop-baoshan"><circle class="halo" cx="178" cy="297" r="11"/><circle class="pin" cx="178" cy="297" r="8"/><text x="192" y="286">Baoshan <tspan class="hz">保山</tspan></text></g>
+      <g class="stop" id="stop-tengchong"><circle class="halo" cx="100" cy="306" r="11"/><circle class="pin" cx="100" cy="306" r="8"/><text x="100" y="288" text-anchor="middle">Tengchong <tspan class="hz">腾冲</tspan></text></g>
 
-      <g id="dayMark" transform="translate(300,430)"><circle r="6.5"/></g>
+      <g id="dayMark" transform="translate(300,250)"><circle r="8"/></g>
 
-      <g transform="translate(566,506)" aria-hidden="true">
-        <path class="ridge" d="M0,26 L0,-14 M-6,-6 L0,-16 L6,-6" style="stroke:#948a74;stroke-width:1.6"/>
-        <text class="mlab" x="0" y="42" text-anchor="middle" style="letter-spacing:.08em">N</text>
+      <g transform="translate(578,284)" aria-hidden="true">
+        <path class="ridge" d="M0,32 L0,-10 M-7,-1 L0,-12 L7,-1" style="stroke:#948a74;stroke-width:2.2"/>
+        <text class="mlab" x="0" y="52" text-anchor="middle">N</text>
       </g>
     </svg>
   </div>
@@ -797,7 +802,7 @@ input[type=range]:focus-visible{outline:3px solid var(--indigo); outline-offset:
 var RM = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /* ---------- trip data ---------- */
-var DAYS = [{"n":1,"date":"Wednesday, September 24","sum":"Fly Beijing to Dali, land 18:30, taxi to the hotel, then the first walk in the old town.","alt":1980,"mx":300,"my":430,"stop":"dali","place":"Dali"},{"n":2,"date":"Thursday, September 25","sum":"Fengyangyi, Xizhou, Panxi S-Bay, Zhoucheng tie-dye, and the shore of Erhai.","alt":1980,"mx":296,"my":398,"stop":"dali","place":"Dali and Erhai"},{"n":3,"date":"Friday, September 26","sum":"Free morning in Dali, then three hours north to Shuhe. Javier lands at 20:50.","alt":2400,"mx":290,"my":340,"stop":"lijiang","place":"Dali to Shuhe"},{"n":4,"date":"Saturday, September 27","sum":"Jade Dragon Snow Mountain: Spruce Meadow, Blue Moon Valley, Impression Lijiang.","alt":2400,"mx":296,"my":226,"stop":"lijiang","place":"Jade Dragon"},{"n":5,"date":"Sunday, September 28","sum":"Yuhu village, where Joseph Rock lived, and Baisha ancient town.","alt":2400,"mx":298,"my":238,"stop":"lijiang","place":"Yuhu and Baisha"},{"n":6,"date":"Monday, September 29","sum":"A leisure day in Shuhe. Rest at 2,400 m before the plateau.","alt":2400,"mx":300,"my":246,"stop":"lijiang","place":"Shuhe"},{"n":7,"date":"Tuesday, September 30","sum":"Walk the upper Tiger Leaping Gorge, then climb to Shangri-La and Dukezong.","alt":3160,"mx":262,"my":158,"stop":"shangrila","place":"Gorge, then Shangri-La"},{"n":8,"date":"Wednesday, October 1","sum":"Pudacuo National Park, Songtsam Monastery, and Napa Lake if the weather allows.","alt":3160,"mx":239,"my":107,"stop":"shangrila","place":"Shangri-La"},{"n":9,"date":"Thursday, October 2","sum":"The scenic drive down off the plateau to Shaxi.","alt":2100,"mx":233,"my":225,"stop":"shaxi","place":"Down to Shaxi"},{"n":10,"date":"Friday, October 3","sum":"Sideng Street, the Ancient Theatre Stage, Yujin Bridge, temples and valley villages.","alt":2100,"mx":257,"my":327,"stop":"shaxi","place":"Shaxi"},{"n":11,"date":"Saturday, October 4","sum":"A long drive south to Baoshan, one night to break the journey.","alt":1650,"mx":178,"my":501,"stop":"baoshan","place":"Baoshan"},{"n":12,"date":"Sunday, October 5","sum":"On to Tengchong through volcanic country.","alt":1640,"mx":100,"my":514,"stop":"tengchong","place":"Tengchong"},{"n":13,"date":"Monday, October 6","sum":"Heshun Ancient Town and, if you like, the hot springs. Javier flies home at midday.","alt":1640,"mx":100,"my":514,"stop":"tengchong","place":"Heshun"},{"n":14,"date":"Tuesday, October 7","sum":"Volcanic park or wetland park, a spa, and nothing in a hurry.","alt":1640,"mx":100,"my":514,"stop":"tengchong","place":"Tengchong"},{"n":15,"date":"Wednesday, October 8","sum":"Tengchong to Dali airport, four to five hours, then the 17:40 flight to Shanghai.","alt":1980,"mx":205,"my":520,"stop":"dali","place":"Tengchong to Dali"}];
+var DAYS = [{"n":1,"date":"Wednesday, September 24","sum":"Fly Beijing to Dali, land 18:30, taxi to the hotel, then the first walk in the old town.","alt":1980,"mx":300,"my":250,"stop":"dali","place":"Dali"},{"n":2,"date":"Thursday, September 25","sum":"Fengyangyi, Xizhou, Panxi S-Bay, Zhoucheng tie-dye, and the shore of Erhai.","alt":1980,"mx":296,"my":228,"stop":"dali","place":"Dali and Erhai"},{"n":3,"date":"Friday, September 26","sum":"Free morning in Dali, then three hours north to Shuhe. Javier lands at 20:50.","alt":2400,"mx":290,"my":190,"stop":"lijiang","place":"Dali to Shuhe"},{"n":4,"date":"Saturday, September 27","sum":"Jade Dragon Snow Mountain: Spruce Meadow, Blue Moon Valley, Impression Lijiang.","alt":2400,"mx":296,"my":112,"stop":"lijiang","place":"Jade Dragon"},{"n":5,"date":"Sunday, September 28","sum":"Yuhu village, where Joseph Rock lived, and Baisha ancient town.","alt":2400,"mx":298,"my":120,"stop":"lijiang","place":"Yuhu and Baisha"},{"n":6,"date":"Monday, September 29","sum":"A leisure day in Shuhe. Rest at 2,400 m before the plateau.","alt":2400,"mx":300,"my":128,"stop":"lijiang","place":"Shuhe"},{"n":7,"date":"Tuesday, September 30","sum":"Walk the upper Tiger Leaping Gorge, then climb to Shangri-La and Dukezong.","alt":3160,"mx":262,"my":66,"stop":"shangrila","place":"Gorge, then Shangri-La"},{"n":8,"date":"Wednesday, October 1","sum":"Pudacuo National Park, Songtsam Monastery, and Napa Lake if the weather allows.","alt":3160,"mx":239,"my":36,"stop":"shangrila","place":"Shangri-La"},{"n":9,"date":"Thursday, October 2","sum":"The scenic drive down off the plateau to Shaxi.","alt":2100,"mx":233,"my":110,"stop":"shaxi","place":"Down to Shaxi"},{"n":10,"date":"Friday, October 3","sum":"Sideng Street, the Ancient Theatre Stage, Yujin Bridge, temples and valley villages.","alt":2100,"mx":257,"my":182,"stop":"shaxi","place":"Shaxi"},{"n":11,"date":"Saturday, October 4","sum":"A long drive south to Baoshan, one night to break the journey.","alt":1650,"mx":178,"my":297,"stop":"baoshan","place":"Baoshan"},{"n":12,"date":"Sunday, October 5","sum":"On to Tengchong through volcanic country.","alt":1640,"mx":100,"my":306,"stop":"tengchong","place":"Tengchong"},{"n":13,"date":"Monday, October 6","sum":"Heshun Ancient Town and, if you like, the hot springs. Javier flies home at midday.","alt":1640,"mx":100,"my":306,"stop":"tengchong","place":"Heshun"},{"n":14,"date":"Tuesday, October 7","sum":"Volcanic park or wetland park, a spa, and nothing in a hurry.","alt":1640,"mx":100,"my":306,"stop":"tengchong","place":"Tengchong"},{"n":15,"date":"Wednesday, October 8","sum":"Tengchong to Dali airport, four to five hours, then the 17:40 flight to Shanghai.","alt":1980,"mx":200,"my":330,"stop":"dali","place":"Tengchong to Dali"}];
 var CH = [
   {first:1,  last:2,  segs:["air-in","lab-in"]},
   {first:3,  last:6,  segs:["seg1"]},
