@@ -1,0 +1,9 @@
+# Store and check out every text file with LF line endings, on every platform.
+* text=auto eol=lf
+
+# Binary and opaque assets
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.woff2 binary
