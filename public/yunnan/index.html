@@ -488,24 +488,33 @@ html.cn .intl-only{display:none}
 </style>
 <script>
 /* Wording flag: a few passages have a second version, shown when the device keeps Chinese time.
-   By zone name (mainland, Hong Kong, Macau, Xinjiang's unofficial time, and Myanmar time for the
-   border towns; not Taipei). If the device only knows a fixed offset, +8:00 or +6:30 counts.
-   ?cn=1 or ?cn=0 on the URL forces it and is remembered on this device. */
+   Decided once, on the first open, from the zone name (mainland, Hong Kong, Macau, Xinjiang's
+   unofficial time, Myanmar time for the border towns; not Taipei) or, if the device only knows a
+   fixed offset, from +8:00 or +6:30. The decision is kept on the device (localStorage, with a
+   cookie as backup) and honoured on every later open. ?cn=1 or ?cn=0 on the URL overrides it. */
 (function(){
   var Z = ["Asia/Shanghai","Asia/Urumqi","Asia/Chongqing","Asia/Chungking","Asia/Harbin","Asia/Kashgar","PRC",
            "Asia/Hong_Kong","Hongkong","Asia/Macau","Asia/Macao","Asia/Yangon","Asia/Rangoon","Etc/GMT-8","Etc/GMT-6"];
-  var on = null, m = /[?&]cn=([01])/.exec(location.search);
-  try {
-    if (m) { on = m[1] === "1"; localStorage.setItem("fn-cn", m[1]); }
-    else { var v = localStorage.getItem("fn-cn"); if (v === "1") on = true; else if (v === "0") on = false; }
-  } catch (e) {}
+  function read(){
+    var v = null;
+    try { v = localStorage.getItem("fn-cn"); } catch (e) {}
+    if (v !== "1" && v !== "0") { var c = /(?:^|; )fn-cn=([01])/.exec(document.cookie); v = c ? c[1] : null; }
+    return v;
+  }
+  function keep(v){
+    try { localStorage.setItem("fn-cn", v); } catch (e) {}
+    try { document.cookie = "fn-cn=" + v + "; max-age=63072000; path=/; SameSite=Lax"; } catch (e) {}
+  }
+  var on = null, m = /[?&]cn=([01])/.exec(location.search), v = m ? m[1] : read();
+  if (v === "1") on = true; else if (v === "0") on = false;
   if (on === null) {
     var tz = "";
     try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch (e) {}
     if (tz && Z.indexOf(tz) >= 0) on = true;
-    else if (!tz || /^(Etc\/|UTC|GMT)/.test(tz)) { var off = -new Date().getTimezoneOffset(); on = (off === 480 || off === 390); }
+    else if (!tz || /^(Etc[/]|UTC|GMT)/.test(tz)) { var off = -new Date().getTimezoneOffset(); on = (off === 480 || off === 390); }
     else on = false;
   }
+  keep(on ? "1" : "0");
   if (on) document.documentElement.className += " cn";
 })();
 </script>
