@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Fourteen Nights</title>
 <meta name="description" content="Fourteen nights in western Yunnan, 24 September to 8 October 2026: Dali, Lijiang, Shangri-La, Shaxi and Tengchong, the history of the road, one chapter per hotel night.">
-<meta name="build" content="yunnan-7c52dd1870">
+<meta name="build" content="yunnan-4042dab18b">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="travel.jcamino.net">
 <meta property="og:title" content="Fourteen Nights">
@@ -2051,7 +2051,7 @@ function drawPostcard(n, text, note, fig, d){
   var W = 1200, H = 900, c = document.createElement("canvas"), x = c.getContext("2d");
   c.width = W; c.height = H;
   x.fillStyle = "#0E1326"; x.fillRect(0, 0, W, H);
-  var m = 60, pw = W - m * 2, ph = 470, pt = 134;
+  var m = 60, pw = W - m * 2, ph = 440, pt = 168;
   var g = x.createRadialGradient(W / 2, pt + ph / 2, 60, W / 2, pt + ph / 2, 720);
   g.addColorStop(0, "rgba(242,184,90,.30)"); g.addColorStop(.5, "rgba(242,184,90,.10)"); g.addColorStop(1, "rgba(242,184,90,0)");
   x.fillStyle = g; x.fillRect(0, 0, W, H);
@@ -2059,9 +2059,9 @@ function drawPostcard(n, text, note, fig, d){
   x.save(); roundRect(x, m, pt, pw, ph, 18); x.clip(); x.drawImage(fig, m + (pw - sw) / 2, pt + (ph - sh) / 2, sw, sh); x.restore();
   roundRect(x, m, pt, pw, ph, 18); x.strokeStyle = "#5A3A1E"; x.lineWidth = 3; x.stroke();
   x.fillStyle = "#F2B85A"; x.font = "italic 110px " + SERF; x.textAlign = "left";
-  x.fillText(n === 15 ? "XV" : ROMAN[n], m, 118);
+  x.fillText(n === 15 ? "XV" : ROMAN[n], m, 150);
   x.fillStyle = "#9AA0B8"; x.font = "22px " + MONO; x.textAlign = "right";
-  x.fillText((n === 15 ? "DAY 15" : "NIGHT " + ROMAN[n] + " · DAY " + n) + "  ·  " + d.d.toUpperCase() + " 2026  ·  " + d.place.toUpperCase() + "  ·  " + d.alt.toLocaleString("en-US") + " M", W - m, 120);
+  x.fillText((n === 15 ? "DAY 15" : "NIGHT " + ROMAN[n] + " · DAY " + n) + "  ·  " + d.d.toUpperCase() + " 2026  ·  " + d.place.toUpperCase() + "  ·  " + d.alt.toLocaleString("en-US") + " M", W - m, 152);
   x.fillStyle = "#EDE6D6"; x.textAlign = "left";
   wrapText(x, text, pw, 44, SERF).forEach(function(l, k){ x.fillText(l, m, 660 + k * 58); });
   x.fillStyle = "#9AA0B8"; x.font = "22px " + MONO;
