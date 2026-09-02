@@ -1,0 +1,15 @@
+1 sunset 19:14 moonrise 17:47 waxing gibbous · 95%
+2 sunset 19:13 moonrise 18:19 waxing gibbous · 99%
+3 sunset 19:11 moonrise 18:50 full moon · 100%
+4 sunset 19:10 moonrise 19:23 waning gibbous · 99%
+5 sunset 19:09 moonrise 19:59 waning gibbous · 96%
+6 sunset 19:08 moonrise 20:39 waning gibbous · 90%
+7 sunset 19:09 moonrise 21:25 waning gibbous · 82%
+8 sunset 19:08 moonrise 22:18 waning gibbous · 72%
+9 sunset 19:06 moonrise 23:23 waning gibbous · 62%
+10 sunset 19:05 moonrise 00:29 after midnight last quarter · 50%
+11 sunset 19:07 moonrise 01:42 after midnight waning crescent · 39%
+12 sunset 19:09 moonrise 02:50 after midnight waning crescent · 29%
+13 sunset 19:08 moonrise 03:53 after midnight waning crescent · 19%
+14 sunset 19:07 moonrise 04:53 after midnight waning crescent · 11%
+15 sunset 18:59 at Dali waning crescent · 5%
