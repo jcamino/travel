@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Fourteen Nights</title>
 <meta name="description" content="Fourteen nights in western Yunnan, 24 September to 8 October 2026: Dali, Lijiang, Shangri-La, Shaxi and Tengchong, the history of the road, one chapter per hotel night.">
+<meta name="build" content="yunnan-4879106d89">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="travel.jcamino.net">
 <meta property="og:title" content="Fourteen Nights">
@@ -245,8 +246,8 @@ p{margin:0 0 1.1rem; text-wrap:pretty}
 .day.dawn .t{color:var(--paper)}
 .day.dawn .wx{color:var(--sh-mute)}
 .day.dawn .wx b{color:var(--paper)}
-.log{margin-top:.8rem; padding-top:.7rem; border-top:1px solid var(--lacquer-soft)}
-.log label{display:block; font-family:var(--mono); font-size:15px; letter-spacing:.06em; color:var(--moth); text-transform:uppercase; margin-bottom:.35rem}
+.log{margin-top:1rem; padding-top:.9rem; border-top:1px solid var(--lacquer-soft)}
+.log label{display:block; font-family:var(--mono); font-size:15px; letter-spacing:.06em; color:var(--moth); text-transform:uppercase; margin-bottom:.55rem}
 .log-row{display:flex; gap:8px}
 .log input{flex:1 1 0px; width:0; min-width:0; font:inherit; font-size:17px; padding:9px 12px; min-height:46px; border:1px solid var(--lacquer); border-radius:8px;
   background:#0d1228; color:var(--paper)}
@@ -2213,18 +2214,30 @@ setTimeout(syncNight, 0);
 
 /* ---------- offline / home screen ---------- */
 if ("serviceWorker" in navigator && /^https?:$/.test(location.protocol)) {
-  /* A new build installs in the background while online and takes over at once (skipWaiting +
-     clients.claim in sw.js). The page on screen would stay the old one until the next open, so
-     when a new worker takes control, reload quietly: right away, or, if a text field is being
-     typed in, the next time the page is hidden. */
+  /* sw.js shows the newest build on every open (it asks the server for build.txt first), so the page on
+     screen is normally already current when a new worker installs and takes over. When a worker takes
+     control, ask it which build it serves; only if that differs from this page's own build, reload
+     quietly: right away, or, if a text field is being typed in, the next time the page is hidden. */
   var swWas = !!navigator.serviceWorker.controller, swReload = false;
+  var myBuild = (document.querySelector('meta[name="build"]') || {}).content || "";
+  function swBuild(cb){
+    var c = navigator.serviceWorker.controller, done = false;
+    function fin(b){ if (!done) { done = true; cb(b); } }
+    if (!c || !window.MessageChannel) return fin(null);
+    try {
+      var ch = new MessageChannel();
+      ch.port1.onmessage = function(e){ fin(e.data && e.data.build); };
+      c.postMessage({type: "build"}, [ch.port2]);
+    } catch (x) { return fin(null); }
+    setTimeout(function(){ fin(null); }, 1500);
+  }
   function swApply(){
     if (swReload) return;
     var el = document.activeElement, typing = el && (el.tagName === "INPUT" || el.tagName === "TEXTAREA");
     if (typing) { addEventListener("visibilitychange", function(){ if (document.hidden) { swReload = true; location.reload(); } }, {once:true}); return; }
     swReload = true; location.reload();
   }
-  navigator.serviceWorker.addEventListener("controllerchange", function(){ if (swWas) swApply(); swWas = true; });
+  navigator.serviceWorker.addEventListener("controllerchange", function(){ if (swWas) swBuild(function(b){ if (b !== myBuild) swApply(); }); swWas = true; });
   navigator.serviceWorker.register("sw.js", {scope: "./"}).then(function(reg){
     setTimeout(function(){ reg.update().catch(function(){}); }, 4000);
     addEventListener("online", function(){ reg.update().catch(function(){}); });
