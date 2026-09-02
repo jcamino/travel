@@ -128,11 +128,12 @@ p{margin:0 0 1.1rem; text-wrap:pretty}
 .howto{padding:clamp(40px,8vh,72px) 0 20px; border-top:1px solid var(--lacquer-soft)}
 .howto h2{font-style:italic; font-size:2.125rem; margin-bottom:1rem}
 .howto h3{font-family:var(--mono); font-size:0.9375rem; letter-spacing:.14em; text-transform:uppercase; color:var(--lamp); margin:2rem 0 .7rem; font-weight:400}
-.cal{display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin:1.6rem 0; padding:0; list-style:none}
-.cal a{display:flex; flex-direction:column; gap:2px; min-height:58px; padding:8px 8px 7px; border:1px solid var(--lacquer); border-radius:8px;
+.cal{display:grid; grid-template-columns:repeat(5,1fr); grid-auto-rows:1fr; gap:8px; margin:1.6rem 0; padding:0; list-style:none}
+.cal a{display:flex; flex-direction:column; gap:2px; height:100%; min-height:58px; padding:8px 8px 7px; white-space:nowrap; overflow:hidden; border:1px solid var(--lacquer); border-radius:8px;
   background:var(--vat); color:var(--paper); text-decoration:none; font-family:var(--mono); font-size:0.9375rem; letter-spacing:.03em; line-height:1.25}
 .cal a b{font-weight:400; color:var(--lamp)}
-.cal a small{font-size:0.9375rem; color:var(--moth)}
+.cal a small{font-size:0.9375rem; color:var(--moth); display:block}
+.cal a .sr{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
 .cal a.dawn{background:var(--paper); color:#2a2418; border-color:#c9bfa8}
 .cal a.dawn b, .cal a.dawn small{color:#5a4a2a}
 .cal a.now{box-shadow:0 0 0 2px var(--lamp), 0 0 22px rgba(242,184,90,.45)}
@@ -374,8 +375,10 @@ p{margin:0 0 1.1rem; text-wrap:pretty}
 @media (max-width:1099px) and (min-width:700px){
   .cal{grid-template-columns:repeat(5,1fr)}
 }
+@media (max-width:599px){
+  .cal{grid-template-columns:repeat(4,1fr)}
+}
 @media (max-width:420px){
-  .cal{grid-template-columns:repeat(3,1fr)}
   .pair{grid-template-columns:1fr 1fr}
 }
 
@@ -1721,7 +1724,8 @@ function revealTo(ci){
   var cal = $("#cal"), rail = $("#railList"), h1 = "", h2 = "";
   DAYS.forEach(function(d){
     var n = d.n, dawn = n === 15;
-    h1 += '<li><a href="#day-'+n+'" data-go="'+n+'"'+(dawn?' class="dawn"':'')+'><b>'+(dawn?'Dawn':'Night '+ROMAN[n])+'</b><small>'+d.d+'</small></a></li>';
+    var dp = d.d.split(' ');   /* "Thu 24 Sep" -> weekday + day on one line, month on the next, so every cell is three lines */
+    h1 += '<li><a href="#day-'+n+'" data-go="'+n+'"'+(dawn?' class="dawn"':'')+'><b>'+(dawn?'Dawn':'<span class="sr">Night </span>'+ROMAN[n])+'</b><small>'+dp[0]+' '+dp[1]+'</small><small>'+(dp[2]||'')+'</small></a></li>';
     h2 += '<li><a href="#day-'+n+'" data-go="'+n+'"><span class="rn">'+(dawn?'☀':ROMAN[n])+'</span><span>'+d.place+'</span><span class="rd">'+d.d.slice(4)+'</span></a></li>';
   });
   cal.innerHTML = h1; if (rail) rail.innerHTML = h2;
