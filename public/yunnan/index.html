@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Fourteen Nights</title>
 <meta name="description" content="Fourteen nights in western Yunnan, 24 September to 8 October 2026: Dali, Lijiang, Shangri-La, Shaxi and Tengchong, the history of the road, one chapter per hotel night.">
-<meta name="build" content="yunnan-e3506a30c7">
+<meta name="build" content="yunnan-ea14d263a9">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="travel.jcamino.net">
 <meta property="og:title" content="Fourteen Nights">
@@ -285,6 +285,11 @@ p{margin:0 0 1.1rem; text-wrap:pretty}
 .foot p{margin:0 0 .9rem}
 .credits-btn{min-height:44px; padding:0 16px; border:1px solid var(--lacquer); border-radius:8px; background:none; color:var(--lamp); font-family:var(--mono); font-size:0.9375rem; letter-spacing:.04em}
 .credits-btn[aria-expanded="true"]{background:rgba(242,184,90,.1)}
+/* a chapter with more pictures than it shows: the button opens the lightbox on that set */
+.more{margin:1.6rem 0 0}
+.more-btn{min-height:44px; padding:0 16px; border:1px solid var(--lacquer); border-radius:8px; background:none; color:var(--lamp); font-family:var(--mono); font-size:0.9375rem; letter-spacing:.04em}
+.more-btn:active{background:rgba(242,184,90,.1)}
+.gal{display:none}
 .credits{list-style:none; margin:1rem 0 0; padding:0; color:#8b92aa; font-size:0.875rem; line-height:1.5}
 .credits li{margin:0 0 .4rem; padding-left:1rem; text-indent:-1rem; overflow-wrap:anywhere}
 .credits li.drawn{margin-top:.9rem; padding-left:0; text-indent:0}
@@ -580,7 +585,7 @@ html.cn .intl-only{display:none}
     <p class="tripline mono">Western Yunnan &middot; <b>24 Sep &ndash; 8 Oct 2026</b><br>Ic&iacute;ar and Gabriela &middot; Javier 26 Sep &ndash; 6 Oct</p>
     <figure class="win landscape">
       <button class="photo" type="button" aria-label="Open photograph: the shore of Erhai, Dali">
-        <img src="img/PHOTO_03-4d696e3c.jpg" data-tok="PHOTO_03" width="1400" height="630" alt="The shore of Erhai, the lake the Bai have farmed and fished for a thousand years." fetchpriority="high" decoding="async" style="--ar:1400/630"></button>
+        <img src="img/NEW_28-7eece22f.webp" data-tok="NEW_28" width="1400" height="934" alt="The shore of Erhai at Dali: a willow standing in the water, the Cangshan range across the lake." fetchpriority="high" decoding="async" style="--ar:1400/934"></button>
       <figcaption>Where you sleep on night one: the shore of Erhai, Dali.</figcaption>
     </figure>
     <button class="tile" id="tile" type="button"><span class="tile-txt"><span class="mono" id="tileTop">Tonight</span><span id="tileMain">Fourteen nights, one chapter each</span></span><span class="tile-map" data-map="mini" aria-hidden="true"></span></button>
@@ -617,7 +622,7 @@ html.cn .intl-only{display:none}
     <figure class="fig locator" data-loc="ch0"><div class="frame"></div><figcaption><b>Night I</b> &middot; From Beijing by air, landing at 18:30. Dali, 1,980 m, the first stop; the road north is still ahead.</figcaption></figure>
 
     <figure class="win landscape night">
-      <button class="photo" type="button" aria-label="Open photograph: the south gate of Dali old town"><img src="img/NEW_27-df2a1d08.jpg" data-tok="NEW_27" width="1400" height="1049" alt="The south gate of Dali old town: the tiered gate tower over the stone wall, flowers along the approach." loading="lazy" decoding="async" style="--ar:1400/1049"></button>
+      <button class="photo" type="button" aria-label="Open photograph: the south gate of Dali old town"><img src="img/NEW_27-d26ca027.webp" data-tok="NEW_27" width="1400" height="1049" alt="The south gate of Dali old town: the tiered gate tower over the stone wall, flowers along the approach." loading="lazy" decoding="async" style="--ar:1400/1049"></button>
       <figcaption>The south gate of the walled town, the way in on Night I.</figcaption>
     </figure>
 
@@ -625,8 +630,8 @@ html.cn .intl-only{display:none}
     <p>In 737 a chief called Piluoge united six small kingdoms around Erhai into one, Nanzhao, and two years later set his capital at Taihe, a few kilometres south of where you sleep tonight. The Tang sent armies to correct him: eighty thousand men in 751, broken at Xiaguan at the foot of the lake, much of the army lost to disease; a hundred thousand more in 754 under Li Mi, who never reached the water. Nanzhao ended in blood in 902 when its chief minister murdered the royal family, and the Kingdom of Dali that replaced it in 937 under Duan Siping lasted three centuries more, Buddhist enough that ten of its twenty-two kings retired into monasteries.</p>
 
     <figure class="win landscape">
-      <button class="photo" type="button" aria-label="Open photograph: the Three Pagodas of Chongsheng Temple, Dali"><img src="img/PHOTO_02-3a38f222.jpg" data-tok="PHOTO_02" width="1400" height="1048" alt="The Three Pagodas of Chongsheng Temple, Dali, with the Cangshan range behind." loading="lazy" decoding="async" style="--ar:1400/1048"></button>
-      <figcaption>The Three Pagodas of Chongsheng Temple, raised under Nanzhao and the Dali kings, with the Cangshan range behind.</figcaption>
+      <button class="photo" type="button" aria-label="Open photograph: the Three Pagodas of Chongsheng Temple, Dali"><img src="img/NEW_29-d7c38418.webp" data-tok="NEW_29" width="1400" height="930" alt="The Three Pagodas of Chongsheng Temple at sunset, above the roofs of Dali, the lake plain beyond." loading="lazy" decoding="async" style="--ar:1400/930"></button>
+      <figcaption>The Three Pagodas of Chongsheng Temple, raised under Nanzhao and the Dali kings, at sunset above the town.</figcaption>
     </figure>
 
     <figure class="fig sketch" data-sketch="erhai">
@@ -638,17 +643,17 @@ html.cn .intl-only{display:none}
     <p><span class="intl-only">That is the night Yunnan first belonged to an empire ruled from the north. It has belonged to one ever since, with intervals. One began in 1856,</span><span class="cn-only">That is the night Yunnan came under an empire ruled from the north. The rebellion began in 1856,</span> when a massacre of Muslims organised by a Qing official in Kunming set off a rising across the province. Du Wenxiu, a Muslim scholar born in Yongchang, which is Baoshan, where you will sleep on Night XI, made Dali the capital of Pingnan Guo, the Kingdom of the Pacified South, and ruled it as Sultan Suleiman for sixteen years from the walled town you walk through on your first evening.</p>
 
     <figure class="win plate">
-      <button class="photo" data-hires="img/hires-NEW_20-9b2158f2.jpg" type="button" aria-label="Open map: Martino Martini&#39;s map of Yunnan, 1655"><img src="img/NEW_20-3ffc79de.jpg" data-tok="NEW_20" width="1100" height="909" alt="Martino Martini&#39;s 1655 map of Yunnan province: hand-coloured, mountains as little hills, Tali and its lake left of centre, Tibet at the left edge, the kingdom of Mien below." loading="lazy" decoding="async" style="--ar:1100/909"></button>
+      <button class="photo" data-hires="img/hires-NEW_20-9b2158f2.jpg" type="button" aria-label="Open map: Martino Martini&#39;s map of Yunnan, 1655"><img src="img/NEW_20-e8a0f2ac.webp" data-tok="NEW_20" width="1100" height="909" alt="Martino Martini&#39;s 1655 map of Yunnan province: hand-coloured, mountains as little hills, Tali and its lake left of centre, Tibet at the left edge, the kingdom of Mien below." loading="lazy" decoding="async" style="--ar:1100/909"></button>
       <figcaption><b>Map &middot; 1655</b> &middot; Yunnan as Europe first saw it: Martino Martini's sheet from the <i>Novus Atlas Sinensis</i>, printed by Joan Blaeu in Amsterdam as part of his <i>Atlas Maior</i>, drawn by a Jesuit from Chinese provincial maps. Look for <span class="on">Tali</span> and its lake left of centre, <span class="on">Likiang</span> above it towards the top, <span class="on">Iungchang</span>, which is Yongchang, the Baoshan of Night XI, to the west, and <span class="on">Tibet</span> and the kingdom of <span class="on">Mien</span>, Burma, at the edges.</figcaption>
     </figure>
 
     <div class="pair">
       <figure class="win">
-        <button class="photo" type="button" aria-label="Open image: portrait of Kublai Khan"><img src="img/NEW_04-24cd6d07.jpg" data-tok="NEW_04" width="900" height="1123" alt="Yuan album portrait of Kublai Khan, painted after his death by Araniko." loading="lazy" decoding="async" style="--ar:900/1123"></button>
+        <button class="photo" type="button" aria-label="Open image: portrait of Kublai Khan"><img src="img/NEW_04-bcbb857e.webp" data-tok="NEW_04" width="900" height="1123" alt="Yuan album portrait of Kublai Khan, painted after his death by Araniko." loading="lazy" decoding="async" style="--ar:900/1123"></button>
         <figcaption>Kublai, in the Yuan album portrait painted after his death. He led the 1253 columns himself, at 38.</figcaption>
       </figure>
       <figure class="win">
-        <button class="photo" type="button" aria-label="Open photograph: the jade seal of Du Wenxiu"><img src="img/NEW_05-3f42dbf0.jpg" data-tok="NEW_05" width="1100" height="733" alt="The jade seal of Du Wenxiu, generalissimo of the Yunnan Muslim uprising, in a museum case." loading="lazy" decoding="async" style="--ar:1100/733"></button>
+        <button class="photo" type="button" aria-label="Open photograph: the jade seal of Du Wenxiu"><img src="img/NEW_05-6352f5c5.webp" data-tok="NEW_05" width="1100" height="733" alt="The jade seal of Du Wenxiu, generalissimo of the Yunnan Muslim uprising, in a museum case." loading="lazy" decoding="async" style="--ar:1100/733"></button>
         <figcaption>Du Wenxiu's jade seal: generalissimo in Chinese on one face, Sultan and Commander of all the Muslims in Arabic on the other.</figcaption>
       </figure>
     </div>
@@ -657,11 +662,19 @@ html.cn .intl-only{display:none}
     <p>The people of the lake are the Bai, who build in white with grey-blue trim and dye in indigo at Zhoucheng. The vat and the cloth are the colours of this page: the ground is the dye, the text is the undyed cotton. On Night II the Mid-Autumn moon rises over Erhai all but full, some twenty-eight hours short of it; it is exactly full at 00:49 on the 27th, the night Javier lands. The night before that is Ic&iacute;ar's birthday, which is the best possible reason to be beside this lake.</p>
 
     <figure class="win landscape">
-      <button class="photo" type="button" aria-label="Open photograph: Bai indigo tie-dye at Zhoucheng"><img src="img/PHOTO_05-dfb7229a.jpg" data-tok="PHOTO_05" width="1400" height="1050" alt="Bai indigo tie-dye hung out to dry, the craft you will watch at Zhoucheng." loading="lazy" decoding="async" style="--ar:1400/1050"></button>
+      <button class="photo" type="button" aria-label="Open photograph: Bai indigo tie-dye at Zhoucheng"><img src="img/PHOTO_05-28ca7238.webp" data-tok="PHOTO_05" width="1400" height="1050" alt="Bai indigo tie-dye hung out to dry, the craft you will watch at Zhoucheng." loading="lazy" decoding="async" style="--ar:1400/1050"></button>
       <figcaption>Bai indigo tie-dye at Zhoucheng, hung to dry. The palette of this page is taken from this cloth: the vat for the cards, the cotton for the text.</figcaption>
     </figure>
 
-    <ol class="days">
+        <div class="more"><button class="more-btn" type="button" data-gal="gal-ch0">More photographs &middot; 4</button></div>
+    <ul class="gal" id="gal-ch0" hidden>
+      <li data-src="img/GAL_07-0e96386a.webp" data-alt="Front gate at old city Dali" data-cap="The south gate at night."></li>
+      <li data-src="img/PHOTO_04-21956eea.webp" data-alt="Xizhou: whitewashed Bai courtyard houses with grey-blue trim, north of Dali." data-cap="Xizhou: whitewashed Bai courtyard houses with grey-blue trim, north of Dali."></li>
+      <li data-src="img/GAL_02-bee954bb.webp" data-alt="​大理白族扎染染色" data-cap="Dyeing at the vat, Zhoucheng."></li>
+      <li data-src="img/GAL_01-c4e2752e.webp" data-alt="The small island of Xiǎopǔtuó (小普陀) seen from the shore of Erhai Lake late in the afternoon in May 2019." data-cap="Xiaoputuo, the temple islet in Erhai."></li>
+    </ul>
+
+<ol class="days">
       <li class="day" id="day-1" data-day="1">
         <span class="dnum">Day 1 <span class="dd">&middot; Thu 24 Sep</span></span>
         <span class="astro" data-day="1"></span>
@@ -694,7 +707,7 @@ html.cn .intl-only{display:none}
     <figure class="fig locator" data-loc="ch1"><div class="frame"></div><figcaption><b>Night III</b> &middot; Dali to Shuhe, about three hours north by car: 1,980 m to 2,400 m, the Cangshan on the left, the Jinsha ahead.</figcaption></figure>
 
     <figure class="win wide night">
-      <button class="photo" type="button" aria-label="Open photograph: Lijiang old town at night"><img src="img/NEW_18-afe8713b.jpg" data-tok="NEW_18" width="1200" height="607" alt="Lijiang old town at night: tiled roofs climbing the hill, every eave lit warm orange, a few people in the square below." loading="lazy" decoding="async" style="--ar:1200/607"></button>
+      <button class="photo" type="button" aria-label="Open photograph: Lijiang old town at night"><img src="img/NEW_18-f2033037.webp" data-tok="NEW_18" width="1200" height="607" alt="Lijiang old town at night: tiled roofs climbing the hill, every eave lit warm orange, a few people in the square below." loading="lazy" decoding="async" style="--ar:1200/607"></button>
       <figcaption>Lijiang old town once the lamps are lit, every eave outlined. Nights III to VI are a few kilometres north of this, in Shuhe.</figcaption>
     </figure>
 
@@ -707,17 +720,17 @@ html.cn .intl-only{display:none}
     </figure>
 
     <figure class="win plate">
-      <button class="photo" data-hires="img/hires-NEW_21-7c6c627d.jpg" type="button" aria-label="Open map: d&#39;Anville&#39;s map of Yunnan, 1737"><img src="img/NEW_21-802cb6ec.jpg" data-tok="NEW_21" width="1100" height="932" alt="Jean-Baptiste d&#39;Anville&#39;s 1737 engraved map of the province of Yunnan, mountains hatched, the Terres des Lamas at the top left and the kingdom of Pegou at the bottom left." loading="lazy" decoding="async" style="--ar:1100/932"></button>
+      <button class="photo" data-hires="img/hires-NEW_21-7c6c627d.jpg" type="button" aria-label="Open map: d&#39;Anville&#39;s map of Yunnan, 1737"><img src="img/NEW_21-698424ea.webp" data-tok="NEW_21" width="1100" height="932" alt="Jean-Baptiste d&#39;Anville&#39;s 1737 engraved map of the province of Yunnan, mountains hatched, the Terres des Lamas at the top left and the kingdom of Pegou at the bottom left." loading="lazy" decoding="async" style="--ar:1100/932"></button>
       <figcaption><b>Map &middot; 1737</b> &middot; The first surveyed map of the province: d'Anville's <i>Province d'Yun-nan</i> from the <i>Nouvel Atlas de la Chine</i>, The Hague, 1737, engraved from the land survey the Kangxi emperor had his Jesuits make across the empire between 1708 and 1716. Look for <span class="on">Li-kiang fou</span> near the top left, just under the <span class="on">Terres des Lamas</span>; <span class="on">Ta-li fou</span> and its lake below it; <span class="on">Se-tchuen</span> along the top edge, the way the 1253 columns came; and the <span class="on">Royaume de Pegou</span>, Burma, at the bottom left. Tonight's bend of the Jinsha is the river that loops north of Li-kiang.</figcaption>
     </figure>
 
     <div class="pair">
       <figure class="win">
-        <button class="photo" type="button" aria-label="Open photograph: Naxi men with inflated goatskin rafts on the Jinsha, by Joseph Rock"><img src="img/NEW_12-4287559f.jpg" data-tok="NEW_12" width="416" height="600" alt="Two Naxi men on a river bank with inflated goatskin floats lashed to a frame, photographed by Joseph Rock." loading="lazy" decoding="async" style="--ar:416/600"></button>
+        <button class="photo" type="button" aria-label="Open photograph: Naxi men with inflated goatskin rafts on the Jinsha, by Joseph Rock"><img src="img/NEW_12-cd3fbd30.webp" data-tok="NEW_12" width="416" height="600" alt="Two Naxi men on a river bank with inflated goatskin floats lashed to a frame, photographed by Joseph Rock." loading="lazy" decoding="async" style="--ar:416/600"></button>
         <figcaption>Naxi ferrymen and their goatskin rafts on the Jinsha, photographed by Joseph Rock. The same craft that carried Kublai's cavalry.</figcaption>
       </figure>
       <figure class="win">
-        <button class="photo" type="button" aria-label="Open photograph: Joseph Rock in 1924"><img src="img/NEW_07-063cc28d.jpg" data-tok="NEW_07" width="900" height="1247" alt="Joseph Rock in a suit examining seeds at a table, Washington, 27 June 1924." loading="lazy" decoding="async" style="--ar:900/1247"></button>
+        <button class="photo" type="button" aria-label="Open photograph: Joseph Rock in 1924"><img src="img/NEW_07-793be841.webp" data-tok="NEW_07" width="900" height="1247" alt="Joseph Rock in a suit examining seeds at a table, Washington, 27 June 1924." loading="lazy" decoding="async" style="--ar:900/1247"></button>
         <figcaption>Joseph Rock in Washington, 27 June 1924, between expeditions. His house at Yuhu is where you go on Day 5.</figcaption>
       </figure>
     </div>
@@ -725,25 +738,32 @@ html.cn .intl-only{display:none}
     <p>Dongba, the script of the Naxi priests, is the only pictographic writing system in the world still actively maintained, about a thousand glyphs and a number that is still fluid because new ones are coined. Its great foreign reader was Joseph Rock, Vienna-born, an American citizen from 1913, who settled in the village of Nguluko, now Yuhu, at the foot of Jade Dragon in about 1922 and kept it as his base for twenty-seven years, filing plant specimens to Harvard and long illustrated dispatches to <i>National Geographic</i>. He left for the last time in August 1949, ahead of the People's Liberation Army. Hilton never said in public that Rock's articles gave him Shangri-La; the actress Jane Wyatt recalled him saying so in private, and the Wikipedia entry calls the theory disputed. The town on Night VII was renamed on that basis.</p>
 
     <figure class="win landscape">
-      <button class="photo" type="button" aria-label="Open photograph: a Naxi Dongba manuscript"><img src="img/NEW_06-ea3bb926.jpg" data-tok="NEW_06" width="1200" height="900" alt="A Naxi Dongba manuscript in a museum case, lines of pictographs on a long strip of paper, labelled as a scripture for expelling evil ghosts." loading="lazy" decoding="async" style="--ar:1200/900"></button>
+      <button class="photo" type="button" aria-label="Open photograph: a Naxi Dongba manuscript"><img src="img/NEW_06-7e130a5d.webp" data-tok="NEW_06" width="1200" height="900" alt="A Naxi Dongba manuscript in a museum case, lines of pictographs on a long strip of paper, labelled as a scripture for expelling evil ghosts." loading="lazy" decoding="async" style="--ar:1200/900"></button>
       <figcaption>A Dongba scripture "for expelling the evil ghosts", from Lijiang, in the Yunnan Nationalities Museum, Kunming.</figcaption>
     </figure>
 
     <div class="note"><b>1996 &middot; 19:14, 3 February</b>Magnitude 6.6, up to 322 dead, more than 17,000 injured, some 358,000 buildings down. The reconstruction, paid for by the province and the World Bank, pulled down the concrete blocks and put back traditional streets, bridges and canals, and that work is what carried Lijiang onto the World Heritage list on 4 December 1997, with Baisha and Shuhe listed alongside it.</div>
 
     <figure class="win landscape">
-      <button class="photo" type="button" aria-label="Open photograph: Lijiang old town"><img src="img/PHOTO_06-dae33b5a.jpg" data-tok="PHOTO_06" width="1400" height="934" alt="Lijiang old town: canals, stone bridges and the wooden fronts of the caravan years." loading="lazy" decoding="async" style="--ar:1400/934"></button>
+      <button class="photo" type="button" aria-label="Open photograph: Lijiang old town"><img src="img/NEW_30-11323114.webp" data-tok="NEW_30" width="1400" height="934" alt="Lijiang old town: canals, stone bridges and the wooden fronts of the caravan years." loading="lazy" decoding="async" style="--ar:1400/934"></button>
       <figcaption>The same town by day: canals, stone bridges and the wooden fronts of the caravan years, rebuilt after 1996 and listed in 1997.</figcaption>
     </figure>
 
     <p>After the listing, rents rose. 90 to 95 per cent of the old town's residents moved out because they could let their houses to shopkeepers for more than they had ever earned in them; over nine-tenths of the housing is now guesthouses and shops. So you sleep in Shuhe, the smaller caravan village a few kilometres north that was on the same list and has kept more of its people.</p>
 
     <figure class="win wide">
-      <button class="photo" type="button" aria-label="Open photograph: Jade Dragon Snow Mountain"><img src="img/NEW_15-fa832e6c.jpg" data-tok="NEW_15" width="1400" height="630" alt="Jade Dragon Snow Mountain, 5,596 m, above the Lijiang plain." loading="lazy" decoding="async" style="--ar:1400/630"></button>
+      <button class="photo" type="button" aria-label="Open photograph: Jade Dragon Snow Mountain"><img src="img/NEW_15-22cd0e46.webp" data-tok="NEW_15" width="1400" height="630" alt="Jade Dragon Snow Mountain, 5,596 m, above the Lijiang plain." loading="lazy" decoding="async" style="--ar:1400/630"></button>
       <figcaption>Jade Dragon, 5,596 m, sacred to the Naxi. Its summit was reached once, on 8 May 1987, and it has been closed to climbers since. Night IV, under the Harvest Moon.</figcaption>
     </figure>
 
-    <ol class="days">
+        <div class="more"><button class="more-btn" type="button" data-gal="gal-ch1">More photographs &middot; 3</button></div>
+    <ul class="gal" id="gal-ch1" hidden>
+      <li data-src="img/PHOTO_07-fb4982a5.webp" data-alt="The open-air Impression Lijiang stage, with Jade Dragon Snow Mountain behind it." data-cap="The open-air Impression Lijiang stage, with Jade Dragon Snow Mountain behind it."></li>
+      <li data-src="img/PHOTO_08-6b4b7773.webp" data-alt="Blue Moon Valley below Jade Dragon, milky turquoise from the limestone it carries." data-cap="Blue Moon Valley below Jade Dragon, milky turquoise from the limestone it carries."></li>
+      <li data-src="img/GAL_03-a131e661.webp" data-alt="Baisha, China" data-cap="Jade Dragon&#x27;s summit ridge in cloud."></li>
+    </ul>
+
+<ol class="days">
       <li class="day" id="day-3" data-day="3">
         <span class="dnum">Day 3 <span class="dd">&middot; Sat 26 Sep</span></span>
         <span class="astro" data-day="3"></span>
@@ -793,7 +813,7 @@ html.cn .intl-only{display:none}
     <figure class="fig locator" data-loc="ch2"><div class="frame"></div><figcaption><b>Night VII</b> &middot; Shuhe to Shangri-La by way of Stone Drum and the gorge: 2,400 m to 3,160 m, the day's climb of the whole trip.</figcaption></figure>
 
     <figure class="win landscape night">
-      <button class="photo" type="button" aria-label="Open photograph: a Shangri-La street at night"><img src="img/NEW_09-cc97eb93.jpg" data-tok="NEW_09" width="1200" height="925" alt="A narrow street in Shangri-La old town at night, carved timber fronts lit from below and paper lanterns glowing." loading="lazy" decoding="async" style="--ar:1200/925"></button>
+      <button class="photo" type="button" aria-label="Open photograph: a Shangri-La street at night"><img src="img/NEW_09-6673f6b9.webp" data-tok="NEW_09" width="1200" height="925" alt="A narrow street in Shangri-La old town at night, carved timber fronts lit from below and paper lanterns glowing." loading="lazy" decoding="async" style="--ar:1200/925"></button>
       <figcaption>A Dukezong lane by lantern light: timber against timber, which is how the fire of 2014 spread. Nights VII and VIII.</figcaption>
     </figure>
 
@@ -801,14 +821,14 @@ html.cn .intl-only{display:none}
     <p>The road north follows the river the Mongols crossed until it drops into the gorge, fifteen kilometres of it, between Jade Dragon at 5,596 m and Haba at 5,396 m, one of the deepest canyons on earth; the legend says a hunted tiger cleared the narrowest point, twenty-five metres, off the rock in the middle. <span class="intl-only">Then the road climbs out onto Gyalthang, "the royal plains", which is Kham, culturally Tibetan though administratively part of Yunnan. The Tibet Travel Permit, the tour-only document every foreigner needs for the Tibet Autonomous Region, does not apply here, because Diqing is a prefecture of Yunnan. You may walk into a Tibetan monastery on a plain tourist visa. The People's Republic's case that Tibet is a region of China is visible on this plateau as a line on a map that you can cross without noticing.</span><span class="cn-only">Then the road climbs out onto Gyalthang, "the royal plains", the old Tibetan name for this corner of Kham. Diqing is a Tibetan autonomous prefecture of Yunnan, so the permit foreigners need for the Tibet Autonomous Region does not apply here: you can walk into a Tibetan monastery, hear Tibetan spoken and sleep in a Tibetan town on an ordinary tourist visa.</span></p>
 
     <figure class="win landscape">
-      <button class="photo" type="button" aria-label="Open photograph: Tiger Leaping Gorge"><img src="img/PHOTO_10-8e449d73.jpg" data-tok="PHOTO_10" width="1400" height="933" alt="Tiger Leaping Gorge, where the young Yangtze squeezes between two 5,000 m massifs." loading="lazy" decoding="async" style="--ar:1400/933"></button>
-      <figcaption>Tiger Leaping Gorge: the Jinsha, still only the upper Yangtze, between Jade Dragon and Haba. About 3,790 m from river to summit. Day 7.</figcaption>
+      <button class="photo" type="button" aria-label="Open photograph: Tiger Leaping Gorge"><img src="img/NEW_31-831d14c5.webp" data-tok="NEW_31" width="1400" height="933" alt="Tiger Leaping Gorge: the Jinsha in flood through the narrows, a footbridge above the rapids." loading="lazy" decoding="async" style="--ar:1400/933"></button>
+      <figcaption>Tiger Leaping Gorge: the Jinsha, still only the upper Yangtze, in the narrows below the walkway. About 3,790 m from river to summit. Day 7.</figcaption>
     </figure>
 
     <div class="note"><b>1933 &middot; 2001 &middot; The name</b>James Hilton published <i>Lost Horizon</i> in 1933 and invented a lamasery called Shangri-La. Rock's illustrated dispatches from these valleys are the usual suspect for where he got it. On 17 December 2001 the county of Zhongdian, having won a bureaucratic competition against rival claimants, was renamed Shangri-La by the State Council. The town has been full ever since.</div>
 
     <figure class="win plate">
-      <button class="photo" data-hires="img/hires-NEW_26-df62bc14.jpg" type="button" aria-label="Open map: the Yunnan sheet of Stanford&#39;s atlas of China, 1917, cropped to the west of the province"><img src="img/NEW_26-138c2c5e.jpg" data-tok="NEW_26" width="1000" height="1246" alt="The Yunnan sheet of Stanford&#39;s Complete Atlas of China, 1917, cropped to the west of the province: the Salween, Mekong and Yangtze running side by side, Chungtien, Likiang, Talifu with its lake, Tengyueh and the Burma border." loading="lazy" decoding="async" style="--ar:1000/1246"></button>
+      <button class="photo" data-hires="img/hires-NEW_26-df62bc14.jpg" type="button" aria-label="Open map: the Yunnan sheet of Stanford&#39;s atlas of China, 1917, cropped to the west of the province"><img src="img/NEW_26-f7dd39e2.webp" data-tok="NEW_26" width="1000" height="1246" alt="The Yunnan sheet of Stanford&#39;s Complete Atlas of China, 1917, cropped to the west of the province: the Salween, Mekong and Yangtze running side by side, Chungtien, Likiang, Talifu with its lake, Tengyueh and the Burma border." loading="lazy" decoding="async" style="--ar:1000/1246"></button>
       <figcaption><b>Map &middot; 1917</b> &middot; The town before the name: the west of the province from Stanford's <i>Complete Atlas of China</i>, drawn in London for the China Inland Mission, five years before Rock settled below Jade Dragon. Look for <span class="on">Chungtien</span> at 11,500 ft near the top right, which is tonight's Shangri-La under the name it carried until 2001; the three rivers, <span class="on">Salween</span>, <span class="on">Mekong</span> and <span class="on">Yangtze kiang</span>, running side by side down the middle; <span class="on">Shihku</span>, Stone Drum, on the Yangtze west of <span class="on">Likiang</span>; <span class="on">Talifu</span> and <span class="on">Erh Hai</span>; <span class="on">Tengyueh</span>, Tengchong, close to the red line of Burma. Cropped for this page.</figcaption>
     </figure>
 
@@ -817,23 +837,29 @@ html.cn .intl-only{display:none}
 
     <div class="pair">
       <figure class="win">
-        <button class="photo" type="button" aria-label="Open photograph: Dukezong old town"><img src="img/PHOTO_11-d6e8758c.jpg" data-tok="PHOTO_11" width="1400" height="927" alt="Dukezong old town, Shangri-La: Tibetan timber houses around a whitewashed chorten." loading="lazy" decoding="async" style="--ar:1400/927"></button>
+        <button class="photo" type="button" aria-label="Open photograph: Dukezong old town"><img src="img/PHOTO_11-a05f2be9.webp" data-tok="PHOTO_11" width="1400" height="927" alt="Dukezong old town, Shangri-La: Tibetan timber houses around a whitewashed chorten." loading="lazy" decoding="async" style="--ar:1400/927"></button>
         <figcaption>Dukezong by day, the town rebuilt after 11 January 2014, where you sleep on Nights VII and VIII.</figcaption>
       </figure>
       <figure class="win night">
-        <button class="photo" type="button" aria-label="Open photograph: butter lamps inside Songzanlin monastery"><img src="img/NEW_17-32b49891.jpg" data-tok="NEW_17" width="1200" height="999" alt="Silver and brass butter lamps on a dark altar inside Songzanlin monastery, their wicks unlit, chased with gilt medallions." loading="lazy" decoding="async" style="--ar:1200/999"></button>
+        <button class="photo" type="button" aria-label="Open photograph: butter lamps inside Songzanlin monastery"><img src="img/NEW_17-e6a131fe.webp" data-tok="NEW_17" width="1200" height="999" alt="Silver and brass butter lamps on a dark altar inside Songzanlin monastery, their wicks unlit, chased with gilt medallions." loading="lazy" decoding="async" style="--ar:1200/999"></button>
         <figcaption>Butter lamps on an altar inside Sumtseling: the lamp this page is named for.</figcaption>
       </figure>
     </div>
 
     <figure class="win landscape">
-      <button class="photo" type="button" aria-label="Open photograph: Ganden Sumtseling monastery"><img src="img/PHOTO_09-5359cf00.jpg" data-tok="PHOTO_09" width="1400" height="788" alt="Ganden Sumtseling, a 17th-century monastery of several hundred monks above Shangri-La." loading="lazy" decoding="async" style="--ar:1400/788"></button>
+      <button class="photo" type="button" aria-label="Open photograph: Ganden Sumtseling monastery"><img src="img/NEW_32-25249f62.webp" data-tok="NEW_32" width="1400" height="933" alt="Ganden Sumtseling: the golden roofs of the halls above tiers of white monks' houses, climbing the hill." loading="lazy" decoding="async" style="--ar:1400/933"></button>
       <figcaption>Ganden Sumtseling, Songzanlin in Chinese, on its hill above the town. Day 8, National Day.</figcaption>
     </figure>
 
     <div class="note"><b class="ember">Golden Week &middot; The modern night migration</b>1 October is National Day and the start of the seven-day holiday. In 2025 the Ministry of Culture and Tourism counted 888 million domestic trips over the eight-day holiday, the largest movement of people on earth. On this plateau it means coaches at the Pudacuo gate; the answer is to be there when it opens.</div>
 
-    <ol class="days">
+        <div class="more"><button class="more-btn" type="button" data-gal="gal-ch2">More photographs &middot; 2</button></div>
+    <ul class="gal" id="gal-ch2" hidden>
+      <li data-src="img/PHOTO_12-1e717500.webp" data-alt="Militang pasture in Pudacuo National Park, at about 3,500 m." data-cap="Militang pasture in Pudacuo National Park, at about 3,500 m."></li>
+      <li data-src="img/PHOTO_09-7f856a59.webp" data-alt="Ganden Sumtseling, a 17th-century monastery of several hundred monks above Shangri-La." data-cap="Ganden Sumtseling across the wetland, prayer flags in the foreground."></li>
+    </ul>
+
+<ol class="days">
       <li class="day" id="day-7" data-day="7">
         <span class="dnum">Day 7 <span class="dd">&middot; Wed 30 Sep</span></span>
         <span class="astro" data-day="7"></span>
@@ -866,27 +892,40 @@ html.cn .intl-only{display:none}
     <figure class="fig locator" data-loc="ch3"><div class="frame"></div><figcaption><b>Night IX</b> &middot; Shangri-La down to Shaxi: off the plateau, 3,160 m to 2,100 m, early enough for the market.</figcaption></figure>
 
     <figure class="win landscape night">
-      <button class="photo" type="button" aria-label="Open photograph: the Old Theatre Inn in Shaxi at night"><img src="img/NEW_11-50448bb1.jpg" data-tok="NEW_11" width="1200" height="801" alt="The Old Theatre Inn at Shaxi at night, its tiered roofs and carved eaves lit against a dark blue sky." loading="lazy" decoding="async" style="--ar:1200/801"></button>
-      <figcaption>The theatre stage and the inn beside it after the market has gone home. The muleteers' night: loads by the bed, the stage lit. Nights IX and X.</figcaption>
+      <button class="photo" type="button" aria-label="Open photograph: the Old Theatre Inn in Shaxi at night"><img src="img/NEW_35-48ac7c6f.webp" data-tok="NEW_35" width="1400" height="1120" alt="The theatre stage at Sideng lit at night under a deep blue sky, its tiered roofs picked out by the lamps." loading="lazy" decoding="async" style="--ar:1400/1120"></button>
+      <figcaption>The theatre stage lit after the market has gone home. The muleteers' night: loads by the bed, the stage lit. Nights IX and X.</figcaption>
     </figure>
 
     <p class="lead">Armies moved the frontier. For a thousand years trade held it in place, tea going one way and horses coming the other.</p>
     <p>The Tea Horse Road is the name for the caravan routes that carried brick tea out of Yunnan and Sichuan into Tibet and brought Tibetan ponies back, a trade the Song court ran as policy, since a state that grows tea can buy cavalry from a country that cannot. The Yunnan branch went up through Dali, Lijiang and Gyalthang, exactly the way you have just come, and Shaxi was a trading post on it from the Tang, at its richest under the Ming and the Qing. Porters carried sixty to ninety kilos of tea on their backs, more than their own weight. The muleteers slept in the caravanserai inns around Sideng with their loads beside the bed, and on the eve of a market the stage in the square was lit for opera.</p>
 
     <figure class="win plate">
-      <button class="photo" data-hires="img/hires-NEW_22-739ced55.jpg" type="button" aria-label="Open map: the Qing woodblock map of Yunnan, 1864"><img src="img/NEW_22-782f4d04.jpg" data-tok="NEW_22" width="1100" height="1065" alt="A Qing woodblock map of Yunnan province, 1864, on a square grid, the place names in Chinese characters, a column of text down the left margin, the paper foxed and torn." loading="lazy" decoding="async" style="--ar:1100/1065"></button>
+      <button class="photo" data-hires="img/hires-NEW_22-739ced55.jpg" type="button" aria-label="Open map: the Qing woodblock map of Yunnan, 1864"><img src="img/NEW_22-b8ac8a82.webp" data-tok="NEW_22" width="1100" height="1065" alt="A Qing woodblock map of Yunnan province, 1864, on a square grid, the place names in Chinese characters, a column of text down the left margin, the paper foxed and torn." loading="lazy" decoding="async" style="--ar:1100/1065"></button>
       <figcaption><b>Map &middot; 1864</b> &middot; The road counted in li: <i>Yunnan quan tu</i>, the Yunnan sheet of the <i>Daqing yitong yudi quantu</i>, cut on woodblocks by Hubei's official press in 1864, while Du Wenxiu still ruled Dali. Look for the grid the province is squared into, the rivers as double lines, the mountains as rows of little peaks, and the column of text down the left margin, which gives the distance by road from the provincial capital to each prefecture: the caravan road you have just travelled, measured in li. The Library of Congress copy, damage and all.</figcaption>
     </figure>
     <div class="note"><b>2001 &middot; The listing</b>The Sideng market square went on the World Monuments Watch list of the hundred most endangered sites in 2001, and the restoration that followed was a cooperation between ETH Zurich, the Swiss federal technical university, and the county government of Jianchuan. It is why this is the one intact caravan town left on the road: the stage, the Xingjiao temple of the Bai (Ming), the gate, the lanes, and nothing dressed up.</div>
 
     <figure class="win landscape">
-      <button class="photo" type="button" aria-label="Open photograph: Sideng square, Shaxi"><img src="img/PHOTO_13-bf841286.jpg" data-tok="PHOTO_13" width="1400" height="1050" alt="Sideng square in Shaxi, the last intact market town on the Tea Horse Road." loading="lazy" decoding="async" style="--ar:1400/1050"></button>
-      <figcaption>Sideng square by day: the theatre stage faces the temple across the market, as it has since the Ming.</figcaption>
+      <button class="photo" type="button" aria-label="Open photograph: Sideng square, Shaxi"><img src="img/NEW_36-d2734325.webp" data-tok="NEW_36" width="1400" height="933" alt="Sideng square at dusk: the theatre stage and the old inns around the market square, a great tree in the middle." loading="lazy" decoding="async" style="--ar:1400/933"></button>
+      <figcaption>Sideng square at dusk: the theatre stage faces the temple across the market, as it has since the Ming.</figcaption>
     </figure>
 
     <p>What is left of the road is the Friday market. Once a week the valley comes down to Sideng, Bai and Yi farmers, and for a few hours the square is a market again. You arrive on a Friday. Leave the plateau early and you catch the end of it.</p>
 
-    <ol class="days">
+    <figure class="win landscape">
+      <button class="photo" type="button" aria-label="Open photograph: a Bai woman at Sideng market"><img src="img/NEW_37-c09d79b8.webp" data-tok="NEW_37" width="1400" height="933" alt="An elderly Bai woman at Sideng market in a wide woven hat, pink jacket and blue apron." loading="lazy" decoding="async" style="--ar:1400/933"></button>
+      <figcaption>Market day: a Bai woman at Sideng, in the wide hat of the valley.</figcaption>
+    </figure>
+
+        <div class="more"><button class="more-btn" type="button" data-gal="gal-ch3">More photographs &middot; 4</button></div>
+    <ul class="gal" id="gal-ch3" hidden>
+      <li data-src="img/GAL_04-ff014b4b.webp" data-alt="SW China" data-cap="A rainy day on Yujin bridge, Shaxi."></li>
+      <li data-src="img/GAL_05-f025fab3.webp" data-alt="Historic market town, along the ancient tea and horse road, between Dali and Lijiang." data-cap="Shaxi across the fields."></li>
+      <li data-src="img/PHOTO_14-4537572c.webp" data-alt="The east gate at Shaxi, still the way into the village on market day." data-cap="The east gate at Shaxi, still the way into the village on market day."></li>
+      <li data-src="img/PHOTO_13-55782a6d.webp" data-alt="Sideng square in Shaxi, the last intact market town on the Tea Horse Road." data-cap="Sideng square by day."></li>
+    </ul>
+
+<ol class="days">
       <li class="day" id="day-9" data-day="9">
         <span class="dnum">Day 9 <span class="dd">&middot; Fri 2 Oct</span></span>
         <span class="astro" data-day="9"></span>
@@ -921,7 +960,7 @@ html.cn .intl-only{display:none}
     <figure class="fig locator" data-loc="ch4"><div class="frame"></div><figcaption><b>Night XI</b> &middot; Shaxi to Baoshan, the long day south-west across the Mekong: 2,100 m to 1,650 m.</figcaption></figure>
 
     <figure class="win landscape">
-      <button class="photo" type="button" aria-label="Open photograph: US Army trucks on the Ledo road"><img src="img/NEW_13-61e4cd0e.jpg" data-tok="NEW_13" width="1200" height="810" alt="A column of US-built Army trucks winding along a mountainside on the Ledo supply road from India into Burma, 1945." loading="lazy" decoding="async" style="--ar:1200/810"></button>
+      <button class="photo" type="button" aria-label="Open photograph: US Army trucks on the Ledo road"><img src="img/NEW_13-1af9e1c0.webp" data-tok="NEW_13" width="1200" height="810" alt="A column of US-built Army trucks winding along a mountainside on the Ledo supply road from India into Burma, 1945." loading="lazy" decoding="async" style="--ar:1200/810"></button>
       <figcaption>US-built trucks on the Ledo road, the new link from India that joined the old Burma Road at Wanding in 1945.</figcaption>
     </figure>
 
@@ -935,13 +974,13 @@ html.cn .intl-only{display:none}
     <div class="note"><b class="ember">1942 &middot; 4 May</b>Japan took Lashio on 29 April 1942 and the road was cut at its far end. On 4 May Japanese aircraft bombed Baoshan, a town crammed with refugees off the road from Burma; a figure of ten thousand dead in the raid is the one usually quoted. The next day, 5 May, Chinese engineers blew the Huitong bridge over the Salween to stop the Japanese column, and the river became the front line for two years. Chinese state media also say Japanese planes dropped cholera over Baoshan that week and put the epidemic's toll at 210,000; the raid and the epidemic numbers are contested and this page does not rely on either. The footer says which sources disagree.</div>
 
     <figure class="win plate">
-      <button class="photo" data-hires="img/hires-NEW_25-d2fa8f93.jpg" type="button" aria-label="Open map: Allied lines of communication in Burma and China, 1942&ndash;43, cropped to the Burma&ndash;Yunnan corner"><img src="img/NEW_25-ffa4f529.jpg" data-tok="NEW_25" width="570" height="435" alt="The Burma and Yunnan corner of a West Point atlas map of Allied lines of communication, 1942 to 1943: the area under Japanese control since June 1942 shaded pink, the Burma Road from Lashio to Kunming, Teng-chung just outside the pink, and the Hump airlift route drawn from Dinjan in Assam to Kunming." loading="lazy" decoding="async" style="--ar:570/435"></button>
+      <button class="photo" data-hires="img/hires-NEW_25-d2fa8f93.jpg" type="button" aria-label="Open map: Allied lines of communication in Burma and China, 1942&ndash;43, cropped to the Burma&ndash;Yunnan corner"><img src="img/NEW_25-19639e45.webp" data-tok="NEW_25" width="570" height="435" alt="The Burma and Yunnan corner of a West Point atlas map of Allied lines of communication, 1942 to 1943: the area under Japanese control since June 1942 shaded pink, the Burma Road from Lashio to Kunming, Teng-chung just outside the pink, and the Hump airlift route drawn from Dinjan in Assam to Kunming." loading="lazy" decoding="async" style="--ar:570/435"></button>
       <figcaption><b>Map &middot; 1942&ndash;43</b> &middot; The road cut and the way round it, from the West Point atlas of the Second World War. Look for the <span class="on">Burma Road</span> climbing out of the pink from <span class="on">Lashio</span> to <span class="on">Kunming</span>, the shaded <span class="on">area under Japanese control since June 1942</span> reaching the Yunnan border with <span class="on">Teng-chung</span> just outside it, and the thin line of the airlift, marked <span class="on">Hump Route</span>, from <span class="on">Dinjan</span> in Assam across the top to Kunming. Tonight's Baoshan sits on the road between Teng-chung and Kunming. Cropped for this page from a sheet that runs west to Karachi.</figcaption>
     </figure>
     <p>Du Wenxiu, the sultan of Night II, was born here when it was called Yongchang. On 4 February 1945 the first convoy from India in nearly three years came up through these towns to Kunming, under banners the villagers had painted in two languages.</p>
 
     <figure class="win portrait" style="max-width:360px">
-      <button class="photo" type="button" aria-label="Open photograph: villagers in Yunnan welcome the first convoy from India, 1945"><img src="img/NEW_03-ad3ed1db.jpg" data-tok="NEW_03" width="1100" height="1396" alt="A crowd of Chinese villagers and American soldiers under a banner reading Welcome the Pioneers of the Stilwell Road, Yunnan, early 1945." loading="lazy" decoding="async" style="--ar:1100/1396"></button>
+      <button class="photo" type="button" aria-label="Open photograph: villagers in Yunnan welcome the first convoy from India, 1945"><img src="img/NEW_03-3e125c8b.webp" data-tok="NEW_03" width="1100" height="1396" alt="A crowd of Chinese villagers and American soldiers under a banner reading Welcome the Pioneers of the Stilwell Road, Yunnan, early 1945." loading="lazy" decoding="async" style="--ar:1100/1396"></button>
       <figcaption>Yunnan villagers crowd the lead jeep of the first convoy from India, early 1945, under a banner welcoming "the pioneers of the Stilwell Road".</figcaption>
     </figure>
 
@@ -969,7 +1008,7 @@ html.cn .intl-only{display:none}
     <figure class="fig locator" data-loc="ch5"><div class="frame"></div><figcaption><b>Night XII</b> &middot; Baoshan to Tengchong over the Salween and the Gaoligong: 1,650 m to 1,640 m over the ridge, Myanmar fifty kilometres on.</figcaption></figure>
 
     <figure class="win landscape">
-      <button class="photo" type="button" aria-label="Open photograph: a C-46 flying the Hump"><img src="img/NEW_02-5a5c3359.jpg" data-tok="NEW_02" width="1000" height="755" alt="A Curtiss C-46 Commando of Air Transport Command over snow mountains, flying the Hump from Burma to China, 1945." loading="lazy" decoding="async" style="--ar:1000/755"></button>
+      <button class="photo" type="button" aria-label="Open photograph: a C-46 flying the Hump"><img src="img/NEW_34-79adec9f.webp" data-tok="NEW_34" width="1400" height="1112" alt="A C-46 Commando in flight over snow-covered mountains on the Hump route, 1945." loading="lazy" decoding="async" style="--ar:1400/1112"></button>
       <figcaption>A C-46 Commando of Air Transport Command over the Hump, 1945. The route from Assam to Kunming passed north of here.</figcaption>
     </figure>
 
@@ -1019,17 +1058,17 @@ html.cn .intl-only{display:none}
     <div class="note"><b>1944 &middot; 11 May to 14 September</b>On the ground, the Chinese Expeditionary Force crossed the Salween on 11 May 1944 and laid siege to Tengchong, which the Japanese had held for two years behind its Ming wall. The last positions inside the wall fell on 14 September (one Wikipedia list gives the 13th). Nearly ten thousand Chinese soldiers died to take it, and the town was destroyed in the taking. Their cemetery, Guoshang, was finished on 7 July 1945: 3,346 small stones in rows up the hill of Xiaotuanpo.</div>
 
     <figure class="win plate">
-      <button class="photo" type="button" aria-label="Open map: the Salween campaign, 11 May to 30 June 1944"><img src="img/NEW_24-c14c1b6a.jpg" data-tok="NEW_24" width="641" height="675" alt="A US Army map of the Salween campaign, 11 May to 30 June 1944: relief in shades of brown, Chinese armies as blue arrows converging on Teng-chung, which is ringed in red, with Pao-shan, Lung-ling and Myitkyina marked." loading="lazy" decoding="async" style="--ar:641/675"></button>
+      <button class="photo" type="button" aria-label="Open map: the Salween campaign, 11 May to 30 June 1944"><img src="img/NEW_24-79e3d08a.webp" data-tok="NEW_24" width="641" height="675" alt="A US Army map of the Salween campaign, 11 May to 30 June 1944: relief in shades of brown, Chinese armies as blue arrows converging on Teng-chung, which is ringed in red, with Pao-shan, Lung-ling and Myitkyina marked." loading="lazy" decoding="async" style="--ar:641/675"></button>
       <figcaption><b>Map &middot; 1944</b> &middot; The siege from the American side: the Salween campaign as drawn for the US Army's history of the China theatre. Look for <span class="on">Teng-chung</span> ringed in red at the centre, the Japanese strongpoint that took four months to reduce; the blue arrows of the <span class="on">54th</span> and <span class="on">53d Army</span> coming over the Gaoligong from the river; <span class="on">Pao-shan</span> on the right, marked as the headquarters of the Chinese Expeditionary Force; <span class="on">Lung-ling</span> and <span class="on">Mang-shih</span> on the Burma Road below; <span class="on">Myitkyina</span> at the far left. You sleep where the map says Teng-chung.</figcaption>
     </figure>
 
     <div class="pair">
       <figure class="win">
-        <button class="photo" type="button" aria-label="Open photograph: the Guoshang cemetery at Tengchong"><img src="img/NEW_08-a0f19cf2.jpg" data-tok="NEW_08" width="1200" height="900" alt="Rows of small headstones up the grassy hill of Xiaotuanpo at the Guoshang cemetery, Tengchong, under pines." loading="lazy" decoding="async" style="--ar:1200/900"></button>
-        <figcaption>Xiaotuanpo hill at Guoshang, the cemetery of the 20th Group Army. Each stone carries a rank and a name.</figcaption>
+        <button class="photo" type="button" aria-label="Open photograph: the Guoshang cemetery at Tengchong"><img src="img/NEW_33-a711be91.webp" data-tok="NEW_33" width="1400" height="1050" alt="Guoshang cemetery, Tengchong: stone steps rising between rows of small headstones to the monument on the hilltop." loading="lazy" decoding="async" style="--ar:1400/1050"></button>
+        <figcaption>Xiaotuanpo hill at Guoshang, the cemetery of the 20th Group Army: the stones in rows up to the monument, each with a rank and a name.</figcaption>
       </figure>
       <figure class="win">
-        <button class="photo" type="button" aria-label="Open photograph: Heshun across its fields"><img src="img/PHOTO_15-d8a09da2.jpg" data-tok="PHOTO_15" width="1400" height="1050" alt="Heshun, built by Tengchong jade merchants, seen across its fields." loading="lazy" decoding="async" style="--ar:1400/1050"></button>
+        <button class="photo" type="button" aria-label="Open photograph: Heshun across its fields"><img src="img/PHOTO_15-ac50b535.webp" data-tok="PHOTO_15" width="1400" height="1050" alt="Heshun, built by Tengchong jade merchants, seen across its fields." loading="lazy" decoding="async" style="--ar:1400/1050"></button>
         <figcaption>Heshun across its fields: the remittance houses of families who made their money in Burma. Day 13.</figcaption>
       </figure>
     </div>
@@ -1043,14 +1082,14 @@ html.cn .intl-only{display:none}
     <div class="note"><b>Fire underground</b>Tengchong sits on a field of sixty-eight volcanic cones raised where India pushes into Asia, a collision that began about 59 million years ago and is still going; the last big eruption was around 5750 BCE. Rehai, the "hot sea", is the largest geothermal field of the lot, and Dagunguo, the big boiling pot, is its showpiece. Day 14 is for it.</div>
 
     <figure class="win landscape">
-      <button class="photo" type="button" aria-label="Open photograph: Dagunguo, the boiling pool at Rehai"><img src="img/PHOTO_16-fa595ceb.jpg" data-tok="PHOTO_16" width="1400" height="788" alt="Dagunguo, the boiling pool at Rehai, Tengchong's geothermal park." loading="lazy" decoding="async" style="--ar:1400/788"></button>
+      <button class="photo" type="button" aria-label="Open photograph: Dagunguo, the boiling pool at Rehai"><img src="img/PHOTO_16-fce113b3.webp" data-tok="PHOTO_16" width="1400" height="788" alt="Dagunguo, the boiling pool at Rehai, Tengchong's geothermal park." loading="lazy" decoding="async" style="--ar:1400/788"></button>
       <figcaption>Dagunguo, the boiling pool at Rehai. Fire underground, fifty kilometres from Myanmar.</figcaption>
     </figure>
 
     <p>On 1 February 2021 Myanmar's army overthrew the elected government; by the end of March people were leaving the protests for the border hills to train with the ethnic armies, and the Kachin Independence Army was already taking bases near Laiza, on the Yunnan frontier. In October 2023 an alliance of those armies launched Operation 1027 and took Laukkai, the capital of the Kokang zone that abuts Yunnan further south. By November 2025 OCHA counted nearly 3.6 million people displaced inside the country, the most on record. Through all of it China has kept building the China&ndash;Myanmar Economic Corridor, a Belt and Road spur from Kunming through Muse and Mandalay to a deep-water port at Kyaukphyu on the Bay of Bengal: oil and gas pipelines finished in 2013 and 2017, and a 431-kilometre Muse&ndash;Mandalay railway costed at nine billion dollars, through country that is at war.</p>
     <figure class="win lights">
       <div class="lights-wrap">
-        <button class="photo" type="button" aria-label="Open image: western Yunnan and northern Myanmar at night, from NASA's Black Marble"><img src="img/NEW_01-725af3dd.jpg" data-tok="NEW_01" width="1200" height="988" alt="Western Yunnan and northern Myanmar at night, from NASA's 2016 Black Marble composite: Kunming, Dali and the Tengchong valley lit, the Kachin hills west of the border dark, Mandalay at the bottom left." loading="lazy" decoding="async" style="--ar:1200/988"></button>
+        <button class="photo" type="button" aria-label="Open image: western Yunnan and northern Myanmar at night, from NASA's Black Marble"><img src="img/NEW_01-e5ae31a5.webp" data-tok="NEW_01" width="1200" height="988" alt="Western Yunnan and northern Myanmar at night, from NASA's 2016 Black Marble composite: Kunming, Dali and the Tengchong valley lit, the Kachin hills west of the border dark, Mandalay at the bottom left." loading="lazy" decoding="async" style="--ar:1200/988"></button>
         <svg viewBox="0 0 1200 988" aria-hidden="true">
           <path class="brd" d="M339,0 C380,40 402,71 452,169 C460,240 424,282 360,353 C330,390 300,420 297,508 C300,560 360,575 409,578 C450,590 480,600 522,706 C540,760 565,790 650,889 C700,920 780,945 847,960"/>
           <circle class="pin" cx="422" cy="420" r="16"/><text x="250" y="458">TENGCHONG</text>
@@ -1067,7 +1106,13 @@ html.cn .intl-only{display:none}
       <figcaption>The lit side of the line, from orbit: Kunming, Dali, Baoshan and the Tengchong valley lit, the Kachin and Shan hills west of the dashed line dark, Mandalay a smudge at the bottom left. At night, the border is the only line on the map you can read. NASA's Black Marble 2016 composite, cropped to 95.5&ndash;104&deg;E, 21&ndash;28&deg;N; the border and the stops drawn on for this page.</figcaption>
     </figure>
 
-    <ol class="days">
+        <div class="more"><button class="more-btn" type="button" data-gal="gal-ch5">More photographs &middot; 2</button></div>
+    <ul class="gal" id="gal-ch5" hidden>
+      <li data-src="img/GAL_06-00c0f3c3.webp" data-alt="Hot spring at Rehai Scenic Area, Tengchong Volcanic Geothermal National Geological Park, Tengchong, Yunnan, China." data-cap="Steaming ground at Rehai."></li>
+      <li data-src="img/NEW_08-0b012f16.webp" data-alt="Xiaotuanpo Hill at Graveyard of the National Heroes. 3346 soldiers from the 20th Group of the Chinese Expeditionary Force are buried on the hill." data-cap="Guoshang: the stones in the grass, each with a rank and a name."></li>
+    </ul>
+
+<ol class="days">
       <li class="day" id="day-12" data-day="12">
         <span class="dnum">Day 12 <span class="dd">&middot; Mon 5 Oct</span></span>
         <span class="astro" data-day="12"></span>
@@ -1271,37 +1316,53 @@ html.cn .intl-only{display:none}
     <p id="credT">Photographs and maps from Wikimedia Commons, under Creative Commons licences or in the public domain.</p>
     <button class="credits-btn" id="creditsBtn" type="button" aria-expanded="false" aria-controls="creditsList">Show credits</button>
     <ol class="credits" id="creditsList" hidden>
-      <li>Erhai shore (cover) &mdash; Kcx36, <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>, <a href="https://commons.wikimedia.org/wiki/File%3A%E5%A4%A7%E7%90%86%E6%B4%B1%E6%B5%B7%E5%8F%8A%E8%8B%8D%E5%B1%B1_04.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+      <li>Erhai shore (cover) &mdash; CC0 (public domain dedication), <a href="https://commons.wikimedia.org/wiki/File:%E6%B4%B1%E6%B5%B7-2064559.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
       <li>Dali, the south gate &mdash; CC0 (public domain dedication), <a href="https://commons.wikimedia.org/wiki/File:%E5%A4%A7%E7%90%86%E5%8F%A4%E5%9F%8E%E5%8D%97%E9%97%A8-2064560.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
-      <li>Three Pagodas &mdash; Tdxiang, <a href="http://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/wiki/File%3AThree_Pagodas_from_bottom_view.JPG" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+      <li>Three Pagodas at sunset &mdash; CC0 (public domain dedication), <a href="https://commons.wikimedia.org/wiki/File:%E5%B4%87%E5%9C%A3%E5%AF%BA%E4%B8%89%E5%A1%94-2404059.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
       <li>Martini's Yunnan, 1655 &mdash; Martino Martini, public domain, <a href="https://commons.wikimedia.org/wiki/File:IVNNAN_IMPERII_SINARVM_PROVINCIA_DECIMAQVINTA_(1655).jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
       <li>Kublai Khan &mdash; Araniko, public domain, <a href="https://commons.wikimedia.org/wiki/File:YuanEmperorAlbumKhubilaiPortrait.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
       <li>Du Wenxiu's seal &mdash; Gary Todd from Xinzheng, China, <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en" target="_blank" rel="noopener">CC0</a>, <a href="https://commons.wikimedia.org/wiki/File:Jade_Seal_of_Du_Wenxiu,_Supreme_Commander_of_Yunnan_Muslim_Uprising_Army_(10152080003).jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
       <li>Bai tie-dye &mdash; Caitriana Nicholson, <a href="https://creativecommons.org/licenses/by-sa/2.0" target="_blank" rel="noopener">CC BY-SA 2.0</a>, <a href="https://commons.wikimedia.org/wiki/File%3ATie-dyed_cloth.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
       <li>Lijiang old town at night &mdash; chensiyuan, <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>, <a href="https://commons.wikimedia.org/wiki/File:1_lijiang_old_town_night.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
       <li>d'Anville's Yunnan, 1737 &mdash; Jean Baptiste Bourguignon d&#x27;Anville, public domain, <a href="https://commons.wikimedia.org/wiki/File:Anville_Nouvel_atlas_de_la_Chine_-_Page51_yun_nan.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
-      <li>Lijiang old town &mdash; chensiyuan, <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>, <a href="https://commons.wikimedia.org/wiki/File%3A1_lijiang_old_town_2012a.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+      <li>Lijiang old town &mdash; chensiyuan, CC BY-SA 4.0, <a href="https://commons.wikimedia.org/wiki/File:1_lijiang_old_town_2012a.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
       <li>Naxi goatskin rafts &mdash; Joseph Rock, public domain, <a href="https://commons.wikimedia.org/wiki/File:%E7%BA%B3%E8%A5%BF%E6%97%8F%E4%B8%8E%E5%B1%B1%E7%BE%8A%E7%9A%AE%E7%AD%8F.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
       <li>Joseph Rock, 1924 &mdash; National Photo Company Collection, public domain, <a href="https://commons.wikimedia.org/wiki/File:Joseph_D._Rock,_6-27-24_LCCN2016849209.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
       <li>Dongba manuscript &mdash; Daderot, public domain, <a href="https://commons.wikimedia.org/wiki/File:Manuscripts_in_the_Yunnan_Nationalities_Museum_-_DSC04028.JPG" target="_blank" rel="noopener">Wikimedia Commons</a></li>
       <li>Jade Dragon &mdash; CEphoto, Uwe Aranas, <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/wiki/File:Lijiang_Yunnan_China_Jade-Dragon-Snow-Mountain-01.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
-      <li>Tiger Leaping Gorge &mdash; CEphoto, Uwe Aranas, <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/wiki/File%3AYunnan_China_Tiger-Leaping-Gorge-04.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+      <li>Tiger Leaping Gorge, the rapids &mdash; Jason Zhang, CC BY-SA 3.0, <a href="https://commons.wikimedia.org/wiki/File:Tiger_Leaping_Gorge_long-exposure.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
       <li>Dukezong &mdash; Luca Casartelli, <a href="https://creativecommons.org/licenses/by-sa/2.0" target="_blank" rel="noopener">CC BY-SA 2.0</a>, <a href="https://commons.wikimedia.org/wiki/File%3ADukezong_%2821194025155%29.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
       <li>Stanford's Yunnan, 1917 &mdash; Stanford, Edward, 1856-1917 (China Inland Mission), public domain; cropped to the west of the province for this page, <a href="https://commons.wikimedia.org/wiki/File:STANFORD(1917)_p53-54_PLATE16._YUNNAN_(14597193058).jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
       <li>Shangri-La street at night &mdash; Rod Waddington, <a href="https://creativecommons.org/licenses/by-sa/2.0" target="_blank" rel="noopener">CC BY-SA 2.0</a>, <a href="https://commons.wikimedia.org/wiki/File:Shangri-la_street_at_night.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
       <li>Butter lamps inside Songzanlin &mdash; Antoine Taveneaux, <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/wiki/File:Songzanlin_Monastery4.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
-      <li>Ganden Sumtseling &mdash; Luca Casartelli, <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/wiki/File%3AGanden_Sumtseling_Monastery_%28121112473%29.jpeg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
-      <li>Old Theatre Inn at night &mdash; Rod Waddington, <a href="https://creativecommons.org/licenses/by-sa/2.0" target="_blank" rel="noopener">CC BY-SA 2.0</a>, <a href="https://commons.wikimedia.org/wiki/File:Old_Theatre_Inn_in_Shaxi,_Nachtansicht.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+      <li>Ganden Sumtseling on its hill &mdash; Chensiyuan, CC BY-SA 4.0, <a href="https://commons.wikimedia.org/wiki/File:1_songzanlin_2018a.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+<li>Ganden Sumtseling across the wetland (gallery) &mdash; Luca Casartelli, CC BY-SA 3.0, <a href="https://commons.wikimedia.org/wiki/File:Ganden_Sumtseling_Monastery_(12111245485).jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+      <li>The Sideng stage at night &mdash; Rod Waddington, CC BY-SA 2.0, <a href="https://commons.wikimedia.org/wiki/File:%E5%AF%BA%E7%99%BB%E8%A1%97%E5%8F%A4%E6%88%8F%E5%8F%B0_02.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
       <li>Yunnan quan tu, 1864 &mdash; Hubei Official Press, public domain, <a href="https://commons.wikimedia.org/wiki/File:Yunnan_quan_tu._LOC_96685901.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
-      <li>Sideng square &mdash; Anders Johnson, <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a>, <a href="https://commons.wikimedia.org/wiki/File%3AShaxi_Village_-_panoramio.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+      <li>Sideng square at dusk &mdash; CC0 (public domain dedication), <a href="https://commons.wikimedia.org/wiki/File:%E6%B2%99%E6%BA%AA%E5%85%B4%E6%95%99%E5%AF%BA%E6%88%8F%E5%8F%B0-2570280.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+<li>Sideng square by day (gallery) &mdash; Anders Johnson, CC BY 3.0, <a href="https://commons.wikimedia.org/wiki/File:Shaxi_Village_-_panoramio.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+<li>A Bai woman at Sideng market &mdash; Evelynleee, CC BY-SA 4.0, <a href="https://commons.wikimedia.org/wiki/File:Elderly_Bai_woman_in_Shaxi.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
       <li>Ledo road trucks &mdash; Unknown author or not provided (NARA 535540), public domain, <a href="https://commons.wikimedia.org/wiki/File:U.S.-built_Army_trucks_wind_along_the_side_of_the_mountain_over_the_Ledo_supply_road_now_open_from_India_into_Burma_-_NARA_-_535540.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
       <li>Allied lines of communication, 1942–43 &mdash; The Department of History, United States Military Academy, public domain; cropped to the Burma&ndash;Yunnan corner for this page, <a href="https://commons.wikimedia.org/wiki/File:Allied_lines_of_communication_in_Southeast_Asia,_1942-43.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
       <li>First convoy welcomed, 1945 &mdash; Signal Corps Archive from United States, public domain, <a href="https://commons.wikimedia.org/wiki/File:SC_201567_-_Chinese_villagers_of_Yunnan_crowd_around_the_lead_jeep_in_the_first_convoy_to_reach_China_from_India_in_almost_three_years._(53008410025).jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
-      <li>C-46 over the Hump &mdash; United States Army Air Forces, public domain, <a href="https://commons.wikimedia.org/wiki/File:Air_Transport_Command_C-46_flying_The_Hump.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+      <li>C-46 over the Hump &mdash; United States Army Air Corps, public domain, <a href="https://commons.wikimedia.org/wiki/File:231227-F-IO108-005_A_C-46_flies_over_the_Hump.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
       <li>The Salween campaign, 1944 &mdash; US Army Center of Military History (<i>China Defensive 1942&ndash;1945</i>, p. 18; redrawn by W.wolny), public domain, <a href="https://commons.wikimedia.org/wiki/File:The_Salween_campaign_-_11_May-30_June_1944.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
-      <li>Guoshang cemetery &mdash; STW932, <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>, <a href="https://commons.wikimedia.org/wiki/File:Heroes_Graveyard_10.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+      <li>Guoshang cemetery, the steps &mdash; STW932, CC BY-SA 4.0, <a href="https://commons.wikimedia.org/wiki/File:Heroes_Graveyard_05.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+<li>Guoshang cemetery, the stones (gallery) &mdash; STW932, CC BY-SA 4.0, <a href="https://commons.wikimedia.org/wiki/File:Heroes_Graveyard_10.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
       <li>Heshun &mdash; oldhouse.yin, <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/wiki/File%3AHeshun_Old_Town_-_panoramio.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
       <li>Dagunguo &mdash; STW932, <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>, <a href="https://commons.wikimedia.org/wiki/File%3ARehai_28.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+<li>Dali south gate at night (gallery) &mdash; Cs california, CC BY 3.0, <a href="https://commons.wikimedia.org/wiki/File:Dali_guchun1.JPG" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+<li>Xizhou (gallery) &mdash; Brücke-Osteuropa, public domain, <a href="https://commons.wikimedia.org/wiki/File%3AXizhou_03.JPG" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+<li>Dyeing at Zhoucheng (gallery) &mdash; Richard Weil, CC BY-SA 2.0, <a href="https://commons.wikimedia.org/wiki/File:%E5%A4%A7%E7%90%86%E7%99%BD%E6%97%8F%E6%89%8E%E6%9F%93%E6%9F%93%E8%89%B2_01.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+<li>Xiaoputuo islet (gallery) &mdash; CC0 (public domain dedication), <a href="https://commons.wikimedia.org/wiki/File:%E5%B0%8F%E6%99%AE%E9%99%80_1.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+<li>Impression Lijiang (gallery) &mdash; CEphoto, Uwe Aranas, CC BY-SA 3.0, <a href="https://commons.wikimedia.org/wiki/File%3ALijiang_Yunnan_China-Naxi-people-carrying-baskets-01.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+<li>Blue Moon Valley (gallery) &mdash; Liuxingy, CC BY-SA 4.0, <a href="https://commons.wikimedia.org/wiki/File%3A%E4%B8%BD%E6%B1%9F%E7%8E%89%E9%BE%99%E8%93%9D%E6%9C%88%E8%B0%B7_03.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+<li>Jade Dragon in cloud (gallery) &mdash; Rod Waddington from Kergunyah, Australia, CC BY-SA 2.0, <a href="https://commons.wikimedia.org/wiki/File:Jade_Dragon_Snow_Mountain_(50830457312).jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+<li>Militang pasture, Pudacuo (gallery) &mdash; Colin W, CC BY-SA 3.0, <a href="https://commons.wikimedia.org/wiki/File%3AMilitang_Pasture%2C_Potatso_%28Pudacuo%29_National_Park%2C_Diqing_-_panoramio_-_Colin_W.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+<li>Yujin bridge in the rain (gallery) &mdash; Rod Waddington, CC BY-SA 2.0, <a href="https://commons.wikimedia.org/wiki/File:Rainy_Day_in_Shaxi,_Yunnan.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+<li>Shaxi across the fields (gallery) &mdash; Matthieu Lelievre, CC BY-SA 2.0, <a href="https://commons.wikimedia.org/wiki/File:Shaxi,_Yunnan,_China.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+<li>The east gate at Shaxi (gallery) &mdash; Anders Johnson, CC BY 3.0, <a href="https://commons.wikimedia.org/wiki/File%3AShaxi_Village_-_panoramio_%286%29.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+<li>Steaming ground at Rehai (gallery) &mdash; STW932, CC BY-SA 4.0, <a href="https://commons.wikimedia.org/wiki/File:Rehai_26.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
       <li>Night lights &mdash; NASA Earth Observatory images by Joshua Stevens, using Suomi NPP VIIRS data from Miguel Rom&aacute;n, NASA's Goddard Space Flight Center, public domain; cropped to western Yunnan and northern Myanmar for this page, <a href="https://commons.wikimedia.org/wiki/File:BlackMarble20161km.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
       <li class="drawn">The route map, the small maps at the head of each chapter, the elevation profile, the section and the four sketch maps (Erhai, Stone Drum, the Burma Road, the border) were drawn for this page, for reading not navigating; coastlines, rivers, borders and distances are approximate and the section is not to scale. The cover moon is drawn from the USNO phase times above. Daily forecasts from <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>, kept on the phone once fetched.</li>
     </ol>
@@ -1970,19 +2031,26 @@ if ("IntersectionObserver" in window && !RM) {
 
 /* ---------- lightbox: black backdrop, the caption only; credits are in the footer ---------- */
 var shots = $$(".win .photo"), lb = $("#lb"), lbImg = $("#lbImg"), lbCap = $("#lbCap"), lbCount = $("#lbCount"), at = 0, lastFocus = null;
+var SET = null;   /* the pictures the lightbox is paging through: null = the page's figures, else a gallery */
+function lbCount_(){ return SET ? SET.length : shots.length; }
+function lbItem(i){
+  if (SET) return SET[i];
+  var b = shots[i], im = b.querySelector("img"), cap = b.closest("figure").querySelector("figcaption");
+  return {src: im.src, alt: im.alt, cap: cap ? cap.innerHTML : "", btn: b, wrap: b.closest(".lights-wrap")};
+}
 function show(i){
-  at = (i + shots.length) % shots.length;
-  var b = shots[at], im = b.querySelector("img"), cap = b.closest("figure").querySelector("figcaption");
-  lbImg.src = im.src; lbImg.alt = im.alt;
+  at = (i + lbCount_()) % lbCount_();
+  var it = lbItem(at);
+  lbImg.src = it.src; lbImg.alt = it.alt || "";
   var old = lbPic.querySelector("svg"); if (old) old.remove();
-  var wrap = b.closest(".lights-wrap"), ov = wrap && wrap.querySelector("svg");
+  var ov = it.wrap && it.wrap.querySelector("svg");
   lbPic.classList.toggle("lights-wrap", !!ov);
   if (ov) lbPic.appendChild(ov.cloneNode(true));
-  lbCap.innerHTML = cap ? cap.innerHTML : "";
-  lbCount.textContent = (at + 1) + " / " + shots.length;
+  lbCap.innerHTML = it.cap || "";
+  lbCount.textContent = (at + 1) + " / " + lbCount_();
   lbHd.textContent = "";
   fitLb();
-  loadHires(at, b);
+  if (it.btn) loadHires(at, it.btn);
 }
 var lbStage = $("#lbStage"), lbPic = $("#lbPic");
 function fitLb(){
@@ -1997,21 +2065,27 @@ var lbHd = $("#lbHd"), hires = {};
 function loadHires(i, b){
   var f = b.getAttribute("data-hires");
   if (!f) return;
-  if (hires[i]) { lbImg.src = hires[i]; lbHd.textContent = "full resolution"; return; }
+  if (hires[f]) { lbImg.src = hires[f]; lbHd.textContent = "full resolution"; return; }
   lbHd.textContent = "loading the full-resolution map…";
   var im = new Image(), done = false;
   var timer = setTimeout(function(){ if (!done) { done = true; im.src = ""; if (at === i) lbHd.textContent = ""; } }, 60000);
   im.decoding = "async";
   im.onload = function(){
-    if (done) return; done = true; clearTimeout(timer); hires[i] = im.src;
+    if (done) return; done = true; clearTimeout(timer); hires[f] = im.src;
     if (at === i && lb.classList.contains("open")) { lbImg.src = im.src; lbHd.textContent = "full resolution · " + im.naturalWidth.toLocaleString("en-US") + " px wide"; }
   };
   im.onerror = function(){ if (done) return; done = true; clearTimeout(timer); if (at === i) lbHd.textContent = ""; };
   im.src = f;   /* a file beside the page, fetched only now and kept by the worker */
 }
-function openLb(i){ lastFocus = document.activeElement; show(i); lb.classList.add("open"); document.body.style.overflow = "hidden"; $("#lbX").focus(); }
-function closeLb(){ lb.classList.remove("open"); document.body.style.overflow = ""; lbImg.removeAttribute("src"); lbHd.textContent = ""; if (lastFocus) lastFocus.focus(); }
+function openLb(i, set){ SET = set || null; lastFocus = document.activeElement; show(i); lb.classList.add("open"); document.body.style.overflow = "hidden"; $("#lbX").focus(); }
+function closeLb(){ lb.classList.remove("open"); document.body.style.overflow = ""; lbImg.removeAttribute("src"); lbHd.textContent = ""; SET = null; if (lastFocus) lastFocus.focus(); }
 shots.forEach(function(b, i){ b.addEventListener("click", function(){ openLb(i); }); });
+$$(".more-btn").forEach(function(b){
+  b.addEventListener("click", function(){
+    var ul = document.getElementById(b.dataset.gal); if (!ul) return;
+    openLb(0, $$("li", ul).map(function(li){ return {src: li.dataset.src, alt: li.dataset.alt || "", cap: li.dataset.cap || ""}; }));
+  });
+});
 $("#lbX").addEventListener("click", closeLb);
 $("#lbPrev").addEventListener("click", function(){ show(at - 1); });
 $("#lbNext").addEventListener("click", function(){ show(at + 1); });
@@ -2038,8 +2112,8 @@ function wrapText(x, text, max, size, fam){
 }
 function roundRect(x, l, t, w, h, r){ x.beginPath(); x.moveTo(l + r, t); x.arcTo(l + w, t, l + w, t + h, r); x.arcTo(l + w, t + h, l, t + h, r); x.arcTo(l, t + h, l, t, r); x.arcTo(l, t, l + w, t, r); x.closePath(); }
 /* the photograph on each night's card: the day's own picture, never the same one twice */
-var POSTCARD = {1:"NEW_27", 2:"PHOTO_03", 3:"NEW_18", 4:"NEW_15", 5:"NEW_06", 6:"PHOTO_06", 7:"PHOTO_10", 8:"PHOTO_09",
-                9:"PHOTO_13", 10:"NEW_11", 11:"NEW_13", 12:"NEW_02", 13:"PHOTO_15", 14:"PHOTO_16", 15:"NEW_01"};
+var POSTCARD = {1:"NEW_27", 2:"NEW_28", 3:"NEW_18", 4:"NEW_15", 5:"NEW_06", 6:"NEW_30", 7:"NEW_31", 8:"NEW_32",
+                9:"NEW_36", 10:"NEW_35", 11:"NEW_13", 12:"NEW_34", 13:"PHOTO_15", 14:"PHOTO_16", 15:"NEW_01"};
 function postcard(n, text, note){
   var d = DAYS[n-1], el = $('.win img[data-tok="' + POSTCARD[n] + '"]') || chapters[chapterOf(n)].querySelector(".win img");
   var fig = new Image();
