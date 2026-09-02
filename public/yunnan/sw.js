@@ -5,11 +5,11 @@
    Opening the page: the worker first asks the server for build.txt (a few bytes, never cached).
    If it names this build, the cached page is shown at once; if it names a newer one, the new page
    is fetched and shown, no reload needed. No answer within WAIT ms, or offline: the cached page. */
-var C = 'yunnan-dcc04bab6a';
+var C = 'yunnan-0bf2efd015';
 var IMG = 'yunnan-img';
 var PAGE = ['./', './manifest.webmanifest'];
-var IMAGES = ["./img/NEW_28-7eece22f.webp", "./img/NEW_27-d26ca027.webp", "./img/NEW_29-d7c38418.webp", "./img/NEW_20-e8a0f2ac.webp", "./img/NEW_04-bcbb857e.webp", "./img/NEW_05-6352f5c5.webp", "./img/PHOTO_05-28ca7238.webp", "./img/NEW_18-f2033037.webp", "./img/NEW_21-698424ea.webp", "./img/NEW_12-cd3fbd30.webp", "./img/NEW_07-793be841.webp", "./img/NEW_06-7e130a5d.webp", "./img/NEW_30-11323114.webp", "./img/NEW_15-22cd0e46.webp", "./img/NEW_09-6673f6b9.webp", "./img/NEW_31-831d14c5.webp", "./img/NEW_26-f7dd39e2.webp", "./img/PHOTO_11-a05f2be9.webp", "./img/NEW_17-e6a131fe.webp", "./img/NEW_32-25249f62.webp", "./img/NEW_35-48ac7c6f.webp", "./img/NEW_22-b8ac8a82.webp", "./img/NEW_36-d2734325.webp", "./img/NEW_37-c09d79b8.webp", "./img/NEW_13-1af9e1c0.webp", "./img/NEW_25-19639e45.webp", "./img/NEW_03-3e125c8b.webp", "./img/NEW_34-79adec9f.webp", "./img/NEW_24-79e3d08a.webp", "./img/NEW_33-a711be91.webp", "./img/PHOTO_15-ac50b535.webp", "./img/PHOTO_16-fce113b3.webp", "./img/NEW_01-e5ae31a5.webp"];
-var HIRES = ["./img/hires-NEW_20-9b2158f2.jpg", "./img/hires-NEW_21-7c6c627d.jpg", "./img/hires-NEW_26-df62bc14.jpg", "./img/hires-NEW_22-739ced55.jpg", "./img/hires-NEW_25-d2fa8f93.jpg", "./img/GAL_07-0e96386a.webp", "./img/PHOTO_04-21956eea.webp", "./img/GAL_02-bee954bb.webp", "./img/GAL_01-c4e2752e.webp", "./img/PHOTO_07-fb4982a5.webp", "./img/PHOTO_08-6b4b7773.webp", "./img/GAL_03-a131e661.webp", "./img/PHOTO_12-1e717500.webp", "./img/PHOTO_09-7f856a59.webp", "./img/GAL_04-ff014b4b.webp", "./img/GAL_05-f025fab3.webp", "./img/PHOTO_14-4537572c.webp", "./img/PHOTO_13-55782a6d.webp", "./img/GAL_06-00c0f3c3.webp", "./img/NEW_08-0b012f16.webp"];     /* the full-resolution plates: fetched only when a plate is opened, then kept */
+var IMAGES = ["./img/NEW_28-a7db9261.jpg", "./img/NEW_27-df2a1d08.jpg", "./img/NEW_29-5e775a2a.jpg", "./img/NEW_20-3ffc79de.jpg", "./img/NEW_04-24cd6d07.jpg", "./img/NEW_05-3f42dbf0.jpg", "./img/PHOTO_05-dfb7229a.jpg", "./img/NEW_18-afe8713b.jpg", "./img/NEW_21-802cb6ec.jpg", "./img/NEW_12-4287559f.jpg", "./img/NEW_07-063cc28d.jpg", "./img/NEW_06-ea3bb926.jpg", "./img/NEW_30-39f1ecbc.jpg", "./img/NEW_15-fa832e6c.jpg", "./img/NEW_09-cc97eb93.jpg", "./img/NEW_31-f8ce538b.jpg", "./img/NEW_26-138c2c5e.jpg", "./img/PHOTO_11-d6e8758c.jpg", "./img/NEW_17-32b49891.jpg", "./img/NEW_32-9cad694e.jpg", "./img/NEW_35-0c71593a.jpg", "./img/NEW_22-782f4d04.jpg", "./img/NEW_36-8230fcd1.jpg", "./img/NEW_37-303b1a01.jpg", "./img/NEW_13-61e4cd0e.jpg", "./img/NEW_25-ffa4f529.jpg", "./img/NEW_03-ad3ed1db.jpg", "./img/NEW_34-025b914b.jpg", "./img/NEW_24-c14c1b6a.jpg", "./img/NEW_33-a5d3b6d7.jpg", "./img/PHOTO_15-d8a09da2.jpg", "./img/PHOTO_16-fa595ceb.jpg", "./img/NEW_01-725af3dd.jpg"];
+var HIRES = ["./img/hires-NEW_20-9b2158f2.jpg", "./img/hires-NEW_21-7c6c627d.jpg", "./img/hires-NEW_26-df62bc14.jpg", "./img/hires-NEW_22-739ced55.jpg", "./img/hires-NEW_25-d2fa8f93.jpg", "./img/GAL_07-53242724.jpg", "./img/PHOTO_04-721e19b3.jpg", "./img/GAL_02-25febf79.jpg", "./img/GAL_01-d2140f31.jpg", "./img/PHOTO_07-165a60c0.jpg", "./img/PHOTO_08-ea89511f.jpg", "./img/GAL_03-5168e89b.jpg", "./img/PHOTO_12-e14faf38.jpg", "./img/PHOTO_09-5359cf00.jpg", "./img/GAL_04-bcdf33d8.jpg", "./img/GAL_05-aa598ed1.jpg", "./img/PHOTO_14-72c4e1f5.jpg", "./img/PHOTO_13-bf841286.jpg", "./img/GAL_06-49312a92.jpg", "./img/NEW_08-a0f19cf2.jpg"];     /* the full-resolution plates: fetched only when a plate is opened, then kept */
 var WAIT = 1500;        /* ms to wait for build.txt before showing the cached page */
 var WAIT_NEW = 6000;    /* ms to wait for a newer page once we know there is one */
 
@@ -33,16 +33,21 @@ self.addEventListener('activate', function (e) {
       var mine = C.slice(0, C.lastIndexOf('-') + 1);   /* only this page's own old page caches */
       return Promise.all(k.map(function (n) { return (n !== C && n !== IMG && n.indexOf(mine) === 0 && /^[0-9a-f]{10}$/.test(n.slice(mine.length))) ? caches.delete(n) : null; }));
     }),
-    caches.open(IMG).then(function (c) {   /* drop images this build no longer uses */
-      return c.keys().then(function (reqs) {
-        return Promise.all(reqs.map(function (rq) {
-          var path = new URL(rq.url).pathname, keep = IMAGES.concat(HIRES).some(function (u) { return path.slice(-u.length + 1) === u.slice(1); });
-          return keep ? null : c.delete(rq);
-        }));
-      });
-    })
   ]).then(function () { return self.clients.claim(); }));
 });
+
+/* drop images this build no longer uses: only once a page on this build says so, never while an older page,
+   whose pictures may still be loading, is on screen */
+function prune() {
+  return caches.open(IMG).then(function (c) {
+    return c.keys().then(function (reqs) {
+      return Promise.all(reqs.map(function (rq) {
+        var path = new URL(rq.url).pathname, keep = IMAGES.concat(HIRES).some(function (u) { return path.slice(-u.length + 1) === u.slice(1); });
+        return keep ? null : c.delete(rq);
+      }));
+    });
+  });
+}
 
 function timeout(ms) { return new Promise(function (_, rej) { setTimeout(function () { rej(new Error('timeout')); }, ms); }); }
 
@@ -88,5 +93,7 @@ self.addEventListener('fetch', function (e) {
 
 /* the page asks which build the worker serves, to decide whether it needs to reload itself */
 self.addEventListener('message', function (e) {
-  if (e.data && e.data.type === 'build' && e.ports && e.ports[0]) e.ports[0].postMessage({build: C});
+  if (!e.data) return;
+  if (e.data.type === 'build' && e.ports && e.ports[0]) e.ports[0].postMessage({build: C});
+  if (e.data.type === 'prune' && e.data.build === C) e.waitUntil(prune());
 });
