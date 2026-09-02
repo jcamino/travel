@@ -121,12 +121,6 @@ p{margin:0 0 1.1rem; text-wrap:pretty}
 /* the plates: old maps shown whole, behind a lacquer rim, in the same lit-window light */
 .win.plate{margin:2rem 0 1.8rem}
 .win.plate .photo img{aspect-ratio:auto; height:auto}
-/* photographs keep their own proportions; only the cover and the desktop pairs fill a fixed frame */
-.win.portrait .photo img,.win.landscape .photo img,.win.wide .photo img,.win.sq .photo img{aspect-ratio:auto; height:auto}
-@media (max-width:599px){
-  .pair{grid-template-columns:1fr}
-  .pair .win .photo img{aspect-ratio:auto; height:auto}
-}
 .win.plate .photo{background:#0a0e1e; border-color:#6b4623}
 .win.plate .photo::after{background:linear-gradient(rgba(242,184,90,.05), rgba(242,184,90,.05)), radial-gradient(ellipse at 50% 40%, rgba(8,10,22,0) 0%, rgba(8,10,22,.10) 60%, rgba(8,10,22,.38) 100%);
   box-shadow:inset 0 0 0 1px rgba(242,184,90,.22), inset 0 0 0 7px rgba(90,58,30,.55), inset 0 0 0 8px rgba(242,184,90,.14)}
@@ -505,6 +499,12 @@ p{margin:0 0 1.1rem; text-wrap:pretty}
 .cn-only{display:none}
 html.cn .cn-only{display:inline}
 html.cn .intl-only{display:none}
+/* photographs keep their own proportions; only the cover and the desktop pairs fill a fixed frame */
+.win.portrait .photo img,.win.landscape .photo img,.win.wide .photo img,.win.sq .photo img{aspect-ratio:auto; height:auto}
+@media (max-width:599px){
+  .pair{grid-template-columns:1fr}
+  .pair .win .photo img{aspect-ratio:auto; height:auto}
+}
 </style>
 <script>
 /* Wording flag: a few passages have a second version, shown when the device keeps Chinese time.
@@ -1018,7 +1018,7 @@ html.cn .intl-only{display:none}
       </figure>
     </div>
 
-    <p>Before the war the line was for jade. Burmese jadeite came over the passes to Tengchong, the first place in China it was cut and sold, and the families of Heshun, the village next door, went the other way, to Mandalay and Rangoon, and sent money home. What they built with it was a farming village of stone lanes and courtyard houses and, in 1928, a library, expanded from a reading society the emigrants had founded in 1924 and still the largest rural library in China, with about eighty thousand volumes and the odd Western cornice on a Chinese hall. Javier leaves from here at midday on Day 13: Heshun in the morning, then the hilltop airport.</p>
+    <p>Before the war, what crossed this border was jade. Burmese jadeite came over the passes to Tengchong, the first place in China where it was cut and sold, and the families of Heshun, the village next door, went the other way, to Mandalay and Rangoon, and sent money home. What they built with it was a farming village of stone lanes and courtyard houses and, in 1928, a library, expanded from a reading society the emigrants had founded in 1924 and still the largest rural library in China, with about eighty thousand volumes and the odd Western cornice on a Chinese hall. Javier leaves from here at midday on Day 13: Heshun in the morning, then the hilltop airport.</p>
     <figure class="fig sketch" data-sketch="border">
       <div class="frame"></div>
       <figcaption>The fifty kilometres: Tengchong, Heshun four kilometres west, Rehai and the cones, the hilltop airport Javier leaves from, the Houqiao road to the border and to Myitkyina beyond; the Gaoligong and the Salween behind you to the east, where the 20th Group Army crossed on 11 May 1944 and came over the ridge to the siege. Tengchong shares 151 km of border with Myanmar. Approximate.</figcaption>
