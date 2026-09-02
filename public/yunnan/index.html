@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Fourteen Nights</title>
 <meta name="description" content="Fourteen nights in western Yunnan, 24 September to 8 October 2026: Dali, Lijiang, Shangri-La, Shaxi and Tengchong, the history of the road, one chapter per hotel night.">
-<meta name="build" content="yunnan-4042dab18b">
+<meta name="build" content="yunnan-e3506a30c7">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="travel.jcamino.net">
 <meta property="og:title" content="Fourteen Nights">
@@ -617,8 +617,8 @@ html.cn .intl-only{display:none}
     <figure class="fig locator" data-loc="ch0"><div class="frame"></div><figcaption><b>Night I</b> &middot; From Beijing by air, landing at 18:30. Dali, 1,980 m, the first stop; the road north is still ahead.</figcaption></figure>
 
     <figure class="win landscape night">
-      <button class="photo" type="button" aria-label="Open photograph: the south gate of Dali old town at night"><img src="img/NEW_16-f96e2679.jpg" data-tok="NEW_16" width="1200" height="799" alt="The south gate of Dali old town lit at night, its tiered roofs and the crenellated wall outlined in light." loading="lazy" decoding="async" style="--ar:1200/799"></button>
-      <figcaption>The south gate of the walled town in the evening, the way you first see it on Night I.</figcaption>
+      <button class="photo" type="button" aria-label="Open photograph: the south gate of Dali old town"><img src="img/NEW_27-df2a1d08.jpg" data-tok="NEW_27" width="1400" height="1049" alt="The south gate of Dali old town: the tiered gate tower over the stone wall, flowers along the approach." loading="lazy" decoding="async" style="--ar:1400/1049"></button>
+      <figcaption>The south gate of the walled town, the way in on Night I.</figcaption>
     </figure>
 
     <p class="lead">The first lamp is lit beside a lake that was a capital for five hundred years before anyone in Beijing had heard of it.</p>
@@ -1272,7 +1272,7 @@ html.cn .intl-only{display:none}
     <button class="credits-btn" id="creditsBtn" type="button" aria-expanded="false" aria-controls="creditsList">Show credits</button>
     <ol class="credits" id="creditsList" hidden>
       <li>Erhai shore (cover) &mdash; Kcx36, <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>, <a href="https://commons.wikimedia.org/wiki/File%3A%E5%A4%A7%E7%90%86%E6%B4%B1%E6%B5%B7%E5%8F%8A%E8%8B%8D%E5%B1%B1_04.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
-      <li>Dali south gate at night &mdash; Brian Dell Bdell555, public domain, <a href="https://commons.wikimedia.org/wiki/File:Dali_south_gate_at_night.JPG" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+      <li>Dali, the south gate &mdash; CC0 (public domain dedication), <a href="https://commons.wikimedia.org/wiki/File:%E5%A4%A7%E7%90%86%E5%8F%A4%E5%9F%8E%E5%8D%97%E9%97%A8-2064560.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
       <li>Three Pagodas &mdash; Tdxiang, <a href="http://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/wiki/File%3AThree_Pagodas_from_bottom_view.JPG" target="_blank" rel="noopener">Wikimedia Commons</a></li>
       <li>Martini's Yunnan, 1655 &mdash; Martino Martini, public domain, <a href="https://commons.wikimedia.org/wiki/File:IVNNAN_IMPERII_SINARVM_PROVINCIA_DECIMAQVINTA_(1655).jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
       <li>Kublai Khan &mdash; Araniko, public domain, <a href="https://commons.wikimedia.org/wiki/File:YuanEmperorAlbumKhubilaiPortrait.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
@@ -2038,7 +2038,7 @@ function wrapText(x, text, max, size, fam){
 }
 function roundRect(x, l, t, w, h, r){ x.beginPath(); x.moveTo(l + r, t); x.arcTo(l + w, t, l + w, t + h, r); x.arcTo(l + w, t + h, l, t + h, r); x.arcTo(l, t + h, l, t, r); x.arcTo(l, t, l + w, t, r); x.closePath(); }
 /* the photograph on each night's card: the day's own picture, never the same one twice */
-var POSTCARD = {1:"NEW_16", 2:"PHOTO_03", 3:"NEW_18", 4:"NEW_15", 5:"NEW_06", 6:"PHOTO_06", 7:"PHOTO_10", 8:"PHOTO_09",
+var POSTCARD = {1:"NEW_27", 2:"PHOTO_03", 3:"NEW_18", 4:"NEW_15", 5:"NEW_06", 6:"PHOTO_06", 7:"PHOTO_10", 8:"PHOTO_09",
                 9:"PHOTO_13", 10:"NEW_11", 11:"NEW_13", 12:"NEW_02", 13:"PHOTO_15", 14:"PHOTO_16", 15:"NEW_01"};
 function postcard(n, text, note){
   var d = DAYS[n-1], el = $('.win img[data-tok="' + POSTCARD[n] + '"]') || chapters[chapterOf(n)].querySelector(".win img");
