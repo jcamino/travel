@@ -5,10 +5,11 @@
    Opening the page: the worker first asks the server for build.txt (a few bytes, never cached).
    If it names this build, the cached page is shown at once; if it names a newer one, the new page
    is fetched and shown, no reload needed. No answer within WAIT ms, or offline: the cached page. */
-var C = 'yunnan-4879106d89';
+var C = 'yunnan-b411f970ef';
 var IMG = 'yunnan-img';
 var PAGE = ['./', './manifest.webmanifest'];
 var IMAGES = ["./img/PHOTO_03-4d696e3c.jpg", "./img/NEW_16-f96e2679.jpg", "./img/PHOTO_02-3a38f222.jpg", "./img/NEW_20-3ffc79de.jpg", "./img/NEW_04-24cd6d07.jpg", "./img/NEW_05-3f42dbf0.jpg", "./img/PHOTO_05-dfb7229a.jpg", "./img/NEW_18-afe8713b.jpg", "./img/NEW_21-802cb6ec.jpg", "./img/NEW_12-4287559f.jpg", "./img/NEW_07-063cc28d.jpg", "./img/NEW_06-ea3bb926.jpg", "./img/PHOTO_06-dae33b5a.jpg", "./img/NEW_15-fa832e6c.jpg", "./img/NEW_09-cc97eb93.jpg", "./img/PHOTO_10-8e449d73.jpg", "./img/NEW_26-138c2c5e.jpg", "./img/PHOTO_11-d6e8758c.jpg", "./img/NEW_17-32b49891.jpg", "./img/PHOTO_09-5359cf00.jpg", "./img/NEW_11-50448bb1.jpg", "./img/NEW_22-782f4d04.jpg", "./img/PHOTO_13-bf841286.jpg", "./img/NEW_13-61e4cd0e.jpg", "./img/NEW_25-ffa4f529.jpg", "./img/NEW_03-ad3ed1db.jpg", "./img/NEW_02-5a5c3359.jpg", "./img/NEW_24-c14c1b6a.jpg", "./img/NEW_08-a0f19cf2.jpg", "./img/PHOTO_15-d8a09da2.jpg", "./img/PHOTO_16-fa595ceb.jpg", "./img/NEW_01-725af3dd.jpg"];
+var HIRES = ["./img/hires-NEW_20-9b2158f2.jpg", "./img/hires-NEW_21-7c6c627d.jpg", "./img/hires-NEW_26-df62bc14.jpg", "./img/hires-NEW_22-739ced55.jpg", "./img/hires-NEW_25-d2fa8f93.jpg"];     /* the full-resolution plates: fetched only when a plate is opened, then kept */
 var WAIT = 1500;        /* ms to wait for build.txt before showing the cached page */
 var WAIT_NEW = 6000;    /* ms to wait for a newer page once we know there is one */
 
@@ -35,7 +36,7 @@ self.addEventListener('activate', function (e) {
     caches.open(IMG).then(function (c) {   /* drop images this build no longer uses */
       return c.keys().then(function (reqs) {
         return Promise.all(reqs.map(function (rq) {
-          var path = new URL(rq.url).pathname, keep = IMAGES.some(function (u) { return path.slice(-u.length + 1) === u.slice(1); });
+          var path = new URL(rq.url).pathname, keep = IMAGES.concat(HIRES).some(function (u) { return path.slice(-u.length + 1) === u.slice(1); });
           return keep ? null : c.delete(rq);
         }));
       });

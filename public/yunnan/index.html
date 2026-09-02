@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Fourteen Nights</title>
 <meta name="description" content="Fourteen nights in western Yunnan, 24 September to 8 October 2026: Dali, Lijiang, Shangri-La, Shaxi and Tengchong, the history of the road, one chapter per hotel night.">
-<meta name="build" content="yunnan-4879106d89">
+<meta name="build" content="yunnan-b411f970ef">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="travel.jcamino.net">
 <meta property="og:title" content="Fourteen Nights">
@@ -346,9 +346,10 @@ p{margin:0 0 1.1rem; text-wrap:pretty}
 /* ---------- lightbox ---------- */
 .lb{position:fixed; inset:0; z-index:90; background:#000; display:none; flex-direction:column}
 .lb.open{display:flex}
-.lb-stage{flex:1 1 auto; display:grid; place-items:center; padding:calc(60px + env(safe-area-inset-top)) 8px 4px; min-height:0}
-.lb-stage img{max-width:100%; max-height:100%; object-fit:contain; width:auto; height:auto}
-.lb-cap{flex:0 0 auto; color:var(--paper); font-size:1rem; line-height:1.45; padding:12px 20px calc(18px + env(safe-area-inset-bottom));
+.lb-stage{flex:1 1 auto; display:flex; align-items:center; justify-content:center; padding:calc(60px + env(safe-area-inset-top)) 8px 4px; min-height:0; overflow:hidden}
+.lb-pic{position:relative; flex:0 1 auto; max-width:100%; max-height:100%; min-height:0; display:flex}
+.lb-stage img{max-width:100%; max-height:100%; object-fit:contain; width:auto; height:auto; flex:0 1 auto; display:block}
+.lb-cap{flex:0 1 auto; max-height:38vh; overflow-y:auto; -webkit-overflow-scrolling:touch; color:var(--paper); font-size:1rem; line-height:1.45; padding:12px 20px calc(18px + env(safe-area-inset-bottom));
   max-width:var(--col); margin:0 auto; text-align:center}
 .lb-cap .cred{display:block; color:var(--moth); font-size:0.9375rem; margin-top:.35rem}
 .lb-cap a{color:#a9b5cc; display:inline-block; padding:10px 4px; margin:-10px -4px}
@@ -359,6 +360,8 @@ p{margin:0 0 1.1rem; text-wrap:pretty}
   background:rgba(24,32,66,.8); color:#fff; font-size:1.5rem; display:grid; place-items:center; z-index:2}
 .lb-prev{left:8px} .lb-next{right:8px}
 .lb-count{position:absolute; top:calc(22px + env(safe-area-inset-top)); left:16px; color:var(--moth); font-family:var(--mono); font-size:0.9375rem; letter-spacing:.1em}
+.lb-hd{position:absolute; top:calc(44px + env(safe-area-inset-top)); left:16px; color:var(--lamp); font-family:var(--mono); font-size:0.8125rem; letter-spacing:.06em; pointer-events:none}
+.lb-hd:empty{display:none}
 
 /* ---------- desktop rail ---------- */
 .rail{display:none}
@@ -632,7 +635,7 @@ html.cn .intl-only{display:none}
     <p><span class="intl-only">That is the night Yunnan first belonged to an empire ruled from the north. It has belonged to one ever since, with intervals. One began in 1856,</span><span class="cn-only">That is the night Yunnan came under an empire ruled from the north. The rebellion began in 1856,</span> when a massacre of Muslims organised by a Qing official in Kunming set off a rising across the province. Du Wenxiu, a Muslim scholar born in Yongchang, which is Baoshan, where you will sleep on Night XI, made Dali the capital of Pingnan Guo, the Kingdom of the Pacified South, and ruled it as Sultan Suleiman for sixteen years from the walled town you walk through on your first evening.</p>
 
     <figure class="win plate">
-      <button class="photo" type="button" aria-label="Open map: Martino Martini&#39;s map of Yunnan, 1655"><img src="img/NEW_20-3ffc79de.jpg" width="1100" height="909" alt="Martino Martini&#39;s 1655 map of Yunnan province: hand-coloured, mountains as little hills, Tali and its lake left of centre, Tibet at the left edge, the kingdom of Mien below." loading="lazy" decoding="async" style="--ar:1100/909"></button>
+      <button class="photo" data-hires="img/hires-NEW_20-9b2158f2.jpg" type="button" aria-label="Open map: Martino Martini&#39;s map of Yunnan, 1655"><img src="img/NEW_20-3ffc79de.jpg" width="1100" height="909" alt="Martino Martini&#39;s 1655 map of Yunnan province: hand-coloured, mountains as little hills, Tali and its lake left of centre, Tibet at the left edge, the kingdom of Mien below." loading="lazy" decoding="async" style="--ar:1100/909"></button>
       <figcaption><b>Plate &middot; 1655</b> &middot; Yunnan as Europe first saw it: Martino Martini's sheet from the <i>Novus Atlas Sinensis</i>, printed by Joan Blaeu in Amsterdam as part of his <i>Atlas Maior</i>, drawn by a Jesuit from Chinese provincial maps. Look for <span class="on">Tali</span> and its lake left of centre, <span class="on">Likiang</span> above it towards the top, <span class="on">Iungchang</span>, which is Yongchang, the Baoshan of Night XI, to the west, and <span class="on">Tibet</span> and the kingdom of <span class="on">Mien</span>, Burma, at the edges.</figcaption>
     </figure>
 
@@ -701,7 +704,7 @@ html.cn .intl-only{display:none}
     </figure>
 
     <figure class="win plate">
-      <button class="photo" type="button" aria-label="Open map: d&#39;Anville&#39;s map of Yunnan, 1737"><img src="img/NEW_21-802cb6ec.jpg" width="1100" height="932" alt="Jean-Baptiste d&#39;Anville&#39;s 1737 engraved map of the province of Yunnan, mountains hatched, the Terres des Lamas at the top left and the kingdom of Pegou at the bottom left." loading="lazy" decoding="async" style="--ar:1100/932"></button>
+      <button class="photo" data-hires="img/hires-NEW_21-7c6c627d.jpg" type="button" aria-label="Open map: d&#39;Anville&#39;s map of Yunnan, 1737"><img src="img/NEW_21-802cb6ec.jpg" width="1100" height="932" alt="Jean-Baptiste d&#39;Anville&#39;s 1737 engraved map of the province of Yunnan, mountains hatched, the Terres des Lamas at the top left and the kingdom of Pegou at the bottom left." loading="lazy" decoding="async" style="--ar:1100/932"></button>
       <figcaption><b>Plate &middot; 1737</b> &middot; The first surveyed map of the province: d'Anville's <i>Province d'Yun-nan</i> from the <i>Nouvel Atlas de la Chine</i>, The Hague, 1737, engraved from the land survey the Kangxi emperor had his Jesuits make across the empire between 1708 and 1716. Look for <span class="on">Li-kiang fou</span> near the top left, just under the <span class="on">Terres des Lamas</span>; <span class="on">Ta-li fou</span> and its lake below it; <span class="on">Se-tchuen</span> along the top edge, the way the 1253 columns came; and the <span class="on">Royaume de Pegou</span>, Burma, at the bottom left. Tonight's bend of the Jinsha is the river that loops north of Li-kiang.</figcaption>
     </figure>
 
@@ -802,7 +805,7 @@ html.cn .intl-only{display:none}
     <div class="note"><b>1933 &middot; 2001 &middot; The name</b>James Hilton published <i>Lost Horizon</i> in 1933 and invented a lamasery called Shangri-La. Rock's illustrated dispatches from these valleys are the usual suspect for where he got it. On 17 December 2001 the county of Zhongdian, having won a bureaucratic competition against rival claimants, was renamed Shangri-La by the State Council. The town has been full ever since.</div>
 
     <figure class="win plate">
-      <button class="photo" type="button" aria-label="Open map: the Yunnan sheet of Stanford&#39;s atlas of China, 1917, cropped to the west of the province"><img src="img/NEW_26-138c2c5e.jpg" width="1000" height="1246" alt="The Yunnan sheet of Stanford&#39;s Complete Atlas of China, 1917, cropped to the west of the province: the Salween, Mekong and Yangtze running side by side, Chungtien, Likiang, Talifu with its lake, Tengyueh and the Burma border." loading="lazy" decoding="async" style="--ar:1000/1246"></button>
+      <button class="photo" data-hires="img/hires-NEW_26-df62bc14.jpg" type="button" aria-label="Open map: the Yunnan sheet of Stanford&#39;s atlas of China, 1917, cropped to the west of the province"><img src="img/NEW_26-138c2c5e.jpg" width="1000" height="1246" alt="The Yunnan sheet of Stanford&#39;s Complete Atlas of China, 1917, cropped to the west of the province: the Salween, Mekong and Yangtze running side by side, Chungtien, Likiang, Talifu with its lake, Tengyueh and the Burma border." loading="lazy" decoding="async" style="--ar:1000/1246"></button>
       <figcaption><b>Plate &middot; 1917</b> &middot; The town before the name: the west of the province from Stanford's <i>Complete Atlas of China</i>, drawn in London for the China Inland Mission, five years before Rock settled below Jade Dragon. Look for <span class="on">Chungtien</span> at 11,500 ft near the top right, which is tonight's Shangri-La under the name it carried until 2001; the three rivers, <span class="on">Salween</span>, <span class="on">Mekong</span> and <span class="on">Yangtze kiang</span>, running side by side down the middle; <span class="on">Shihku</span>, Stone Drum, on the Yangtze west of <span class="on">Likiang</span>; <span class="on">Talifu</span> and <span class="on">Erh Hai</span>; <span class="on">Tengyueh</span>, Tengchong, close to the red line of Burma. Cropped for this page.</figcaption>
     </figure>
 
@@ -868,7 +871,7 @@ html.cn .intl-only{display:none}
     <p>The Tea Horse Road is the name for the caravan routes that carried brick tea out of Yunnan and Sichuan into Tibet and brought Tibetan ponies back, a trade the Song court ran as policy, since a state that grows tea can buy cavalry from a country that cannot. The Yunnan branch went up through Dali, Lijiang and Gyalthang, exactly the way you have just come, and Shaxi was a trading post on it from the Tang, at its richest under the Ming and the Qing. Porters carried sixty to ninety kilos of tea on their backs, more than their own weight. The muleteers slept in the caravanserai inns around Sideng with their loads beside the bed, and on the eve of a market the stage in the square was lit for opera.</p>
 
     <figure class="win plate">
-      <button class="photo" type="button" aria-label="Open map: the Qing woodblock map of Yunnan, 1864"><img src="img/NEW_22-782f4d04.jpg" width="1100" height="1065" alt="A Qing woodblock map of Yunnan province, 1864, on a square grid, the place names in Chinese characters, a column of text down the left margin, the paper foxed and torn." loading="lazy" decoding="async" style="--ar:1100/1065"></button>
+      <button class="photo" data-hires="img/hires-NEW_22-739ced55.jpg" type="button" aria-label="Open map: the Qing woodblock map of Yunnan, 1864"><img src="img/NEW_22-782f4d04.jpg" width="1100" height="1065" alt="A Qing woodblock map of Yunnan province, 1864, on a square grid, the place names in Chinese characters, a column of text down the left margin, the paper foxed and torn." loading="lazy" decoding="async" style="--ar:1100/1065"></button>
       <figcaption><b>Plate &middot; 1864</b> &middot; The road counted in li: <i>Yunnan quan tu</i>, the Yunnan sheet of the <i>Daqing yitong yudi quantu</i>, cut on woodblocks by Hubei's official press in 1864, while Du Wenxiu still ruled Dali. Look for the grid the province is squared into, the rivers as double lines, the mountains as rows of little peaks, and the column of text down the left margin, which gives the distance by road from the provincial capital to each prefecture: the caravan road you have just travelled, measured in li. The Library of Congress copy, damage and all.</figcaption>
     </figure>
     <div class="note"><b>2001 &middot; The listing</b>The Sideng market square went on the World Monuments Watch list of the hundred most endangered sites in 2001, and the restoration that followed was a cooperation between ETH Zurich, the Swiss federal technical university, and the county government of Jianchuan. It is why this is the one intact caravan town left on the road: the stage, the Xingjiao temple of the Bai (Ming), the gate, the lanes, and nothing dressed up.</div>
@@ -929,7 +932,7 @@ html.cn .intl-only{display:none}
     <div class="note"><b class="ember">1942 &middot; 4 May</b>Japan took Lashio on 29 April 1942 and the road was cut at its far end. On 4 May Japanese aircraft bombed Baoshan, a town crammed with refugees off the road from Burma; a figure of ten thousand dead in the raid is the one usually quoted. The next day, 5 May, Chinese engineers blew the Huitong bridge over the Salween to stop the Japanese column, and the river became the front line for two years. Chinese state media also say Japanese planes dropped cholera over Baoshan that week and put the epidemic's toll at 210,000; the raid and the epidemic numbers are contested and this page does not rely on either. The footer says which sources disagree.</div>
 
     <figure class="win plate">
-      <button class="photo" type="button" aria-label="Open map: Allied lines of communication in Burma and China, 1942&ndash;43, cropped to the Burma&ndash;Yunnan corner"><img src="img/NEW_25-ffa4f529.jpg" width="570" height="435" alt="The Burma and Yunnan corner of a West Point atlas map of Allied lines of communication, 1942 to 1943: the area under Japanese control since June 1942 shaded pink, the Burma Road from Lashio to Kunming, Teng-chung just outside the pink, and the Hump airlift route drawn from Dinjan in Assam to Kunming." loading="lazy" decoding="async" style="--ar:570/435"></button>
+      <button class="photo" data-hires="img/hires-NEW_25-d2fa8f93.jpg" type="button" aria-label="Open map: Allied lines of communication in Burma and China, 1942&ndash;43, cropped to the Burma&ndash;Yunnan corner"><img src="img/NEW_25-ffa4f529.jpg" width="570" height="435" alt="The Burma and Yunnan corner of a West Point atlas map of Allied lines of communication, 1942 to 1943: the area under Japanese control since June 1942 shaded pink, the Burma Road from Lashio to Kunming, Teng-chung just outside the pink, and the Hump airlift route drawn from Dinjan in Assam to Kunming." loading="lazy" decoding="async" style="--ar:570/435"></button>
       <figcaption><b>Plate &middot; 1942&ndash;43</b> &middot; The road cut and the way round it, from the West Point atlas of the Second World War. Look for the <span class="on">Burma Road</span> climbing out of the pink from <span class="on">Lashio</span> to <span class="on">Kunming</span>, the shaded <span class="on">area under Japanese control since June 1942</span> reaching the Yunnan border with <span class="on">Teng-chung</span> just outside it, and the thin line of the airlift, marked <span class="on">Hump Route</span>, from <span class="on">Dinjan</span> in Assam across the top to Kunming. Tonight's Baoshan sits on the road between Teng-chung and Kunming. Cropped for this page from a sheet that runs west to Karachi.</figcaption>
     </figure>
     <p>Du Wenxiu, the sultan of Night II, was born here when it was called Yongchang. On 4 February 1945 the first convoy from India in nearly three years came up through these towns to Kunming, under banners the villagers had painted in two languages.</p>
@@ -1103,7 +1106,7 @@ html.cn .intl-only{display:none}
 
     <figure class="fig locator" data-loc="ch6"><div class="frame"></div><figcaption><b>Day 15</b> &middot; Tengchong back to Dali, four to five hours, and the 17:40 to Shanghai: the whole road in one day, then the coast.</figcaption></figure>
     <p class="lead">The last chapter ends on the coast: four to five hours back along the road, the airport at Dali, the <span class="t">17:40</span> to Shanghai, and a fifteenth night under a different sky, so its card is lit in Pudong's colours.</p>
-    <p>A coda on how this trip's own flights were shaped by a frontier moving. <span class="intl-only">In November 2025, after Japan's prime minister said a Taiwan emergency could threaten Japan's survival, Beijing told its airlines to cut flights to Japan;</span><span class="cn-only">In November 2025, during a diplomatic dispute between China and Japan, Chinese airlines cut their Japan flying sharply;</span> by the northern-summer 2026 schedule the Chinese carriers had suspended 49 China&ndash;Japan routes outright and China Eastern alone had dropped 55 per cent of its Japan flying, with Tokyo Narita losing about half its scheduled flights. Air China pulled out of Narita entirely and China Eastern dropped Narita&ndash;Kunming, which is why Javier comes in from Osaka on Night III rather than from Tokyo, and why the way home was priced around a Tuesday-and-Sunday Shanghai&ndash;JFK service before the Chengdu&ndash;Los Angeles routing on Day 13 won. The airlines' free-change policies for Japan ran to 24 October 2026, past the end of this trip.</p>
+    <p>A coda on how this trip's own flights were shaped by a frontier moving. <span class="intl-only">In November 2025, after Japan's prime minister said a Taiwan emergency could threaten Japan's survival, Beijing told its airlines to cut flights to Japan;</span><span class="cn-only">In November 2025, during a diplomatic dispute between China and Japan, Chinese airlines cut their Japan flying sharply;</span> by the northern-summer 2026 schedule the Chinese carriers had suspended 49 China&ndash;Japan routes outright and China Eastern alone had dropped 55 per cent of its Japan flying, with Tokyo Narita losing about half its scheduled flights. Air China pulled out of Narita entirely and China Eastern dropped Narita&ndash;Kunming, which is why Javier comes in from Osaka on Night III rather than from Tokyo.</p>
 
     <ol class="days">
       <li class="day dawn" id="day-15" data-day="15">
@@ -1335,7 +1338,8 @@ html.cn .intl-only{display:none}
   <button class="lb-x" id="lbX" type="button" aria-label="Close">&#10005;</button>
   <button class="lb-n lb-prev" id="lbPrev" type="button" aria-label="Previous picture">&#8249;</button>
   <button class="lb-n lb-next" id="lbNext" type="button" aria-label="Next picture">&#8250;</button>
-  <div class="lb-stage" id="lbStage"><img id="lbImg" alt=""></div>
+  <div class="lb-stage" id="lbStage"><div class="lb-pic" id="lbPic"><img id="lbImg" alt=""></div></div>
+  <span class="lb-hd" id="lbHd" aria-live="polite"></span>
   <div class="lb-cap" id="lbCap"></div>
 </div>
 
@@ -1967,11 +1971,43 @@ function show(i){
   at = (i + shots.length) % shots.length;
   var b = shots[at], im = b.querySelector("img"), cap = b.closest("figure").querySelector("figcaption");
   lbImg.src = im.src; lbImg.alt = im.alt;
+  var old = lbPic.querySelector("svg"); if (old) old.remove();
+  var wrap = b.closest(".lights-wrap"), ov = wrap && wrap.querySelector("svg");
+  lbPic.classList.toggle("lights-wrap", !!ov);
+  if (ov) lbPic.appendChild(ov.cloneNode(true));
   lbCap.innerHTML = cap ? cap.innerHTML : "";
   lbCount.textContent = (at + 1) + " / " + shots.length;
+  lbHd.textContent = "";
+  fitLb();
+  loadHires(at, b);
+}
+var lbStage = $("#lbStage"), lbPic = $("#lbPic");
+function fitLb(){
+  requestAnimationFrame(function(){
+    var cs = getComputedStyle(lbStage), h = lbStage.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
+    if (h > 40) lbImg.style.maxHeight = Math.floor(h) + "px";
+  });
+}
+addEventListener("resize", function(){ if (lb.classList.contains("open")) fitLb(); });
+/* the map plates: the full-resolution file (up to 4,000 px wide, shipped with the page, fetched only now) replaces the bundled one once it arrives */
+var lbHd = $("#lbHd"), hires = {};
+function loadHires(i, b){
+  var f = b.getAttribute("data-hires");
+  if (!f) return;
+  if (hires[i]) { lbImg.src = hires[i]; lbHd.textContent = "full resolution"; return; }
+  lbHd.textContent = "loading the full-resolution plate…";
+  var im = new Image(), done = false;
+  var timer = setTimeout(function(){ if (!done) { done = true; im.src = ""; if (at === i) lbHd.textContent = ""; } }, 60000);
+  im.decoding = "async";
+  im.onload = function(){
+    if (done) return; done = true; clearTimeout(timer); hires[i] = im.src;
+    if (at === i && lb.classList.contains("open")) { lbImg.src = im.src; lbHd.textContent = "full resolution · " + im.naturalWidth.toLocaleString("en-US") + " px wide"; }
+  };
+  im.onerror = function(){ if (done) return; done = true; clearTimeout(timer); if (at === i) lbHd.textContent = ""; };
+  im.src = f;   /* a file beside the page, fetched only now and kept by the worker */
 }
 function openLb(i){ lastFocus = document.activeElement; show(i); lb.classList.add("open"); document.body.style.overflow = "hidden"; $("#lbX").focus(); }
-function closeLb(){ lb.classList.remove("open"); document.body.style.overflow = ""; lbImg.removeAttribute("src"); if (lastFocus) lastFocus.focus(); }
+function closeLb(){ lb.classList.remove("open"); document.body.style.overflow = ""; lbImg.removeAttribute("src"); lbHd.textContent = ""; if (lastFocus) lastFocus.focus(); }
 shots.forEach(function(b, i){ b.addEventListener("click", function(){ openLb(i); }); });
 $("#lbX").addEventListener("click", closeLb);
 $("#lbPrev").addEventListener("click", function(){ show(at - 1); });
