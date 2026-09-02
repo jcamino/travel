@@ -17,7 +17,7 @@
 <style>
 :root{
   --ink:#1B2430; --haze:#4C5866; --rail:#FFFFFF; --gilt:#C89B3C;
-  --ground:#F3F1EC; --accent:#5C7A8E; --rule:rgba(27,36,48,.14);
+  --ground:#F3F1EC; --accent:#5C7A8E; --soft:rgba(92,122,142,.38); --rule:rgba(27,36,48,.14);
   --disp:"Avenir Next Condensed","Helvetica Neue","Arial Narrow","Roboto Condensed",-apple-system,"PingFang SC","Hiragino Sans GB",sans-serif;
   --body:-apple-system,"SF Pro Text","Helvetica Neue","PingFang SC","Hiragino Sans GB",Roboto,sans-serif;
   --mono:"SF Mono",Menlo,"Roboto Mono","Courier New",monospace;
@@ -25,13 +25,13 @@
   --railw:32px; --railhit:48px;
   --sat:env(safe-area-inset-top,0px); --sab:env(safe-area-inset-bottom,0px);
 }
-body[data-band="cover"],body[data-band="prologue"]{--ground:#F1F1EE; --accent:#4C5866}
-body[data-band="dali"]{--ground:#F3F1EC; --accent:#5C7A8E}
-body[data-band="lijiang"]{--ground:#EEF1F2; --accent:#3F8A8C}
-body[data-band="climb"]{--ground:#F1F4F7; --accent:#3F8A8C}
-body[data-band="shangrila"],body[data-band="tool"]{--ground:#F4F7FA; --accent:#7A2E3A}
-body[data-band="shaxi"]{--ground:#F0EEE6; --accent:#6B4A2B}
-body[data-band="descent"],body[data-band="tengchong"],body[data-band="foot"]{--ground:#EDE8DC; --accent:#8C3B23}
+body[data-band="cover"],body[data-band="prologue"]{--ground:#EFEFEC; --accent:#4C5866; --soft:rgba(76,88,102,.32)}
+body[data-band="dali"]{--ground:#F5F2EA; --accent:#5C7A8E; --soft:rgba(92,122,142,.38)}
+body[data-band="lijiang"]{--ground:#E7EDF0; --accent:#3F8A8C; --soft:rgba(63,138,140,.38)}
+body[data-band="climb"]{--ground:#E9EFF3; --accent:#3F8A8C; --soft:rgba(63,138,140,.38)}
+body[data-band="shangrila"],body[data-band="tool"]{--ground:#F2F6FA; --accent:#7A2E3A; --soft:rgba(122,46,58,.34)}
+body[data-band="shaxi"]{--ground:#EFE8D8; --accent:#6B4A2B; --soft:rgba(107,74,43,.36)}
+body[data-band="descent"],body[data-band="tengchong"],body[data-band="foot"]{--ground:#E6DFCF; --accent:#8C3B23; --soft:rgba(140,59,35,.34)}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%; scroll-behavior:smooth}
 html,body,body *,svg *{touch-action:manipulation}
@@ -57,21 +57,24 @@ p{margin:0 0 16px; text-wrap:pretty}
 .cover-img{position:absolute; inset:0}
 .cover-img img{width:100%; height:100%; object-fit:cover; object-position:50% 40%}
 .cover-img::after{content:""; position:absolute; inset:0;
-  background:linear-gradient(180deg,rgba(27,36,48,.32) 0%,rgba(27,36,48,.10) 30%,rgba(27,36,48,.42) 62%,rgba(27,36,48,.86) 100%)}
+  background:linear-gradient(180deg,rgba(27,36,48,.34) 0%,rgba(27,36,48,.22) 22%,rgba(27,36,48,.52) 50%,rgba(27,36,48,.88) 100%)}
 .cover-body{position:relative; width:100%; max-width:44rem; margin:0 auto; padding:0 calc(18px + var(--railw)) calc(28px + var(--sab)) 18px}
 .cover .han{font:400 15px/21px var(--han); letter-spacing:.3em; color:#E7C97A; margin-bottom:6px}
 .cover h1{font:600 40px/44px var(--disp); letter-spacing:-.02em; text-wrap:balance}
 .cover .sub{margin:14px 0 0; font-size:17px; line-height:26px; color:#E4E9EF}
 .cover .sub b{color:#fff; font-weight:600}
 .cover .who{margin-top:4px; font-size:15px; line-height:21px; color:#C8D1DB}
-.cprof{position:relative; margin:14px 0 0; width:100%; display:block}
+.cprof{position:relative; margin:18px 0 0; width:100%; display:block}
 .cprof svg{width:100%; height:auto; display:block; overflow:visible}
-.cprof .line{fill:none; stroke:#fff; stroke-width:2; stroke-linejoin:round; stroke-linecap:round}
+.cprof .plab{font:600 15px var(--mono); fill:#fff; paint-order:stroke; stroke:rgba(27,36,48,.55); stroke-width:3px; stroke-linejoin:round}
+.cprof .hit{fill:transparent; cursor:pointer}
+.cprof .hit:focus-visible{outline:none; stroke:#E7C97A; stroke-width:3; fill:rgba(255,255,255,.08)}
+.cprof .line{fill:none; stroke:#fff; stroke-width:2.5; stroke-linejoin:round; stroke-linecap:round}
 .cprof .fill{fill:rgba(255,255,255,.10)}
 .cprof .band{fill:rgba(200,155,60,.34)}
-.cprof .tick{stroke:rgba(255,255,255,.55); stroke-width:1}
-.cprof .big{font:600 64px/1 var(--disp); letter-spacing:-.02em; fill:#fff; font-variant-numeric:tabular-nums}
-.cprof .unit{font:400 15px var(--mono); fill:#E4E9EF}
+.cprof .tick{stroke:rgba(255,255,255,.7); stroke-width:1.5}
+.cprof .big{font:600 56px/1 var(--disp); letter-spacing:-.02em; fill:#fff; font-variant-numeric:tabular-nums; paint-order:stroke; stroke:rgba(27,36,48,.35); stroke-width:2px}
+.cprof .unit{font:400 15px var(--mono); fill:#E4E9EF; paint-order:stroke; stroke:rgba(27,36,48,.45); stroke-width:3px; stroke-linejoin:round}
 .cprof .lab{font:400 15px var(--mono); fill:#E4E9EF}
 .cprof .dot{fill:#E7C97A; stroke:#1B2430; stroke-width:2}
 .cprof.drawn .line{stroke-dasharray:var(--len); stroke-dashoffset:var(--len); animation:draw 1.2s ease-out forwards}
@@ -79,10 +82,10 @@ p{margin:0 0 16px; text-wrap:pretty}
 .cover .open{position:absolute; inset:0; width:100%; height:100%; border:0; background:none; padding:0; cursor:pointer; border-radius:4px}
 .cover .open:focus-visible{outline:3px solid #E7C97A}
 .cover .cue{margin-top:14px; font:400 15px/21px var(--mono); letter-spacing:.14em; text-transform:uppercase; color:#C8D1DB}
-.cover .cue span{display:inline-block; margin-left:6px; animation:bob 2.2s ease-in-out infinite}
+.cover .cue span{display:inline-block; margin-left:2px; letter-spacing:0; animation:bob 2.2s ease-in-out infinite}
 @keyframes bob{0%,100%{transform:translateY(0);opacity:.55}50%{transform:translateY(5px);opacity:1}}
 .cover .ccred{margin:10px 0 0; font-size:15px; line-height:21px; color:rgba(255,255,255,.62); text-wrap:pretty}
-.cover .ccred a{color:rgba(255,255,255,.78); padding:8px 2px; margin:-8px -2px}
+.cover .ccred a{color:rgba(255,255,255,.78); padding:8px 0}
 .cover .ccred .ccredd{display:none}
 @media (min-width:1000px){ .cover .ccred .ccredp{display:none} .cover .ccred .ccredd{display:inline} }
 
@@ -96,10 +99,10 @@ p{margin:0 0 16px; text-wrap:pretty}
 .rail .tk{position:absolute; right:0; width:8px; height:1px; background:var(--haze); opacity:.6}
 .rail .tk.maj{width:14px; opacity:.9}
 .rail .needle{position:absolute; left:0; right:0; height:0; top:50%; transition:top .3s ease}
-.rail .needle::before{content:""; position:absolute; left:0; right:0; top:-1px; height:2px; background:var(--ink)}
+.rail .needle::before{content:""; position:absolute; left:0; right:0; top:-1px; height:2px; background:var(--accent); transition:background-color .6s ease}
 .rail .needle::after{content:""; position:absolute; left:-1px; top:-6px; border:6px solid transparent; border-left:8px solid var(--accent); border-right:0}
 .rail .ro{position:absolute; top:8px; left:0; width:var(--railw); text-align:center; writing-mode:vertical-rl; font:600 15px/1 var(--mono);
-  color:var(--ink); letter-spacing:.06em; height:auto; padding:0; white-space:nowrap}
+  color:var(--ink); letter-spacing:.06em; height:auto; padding:0; white-space:nowrap; background:var(--rail)}
 .rail .badge{position:absolute; top:calc(14px + var(--sat)); right:0; width:var(--railw); padding:8px 0; background:var(--ink); color:#fff;
   writing-mode:vertical-rl; font:600 15px/1 var(--mono); letter-spacing:.08em; text-align:center; border-radius:3px 0 0 3px; white-space:nowrap}
 .rail .badge b{font-weight:600}
@@ -112,13 +115,13 @@ p{margin:0 0 16px; text-wrap:pretty}
 .scrim{position:fixed; inset:0; background:rgba(27,36,48,.38); opacity:0; pointer-events:none; transition:opacity .24s ease; z-index:39}
 .scrim.on{opacity:1; pointer-events:auto}
 .drawer{position:fixed; left:0; right:0; bottom:0; z-index:40; background:var(--rail); color:var(--ink); border-radius:16px 16px 0 0;
-  transform:translateY(104%); transition:transform .24s ease; box-shadow:0 -10px 30px -12px rgba(27,36,48,.6);
-  padding:10px 16px calc(14px + var(--sab)); max-height:calc(100svh - 24px); overflow:auto}
-.drawer.open{transform:none}
+  transform:translateY(104%); visibility:hidden; transition:transform .24s ease, visibility 0s linear .24s; box-shadow:0 -10px 30px -12px rgba(27,36,48,.6);
+  padding:10px 12px calc(14px + var(--sab)); max-height:calc(100svh - 24px); overflow:auto}
+.drawer.open{transform:none; visibility:visible; transition:transform .24s ease, visibility 0s}
 .drawer .grip{width:40px; height:4px; border-radius:2px; background:rgba(27,36,48,.25); margin:0 auto 8px}
-.drow{display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+.drow{display:flex; align-items:center; gap:8px; flex-wrap:nowrap; min-height:44px}
 .drow .dtitle{flex:1 1 auto; min-width:0; font:600 15px/21px var(--mono); letter-spacing:.02em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-.dbtn{min-height:44px; min-width:44px; padding:8px 12px; border:1px solid var(--rule); background:#fff; border-radius:999px; font-size:15px; color:var(--ink)}
+.dbtn{min-height:44px; min-width:44px; padding:8px 12px; border:1px solid var(--rule); background:#fff; border-radius:999px; font-size:15px; color:var(--ink); flex:0 0 auto; white-space:nowrap}
 .dbtn[aria-pressed="true"]{background:var(--ink); color:#fff; border-color:var(--ink)}
 .dbtn.x{font-size:20px; line-height:1; padding:0; width:44px}
 .dsvg{margin:8px 0 6px}
@@ -138,12 +141,12 @@ p{margin:0 0 16px; text-wrap:pretty}
 
 .sec .cur{fill:var(--accent); stroke:#fff; stroke-width:2.5}
 .sec .hit{fill:transparent; cursor:pointer}
-.sec .hit:focus-visible{outline:none; fill:rgba(63,138,140,.16)}
-.days-nav{display:grid; grid-template-columns:repeat(8,1fr); gap:4px; margin-top:6px}
+.sec .hit:focus-visible{outline:none; stroke:var(--accent); stroke-width:3; fill:rgba(63,138,140,.12)}
+.days-nav{display:grid; grid-template-columns:repeat(6,1fr); gap:6px; margin-top:6px}
 .days-nav button{min-height:44px; border:1px solid var(--rule); background:#fff; border-radius:6px; font:600 15px var(--mono); color:var(--ink); padding:0}
 .days-nav button.on{background:var(--accent); color:#fff; border-color:var(--accent)}
 .days-nav button.hol{box-shadow:inset 0 -3px 0 var(--gilt)}
-.days-nav .today{font-family:var(--body); font-weight:500}
+.days-nav .today{grid-column:span 3; font-family:var(--body); font-weight:500; border-radius:6px; background:#fff; color:var(--ink); border:1px solid var(--ink)}
 .dnote{margin:8px 0 0; font-size:15px; line-height:21px; color:var(--haze)}
 .dnote .sw{display:inline-block; width:12px; height:12px; vertical-align:-1px; margin-right:4px; background:rgba(200,155,60,.4); border-bottom:2px solid var(--gilt)}
 .plan{display:none}
@@ -177,12 +180,13 @@ p{margin:0 0 16px; text-wrap:pretty}
 .stone{min-height:96px; border-bottom:2px solid var(--gilt); padding-bottom:10px; margin-bottom:22px}
 .srow{display:flex; align-items:flex-end; gap:14px}
 .snum{font:600 clamp(48px,16.4vw,64px)/1 var(--disp); letter-spacing:-.02em; font-variant-numeric:tabular-nums; color:var(--ink); white-space:nowrap; flex:0 0 auto; max-width:60%}
-.snum small{font:400 15px var(--mono); color:var(--haze); margin-left:2px; letter-spacing:0}
+.snum small{font:400 15px var(--mono); color:var(--accent); margin-left:2px; letter-spacing:0}
 .snum .arrow{font-size:.5em; font-weight:400; color:var(--accent); vertical-align:.3em}
 .sside{flex:1 1 auto; min-width:0; padding-bottom:4px}
 .shan{font:400 15px/21px var(--han); color:var(--haze); letter-spacing:.14em}
 .splace{font:600 28px/32px var(--disp); letter-spacing:-.01em; color:var(--ink)}
 .sdays{font:400 15px/21px var(--mono); color:var(--haze); margin-top:2px}
+.sdays span{display:block}
 .sline{margin:10px 0 0; font:400 15px/21px var(--mono); color:var(--haze); text-wrap:pretty}
 .sline .atm{display:block; color:var(--accent)}
 .ctitle{font:600 28px/32px var(--disp); letter-spacing:-.01em; margin-bottom:14px; text-wrap:balance}
@@ -203,7 +207,7 @@ p{margin:0 0 16px; text-wrap:pretty}
 .fig .photo:focus-visible{outline:3px solid var(--accent); outline-offset:3px}
 figcaption{font-size:15px; line-height:21px; color:var(--haze); margin-top:8px; text-wrap:pretty}
 figcaption .cred{display:block; margin-top:2px; font-size:15px; color:var(--haze); opacity:.85}
-figcaption a{color:var(--haze); display:inline-block; padding:8px 2px; margin:-8px -2px}
+figcaption a{color:var(--haze); display:inline; padding:8px 0}
 .pair{display:grid; gap:12px; grid-template-columns:1fr}
 @media (min-width:560px){.pair{grid-template-columns:1fr 1fr} .pair .fig{margin-top:12px}}
 .secfig{margin:22px 0 24px}
@@ -212,19 +216,19 @@ figcaption a{color:var(--haze); display:inline-block; padding:8px 2px; margin:-8
 .secfig .rock{fill:rgba(27,36,48,.10); stroke:var(--ink); stroke-width:1.4; stroke-linejoin:round}
 .secfig .water{fill:var(--accent)}
 .secfig .lava{fill:#8C3B23}
-.secfig .t{font:400 12px var(--mono); fill:var(--ink)}
-.secfig .r{font:400 12px var(--mono); fill:var(--haze)}
-.secfig .h{font:600 13px var(--mono); fill:var(--ink)}
+.secfig .t{font:400 14px var(--mono); fill:var(--ink)}
+.secfig .r{font:400 14px var(--mono); fill:var(--haze)}
+.secfig .h{font:600 15px var(--mono); fill:var(--ink)}
 .secfig .base{stroke:var(--ink); stroke-width:1.2}
 
 /* day cards */
 .days{margin-top:8px}
-.card{position:relative; background:rgba(255,255,255,.62); border:1px solid var(--rule); border-radius:6px; padding:14px 16px 6px; margin:0 0 14px;
-  scroll-margin-top:12px; transition:opacity .4s ease}
+.card{position:relative; background:rgba(255,255,255,.62); border:1px solid var(--soft); border-radius:6px; padding:14px 16px 6px; margin:0 0 14px;
+  scroll-margin-top:12px; transition:opacity .4s ease, border-color .6s ease}
 .card.past{opacity:.7}
 .card.now{border-color:var(--accent); box-shadow:inset 3px 0 0 var(--accent)}
 .chead{display:flex; align-items:baseline; gap:8px; flex-wrap:wrap; font:400 15px/21px var(--mono); color:var(--haze); margin-bottom:6px}
-.chead .cnum{font-weight:600; color:var(--ink)}
+.chead .cnum{font-weight:600; color:var(--accent)}
 .chead .tnow{margin-left:auto; background:var(--accent); color:#fff; font:600 15px/20px var(--mono); padding:1px 8px; border-radius:999px; letter-spacing:.06em; text-transform:uppercase}
 .card h3{font:600 20px/26px var(--disp); margin-bottom:6px}
 .card p{margin-bottom:10px}
@@ -251,11 +255,12 @@ figcaption a{color:var(--haze); display:inline-block; padding:8px 2px; margin:-8
 .seg button[aria-pressed="true"] span{color:#C8D1DB}
 .tool label{display:block; font-size:15px; line-height:21px; color:var(--haze); margin:12px 0 4px}
 .tool input{width:100%; max-width:220px; font:400 17px var(--mono); padding:10px 12px; min-height:46px; border:1px solid var(--rule); border-radius:6px; background:#fff; color:var(--ink)}
-.out{display:grid; grid-template-columns:1fr auto; gap:8px 12px; margin:14px 0 0; padding:0; border-top:1px solid var(--rule)}
+.out{display:grid; grid-template-columns:1fr; gap:2px 12px; margin:14px 0 0; padding:0; border-top:1px solid var(--rule)}
 .out div{display:contents}
-.out dt{padding-top:10px; font-size:15px; line-height:21px; color:var(--haze)}
-.out dd{margin:0; padding-top:10px; font:600 17px/21px var(--mono); text-align:right}
-.out dd small{display:block; font-weight:400; font-size:15px; line-height:19px; color:var(--haze); white-space:normal}
+.out dt{padding-top:12px; font-size:15px; line-height:21px; color:var(--haze)}
+.out dd{margin:0; padding:0 0 10px; font:600 17px/21px var(--mono); border-bottom:1px solid var(--rule)}
+.out dd small{display:inline; font-weight:400; font-size:15px; line-height:19px; color:var(--haze); margin-left:8px}
+.out dd small::before{content:"\00b7\00a0"}
 .rules{margin:14px 0 0; padding-left:18px}
 .rules li{margin-bottom:8px; font-size:16px; line-height:24px}
 .measure{margin-top:14px; display:flex; gap:10px; align-items:center; flex-wrap:wrap}
@@ -286,7 +291,7 @@ figcaption a{color:var(--haze); display:inline-block; padding:8px 2px; margin:-8
 .lb-stage img{max-width:100%; max-height:100%; object-fit:contain; width:auto; height:auto}
 .lb-cap{flex:0 0 auto; color:#e6ecf4; font-size:15px; line-height:21px; padding:12px clamp(14px,5vw,28px) calc(18px + var(--sab)); max-width:44rem; margin:0 auto; text-align:center}
 .lb-cap .cred{display:block; color:#9fb0c2; font-size:15px; margin-top:4px}
-.lb-cap a{color:#cfdcea; display:inline-block; padding:11px 4px; margin:-11px -4px}
+.lb-cap a{color:#cfdcea; display:inline; padding:11px 0}
 .lb-x{position:absolute; top:calc(8px + var(--sat)); right:8px; width:48px; height:48px; border-radius:50%; border:0; background:rgba(255,255,255,.13); color:#fff; font-size:24px; line-height:1; display:grid; place-items:center; z-index:2}
 .lb-n{position:absolute; top:50%; transform:translateY(-50%); width:52px; height:52px; border-radius:50%; border:0; background:rgba(255,255,255,.13); color:#fff; font-size:24px; display:grid; place-items:center; z-index:2}
 .lb-prev{left:8px} .lb-next{right:8px}
@@ -315,21 +320,33 @@ figcaption a{color:var(--haze); display:inline-block; padding:8px 2px; margin:-8
   .cover-body{max-width:none; padding:0 56px 40px}
   .cover h1{font-size:56px; line-height:60px}
   .cover .sub{font-size:19px; line-height:30px}
-  .cprof{max-width:640px}
+  .cprof{max-width:none; margin-top:28px}
+  .cprof .big{font-size:112px}
+  .cover .open{display:none}
   .snum{font-size:112px; max-width:none}
   .splace{font-size:36px; line-height:40px}
   .ctitle{font-size:36px; line-height:40px}
   .prologue .ctitle{font-size:40px; line-height:44px}
   .card h3{font-size:22px; line-height:30px}
-  .fig{max-width:900px}
+  .fig{max-width:none}
+  .fig.crop img{aspect-ratio:3/2}
+  .fig.map{max-width:760px}
   .fig.map.small{max-width:460px}
-  .pair{max-width:900px; grid-template-columns:1fr 1fr}
+  .pair{max-width:none; grid-template-columns:1fr 1fr; gap:20px}
   .secfig{max-width:900px}
   .fig.right{float:right; width:340px; margin:6px 0 16px 28px}
   .fig.left{float:left; width:340px; margin:6px 28px 16px 0}
   .clear{clear:both}
-  .foot h2{font-size:36px; line-height:40px}
-  .out{max-width:520px}
+  .foot h2{font-size:36px; line-height:40px; grid-column:1 / -1}
+  .foot .wrap{max-width:1280px; margin:0 auto; padding:0 56px; display:grid; grid-template-columns:1fr 1fr; gap:0 72px; align-items:start}
+  .foot .inc{grid-column:1; max-width:none}
+  .foot .srcs{grid-column:2; grid-row:2 / span 2}
+  .foot .creds{grid-column:1}
+  .foot .notes{grid-column:1 / -1; max-width:none; columns:2; column-gap:72px}
+  .foot .notes p{break-inside:avoid}
+  .out{max-width:560px; grid-template-columns:1fr auto; gap:0 16px}
+  .out dt{padding:12px 0 10px; border-bottom:1px solid var(--rule)}
+  .out dd{padding:12px 0 10px; text-align:right}
 }
 @media (max-width:359px){ :root{--railw:24px} }
 
@@ -372,7 +389,7 @@ figcaption a{color:var(--haze); display:inline-block; padding:8px 2px; margin:-8
       <button class="open" type="button" id="coverOpen" aria-label="Open the cross-section of the trip"></button>
     </div>
     <p class="cue" aria-hidden="true">Scroll <span>&#8595;</span></p>
-    <p class="ccred">Cover: <span class="ccredp">NASA image created by Jesse Allen, using data obtained from the Goddard Land Processes data archives (LAADS)., Public domain. <a href="https://commons.wikimedia.org/wiki/File:Hengduan_tmo_2000360_lrg.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></span><span class="ccredd">NASA, Public domain. <a href="https://commons.wikimedia.org/wiki/File:ISS-63_Hengduan_Mountains,_China.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></span></p>
+    <p class="ccred">Cover: <span class="ccredp">NASA image created by Jesse Allen, using data obtained from the Goddard Land Processes data archives (LAADS), Public domain. <a href="https://commons.wikimedia.org/wiki/File:Hengduan_tmo_2000360_lrg.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></span><span class="ccredd">NASA, Public domain. <a href="https://commons.wikimedia.org/wiki/File:ISS-63_Hengduan_Mountains,_China.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></span></p>
   </div>
 </header>
 <div class="page">
@@ -390,9 +407,9 @@ figcaption a{color:var(--haze); display:inline-block; padding:8px 2px; margin:-8
   <div class="grip" aria-hidden="true"></div>
   <div class="drow">
     <span class="dtitle" id="dTitle">Day 1 &middot; Dali &middot; 1 980 m</span>
-    <button class="dbtn" type="button" id="todayBtn">Today</button>
     <button class="dbtn" type="button" id="planBtn" aria-pressed="false">Plan</button>
     <button class="dbtn x" type="button" id="drawerX" aria-label="Close">&#10005;</button>
+    <button class="today" type="button" id="todayBtn">Today</button>
   </div>
   <div class="dsvg secwrap"><svg class="sec" id="secH" viewBox="0 0 360 172" role="img" aria-label="Elevation profile of the fifteen days. Tap a day to jump to it."></svg></div>
   <div class="dsvg plan" id="planWrap"><svg id="planSvg" viewBox="0 0 620 350" role="img" aria-label="Hand drawn map of western Yunnan showing the route from Dali north to Lijiang, Tiger Leaping Gorge and Shangri-La, then south to Shaxi, Baoshan and Tengchong, and back to Dali.">
@@ -466,27 +483,27 @@ figcaption a{color:var(--haze); display:inline-block; padding:8px 2px; margin:-8
       <p class="lead">About fifty million years ago India ran into Asia. The collision lifted the Tibetan plateau and, at the plateau's south-eastern corner, crumpled the crust into a set of north&ndash;south folds: the Hengduan ranges, nine hundred kilometres long, rising from 1,300 to 6,000 metres and topped by Gongga at 7,556. Three of Asia's great rivers, the Salween, the Mekong and the Yangtze, run through the folds side by side for three hundred kilometres, kept apart by ridges above 6,000 metres, before they turn for three different seas. UNESCO listed them in 2003 as the Three Parallel Rivers.</p>
       <p>In country folded like this, flat ground is everything. Every town of consequence sits on a <em>bazi</em>, a basin floored by an old lake and walled by ranges: Dali at 1,980 metres, Shaxi at 2,100, Lijiang at 2,400, Baoshan at 1,650, Tengchong at 1,640, and Shangri-La at 3,160 on the lip of the plateau itself. Whoever held a basin held its fields, its taxes and its market. The slopes above it belonged to somebody else.</p>
       <p class="thesis">That is the thesis of this page, and it is a thesis, not a fact: that in western Yunnan power, trade and war have always moved along the vertical. The academic version is called Zomia. The historian Willem van Schendel coined the word in 2002 for the highlands of mainland Southeast Asia that lowland states never quite governed; James C. Scott's <em>The Art of Not Being Governed</em> (2009) argued that the hill peoples above roughly 300 metres were not left behind by the state but had walked away from it, and that state power thins with altitude the way the air does. Other historians have attacked the book hard, for thin evidence and for reading a choice into what was often flight. Treat it as a lens, and watch how often the landscape agrees with it.</p>
-      <p>Two things follow for a traveller. First, the sequence of this trip is a climb and a descent, not a straight line up: seven days rising from the Bai basin to the plateau, eight days coming down through the Tea Horse Road's market town to the volcanic floor where the Burma Road was cut. Second, the numbers on the rail at the edge of the screen are not decoration. At 3,160 metres the air presses with about 68 percent of its weight at the sea, water boils near 89&nbsp;&deg;C, and the night is fifteen to twenty degrees colder than the valley floor. On day 7 your lungs will read the same story as the Mongol cavalry and the C-46s.</p>
+      <p>Two things follow for a traveller. First, the sequence of this trip is a climb and a descent, not a straight line up: seven days rising from the Bai basin to the plateau, eight days coming down through the Tea Horse Road's market town to the volcanic floor where the Burma Road was cut. Second, the numbers on the rail at the edge of the screen are not decoration. At 3,160 metres the air presses with about 68 percent of its weight at the sea, water boils near 89&nbsp;&deg;C, and the night is about ten degrees colder than the valley floor. On day 7 your lungs will read the same story as the Mongol cavalry and the C-46s.</p>
     </div>
     <div class="secfig">
-      <svg viewBox="0 0 360 150" role="img" aria-label="A schematic west to east cross-section: the Tengchong volcanic floor at 1,640 metres, the Gaoligong ridge, the Salween valley, a ridge, the Mekong valley, a ridge, the Yangtze in Tiger Leaping Gorge, and the Dali basin at 1,980 metres with the Cangshan range.">
-        <rect class="sky" x="0" y="0" width="360" height="150"/>
-        <path class="rock" d="M0,118 L18,110 L30,104 L44,112 L60,74 L78,58 L92,92 L104,120 L120,84 L136,50 L152,90 L164,122 L180,80 L196,46 L212,88 L226,124 L242,92 L258,56 L272,70 L286,98 L300,110 L316,70 L332,50 L346,72 L360,90 L360,150 L0,150 Z"/>
-        <ellipse class="lava" cx="30" cy="104" rx="6" ry="2.5"/>
-        <rect class="water" x="102" y="118" width="5" height="3"/>
-        <rect class="water" x="162" y="120" width="5" height="3"/>
-        <rect class="water" x="224" y="122" width="5" height="3"/>
-        <rect class="water" x="292" y="107" width="16" height="3"/>
-        <line class="base" x1="0" y1="140" x2="360" y2="140"/>
-        <text class="h" x="4" y="98">Tengchong</text><text class="r" x="4" y="110">1 640 m</text>
-        <text class="r" x="52" y="66" text-anchor="middle">Gaoligong</text>
-        <text class="t" x="104" y="134" text-anchor="middle">Salween</text>
-        <text class="t" x="164" y="136" text-anchor="middle">Mekong</text>
-        <text class="t" x="226" y="137" text-anchor="middle">Yangtze</text>
-        <text class="r" x="196" y="40" text-anchor="middle">above 5 000 m</text>
-        <text class="h" x="300" y="128" text-anchor="middle">Dali</text><text class="r" x="300" y="139" text-anchor="middle">1 980 m</text>
-        <text class="r" x="332" y="44" text-anchor="middle">Cangshan</text>
-        <text class="r" x="4" y="148">west</text><text class="r" x="356" y="148" text-anchor="end">east</text>
+      <svg viewBox="0 0 360 192" role="img" aria-label="A schematic west to east cross-section: the Tengchong volcanic floor at 1,640 metres, the Gaoligong ridge, the Salween valley, a ridge, the Mekong valley, a ridge, the Yangtze in Tiger Leaping Gorge, and the Dali basin at 1,980 metres with the Cangshan range.">
+        <rect class="sky" x="0" y="0" width="360" height="192"/>
+        <path class="rock" d="M0,132 L14,128 L28,126 L42,130 L60,74 L78,58 L92,100 L104,150 L120,90 L136,50 L152,96 L164,152 L180,84 L196,46 L212,90 L226,154 L242,96 L258,56 L272,70 L286,118 L300,120 L316,118 L332,50 L346,72 L360,90 L360,192 L0,192 Z"/>
+        <ellipse class="lava" cx="30" cy="128" rx="7" ry="2.6"/>
+        <rect class="water" x="101" y="147" width="6" height="3"/>
+        <rect class="water" x="161" y="149" width="6" height="3"/>
+        <rect class="water" x="223" y="151" width="6" height="3"/>
+        <rect class="water" x="292" y="116" width="16" height="3"/>
+        <line class="base" x1="0" y1="180" x2="360" y2="180"/>
+        <text class="h" x="4" y="152">Tengchong</text><text class="r" x="4" y="166">1 640 m</text>
+        <text class="r" x="74" y="48" text-anchor="middle">Gaoligong</text>
+        <text class="t" x="104" y="168" text-anchor="middle">Salween</text>
+        <text class="t" x="166" y="170" text-anchor="middle">Mekong</text>
+        <text class="t" x="230" y="172" text-anchor="middle">Yangtze</text>
+        <text class="r" x="196" y="36" text-anchor="middle">above 5 000 m</text>
+        <text class="h" x="301" y="140" text-anchor="middle">Dali</text><text class="r" x="301" y="154" text-anchor="middle">1 980 m</text>
+        <text class="r" x="332" y="40" text-anchor="middle">Cangshan</text>
+        <text class="r" x="4" y="190">west</text><text class="r" x="356" y="190" text-anchor="end">east</text>
       </svg>
       <p class="small">A section across the trip's country, drawn for this page, not to scale: five ridges, four rivers, and the two basins the journey begins and ends in.</p>
     </div>
@@ -495,7 +512,7 @@ figcaption a{color:var(--haze); display:inline-block; padding:8px 2px; margin:-8
 
 <section class="band" data-band="dali" id="dali" aria-labelledby="dali-t">
   <div class="wrap">
-    <div class="stone"><div class="srow"><div class="snum">1&#8239;980<small>m</small></div><div class="sside"><div class="shan" lang="zh-Hans" aria-hidden="true">大理</div><div class="splace">Dali</div><div class="sdays">Days 1 to 2 &middot; 24 to 25 September</div></div></div><p class="sline"><span class="wxline" data-day="1" data-normal="about 14 to 24 °C, showers still likely">about 14 to 24 °C, showers still likely</span></p></div>
+    <div class="stone"><div class="srow"><div class="snum">1&#8239;980<small>m</small></div><div class="sside"><div class="shan" lang="zh-Hans" aria-hidden="true">大理</div><div class="splace">Dali</div><div class="sdays"><span>Days 1 to 2</span><span>24 to 25 September</span></div></div></div><p class="sline"><span class="wxline" data-day="1" data-normal="about 14 to 24 °C, showers still likely">about 14 to 24 °C, showers still likely</span></p></div>
     <h2 class="ctitle" id="dali-t">The basin that was a kingdom</h2>
     <div class="essay">
       <p>Erhai is a forty-kilometre lake at 1,972 metres, the second-largest highland lake in China, with the Cangshan range as its western wall. The flat ground between wall and water fed the first state in these mountains. In 738 a chief named Piluoge united the six <em>zhao</em> of the lake and founded Nanzhao; the next year he set his capital at Taihe, a few kilometres south of today's old town. The Tang empire sent two armies to take it back, in 751 and 754. Both were destroyed. The two Wikipedia accounts disagree on their size, so no number is given here beyond tens of thousands; the second commander, Li Mi, drowned himself rather than report home. Nanzhao went on to raid the outskirts of Chengdu in 869 and lasted until 902. Its successor, the Kingdom of Dali, was founded by Duan Siping in 937 and ruled the basin for three centuries; ten of its twenty-two kings gave up the throne to become monks, and the Three Pagodas of Chongsheng were their temple.</p>
@@ -537,7 +554,7 @@ figcaption a{color:var(--haze); display:inline-block; padding:8px 2px; margin:-8
 
 <section class="band" data-band="lijiang" id="lijiang" aria-labelledby="lij-t">
   <div class="wrap">
-    <div class="stone"><div class="srow"><div class="snum">2&#8239;400<small>m</small></div><div class="sside"><div class="shan" lang="zh-Hans" aria-hidden="true">丽江</div><div class="splace">Lijiang</div><div class="sdays">Days 3 to 6 &middot; 26 to 29 September</div></div></div><p class="sline"><span class="wxline" data-day="3" data-normal="about 12 to 22 °C, cool once the sun goes">about 12 to 22 °C, cool once the sun goes</span></p></div>
+    <div class="stone"><div class="srow"><div class="snum">2&#8239;400<small>m</small></div><div class="sside"><div class="shan" lang="zh-Hans" aria-hidden="true">丽江</div><div class="splace">Lijiang</div><div class="sdays"><span>Days 3 to 6</span><span>26 to 29 September</span></div></div></div><p class="sline"><span class="wxline" data-day="3" data-normal="about 12 to 22 °C, cool once the sun goes">about 12 to 22 °C, cool once the sun goes</span></p></div>
     <h2 class="ctitle" id="lij-t">The hinge</h2>
     <div class="essay">
       <p>Four hundred metres higher and three hours north, the Lijiang basin belongs to the Naxi, about 324,000 people who live in the Hengduan ranges between the Bai basin and the Tibetan plateau. That position made their rulers the hinge of the whole region. The Mu family had governed Lijiang for the Mongols since 1278; in 1382, as the Ming took Yunnan, the chieftain Ajia Ade pledged himself to the new dynasty and the Hongwu emperor gave him the surname Mu, and with it the status of <em>tusi</em>, a hereditary native chieftain ruling his own people on the empire's behalf. The bargain lasted 340 years. The Mu held the valley for the emperor and fought the plateau for themselves: under Mu Zeng, from 1597 to 1623, Lijiang was the most powerful chiefdom in south-west China, pushing north into Tibetan Kham. In 1723 the Yongzheng emperor's policy of <em>gaitu guiliu</em>, replacing native chiefs with appointed magistrates, ended it, and the Mu were left a ceremonial title and their mansion in the old town.</p>
@@ -593,7 +610,7 @@ figcaption a{color:var(--haze); display:inline-block; padding:8px 2px; margin:-8
 
 <section class="band" data-band="climb" id="climb" aria-labelledby="climb-t">
   <div class="wrap">
-    <div class="stone"><div class="srow"><div class="snum"><span class="arrow">&#8599;</span>3&#8239;160<small>m</small></div><div class="sside"><div class="shan" lang="zh-Hans" aria-hidden="true">虎跳峡</div><div class="splace">Tiger Leaping Gorge</div><div class="sdays">Day 7 &middot; 30 September</div></div></div><p class="sline"><span class="wxline" data-day="7" data-normal="gorge in the morning, plateau by evening">gorge in the morning, plateau by evening</span></p></div>
+    <div class="stone"><div class="srow"><div class="snum">1&#8239;800<small>m</small></div><div class="sside"><div class="shan" lang="zh-Hans" aria-hidden="true">虎跳峡</div><div class="splace">Tiger Leaping Gorge</div><div class="sdays"><span>Day 7</span><span>30 September</span></div></div></div><p class="sline"><span class="wxline" data-day="7" data-normal="gorge in the morning, plateau by evening">gorge in the morning, plateau by evening</span><span class="atm">&#8599; to 3&#8239;160 m by evening; tonight is on the plateau</span></p></div>
     <h2 class="ctitle" id="climb-t">The climb</h2>
     <div class="essay">
       <p>Sixty kilometres north of Lijiang the Jinsha, the upper Yangtze, squeezes between Jade Dragon at 5,596 metres and Haba at 5,396. Tiger Leaping Gorge is about 3,790 metres deep from river to summit, one of the deepest canyons on Earth, fifteen kilometres of rapids under cliffs two thousand metres high. This is the river the Naxi rafted the Mongols across in 1253, a little downstream of here where it bends back on itself: the empire's obstacle and the empire's road in the same water. The morning is the walk along the upper gorge; the afternoon is the drive that lifts you about 760 metres onto the plateau, and this is where the page's air, and yours, turns cold.</p>
@@ -607,7 +624,7 @@ figcaption a{color:var(--haze); display:inline-block; padding:8px 2px; margin:-8
 <p>Walk the upper Tiger Leaping Gorge, then carry on north and up to Shangri-La, checking in inside Dukezong old town.</p>
 <p class="wx" data-day="7" hidden></p>
 <p class="stay"><svg class="bed" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18V8h2v5h14v-3a2 2 0 0 0-2-2h-6v5H5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 15h18v3" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="7.5" cy="10.5" r="1.6" fill="currentColor"/></svg><span>Stay: Half View Vacation Homestay, Shangri-La (nights 7 and 8)</span></p>
-<p class="pin warn">Tonight you sleep at <span class="num">3,160</span> m, where the air presses with about <span class="num" id="warnP">68</span>%% of its weight at sea level. Walk slowly, drink more water than you feel like drinking, take stairs gently, and skip alcohol on the first night.</p>
+<p class="pin warn">Tonight you sleep at <span class="num">3,160</span> m, where the air presses with about <span class="num" id="warnP">68</span>% of its weight at sea level. Walk slowly, drink more water than you feel like drinking, take stairs gently, and skip alcohol on the first night.</p>
 </article>
     </div>
   </div>
@@ -615,7 +632,7 @@ figcaption a{color:var(--haze); display:inline-block; padding:8px 2px; margin:-8
 
 <section class="band" data-band="shangrila" id="shangrila" aria-labelledby="sl-t">
   <div class="wrap">
-    <div class="stone"><div class="srow"><div class="snum">3&#8239;160<small>m</small></div><div class="sside"><div class="shan" lang="zh-Hans" aria-hidden="true">香格里拉</div><div class="splace">Shangri-La</div><div class="sdays">Days 7 to 8 &middot; 30 September to 1 October</div></div></div><p class="sline"><span class="wxline" data-day="8" data-normal="about 4 to 17 °C, close to freezing at night">about 4 to 17 °C, close to freezing at night</span><span class="atm" id="atmLine"></span></p></div>
+    <div class="stone"><div class="srow"><div class="snum">3&#8239;160<small>m</small></div><div class="sside"><div class="shan" lang="zh-Hans" aria-hidden="true">香格里拉</div><div class="splace">Shangri-La</div><div class="sdays"><span>Day 8</span><span>1 October</span></div></div></div><p class="sline"><span class="wxline" data-day="8" data-normal="about 4 to 17 °C, close to freezing at night">about 4 to 17 °C, close to freezing at night</span><span class="atm" id="atmLine"></span></p></div>
     <h2 class="ctitle" id="sl-t">The edge of the plateau</h2>
     <div class="essay">
       <p>The Tibetans call this basin Gyalthang, <em>royal plains</em>. It is the southern end of Kham, the eastern Tibetan region that belonged to the Tibetan empire many centuries ago and passed under Qing control by the mid-1700s; since 1957 it has been Diqing Tibetan Autonomous Prefecture, part of Yunnan, with a population that in 2020 was about a third Tibetan, a quarter Lisu, a sixth Han and a ninth Naxi. The edge of the plateau is an administrative altitude as much as a physical one. The Tibet Autonomous Region on the far side of the prefecture's north-west border requires a Tibet Travel Permit, a guide and an organised tour; Diqing requires your passport and visa. This is the Tibet you can reach on your own.</p>
@@ -688,7 +705,7 @@ figcaption a{color:var(--haze); display:inline-block; padding:8px 2px; margin:-8
 
 <section class="band" data-band="shaxi" id="shaxi" aria-labelledby="sx-t">
   <div class="wrap">
-    <div class="stone"><div class="srow"><div class="snum">2&#8239;100<small>m</small></div><div class="sside"><div class="shan" lang="zh-Hans" aria-hidden="true">沙溪</div><div class="splace">Shaxi</div><div class="sdays">Days 9 to 10 &middot; 2 to 3 October</div></div></div><p class="sline"><span class="wxline" data-day="9" data-normal="warm days and cool nights, much like Lijiang">warm days and cool nights, much like Lijiang</span></p></div>
+    <div class="stone"><div class="srow"><div class="snum">2&#8239;100<small>m</small></div><div class="sside"><div class="shan" lang="zh-Hans" aria-hidden="true">沙溪</div><div class="splace">Shaxi</div><div class="sdays"><span>Days 9 to 10</span><span>2 to 3 October</span></div></div></div><p class="sline"><span class="wxline" data-day="9" data-normal="warm days and cool nights, much like Lijiang">warm days and cool nights, much like Lijiang</span></p></div>
     <h2 class="ctitle" id="sx-t">Where the two ecologies met</h2>
     <div class="essay">
       <p>The road down from the plateau loses more than a thousand metres and brings you, on a Friday, to the one place where the Tea Horse Road is still doing what it did. Shaxi has been a trading stop since the Tang dynasty and had its best years under the Ming and Qing, when caravans between Yunnan, Burma and Tibet paused at Sideng square with its theatre stage, its temple and its caravanserai inns. It is, in the words of the people who restored it, probably the most intact horse-caravan town left on the tea route. The valley is Bai; the hills above it are Yi. On Fridays the hills come down: the market from about ten until early afternoon is the last living exchange between the two elevations, salt and tea and vegetables where horses and bricks of tea once changed hands.</p>
@@ -705,6 +722,7 @@ figcaption a{color:var(--haze); display:inline-block; padding:8px 2px; margin:-8
 <p>The scenic drive down off the plateau and south into the Shaxi valley.</p>
 <p class="wx" data-day="9" hidden></p>
 <p class="stay"><svg class="bed" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18V8h2v5h14v-3a2 2 0 0 0-2-2h-6v5H5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 15h18v3" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="7.5" cy="10.5" r="1.6" fill="currentColor"/></svg><span>Stay: Daoxiang residents' guesthouse, Shaxi (nights 9 and 10)</span></p>
+<p class="pin j">The contract's itinerary names Daoxiang; its inclusions list names He Garden Hotel. Treat neither as certain until Denis confirms which.</p>
 <p class="pin mkt">Friday is market day in Shaxi, the one morning a week the whole valley comes down to Sideng square, Bai and Yi farmers in their best. It runs from about <span class="num">10:00</span> into early afternoon and is gone by Saturday. Leave Shangri-La early and you will catch the end of it.</p>
 </article>
       <article class="card" id="day-10" data-day="10">
@@ -719,7 +737,7 @@ figcaption a{color:var(--haze); display:inline-block; padding:8px 2px; margin:-8
 
 <section class="band" data-band="descent" id="descent" aria-labelledby="ds-t">
   <div class="wrap">
-    <div class="stone"><div class="srow"><div class="snum"><span class="arrow">&#8600;</span>1&#8239;650<small>m</small></div><div class="sside"><div class="shan" lang="zh-Hans" aria-hidden="true">保山</div><div class="splace">Baoshan</div><div class="sdays">Day 11 &middot; 4 October</div></div></div><p class="sline"><span class="wxline" data-day="11" data-normal="warm and humid, the wettest country of the trip">warm and humid, the wettest country of the trip</span></p></div>
+    <div class="stone"><div class="srow"><div class="snum">1&#8239;650<small>m</small></div><div class="sside"><div class="shan" lang="zh-Hans" aria-hidden="true">保山</div><div class="splace">Baoshan</div><div class="sdays"><span>Day 11</span><span>4 October</span></div></div></div><p class="sline"><span class="wxline" data-day="11" data-normal="warm and humid, the wettest country of the trip">warm and humid, the wettest country of the trip</span><span class="atm">&#8600; 450 m below Shaxi, in the Burma Road's country</span></p></div>
     <h2 class="ctitle" id="ds-t">The descent</h2>
     <div class="essay">
       <p>Day 11 is a long day in the car, south and down into the Burma Road's own country. Baoshan, the old Yongchang, was Du Wenxiu's birthplace and the staging town of the road that China built in 1937 and 1938 with about two hundred thousand labourers: 717 miles from Lashio in British Burma to Kunming, over the border at Wanding, through Longling, across the Salween at the Huitong bridge, then Baoshan, Dali and Chuxiong. When Japan took Burma in the spring of 1942 the road was China's last land supply line, and it was cut. Japanese troops crossed into western Yunnan; on 4 May 1942 fifty-four aircraft bombed Baoshan, and the next day the retreating Chinese army stopped the advance at the Salween, blew the bridge, and dug in along a hundred miles of the east bank. The river was the front line for two years.</p>
@@ -747,7 +765,7 @@ figcaption a{color:var(--haze); display:inline-block; padding:8px 2px; margin:-8
 
 <section class="band" data-band="tengchong" id="tengchong" aria-labelledby="tc-t">
   <div class="wrap">
-    <div class="stone"><div class="srow"><div class="snum">1&#8239;640<small>m</small></div><div class="sside"><div class="shan" lang="zh-Hans" aria-hidden="true">腾冲</div><div class="splace">Tengchong</div><div class="sdays">Days 12 to 15 &middot; 5 to 8 October</div></div></div><p class="sline"><span class="wxline" data-day="12" data-normal="about 14 to 23 °C, the wettest stop of the trip">about 14 to 23 °C, the wettest stop of the trip</span></p></div>
+    <div class="stone"><div class="srow"><div class="snum">1&#8239;640<small>m</small></div><div class="sside"><div class="shan" lang="zh-Hans" aria-hidden="true">腾冲</div><div class="splace">Tengchong</div><div class="sdays"><span>Days 12 to 15</span><span>5 to 8 October</span></div></div></div><p class="sline"><span class="wxline" data-day="12" data-normal="about 14 to 23 °C, the wettest stop of the trip">about 14 to 23 °C, the wettest stop of the trip</span></p></div>
     <h2 class="ctitle" id="tc-t">The collision floor</h2>
     <div class="essay">
       <p>Tengchong sits on the collision itself. The volcanic field around the town has sixty-eight cones, about twenty-five of them with recognisable craters; the last big eruption was around 5750 BCE, with a possible small one in 1609, and seismic surveys still find an unsettled magma chamber underneath. Rehai, the <em>hot sea</em>, is the largest geothermal field in it, with more than eighty springs, fumaroles and boiling pools. The hot-spring afternoons of days 13 and 14 are the India&ndash;Asia collision reaching the surface: the same event that folded the Hengduan ranges and lifted the plateau you slept on a week ago, here at its rawest and lowest.</p>
@@ -807,16 +825,22 @@ figcaption a{color:var(--haze); display:inline-block; padding:8px 2px; margin:-8
         <li>All 14 hotel nights, with breakfast every morning.</li>
         <li>A private 7 seater with driver on every sightseeing and transfer day, including fuel, tolls and parking.</li>
         <li>Entry tickets for Jade Dragon Snow Mountain, Impression Lijiang, Tiger Leaping Gorge, Songzanlin Monastery and Pudacuo.</li>
-        <li>Accident insurance.</li>
-        <li>The departure transfer to Dali airport.</li>
+        <li>Personal accident insurance during the tour.</li>
+        <li>The driver's own meals and lodging.</li>
+        <li>The departure transfer, Tengchong to Dali (about 4 to 5 hours) and on to Dali airport.</li>
       </ul>
       <h3>Not included</h3>
       <ul>
-        <li>Flights.</li>
+        <li>Flights, and the day 1 airport-to-hotel transfer in Dali, which you arrange yourselves.</li>
         <li>Lunches and dinners.</li>
         <li>Hot spring and spa extras.</li>
         <li>Taxis on free days.</li>
         <li>A tour guide. This is self guided, with a driver.</li>
+        <li>Personal expenses, and any extra cost from weather, traffic or force majeure.</li>
+      </ul>
+      <h3>On the road</h3>
+      <ul>
+        <li>Contact at the agency: Denis (Qiu Yang), <a href="mailto:denis@yunoritravel.com">denis@yunoritravel.com</a>. Confirmation <span class="num">YYITS-008-TK-260609</span> (Yunnan Yunhanshan International Travel Service / Yunori Travel, issued 9 June 2026).</li>
       </ul>
       <h3>Keeping this on your phone</h3>
       <ul>
@@ -981,7 +1005,7 @@ var DAYS = [
 var CH = [
   {id:"dali",      first:1,  last:2},
   {id:"lijiang",   first:3,  last:6},
-  {id:"climb",     first:7,  last:7},
+  {id:"climb",     first:7,  last:7, p:6.45},   /* the stone is the gorge floor, 1 800 m; the day card is the plateau */
   {id:"shangrila", first:8,  last:8},
   {id:"shaxi",     first:9,  last:10},
   {id:"descent",   first:11, last:11},
@@ -991,9 +1015,9 @@ var PROF = [[1,1980],[2,1980],[3,2400],[4,2400],[5,2400],[6,2400],[6.45,1800],
             [7,3160],[8,3160],[9,2100],[10,2100],[11,1650],[12,1640],[13,1640],[14,1640],[15,1980]];
 var HOL = [[2,4],[8,14]];                       /* Mid-Autumn 25-27 Sept, Golden Week 1-7 Oct */
 var FLAGS = [{d:1,t:"Icíar's birthday"},{d:3,t:"Javier lands, 20:50"},{d:9,t:"Friday market"},{d:13,t:"Javier flies, 15:20"}];
-var STOPS = [{d:1.5,alt:1980,name:"Dali",above:false},{d:4.5,alt:2400,name:"Lijiang",above:true},
-             {d:7.5,alt:3160,name:"Shangri-La",above:true},{d:9.5,alt:2100,name:"Shaxi",above:false},
-             {d:11,alt:1650,name:"Baoshan",above:true},{d:13,alt:1640,name:"Tengchong",above:false}];
+var STOPS = [{d:1.5,alt:1980,name:"Dali",above:false,anchor:"middle"},{d:4.5,alt:2400,name:"Lijiang",above:true,anchor:"middle"},
+             {d:7.5,alt:3160,name:"Shangri-La",above:true,anchor:"middle"},{d:9.5,alt:2100,name:"Shaxi",above:true,anchor:"start",dx:4},
+             {d:11,alt:1650,name:"Baoshan",above:true,anchor:"start",dx:6},{d:13.5,alt:1640,name:"Tengchong",above:false,anchor:"middle"}];
 var T0 = Date.UTC(2026, 8, 24), DAY = 864e5;
 function fmtAlt(a){ a = Math.round(a); var s = String(a); return s.length > 3 ? s.slice(0, -3) + " " + s.slice(-3) : s; }
 function altAt(p){
@@ -1023,9 +1047,9 @@ function el(tag, attrs, parent){
 function buildSection(svg, vertical){
   var W, H, X, Y, i, k, g;
   if (!vertical) {
-    W = 360; H = 172;
+    W = 360; H = 178;
     X = function(d){ return 34 + (d - 1) / 14 * 318; };
-    Y = function(a){ return 132 - (a - 1500) / 2000 * 118; };
+    Y = function(a){ return 128 - (a - 1500) / 2000 * 112; };
   } else {
     W = 300; H = 560;
     X = function(d){ return 30 + (d - 1) / 14 * 470; };      /* time runs down: X() here is the y coordinate */
@@ -1048,7 +1072,7 @@ function buildSection(svg, vertical){
     var a1 = P(0.6, i), a2 = P(15.4, i);
     el("line", {"class":"grid", x1: a1.x, y1: a1.y, x2: a2.x, y2: a2.y}, svg);
     if (vertical) el("text", {"class":"ylab", x: Y(i), y: 20, "text-anchor":"middle", text: fmtAlt(i)}, svg);
-    else el("text", {"class":"ylab", x: 30, y: Y(i) + 4, "text-anchor":"end", text: fmtAlt(i)}, svg);
+    else el("text", {"class":"ylab", x: 26, y: Y(i) + 4, "text-anchor":"end", text: fmtAlt(i)}, svg);
   }
   /* profile */
   var d = PROF.map(function(p, j){ var q = P(p[0], p[1]); return (j ? "L" : "M") + q.x.toFixed(1) + "," + q.y.toFixed(1); }).join(" ");
@@ -1063,9 +1087,8 @@ function buildSection(svg, vertical){
     var t;
     var left = vertical && s.alt > 3000;
     if (vertical) t = el("text", {"class":"plab", x: left ? q.x - 9 : q.x + 9, y: q.y + 4, "text-anchor": left ? "end" : "start", text: s.name}, svg);
-    else t = el("text", {"class":"plab", x: q.x, y: s.above ? q.y - 8 : q.y + 16, "text-anchor":"middle", text: s.name}, svg);
-    var ts = el("tspan", {"class":"alt", text: " " + fmtAlt(s.alt)}, t);
-    if (vertical) { ts.setAttribute("x", left ? q.x - 9 : q.x + 9); ts.setAttribute("dy", 14); }
+    else t = el("text", {"class":"plab", x: q.x + (s.dx || 0), y: s.above ? q.y - 8 : q.y + 16, "text-anchor": s.anchor, text: s.name}, svg);
+    if (vertical) { var ts = el("tspan", {"class":"alt", text: " " + fmtAlt(s.alt)}, t); ts.setAttribute("x", left ? q.x - 9 : q.x + 9); ts.setAttribute("dy", 14); }
   });
   /* day ticks, labels, flags and hit areas */
   var hits = el("g", {"class":"hits"}, svg);
@@ -1076,17 +1099,17 @@ function buildSection(svg, vertical){
       lab = el("text", {"class":"dlab", x: 22, y: q.y + 4, "text-anchor":"end", text: dd.n, "data-day": dd.n}, svg);
     } else {
       el("line", {"class":"grid", x1: q.x, y1: Y(1500), x2: q.x, y2: Y(1500) + 4}, svg);
-      lab = el("text", {"class":"dlab", x: q.x, y: 150, text: dd.n, "data-day": dd.n}, svg);
+      lab = el("text", {"class":"dlab", x: q.x, y: 158, text: dd.n, "data-day": dd.n}, svg);
     }
     FLAGS.forEach(function(f){
       if (f.d !== dd.n) return;
       var fl;
       if (vertical) fl = el("path", {"class":"flag", d: "M" + (Y(1500) + 3) + "," + (q.y - 4) + " l8,4 l-8,4 z"}, svg);
-      else fl = el("path", {"class":"flag", d: "M" + (q.x - 4) + "," + (Y(1500) + 8) + " l4,-8 l4,8 z"}, svg);
+      else fl = el("path", {"class":"flag", d: "M" + (q.x - 4) + "," + (Y(1500) + 16) + " l4,-8 l4,8 z"}, svg);
       el("title", {text: f.t}, fl);
     });
     var r = vertical ? {x: 0, y: P(dd.n - 0.5, 0).y, w: W, h: P(dd.n + 0.5, 0).y - P(dd.n - 0.5, 0).y}
-                     : {x: X(dd.n - 0.5), y: 0, w: X(dd.n + 0.5) - X(dd.n - 0.5), h: 160};
+                     : {x: X(dd.n - 0.5), y: 0, w: X(dd.n + 0.5) - X(dd.n - 0.5), h: 166};
     var hit = el("rect", {"class":"hit", x: r.x, y: r.y, width: r.w, height: r.h, tabindex: 0, role: "button",
                           "aria-label": "Go to day " + dd.n + ", " + dd.place + ", " + fmtAlt(dd.alt) + " m", "data-day": dd.n}, hits);
     hit.addEventListener("click", function(){ goDay(dd.n); });
@@ -1100,30 +1123,61 @@ function buildSection(svg, vertical){
   };
 }
 
-/* ---------- cover profile ---------- */
-(function(){
-  var svg = $("#cprof svg"); if (!svg) return;
-  var X = function(d){ return 8 + (d - 1) / 14 * 344; }, Y = function(a){ return 176 - (a - 1500) / 2000 * 76; };
-  svg.setAttribute("viewBox", "0 0 360 204");
-  el("text", {"class":"big", x: 6, y: 58, text: "3 160"}, svg);
-  el("text", {"class":"unit", x: 8, y: 78, text: "m · Shangri-La, days 7 to 8"}, svg);
-  el("text", {"class":"big", x: 354, y: 58, "text-anchor":"end", text: "1 640"}, svg);
-  el("text", {"class":"unit", x: 352, y: 78, "text-anchor":"end", text: "m · Tengchong, days 12 to 14"}, svg);
-  HOL.forEach(function(h){ el("rect", {"class":"band", x: X(h[0] - 0.5), y: 96, width: X(h[1] + 0.5) - X(h[0] - 0.5), height: 84}, svg); });
+/* ---------- cover profile: the poster, drawn edge to edge at the width of the cover ---------- */
+var coverBuilt = 0;
+function buildCover(){
+  var box = $("#cprof"), svg = $("#cprof svg"); if (!svg || !box) return;
+  var W = Math.max(280, Math.round(box.clientWidth)), big = wide.matches;
+  if (svg.getAttribute("data-w") === String(W)) return;
+  svg.setAttribute("data-w", W);
+  var NUM = big ? 112 : 56, UN = 15, pad = 4, top = NUM + 8 + UN + 12, R = big ? 200 : 100;
+  /* on a wide screen 1 640 sits inside the chart above its trough; on a phone it hangs below the tick row */
+  var H = top + R + (big ? 34 : 30 + 8 + NUM + 6 + UN + 4);
+  var X = function(d){ return pad + (d - 1) / 14 * (W - 2 * pad); }, Y = function(a){ return top + R - (a - 1500) / 2000 * R; };
+  svg.setAttribute("viewBox", "0 0 " + W + " " + H); svg.setAttribute("width", W); svg.setAttribute("height", H);
+  svg.innerHTML = "";
+  HOL.forEach(function(h){ el("rect", {"class":"band", x: X(h[0] - 0.5), y: Y(3500), width: X(h[1] + 0.5) - X(h[0] - 0.5), height: R}, svg); });
   var d = PROF.map(function(p, j){ return (j ? "L" : "M") + X(p[0]).toFixed(1) + "," + Y(p[1]).toFixed(1); }).join(" ");
-  el("path", {"class":"fill", d: d + " L" + X(15) + ",180 L" + X(1) + ",180 Z"}, svg);
+  el("path", {"class":"fill", d: d + " L" + X(15) + "," + Y(1500) + " L" + X(1) + "," + Y(1500) + " Z"}, svg);
   var line = el("path", {"class":"line", d: d}, svg);
-  DAYS.forEach(function(dd){ el("line", {"class":"tick", x1: X(dd.n), y1: 180, x2: X(dd.n), y2: 185}, svg); });
-  el("text", {"class":"lab", x: X(1), y: 200, text: "day 1"}, svg);
-  el("text", {"class":"lab", x: X(15), y: 200, "text-anchor":"end", text: "day 15"}, svg);
-  el("text", {"class":"lab", x: X(8), y: 200, "text-anchor":"middle", text: "up, then down"}, svg);
-  window.__coverDot = el("circle", {"class":"dot", cx: X(1), cy: Y(1980), r: 5}, svg);
+  /* the two extreme altitudes, on the line itself */
+  el("text", {"class":"big", x: X(7.5), y: NUM, "text-anchor":"middle", text: "3 160"}, svg);
+  el("text", {"class":"unit", x: X(7.5), y: NUM + 8 + UN, "text-anchor":"middle", text: "m · Shangri-La · nights 7 and 8"}, svg);
+  var lowY = big ? Y(1640) - 10 : Y(1500) + 30 + 8 + NUM;
+  el("text", {"class":"big", x: X(15), y: big ? lowY - UN - 6 : lowY, "text-anchor":"end", text: "1 640"}, svg);
+  el("text", {"class":"unit", x: X(15), y: big ? lowY : lowY + 6 + UN, "text-anchor":"end", text: "m · Tengchong · nights 12 to 14"}, svg);
+  /* the other stops at their own heights */
+  el("text", {"class":"plab", x: X(1) + 3, y: Y(1980) + 17, text: "Dali 1 980"}, svg);
+  el("text", {"class":"plab", x: X(4.5), y: Y(2400) - 8, "text-anchor":"middle", text: "Lijiang 2 400"}, svg);
+  el("text", {"class":"plab", x: X(9.5) + 3, y: Y(2100) - 8, text: "Shaxi 2 100"}, svg);
+  if (big) el("text", {"class":"plab", x: X(11) - 8, y: Y(1650) - 8, "text-anchor":"end", text: "Baoshan 1 650"}, svg);
+  /* day ticks: the navigation the drawer repeats */
+  DAYS.forEach(function(dd){
+    el("line", {"class":"tick", x1: X(dd.n), y1: Y(1500), x2: X(dd.n), y2: Y(1500) + 6}, svg);
+    if (big) el("text", {"class":"lab", x: X(dd.n), y: Y(1500) + 24, "text-anchor":"middle", text: dd.n}, svg);
+  });
+  if (!big) {
+    el("text", {"class":"lab", x: X(1), y: Y(1500) + 24, text: "day 1"}, svg);
+    el("text", {"class":"lab", x: X(8), y: Y(1500) + 24, "text-anchor":"middle", text: "up, then down"}, svg);
+    el("text", {"class":"lab", x: X(15), y: Y(1500) + 24, "text-anchor":"end", text: "day 15"}, svg);
+  }
+  window.__coverDot = el("circle", {"class":"dot", cx: X(todayDay), cy: Y(DAYS[todayDay - 1].alt), r: big ? 7 : 5}, svg);
+  if (big) {
+    var hits = el("g", {"class":"hits"}, svg);
+    DAYS.forEach(function(dd){
+      var hit = el("rect", {"class":"hit", x: X(dd.n - 0.5), y: 0, width: X(dd.n + 0.5) - X(dd.n - 0.5), height: H, tabindex: 0, role: "button",
+                            "aria-label": "Go to day " + dd.n + ", " + dd.place + ", " + fmtAlt(dd.alt) + " m", "data-day": dd.n}, hits);
+      hit.addEventListener("click", function(){ goDay(dd.n); });
+      hit.addEventListener("keydown", function(e){ if (e.key === "Enter" || e.key === " ") { e.preventDefault(); goDay(dd.n); } });
+    });
+  }
   try {
     var L = Math.ceil(line.getTotalLength());
-    $("#cprof").style.setProperty("--len", L);
-    if (!RM) $("#cprof").classList.add("drawn");
+    box.style.setProperty("--len", L);
+    if (!RM && !coverBuilt) box.classList.add("drawn"); else box.classList.remove("drawn");
   } catch (e) {}
-})();
+  coverBuilt = 1;
+}
 
 /* ---------- rail ---------- */
 var railEl = $("#rail"), needle = $("#needle"), railRo = $("#railRo"), railBadge = $("#railBadge"), ticks = $("#ticks");
@@ -1170,8 +1224,10 @@ function scrollToEl(elm){
 function goDay(n){
   closeDrawer();
   setDay(n);
-  var ci = chapterOf(n);
-  scrollToEl(n === CH[ci].first ? chapEls[ci] : document.getElementById("day-" + n));
+  var ci = chapterOf(n), head = n === CH[ci].first;
+  scrollToEl(head ? chapEls[ci] : document.getElementById("day-" + n));
+  var p = head && CH[ci].p ? CH[ci].p : n, a = altAt(p);
+  setAlt(a); secH.dot(p, a); secV.dot(p, a);
 }
 window.goDay = goDay;
 
@@ -1186,10 +1242,7 @@ window.goDay = goDay;
     b.addEventListener("click", function(){ goDay(d.n); });
     nav.appendChild(b);
   });
-  var t = document.createElement("button");
-  t.type = "button"; t.className = "today"; t.textContent = "Top"; t.setAttribute("aria-label", "Back to the cover");
-  t.addEventListener("click", function(){ closeDrawer(); scrollToEl(document.getElementById("top")); });
-  nav.appendChild(t);
+  nav.appendChild($("#todayBtn"));
 })();
 $$(".plan .stop").forEach(function(g){
   var STOPDAY = {dali:1, lijiang:3, tlg:7, shangrila:8, shaxi:9, baoshan:11, tengchong:12};
@@ -1201,8 +1254,10 @@ $$(".plan .stop").forEach(function(g){
 
 /* ---------- drawer ---------- */
 var drawer = $("#drawer"), scrim = $("#scrim"), lastFocus = null;
+try { drawer.inert = true; } catch (e) {}
 function openDrawer(){
   lastFocus = document.activeElement;
+  try { drawer.inert = false; } catch (e) {}
   drawer.classList.add("open"); scrim.classList.add("on");
   drawer.setAttribute("aria-hidden", "false"); railEl.setAttribute("aria-expanded", "true");
   $("#drawerX").focus();
@@ -1211,6 +1266,7 @@ function closeDrawer(){
   if (!drawer.classList.contains("open")) return;
   drawer.classList.remove("open"); scrim.classList.remove("on");
   drawer.setAttribute("aria-hidden", "true"); railEl.setAttribute("aria-expanded", "false");
+  try { drawer.inert = true; } catch (e) {}
   if (lastFocus && lastFocus.focus) lastFocus.focus();
 }
 railEl.addEventListener("click", function(){ drawer.classList.contains("open") ? closeDrawer() : openDrawer(); });
@@ -1275,6 +1331,8 @@ var todayDay = Math.max(1, Math.min(15, TODAY));
   $("#todayBtn").textContent = TODAY >= 1 && TODAY <= 15 ? "Today" : (TODAY < 1 ? "Day 1" : "Day 15");
   $("#sideToday").textContent = $("#todayBtn").textContent;
 })();
+buildCover();
+(function(){ var t; addEventListener("resize", function(){ clearTimeout(t); t = setTimeout(buildCover, 120); }); })();
 
 /* ---------- scroll sync: needle, dots, current day, band tint ---------- */
 var active = "";
@@ -1303,10 +1361,18 @@ function syncDay(){
   var p = progress(y), a = altAt(p);
   setAlt(a); secH.dot(p, a); secV.dot(p, a);
 }
+var toolEl = document.getElementById("thinair"), stones = chapEls.map(function(c){ return c.querySelector(".stone"); });
 function progress(y){
+  /* anchors: each chapter top at the altitude on its stone, each day card at its day, and the Thin Air card holding
+     the plateau; between anchors the number slides, which only happens on the drives between chapters */
   var a = [], k, j = -1;
-  for (k = 0; k < chapEls.length; k++) a.push({t: chapEls[k].getBoundingClientRect().top, p: k ? CH[k - 1].last : 1});
+  for (k = 0; k < chapEls.length; k++) {
+    var r = chapEls[k].getBoundingClientRect(), st = stones[k], pp = CH[k].p || CH[k].first;
+    a.push({t: r.top, p: pp});
+    if (st) a.push({t: st.getBoundingClientRect().bottom + 40, p: pp});   /* the stone holds its number a little past itself */
+  }
   for (k = 0; k < cards.length; k++) a.push({t: cards[k].getBoundingClientRect().top, p: +cards[k].dataset.day});
+  if (toolEl) a.push({t: toolEl.getBoundingClientRect().bottom - 1, p: 8});
   a.sort(function(u, v){ return u.t - v.t; });
   for (k = 0; k < a.length; k++) if (a[k].t <= y) j = k;
   if (j < 0) return 1;

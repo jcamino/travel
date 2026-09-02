@@ -2,7 +2,7 @@
    on the site is affected. The cache name carries a hash of index.html:
    publishing a new build changes this file, which is what tells the browser
    to fetch the new page instead of serving the old one forever. */
-var C = 'yunnan2-2970f38e54';
+var C = 'yunnan4-775c26f5e9';
 var ASSETS = ['./', './index.html', './manifest.webmanifest'];
 
 self.addEventListener('install', function (e) {
@@ -12,7 +12,8 @@ self.addEventListener('install', function (e) {
 
 self.addEventListener('activate', function (e) {
   e.waitUntil(caches.keys().then(function (k) {
-    return Promise.all(k.map(function (n) { return n === C ? null : caches.delete(n); }));
+    var mine = C.slice(0, C.lastIndexOf('-') + 1);   /* only this page's own old caches: same prefix, ten-hex hash */
+    return Promise.all(k.map(function (n) { return (n !== C && n.indexOf(mine) === 0 && /^[0-9a-f]{10}$/.test(n.slice(mine.length))) ? caches.delete(n) : null; }));
   }).then(function () { return self.clients.claim(); }));
 });
 
