@@ -1,7 +1,7 @@
 /* Offline cache for this page, scoped to this folder only. Two caches: the page cache is named
    after a hash of index.html, so every build replaces it; the image cache is stable and keyed by
    the images' content-hashed file names, so an update only fetches images that changed. */
-var C = 'yunnan-7f4a6d5957';
+var C = 'yunnan-c4232c4ef1';
 var IMG = 'yunnan-img';
 var PAGE = ['./', './index.html', './manifest.webmanifest'];
 var IMAGES = ["./img/PHOTO_03-4d696e3c.jpg", "./img/NEW_16-f96e2679.jpg", "./img/PHOTO_02-3a38f222.jpg", "./img/NEW_20-3ffc79de.jpg", "./img/NEW_04-24cd6d07.jpg", "./img/NEW_05-3f42dbf0.jpg", "./img/PHOTO_05-dfb7229a.jpg", "./img/NEW_18-afe8713b.jpg", "./img/NEW_21-802cb6ec.jpg", "./img/NEW_12-4287559f.jpg", "./img/NEW_07-063cc28d.jpg", "./img/NEW_06-ea3bb926.jpg", "./img/PHOTO_06-dae33b5a.jpg", "./img/NEW_15-fa832e6c.jpg", "./img/NEW_09-cc97eb93.jpg", "./img/PHOTO_10-8e449d73.jpg", "./img/NEW_26-138c2c5e.jpg", "./img/PHOTO_11-d6e8758c.jpg", "./img/NEW_17-32b49891.jpg", "./img/PHOTO_09-5359cf00.jpg", "./img/NEW_11-50448bb1.jpg", "./img/NEW_22-782f4d04.jpg", "./img/PHOTO_13-bf841286.jpg", "./img/NEW_13-61e4cd0e.jpg", "./img/NEW_25-ffa4f529.jpg", "./img/NEW_03-ad3ed1db.jpg", "./img/NEW_02-5a5c3359.jpg", "./img/NEW_24-c14c1b6a.jpg", "./img/NEW_08-a0f19cf2.jpg", "./img/PHOTO_15-d8a09da2.jpg", "./img/PHOTO_16-fa595ceb.jpg", "./img/NEW_01-725af3dd.jpg"];
