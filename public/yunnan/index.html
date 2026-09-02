@@ -134,8 +134,9 @@ p{margin:0 0 1.1rem; text-wrap:pretty}
 .cal a b{font-weight:400; color:var(--lamp)}
 .cal a small{font-size:0.9375rem; color:var(--moth); display:block}
 .cal a .sr{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
-.cal a.dawn{background:var(--paper); color:#2a2418; border-color:#c9bfa8}
-.cal a.dawn b, .cal a.dawn small{color:#5a4a2a}
+:root{--sh:#ff5fa8; --sh-soft:rgba(255,95,168,.55); --sh-mute:#c9b8d6; --sh-ground:linear-gradient(160deg,#1b2050 0%,#361448 100%)}
+.cal a.dawn{background:var(--sh-ground); color:var(--paper); border-color:var(--sh-soft)}
+.cal a.dawn b, .cal a.dawn small{color:var(--sh)}
 .cal a.now{box-shadow:0 0 0 2px var(--lamp), 0 0 22px rgba(242,184,90,.45)}
 .cal a:active{background:#213060}
 .mapfig{margin:1.6rem 0 0; position:relative}
@@ -176,7 +177,7 @@ p{margin:0 0 1.1rem; text-wrap:pretty}
 /* ---------- chapters ---------- */
 .chapter{padding:clamp(48px,9vh,88px) 0 24px; border-top:1px solid var(--lacquer-soft); scroll-margin-top:0}
 .ch-num{font-style:italic; font-size:clamp(3.75rem,22vw,6rem); line-height:.9; color:var(--lamp); font-weight:400; letter-spacing:.02em; margin-left:-3px}
-.ch-num.dawn{color:#5a4a2a}
+.ch-num.dawn{color:var(--sh)}
 .ch-tag{margin:.9rem 0 .35rem; color:var(--moth); font-size:0.9375rem; text-transform:uppercase; display:flex; flex-wrap:wrap; gap:0 .8em; align-items:baseline}
 .ch-tag .han{text-transform:none; font-size:1rem}
 .ch-title{font-style:italic; font-size:2.125rem; line-height:1.1; text-wrap:balance; margin-bottom:1.4rem}
@@ -219,33 +220,24 @@ p{margin:0 0 1.1rem; text-wrap:pretty}
 .astro .mn{width:15px; height:15px; flex:0 0 auto; margin-right:-.3em}
 .astro .mn .d{fill:#1b2140; stroke:#2c3560; stroke-width:2}
 .astro .mn .l{fill:var(--lamp)}
-.day.dawn .astro{color:#6b6252}
-.day.dawn .astro b, .day.dawn .wx.stand b{color:#2a2418}
-.day.dawn .wx.stand{color:#5a5242}
-.day.dawn .wx .asof{color:#8a8271}
-.day.dawn .astro .mn .d{fill:#e9e0cb; stroke:#c9bfa8}
-.log{margin-top:.8rem; padding-top:.7rem; border-top:1px solid var(--lacquer-soft)}
-.log label{display:block; font-family:var(--mono); font-size:0.9375rem; letter-spacing:.06em; color:var(--moth); text-transform:uppercase; margin-bottom:.35rem}
-.log-row{display:flex; gap:8px}
-.log input{flex:1 1 0px; width:0; min-width:0; font:inherit; font-size:1.0625rem; padding:9px 12px; min-height:46px; border:1px solid var(--lacquer); border-radius:8px;
-  background:#0d1228; color:var(--paper)}
-.log input::placeholder{color:#6d7390}
-.log button{flex:0 0 auto; min-height:46px; min-width:46px; padding:0 14px; border:1px solid var(--lacquer); border-radius:8px; background:rgba(242,184,90,.1); color:var(--lamp); font-size:1rem; white-space:nowrap}
-.log button:active{background:rgba(242,184,90,.22)}
-.log .msg{margin:.4rem 0 0; font-size:0.9375rem; color:var(--moth); min-height:1.2em}
-.day.dawn{background:var(--paper); color:#2a2418; border-color:#c9bfa8}
-.day.dawn .dnum{color:#8a5a12}
-.day.dawn .dnum .dd{color:#6b6252}
-.day.dawn .t{color:#2a2418}
-.day.dawn .wx{color:#5a5242}
-.day.dawn .wx b{color:#2a2418}
-.day.dawn .log{border-top-color:#d9d0ba}
-.day.dawn .log label,.day.dawn .log .msg{color:#6b6252}
-.day.dawn .log input{background:#fff; color:#2a2418; border-color:#c9bfa8}
-.day.dawn .log input::placeholder{color:#9a917e}
-.day.dawn .log button{background:#f1e4c4; color:#6a4a12; border-color:#c9bfa8}
-.day.dawn.now{box-shadow:0 0 0 2px var(--lamp), 0 0 28px rgba(242,184,90,.4)}
-.day.dawn a{color:#2f5f78}
+.day.dawn .astro{color:var(--sh-mute)}
+.day.dawn .astro b, .day.dawn .wx.stand b{color:var(--paper)}
+.day.dawn .wx.stand{color:var(--sh-mute)}
+.day.dawn .wx .asof{color:#a898b8}
+.day.dawn .astro .mn .d{fill:#f6d5e6; stroke:var(--sh)}
+.day.dawn{background:var(--sh-ground); color:var(--paper); border-color:var(--sh-soft)}
+.day.dawn .dnum{color:var(--sh)}
+.day.dawn .dnum .dd{color:var(--sh-mute)}
+.day.dawn .t{color:var(--paper)}
+.day.dawn .wx{color:var(--sh-mute)}
+.day.dawn .wx b{color:var(--paper)}
+.day.dawn .log{border-top-color:rgba(255,95,168,.3)}
+.day.dawn .log label,.day.dawn .log .msg{color:var(--sh-mute)}
+.day.dawn .log input{background:#140c22; color:var(--paper); border-color:var(--sh-soft)}
+.day.dawn .log input::placeholder{color:#8a7a9a}
+.day.dawn .log button{background:rgba(255,95,168,.14); color:var(--sh); border-color:var(--sh-soft)}
+.day.dawn.now{box-shadow:0 0 0 2px var(--sh), 0 0 28px rgba(255,95,168,.45)}
+.day.dawn a{color:#ff9ccb}
 
 /* ---------- housekeeping + sources ---------- */
 .house{padding:clamp(48px,9vh,80px) 0 10px; border-top:1px solid var(--lacquer-soft)}
@@ -283,8 +275,8 @@ p{margin:0 0 1.1rem; text-wrap:pretty}
 .bar-cells i{display:block; border:1px solid #2c2410; border-radius:1.5px; background:#090c1a; transition:background .25s}
 .bar-cells i.past{background:#3a2f14; border-color:#5a4a26}
 .bar-cells i.now{background:var(--lamp); border-color:#ffe6b0; box-shadow:0 0 6px rgba(242,184,90,.85)}
-.bar-cells i.dawn{background:#d9c9a0; border-color:#c9bfa8}
-.bar-cells i.dawn.now{background:#f4ecd8; box-shadow:0 0 6px rgba(242,184,90,.95)}
+.bar-cells i.dawn{background:#5a2350; border-color:var(--sh-soft)}
+.bar-cells i.dawn.now{background:var(--sh); box-shadow:0 0 6px rgba(255,95,168,.95)}
 .bar-btn{flex:0 0 60px; border:0; border-left:1px solid var(--lacquer-soft); background:none; display:grid; place-items:center; color:var(--lamp)}
 .bar-btn svg{width:30px; height:30px}
 .bar-btn[aria-expanded="true"]{background:rgba(242,184,90,.1)}
@@ -304,9 +296,9 @@ p{margin:0 0 1.1rem; text-wrap:pretty}
 .cell.past{background:#3a2f14; border-color:#5a4a26}
 .cell.now{background:var(--lamp); border-color:#ffe6b0; box-shadow:0 0 14px rgba(242,184,90,.75); color:#5a4a2a}
 .cell.now b{color:#1a1408}
-.cell.dawn{background:linear-gradient(180deg,#f4ecd8 0%,#d9c9a0 100%); border-color:#c9bfa8; color:#6b6252}
-.cell.dawn b{color:#2a2418}
-.cell.dawn.now{box-shadow:0 0 14px rgba(242,184,90,.9); border-color:var(--lamp)}
+.cell.dawn{background:linear-gradient(180deg,#361448 0%,#1b2050 100%); border-color:var(--sh-soft); color:var(--sh-mute)}
+.cell.dawn b{color:var(--sh)}
+.cell.dawn.now{box-shadow:0 0 14px rgba(255,95,168,.9); border-color:var(--sh)}
 .cell:focus-visible{outline-offset:2px}
 .panel-row{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:8px 10px; margin-top:12px}
 .panel-lab{font-family:var(--mono); font-size:0.9375rem; letter-spacing:.04em; color:var(--paper); flex:1 1 170px; min-width:0; line-height:1.35}
@@ -1051,13 +1043,13 @@ p{margin:0 0 1.1rem; text-wrap:pretty}
     <h2 class="ch-title" id="ch6t">The last day: Tengchong to Dali, then Shanghai</h2>
 
     <figure class="fig locator" data-loc="ch6"><div class="frame"></div><figcaption><b>Day 15</b> &middot; Tengchong back to Dali, four to five hours, and the 17:40 to Shanghai: the whole road in one day, then the coast.</figcaption></figure>
-    <p class="lead">The last chapter is a dawn: four to five hours back along the road, the airport at Dali, and the <span class="t">17:40</span> to the coast.</p>
+    <p class="lead">The last chapter ends on the coast: four to five hours back along the road, the airport at Dali, the <span class="t">17:40</span> to Shanghai, and a fifteenth night under a different sky, so its card is lit in Pudong's colours.</p>
     <p>A coda on how this trip's own flights were shaped by a frontier moving. In November 2025, after Japan's prime minister said a Taiwan emergency could threaten Japan's survival, Beijing told its airlines to cut flights to Japan; by the northern-summer 2026 schedule the Chinese carriers had suspended 49 China&ndash;Japan routes outright and China Eastern alone had dropped 55 per cent of its Japan flying, with Tokyo Narita losing about half its scheduled flights. Air China pulled out of Narita entirely and China Eastern dropped Narita&ndash;Kunming, which is why Javier comes in from Osaka on Night III rather than from Tokyo, and why the way home was priced around a Tuesday-and-Sunday Shanghai&ndash;JFK service before the Chengdu&ndash;Los Angeles routing on Day 13 won. The airlines' free-change policies for Japan ran to 24 October 2026, past the end of this trip. The frontier is still moving; it just does it in timetables now.</p>
 
     <h3 class="nights-h">The last day</h3>
     <ol class="days">
       <li class="day dawn" id="day-15" data-day="15">
-        <span class="dnum">Day 15 &middot; No night <span class="dd">&middot; Thu 8 Oct</span></span>
+        <span class="dnum">Day 15 &middot; Night XV, Shanghai <span class="dd">&middot; Thu 8 Oct</span></span>
         <span class="astro" data-day="15"></span>
         <h3>Tengchong to Dali, and on to Shanghai</h3>
         <p>The transfer back to Dali airport, four to five hours, then the <span class="t">17:40</span> flight to Shanghai, where the coastal China leg of the trip begins.</p>
@@ -1103,7 +1095,7 @@ p{margin:0 0 1.1rem; text-wrap:pretty}
         <li>Every night card shows the weather in one of three ways. Until the forecast opens (sixteen days ahead: 9 September for the first night, 23 September for the last day) it gives the usual climate for that stop and those dates, from the station normals, worded as such. Once open, and whenever the phone is online, the forecast comes from <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>: the night's low first, then the day's high, the sky in words, and the chance of rain when it is 30% or more, with the time it was fetched. Offline, the last forecast fetched is shown unchanged with that time.</li>
         <li>Sunset and moonrise under each date are worked out on the phone from the stop's latitude and longitude, in China Standard Time, to within a few minutes; the small moon is that night's phase.</li>
         <li>The night log is one line per night, saved on this phone only. <b>Postcard</b> makes a dark postcard of the line with the chapter's window and shares it as a picture; nothing is sent anywhere on its own.</li>
-        <li>The lamp control in the night strip (bed, room, noon) raises the text towards white for daylight reading. The page never turns light; the Day 15 card, drawn as a dawn because there is no night, is the one exception.</li>
+        <li>The lamp control in the night strip (bed, room, noon) raises the text towards white for daylight reading. The page never turns light; the Day 15 card, lit in Shanghai's neon because that night is spent there, is the one exception.</li>
       </ul>
     </div>
   </div>
@@ -1724,8 +1716,8 @@ function revealTo(ci){
   DAYS.forEach(function(d){
     var n = d.n, dawn = n === 15;
     var dp = d.d.split(' ');   /* "Thu 24 Sep" -> weekday + day on one line, month on the next, so every cell is three lines */
-    h1 += '<li><a href="#day-'+n+'" data-go="'+n+'"'+(dawn?' class="dawn"':'')+'><b>'+(dawn?'Dawn':'<span class="sr">Night </span>'+ROMAN[n])+'</b><small>'+dp[0]+' '+dp[1]+'</small><small>'+(dp[2]||'')+'</small></a></li>';
-    h2 += '<li><a href="#day-'+n+'" data-go="'+n+'"><span class="rn">'+(dawn?'☀':ROMAN[n])+'</span><span>'+d.place+'</span><span class="rd">'+d.d.slice(4)+'</span></a></li>';
+    h1 += '<li><a href="#day-'+n+'" data-go="'+n+'"'+(dawn?' class="dawn"':'')+'><b>'+'<span class="sr">Night </span>'+ROMAN[n]+'</b><small>'+dp[0]+' '+dp[1]+'</small><small>'+(dp[2]||'')+'</small></a></li>';
+    h2 += '<li><a href="#day-'+n+'" data-go="'+n+'"><span class="rn">'+ROMAN[n]+'</span><span>'+d.place+'</span><span class="rd">'+d.d.slice(4)+'</span></a></li>';
   });
   cal.innerHTML = h1; if (rail) rail.innerHTML = h2;
 })();
@@ -1738,7 +1730,7 @@ var barL1 = $("#barL1"), barL2 = $("#barL2"), cells = $("#cells"), barCells = $(
   var h = "", m = "", n, d;
   for (n = 1; n <= 15; n++) {
     d = DAYS[n-1];
-    h += '<button type="button" class="cell'+(n===15?' dawn':'')+'" data-n="'+n+'" aria-label="'+(n===15?'Day 15, no night':'Night '+ROMAN[n]+', day '+n)+', '+d.d+': '+d.sum.replace(/"/g,'&quot;')+'"><b>'+(n===15?'Dawn':ROMAN[n])+'</b><span>'+d.d.slice(4)+'</span></button>';
+    h += '<button type="button" class="cell'+(n===15?' dawn':'')+'" data-n="'+n+'" aria-label="'+'Night '+ROMAN[n]+', day '+n+(n===15?', Shanghai':'')+', '+d.d+': '+d.sum.replace(/"/g,'&quot;')+'"><b>'+ROMAN[n]+'</b><span>'+d.d.slice(4)+'</span></button>';
     m += '<i class="'+(n===15?'dawn':'')+'" data-n="'+n+'"></i>';
   }
   cells.innerHTML = h; barCells.innerHTML = m;
@@ -1748,7 +1740,7 @@ function paintCells(n){
   cellEls.forEach(function(c){ var k = +c.dataset.n; c.classList.toggle("past", k < n); c.classList.toggle("now", k === n); c.setAttribute("aria-current", k === n ? "true" : "false"); });
   barCellEls.forEach(function(c){ var k = +c.dataset.n; c.classList.toggle("past", k < n); c.classList.toggle("now", k === n); });
 }
-function label(n){ var d = DAYS[n-1]; return (n === 15 ? "Day 15 · no night" : "Night " + ROMAN[n] + " · Day " + n); }
+function label(n){ var d = DAYS[n-1]; return "Night " + ROMAN[n] + " · Day " + n + (n === 15 ? " · Shanghai" : ""); }
 function setNight(n, quiet){
   n = Math.max(1, Math.min(15, n|0));
   if (n === cur) return;

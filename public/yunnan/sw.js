@@ -2,7 +2,7 @@
    on the site is affected. The cache name carries a hash of index.html:
    publishing a new build changes this file, which is what tells the browser
    to fetch the new page instead of serving the old one forever. */
-var C = 'yunnan-4b8dec0353';
+var C = 'yunnan-2f5593d2d1';
 var ASSETS = ['./', './index.html', './manifest.webmanifest'];
 
 self.addEventListener('install', function (e) {
