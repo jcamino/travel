@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Fourteen Nights</title>
 <meta name="description" content="Fourteen nights in western Yunnan, 24 September to 8 October 2026: Dali, Lijiang, Shangri-La, Shaxi and Tengchong, the history of the road, one chapter per hotel night.">
-<meta name="build" content="yunnan-0bf2efd015">
+<meta name="build" content="yunnan-d8c7926d5f">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="travel.jcamino.net">
 <meta property="og:title" content="Fourteen Nights">
@@ -288,8 +288,8 @@ p{margin:0 0 1.1rem; text-wrap:pretty}
 /* a chapter with more pictures than it shows: the button opens the lightbox on that set */
 .more{margin:1.6rem 0 0}
 .more-btn{min-height:44px; padding:0 16px; border:1px solid var(--lacquer); border-radius:8px; background:none; color:var(--lamp); font-family:var(--mono); font-size:0.9375rem; letter-spacing:.04em}
-.more-btn:active{background:rgba(242,184,90,.1)}
-.gal{display:none}
+.more-btn:active,.more-btn[aria-expanded="true"]{background:rgba(242,184,90,.1)}
+.gal{margin-top:.4rem}
 .credits{list-style:none; margin:1rem 0 0; padding:0; color:#8b92aa; font-size:0.875rem; line-height:1.5}
 .credits li{margin:0 0 .4rem; padding-left:1rem; text-indent:-1rem; overflow-wrap:anywhere}
 .credits li.drawn{margin-top:.9rem; padding-left:0; text-indent:0}
@@ -356,7 +356,8 @@ p{margin:0 0 1.1rem; text-wrap:pretty}
 .lb.open{display:flex}
 .lb-stage{flex:1 1 auto; display:flex; align-items:center; justify-content:center; padding:calc(60px + env(safe-area-inset-top)) 8px 4px; min-height:0; overflow:hidden}
 .lb-pic{position:relative; flex:0 1 auto; max-width:100%; max-height:100%; min-height:0; display:flex}
-.lb-stage img{max-width:100%; max-height:100%; object-fit:contain; width:auto; height:auto; flex:0 1 auto; display:block}
+.lb-stage img{max-width:100%; max-height:100%; object-fit:contain; width:auto; height:auto; flex:0 1 auto; display:block; transition:opacity .2s}
+.lb-stage img.wait{opacity:.35}
 .lb-cap{flex:0 1 auto; max-height:38vh; overflow-y:auto; -webkit-overflow-scrolling:touch; color:var(--paper); font-size:1rem; line-height:1.45; padding:12px 20px calc(18px + env(safe-area-inset-bottom));
   max-width:var(--col); margin:0 auto; text-align:center}
 .lb-cap .cred{display:block; color:var(--moth); font-size:0.9375rem; margin-top:.35rem}
@@ -622,7 +623,7 @@ html.cn .intl-only{display:none}
     <figure class="fig locator" data-loc="ch0"><div class="frame"></div><figcaption><b>Night I</b> &middot; From Beijing by air, landing at 18:30. Dali, 1,980 m, the first stop; the road north is still ahead.</figcaption></figure>
 
     <figure class="win landscape night">
-      <button class="photo" type="button" aria-label="Open photograph: the south gate of Dali old town"><img src="img/NEW_27-df2a1d08.jpg" data-tok="NEW_27" width="1400" height="1049" alt="The south gate of Dali old town: the tiered gate tower over the stone wall, flowers along the approach." loading="lazy" decoding="async" style="--ar:1400/1049"></button>
+      <button class="photo" type="button" aria-label="Open photograph: the south gate of Dali old town"><img src="img/NEW_27-bd3c0562.jpg" data-tok="NEW_27" width="1400" height="1049" alt="The south gate of Dali old town: the tiered gate tower over the stone wall, flowers along the approach." loading="lazy" decoding="async" style="--ar:1400/1049"></button>
       <figcaption>The south gate of the walled town, the way in on Night I.</figcaption>
     </figure>
 
@@ -666,13 +667,25 @@ html.cn .intl-only{display:none}
       <figcaption>Bai indigo tie-dye at Zhoucheng, hung to dry. The palette of this page is taken from this cloth: the vat for the cards, the cotton for the text.</figcaption>
     </figure>
 
-        <div class="more"><button class="more-btn" type="button" data-gal="gal-ch0">More photographs &middot; 4</button></div>
-    <ul class="gal" id="gal-ch0" hidden>
-      <li data-src="img/GAL_07-53242724.jpg" data-alt="Front gate at old city Dali" data-cap="The south gate at night."></li>
-      <li data-src="img/PHOTO_04-721e19b3.jpg" data-alt="Xizhou: whitewashed Bai courtyard houses with grey-blue trim, north of Dali." data-cap="Xizhou: whitewashed Bai courtyard houses with grey-blue trim, north of Dali."></li>
-      <li data-src="img/GAL_02-25febf79.jpg" data-alt="​大理白族扎染染色" data-cap="Dyeing at the vat, Zhoucheng."></li>
-      <li data-src="img/GAL_01-d2140f31.jpg" data-alt="The small island of Xiǎopǔtuó (小普陀) seen from the shore of Erhai Lake late in the afternoon in May 2019." data-cap="Xiaoputuo, the temple islet in Erhai."></li>
-    </ul>
+        <div class="more"><button class="more-btn" type="button" aria-expanded="false" data-gal="gal-ch0">More photographs &middot; 4</button></div>
+    <div class="gal" id="gal-ch0" hidden>
+      <figure class="win landscape">
+        <button class="photo" type="button" aria-label="Open photograph"><img data-src="img/GAL_07-53242724.jpg" data-tok="GAL_07" width="1400" height="937" alt="The south gate at night." decoding="async" style="--ar:1400/937"></button>
+        <figcaption>The south gate at night.</figcaption>
+      </figure>
+      <figure class="win landscape">
+        <button class="photo" type="button" aria-label="Open photograph"><img data-src="img/PHOTO_04-721e19b3.jpg" data-tok="PHOTO_04" width="1400" height="788" alt="Xizhou: whitewashed Bai courtyard houses with grey-blue trim, north of Dali." decoding="async" style="--ar:1400/788"></button>
+        <figcaption>Xizhou: whitewashed Bai courtyard houses with grey-blue trim, north of Dali.</figcaption>
+      </figure>
+      <figure class="win landscape">
+        <button class="photo" type="button" aria-label="Open photograph"><img data-src="img/GAL_02-25febf79.jpg" data-tok="GAL_02" width="1400" height="931" alt="Dyeing at the vat, Zhoucheng." decoding="async" style="--ar:1400/931"></button>
+        <figcaption>Dyeing at the vat, Zhoucheng.</figcaption>
+      </figure>
+      <figure class="win landscape">
+        <button class="photo" type="button" aria-label="Open photograph"><img data-src="img/GAL_01-d2140f31.jpg" data-tok="GAL_01" width="1400" height="1050" alt="Xiaoputuo, the temple islet in Erhai." decoding="async" style="--ar:1400/1050"></button>
+        <figcaption>Xiaoputuo, the temple islet in Erhai.</figcaption>
+      </figure>
+    </div>
 
 <ol class="days">
       <li class="day" id="day-1" data-day="1">
@@ -756,12 +769,21 @@ html.cn .intl-only{display:none}
       <figcaption>Jade Dragon, 5,596 m, sacred to the Naxi. Its summit was reached once, on 8 May 1987, and it has been closed to climbers since. Night IV, under the Harvest Moon.</figcaption>
     </figure>
 
-        <div class="more"><button class="more-btn" type="button" data-gal="gal-ch1">More photographs &middot; 3</button></div>
-    <ul class="gal" id="gal-ch1" hidden>
-      <li data-src="img/PHOTO_07-165a60c0.jpg" data-alt="The open-air Impression Lijiang stage, with Jade Dragon Snow Mountain behind it." data-cap="The open-air Impression Lijiang stage, with Jade Dragon Snow Mountain behind it."></li>
-      <li data-src="img/PHOTO_08-ea89511f.jpg" data-alt="Blue Moon Valley below Jade Dragon, milky turquoise from the limestone it carries." data-cap="Blue Moon Valley below Jade Dragon, milky turquoise from the limestone it carries."></li>
-      <li data-src="img/GAL_03-5168e89b.jpg" data-alt="Baisha, China" data-cap="Jade Dragon&#x27;s summit ridge in cloud."></li>
-    </ul>
+        <div class="more"><button class="more-btn" type="button" aria-expanded="false" data-gal="gal-ch1">More photographs &middot; 3</button></div>
+    <div class="gal" id="gal-ch1" hidden>
+      <figure class="win landscape">
+        <button class="photo" type="button" aria-label="Open photograph"><img data-src="img/PHOTO_07-165a60c0.jpg" data-tok="PHOTO_07" width="1400" height="1050" alt="The open-air Impression Lijiang stage, with Jade Dragon Snow Mountain behind it." decoding="async" style="--ar:1400/1050"></button>
+        <figcaption>The open-air Impression Lijiang stage, with Jade Dragon Snow Mountain behind it.</figcaption>
+      </figure>
+      <figure class="win landscape">
+        <button class="photo" type="button" aria-label="Open photograph"><img data-src="img/PHOTO_08-ea89511f.jpg" data-tok="PHOTO_08" width="1400" height="933" alt="Blue Moon Valley below Jade Dragon, milky turquoise from the limestone it carries." decoding="async" style="--ar:1400/933"></button>
+        <figcaption>Blue Moon Valley below Jade Dragon, milky turquoise from the limestone it carries.</figcaption>
+      </figure>
+      <figure class="win landscape">
+        <button class="photo" type="button" aria-label="Open photograph"><img data-src="img/GAL_03-5168e89b.jpg" data-tok="GAL_03" width="1400" height="934" alt="Jade Dragon&#x27;s summit ridge in cloud." decoding="async" style="--ar:1400/934"></button>
+        <figcaption>Jade Dragon&#x27;s summit ridge in cloud.</figcaption>
+      </figure>
+    </div>
 
 <ol class="days">
       <li class="day" id="day-3" data-day="3">
@@ -853,11 +875,17 @@ html.cn .intl-only{display:none}
 
     <div class="note"><b class="ember">Golden Week &middot; The modern night migration</b>1 October is National Day and the start of the seven-day holiday. In 2025 the Ministry of Culture and Tourism counted 888 million domestic trips over the eight-day holiday, the largest movement of people on earth. On this plateau it means coaches at the Pudacuo gate; the answer is to be there when it opens.</div>
 
-        <div class="more"><button class="more-btn" type="button" data-gal="gal-ch2">More photographs &middot; 2</button></div>
-    <ul class="gal" id="gal-ch2" hidden>
-      <li data-src="img/PHOTO_12-e14faf38.jpg" data-alt="Militang pasture in Pudacuo National Park, at about 3,500 m." data-cap="Militang pasture in Pudacuo National Park, at about 3,500 m."></li>
-      <li data-src="img/PHOTO_09-5359cf00.jpg" data-alt="Ganden Sumtseling, a 17th-century monastery of several hundred monks above Shangri-La." data-cap="Ganden Sumtseling across the wetland, prayer flags in the foreground."></li>
-    </ul>
+        <div class="more"><button class="more-btn" type="button" aria-expanded="false" data-gal="gal-ch2">More photographs &middot; 2</button></div>
+    <div class="gal" id="gal-ch2" hidden>
+      <figure class="win landscape">
+        <button class="photo" type="button" aria-label="Open photograph"><img data-src="img/PHOTO_12-e14faf38.jpg" data-tok="PHOTO_12" width="1400" height="788" alt="Militang pasture in Pudacuo National Park, at about 3,500 m." decoding="async" style="--ar:1400/788"></button>
+        <figcaption>Militang pasture in Pudacuo National Park, at about 3,500 m.</figcaption>
+      </figure>
+      <figure class="win landscape">
+        <button class="photo" type="button" aria-label="Open photograph"><img data-src="img/PHOTO_09-5359cf00.jpg" data-tok="PHOTO_09" width="1400" height="788" alt="Ganden Sumtseling across the wetland, prayer flags in the foreground." decoding="async" style="--ar:1400/788"></button>
+        <figcaption>Ganden Sumtseling across the wetland, prayer flags in the foreground.</figcaption>
+      </figure>
+    </div>
 
 <ol class="days">
       <li class="day" id="day-7" data-day="7">
@@ -917,13 +945,25 @@ html.cn .intl-only{display:none}
       <figcaption>Market day: a Bai woman at Sideng, in the wide hat of the valley.</figcaption>
     </figure>
 
-        <div class="more"><button class="more-btn" type="button" data-gal="gal-ch3">More photographs &middot; 4</button></div>
-    <ul class="gal" id="gal-ch3" hidden>
-      <li data-src="img/GAL_04-bcdf33d8.jpg" data-alt="SW China" data-cap="A rainy day on Yujin bridge, Shaxi."></li>
-      <li data-src="img/GAL_05-aa598ed1.jpg" data-alt="Historic market town, along the ancient tea and horse road, between Dali and Lijiang." data-cap="Shaxi across the fields."></li>
-      <li data-src="img/PHOTO_14-72c4e1f5.jpg" data-alt="The east gate at Shaxi, still the way into the village on market day." data-cap="The east gate at Shaxi, still the way into the village on market day."></li>
-      <li data-src="img/PHOTO_13-bf841286.jpg" data-alt="Sideng square in Shaxi, the last intact market town on the Tea Horse Road." data-cap="Sideng square by day."></li>
-    </ul>
+        <div class="more"><button class="more-btn" type="button" aria-expanded="false" data-gal="gal-ch3">More photographs &middot; 4</button></div>
+    <div class="gal" id="gal-ch3" hidden>
+      <figure class="win landscape">
+        <button class="photo" type="button" aria-label="Open photograph"><img data-src="img/GAL_04-bcdf33d8.jpg" data-tok="GAL_04" width="1400" height="934" alt="A rainy day on Yujin bridge, Shaxi." decoding="async" style="--ar:1400/934"></button>
+        <figcaption>A rainy day on Yujin bridge, Shaxi.</figcaption>
+      </figure>
+      <figure class="win landscape">
+        <button class="photo" type="button" aria-label="Open photograph"><img data-src="img/GAL_05-aa598ed1.jpg" data-tok="GAL_05" width="1400" height="289" alt="Shaxi across the fields." decoding="async" style="--ar:1400/289"></button>
+        <figcaption>Shaxi across the fields.</figcaption>
+      </figure>
+      <figure class="win landscape">
+        <button class="photo" type="button" aria-label="Open photograph"><img data-src="img/PHOTO_14-72c4e1f5.jpg" data-tok="PHOTO_14" width="1400" height="1050" alt="The east gate at Shaxi, still the way into the village on market day." decoding="async" style="--ar:1400/1050"></button>
+        <figcaption>The east gate at Shaxi, still the way into the village on market day.</figcaption>
+      </figure>
+      <figure class="win landscape">
+        <button class="photo" type="button" aria-label="Open photograph"><img data-src="img/PHOTO_13-bf841286.jpg" data-tok="PHOTO_13" width="1400" height="1050" alt="Sideng square by day." decoding="async" style="--ar:1400/1050"></button>
+        <figcaption>Sideng square by day.</figcaption>
+      </figure>
+    </div>
 
 <ol class="days">
       <li class="day" id="day-9" data-day="9">
@@ -1106,11 +1146,17 @@ html.cn .intl-only{display:none}
       <figcaption>The lit side of the line, from orbit: Kunming, Dali, Baoshan and the Tengchong valley lit, the Kachin and Shan hills west of the dashed line dark, Mandalay a smudge at the bottom left. At night, the border is the only line on the map you can read. NASA's Black Marble 2016 composite, cropped to 95.5&ndash;104&deg;E, 21&ndash;28&deg;N; the border and the stops drawn on for this page.</figcaption>
     </figure>
 
-        <div class="more"><button class="more-btn" type="button" data-gal="gal-ch5">More photographs &middot; 2</button></div>
-    <ul class="gal" id="gal-ch5" hidden>
-      <li data-src="img/GAL_06-49312a92.jpg" data-alt="Hot spring at Rehai Scenic Area, Tengchong Volcanic Geothermal National Geological Park, Tengchong, Yunnan, China." data-cap="Steaming ground at Rehai."></li>
-      <li data-src="img/NEW_08-a0f19cf2.jpg" data-alt="Xiaotuanpo Hill at Graveyard of the National Heroes. 3346 soldiers from the 20th Group of the Chinese Expeditionary Force are buried on the hill." data-cap="Guoshang: the stones in the grass, each with a rank and a name."></li>
-    </ul>
+        <div class="more"><button class="more-btn" type="button" aria-expanded="false" data-gal="gal-ch5">More photographs &middot; 2</button></div>
+    <div class="gal" id="gal-ch5" hidden>
+      <figure class="win landscape">
+        <button class="photo" type="button" aria-label="Open photograph"><img data-src="img/GAL_06-49312a92.jpg" data-tok="GAL_06" width="1400" height="1050" alt="Steaming ground at Rehai." decoding="async" style="--ar:1400/1050"></button>
+        <figcaption>Steaming ground at Rehai.</figcaption>
+      </figure>
+      <figure class="win landscape">
+        <button class="photo" type="button" aria-label="Open photograph"><img data-src="img/NEW_08-a0f19cf2.jpg" data-tok="NEW_08" width="1280" height="960" alt="Guoshang: the stones in the grass, each with a rank and a name." decoding="async" style="--ar:1280/960"></button>
+        <figcaption>Guoshang: the stones in the grass, each with a rank and a name.</figcaption>
+      </figure>
+    </div>
 
 <ol class="days">
       <li class="day" id="day-12" data-day="12">
@@ -2029,32 +2075,42 @@ if ("IntersectionObserver" in window && !RM) {
     es.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add("lit"); wio.unobserve(e.target); } });
   }, {rootMargin: "0px 0px -10% 0px", threshold: 0.2});
   wins.forEach(function(w){ wio.observe(w); });
+  $$(".gal .win").forEach(function(w){ w.classList.add("lit"); });
 } else {
   wins.forEach(function(w){ w.classList.add("lit"); });
 }
 
 /* ---------- lightbox: black backdrop, the caption only; credits are in the footer ---------- */
-var shots = $$(".win .photo"), lb = $("#lb"), lbImg = $("#lbImg"), lbCap = $("#lbCap"), lbCount = $("#lbCount"), at = 0, lastFocus = null;
-var SET = null;   /* the pictures the lightbox is paging through: null = the page's figures, else a gallery */
-function lbCount_(){ return SET ? SET.length : shots.length; }
+var lb = $("#lb"), lbImg = $("#lbImg"), lbCap = $("#lbCap"), lbCount = $("#lbCount"), at = 0, lastFocus = null;
+var shots = [];   /* the figures on screen when the lightbox opened, in page order (unfolded galleries included) */
+function visibleShots(){ return $$(".win .photo").filter(function(b){ return b.offsetParent !== null; }); }
+function lbCount_(){ return shots.length; }
 function lbItem(i){
-  if (SET) return SET[i];
   var b = shots[i], im = b.querySelector("img"), cap = b.closest("figure").querySelector("figcaption");
-  return {src: im.src, alt: im.alt, cap: cap ? cap.innerHTML : "", btn: b, wrap: b.closest(".lights-wrap")};
+  return {src: im.currentSrc || im.src, alt: im.alt, cap: cap ? cap.innerHTML : "", btn: b, wrap: b.closest(".lights-wrap")};
 }
+var lbSeq = 0;
 function show(i){
   at = (i + lbCount_()) % lbCount_();
-  var it = lbItem(at);
-  lbImg.src = it.src; lbImg.alt = it.alt || "";
-  var old = lbPic.querySelector("svg"); if (old) old.remove();
-  var ov = it.wrap && it.wrap.querySelector("svg");
-  lbPic.classList.toggle("lights-wrap", !!ov);
-  if (ov) lbPic.appendChild(ov.cloneNode(true));
+  var it = lbItem(at), seq = ++lbSeq;
   lbCap.innerHTML = it.cap || "";
   lbCount.textContent = (at + 1) + " / " + lbCount_();
-  lbHd.textContent = "";
-  fitLb();
-  if (it.btn) loadHires(at, it.btn);
+  var old = lbPic.querySelector("svg"); if (old) old.remove();
+  lbPic.classList.remove("lights-wrap");
+  lbImg.classList.add("wait"); lbHd.textContent = "loading\u2026";
+  var pre = new Image();
+  pre.onload = pre.onerror = function(){
+    if (seq !== lbSeq) return;                      /* the reader has moved on */
+    lbImg.src = it.src; lbImg.alt = it.alt || "";
+    lbImg.classList.remove("wait"); lbHd.textContent = "";
+    var ov = it.wrap && it.wrap.querySelector("svg");
+    lbPic.classList.toggle("lights-wrap", !!ov);
+    if (ov) lbPic.appendChild(ov.cloneNode(true));
+    fitLb();
+    if (it.btn) loadHires(at, it.btn);
+    [at + 1, at - 1].forEach(function(k){ var n = lbItem((k + lbCount_()) % lbCount_()); if (n.src) { var p = new Image(); p.src = n.src; } });
+  };
+  pre.src = it.src;
 }
 var lbStage = $("#lbStage"), lbPic = $("#lbPic");
 function fitLb(){
@@ -2081,13 +2137,19 @@ function loadHires(i, b){
   im.onerror = function(){ if (done) return; done = true; clearTimeout(timer); if (at === i) lbHd.textContent = ""; };
   im.src = f;   /* a file beside the page, fetched only now and kept by the worker */
 }
-function openLb(i, set){ SET = set || null; lastFocus = document.activeElement; show(i); lb.classList.add("open"); document.body.style.overflow = "hidden"; $("#lbX").focus(); }
-function closeLb(){ lb.classList.remove("open"); document.body.style.overflow = ""; lbImg.removeAttribute("src"); lbHd.textContent = ""; SET = null; if (lastFocus) lastFocus.focus(); }
-shots.forEach(function(b, i){ b.addEventListener("click", function(){ openLb(i); }); });
+function openLb(b){ shots = visibleShots(); var i = Math.max(0, shots.indexOf(b)); lastFocus = document.activeElement; show(i); lb.classList.add("open"); document.body.style.overflow = "hidden"; $("#lbX").focus(); }
+function closeLb(){ lb.classList.remove("open"); document.body.style.overflow = ""; lbImg.removeAttribute("src"); lbImg.classList.remove("wait"); lbHd.textContent = ""; if (lastFocus) lastFocus.focus(); }
+$$(".win .photo").forEach(function(b){ b.addEventListener("click", function(){ openLb(b); }); });
+/* the galleries: unfold the chapter's extra figures in place, fetching their files only then */
 $$(".more-btn").forEach(function(b){
+  var box = document.getElementById(b.dataset.gal), n = box ? $$("img", box).length : 0, label = b.textContent;
   b.addEventListener("click", function(){
-    var ul = document.getElementById(b.dataset.gal); if (!ul) return;
-    openLb(0, $$("li", ul).map(function(li){ return {src: li.dataset.src, alt: li.dataset.alt || "", cap: li.dataset.cap || ""}; }));
+    if (!box) return;
+    var open = box.hidden;
+    box.hidden = !open;
+    b.setAttribute("aria-expanded", open ? "true" : "false");
+    b.textContent = open ? "Fewer photographs" : label;
+    if (open) $$("img[data-src]", box).forEach(function(im){ im.src = im.dataset.src; im.removeAttribute("data-src"); });
   });
 });
 $("#lbX").addEventListener("click", closeLb);
