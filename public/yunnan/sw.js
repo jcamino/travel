@@ -5,7 +5,7 @@
    Opening the page: the worker first asks the server for build.txt (a few bytes, never cached).
    If it names this build, the cached page is shown at once; if it names a newer one, the new page
    is fetched and shown, no reload needed. No answer within WAIT ms, or offline: the cached page. */
-var C = 'yunnan-ea14d263a9';
+var C = 'yunnan-dcc04bab6a';
 var IMG = 'yunnan-img';
 var PAGE = ['./', './manifest.webmanifest'];
 var IMAGES = ["./img/NEW_28-7eece22f.webp", "./img/NEW_27-d26ca027.webp", "./img/NEW_29-d7c38418.webp", "./img/NEW_20-e8a0f2ac.webp", "./img/NEW_04-bcbb857e.webp", "./img/NEW_05-6352f5c5.webp", "./img/PHOTO_05-28ca7238.webp", "./img/NEW_18-f2033037.webp", "./img/NEW_21-698424ea.webp", "./img/NEW_12-cd3fbd30.webp", "./img/NEW_07-793be841.webp", "./img/NEW_06-7e130a5d.webp", "./img/NEW_30-11323114.webp", "./img/NEW_15-22cd0e46.webp", "./img/NEW_09-6673f6b9.webp", "./img/NEW_31-831d14c5.webp", "./img/NEW_26-f7dd39e2.webp", "./img/PHOTO_11-a05f2be9.webp", "./img/NEW_17-e6a131fe.webp", "./img/NEW_32-25249f62.webp", "./img/NEW_35-48ac7c6f.webp", "./img/NEW_22-b8ac8a82.webp", "./img/NEW_36-d2734325.webp", "./img/NEW_37-c09d79b8.webp", "./img/NEW_13-1af9e1c0.webp", "./img/NEW_25-19639e45.webp", "./img/NEW_03-3e125c8b.webp", "./img/NEW_34-79adec9f.webp", "./img/NEW_24-79e3d08a.webp", "./img/NEW_33-a711be91.webp", "./img/PHOTO_15-ac50b535.webp", "./img/PHOTO_16-fce113b3.webp", "./img/NEW_01-e5ae31a5.webp"];

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Fourteen Nights</title>
 <meta name="description" content="Fourteen nights in western Yunnan, 24 September to 8 October 2026: Dali, Lijiang, Shangri-La, Shaxi and Tengchong, the history of the road, one chapter per hotel night.">
-<meta name="build" content="yunnan-ea14d263a9">
+<meta name="build" content="yunnan-dcc04bab6a">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="travel.jcamino.net">
 <meta property="og:title" content="Fourteen Nights">
@@ -968,7 +968,7 @@ html.cn .intl-only{display:none}
     <p>The Burma Road was cut through these hills in 1937 and 1938 by two hundred thousand Burmese and Chinese labourers, most of them with hand tools: 717 miles from Lashio in Burma up through Baoshan and Dali to Kunming, the only overland supply line left to a China whose coast Japan had closed. Your car tomorrow runs on its successor for most of the way to Tengchong. The convoys ran blacked out, and the road climbed and dropped through the Salween gorge on switchbacks that killed more drivers than the bombers did.</p>
     <figure class="fig sketch" data-sketch="burma">
       <div class="frame"></div>
-      <figcaption>The road in the dark, and the river that stopped it: Lashio to Wanding on the border, Longling, the Huitong bridge over the Salween, Baoshan, Dali, and on to Kunming; the Ledo road from India joining at Wanding in 1945. From May 1942 to May 1944 the Salween was the front, the Japanese on the west bank, the 71st Army on the east. Your own road on Days 11 and 12 crosses the front line twice. Approximate.</figcaption>
+      <figcaption>The road in the dark, and the river that stopped it: Lashio to Wanding on the border, Longling, the Huitong bridge over the Salween, Baoshan, Dali, and on to Kunming; the Ledo road from India joining at Wanding in 1945. From May 1942 to May 1944 the Salween was the front, the Japanese on the west bank, the 71st Army on the east. The arrow is the 20th Group Army going over the river in May 1944 for Tengchong; Mount Song, the hill the road climbs behind the bridge, held out until September. Your own road on Days 11 and 12 crosses the front line twice. Approximate.</figcaption>
     </figure>
 
     <div class="note"><b class="ember">1942 &middot; 4 May</b>Japan took Lashio on 29 April 1942 and the road was cut at its far end. On 4 May Japanese aircraft bombed Baoshan, a town crammed with refugees off the road from Burma; a figure of ten thousand dead in the raid is the one usually quoted. The next day, 5 May, Chinese engineers blew the Huitong bridge over the Salween to stop the Japanese column, and the river became the front line for two years. Chinese state media also say Japanese planes dropped cholera over Baoshan that week and put the epidemic's toll at 210,000; the raid and the epidemic numbers are contested and this page does not rely on either. The footer says which sources disagree.</div>
@@ -1722,16 +1722,18 @@ function sketchShigu(hid){
 }
 function sketchBurma(hid){
   var m = sketch({n:26.0, s:22.75, w:97.15, e:100.55}, 360), P = m.P;
-  var s = skOpen(m, "Sketch map of the Burma Road: from Lashio in Burma north-east through Wanding on the border, Mangshi, Longling, the Huitong bridge over the Salween, Baoshan and Dali towards Kunming; the Ledo road from Myitkyina and Bhamo joining it at Wanding in 1945; the Salween marked as the front line of May 1942 to May 1944, the Japanese to the west; Tengchong west of the river; and the road of Days 11 and 12 from Dali to Baoshan and Tengchong.", hid);
+  var s = skOpen(m, "Sketch map of the Burma Road: from Lashio in Burma north-east through Wanding on the border, Longling, Mount Song, the Huitong bridge over the Salween, Baoshan and Dali towards Kunming; the Ledo road from Myitkyina and Bhamo joining it at Wanding in 1945; the Salween marked as the front line of May 1942 to May 1944, the Japanese to the west; the 20th Group Army crossing the river in May 1944 towards Tengchong; and the road of Days 11 and 12 from Dali to Baoshan and Tengchong.", hid);
   var sal = [[26.0,98.86],[25.6,98.84],[25.2,98.92],[24.85,98.92],[24.5,98.9],[24.1,98.8],[23.7,98.72],[23.3,98.72],[22.9,98.62],[22.75,98.6]].map(function(q){ return P(q[0], q[1]); });
   var mek = [[26.0,99.22],[25.6,99.36],[25.2,99.48],[24.8,99.58],[24.4,99.72],[24.0,99.95],[23.5,100.15],[23.0,100.3],[22.75,100.4]].map(function(q){ return P(q[0], q[1]); });
   var bdr = [[26.0,98.62],[25.7,98.45],[25.45,98.25],[25.3,98.18],[25.1,98.0],[24.9,97.7],[24.6,97.55],[24.35,97.6],[24.1,97.75],[24.05,98.0],[23.9,98.25],[23.7,98.55],[23.5,98.85],[23.2,99.1],[22.9,99.3],[22.75,99.45]].map(function(q){ return P(q[0], q[1]); });
   s += '<path class="fg-front" d="' + curve(sal.slice(1, 7)) + '"/>';
   s += '<path class="fg-water" d="' + curve(sal) + '"/><path class="fg-water" d="' + curve(mek) + '"/><path class="fg-border" d="' + curve(bdr) + '"/>';
-  s += txt(P(25.75,98.86), "Salween", "fg-lab it", "end", -8, 0) + txt(P(23.6,100.1), "Mekong", "fg-lab it", "end", -8, 0);
+  s += txt(P(24.5,98.9), "Salween", "fg-lab it", "start", 10, 0) + txt(P(23.6,100.1), "Mekong", "fg-lab it", "end", -8, 0);
   s += txt(P(24.25,98.85), "the front", "fg-mono em", "start", 9, 0) + txt(P(24.25,98.85), "1942–44", "fg-mono em", "start", 9, 13) + txt(P(24.25,98.85), "71st Army", "fg-mono", "start", 9, 26) + txt(P(24.25,98.85), "east bank", "fg-mono", "start", 9, 39);
-  s += txt(P(24.47,98.1), "Japanese", "fg-mono em", "middle", 0, 0) + txt(P(24.47,98.1), "1942–44", "fg-mono em", "middle", 0, 14);
+  s += '<text class="fg-mono em" transform="translate(' + P(24.03,98.63).join(',') + ') rotate(-80)" text-anchor="middle">Japanese</text>';
   s += txt(P(23.6,97.3), "BURMA", "fg-lab my", "start", 0, 0) + txt(P(23.4,99.5), "YUNNAN", "fg-lab my", "start", 0, 0);
+  /* Mount Song, the hill the road climbs behind the bridge; drawn before the road so the road goes over it */
+  var ms = P(24.70,98.78); s += peak(ms, 7) + txt(ms, "Mount Song", "fg-mono em", "end", -15, 0) + txt(ms, "Jun–Sep 1944", "fg-mono em", "end", -15, 13);
   /* the road, 1938 */
   var road = [[22.93,97.75],[23.4,97.95],[24.08,98.07],[24.43,98.59],[24.59,98.69],[24.72,98.84],[24.83,98.92],[25.11,99.16],[25.46,99.54],[25.6,100.2],[25.55,100.55]].map(function(q){ return P(q[0], q[1]); });
   s += '<path class="fg-old" d="' + curve(road) + '"/>';
@@ -1743,20 +1745,19 @@ function sketchBurma(hid){
   /* your road */
   s += '<path class="fg-road dash" d="' + curve([P(26.0,99.9),P(25.8,100.05),P(25.6,100.2)]) + '"/>';
   s += '<path class="fg-road" d="' + curve([P(25.6,100.2),P(25.46,99.54),P(25.11,99.16)]) + '"/><path class="fg-road" d="' + curve([P(25.11,99.16),P(25.05,98.85),P(25.02,98.49)]) + '"/>';
-  s += txt(P(25.86,99.945), "from Shaxi, Day 11", "fg-mono lamp", "end", -6, 0) + txt(P(25.2,98.57), "Day 12", "fg-mono lamp", "end", 0, 0);
-  /* 1944 */
-  s += arrow([P(25.45,98.95),P(25.3,98.75),P(25.1,98.55)], "", hid);
-  s += txt(P(25.52,98.85), "20th Group Army", "fg-mono em", "end", -4, 0) + txt(P(25.52,98.85), "May–Sept 1944", "fg-mono em", "end", -4, 13);
-  s += txt(P(24.74,98.72), "Mount Song", "fg-mono em", "end", 0, 0) + txt(P(24.74,98.72), "June–Sept 1944", "fg-mono em", "end", 0, 13);
+  s += txt(P(25.86,99.945), "from Shaxi, Day 11", "fg-mono lamp", "end", -6, 0);
+  /* 1944: the 20th Group Army over the river, for Tengchong */
+  s += arrow([P(25.40,99.12),P(25.36,98.85),P(25.25,98.62),P(25.14,98.50)], "", hid);
+  s += txt(P(25.49,98.95), "May 1944", "fg-mono em", "start", 0, 0);
   /* places */
   var ls = P(22.93,97.75); s += dot(ls, 3.5, "on") + txt(ls, "Lashio", "fg-lab lit", "start", 8, 4);
   var wd = P(24.08,98.07); s += dot(wd, 3) + txt(wd, "Wanding", "fg-lab", "end", -9, 17);
-  var ll = P(24.59,98.69); s += dot(ll, 2.5) + txt(ll, "Longling", "fg-mono", "start", 10, 5);
-  var ht = P(24.83,98.92); s += dot(ht, 3) + txt(ht, "Huitong bridge", "fg-mono msk", "start", 8, 4) + txt(ht, "blown 5 May 1942", "fg-mono msk", "start", 8, 17);
+  var ll = P(24.59,98.69); s += dot(ll, 2.5) + txt(ll, "Longling", "fg-mono", "end", -16, 17);
+  var ht = P(24.83,98.92); s += dot(ht, 3) + txt(ht, "Huitong bridge", "fg-mono msk", "start", 8, 6) + txt(ht, "blown 5 May 1942", "fg-mono msk", "start", 8, 19);
   var bs = P(25.11,99.16); s += '<circle class="fg-burst" cx="' + bs[0] + '" cy="' + bs[1] + '" r="10"/><circle class="fg-burst" cx="' + bs[0] + '" cy="' + bs[1] + '" r="15" opacity=".5"/>' + stopLamp("baoshan", bs, 6, hid, "to") + txt(bs, "Baoshan", "fg-lab big msk", "start", 11, 4) + txt(bs, "bombed May 1942", "fg-mono msk", "start", 11, 17);
   var yp = P(25.46,99.54); s += dot(yp, 2.5);
   var dl = P(25.6,100.2); s += stopLamp("dali", dl, 6, hid) + txt(dl, "Dali", "fg-lab lit", "end", -11, 4);
-  var tc = P(25.02,98.49); s += stopLamp("tengchong", tc, 6, hid) + txt(tc, "Tengchong", "fg-lab lit", "middle", 0, 19);
+  var tc = P(25.02,98.49); s += stopLamp("tengchong", tc, 6, hid) + txt(tc, "Tengchong", "fg-lab lit", "middle", 0, 19) + txt(tc, "Day 12", "fg-mono lamp", "end", -11, 4);
   var mk = P(25.38,97.22); s += dot(mk, 3) + txt(mk, "Myitkyina", "fg-lab", "start", 12, 15);
   s += north(m.W - 15, m.H - 90);
   return s + '</svg>';
@@ -1803,17 +1804,20 @@ function buildFigures(){
   var SK = {erhai: sketchErhai, shigu: sketchShigu, burma: sketchBurma, border: sketchBorder};
   $$("[data-sketch]").forEach(function(fig, k){ $(".frame", fig).innerHTML = SK[fig.dataset.sketch]("haloS" + k); maskLabels($("svg", fig)); });
 }
-/* labels that sit on a river get a ground-coloured plate behind them, so the water runs behind the words, not through them */
+/* labels that sit on a river get a ground-coloured plate behind them, so the water runs behind the words, not through them;
+   every plate goes in under the map's first label, so a plate never crops the line above its own text */
 function maskLabels(svg){
   if (!svg) return;
+  var first = svg.querySelector(":scope > text"), plates = [];
   $$("text.msk", svg).forEach(function(tx){
     var b; try { b = tx.getBBox(); } catch (e) { return; }
     if (!b || !b.width) return;
     var r = document.createElementNS("http://www.w3.org/2000/svg", "rect");
     r.setAttribute("x", r1(b.x - 3)); r.setAttribute("y", r1(b.y - 1)); r.setAttribute("width", r1(b.width + 6)); r.setAttribute("height", r1(b.height + 2));
     r.setAttribute("rx", "3"); r.setAttribute("fill", "#0f1530"); r.setAttribute("opacity", ".92");
-    tx.parentNode.insertBefore(r, tx);
+    plates.push(r);
   });
+  plates.forEach(function(r){ svg.insertBefore(r, first); });
 }
 
 var maps = $$(".nightmap");
