@@ -255,6 +255,7 @@ p{margin:0 0 1.1rem; text-wrap:pretty}
 .inc li{margin-bottom:.5rem; font-size:1.0625rem; line-height:1.55}
 .inc li b{font-weight:400; color:var(--lamp)}
 .sources{padding:clamp(48px,9vh,80px) 0 60px; border-top:1px solid var(--lacquer-soft)}
+#sourcesList{margin-top:1rem}
 .sources h3{font-family:var(--mono); font-size:0.9375rem; letter-spacing:.14em; text-transform:uppercase; color:var(--lamp); margin:1.8rem 0 .5rem; font-weight:400}
 .sources ul{margin:0; padding-left:1.1rem}
 .sources li{margin-bottom:.45rem; font-size:1rem; line-height:1.5; color:#cfd3e2}
@@ -1091,11 +1092,6 @@ p{margin:0 0 1.1rem; text-wrap:pretty}
         <li>Personal expenses, and any extra cost from weather, traffic or force majeure.</li>
         <li>A tour guide. This is self guided, with a driver.</li>
       </ul>
-      <h3>Who to call</h3>
-      <ul>
-        <li>On the trip: <b>Denis</b> (Qiu Yang), <a href="mailto:denis@yunoritravel.com">denis@yunoritravel.com</a>.</li>
-        <li>Confirmation <b>YYITS-008-TK-260609</b>, Yunnan Yunhanshan International Travel Service (Yunori Travel), issued 9 June 2026. The signed contract is the final word on the itinerary; this page follows it day for day.</li>
-      </ul>
       <h3>Keeping this on your phone</h3>
       <ul>
         <li>On an iPhone: open this page in Safari, tap the Share button at the bottom, scroll down and tap <b>Add to Home Screen</b>. It then opens like an app, and works with no signal at all.</li>
@@ -1117,6 +1113,8 @@ p{margin:0 0 1.1rem; text-wrap:pretty}
   <div class="wrap">
     <h2 id="srcT">Sources</h2>
     <p>Every date and number above was checked against the pages below while this was written. Where two of them disagree it says so here rather than picking one.</p>
+    <button class="credits-btn" id="sourcesBtn" type="button" aria-expanded="false" aria-controls="sourcesList">Show sources</button>
+    <div id="sourcesList" hidden>
 
     <h3>Nights I&ndash;II &middot; Dali</h3>
     <ul>
@@ -1207,6 +1205,7 @@ p{margin:0 0 1.1rem; text-wrap:pretty}
       <li><a href="https://www.ch-aviation.com/news/161057-china-orders-extension-of-japan-flights-reduction-report" target="_blank" rel="noopener">"China orders extension of Japan flights reduction"</a>, ch-aviation, and <a href="https://www.bloomberg.com/news/articles/2025-11-25/china-asks-airlines-to-extend-japan-flight-cuts-until-march-2026" target="_blank" rel="noopener">Bloomberg, 25 November 2025</a>: the government instruction to the airlines after the Taiwan remarks. Air China's withdrawal from Narita and China Eastern's cancelled Narita&ndash;Kunming, and the Tuesday-and-Sunday Shanghai&ndash;JFK service that was priced before the Chengdu&ndash;Los Angeles routing was booked, are from the trip's own booking research of August 2026; the Day 13 card is the routing that was booked.</li>
     </ul>
 
+    </div>
     <p class="fin">Fourteen nights. The fifteenth day ends at Dali airport, on the 17:40 to Shanghai.</p>
   </div>
 </section>
@@ -2138,6 +2137,15 @@ function wxFetch(){
   if (stale && navigator.onLine !== false && typeof fetch === "function" && /^https?:$/.test(location.protocol)) wxFetch().then(wxRender).catch(function(){});
   addEventListener("online", function(){ wxRender(wxLoad()); if (/^https?:$/.test(location.protocol)) wxFetch().then(wxRender).catch(function(){}); });
   addEventListener("offline", function(){ wxRender(wxLoad()); });
+})();
+
+/* ---------- sources: collapsed behind a button, open in print ---------- */
+(function(){
+  var b = $("#sourcesBtn"), l = $("#sourcesList");
+  if (!b || !l) return;
+  function set(v){ l.hidden = !v; b.setAttribute("aria-expanded", v ? "true" : "false"); b.textContent = v ? "Hide sources" : "Show sources"; }
+  b.addEventListener("click", function(){ set(l.hidden); });
+  addEventListener("beforeprint", function(){ set(true); });
 })();
 
 /* ---------- credits: collapsed behind a button, open in print ---------- */
