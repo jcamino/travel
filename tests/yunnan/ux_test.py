@@ -70,6 +70,12 @@ BASE = ""
 
 # ---------------------------------------------------------------- a quiet static server
 class Quiet(http.server.SimpleHTTPRequestHandler):
+    # Keep-alive: the default HTTP/1.0 opens a fresh connection per file, and a full run asks for thousands of
+    # images, which on Windows piles up TIME_WAIT sockets until the browser gets ERR_NO_BUFFER_SPACE. send_head
+    # always sets Content-Length, so 1.1 is safe. The timeout keeps a thread from hanging on a dropped connection.
+    protocol_version = "HTTP/1.1"
+    timeout = 10
+
     def log_message(self, *a):
         pass
 
@@ -716,11 +722,9 @@ class B13_Cover(Base):
         page.click("#tonightBtn")
         expect(page.locator("#barL1")).to_have_text("DAY 15 · SHANGHAI · THU 8 OCT")
 
-    @unittest.expectedFailure
     def test_B13_bar_reads_tonight_on_open(self):
-        # The start block sets the bar to tonight in a setTimeout(0), then setTimeout(syncNight, 0) runs right after and,
-        # with the cover filling the screen, puts it back to day 1. Known page bug as of build 8d67ecdddb; drop the
-        # decorator once the page keeps tonight on the bar when it opens at the top.
+        # The start block sets the bar to tonight in a setTimeout(0); the initial syncNight now only runs when the
+        # page was restored partway down, so it no longer puts day 1 back over tonight when the page opens at the top.
         page = self.open(clock="night7")
         expect(page.locator("#barL1")).to_have_text(bar_text(7))
 
