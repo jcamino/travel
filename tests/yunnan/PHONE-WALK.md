@@ -8,7 +8,7 @@ Build: `yunnan-__________`  Date: `________`  Phones: `________________`
 
 ## Install
 
-- [ ] **C1** Safari: Share, Add to Home Screen. The icon is the lit window, the name is "Nights". Chrome on Android offers Install app.
+- [ ] **C1** Safari: Share, Add to Home Screen. The icon is the lit window, the name is "Yunnan" (the installer and link previews say "14 nights in Yunnan"). Chrome on Android offers Install app.
 - [ ] **C2** Opens standalone, dark status bar, and the bottom bar clears the home indicator (safe-area inset).
 - [ ] **C3** Airplane mode, then open from the home screen: the whole page and every photograph are there. The weather line says "offline · forecast kept from".
 
