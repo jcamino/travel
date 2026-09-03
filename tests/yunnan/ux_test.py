@@ -67,6 +67,11 @@ ARGS = None
 PW = BROWSER = SERVER = None
 BASE = ""
 
+# The browser gives up on a local request when Windows runs out of socket buffers, which says nothing about the page:
+# it surfaces as a failed request plus a console line, on whichever file happened to be in flight. Keep-alive on the
+# test server makes it rare, but a busy machine can still hit it. Tier A already proves every referenced file exists.
+LOCAL_EXHAUSTION = ("ERR_NO_BUFFER_SPACE", "ERR_INSUFFICIENT_RESOURCES")
+
 
 # ---------------------------------------------------------------- a quiet static server
 class Quiet(http.server.SimpleHTTPRequestHandler):
@@ -215,10 +220,12 @@ class Base(unittest.TestCase):
     def open(self, ctx=None, clock=None, query="", base=None):
         page = (ctx or self.ctx).new_page()
         page.on("pageerror", lambda e: self.errors.append(f"pageerror: {e}"))
-        page.on("console", lambda m: self.errors.append(f"console: {m.text}") if m.type == "error" and "open-meteo" not in (m.location or {}).get("url", "") else None)
+        page.on("console", lambda m: self.errors.append(f"console: {m.text}") if m.type == "error" and "open-meteo" not in (m.location or {}).get("url", "")
+                and not any(e in m.text for e in LOCAL_EXHAUSTION) else None)
         # Chromium reports a HEAD response (headers, no body) as an aborted load even though fetch() resolved; B15 proves the HEAD works
         page.on("requestfailed", lambda r: self.errors.append(f"requestfailed: {r.url} {r.failure} [{r.resource_type}]")
-                if "open-meteo" not in r.url and not (r.method == "HEAD" and "ERR_ABORTED" in (r.failure or "")) else None)
+                if "open-meteo" not in r.url and not (r.method == "HEAD" and "ERR_ABORTED" in (r.failure or ""))
+                and not any(e in (r.failure or "") for e in LOCAL_EXHAUSTION) else None)
         page.clock.install(time=CLOCK[clock or self.clock])
         page.goto((base or BASE) + query, wait_until="load")
         return page
