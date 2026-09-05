@@ -7,143 +7,167 @@
 <meta name="description" content="Live tracking of N2884D, a Piper Cherokee, Bridgeport to JFK to Montauk: map, the runway camera and the ATC feeds he is talking to.">
 <meta property="og:title" content="Ameya → JFK">
 <meta property="og:description" content="Where the Cherokee is right now, which camera to watch, which tower frequency to listen to.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23f3f4f0'/%3E%3Ccircle cx='16' cy='16' r='9' fill='%23d9540c'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23c8102e'/%3E%3Ccircle cx='16' cy='16' r='8' fill='%23f7f2e8'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --land: #f3f4f0;        /* chart paper */
-    --water: #d5e3ec;       /* map placeholder */
-    --paper: #ffffff;       /* panels */
-    --ink: #17223b;         /* navy ink */
-    --ink-soft: #5d6577;
-    --magenta: #d9540c;     /* live: the trail colour on the map */
-    --blue: #1f4d9a;        /* links */
-    --rule: rgba(23,34,59,.14);
-    --rule-strong: rgba(23,34,59,.5);
-    --sans: "Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
-    --cond: "Barlow Condensed", "Barlow", system-ui, sans-serif;
+    --plaster: #f7f2e8;     /* Saarinen's white concrete, warmed by the sun */
+    --carpet: #c8102e;      /* TWA red, the sunken lounge */
+    --carpet-deep: #a30d25;
+    --board: #1c1b1f;       /* Solari board housing */
+    --flap: #2b2a30;        /* a single flap */
+    --flap-text: #f4ead0;   /* cream flap lettering */
+    --ink: #1f1b18;
+    --ink-soft: #6a625b;
+    --rule: rgba(31,27,24,.14);
+    --white: #ffffff;
+    --sans: "Jost", "Futura", "Century Gothic", system-ui, sans-serif;
     --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   }
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; }
-  body { margin: 0; background: var(--land); color: var(--ink); font-family: var(--sans); font-size: 17px; line-height: 1.45; }
-  a { color: var(--blue); text-decoration-thickness: 1px; text-underline-offset: 2px; }
-  a:focus-visible, button:focus-visible { outline: 3px solid var(--magenta); outline-offset: 2px; }
-  .wrap { max-width: 880px; margin: 0 auto; padding: 0 18px; }
+  body { margin: 0; background: var(--plaster); color: var(--ink); font-family: var(--sans); font-size: 17px; line-height: 1.5; }
+  a { color: var(--carpet); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--board); outline-offset: 2px; }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 0 18px; }
   @media (min-width: 720px) { .wrap { padding: 0 28px; } }
 
-  /* Masthead */
-  header.mast { padding: 18px 0 10px; display: flex; align-items: baseline; justify-content: space-between; gap: 8px 16px; flex-wrap: wrap; border-bottom: 2px solid var(--ink); }
-  .tail { font-family: var(--cond); font-weight: 600; font-size: 20px; }
-  .tail span { color: var(--ink-soft); font-weight: 500; }
-  .live { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: var(--ink-soft); }
-  .live i { width: 10px; height: 10px; border-radius: 50%; background: var(--magenta); display: inline-block; animation: pulse 2.4s ease-out infinite; }
-  .live.stale i { background: var(--ink-soft); animation: none; }
-  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(217,84,12,.55); } 100% { box-shadow: 0 0 0 12px rgba(217,84,12,0); } }
-  @media (prefers-reduced-motion: reduce) { .live i { animation: none; } }
+  /* Masthead: the red band over the door */
+  .band { background: var(--carpet); color: var(--white); }
+  header.mast { padding: 14px 0; display: flex; align-items: center; justify-content: space-between; gap: 8px 16px; flex-wrap: wrap; }
+  .wing { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 20px; letter-spacing: .12em; text-transform: uppercase; }
+  .wing svg { width: 34px; height: 34px; flex: none; }
+  .tail { font-weight: 500; font-size: 15px; letter-spacing: .02em; opacity: .92; }
+  .live { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; }
+  .live i { width: 10px; height: 10px; border-radius: 50%; background: var(--white); display: inline-block; animation: pulse 2.4s ease-out infinite; }
+  .live.stale i { background: rgba(255,255,255,.45); animation: none; }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255,255,255,.6); } 100% { box-shadow: 0 0 0 12px rgba(255,255,255,0); } }
 
-  /* Hero: countdown, then the live sentence */
-  .count { display: grid; padding: 18px 0 14px; border-bottom: 1px solid var(--rule); }
-  .count-label { font-family: var(--cond); font-weight: 600; font-size: clamp(20px, 3.2vw, 24px); }
-  .count-num { font-family: var(--cond); font-weight: 700; font-size: clamp(88px, 22vw, 168px); line-height: .92; letter-spacing: -.02em; color: var(--magenta); font-variant-numeric: tabular-nums; }
-  .count-num small { font-size: .42em; letter-spacing: 0; color: var(--ink); margin-left: .1em; }
-  .count-note { font-size: 14px; color: var(--ink-soft); margin-top: 4px; }
-  .count.stale .count-num { color: var(--ink-soft); }
-  .count.done .count-num { color: var(--ink); font-size: clamp(56px, 12vw, 104px); }
-  h1 { font-family: var(--cond); font-weight: 700; font-size: clamp(30px, 5.4vw, 46px); line-height: 1.04; margin: 20px 0 0; text-wrap: balance; max-width: 22ch; }
-  h1 em { font-style: normal; color: var(--magenta); }
-  .sub { margin: 10px 0 0; font-size: 18px; color: var(--ink-soft); max-width: 58ch; }
+  /* The board: countdown on split flaps */
+  .count { padding: 30px 0 22px; }
+  .count-label { display: block; font-weight: 600; font-size: clamp(18px, 3vw, 22px); letter-spacing: .14em; text-transform: uppercase; color: var(--carpet); margin-bottom: 12px; }
+  .count-num { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .board { display: inline-flex; flex-wrap: wrap; gap: 6px; padding: 10px; background: var(--board); border-radius: 10px; box-shadow: inset 0 2px 0 rgba(255,255,255,.06), 0 10px 30px rgba(31,27,24,.18); perspective: 600px; }
+  .flap { position: relative; display: grid; place-items: center; width: .68em; height: 1.18em; font-family: var(--mono); font-weight: 600; font-size: clamp(56px, 13vw, 124px); line-height: 1; color: var(--flap-text); background: var(--flap); border-radius: 6px; box-shadow: inset 0 -1px 0 rgba(255,255,255,.05), inset 0 1px 0 rgba(0,0,0,.4); transform-style: preserve-3d; }
+  .flap::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 2px; background: var(--board); transform: translateY(-1px); }
+  .flap.narrow { width: .42em; }
+  .flap.space { background: transparent; box-shadow: none; }
+  .flap.space::after { display: none; }
+  .flap.flip { animation: flip .38s cubic-bezier(.3,.7,.3,1); }
+  @keyframes flip { 0% { transform: rotateX(0); } 45% { transform: rotateX(-92deg); } 100% { transform: rotateX(0); } }
+  .count.stale .flap { color: rgba(244,234,208,.5); }
+  .count.done .flap { color: #ffd166; }
+  .count-note { display: block; margin-top: 12px; font-family: var(--mono); font-weight: 500; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-soft); }
+  @media (prefers-reduced-motion: reduce) { .flap.flip { animation: none; } .live i { animation: none; } }
+
+  h1 { font-weight: 700; font-size: clamp(30px, 5.2vw, 46px); line-height: 1.06; margin: 6px 0 0; letter-spacing: -.01em; text-wrap: balance; max-width: 22ch; }
+  h1 em { font-style: normal; color: var(--carpet); }
+  .sub { margin: 10px 0 0; font-size: 18px; color: var(--ink-soft); max-width: 56ch; }
   .sub b { color: var(--ink); font-weight: 600; }
 
-  .status-band { display: grid; gap: 18px 36px; margin: 20px 0 0; }
+  .status-band { display: grid; gap: 18px 32px; margin: 22px 0 0; align-items: start; }
   @media (min-width: 720px) { .status-band { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); } }
-  .cockpit { background: var(--paper); border-left: 3px solid var(--magenta); padding: 12px 16px 14px; }
-  .cockpit b { font-family: var(--cond); font-weight: 600; font-size: 18px; }
-  .cockpit ol { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 8px; }
-  .cockpit li { display: grid; grid-template-columns: 4.6em 1fr; gap: 10px; font-size: 15px; line-height: 1.4; }
+  .cockpit { background: var(--white); border-radius: 12px; padding: 14px 18px 16px; box-shadow: 0 1px 0 rgba(31,27,24,.08), 0 8px 24px rgba(31,27,24,.06); }
+  .cockpit > b { display: inline-block; font-weight: 700; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--white); background: var(--carpet); padding: 4px 10px; border-radius: 999px; }
+  .cockpit ol { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 10px; }
+  .cockpit li { display: grid; grid-template-columns: 4.8em 1fr; gap: 10px; font-size: 15px; line-height: 1.4; }
   .cockpit li:first-child { font-weight: 500; }
   .cockpit li + li { color: var(--ink-soft); }
-  .cockpit time { font-family: var(--mono); font-size: 13px; color: var(--ink-soft); padding-top: 2px; }
-  .facts { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 20px; align-content: start; font-size: 15px; }
-  .facts li { display: grid; gap: 1px; padding-left: 10px; border-left: 1px solid var(--rule-strong); }
-  .facts .k { font-size: 13px; color: var(--ink-soft); }
-  .facts b { font-family: var(--mono); font-weight: 500; font-size: 15px; }
+  .cockpit time { font-family: var(--mono); font-size: 13px; color: var(--carpet); padding-top: 2px; }
+  .facts { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .facts li { display: grid; gap: 2px; background: var(--board); color: var(--flap-text); border-radius: 8px; padding: 8px 12px 9px; }
+  .facts .k { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: rgba(244,234,208,.6); }
+  .facts b { font-family: var(--mono); font-weight: 600; font-size: 16px; }
   .facts li.wide { grid-column: 1 / -1; }
 
-  /* Map: the hero object */
-  .map { margin-top: 24px; background: var(--water); border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); }
-  .map iframe { display: block; width: 100%; height: min(70vh, 600px); border: 0; background: var(--water); }
-  .map-cap { display: flex; gap: 6px 18px; flex-wrap: wrap; padding: 10px 0 0; font-size: 14px; color: var(--ink-soft); }
+  /* Map */
+  .map { margin-top: 26px; background: #d5e3ec; border-top: 6px solid var(--carpet); border-bottom: 6px solid var(--carpet); }
+  .map iframe { display: block; width: 100%; height: min(70vh, 600px); border: 0; background: #d5e3ec; }
+  .map-cap { display: flex; gap: 6px 18px; flex-wrap: wrap; padding: 12px 0 0; font-size: 14px; color: var(--ink-soft); }
   .map-cap span { margin-right: auto; }
 
   /* Sections */
-  section { padding: 36px 0 0; }
-  h2 { font-family: var(--cond); font-weight: 600; font-size: 30px; margin: 0 0 6px; line-height: 1.05; }
-  h3 { font-family: var(--cond); font-weight: 600; font-size: 22px; margin: 26px 0 4px; line-height: 1.1; }
+  section { padding: 40px 0 0; }
+  h2 { font-weight: 700; font-size: 32px; margin: 0 0 6px; line-height: 1.05; letter-spacing: -.01em; }
+  h2 small { display: block; font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--carpet); margin-bottom: 6px; }
+  h3 { font-weight: 700; font-size: 22px; margin: 28px 0 6px; line-height: 1.1; }
   .lede { margin: 0 0 16px; color: var(--ink-soft); max-width: 60ch; }
   .lede.after { margin: 14px 0 0; }
 
-  /* Legs */
-  .legs { display: grid; gap: 12px; }
-  .leg { background: var(--paper); border: 1px solid var(--rule-strong); padding: 12px 16px 14px; }
-  .leg.now { border-color: var(--magenta); box-shadow: inset 3px 0 0 var(--magenta); }
+  /* Legs as boarding passes */
+  .legs { display: grid; gap: 14px; }
+  .leg { position: relative; background: var(--white); border-radius: 12px; padding: 14px 18px 16px 22px; box-shadow: 0 1px 0 rgba(31,27,24,.08), 0 8px 24px rgba(31,27,24,.06); overflow: hidden; }
+  .leg::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 8px; background: var(--rule); }
+  .leg.now::before { background: var(--carpet); }
   .leg.done { color: var(--ink-soft); }
-  .leg-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px 16px; flex-wrap: wrap; }
-  .leg-head b { font-family: var(--cond); font-weight: 600; font-size: 22px; }
-  .leg-head .status { font-weight: 600; font-size: 14px; }
-  .leg.now .status { color: var(--magenta); }
-  .leg dl { margin: 10px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: 10px 16px; }
-  .leg dl > div { display: grid; gap: 1px; }
-  .leg dt { font-size: 13px; color: var(--ink-soft); }
-  .leg dd { margin: 0; font-family: var(--mono); font-size: 15px; }
-  .leg dd.sans { font-family: var(--sans); }
+  .leg-head { display: flex; justify-content: space-between; align-items: center; gap: 8px 16px; flex-wrap: wrap; }
+  .leg-head b { font-weight: 700; font-size: 22px; }
+  .leg-head .status { font-weight: 600; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; background: var(--plaster); color: var(--ink-soft); }
+  .leg.now .status { background: var(--carpet); color: var(--white); }
+  .leg dl { margin: 12px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: 10px 16px; }
+  .leg dl > div { display: grid; gap: 2px; }
+  .leg dt { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); }
+  .leg dd { margin: 0; font-family: var(--mono); font-weight: 500; font-size: 15px; }
+  .leg dd.sans { font-family: var(--sans); font-weight: 400; }
   .leg .wide { grid-column: 1 / -1; }
 
   /* Webcam */
-  .cam .frame { position: relative; aspect-ratio: 16 / 9; background: #10192b; border: 1px solid var(--ink); }
+  .cam .frame { position: relative; aspect-ratio: 16 / 9; background: var(--board); border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(31,27,24,.18); }
   .cam .frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
   .cam .cap { margin: 10px 0 0; font-size: 15px; color: var(--ink-soft); max-width: 62ch; }
 
   /* ATC feeds */
-  .feeds { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule-strong); }
-  .feeds li { border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: auto auto; gap: 3px 16px; align-items: center; padding: 12px 0; }
+  .feeds { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--ink); }
+  .feeds li { border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: auto auto; gap: 3px 16px; align-items: center; padding: 14px 0; }
   .feeds .name { font-weight: 600; grid-column: 1; grid-row: 1; }
   .feeds .why { color: var(--ink-soft); font-size: 15px; grid-column: 1; grid-row: 2; max-width: 58ch; }
-  .feeds .freq { font-family: var(--mono); font-size: 14px; color: var(--ink-soft); margin-left: 8px; font-weight: 400; }
+  .feeds .freq { font-family: var(--mono); font-size: 14px; color: var(--carpet); margin-left: 8px; font-weight: 500; }
   .feeds .btn { grid-column: 2; grid-row: 1 / span 2; }
-  .btn { display: inline-flex; align-items: center; background: transparent; color: var(--blue); text-decoration: none; font-weight: 600; font-size: 15px; padding: 8px 14px; border: 1px solid var(--blue); white-space: nowrap; }
-  .btn:hover { background: rgba(31,77,154,.08); }
-  .feeds li.now .name::before { content: ""; display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: var(--magenta); margin-right: 8px; vertical-align: 1px; }
-  .feeds li.now .btn { background: var(--magenta); border-color: var(--magenta); color: #fff; }
-  .feeds li.now .btn:hover { background: #b8460a; }
-  .note { background: var(--paper); border-left: 3px solid var(--magenta); padding: 10px 14px; margin: 16px 0 0; font-size: 15px; max-width: 62ch; }
-  .note b { font-weight: 600; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: var(--carpet); text-decoration: none; font-weight: 600; font-size: 15px; padding: 9px 18px; border: 2px solid var(--carpet); border-radius: 999px; white-space: nowrap; }
+  .btn:hover { background: rgba(200,16,46,.08); }
+  .feeds li.now .name::before { content: ""; display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: var(--carpet); margin-right: 8px; vertical-align: 1px; animation: pulse-red 2.4s ease-out infinite; }
+  @keyframes pulse-red { 0% { box-shadow: 0 0 0 0 rgba(200,16,46,.5); } 100% { box-shadow: 0 0 0 10px rgba(200,16,46,0); } }
+  .feeds li.now .btn { background: var(--carpet); color: var(--white); }
+  .feeds li.now .btn:hover { background: var(--carpet-deep); }
+  .note { background: var(--white); border-radius: 12px; padding: 12px 16px; margin: 16px 0 0; font-size: 15px; max-width: 62ch; box-shadow: 0 1px 0 rgba(31,27,24,.08), 0 8px 24px rgba(31,27,24,.06); }
+  .note b { font-weight: 600; color: var(--carpet); }
 
   /* Frequencies */
   table { border-collapse: collapse; width: 100%; font-size: 15px; }
-  th, td { text-align: left; padding: 8px 12px 8px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
-  th { font-weight: 600; font-size: 14px; color: var(--ink-soft); border-bottom-color: var(--rule-strong); }
-  td.f { font-family: var(--mono); white-space: nowrap; }
+  th, td { text-align: left; padding: 9px 12px 9px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th { font-weight: 600; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); border-bottom: 2px solid var(--ink); }
+  td.f { font-family: var(--mono); font-weight: 500; white-space: nowrap; }
   td.w { color: var(--ink-soft); }
 
-  footer { padding: 26px 0 48px; color: var(--ink-soft); font-size: 14px; border-top: 2px solid var(--ink); margin-top: 40px; }
+  footer { margin-top: 44px; background: var(--board); color: rgba(244,234,208,.75); font-size: 14px; }
+  footer .wrap { padding-top: 26px; padding-bottom: 40px; }
   footer p { margin: 6px 0; max-width: 70ch; }
+  footer a { color: var(--flap-text); }
 </style>
 </head>
 <body>
 
-<div class="wrap">
-  <header class="mast">
-    <div class="tail">N2884D <span>Piper Cherokee, Three Wing Flight School</span></div>
-    <div class="live" id="live"><i></i><span id="liveText">connecting…</span></div>
-  </header>
+<div class="band">
+  <div class="wrap">
+    <header class="mast">
+      <div class="wing">
+        <svg viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="16" fill="#fff"/><path d="M6 19.5 16 15l1-6.5 2 .5-.2 5.4L28 11l.8 2-9.6 6 .3 5.2 3.7 2.2-.6 1.7-5-1.4-5 1.4-.6-1.7 3.7-2.2.2-4.6L6 21.5z" fill="#c8102e"/></svg>
+        Flight Center
+      </div>
+      <div class="tail">N2884D · Piper Cherokee · Three Wing Flight School</div>
+      <div class="live" id="live"><i></i><span id="liveText">connecting…</span></div>
+    </header>
+  </div>
+</div>
 
+<div class="wrap">
   <div class="hero">
     <div class="count" id="count" aria-live="polite">
       <span class="count-label" id="countLabel">Landing at JFK in</span>
       <span class="count-num" id="countNum">--:--</span>
+      <div class="board" id="board" aria-hidden="true"></div>
       <span class="count-note" id="countNote">waiting for the transponder</span>
     </div>
     <h1 id="headline">Finding the Cherokee…</h1>
@@ -177,7 +201,7 @@
   </div>
 
   <section id="plan">
-    <h2>Today's legs</h2>
+    <h2><small>Flight plan</small>Today's legs</h2>
     <p class="lede">Filed IFR. Times are Eastern, from the flight plan; the live status comes from the transponder.</p>
     <div class="legs">
       <div class="leg" id="leg1">
@@ -204,7 +228,7 @@
   </section>
 
   <section id="watch">
-    <h2>Watch</h2>
+    <h2><small>Observation deck</small>Watch him land</h2>
     <p class="lede" id="watchLede">Planes &amp; Friends, live from the field, looking head-on at runway 4 arrivals. A Cherokee is small in a frame built for A380s: look for it low and slow on short final, a minute or two after Tower clears him to land.</p>
     <div class="cam">
       <div class="frame">
@@ -215,7 +239,7 @@
   </section>
 
   <section id="listen">
-    <h2>Listen</h2>
+    <h2><small>Control tower</small>Listen in</h2>
     <p class="lede">LiveATC feeds in the order he is handed off. Each opens LiveATC's player in a new tab; you can keep two or three open at once. Feeds run about 30 seconds behind the map.</p>
     <ul class="feeds" id="arrFeeds">
       <li data-phase="approach"><span class="name">New York Approach <span class="freq">125.7, then 135.9</span></span><span class="why">Vectors around Long Island and the descent. At 3:21 pm he was switched to 135.9, a sector LiveATC does not carry; this feed is the ROBER sector he came from.</span><a class="btn" target="_blank" rel="noopener" href="https://www.liveatc.net/hlisten.php?mount=kjfk_app_rober&amp;icao=kjfk">Listen</a></li>
@@ -234,7 +258,7 @@
   </section>
 
   <section id="freqs">
-    <h2>Frequencies</h2>
+    <h2><small>Radio</small>Frequencies</h2>
     <table>
       <thead><tr><th>Position</th><th>MHz</th><th>When</th></tr></thead>
       <tbody>
@@ -250,12 +274,40 @@
       </tbody>
     </table>
   </section>
-
-  <footer>
-    <p>Position from <a href="https://adsb.lol" target="_blank" rel="noopener">adsb.lol</a> via a small relay on this site, refreshed every 10 seconds. Wind from the National Weather Service KJFK observation. Runway in use is inferred from the tracks of airliners on final inside 8 nm; it is a guess until Tower says otherwise.</p>
-    <p>Flight plan details from FlightAware. Audio is LiveATC's, played on their site. The stream belongs to Planes &amp; Friends.</p>
-  </footer>
 </div>
+
+<footer>
+  <div class="wrap">
+    <p>Position from <a href="https://adsb.lol" target="_blank" rel="noopener">adsb.lol</a> via a small relay on this site, refreshed every 10 seconds. Wind from the National Weather Service KJFK observation. Runway in use is inferred from the tracks of airliners on final inside 8 nm; it is a guess until Tower says otherwise.</p>
+    <p>Flight plan details from FlightAware. Audio is LiveATC's, played on their site. The stream belongs to Planes &amp; Friends. Styled after the 1962 TWA Flight Center at JFK, which he will be able to see from the ramp.</p>
+  </div>
+</footer>
+
+<script>
+// Split-flap board: mirrors #countNum (kept for screen readers) onto flap cells, flipping the ones that change.
+(function () {
+  const src = document.getElementById('countNum'), board = document.getElementById('board');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function render() {
+    const text = src.textContent.replace(/\s+/g, ' ').trim() || '--:--';
+    const chars = Array.from(text);
+    while (board.children.length > chars.length) board.lastChild.remove();
+    chars.forEach((ch, i) => {
+      let cell = board.children[i];
+      if (!cell) { cell = document.createElement('span'); cell.className = 'flap'; board.appendChild(cell); }
+      const narrow = ch === ':' || ch === 'h' || ch === 'm' || ch === '.';
+      cell.classList.toggle('narrow', narrow);
+      cell.classList.toggle('space', ch === ' ');
+      if (cell.textContent !== ch) {
+        cell.textContent = ch;
+        if (!reduce) { cell.classList.remove('flip'); void cell.offsetWidth; cell.classList.add('flip'); }
+      }
+    });
+  }
+  new MutationObserver(render).observe(src, { childList: true, characterData: true, subtree: true });
+  render();
+})();
+</script>
 
 <script>
 (function () {
