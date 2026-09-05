@@ -320,7 +320,7 @@
   const PLACES = [
     ['the Connecticut shore', 41.20, -73.10], ['New Haven', 41.28, -72.93], ['Long Island Sound', 41.05, -72.95],
     ['Long Island Sound', 41.02, -73.35], ['Port Jefferson', 40.95, -73.07], ['the North Shore', 40.90, -73.35],
-    ['Deer Park', 40.79, -73.30], ['Islip', 40.79, -73.10], ['central Long Island', 40.80, -72.85],
+    ['Deer Park', 40.79, -73.30], ['Islip', 40.79, -73.10], ['Oyster Bay', 40.87, -73.53], ['Syosset', 40.82, -73.50], ['Manhasset', 40.79, -73.70], ['Garden City', 40.73, -73.63], ['Valley Stream', 40.66, -73.71], ['central Long Island', 40.80, -72.85],
     ['the Great South Bay', 40.68, -73.15], ['Jones Beach', 40.60, -73.50], ['Jamaica Bay', 40.62, -73.83],
     ['the Rockaways', 40.58, -73.82], ['Queens', 40.72, -73.80], ['Brooklyn', 40.66, -73.95],
     ['the Hamptons', 40.92, -72.40], ['Shelter Island', 41.07, -72.35], ['Montauk', 41.05, -71.95],
@@ -394,20 +394,6 @@
     return null;
   }
 
-  function inferRunway(traffic) {
-    const votes = {};
-    for (const t of traffic || []) {
-      if (typeof t.track !== 'number') continue;
-      if (t.alt == null || t.alt > 2500) continue;
-      if (t.vs != null && t.vs > -200) continue;           // want descending traffic on final
-      let best = null, bd = 999;
-      for (const [hdg, name] of RWY) { const d = Math.abs((((t.track - hdg) % 360) + 540) % 360 - 180); if (d < bd) { bd = d; best = name; } }
-      if (bd <= 20) votes[best] = (votes[best] || 0) + 1;
-    }
-    let top = null, n = 0;
-    for (const k in votes) if (votes[k] > n) { n = votes[k]; top = k; }
-    return n >= 2 ? top : null;
-  }
 
   function render(data) {
     const a = data.aircraft;
