@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ameya → JFK</title>
-<meta name="description" content="Live tracking of N2884D, a Piper Cherokee, Bridgeport to JFK to Montauk: map, the runway camera and the ATC feeds he is talking to.">
+<meta name="description" content="Live tracking of N2884D, a Piper Cherokee, Bridgeport to JFK to Montauk and back: map, the runway camera and the ATC feeds he is talking to.">
 <meta property="og:title" content="Ameya → JFK">
 <meta property="og:description" content="Where the Cherokee is right now, which camera to watch, which tower frequency to listen to.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23c8102e'/%3E%3Ccircle cx='16' cy='16' r='8' fill='%23f7f2e8'/%3E%3C/svg%3E">
@@ -46,10 +46,12 @@
   @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255,255,255,.6); } 100% { box-shadow: 0 0 0 12px rgba(255,255,255,0); } }
 
   /* The board: countdown on split flaps */
-  .boards { display: flex; flex-wrap: wrap; gap: 8px 40px; align-items: flex-start; padding: 30px 0 22px; }
+  .boards { display: flex; flex-wrap: wrap; gap: 8px 40px; align-items: flex-start; padding: 30px 0 8px; }
+  .count.home { padding: 10px 0 22px; }
   .boards .count { flex: 1 1 300px; min-width: 0; }
   .count.fixed .flap { color: #ffd166; }
-  .boards .flap { font-size: clamp(44px, 8vw, 88px); }
+  .boards .flap { font-size: clamp(40px, 7vw, 74px); }
+  .boards .board { flex-wrap: nowrap; }
   .boards .count-label { font-size: clamp(16px, 2.6vw, 20px); }
   .count-label { display: block; margin-top: 0; font-weight: 600; font-size: clamp(18px, 3vw, 22px); letter-spacing: .14em; text-transform: uppercase; color: var(--carpet); margin-bottom: 12px; }
   .count-num { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
@@ -137,6 +139,7 @@
   .feeds .btn { grid-column: 2; grid-row: 1 / span 2; }
   .btn { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: var(--carpet); text-decoration: none; font-weight: 600; font-size: 15px; padding: 9px 18px; border: 2px solid var(--carpet); border-radius: 999px; white-space: nowrap; }
   .btn:hover { background: rgba(200,16,46,.08); }
+  .btn.quiet { color: var(--ink-soft); border-color: var(--rule); }
   .feeds li.now .name::before { content: ""; display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: var(--carpet); margin-right: 8px; vertical-align: 1px; animation: pulse-red 2.4s ease-out infinite; }
   @keyframes pulse-red { 0% { box-shadow: 0 0 0 0 rgba(200,16,46,.5); } 100% { box-shadow: 0 0 0 10px rgba(200,16,46,0); } }
   .feeds li.now .btn { background: var(--carpet); color: var(--white); }
@@ -180,15 +183,20 @@
       <div class="board" aria-label="3:46 pm"><span class="flap">3</span><span class="flap narrow">:</span><span class="flap">4</span><span class="flap">6</span><span class="flap space"> </span><span class="flap">p</span><span class="flap">m</span></div>
       <span class="count-note">Runway 4L · 3:46 pm · visual approach</span>
     </div>
-    <div class="count" id="count" aria-live="polite">
+    <div class="count fixed">
+      <span class="count-label">Landed at Montauk</span>
+      <div class="board" aria-label="about 5:30 pm"><span class="flap">5</span><span class="flap narrow">:</span><span class="flap">3</span><span class="flap">0</span><span class="flap space"> </span><span class="flap">p</span><span class="flap">m</span></div>
+      <span class="count-note">About 5:30 pm · below receiver coverage on final · off again 5:49 pm</span>
+    </div>
+    </div>
+    <div class="count home" id="count" aria-live="polite">
       <span class="count-label" id="countLabel">Landing at Montauk in</span>
       <span class="count-num" id="countNum">--:--</span>
       <div class="board" id="board" aria-hidden="true"></div>
       <span class="count-note" id="countNote">waiting for the transponder</span>
     </div>
-    </div>
     <h1 id="headline">Finding the Cherokee…</h1>
-    <p class="sub" id="subline">Ameya is flying Bridgeport → JFK → Montauk this afternoon. This page follows the plane, shows the camera pointed at the runway in use, and lists the controllers he is talking to.</p>
+    <p class="sub" id="subline">Ameya is flying Bridgeport → JFK → Montauk → Bridgeport this afternoon. This page follows the plane, shows the camera pointed at the runway in use, and lists the controllers he is talking to.</p>
     <div class="status-band">
       <div class="cockpit" id="cockpit" hidden>
         <b>From the cockpit</b>
@@ -226,24 +234,34 @@
     <h2><small>Flight plan</small>Today's legs</h2>
     <p class="lede">Filed IFR. Times are Eastern, from the flight plan; the live status comes from the transponder.</p>
     <div class="legs">
-      <div class="leg" id="leg1">
-        <div class="leg-head"><b>Bridgeport → JFK</b><span class="status" id="leg1s">scheduled</span></div>
+      <div class="leg done" id="leg1">
+        <div class="leg-head"><b>Bridgeport → JFK</b><span class="status" id="leg1s">landed</span></div>
         <dl>
           <div><dt>Off</dt><dd>2:52 pm</dd></div>
           <div><dt>Planned on</dt><dd>3:35 pm</dd></div>
-          <div><dt>Live ETA</dt><dd id="leg1eta">—</dd></div>
+          <div><dt>Landed</dt><dd id="leg1eta">3:46 pm</dd></div>
           <div><dt>Altitude</dt><dd>4,000 ft</dd></div>
           <div class="wide"><dt>Route</dt><dd>EEGOR T705 BELTT T303 DPK</dd></div>
         </dl>
       </div>
-      <div class="leg" id="leg2">
-        <div class="leg-head"><b>JFK → Montauk</b><span class="status" id="leg2s">next</span></div>
+      <div class="leg done" id="leg2">
+        <div class="leg-head"><b>JFK → Montauk</b><span class="status" id="leg2s">landed</span></div>
         <dl>
-          <div><dt>Off</dt><dd>4:00 pm</dd></div>
+          <div><dt>Off</dt><dd>4:39 pm</dd></div>
           <div><dt>Planned on</dt><dd>4:52 pm</dd></div>
-          <div><dt>Live ETA</dt><dd id="leg2eta">—</dd></div>
-          <div><dt>Block</dt><dd>0h 52m</dd></div>
+          <div><dt>Landed</dt><dd id="leg2eta">~5:30 pm</dd></div>
+          <div><dt>Block</dt><dd>0h 51m</dd></div>
           <div class="wide"><dt>Ground at JFK</dt><dd class="sans">Modern Aviation, Building 145, the GA ramp on the north side</dd></div>
+        </dl>
+      </div>
+      <div class="leg done" id="leg3">
+        <div class="leg-head"><b>Montauk → Bridgeport</b><span class="status" id="leg3s">home</span></div>
+        <dl>
+          <div><dt>Off</dt><dd>5:49 pm</dd></div>
+          <div><dt>Distance</dt><dd>77 nm</dd></div>
+          <div><dt>Landed</dt><dd id="leg3eta">6:24 pm</dd></div>
+          <div><dt>Runway</dt><dd>24</dd></div>
+          <div class="wide"><dt>The way home</dt><dd class="sans">West along the Sound to Sikorsky Memorial, where the day started</dd></div>
         </dl>
       </div>
     </div>
@@ -271,12 +289,15 @@
     </ul>
     <div class="note" id="rwyNote"><b>Runway:</b> Ameya is expecting the visual approach to <b>4L</b>. Checking the airliners on final to confirm JFK is on the 4s…</div>
 
-    <h3>Then, for the Montauk leg</h3>
+    <h3>Then, Montauk and home to Bridgeport</h3>
     <ul class="feeds" id="depFeeds">
       <li data-phase="clearance"><span class="name">JFK Clearance Delivery <span class="freq">135.05</span></span><span class="why">He picks up his IFR clearance to Montauk here, a few minutes before 4 pm.</span><a class="btn" target="_blank" rel="noopener" href="https://www.liveatc.net/hlisten.php?mount=kjfk_del2&amp;icao=kjfk">Listen</a></li>
       <li data-phase="departure"><span class="name">New York Departure <span class="freq">departure sectors</span></span><span class="why">After takeoff, the climb out east along Long Island.</span><a class="btn" target="_blank" rel="noopener" href="https://www.liveatc.net/hlisten.php?mount=kjfk_dep&amp;icao=kjfk">Listen</a></li>
+      <li data-phase="mtp"><span class="name">Montauk CTAF <span class="freq">122.7</span></span><span class="why">Montauk is untowered: pilots call their own position on the common frequency. No LiveATC feed and no webcam, so the map is the way to follow the stop.</span><span class="btn quiet">No feed</span></li>
+      <li data-phase="bdr-approach"><span class="name">New York Approach, LOVES sector <span class="freq">124.075</span></span><span class="why">Westbound along the Sound and the descent into Bridgeport.</span><a class="btn" target="_blank" rel="noopener" href="https://www.liveatc.net/hlisten.php?mount=kbdr_app&amp;icao=kbdr">Listen</a></li>
+      <li data-phase="bdr-tower"><span class="name">Bridgeport Tower <span class="freq">120.9, Ground 121.75</span></span><span class="why">The landing clearance at Sikorsky Memorial and the taxi to Three Wing. One feed carries tower, ground and clearance.</span><a class="btn" target="_blank" rel="noopener" href="https://www.liveatc.net/hlisten.php?mount=kbdr_twr&amp;icao=kbdr">Listen</a></li>
     </ul>
-    <p class="lede after">Montauk is untowered with no feed and no webcam; the map is the way to follow that leg. <a href="https://www.liveatc.net/search/?icao=kjfk" target="_blank" rel="noopener">All JFK feeds on LiveATC</a>.</p>
+    <p class="lede after"><a href="https://www.liveatc.net/search/?icao=kjfk" target="_blank" rel="noopener">All JFK feeds</a> and <a href="https://www.liveatc.net/search/?icao=kbdr" target="_blank" rel="noopener">all Bridgeport feeds</a> on LiveATC.</p>
   </section>
 
   <section id="freqs">
@@ -293,6 +314,11 @@
         <tr><td>JFK Clearance Delivery</td><td class="f">135.050</td><td class="w">before the Montauk leg</td></tr>
         <tr><td>JFK D-ATIS</td><td class="f">128.725</td><td class="w">weather and runways in use, recorded</td></tr>
         <tr><td>NY Departure, Liberty North</td><td class="f">118.175</td><td class="w">after takeoff</td></tr>
+        <tr><td>Montauk CTAF / UNICOM</td><td class="f">122.700</td><td class="w">untowered, self-announced</td></tr>
+        <tr><td>NY Approach, LOVES</td><td class="f">124.075</td><td class="w">arrival into Bridgeport</td></tr>
+        <tr><td>Bridgeport ATIS</td><td class="f">119.150</td><td class="w">weather and runway in use, recorded</td></tr>
+        <tr><td>Bridgeport Tower</td><td class="f">120.900</td><td class="w">landing at Sikorsky Memorial</td></tr>
+        <tr><td>Bridgeport Ground / Clearance</td><td class="f">121.750</td><td class="w">taxi to Three Wing</td></tr>
       </tbody>
     </table>
   </section>
@@ -371,8 +397,8 @@
     get: (k) => { try { return localStorage.getItem('ameya:' + k); } catch (e) { return null; } },
     set: (k, v) => { try { localStorage.setItem('ameya:' + k, v); } catch (e) {} },
   };
-  const state = { landedJFK: true, landedMTP: store.get('landedMTP') === '1', last: null, lastAt: 0, rwy: null,
-    etaAt: null, etaDest: null, etaStale: false, landedAt: null };
+  const state = { landedJFK: true, landedMTP: true, landedBDR: true, nearMTP: true, last: null, lastAt: 0, rwy: null,
+    etaAt: null, etaDest: null, etaStale: false, landedAt: Date.parse('2026-09-05T22:24:00Z') };
 
   // Countdown: recomputed from every ADS-B fix (distance / ground speed), ticks every second between fixes.
   function setEta(destKey, minutes) {
@@ -383,23 +409,24 @@
   }
   function tick() {
     const c = $('count'), num = $('countNum'), label = $('countLabel'), note = $('countNote');
-    c.classList.toggle('stale', state.etaStale);
-    if (state.landedMTP) {
+    c.classList.toggle('stale', state.etaStale && !state.landedBDR);
+    if (state.landedBDR) {
       c.classList.add('done');
-      label.textContent = 'Landed at Montauk';
+      label.textContent = 'Home at Bridgeport';
       num.textContent = state.landedAt ? fmtTime(new Date(state.landedAt)) : '';
-      note.textContent = 'both legs done';
+      note.textContent = 'Runway 24 · all three legs flown · 2 h 40 min in the air';
       return;
     }
     c.classList.remove('done');
+    const nextName = state.landedMTP ? 'Bridgeport' : 'Montauk';
     if (!state.etaAt) {
-      label.textContent = 'Landing at Montauk in';
+      label.textContent = 'Landing at ' + nextName + ' in';
       num.textContent = '--:--';
-      note.textContent = 'next leg filed for 4:00 pm; the clock starts once he is airborne';
+      note.textContent = state.landedMTP ? 'last leg home; the clock starts once he is airborne' : 'next leg filed for 4:00 pm; the clock starts once he is airborne';
       return;
     }
     const rem = state.etaAt - Date.now();
-    label.textContent = 'Landing at ' + (state.etaDest === 'MTP' ? 'Montauk' : 'JFK') + ' in';
+    label.textContent = 'Landing at ' + (AP[state.etaDest] ? AP[state.etaDest].name : nextName) + ' in';
     if (rem <= 0) { num.innerHTML = 'any moment'; }
     else {
       const s = Math.floor(rem / 1000), m = Math.floor(s / 60);
@@ -431,10 +458,9 @@
         const ago = Math.round((Date.now() - state.lastAt) / 60000);
         $('headline').innerHTML = `Last seen ${ago < 1 ? 'a moment' : ago + ' min'} ago near <em>${nearestPlace(state.last.lat, state.last.lon)}</em>`;
       } else {
-        const dest = state.landedJFK ? 'Montauk' : 'JFK';
-        $('headline').innerHTML = state.landedMTP ? 'Landed at <em>Montauk</em>' : (state.landedJFK ? 'On the ground at <em>JFK</em>' : `Not in the air yet, or out of receiver range on the way to <em>${dest}</em>`);
+        $('headline').innerHTML = state.landedBDR ? 'Home at <em>Bridgeport</em>' : (state.landedMTP ? 'Stopped at <em>Montauk</em>' : 'On the ground at <em>JFK</em>');
       }
-      $('subline').textContent = 'Small planes drop off the network when they are low or on the ground. The map keeps the last track.';
+      $('subline').innerHTML = state.landedBDR ? 'All three legs flown. Off Bridgeport <b>2:52 pm</b>, JFK runway 4L at <b>3:46 pm</b>, off again 4:39, Montauk about <b>5:30 pm</b>, off 5:49, and home on runway 24 at <b>6:24 pm</b>. 2 hours 40 minutes in the air.' : 'Small planes drop off the network when they are low or on the ground. The map keeps the last track.';
       return;
     }
     state.last = a; state.lastAt = Date.now();
@@ -449,25 +475,29 @@
     const g = onGroundAt(a);
     if (g === 'JFK' && !state.landedJFK) { state.landedJFK = true; store.set('landedJFK', '1'); state.landedAt = Date.now(); store.set('landedAt', String(state.landedAt)); state.etaAt = null; }
     if (g === 'MTP' && state.landedJFK && !state.landedMTP) { state.landedMTP = true; store.set('landedMTP', '1'); state.landedAt = Date.now(); store.set('landedAt', String(state.landedAt)); state.etaAt = null; }
-    if (!state.landedAt && store.get('landedAt')) state.landedAt = Number(store.get('landedAt'));
+    // Montauk may be a touch-and-go the receivers never see on the ground: close in, then clearly away again, counts.
+    const dMTP = nm(a.lat, a.lon, AP.MTP.lat, AP.MTP.lon);
+    if (dMTP < 3) { state.nearMTP = true; store.set('nearMTP', '1'); }
+    if (state.nearMTP && dMTP > 8 && !state.landedMTP) { state.landedMTP = true; store.set('landedMTP', '1'); state.landedAt = null; state.etaAt = null; }
+    if (g === 'BDR' && state.landedMTP && !state.landedBDR) { state.landedBDR = true; store.set('landedBDR', '1'); state.landedAt = Date.now(); store.set('landedAt', String(state.landedAt)); state.etaAt = null; }
     // Time-based fallback: after 4:20 pm ET assume the JFK stop already happened.
     const etHour = Number(new Intl.DateTimeFormat('en-US', { hour: 'numeric', hour12: false, timeZone: 'America/New_York' }).format(t));
     const etMin = Number(new Intl.DateTimeFormat('en-US', { minute: 'numeric', timeZone: 'America/New_York' }).format(t));
     if (!state.landedJFK && (etHour > 16 || (etHour === 16 && etMin >= 20)) && g !== 'JFK' && nm(a.lat, a.lon, AP.JFK.lat, AP.JFK.lon) > 15 && a.lon > -73.5) state.landedJFK = true;
 
-    const destKey = state.landedJFK ? 'MTP' : 'JFK';
+    const destKey = !state.landedJFK ? 'JFK' : (!state.landedMTP ? 'MTP' : 'BDR');
     const dest = AP[destKey];
     const dist = nm(a.lat, a.lon, dest.lat, dest.lon);
     const gs = a.gs || 0;
     let etaTxt = '—';
     if (g) {
-      if (g === 'JFK' || g === 'MTP') { state.etaAt = null; tick(); }
+      state.etaAt = null; tick();
       $('headline').innerHTML = `On the ground at <em>${AP[g].name}</em>`;
-      $('subline').innerHTML = g === 'JFK' ? 'Taxiing or parked at the GA ramp. Next leg to Montauk is filed for <b>4:00 pm</b>; listen to Clearance Delivery and Ground below.' : (g === 'MTP' ? 'Made it. The Montauk leg is done.' : 'Still at Bridgeport. The map will follow him once he is airborne.');
+      $('subline').innerHTML = g === 'JFK' ? 'Taxiing or parked at the GA ramp. Next leg to Montauk is filed for <b>4:00 pm</b>; listen to Clearance Delivery and Ground below.' : (g === 'MTP' ? 'Stopped at Montauk. The last leg is home to <b>Bridgeport</b>.' : (state.landedMTP ? 'Home. All three legs flown: Bridgeport, JFK, Montauk and back.' : 'Still at Bridgeport. The map will follow him once he is airborne.'));
     } else {
       const place = nearestPlace(a.lat, a.lon);
       const etaMin = gs > 40 ? dist / gs * 60 + 3 : null;
-      if (etaMin != null) { setEta(destKey, etaMin); if (destKey === 'MTP') state.landedAt = null; }
+      if (etaMin != null) { setEta(destKey, etaMin); if (destKey !== 'JFK') state.landedAt = null; }
       const eta = state.etaAt ? new Date(state.etaAt) : null;
       etaTxt = eta ? fmtTime(eta) : '—';
       tick();
@@ -485,7 +515,11 @@
     $('leg1eta').textContent = '3:46 pm';
     l2.className = 'leg ' + (state.landedMTP ? 'done' : (state.landedJFK && !g ? 'now' : ''));
     $('leg2s').textContent = state.landedMTP ? 'landed' : (state.landedJFK ? (g === 'JFK' ? 'on the ground at JFK' : 'in the air') : 'next');
-    $('leg2eta').textContent = state.landedMTP ? 'landed' : (state.landedJFK && !g ? etaTxt : '—');
+    $('leg2eta').textContent = state.landedMTP ? '~5:30 pm' : (state.landedJFK && !g ? etaTxt : '—');
+    const l3 = $('leg3');
+    l3.className = 'leg ' + (state.landedBDR ? 'done' : (state.landedMTP && !g ? 'now' : ''));
+    $('leg3s').textContent = state.landedBDR ? 'home' : (state.landedMTP ? (g === 'MTP' ? 'on the ground at Montauk' : 'in the air') : 'last leg');
+    $('leg3eta').textContent = state.landedBDR ? '6:24 pm' : (state.landedMTP && !g ? etaTxt : '—');
 
     // Highlight the feed he is most likely on
     let phase = null;
@@ -496,7 +530,12 @@
       else phase = 'tower';
     } else if (!state.landedMTP) {
       if (g === 'JFK') phase = 'clearance';
-      else if (dist > 15 && nm(a.lat, a.lon, AP.JFK.lat, AP.JFK.lon) < 25) phase = 'departure';
+      else if (nm(a.lat, a.lon, AP.JFK.lat, AP.JFK.lon) < 25) phase = 'departure';
+      else if (dist < 15) phase = 'mtp';
+    } else if (!state.landedBDR) {
+      if (g === 'MTP') phase = 'mtp';
+      else if (dist > 10) phase = 'bdr-approach';
+      else phase = 'bdr-tower';
     }
     document.querySelectorAll('.feeds li').forEach((li) => li.classList.toggle('now', li.dataset.phase === phase));
   }
