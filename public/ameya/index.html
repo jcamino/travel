@@ -7,6 +7,7 @@
 <meta name="description" content="Live tracking of N2884D, a Piper Cherokee, Bridgeport to JFK to Montauk: map, webcams and the ATC feeds he is talking to.">
 <meta property="og:title" content="Ameya → JFK">
 <meta property="og:description" content="Where the Cherokee is right now, which camera to watch, which tower frequency to listen to.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23f1e7c3'/%3E%3Ccircle cx='16' cy='16' r='9' fill='%23b4247f'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -113,11 +114,13 @@
 
   /* ATC feeds */
   .feeds { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ink); }
-  .feeds li { border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: 1fr auto; gap: 6px 16px; align-items: center; padding: 12px 0; }
-  .feeds .name { font-weight: 600; }
-  .feeds .why { color: var(--ink-soft); font-size: 15px; grid-column: 1; }
+  .feeds li { border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: auto auto; gap: 4px 16px; align-items: center; padding: 12px 0; }
+  .feeds .name { font-weight: 600; grid-column: 1; grid-row: 1; }
+  .feeds .why { color: var(--ink-soft); font-size: 15px; grid-column: 1; grid-row: 2; }
+  .feeds .why a { white-space: nowrap; }
   .feeds .freq { font-family: var(--mono); font-size: 14px; color: var(--ink-soft); margin-left: 8px; font-weight: 400; }
-  .btn { grid-row: 1 / span 2; display: inline-flex; align-items: center; gap: 8px; background: var(--blue); color: #fff; text-decoration: none; font-weight: 600; font-size: 15px; padding: 9px 14px; border: 1px solid var(--blue); white-space: nowrap; }
+  .feeds .btn { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; background: var(--blue); color: #fff; text-decoration: none; font-weight: 600; font-size: 15px; padding: 9px 14px; border: 1px solid var(--blue); white-space: nowrap; }
   .btn:hover { background: #244c85; }
   .btn.quiet { background: transparent; color: var(--blue); }
   .btn.quiet:hover { background: rgba(46,95,163,.08); }
@@ -258,10 +261,10 @@
     <ul class="feeds" id="arrFeeds">
       <li data-phase="approach"><span class="name">New York Approach, ROBER sector <span class="freq">125.7</span></span><span class="why">Arrivals from the northeast, where he is coming from. Vectors around Long Island and the descent.</span><a class="btn" target="_blank" rel="noopener" href="https://www.liveatc.net/hlisten.php?mount=kjfk_app_rober&amp;icao=kjfk">Listen</a></li>
       <li data-phase="final"><span class="name">New York Approach, JFK final <span class="freq">132.4</span></span><span class="why">The turn onto final and the handoff to Tower.</span><a class="btn" target="_blank" rel="noopener" href="https://www.liveatc.net/hlisten.php?mount=kjfk_118_app_final&amp;icao=kjfk">Listen</a></li>
-      <li data-phase="tower"><span class="name">JFK Tower, both frequencies <span class="freq">119.1 + 123.9</span></span><span class="why">"Cherokee 2884 Delta, cleared to land." This feed carries both tower positions so you don't have to guess his runway.</span><a class="btn" target="_blank" rel="noopener" href="https://www.liveatc.net/hlisten.php?mount=kjfk9_twr&amp;icao=kjfk">Listen</a></li>
+      <li data-phase="tower"><span class="name">JFK Tower, runway 4L <span class="freq">123.9</span></span><span class="why">"Cherokee 2884 Delta, runway 4 left, cleared to land." He is expecting the visual approach to 4L, which is this frequency. If Tower swaps him to 4R, that is 119.1, on <a href="https://www.liveatc.net/hlisten.php?mount=kjfk9_twr&amp;icao=kjfk" target="_blank" rel="noopener">the combined tower feed</a>.</span><a class="btn" target="_blank" rel="noopener" href="https://www.liveatc.net/hlisten.php?mount=kjfk_twr_1239&amp;icao=kjfk">Listen</a></li>
       <li data-phase="ground"><span class="name">JFK Ground <span class="freq">121.9 / 121.65</span></span><span class="why">Taxi to the GA ramp after landing, and taxi out again before 4 pm.</span><a class="btn" target="_blank" rel="noopener" href="https://www.liveatc.net/hlisten.php?mount=kjfk_gnd&amp;icao=kjfk">Listen</a></li>
     </ul>
-    <div class="note" id="rwyNote"><b>Runway in use:</b> working it out from the traffic on final…</div>
+    <div class="note" id="rwyNote"><b>Runway:</b> Ameya is expecting the visual approach to <b>4L</b>. Checking the airliners on final to confirm JFK is on the 4s…</div>
 
     <h2 style="margin-top:28px">Then, for the Montauk leg</h2>
     <ul class="feeds" id="depFeeds">
@@ -279,8 +282,8 @@
         <tr><td>NY Approach, ROBER</td><td class="f">125.700</td><td>arrival from the northeast</td></tr>
         <tr><td>NY Approach, CAMRN</td><td class="f">128.125</td><td>arrival from the south (not his today)</td></tr>
         <tr><td>NY Approach, JFK final vector</td><td class="f">132.400</td><td>turn onto final</td></tr>
-        <tr><td>JFK Tower, 4R/22L and 13L/31R</td><td class="f">119.100</td><td>landing and takeoff</td></tr>
-        <tr><td>JFK Tower, 4L/22R and 13R/31L</td><td class="f">123.900</td><td>landing and takeoff</td></tr>
+        <tr><td>JFK Tower, 4L/22R and 13R/31L</td><td class="f">123.900</td><td>his expected runway, 4L</td></tr>
+        <tr><td>JFK Tower, 4R/22L and 13L/31R</td><td class="f">119.100</td><td>if he is switched to 4R</td></tr>
         <tr><td>JFK Ground</td><td class="f">121.900 / 121.650</td><td>taxi</td></tr>
         <tr><td>JFK Clearance Delivery</td><td class="f">135.050</td><td>before the Montauk leg</td></tr>
         <tr><td>JFK D-ATIS</td><td class="f">128.725</td><td>weather and runways in use, recorded</td></tr>
@@ -449,7 +452,7 @@
       etaTxt = eta ? fmtTime(eta) : '—';
       tick();
       $('headline').innerHTML = `Over <em>${place}</em>, ${Math.round(dist)} nm from ${dest.name}`;
-      const rwy = state.rwy ? ` JFK is landing on the <b>${state.rwy}</b> right now.` : '';
+      const rwy = state.rwy === '4s' ? ' JFK is on the 4s; he expects the visual to <b>4L</b>.' : (state.rwy ? ` JFK is landing on the <b>${state.rwy}</b> right now; he was expecting 4L.` : ' He expects the visual approach to <b>4L</b>.');
       $('subline').innerHTML = eta
         ? `${a.alt != null && a.alt !== 'ground' ? a.alt.toLocaleString() + ' ft, ' : ''}${Math.round(gs)} knots, heading ${compass(a.track || 0)}. At this speed he is on the ground at ${dest.name} about <b>${etaTxt}</b>.${destKey === 'JFK' ? rwy : ''}`
         : `${a.alt != null ? a.alt.toLocaleString() + ' ft' : ''}. Waiting for a speed reading to estimate arrival.`;
@@ -478,16 +481,30 @@
     document.querySelectorAll('.feeds li').forEach((li) => li.classList.toggle('now', li.dataset.phase === phase));
   }
 
+  // Votes persist across polls (keyed by flight) so a quiet minute doesn't erase the answer.
+  const rwyVotes = new Map();
   function renderRunway(traffic) {
-    const r = inferRunway(traffic);
-    if (r) state.rwy = r;
+    const now = Date.now();
+    for (const t of traffic || []) {
+      if (typeof t.track !== 'number' || t.alt == null || t.alt > 2500) continue;
+      if (t.vs != null && t.vs > -200) continue;
+      let best = null, bd = 999;
+      for (const [hdg, name] of RWY) { const d = Math.abs((((t.track - hdg) % 360) + 540) % 360 - 180); if (d < bd) { bd = d; best = name; } }
+      if (bd <= 20) rwyVotes.set(t.flight || (t.lat + ',' + t.lon), { rwy: best, at: now });
+    }
+    const tally = {};
+    for (const [k, v] of rwyVotes) { if (now - v.at > 4 * 60000) { rwyVotes.delete(k); continue; } tally[v.rwy] = (tally[v.rwy] || 0) + 1; }
+    let top = null, n = 0;
+    for (const k in tally) if (tally[k] > n) { n = tally[k]; top = k; }
+    if (top) state.rwy = top;
     const note = $('rwyNote');
-    if (state.rwy) {
-      const cam = state.rwy === '4s' ? ' The Planes &amp; Friends camera is pointed at exactly that approach.' : ' The Planes &amp; Friends camera is set up for runway 4 arrivals, so he may land out of its frame.';
-      const twr = state.rwy === '4s' || state.rwy === '22s' ? '119.1 for 4R/22L, 123.9 for 4L/22R' : '119.1 for 13L/31R, 123.9 for 13R/31L';
-      note.innerHTML = `<b>Runway in use:</b> airliners on final are landing on the <b>${state.rwy}</b> (${twr}).${cam}`;
+    const expect = '<b>Runway:</b> Ameya is expecting the visual approach to <b>4L</b>, Tower 123.9.';
+    if (state.rwy === '4s') {
+      note.innerHTML = expect + ` Confirmed by the airliners on final: JFK is landing on the 4s right now. The Planes &amp; Friends camera is pointed at exactly that approach.`;
+    } else if (state.rwy) {
+      note.innerHTML = expect + ` But the airliners on final are landing on the <b>${state.rwy}</b> at the moment, so listen for a runway change. The Planes &amp; Friends camera is set up for the 4s.`;
     } else {
-      note.innerHTML = '<b>Runway in use:</b> not enough traffic on final to tell right now. Tower will say it.';
+      note.innerHTML = expect + ' Not enough traffic on final yet to confirm the configuration.';
     }
   }
 
