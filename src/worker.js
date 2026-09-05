@@ -7,6 +7,13 @@ const UA = 'travel.jcamino.net/ameya (claude@jcamino.net)';
 const JFK = { lat: 40.6413, lon: -73.7781 };
 const SOURCES = [
   {
+    // Home relay (Code/ameya-relay, pm2 "ameya-relay") behind the manta tunnel: a
+    // residential IP that the aggregators don't rate-limit. Mirrors the /v2 shape.
+    name: 'home',
+    reg: (r) => `https://adsb.jcamino.net/v2/registration/${r}`,
+    point: (lat, lon, d) => `https://adsb.jcamino.net/v2/point/${lat}/${lon}/${d}`,
+  },
+  {
     name: 'adsb.lol',
     reg: (r) => `https://api.adsb.lol/v2/registration/${r}`,
     point: (lat, lon, d) => `https://api.adsb.lol/v2/point/${lat}/${lon}/${d}`,
