@@ -46,14 +46,18 @@
   @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255,255,255,.6); } 100% { box-shadow: 0 0 0 12px rgba(255,255,255,0); } }
 
   /* The board: countdown on split flaps */
-  .count { padding: 30px 0 22px; }
-  .count-label { display: block; font-weight: 600; font-size: clamp(18px, 3vw, 22px); letter-spacing: .14em; text-transform: uppercase; color: var(--carpet); margin-bottom: 12px; }
+  .boards { display: flex; flex-wrap: wrap; gap: 8px 40px; align-items: flex-start; padding: 30px 0 22px; }
+  .boards .count { flex: 1 1 300px; min-width: 0; }
+  .count.fixed .flap { color: #ffd166; }
+  .boards .flap { font-size: clamp(44px, 8vw, 88px); }
+  .boards .count-label { font-size: clamp(16px, 2.6vw, 20px); }
+  .count-label { display: block; margin-top: 0; font-weight: 600; font-size: clamp(18px, 3vw, 22px); letter-spacing: .14em; text-transform: uppercase; color: var(--carpet); margin-bottom: 12px; }
   .count-num { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
   .board { display: inline-flex; flex-wrap: wrap; gap: 6px; padding: 10px; background: var(--board); border-radius: 10px; box-shadow: inset 0 2px 0 rgba(255,255,255,.06), 0 10px 30px rgba(31,27,24,.18); perspective: 600px; }
   .flap { position: relative; display: grid; place-items: center; width: .68em; height: 1.18em; font-family: var(--mono); font-weight: 600; font-size: clamp(56px, 13vw, 124px); line-height: 1; color: var(--flap-text); background: var(--flap); border-radius: 6px; box-shadow: inset 0 -1px 0 rgba(255,255,255,.05), inset 0 1px 0 rgba(0,0,0,.4); transform-style: preserve-3d; }
   .flap::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 2px; background: var(--board); transform: translateY(-1px); }
   .flap.narrow { width: .42em; }
-  .flap.space { background: transparent; box-shadow: none; }
+  .flap.space { width: .3em; background: transparent; box-shadow: none; }
   .flap.space::after { display: none; }
   .flap.flip { animation: flip .38s cubic-bezier(.3,.7,.3,1); }
   @keyframes flip { 0% { transform: rotateX(0); } 45% { transform: rotateX(-92deg); } 100% { transform: rotateX(0); } }
@@ -164,11 +168,18 @@
 
 <div class="wrap">
   <div class="hero">
+    <div class="boards">
+    <div class="count fixed">
+      <span class="count-label">Landed at JFK</span>
+      <div class="board" aria-label="3:46 pm"><span class="flap">3</span><span class="flap narrow">:</span><span class="flap">4</span><span class="flap">6</span><span class="flap space"> </span><span class="flap">p</span><span class="flap">m</span></div>
+      <span class="count-note">Runway 4L · 3:46 pm · visual approach</span>
+    </div>
     <div class="count" id="count" aria-live="polite">
-      <span class="count-label" id="countLabel">Landing at JFK in</span>
+      <span class="count-label" id="countLabel">Landing at Montauk in</span>
       <span class="count-num" id="countNum">--:--</span>
       <div class="board" id="board" aria-hidden="true"></div>
       <span class="count-note" id="countNote">waiting for the transponder</span>
+    </div>
     </div>
     <h1 id="headline">Finding the Cherokee…</h1>
     <p class="sub" id="subline">Ameya is flying Bridgeport → JFK → Montauk this afternoon. This page follows the plane, shows the camera pointed at the runway in use, and lists the controllers he is talking to.</p>
@@ -295,7 +306,7 @@
     chars.forEach((ch, i) => {
       let cell = board.children[i];
       if (!cell) { cell = document.createElement('span'); cell.className = 'flap'; board.appendChild(cell); }
-      const narrow = ch === ':' || ch === 'h' || ch === 'm' || ch === '.';
+      const narrow = ch === ':' || ch === '.';
       cell.classList.toggle('narrow', narrow);
       cell.classList.toggle('space', ch === ' ');
       if (cell.textContent !== ch) {
@@ -349,7 +360,7 @@
     get: (k) => { try { return localStorage.getItem('ameya:' + k); } catch (e) { return null; } },
     set: (k, v) => { try { localStorage.setItem('ameya:' + k, v); } catch (e) {} },
   };
-  const state = { landedJFK: store.get('landedJFK') === '1', landedMTP: store.get('landedMTP') === '1', last: null, lastAt: 0, rwy: null,
+  const state = { landedJFK: true, landedMTP: store.get('landedMTP') === '1', last: null, lastAt: 0, rwy: null,
     etaAt: null, etaDest: null, etaStale: false, landedAt: null };
 
   // Countdown: recomputed from every ADS-B fix (distance / ground speed), ticks every second between fixes.
@@ -362,17 +373,18 @@
   function tick() {
     const c = $('count'), num = $('countNum'), label = $('countLabel'), note = $('countNote');
     c.classList.toggle('stale', state.etaStale);
-    if (state.landedMTP || (state.landedJFK && state.landedAt && state.etaDest !== 'MTP')) {
+    if (state.landedMTP) {
       c.classList.add('done');
-      label.textContent = 'Landed at ' + (state.landedMTP ? 'Montauk' : 'JFK');
+      label.textContent = 'Landed at Montauk';
       num.textContent = state.landedAt ? fmtTime(new Date(state.landedAt)) : '';
-      note.textContent = state.landedMTP ? 'both legs done' : 'next leg to Montauk filed for 4:00 pm';
+      note.textContent = 'both legs done';
       return;
     }
     c.classList.remove('done');
     if (!state.etaAt) {
-      label.textContent = 'Landing at ' + (state.etaDest === 'MTP' || state.landedJFK ? 'Montauk' : 'JFK') + ' in';
+      label.textContent = 'Landing at Montauk in';
       num.textContent = '--:--';
+      note.textContent = 'next leg filed for 4:00 pm; the clock starts once he is airborne';
       return;
     }
     const rem = state.etaAt - Date.now();
@@ -459,7 +471,7 @@
     const l1 = $('leg1'), l2 = $('leg2');
     l1.className = 'leg ' + (state.landedJFK ? 'done' : 'now');
     $('leg1s').textContent = state.landedJFK ? 'landed' : (g === 'BDR' ? 'on the ground at BDR' : 'in the air');
-    $('leg1eta').textContent = state.landedJFK ? 'landed' : etaTxt;
+    $('leg1eta').textContent = '3:46 pm';
     l2.className = 'leg ' + (state.landedMTP ? 'done' : (state.landedJFK && !g ? 'now' : ''));
     $('leg2s').textContent = state.landedMTP ? 'landed' : (state.landedJFK ? (g === 'JFK' ? 'on the ground at JFK' : 'in the air') : 'next');
     $('leg2eta').textContent = state.landedMTP ? 'landed' : (state.landedJFK && !g ? etaTxt : '—');
