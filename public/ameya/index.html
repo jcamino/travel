@@ -7,21 +7,21 @@
 <meta name="description" content="Live tracking of N2884D, a Piper Cherokee, Bridgeport to JFK to Montauk: map, the runway camera and the ATC feeds he is talking to.">
 <meta property="og:title" content="Ameya → JFK">
 <meta property="og:description" content="Where the Cherokee is right now, which camera to watch, which tower frequency to listen to.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23f1e7c3'/%3E%3Ccircle cx='16' cy='16' r='9' fill='%23b4247f'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23f3f4f0'/%3E%3Ccircle cx='16' cy='16' r='9' fill='%23d9540c'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --land: #f1e7c3;        /* sectional chart land */
-    --water: #c7dde9;       /* sectional chart water */
-    --paper: #fbf7ea;       /* flight strip */
-    --ink: #2b2a26;
-    --ink-soft: #5c5850;
-    --magenta: #b4247f;     /* class C / live */
-    --blue: #2e5fa3;        /* class B / links */
-    --rule: rgba(43,42,38,.18);
-    --rule-strong: rgba(43,42,38,.55);
+    --land: #f3f4f0;        /* chart paper */
+    --water: #d5e3ec;       /* map placeholder */
+    --paper: #ffffff;       /* panels */
+    --ink: #17223b;         /* navy ink */
+    --ink-soft: #5d6577;
+    --magenta: #d9540c;     /* live: the trail colour on the map */
+    --blue: #1f4d9a;        /* links */
+    --rule: rgba(23,34,59,.14);
+    --rule-strong: rgba(23,34,59,.5);
     --sans: "Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
     --cond: "Barlow Condensed", "Barlow", system-ui, sans-serif;
     --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
@@ -41,7 +41,7 @@
   .live { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: var(--ink-soft); }
   .live i { width: 10px; height: 10px; border-radius: 50%; background: var(--magenta); display: inline-block; animation: pulse 2.4s ease-out infinite; }
   .live.stale i { background: var(--ink-soft); animation: none; }
-  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(180,36,127,.55); } 100% { box-shadow: 0 0 0 12px rgba(180,36,127,0); } }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(217,84,12,.55); } 100% { box-shadow: 0 0 0 12px rgba(217,84,12,0); } }
   @media (prefers-reduced-motion: reduce) { .live i { animation: none; } }
 
   /* Hero: countdown, then the live sentence */
@@ -102,7 +102,7 @@
   .leg .wide { grid-column: 1 / -1; }
 
   /* Webcam */
-  .cam .frame { position: relative; aspect-ratio: 16 / 9; background: #0d0f12; border: 1px solid var(--ink); }
+  .cam .frame { position: relative; aspect-ratio: 16 / 9; background: #10192b; border: 1px solid var(--ink); }
   .cam .frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
   .cam .cap { margin: 10px 0 0; font-size: 15px; color: var(--ink-soft); max-width: 62ch; }
 
@@ -114,10 +114,10 @@
   .feeds .freq { font-family: var(--mono); font-size: 14px; color: var(--ink-soft); margin-left: 8px; font-weight: 400; }
   .feeds .btn { grid-column: 2; grid-row: 1 / span 2; }
   .btn { display: inline-flex; align-items: center; background: transparent; color: var(--blue); text-decoration: none; font-weight: 600; font-size: 15px; padding: 8px 14px; border: 1px solid var(--blue); white-space: nowrap; }
-  .btn:hover { background: rgba(46,95,163,.08); }
+  .btn:hover { background: rgba(31,77,154,.08); }
   .feeds li.now .name::before { content: ""; display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: var(--magenta); margin-right: 8px; vertical-align: 1px; }
   .feeds li.now .btn { background: var(--magenta); border-color: var(--magenta); color: #fff; }
-  .feeds li.now .btn:hover { background: #971e6a; }
+  .feeds li.now .btn:hover { background: #b8460a; }
   .note { background: var(--paper); border-left: 3px solid var(--magenta); padding: 10px 14px; margin: 16px 0 0; font-size: 15px; max-width: 62ch; }
   .note b { font-weight: 600; }
 
@@ -165,7 +165,7 @@
 </div>
 
 <div class="map">
-  <iframe id="mapFrame" title="Live map of N2884D (adsb.lol)" src="https://adsb.lol/?icao=a2ee9b&amp;zoom=9&amp;hideSidebar&amp;hideButtons&amp;altitudeChart=0&amp;toggles=enableInfoblock,0" loading="eager" allow="geolocation" referrerpolicy="no-referrer"></iframe>
+  <iframe id="mapFrame" title="Live map of N2884D (adsb.lol)" src="https://adsb.lol/?icao=a2ee9b&amp;zoom=9&amp;hideSidebar&amp;hideButtons&amp;altitudeChart=0&amp;toggles=enableInfoblock,0&amp;mapDim=0" loading="eager" allow="geolocation" referrerpolicy="no-referrer"></iframe>
 </div>
 
 <div class="wrap">
