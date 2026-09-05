@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ameya → JFK</title>
-<meta name="description" content="Live tracking of N2884D, a Piper Cherokee, Bridgeport to JFK to Montauk: map, webcams and the ATC feeds he is talking to.">
+<meta name="description" content="Live tracking of N2884D, a Piper Cherokee, Bridgeport to JFK to Montauk: map, the runway camera and the ATC feeds he is talking to.">
 <meta property="og:title" content="Ameya → JFK">
 <meta property="og:description" content="Where the Cherokee is right now, which camera to watch, which tower frequency to listen to.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23f1e7c3'/%3E%3Ccircle cx='16' cy='16' r='9' fill='%23b4247f'/%3E%3C/svg%3E">
@@ -14,137 +14,122 @@
 <style>
   :root {
     --land: #f1e7c3;        /* sectional chart land */
-    --land-deep: #e6d9a8;
     --water: #c7dde9;       /* sectional chart water */
     --paper: #fbf7ea;       /* flight strip */
     --ink: #2b2a26;
     --ink-soft: #5c5850;
     --magenta: #b4247f;     /* class C / live */
     --blue: #2e5fa3;        /* class B / links */
-    --rule: rgba(43,42,38,.22);
+    --rule: rgba(43,42,38,.18);
+    --rule-strong: rgba(43,42,38,.55);
     --sans: "Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
     --cond: "Barlow Condensed", "Barlow", system-ui, sans-serif;
     --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   }
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; }
-  body {
-    margin: 0;
-    background: var(--land);
-    color: var(--ink);
-    font-family: var(--sans);
-    font-size: 17px;
-    line-height: 1.45;
-    background-image:
-      linear-gradient(rgba(43,42,38,.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(43,42,38,.05) 1px, transparent 1px);
-    background-size: 100% 96px, 96px 100%;
-  }
+  body { margin: 0; background: var(--land); color: var(--ink); font-family: var(--sans); font-size: 17px; line-height: 1.45; }
   a { color: var(--blue); text-decoration-thickness: 1px; text-underline-offset: 2px; }
   a:focus-visible, button:focus-visible { outline: 3px solid var(--magenta); outline-offset: 2px; }
-  .wrap { max-width: 920px; margin: 0 auto; padding: 0 16px; }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 18px; }
   @media (min-width: 720px) { .wrap { padding: 0 28px; } }
 
   /* Masthead */
-  header.mast { padding: 18px 0 8px; display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-  .tail { font-family: var(--cond); font-weight: 600; font-size: 20px; letter-spacing: .01em; }
+  header.mast { padding: 18px 0 10px; display: flex; align-items: baseline; justify-content: space-between; gap: 8px 16px; flex-wrap: wrap; border-bottom: 2px solid var(--ink); }
+  .tail { font-family: var(--cond); font-weight: 600; font-size: 20px; }
   .tail span { color: var(--ink-soft); font-weight: 500; }
   .live { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: var(--ink-soft); }
-  .live i { width: 10px; height: 10px; border-radius: 50%; background: var(--magenta); display: inline-block; box-shadow: 0 0 0 0 rgba(180,36,127,.6); animation: pulse 2.4s ease-out infinite; }
+  .live i { width: 10px; height: 10px; border-radius: 50%; background: var(--magenta); display: inline-block; animation: pulse 2.4s ease-out infinite; }
   .live.stale i { background: var(--ink-soft); animation: none; }
   @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(180,36,127,.55); } 100% { box-shadow: 0 0 0 12px rgba(180,36,127,0); } }
   @media (prefers-reduced-motion: reduce) { .live i { animation: none; } }
 
-  /* Hero: the countdown, then the live sentence */
-  .hero { padding: 6px 0 18px; }
-  .count { display: grid; gap: 2px; padding: 14px 0 18px; border-top: 2px solid var(--ink); border-bottom: 1px solid var(--rule); margin-bottom: 18px; }
-  .count-label { font-family: var(--cond); font-weight: 600; font-size: clamp(20px, 3.4vw, 26px); }
-  .count-num { font-family: var(--cond); font-weight: 700; font-size: clamp(96px, 26vw, 200px); line-height: .9; letter-spacing: -.02em; color: var(--magenta); font-variant-numeric: tabular-nums; }
-  .count-num small { font-size: .42em; letter-spacing: 0; color: var(--ink); margin-left: .12em; }
-  .count-note { font-family: var(--mono); font-size: 13px; color: var(--ink-soft); }
+  /* Hero: countdown, then the live sentence */
+  .count { display: grid; padding: 18px 0 14px; border-bottom: 1px solid var(--rule); }
+  .count-label { font-family: var(--cond); font-weight: 600; font-size: clamp(20px, 3.2vw, 24px); }
+  .count-num { font-family: var(--cond); font-weight: 700; font-size: clamp(88px, 22vw, 168px); line-height: .92; letter-spacing: -.02em; color: var(--magenta); font-variant-numeric: tabular-nums; }
+  .count-num small { font-size: .42em; letter-spacing: 0; color: var(--ink); margin-left: .1em; }
+  .count-note { font-size: 14px; color: var(--ink-soft); margin-top: 4px; }
   .count.stale .count-num { color: var(--ink-soft); }
-  .count.done .count-num { color: var(--ink); font-size: clamp(56px, 12vw, 110px); }
-  h1 { font-family: var(--cond); font-weight: 700; font-size: clamp(30px, 5.6vw, 50px); line-height: 1.02; margin: 0; letter-spacing: -.005em; text-wrap: balance; max-width: 22ch; }
+  .count.done .count-num { color: var(--ink); font-size: clamp(56px, 12vw, 104px); }
+  h1 { font-family: var(--cond); font-weight: 700; font-size: clamp(30px, 5.4vw, 46px); line-height: 1.04; margin: 20px 0 0; text-wrap: balance; max-width: 22ch; }
   h1 em { font-style: normal; color: var(--magenta); }
-  .sub { margin: 12px 0 0; font-size: 18px; color: var(--ink-soft); max-width: 60ch; }
+  .sub { margin: 10px 0 0; font-size: 18px; color: var(--ink-soft); max-width: 58ch; }
   .sub b { color: var(--ink); font-weight: 600; }
-  .cockpit { margin: 16px 0 0; background: var(--paper); border-left: 3px solid var(--magenta); padding: 10px 14px 10px; max-width: 62ch; }
+
+  .status-band { display: grid; gap: 18px 36px; margin: 20px 0 0; }
+  @media (min-width: 720px) { .status-band { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); } }
+  .cockpit { background: var(--paper); border-left: 3px solid var(--magenta); padding: 12px 16px 14px; }
   .cockpit b { font-family: var(--cond); font-weight: 600; font-size: 18px; }
-  .cockpit ol { list-style: none; margin: 6px 0 0; padding: 0; display: grid; gap: 6px; }
-  .cockpit li { display: grid; grid-template-columns: 5.6em 1fr; gap: 10px; font-size: 15px; }
+  .cockpit ol { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 8px; }
+  .cockpit li { display: grid; grid-template-columns: 4.6em 1fr; gap: 10px; font-size: 15px; line-height: 1.4; }
   .cockpit li:first-child { font-weight: 500; }
   .cockpit li + li { color: var(--ink-soft); }
   .cockpit time { font-family: var(--mono); font-size: 13px; color: var(--ink-soft); padding-top: 2px; }
-  .facts { margin: 14px 0 0; padding: 0; list-style: none; display: flex; gap: 8px 22px; flex-wrap: wrap; font-family: var(--mono); font-size: 14px; color: var(--ink-soft); }
-  .facts li b { color: var(--ink); font-weight: 500; }
+  .facts { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 20px; align-content: start; font-size: 15px; }
+  .facts li { display: grid; gap: 1px; padding-left: 10px; border-left: 1px solid var(--rule-strong); }
+  .facts .k { font-size: 13px; color: var(--ink-soft); }
+  .facts b { font-family: var(--mono); font-weight: 500; font-size: 15px; }
+  .facts li.wide { grid-column: 1 / -1; }
 
   /* Map: the hero object */
-  .map { position: relative; background: var(--water); border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); }
-  .map iframe { display: block; width: 100%; height: min(72vh, 620px); border: 0; background: var(--water); }
-  .map .legend { position: absolute; left: 0; bottom: 0; background: var(--paper); border-top: 1px solid var(--ink); border-right: 1px solid var(--ink); padding: 6px 10px; font-family: var(--mono); font-size: 12px; }
-  .map-links { display: flex; gap: 18px; flex-wrap: wrap; padding: 10px 0 0; font-size: 15px; }
+  .map { margin-top: 24px; background: var(--water); border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); }
+  .map iframe { display: block; width: 100%; height: min(70vh, 600px); border: 0; background: var(--water); }
+  .map-cap { display: flex; gap: 6px 18px; flex-wrap: wrap; padding: 10px 0 0; font-size: 14px; color: var(--ink-soft); }
+  .map-cap span { margin-right: auto; }
 
   /* Sections */
-  section { padding: 30px 0 6px; }
+  section { padding: 36px 0 0; }
   h2 { font-family: var(--cond); font-weight: 600; font-size: 30px; margin: 0 0 6px; line-height: 1.05; }
-  .lede { margin: 0 0 16px; color: var(--ink-soft); max-width: 62ch; }
+  h3 { font-family: var(--cond); font-weight: 600; font-size: 22px; margin: 26px 0 4px; line-height: 1.1; }
+  .lede { margin: 0 0 16px; color: var(--ink-soft); max-width: 60ch; }
+  .lede.after { margin: 14px 0 0; }
 
-  /* Flight progress strips */
-  .strips { display: grid; gap: 10px; }
-  .strip { background: var(--paper); border: 1px solid var(--ink); display: grid; grid-template-columns: 92px 1fr; font-family: var(--mono); font-size: 14px; }
-  .strip > div { padding: 8px 10px; }
-  .strip .who { border-right: 1px solid var(--ink); display: flex; flex-direction: column; justify-content: space-between; gap: 6px; }
-  .strip .who b { font-weight: 500; font-size: 16px; }
-  .strip .body { display: grid; grid-template-columns: repeat(3, auto); gap: 4px 18px; align-content: start; }
-  .strip .body .wide { grid-column: 1 / -1; }
-  .strip .k { color: var(--ink-soft); font-size: 12px; display: block; }
-  .strip .status { font-family: var(--sans); font-weight: 600; font-size: 14px; }
-  .strip.now { border-color: var(--magenta); box-shadow: inset 4px 0 0 var(--magenta); }
-  .strip.now .status { color: var(--magenta); }
-  .strip.done { color: var(--ink-soft); }
-  .strip.done .status { color: var(--ink-soft); }
-  @media (max-width: 520px) { .strip .body { grid-template-columns: repeat(2, auto); } }
+  /* Legs */
+  .legs { display: grid; gap: 12px; }
+  .leg { background: var(--paper); border: 1px solid var(--rule-strong); padding: 12px 16px 14px; }
+  .leg.now { border-color: var(--magenta); box-shadow: inset 3px 0 0 var(--magenta); }
+  .leg.done { color: var(--ink-soft); }
+  .leg-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px 16px; flex-wrap: wrap; }
+  .leg-head b { font-family: var(--cond); font-weight: 600; font-size: 22px; }
+  .leg-head .status { font-weight: 600; font-size: 14px; }
+  .leg.now .status { color: var(--magenta); }
+  .leg dl { margin: 10px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: 10px 16px; }
+  .leg dl > div { display: grid; gap: 1px; }
+  .leg dt { font-size: 13px; color: var(--ink-soft); }
+  .leg dd { margin: 0; font-family: var(--mono); font-size: 15px; }
+  .leg dd.sans { font-family: var(--sans); }
+  .leg .wide { grid-column: 1 / -1; }
 
-  /* Webcams */
-  .cams { display: grid; gap: 18px; }
-  .cam { background: var(--paper); border: 1px solid var(--ink); }
-  .cam .frame { position: relative; aspect-ratio: 16 / 9; background: #0d0f12; }
-  .cam .frame iframe, .cam .frame img, .cam .frame button { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-  .cam .frame img { object-fit: cover; }
-  .cam .frame button { background: linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,.65)); color: #fff; font: 600 17px var(--sans); cursor: pointer; display: flex; align-items: flex-end; justify-content: flex-start; padding: 16px; text-align: left; gap: 10px; }
-  .cam .frame button::before { content: ""; width: 0; height: 0; border-style: solid; border-width: 9px 0 9px 16px; border-color: transparent transparent transparent #fff; margin-bottom: 2px; }
-  .cam .cap { padding: 10px 12px 12px; font-size: 15px; }
-  .cam .cap b { display: block; font-family: var(--cond); font-weight: 600; font-size: 20px; margin-bottom: 2px; }
-  .cam .cap p { margin: 0; color: var(--ink-soft); }
-  .cam .cap p + p { margin-top: 4px; }
-  @media (min-width: 720px) { .cams { grid-template-columns: 1fr 1fr; } .cams .cam.primary { grid-column: 1 / -1; } }
+  /* Webcam */
+  .cam .frame { position: relative; aspect-ratio: 16 / 9; background: #0d0f12; border: 1px solid var(--ink); }
+  .cam .frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .cam .cap { margin: 10px 0 0; font-size: 15px; color: var(--ink-soft); max-width: 62ch; }
 
   /* ATC feeds */
-  .feeds { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ink); }
-  .feeds li { border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: auto auto; gap: 4px 16px; align-items: center; padding: 12px 0; }
+  .feeds { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule-strong); }
+  .feeds li { border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: auto auto; gap: 3px 16px; align-items: center; padding: 12px 0; }
   .feeds .name { font-weight: 600; grid-column: 1; grid-row: 1; }
-  .feeds .why { color: var(--ink-soft); font-size: 15px; grid-column: 1; grid-row: 2; }
-  .feeds .why a { white-space: nowrap; }
+  .feeds .why { color: var(--ink-soft); font-size: 15px; grid-column: 1; grid-row: 2; max-width: 58ch; }
   .feeds .freq { font-family: var(--mono); font-size: 14px; color: var(--ink-soft); margin-left: 8px; font-weight: 400; }
-  .feeds .btn { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
-  .btn { display: inline-flex; align-items: center; gap: 8px; background: var(--blue); color: #fff; text-decoration: none; font-weight: 600; font-size: 15px; padding: 9px 14px; border: 1px solid var(--blue); white-space: nowrap; }
-  .btn:hover { background: #244c85; }
-  .btn.quiet { background: transparent; color: var(--blue); }
-  .btn.quiet:hover { background: rgba(46,95,163,.08); }
-  .btn svg { width: 15px; height: 15px; }
+  .feeds .btn { grid-column: 2; grid-row: 1 / span 2; }
+  .btn { display: inline-flex; align-items: center; background: transparent; color: var(--blue); text-decoration: none; font-weight: 600; font-size: 15px; padding: 8px 14px; border: 1px solid var(--blue); white-space: nowrap; }
+  .btn:hover { background: rgba(46,95,163,.08); }
   .feeds li.now .name::before { content: ""; display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: var(--magenta); margin-right: 8px; vertical-align: 1px; }
-  .note { background: var(--paper); border-left: 3px solid var(--magenta); padding: 10px 14px; margin: 16px 0 0; font-size: 15px; }
+  .feeds li.now .btn { background: var(--magenta); border-color: var(--magenta); color: #fff; }
+  .feeds li.now .btn:hover { background: #971e6a; }
+  .note { background: var(--paper); border-left: 3px solid var(--magenta); padding: 10px 14px; margin: 16px 0 0; font-size: 15px; max-width: 62ch; }
   .note b { font-weight: 600; }
 
-  /* Frequencies table */
-  table { border-collapse: collapse; width: 100%; font-family: var(--mono); font-size: 14px; }
-  th, td { text-align: left; padding: 7px 10px 7px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
-  th { font-family: var(--sans); font-weight: 600; font-size: 14px; color: var(--ink-soft); }
-  td.f { white-space: nowrap; }
+  /* Frequencies */
+  table { border-collapse: collapse; width: 100%; font-size: 15px; }
+  th, td { text-align: left; padding: 8px 12px 8px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th { font-weight: 600; font-size: 14px; color: var(--ink-soft); border-bottom-color: var(--rule-strong); }
+  td.f { font-family: var(--mono); white-space: nowrap; }
+  td.w { color: var(--ink-soft); }
 
-  footer { padding: 34px 0 44px; color: var(--ink-soft); font-size: 14px; border-top: 2px solid var(--ink); margin-top: 30px; }
+  footer { padding: 26px 0 48px; color: var(--ink-soft); font-size: 14px; border-top: 2px solid var(--ink); margin-top: 40px; }
   footer p { margin: 6px 0; max-width: 70ch; }
-  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 </style>
 </head>
 <body>
@@ -163,126 +148,89 @@
     </div>
     <h1 id="headline">Finding the Cherokee…</h1>
     <p class="sub" id="subline">Ameya is flying Bridgeport → JFK → Montauk this afternoon. This page follows the plane, shows the camera pointed at the runway in use, and lists the controllers he is talking to.</p>
-    <div class="cockpit" id="cockpit" hidden>
-      <b>From the cockpit</b>
-      <ol id="cockpitList"></ol>
+    <div class="status-band">
+      <div class="cockpit" id="cockpit" hidden>
+        <b>From the cockpit</b>
+        <ol id="cockpitList"></ol>
+      </div>
+      <ul class="facts" id="facts" hidden>
+        <li><span class="k">Altitude</span><b id="fAlt">—</b></li>
+        <li><span class="k">Ground speed</span><b id="fGs">—</b></li>
+        <li><span class="k">Heading</span><b id="fTrk">—</b></li>
+        <li><span class="k">Squawk</span><b id="fSq">—</b></li>
+        <li class="wide"><span class="k">JFK wind</span><b id="fWind">—</b></li>
+      </ul>
     </div>
-    <ul class="facts" id="facts" hidden>
-      <li><span class="k">alt </span><b id="fAlt">—</b></li>
-      <li><span class="k">speed </span><b id="fGs">—</b></li>
-      <li><span class="k">heading </span><b id="fTrk">—</b></li>
-      <li><span class="k">squawk </span><b id="fSq">—</b></li>
-      <li><span class="k">JFK wind </span><b id="fWind">—</b></li>
-    </ul>
   </div>
 </div>
 
 <div class="map">
-  <iframe id="mapFrame" title="Live map of N2884D (adsb.lol)" src="https://adsb.lol/?icao=a2ee9b&amp;zoom=9&amp;hideSidebar&amp;hideButtons" loading="eager" allow="geolocation" referrerpolicy="no-referrer"></iframe>
-  <div class="legend">adsb.lol · tap the plane for its trail</div>
+  <iframe id="mapFrame" title="Live map of N2884D (adsb.lol)" src="https://adsb.lol/?icao=a2ee9b&amp;zoom=9&amp;hideSidebar&amp;hideButtons&amp;altitudeChart=0&amp;toggles=enableInfoblock,0" loading="eager" allow="geolocation" referrerpolicy="no-referrer"></iframe>
 </div>
 
 <div class="wrap">
-  <div class="map-links">
+  <div class="map-cap">
+    <span>Map by adsb.lol. Tap the plane for its trail.</span>
     <a href="https://globe.adsbexchange.com/?icao=a2ee9b" target="_blank" rel="noopener">ADS-B Exchange</a>
     <a href="https://www.flightaware.com/live/flight/N2884D" target="_blank" rel="noopener">FlightAware</a>
-    <a href="https://www.flightradar24.com/data/aircraft/n2884d" target="_blank" rel="noopener">Flightradar24</a>
-    <a href="https://www.flightaware.com/live/airport/KJFK" target="_blank" rel="noopener">JFK arrivals board</a>
+    <a href="https://www.flightaware.com/live/airport/KJFK" target="_blank" rel="noopener">JFK arrivals</a>
   </div>
 
   <section id="plan">
     <h2>Today's legs</h2>
     <p class="lede">Filed IFR. Times are Eastern, from the flight plan; the live status comes from the transponder.</p>
-    <div class="strips">
-      <div class="strip" id="leg1">
-        <div class="who"><b>N2884D</b><span>P28A</span><span class="status" id="leg1s">scheduled</span></div>
-        <div class="body">
-          <div><span class="k">from</span>BDR Bridgeport</div>
-          <div><span class="k">to</span>JFK New York</div>
-          <div><span class="k">alt</span>4,000</div>
-          <div><span class="k">off</span>2:52 pm</div>
-          <div><span class="k">planned on</span>3:35 pm</div>
-          <div><span class="k">live eta</span><span id="leg1eta">—</span></div>
-          <div class="wide"><span class="k">route</span>EEGOR T705 BELTT T303 DPK</div>
-        </div>
+    <div class="legs">
+      <div class="leg" id="leg1">
+        <div class="leg-head"><b>Bridgeport → JFK</b><span class="status" id="leg1s">scheduled</span></div>
+        <dl>
+          <div><dt>Off</dt><dd>2:52 pm</dd></div>
+          <div><dt>Planned on</dt><dd>3:35 pm</dd></div>
+          <div><dt>Live ETA</dt><dd id="leg1eta">—</dd></div>
+          <div><dt>Altitude</dt><dd>4,000 ft</dd></div>
+          <div class="wide"><dt>Route</dt><dd>EEGOR T705 BELTT T303 DPK</dd></div>
+        </dl>
       </div>
-      <div class="strip" id="leg2">
-        <div class="who"><b>N2884D</b><span>P28A</span><span class="status" id="leg2s">next</span></div>
-        <div class="body">
-          <div><span class="k">from</span>JFK New York</div>
-          <div><span class="k">to</span>MTP Montauk</div>
-          <div><span class="k">block</span>0h 52m</div>
-          <div><span class="k">off</span>4:00 pm</div>
-          <div><span class="k">planned on</span>4:52 pm</div>
-          <div><span class="k">live eta</span><span id="leg2eta">—</span></div>
-          <div class="wide"><span class="k">ground at JFK</span>Modern Aviation, Building 145 (the GA ramp on the north side)</div>
-        </div>
+      <div class="leg" id="leg2">
+        <div class="leg-head"><b>JFK → Montauk</b><span class="status" id="leg2s">next</span></div>
+        <dl>
+          <div><dt>Off</dt><dd>4:00 pm</dd></div>
+          <div><dt>Planned on</dt><dd>4:52 pm</dd></div>
+          <div><dt>Live ETA</dt><dd id="leg2eta">—</dd></div>
+          <div><dt>Block</dt><dd>0h 52m</dd></div>
+          <div class="wide"><dt>Ground at JFK</dt><dd class="sans">Modern Aviation, Building 145, the GA ramp on the north side</dd></div>
+        </dl>
       </div>
     </div>
   </section>
 
   <section id="watch">
     <h2>Watch</h2>
-    <p class="lede" id="watchLede">Live plane-spotting streams at JFK. A Cherokee is small in a frame built for A380s: look for it low and slow on short final, a minute or two after Tower clears him to land.</p>
-    <div class="cams">
-      <div class="cam primary">
-        <div class="frame">
-          <iframe src="https://www.youtube.com/embed/K0fUqsbA7tg?rel=0" title="Planes & Friends: JFK live" allow="accelerometer; autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-        </div>
-        <div class="cap">
-          <b>Planes &amp; Friends, live from the field</b>
-          <p>Head-on view of runway 4 arrivals, the configuration JFK is using this afternoon. If the stream has ended, <a href="https://www.youtube.com/@PlanesAndFriends/live" target="_blank" rel="noopener">check the channel for the next one</a>.</p>
-        </div>
+    <p class="lede" id="watchLede">Planes &amp; Friends, live from the field, looking head-on at runway 4 arrivals. A Cherokee is small in a frame built for A380s: look for it low and slow on short final, a minute or two after Tower clears him to land.</p>
+    <div class="cam">
+      <div class="frame">
+        <iframe src="https://www.youtube.com/embed/K0fUqsbA7tg?rel=0" title="Planes & Friends: JFK live" allow="accelerometer; autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe>
       </div>
-      <div class="cam">
-        <div class="frame" data-yt="kLLb-fPOPuk" data-title="TurtleAir: JFK tower audio with a live map">
-          <img src="https://i.ytimg.com/vi/kLLb-fPOPuk/hqdefault.jpg" alt="" loading="lazy">
-          <button type="button">Load TurtleAir stream</button>
-        </div>
-        <div class="cap">
-          <b>JFK tower audio with a radar map</b>
-          <p>Tower and ground chatter over a moving map. Good on a phone: you hear him get his landing clearance.</p>
-        </div>
-      </div>
-      <div class="cam">
-        <div class="frame" data-yt="Tw4Ue00YM_k" data-title="SkyScope Live: NYC flight radar">
-          <img src="https://i.ytimg.com/vi/Tw4Ue00YM_k/hqdefault.jpg" alt="" loading="lazy">
-          <button type="button">Load NYC radar stream</button>
-        </div>
-        <div class="cap">
-          <b>New York radar, all three airports</b>
-          <p>A wider picture of the traffic he is being sequenced into.</p>
-        </div>
-      </div>
-      <div class="cam">
-        <div class="frame">
-          <a href="https://cam.airlive.net/jfk/" target="_blank" rel="noopener" style="position:absolute;inset:0;display:flex;align-items:flex-end;padding:16px;color:#fff;text-decoration:none;font:600 17px var(--sans);background:linear-gradient(160deg,#25415c,#0d0f12)">Open AirLive JFK camera</a>
-        </div>
-        <div class="cap">
-          <b>AirLive 24/7 zoom camera</b>
-          <p>Always on, with tower audio, but the video is behind a $6/month signup. The free view is a still image every five minutes.</p>
-        </div>
-      </div>
+      <p class="cap">If the stream has ended, <a href="https://www.youtube.com/@PlanesAndFriends/live" target="_blank" rel="noopener">check the channel for the next one</a>.</p>
     </div>
   </section>
 
   <section id="listen">
     <h2>Listen</h2>
-    <p class="lede">LiveATC feeds, in the order he will be handed off. Each opens LiveATC's player in a new tab; you can keep two or three open at once. Feeds run about 30 seconds behind the map.</p>
+    <p class="lede">LiveATC feeds in the order he is handed off. Each opens LiveATC's player in a new tab; you can keep two or three open at once. Feeds run about 30 seconds behind the map.</p>
     <ul class="feeds" id="arrFeeds">
-      <li data-phase="approach"><span class="name">New York Approach <span class="freq">125.7, then 135.9</span></span><span class="why">Vectors around Long Island and the descent. Around 3:21 pm he was switched to 135.9, a sector LiveATC does not carry; this feed is the ROBER sector he came from.</span><a class="btn" target="_blank" rel="noopener" href="https://www.liveatc.net/hlisten.php?mount=kjfk_app_rober&amp;icao=kjfk">Listen</a></li>
+      <li data-phase="approach"><span class="name">New York Approach <span class="freq">125.7, then 135.9</span></span><span class="why">Vectors around Long Island and the descent. At 3:21 pm he was switched to 135.9, a sector LiveATC does not carry; this feed is the ROBER sector he came from.</span><a class="btn" target="_blank" rel="noopener" href="https://www.liveatc.net/hlisten.php?mount=kjfk_app_rober&amp;icao=kjfk">Listen</a></li>
       <li data-phase="final"><span class="name">New York Approach, JFK final <span class="freq">132.4</span></span><span class="why">The turn onto final and the handoff to Tower.</span><a class="btn" target="_blank" rel="noopener" href="https://www.liveatc.net/hlisten.php?mount=kjfk_118_app_final&amp;icao=kjfk">Listen</a></li>
       <li data-phase="tower"><span class="name">JFK Tower, runway 4L <span class="freq">123.9</span></span><span class="why">"Cherokee 2884 Delta, runway 4 left, cleared to land." He is expecting the visual approach to 4L, which is this frequency. If Tower swaps him to 4R, that is 119.1, on <a href="https://www.liveatc.net/hlisten.php?mount=kjfk9_twr&amp;icao=kjfk" target="_blank" rel="noopener">the combined tower feed</a>.</span><a class="btn" target="_blank" rel="noopener" href="https://www.liveatc.net/hlisten.php?mount=kjfk_twr_1239&amp;icao=kjfk">Listen</a></li>
       <li data-phase="ground"><span class="name">JFK Ground <span class="freq">121.9 / 121.65</span></span><span class="why">Taxi to the GA ramp after landing, and taxi out again before 4 pm.</span><a class="btn" target="_blank" rel="noopener" href="https://www.liveatc.net/hlisten.php?mount=kjfk_gnd&amp;icao=kjfk">Listen</a></li>
     </ul>
     <div class="note" id="rwyNote"><b>Runway:</b> Ameya is expecting the visual approach to <b>4L</b>. Checking the airliners on final to confirm JFK is on the 4s…</div>
 
-    <h2 style="margin-top:28px">Then, for the Montauk leg</h2>
+    <h3>Then, for the Montauk leg</h3>
     <ul class="feeds" id="depFeeds">
-      <li data-phase="clearance"><span class="name">JFK Clearance Delivery <span class="freq">135.05</span></span><span class="why">He picks up his IFR clearance to Montauk here, a few minutes before 4 pm.</span><a class="btn quiet" target="_blank" rel="noopener" href="https://www.liveatc.net/hlisten.php?mount=kjfk_del2&amp;icao=kjfk">Listen</a></li>
-      <li data-phase="departure"><span class="name">New York Departure, JFK <span class="freq">departure sectors</span></span><span class="why">After takeoff, the climb out east along Long Island.</span><a class="btn quiet" target="_blank" rel="noopener" href="https://www.liveatc.net/hlisten.php?mount=kjfk_dep&amp;icao=kjfk">Listen</a></li>
+      <li data-phase="clearance"><span class="name">JFK Clearance Delivery <span class="freq">135.05</span></span><span class="why">He picks up his IFR clearance to Montauk here, a few minutes before 4 pm.</span><a class="btn" target="_blank" rel="noopener" href="https://www.liveatc.net/hlisten.php?mount=kjfk_del2&amp;icao=kjfk">Listen</a></li>
+      <li data-phase="departure"><span class="name">New York Departure <span class="freq">departure sectors</span></span><span class="why">After takeoff, the climb out east along Long Island.</span><a class="btn" target="_blank" rel="noopener" href="https://www.liveatc.net/hlisten.php?mount=kjfk_dep&amp;icao=kjfk">Listen</a></li>
     </ul>
-    <p class="lede" style="margin-top:14px">Montauk is untowered with no feed and no webcam; the map is the way to follow that leg. <a href="https://www.liveatc.net/search/?icao=kjfk" target="_blank" rel="noopener">All JFK feeds on LiveATC</a>.</p>
+    <p class="lede after">Montauk is untowered with no feed and no webcam; the map is the way to follow that leg. <a href="https://www.liveatc.net/search/?icao=kjfk" target="_blank" rel="noopener">All JFK feeds on LiveATC</a>.</p>
   </section>
 
   <section id="freqs">
@@ -290,22 +238,22 @@
     <table>
       <thead><tr><th>Position</th><th>MHz</th><th>When</th></tr></thead>
       <tbody>
-        <tr><td>NY Approach, ROBER</td><td class="f">125.700</td><td>arrival from the northeast</td></tr>
-        <tr><td>NY Approach, CAMRN</td><td class="f">128.125</td><td>arrival from the south (not his today)</td></tr>
-        <tr><td>NY Approach, JFK final vector</td><td class="f">132.400</td><td>turn onto final</td></tr>
-        <tr><td>JFK Tower, 4L/22R and 13R/31L</td><td class="f">123.900</td><td>his expected runway, 4L</td></tr>
-        <tr><td>JFK Tower, 4R/22L and 13L/31R</td><td class="f">119.100</td><td>if he is switched to 4R</td></tr>
-        <tr><td>JFK Ground</td><td class="f">121.900 / 121.650</td><td>taxi</td></tr>
-        <tr><td>JFK Clearance Delivery</td><td class="f">135.050</td><td>before the Montauk leg</td></tr>
-        <tr><td>JFK D-ATIS</td><td class="f">128.725</td><td>weather and runways in use, recorded</td></tr>
-        <tr><td>NY Departure, Liberty North</td><td class="f">118.175</td><td>after takeoff</td></tr>
+        <tr><td>NY Approach, ROBER</td><td class="f">125.700</td><td class="w">arrival from the northeast</td></tr>
+        <tr><td>NY Approach, CAMRN</td><td class="f">128.125</td><td class="w">arrival from the south (not his today)</td></tr>
+        <tr><td>NY Approach, JFK final vector</td><td class="f">132.400</td><td class="w">turn onto final</td></tr>
+        <tr><td>JFK Tower, 4L/22R and 13R/31L</td><td class="f">123.900</td><td class="w">his expected runway, 4L</td></tr>
+        <tr><td>JFK Tower, 4R/22L and 13L/31R</td><td class="f">119.100</td><td class="w">if he is switched to 4R</td></tr>
+        <tr><td>JFK Ground</td><td class="f">121.900 / 121.650</td><td class="w">taxi</td></tr>
+        <tr><td>JFK Clearance Delivery</td><td class="f">135.050</td><td class="w">before the Montauk leg</td></tr>
+        <tr><td>JFK D-ATIS</td><td class="f">128.725</td><td class="w">weather and runways in use, recorded</td></tr>
+        <tr><td>NY Departure, Liberty North</td><td class="f">118.175</td><td class="w">after takeoff</td></tr>
       </tbody>
     </table>
   </section>
 
   <footer>
     <p>Position from <a href="https://adsb.lol" target="_blank" rel="noopener">adsb.lol</a> via a small relay on this site, refreshed every 10 seconds. Wind from the National Weather Service KJFK observation. Runway in use is inferred from the tracks of airliners on final inside 8 nm; it is a guess until Tower says otherwise.</p>
-    <p>Flight plan details from FlightAware. Audio is LiveATC's, played on their site. Streams belong to their channels.</p>
+    <p>Flight plan details from FlightAware. Audio is LiveATC's, played on their site. The stream belongs to Planes &amp; Friends.</p>
   </footer>
 </div>
 
@@ -457,10 +405,10 @@
 
     // Strips
     const l1 = $('leg1'), l2 = $('leg2');
-    l1.className = 'strip ' + (state.landedJFK ? 'done' : 'now');
+    l1.className = 'leg ' + (state.landedJFK ? 'done' : 'now');
     $('leg1s').textContent = state.landedJFK ? 'landed' : (g === 'BDR' ? 'on the ground at BDR' : 'in the air');
     $('leg1eta').textContent = state.landedJFK ? 'landed' : etaTxt;
-    l2.className = 'strip ' + (state.landedMTP ? 'done' : (state.landedJFK && !g ? 'now' : ''));
+    l2.className = 'leg ' + (state.landedMTP ? 'done' : (state.landedJFK && !g ? 'now' : ''));
     $('leg2s').textContent = state.landedMTP ? 'landed' : (state.landedJFK ? (g === 'JFK' ? 'on the ground at JFK' : 'in the air') : 'next');
     $('leg2eta').textContent = state.landedMTP ? 'landed' : (state.landedJFK && !g ? etaTxt : '—');
 
@@ -545,18 +493,6 @@
   }
   notes(); setInterval(notes, 10000);
 
-  // Click-to-load YouTube frames
-  document.querySelectorAll('.frame[data-yt] button').forEach((b) => {
-    b.addEventListener('click', () => {
-      const f = b.parentElement;
-      const ifr = document.createElement('iframe');
-      ifr.src = 'https://www.youtube.com/embed/' + f.dataset.yt + '?autoplay=1&rel=0';
-      ifr.title = f.dataset.title || 'YouTube stream';
-      ifr.allow = 'accelerometer; autoplay; encrypted-media; picture-in-picture';
-      ifr.allowFullscreen = true;
-      f.replaceChildren(ifr);
-    });
-  });
 
   poll(); wind();
   setInterval(poll, 10000);
