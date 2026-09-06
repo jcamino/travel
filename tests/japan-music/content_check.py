@@ -78,6 +78,7 @@ def main(target: str) -> int:
 
 
 if __name__ == "__main__":
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     if len(sys.argv) != 2:
         print(__doc__)
         sys.exit(2)
