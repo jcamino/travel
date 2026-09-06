@@ -152,12 +152,12 @@ def run():
             for tab in page.locator(".day-tab").all():
                 d = tab.get_attribute("data-day")
                 tab.click()
-                strip_set = sorted(set(page.evaluate(
-                    "d => [...document.querySelectorAll(`.day-tab[data-day='${d}'] .dots svg`)].map(e => e.dataset.status)", d)))
-                rail_set = sorted(set(page.evaluate(
-                    "() => [...document.querySelectorAll('.day .item .stop svg')].map(e => e.dataset.status)")))
-                check(strip_set == rail_set and strip_set != [],
-                      f"{name}: {d} strip glyphs match the rail ({strip_set} vs {rail_set})")
+                strip_list = page.evaluate(
+                    "d => [...document.querySelectorAll(`.day-tab[data-day='${d}'] .dots svg`)].map(e => e.dataset.status)", d)
+                rail_list = page.evaluate(
+                    "() => [...document.querySelectorAll('.day .item .stop svg')].map(e => e.dataset.status)")
+                check(strip_list == rail_list and strip_list != [],
+                      f"{name}: {d} strip glyphs match the rail one for one ({strip_list} vs {rail_list})")
             page.click(".day-tab[data-day='2026-09-25']")
             g = page.locator("a[data-map=google]").count()
             a = page.locator("a[data-map=apple]").count()

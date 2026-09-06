@@ -1,6 +1,6 @@
 /* Offline copy of /japan/ only. Nothing external (fonts, maps) is cached.
    Navigations to /japan/ go network-first and fall back to the cached page. */
-var C = 'japan-guide-v3';
+var C = 'japan-guide-v4';
 var PAGE = '/japan/';
 self.addEventListener('install', function (e) {
   self.skipWaiting();

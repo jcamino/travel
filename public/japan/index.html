@@ -158,8 +158,8 @@ svg { display: block; }
 .day-tab .num.hol { color: var(--vermillion); }
 .day-tab .num.sat { color: var(--indigo); }
 .day-tab .city { font-size: .72rem; margin-top: .15rem; }
-.day-tab .dots { display: flex; gap: 2px; margin-top: .3rem; }
-.day-tab .dots svg { width: .7rem; height: .7rem; }
+.day-tab .dots { display: flex; gap: 1px; margin-top: .3rem; }
+.day-tab .dots svg { width: .6rem; height: .6rem; flex: 0 0 auto; }
 .day-tab[aria-current="date"] { border-color: var(--indigo); color: var(--indigo); }
 .day-tab[aria-current="date"] .num:not(.hol):not(.sat) { color: var(--indigo); }
 .day-tab.is-today .wd::after { content: " today"; color: var(--vermillion); }
@@ -169,13 +169,14 @@ svg { display: block; }
     border-bottom: 0;
   }
   .day-tab {
-    flex-direction: row; align-items: baseline; gap: .6rem; width: 100%;
+    display: grid; grid-template-columns: 4.4rem 2.6rem 1fr;
+    align-items: baseline; column-gap: .6rem; row-gap: .15rem; width: 100%;
     padding: .5rem .6rem; border-bottom: 1px solid var(--rule); border-left: 3px solid transparent; margin: 0;
   }
-  .day-tab .wd { width: 4.6rem; white-space: nowrap; }
-  .day-tab .num { width: 2.6rem; font-size: 1.35rem; }
-  .day-tab .city { flex: 1; margin: 0; }
-  .day-tab .dots { margin: 0; align-self: center; }
+  .day-tab .wd { white-space: nowrap; }
+  .day-tab .num { font-size: 1.35rem; }
+  .day-tab .city { margin: 0; }
+  .day-tab .dots { grid-column: 2 / 4; margin: 0; }
   .day-tab[aria-current="date"] { border-left-color: var(--indigo); background: var(--indigo-soft); }
 }
 
@@ -829,10 +830,9 @@ const TRIP = {
   function buildStrip() {
     strip.textContent = "";
     for (const day of TRIP.days) {
-      /* one glyph per status present that day, drawn exactly as the rail draws it */
+      /* one glyph per item, in the day's order, drawn exactly as the rail draws it */
       const dots = h("span", { class: "dots", "aria-hidden": "true" });
-      const seen = {};
-      for (const it of day.items) { if (!seen[it.status]) { seen[it.status] = 1; dots.append(glyph(it.status)); } }
+      for (const it of day.items) dots.append(glyph(it.status));
       const numCls = "num" + (isHoliday(day) ? " hol" : (day.weekday === "Sat" ? " sat" : ""));
       const b = h("button", { class: "day-tab" + (day === TODAY ? " is-today" : ""), type: "button", "data-day": day.date,
         "aria-label": day.weekday + " " + longDate(day) + ", " + day.city, onclick: () => selectDay(day.date, true) },
