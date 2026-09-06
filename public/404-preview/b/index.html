@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>No such gate · jcamino travel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --board:#0d0f0e;
+    --slab:#141817;
+    --flap:#1b1f1e;
+    --phos:#e8a317;
+    --cream:#f4f1e6;
+    --dim:#6b7370;
+    --stop:#c94f3d;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--board);
+    background-image: radial-gradient(90% 70% at 50% 0%, #161a19 0%, var(--board) 70%);
+    color: var(--cream);
+    font-family: "Archivo Narrow", "Segoe UI", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(1rem, 4vw, 3rem);
+  }
+  .terminal { width: 100%; max-width: 60rem; }
+
+  .masthead {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0 .2rem .7rem;
+    border-bottom: 2px solid #232927;
+  }
+  .masthead h1 {
+    font-size: clamp(1.4rem, 3.4vw, 2rem);
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: .01em;
+  }
+  .masthead .clock {
+    margin-left: auto;
+    color: var(--phos);
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+    font-size: clamp(1rem, 2.4vw, 1.3rem);
+  }
+
+  .board {
+    background: var(--slab);
+    box-shadow: 0 1px 0 #2c3331 inset, 0 24px 60px -30px #000;
+    padding: .55rem .55rem .75rem;
+    margin-top: .9rem;
+  }
+  .row {
+    display: grid;
+    grid-template-columns: 3.6rem minmax(0,1fr) 3rem 9.5rem;
+    align-items: center;
+    gap: .9rem;
+    padding: .62rem .75rem;
+    font-size: clamp(.95rem, 2vw, 1.18rem);
+    font-weight: 500;
+  }
+  .row.head {
+    color: var(--dim);
+    font-size: .78rem;
+    font-weight: 600;
+    letter-spacing: .1em;
+    padding-bottom: .5rem;
+  }
+  .row .no    { color: var(--phos); font-variant-numeric: tabular-nums; }
+  .row .gate  { color: var(--cream); }
+  .row .state { color: var(--phos); }
+
+  /* the missing departure */
+  .row.void { padding: 1.1rem .75rem; border-block: 1px solid #232927; }
+  .row.void .state { color: var(--stop); font-weight: 600; }
+  .row.void .gate, .row.void .no { color: var(--stop); }
+
+  .flaps { display: flex; gap: 2px; flex-wrap: wrap; }
+  .flap {
+    position: relative;
+    min-width: 1.15em;
+    padding: .18em .07em;
+    background: var(--flap);
+    color: var(--phos);
+    text-align: center;
+    font-weight: 700;
+    border-radius: 2px;
+    box-shadow: 0 1px 0 #262c2a inset;
+  }
+  .flap::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; top: 50%;
+    height: 1px;
+    background: #0b0d0c;
+  }
+  .flap.turning { color: #a8791a; }
+
+  a.row {
+    color: inherit;
+    text-decoration: none;
+    border-radius: 2px;
+  }
+  a.row:hover { background: #1d2221; }
+  a.row:hover .dest { color: var(--phos); }
+  a.row:focus-visible { outline: 2px solid var(--phos); outline-offset: -2px; }
+  .dest { transition: color .12s linear; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .sub { color: var(--dim); font-size: .8em; }
+
+  .note {
+    margin: 1.4rem .2rem 0;
+    color: var(--dim);
+    font-size: .95rem;
+    max-width: 46ch;
+    line-height: 1.55;
+  }
+
+  @media (max-width: 44rem) {
+    .row { grid-template-columns: 2.9rem minmax(0,1fr) 6.4rem; gap: .6rem; }
+    .row .gate, .row.head .gate { display: none; }
+    .row .state { font-size: .8em; text-align: right; }
+  }
+</style>
+</head>
+<body>
+<div class="terminal">
+  <div class="masthead">
+    <h1>Departures</h1>
+    <span class="clock" id="clock">--:--</span>
+  </div>
+
+  <div class="board">
+    <div class="row head" aria-hidden="true">
+      <span>Flight</span><span>Destination</span><span class="gate">Gate</span><span>Status</span>
+    </div>
+
+    <div class="row void">
+      <span class="no">404</span>
+      <span class="dest flaps" id="flaps" aria-label="Requested destination"></span>
+      <span class="gate">—</span>
+      <span class="state">No such gate</span>
+    </div>
+
+    <a class="row" href="/trasvia/">
+      <span class="no">017</span>
+      <span class="dest">Trasvía <span class="sub">· Comillas, Cantabria</span></span>
+      <span class="gate">B2</span>
+      <span class="state">Boarding</span>
+    </a>
+    <a class="row" href="/trasvia-biking/">
+      <span class="no">015</span>
+      <span class="dest">Trasvía road rides <span class="sub">· Nansa &amp; the Picos</span></span>
+      <span class="gate">B4</span>
+      <span class="state">Boarding</span>
+    </a>
+    <a class="row" href="/almu%C3%B1ecar/">
+      <span class="no">031</span>
+      <span class="dest">Almuñécar <span class="sub">· Costa Tropical</span></span>
+      <span class="gate">C1</span>
+      <span class="state">On time</span>
+    </a>
+  </div>
+
+  <p class="note">That page never had a gate. Three guides are boarding above — every time and price on them is verified.</p>
+</div>
+
+<script>
+(function () {
+  var GLYPHS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/-_.";
+  function requestedPath() {
+    var q = new URLSearchParams(location.search).get("p");
+    if (q) return q;
+    var p = decodeURIComponent(location.pathname);
+    if (!p || p === "/" || p === "/404.html" || p.indexOf("/404-preview/") === 0) return "/reykjavik-in-winter";
+    return p;
+  }
+  var target = requestedPath().toUpperCase();
+  if (target.length > 20) target = target.slice(0, 19) + "…";
+
+  var host = document.getElementById("flaps");
+  var cells = [];
+  for (var i = 0; i < target.length; i++) {
+    var el = document.createElement("span");
+    el.className = "flap";
+    el.textContent = target[i] === " " ? " " : target[i];
+    host.appendChild(el);
+    cells.push(el);
+  }
+
+  var still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!still) {
+    cells.forEach(function (el, i) {
+      var final = el.textContent;
+      el.classList.add("turning");
+      var spin = setInterval(function () {
+        el.textContent = GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
+      }, 55);
+      setTimeout(function () {
+        clearInterval(spin);
+        el.textContent = final;
+        el.classList.remove("turning");
+      }, 380 + i * 85);
+    });
+  }
+
+  function tick() {
+    var d = new Date();
+    document.getElementById("clock").textContent =
+      String(d.getHours()).padStart(2, "0") + ":" + String(d.getMinutes()).padStart(2, "0");
+  }
+  tick();
+  setInterval(tick, 20000);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Off the chart · jcamino travel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,650&family=IBM+Plex+Sans+Condensed:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper:#e9e4d4;
+    --ink:#1c2a33;
+    --sound:#7fa6b8;
+    --plot:#b4436c;
+    --grat:#b9b1a0;
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; overflow-x: hidden; }
+  body {
+    margin: 0;
+    background-color: var(--paper);
+    background-image:
+      repeating-linear-gradient(to right, var(--grat) 0 1px, transparent 1px 72px),
+      repeating-linear-gradient(to bottom, var(--grat) 0 1px, transparent 1px 72px);
+    background-position: 50% 50%;
+    color: var(--ink);
+    font-family: "IBM Plex Sans Condensed", "Segoe UI", sans-serif;
+    display: flex;
+    padding: clamp(.75rem, 3vw, 2rem);
+  }
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(120% 90% at 30% 10%, transparent 40%, rgba(120,105,70,.16) 100%);
+  }
+  .frame {
+    position: relative;
+    overflow: hidden;
+    flex: 1;
+    box-shadow: inset 0 0 0 1px var(--ink), inset 0 0 0 6px var(--paper), inset 0 0 0 7px var(--ink);
+    display: grid;
+    grid-template-rows: 1fr auto;
+    padding: clamp(2.4rem, 6vw, 4.5rem);
+  }
+
+  .ticks {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    font-size: .625rem;
+    letter-spacing: .04em;
+    opacity: .75;
+    font-variant-numeric: tabular-nums;
+  }
+  .ticks.top    { top: 11px;    left: 18px; right: 18px; }
+  .ticks.bottom { bottom: 11px; left: 18px; right: 18px; }
+  .ticks span { position: relative; padding-top: .6rem; }
+  .ticks span::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 50%;
+    width: 1px; height: .35rem;
+    background: var(--ink);
+  }
+  .ticks.bottom span { padding-top: 0; padding-bottom: .6rem; }
+  .ticks.bottom span::before { top: auto; bottom: 0; }
+
+  .rose {
+    position: absolute;
+    top: clamp(2.6rem, 8vw, 5rem);
+    right: clamp(2.6rem, 8vw, 5.5rem);
+    width: clamp(84px, 13vw, 148px);
+    opacity: .88;
+  }
+  .rose .card { fill: var(--ink); }
+  .rose .inter { fill: none; stroke: var(--ink); stroke-width: 1.1; }
+  .rose circle { fill: none; stroke: var(--ink); stroke-width: 1; }
+  .rose text { font: 600 9px "IBM Plex Sans Condensed", sans-serif; fill: var(--ink); }
+
+  .plot { align-self: center; max-width: 42rem; }
+  h1 {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 650;
+    font-size: clamp(2.2rem, 6.6vw, 4.2rem);
+    line-height: .98;
+    letter-spacing: -.015em;
+    margin: 0 0 1.4rem;
+    max-width: 12ch;
+  }
+  .fix { position: relative; margin: 0 0 1.5rem; height: 1.6rem; }
+  .fix .rule { position: absolute; left: 0; right: calc(-100vw); top: 0; height: 100%; }
+  .fix svg { position: absolute; left: 0; top: 0; overflow: visible; }
+  .fix .lead { stroke: var(--plot); stroke-width: 1.4; stroke-dasharray: 5 4; fill: none; }
+  
+  .path {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    max-width: 100%;
+    font-weight: 600;
+    font-size: clamp(.95rem, 2vw, 1.15rem);
+    color: var(--plot);
+    background: var(--paper);
+    padding: .1rem .7rem .1rem 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .sounding {
+    font-size: clamp(.95rem, 1.5vw, 1.05rem);
+    line-height: 1.62;
+    max-width: 38ch;
+    margin: 0;
+  }
+
+  .legend {
+    justify-self: start;
+    border: 1px solid var(--ink);
+    background: color-mix(in srgb, var(--paper) 82%, #fff);
+    padding: 1rem 1.25rem 1.1rem;
+    max-width: 31rem;
+    width: 100%;
+  }
+  .legend h2 {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 400;
+    font-size: 1.05rem;
+    margin: 0 0 .15rem;
+  }
+  .legend p {
+    margin: 0 0 .8rem;
+    font-size: .8rem;
+    color: color-mix(in srgb, var(--ink) 68%, var(--paper));
+    border-bottom: 1px solid var(--grat);
+    padding-bottom: .7rem;
+  }
+  .legend ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .05rem; }
+  .legend a {
+    display: flex;
+    align-items: baseline;
+    gap: .55rem;
+    color: var(--ink);
+    text-decoration: none;
+    padding: .36rem .45rem .36rem .3rem;
+    font-size: .95rem;
+  }
+  .legend a .mark { color: var(--sound); font-size: .78rem; line-height: 1; }
+  .legend a .where { margin-left: auto; font-size: .74rem; color: color-mix(in srgb, var(--ink) 52%, var(--paper)); }
+  .legend a:hover { background: var(--sound); color: #fff; }
+  .legend a:hover .mark, .legend a:hover .where { color: #fff; }
+  .legend a:focus-visible { outline: 2px solid var(--plot); outline-offset: 1px; }
+
+  @media (max-width: 40rem) {
+    .rose { display: none; }
+    .ticks span:nth-child(n+4) { display: none; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .fix .lead { stroke-dasharray: 2400; stroke-dashoffset: 2400; animation: draw 1.2s .3s cubic-bezier(.2,.7,.3,1) forwards; }
+  }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="ticks top" aria-hidden="true">
+    <span>7°40′W</span><span>7°20′W</span><span>7°00′W</span><span>6°40′W</span><span>6°20′W</span><span>6°00′W</span><span>5°40′W</span>
+  </div>
+
+  <svg class="rose" viewBox="0 0 100 100" aria-hidden="true">
+    <circle cx="50" cy="50" r="34"/>
+    <circle cx="50" cy="50" r="27"/>
+    <path class="inter" d="M50 16 L58 50 L50 84 L42 50 Z M16 50 L50 42 L84 50 L50 58 Z"/>
+    <path class="card" d="M50 16 L54 50 L50 50 Z M50 84 L46 50 L50 50 Z M84 50 L50 54 L50 50 Z M16 50 L50 46 L50 50 Z"/>
+    <text x="50" y="11" text-anchor="middle">N</text>
+  </svg>
+
+  <div class="plot">
+    <h1>Beyond the surveyed area</h1>
+    <div class="fix">
+      <svg class="rule" width="2400" height="24" aria-hidden="true">
+        <path class="lead" d="M5 12 H 2400"/>
+      </svg>
+      <span class="path" id="path">/whatever</span>
+    </div>
+    <p class="sounding">Nothing is charted at this position. The three coastlines below have been walked, timed and priced.</p>
+  </div>
+
+  <div class="legend">
+    <h2>Charted</h2>
+    <p>Guides with every time, tide and price verified on the ground.</p>
+    <ul>
+      <li><a href="/trasvia/"><span class="mark">◈</span> Trasvía <span class="where">Comillas, Cantabria</span></a></li>
+      <li><a href="/trasvia-biking/"><span class="mark">◈</span> Trasvía · road rides <span class="where">Nansa &amp; the Picos</span></a></li>
+      <li><a href="/almu%C3%B1ecar/"><span class="mark">◈</span> Almuñécar <span class="where">Costa Tropical, Granada</span></a></li>
+    </ul>
+  </div>
+
+  <div class="ticks bottom" aria-hidden="true">
+    <span>43°30′N</span><span>43°24′N</span><span>43°18′N</span><span>43°12′N</span><span>43°06′N</span><span>43°00′N</span><span>42°54′N</span>
+  </div>
+</div>
+<script>
+  function requestedPath() {
+    var q = new URLSearchParams(location.search).get("p");
+    if (q) return q;
+    var p = decodeURIComponent(location.pathname);
+    if (!p || p === "/" || p === "/404.html" || p.indexOf("/404-preview/") === 0) return "/reykjavik-in-winter";
+    return p;
+  }
+  document.getElementById("path").textContent = requestedPath();
+</script>
+</body>
+</html>

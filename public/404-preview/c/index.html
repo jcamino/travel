@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>No such destination · jcamino travel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600&family=Archivo+Black&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --belt:#2a2724;
+    --stock:#fbf7ee;
+    --thermal:#16130f;
+    --orange:#e2551f;
+    --kraft:#c9b38d;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--belt);
+    background-image: repeating-linear-gradient(115deg, rgba(255,255,255,.035) 0 2px, transparent 2px 46px);
+    color: var(--stock);
+    font-family: "Archivo", "Segoe UI", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(1.8rem, 5vw, 3rem);
+    padding: clamp(1.5rem, 5vw, 3rem) 1.25rem;
+  }
+
+  /* ---------- the tag ---------- */
+  .tag {
+    position: relative;
+    width: min(25rem, 100%);
+    background: var(--stock);
+    color: var(--thermal);
+    padding: 2.6rem 1.6rem 1.5rem;
+    transform: rotate(-2.4deg);
+    box-shadow: 0 30px 50px -26px rgba(0,0,0,.85);
+    font-family: "Courier Prime", ui-monospace, monospace;
+  }
+  .tag::before {
+    /* orange routing band down the leading edge */
+    content: "";
+    position: absolute;
+    top: 0; bottom: 0; left: 0;
+    width: 9px;
+    background: var(--orange);
+  }
+  .hole {
+    position: absolute;
+    top: .85rem; left: 50%;
+    transform: translateX(-50%);
+    width: 1.05rem; height: 1.05rem;
+    border-radius: 50%;
+    background: var(--belt);
+    box-shadow: 0 0 0 3px #ded6c2, inset 0 1px 2px rgba(0,0,0,.6);
+  }
+
+  .code {
+    font-family: "Archivo Black", "Archivo", sans-serif;
+    font-size: clamp(4.2rem, 17vw, 6.6rem);
+    line-height: .82;
+    letter-spacing: -.03em;
+    margin: 0;
+  }
+  .strap {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    border-bottom: 2px solid var(--thermal);
+    padding-bottom: .5rem;
+  }
+  .strap .seq { font-size: .78rem; letter-spacing: .06em; }
+
+  .barcode {
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 3.1rem;
+    margin: 1.1rem 0 .45rem;
+  }
+  .barcode i { display: block; height: 100%; background: var(--thermal); }
+  .barnum { font-size: .72rem; letter-spacing: .32em; margin: 0 0 1.15rem; }
+
+  dl { margin: 0; display: grid; grid-template-columns: 4.2rem 1fr; gap: .5rem .9rem; font-size: .82rem; }
+  dt { color: #7d766a; }
+  dd { margin: 0; word-break: break-all; }
+  dd.to { color: var(--orange); font-weight: 700; }
+  dd.status { font-weight: 700; }
+
+  /* ---------- reroute strip ---------- */
+  .reroute { width: min(46rem, 100%); }
+  .reroute h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 .8rem;
+    color: #b8b0a4;
+  }
+  .chips { display: flex; flex-wrap: wrap; gap: .7rem; }
+  .chip {
+    flex: 1 1 11rem;
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+    background: var(--stock);
+    color: var(--thermal);
+    text-decoration: none;
+    padding: .7rem .9rem;
+    border-left: 6px solid var(--kraft);
+    box-shadow: 0 10px 20px -16px rgba(0,0,0,.9);
+    transition: border-color .14s ease, transform .14s ease;
+  }
+  .chip:hover { border-left-color: var(--orange); transform: translateY(-2px); }
+  .chip:focus-visible { outline: 3px solid var(--orange); outline-offset: 2px; }
+  .chip .iata {
+    font-family: "Archivo Black", sans-serif;
+    font-size: 1.05rem;
+    letter-spacing: -.01em;
+  }
+  .chip .name { font-size: .82rem; line-height: 1.25; }
+  .chip .name small { display: block; color: #7d766a; font-size: .74rem; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .tag { animation: settle .7s cubic-bezier(.2,.8,.3,1) both; }
+  }
+  @keyframes settle {
+    from { transform: rotate(-7deg) translateY(-14px); opacity: 0; }
+    to   { transform: rotate(-2.4deg) translateY(0); opacity: 1; }
+  }
+</style>
+</head>
+<body>
+  <div class="tag">
+    <span class="hole" aria-hidden="true"></span>
+    <div class="strap">
+      <h1 class="code">404</h1>
+      <span class="seq">SEQ 0000</span>
+    </div>
+    <div class="barcode" id="barcode" aria-hidden="true"></div>
+    <p class="barnum" id="barnum">0000 0000 0000</p>
+    <dl>
+      <dt>From</dt><dd>travel.jcamino.net</dd>
+      <dt>To</dt><dd class="to" id="path">/whatever</dd>
+      <dt>Status</dt><dd class="status">No such destination</dd>
+    </dl>
+  </div>
+
+  <div class="reroute">
+    <h2>Reroute to a guide that exists</h2>
+    <div class="chips">
+      <a class="chip" href="/trasvia/">
+        <span class="iata">TRV</span>
+        <span class="name">Trasvía<small>Comillas, Cantabria</small></span>
+      </a>
+      <a class="chip" href="/trasvia-biking/">
+        <span class="iata">RDS</span>
+        <span class="name">Road rides<small>Nansa &amp; the Picos</small></span>
+      </a>
+      <a class="chip" href="/almu%C3%B1ecar/">
+        <span class="iata">ALM</span>
+        <span class="name">Almuñécar<small>Costa Tropical</small></span>
+      </a>
+    </div>
+  </div>
+
+<script>
+(function () {
+  function requestedPath() {
+    var q = new URLSearchParams(location.search).get("p");
+    if (q) return q;
+    var p = decodeURIComponent(location.pathname);
+    if (!p || p === "/" || p === "/404.html" || p.indexOf("/404-preview/") === 0) return "/reykjavik-in-winter";
+    return p;
+  }
+  var path = requestedPath();
+  document.getElementById("path").textContent = path;
+
+  // Bars and sequence encode the requested path, so the tag prints what you asked for.
+  var seed = 0;
+  for (var i = 0; i < path.length; i++) seed = (seed * 31 + path.charCodeAt(i)) >>> 0;
+  function next() { seed = (seed * 1103515245 + 12345) >>> 0; return seed; }
+
+  var bc = document.getElementById("barcode");
+  for (var b = 0; b < 46; b++) {
+    var bar = document.createElement("i");
+    bar.style.width = (1 + (next() % 4)) + "px";
+    bar.style.height = (72 + (next() % 28)) + "%";
+    bc.appendChild(bar);
+  }
+
+  var digits = "";
+  for (var d = 0; d < 12; d++) {
+    if (d && d % 4 === 0) digits += " ";
+    digits += next() % 10;
+  }
+  document.getElementById("barnum").textContent = digits;
+  document.querySelector(".seq").textContent = "SEQ " + String(next() % 10000).padStart(4, "0");
+})();
+</script>
+</body>
+</html>
