@@ -6,7 +6,7 @@
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#EFEAE0" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#121317" media="(prefers-color-scheme: dark)">
-<title>Japan, 17/18 to 26 September 2026</title>
+<title>Japan, 19 to 26 September 2026</title>
 <meta name="description" content="Day by day guide for Javier and Eric, Tokyo then Kyoto, September 2026.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -376,7 +376,7 @@ svg { display: block; }
    ===================================================================== */
 const TRIP = {
   title: "Japan",
-  dates: "17/18 to 26 September 2026",
+  dates: "19 to 26 September 2026",
   who: "Javier and Eric",
   about: [
     "Two adults, both vegan, first time in Japan. 30L Osprey packs each (no oversized-baggage seats needed).",
@@ -395,34 +395,11 @@ const TRIP = {
   musicPage: "/japan/music/",
   days: [
     {
-      date: "2026-09-17", label: "17/18", weekday: "Thu/Fri", city: "Outbound", theme: "Outbound (TBD)",
-      base: "",
-      items: [
-        { time: "", title: "Outbound flight, Option A or B", status: "tbd",
-          detail: "Two United award tickets held, only one will be kept.",
-          place: "", mapQuery: "", url: "",
-          notes: [
-            "Option A: SFO to HND Sept 17 (premium economy), lands Sept 18.",
-            "Option B: UA837 SFO 11:35 Sept 18 to NRT, lands ~15:00 Sept 19.",
-            "Choice hinged on the Sept 18 Takanaka ticket, which is now booked in Hikone on Fri 25 instead. Drop the loser before United auto-cancels the duplicate."
-          ] },
-        { time: "", date: "2026-09-18", title: "Masayoshi Takanaka, Sept 18 (dropped)", status: "decided",
-          detail: "Superseded: Takanaka is booked in Hikone on Fri 25 instead. Sept 18 was the Katsushika Symphony Hills tour opener.",
-          place: "Katsushika Symphony Hills", mapQuery: "Katsushika Symphony Hills, Tokyo", url: "",
-          notes: [
-            "Was sold out at official outlets; resale was being sourced through Jun on Ticket Jam, cap ~¥46,000 listed price. No longer needed."
-          ] },
-        { time: "", date: "2026-09-18", title: "Tokyo hotel night, Sept 18", status: "pending",
-          detail: "Only if Option A.",
-          place: "", mapQuery: "", url: "", notes: [], conf: "", via: "" }
-      ]
-    },
-    {
       date: "2026-09-19", label: "19", weekday: "Sat", city: "Tokyo", theme: "Arrive Tokyo",
       base: "Hotel Son Shibuya",
       items: [
-        { time: "14:30", title: "Eric lands NRT", status: "decided",
-          detail: "UA79 from EWR. Javier lands ~15:00 (Option B) or is already in Tokyo (Option A).",
+        { time: "15:00", approx: true, title: "Both in Tokyo by about 15:00", status: "decided",
+          detail: "Eric lands NRT 14:30, UA79 from EWR. Javier arrives around the same time.",
           place: "Narita Airport", mapQuery: "Narita International Airport", url: "", notes: [] },
         { time: "", title: "Hotel Son Shibuya, check in", status: "booked",
           detail: "Base for Sept 19 to 22.",
@@ -598,7 +575,7 @@ const TRIP = {
           detail: "ひこね市文化プラザ, doors 17:30, start 18:30, ¥11,000. Hikone is JR 50 min from Kyoto.",
           place: "ひこね市文化プラザ Hikone Bunka Plaza", mapQuery: "ひこね市文化プラザ", url: "",
           notes: [
-            "Booked on Sept 6. Replaces the Sept 18 Katsushika date.",
+            "Booked on Sept 6. Javier may still go to the Sept 18 Katsushika date on his own.",
             "Music page: Tier 2, never plays the US. Hall ticket centre 0749-27-5200 (closed Mondays).",
             "Collides with every harvest-moon rite in Kyoto (Shimogamo, Yasaka, Daikakuji). Leave Arashiyama with time for the JR to Hikone; the Haruka to KIX is ~08:00 next morning."
           ], conf: "", via: "" },
@@ -642,8 +619,7 @@ const TRIP = {
     "Haruka Sept 26 ~08:00",
     "Jingu tickets Sept 22 (if not already in hand)",
     "Hozugawa boat Sept 25 (confirm booking status)",
-    "Jazz venue Sept 20 (book if Blue Note / Cotton Club)",
-    "Pick the outbound flight and cancel the other (Takanaka Sept 18 resale is off; Hikone Sept 25 is booked)"
+    "Jazz venue Sept 20 (book if Blue Note / Cotton Club)"
   ]
 };
 
@@ -733,10 +709,7 @@ const TRIP = {
     return e;
   }
   const MONTH = "September";
-  function longDate(day) {
-    if (day.label.includes("/")) return "17 or 18 " + MONTH;
-    return day.label + " " + MONTH;
-  }
+  function longDate(day) { return day.label + " " + MONTH; }
   function isHoliday(day) { return TRIP.holidays.includes(day.date) || day.weekday === "Sun"; }
   function gmaps(q) { return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q); }
   function amaps(q) { return "https://maps.apple.com/?q=" + encodeURIComponent(q); }
@@ -793,7 +766,6 @@ const TRIP = {
   const NOW = tokyoNow();
   function dayForDate(dateStr) {
     if (!dateStr) return null;
-    if (dateStr === "2026-09-18") return TRIP.days[0];
     return TRIP.days.find(d => d.date === dateStr) || null;
   }
   const TODAY = NOW ? dayForDate(NOW.date) : null;
@@ -908,9 +880,6 @@ const TRIP = {
     if (item.time) {
       time.append((item.approx ? "~" : "") + item.time);
       if (item.endTime) time.append(h("small", { text: "to " + item.endTime }));
-      if (item.date && item.date !== day.date) time.append(h("small", { text: "Sept 18" }));
-    } else if (item.date && item.date !== day.date) {
-      time.append(h("small", { text: "Sept 18" }));
     }
     const tags = h("div", { class: "tags" });
     tags.append(h("span", { class: "tag st-" + item.status, text: STATUS[item.status].label }));
@@ -981,7 +950,7 @@ const TRIP = {
     for (const day of TRIP.days) {
       for (const it of day.items) {
         if (it.status !== "booked") continue;
-        const when = h("div", { class: "when" }, h("b", { text: it.date ? "18" : day.label }), (it.time ? (it.approx ? "~" : "") + it.time : ""));
+        const when = h("div", { class: "when" }, h("b", { text: day.label }), (it.time ? (it.approx ? "~" : "") + it.time : ""));
         const body = h("div", null,
           h("div", { class: "title" }, glyph("booked"), h("span", { text: it.title })),
           it.detail ? h("div", { class: "detail", text: it.detail }) : null,

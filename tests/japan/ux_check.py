@@ -73,7 +73,7 @@ def run():
             page.on("pageerror", lambda e: errors.append(str(e)))
             page.goto(base + "/japan/?now=2026-09-23T15:00", wait_until="networkidle")
             check(not errors, f"{name}: no console errors {errors[:2]}")
-            check(page.locator(".day-tab").count() == 9, f"{name}: nine day tabs")
+            check(page.locator(".day-tab").count() == 8, f"{name}: eight day tabs")
             check(page.locator(".day-tab[aria-current=date]").get_attribute("data-day") == "2026-09-23",
                   f"{name}: today (23rd) selected on load")
             check(page.locator(".item.is-now").count() == 1, f"{name}: one item marked now")
@@ -129,7 +129,7 @@ def run():
             no_overflow(page, name, "dark mode")
             page.emulate_media(media="print")
             page.evaluate("() => window.dispatchEvent(new Event('beforeprint'))")
-            check(page.locator(".day").count() == 9, f"{name}: print renders all nine days")
+            check(page.locator(".day").count() == 8, f"{name}: print renders all eight days")
             page.emulate_media(media="screen")
             page.evaluate("() => window.dispatchEvent(new Event('afterprint'))")
             check(page.locator(".day").count() == 1, f"{name}: back to one day after print")
