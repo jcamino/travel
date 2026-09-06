@@ -29,6 +29,7 @@
   --sans: "IBM Plex Sans JP", system-ui, -apple-system, "Segoe UI", "Hiragino Sans", "Yu Gothic UI", sans-serif;
   --rail-time: 3rem;
   --rail-w: 1.75rem;
+  --rail-gap: .5rem;
   --t: 160ms;
   color-scheme: light;
 }
@@ -208,14 +209,14 @@ svg { display: block; }
 .rail { position: relative; padding-bottom: 1.5rem; }
 .rail::before {
   content: ""; position: absolute; top: 1.4rem; bottom: 2.2rem;
-  left: calc(var(--rail-time) + var(--rail-w) / 2 - 2px);
+  left: calc(var(--rail-time) + var(--rail-gap) + var(--rail-w) / 2 - 2px);
   width: 4px; background: var(--indigo); border-radius: 2px;
 }
 .rail.empty::before { display: none; }
 .rail .empty-msg { padding: 1.5rem 0; color: var(--muted); font-size: .9rem; }
 .item {
   display: grid; grid-template-columns: var(--rail-time) var(--rail-w) 1fr;
-  column-gap: .5rem; position: relative;
+  column-gap: var(--rail-gap); position: relative;
 }
 .item .time {
   font-size: .78rem; font-weight: 500; color: var(--ink);
