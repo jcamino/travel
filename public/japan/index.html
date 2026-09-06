@@ -404,14 +404,13 @@ const TRIP = {
           notes: [
             "Option A: SFO to HND Sept 17 (premium economy), lands Sept 18.",
             "Option B: UA837 SFO 11:35 Sept 18 to NRT, lands ~15:00 Sept 19.",
-            "Choice hinges on the Takanaka ticket. Drop the loser before United auto-cancels the duplicate."
+            "Choice hinged on the Sept 18 Takanaka ticket, which is now booked in Hikone on Fri 25 instead. Drop the loser before United auto-cancels the duplicate."
           ] },
-        { time: "", date: "2026-09-18", title: "Masayoshi Takanaka", status: "pending",
-          detail: "Sept 18, Katsushika Symphony Hills (tour opener).",
+        { time: "", date: "2026-09-18", title: "Masayoshi Takanaka, Sept 18 (dropped)", status: "decided",
+          detail: "Superseded: Takanaka is booked in Hikone on Fri 25 instead. Sept 18 was the Katsushika Symphony Hills tour opener.",
           place: "Katsushika Symphony Hills", mapQuery: "Katsushika Symphony Hills, Tokyo", url: "",
           notes: [
-            "Sold out at official outlets; resale being sourced through Jun on Ticket Jam, cap ~¥46,000 listed price.",
-            "Music page: Takanaka also plays Hikone (JR 50 min from Kyoto) on Fri 25, 17:30 doors, 18:30 start, ¥11,000, on sale via the hall's ticket centre 0749-27-5200 (closed Mondays) or Lawson, Pia, e+. It collides with the harvest moon."
+            "Was sold out at official outlets; resale was being sourced through Jun on Ticket Jam, cap ~¥46,000 listed price. No longer needed."
           ] },
         { time: "", date: "2026-09-18", title: "Tokyo hotel night, Sept 18", status: "pending",
           detail: "Only if Option A.",
@@ -580,7 +579,7 @@ const TRIP = {
       ]
     },
     {
-      date: "2026-09-25", label: "25", weekday: "Fri", city: "Kyoto", theme: "Arashiyama and harvest moon",
+      date: "2026-09-25", label: "25", weekday: "Fri", city: "Kyoto", theme: "Arashiyama, then Takanaka in Hikone",
       base: "BnA Alter Museum",
       items: [
         { time: "", title: "Sagano Romantic Train, Torokko Saga to Torokko Kameoka", status: "booked", travel: true,
@@ -595,15 +594,23 @@ const TRIP = {
         { time: "", title: "Shigetsu at Tenryu-ji, shojin ryori lunch", status: "pending",
           detail: "",
           place: "Shigetsu, Tenryu-ji", mapQuery: "Shigetsu Tenryu-ji Kyoto", url: "", notes: [] },
+        { time: "17:30", endTime: "18:30 start", title: "高中正義 SUPER TAKANAKA LIVE, Hikone", status: "booked",
+          detail: "ひこね市文化プラザ, doors 17:30, start 18:30, ¥11,000. Hikone is JR 50 min from Kyoto.",
+          place: "ひこね市文化プラザ Hikone Bunka Plaza", mapQuery: "ひこね市文化プラザ", url: "",
+          notes: [
+            "Booked on Sept 6. Replaces the Sept 18 Katsushika date.",
+            "Music page: Tier 2, never plays the US. Hall ticket centre 0749-27-5200 (closed Mondays).",
+            "Collides with every harvest-moon rite in Kyoto (Shimogamo, Yasaka, Daikakuji). Leave Arashiyama with time for the JR to Hikone; the Haruka to KIX is ~08:00 next morning."
+          ], conf: "", via: "" },
         { time: "", title: "Jugoya (harvest moon) tonight: Daikakuji moon-viewing on the Osawa pond", status: "suggested",
-          detail: "The calm Kyoto option.",
+          detail: "The calm Kyoto option. Collides with Takanaka in Hikone (18:30).",
           place: "Daikaku-ji", mapQuery: "Daikaku-ji, Kyoto", url: "",
           notes: [
             "Music page: 観月の夕べ opens 17:30, ¥700 at the gate; the ¥7,000 dragon-boat ticket closed 24 July, same-day cancel-wait at 17:30 only. Daytime visit is a separate ticket (昼夜入替).",
             "Music page ranks this as the fallback; its pick is Shimogamo then Yasaka below. Yasaka by 19:30 from Daikakuji is about 50 minutes door to door."
           ] },
         { time: "17:30", title: "Music page: Shimogamo 名月管絃祭, then Yasaka 祇園社観月祭", status: "suggested", music: true,
-          detail: "Two harvest-moon rites in one evening, both free, no ticket, standing. Shimogamo 17:30 to 21:00 (shakuhachi, gagaku, koto from the 橋殿 by firelight); Yasaka 19:00 to 21:00 (舞楽 19:30, koto 20:00, lion dance 20:30, taiko 20:45).",
+          detail: "Collides with Takanaka in Hikone (18:30). Two harvest-moon rites in one evening, both free, no ticket, standing. Shimogamo 17:30 to 21:00 (shakuhachi, gagaku, koto from the 橋殿 by firelight); Yasaka 19:00 to 21:00 (舞楽 19:30, koto 20:00, lion dance 20:30, taiko 20:45).",
           place: "Shimogamo Jinja", mapQuery: "Shimogamo Jinja", url: "https://www.shimogamo-jinja.or.jp/",
           musicRef: "Fri 25 · 17:30 then 19:00 · Shimogamo",
           notes: [
@@ -636,7 +643,7 @@ const TRIP = {
     "Jingu tickets Sept 22 (if not already in hand)",
     "Hozugawa boat Sept 25 (confirm booking status)",
     "Jazz venue Sept 20 (book if Blue Note / Cotton Club)",
-    "Takanaka Sept 18 resale, then pick the outbound flight and cancel the other"
+    "Pick the outbound flight and cancel the other (Takanaka Sept 18 resale is off; Hikone Sept 25 is booked)"
   ]
 };
 
