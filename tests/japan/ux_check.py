@@ -58,12 +58,64 @@ def no_overflow(page, name, what):
     check(o["scrollW"] <= o["w"] and not o["bad"], f"{name}: no horizontal overflow, {what} {o['bad']}")
 
 
+BG = "getComputedStyle(document.body).backgroundColor"
+DARK_BG, LIGHT_BG = "rgb(18, 19, 23)", "rgb(239, 234, 224)"
+
+
+def theme_follows_system(b, base):
+    """A manual toggle overrides the system only until the phone itself changes scheme."""
+    def load(scheme, state=None):
+        kw = {"color_scheme": scheme, "viewport": {"width": 380, "height": 800}}
+        if state:
+            kw["storage_state"] = state
+        ctx = b.new_context(**kw)
+        pg = ctx.new_page()
+        pg.goto(base + "/japan/")
+        return ctx, pg
+    ctx, pg = load("dark")
+    check(pg.evaluate(BG) == DARK_BG, "theme: fresh load follows system dark")
+    ctx.close()
+    ctx, pg = load("light")
+    check(pg.evaluate(BG) == LIGHT_BG, "theme: fresh load follows system light")
+    pg.click("#theme")
+    check(pg.evaluate(BG) == DARK_BG, "theme: toggle flips to dark")
+    state = ctx.storage_state()
+    ctx.close()
+    ctx, pg = load("light", state)
+    check(pg.evaluate(BG) == DARK_BG, "theme: manual dark survives a reload while the phone is still light")
+    state = ctx.storage_state()
+    ctx.close()
+    ctx, pg = load("dark", state)
+    check(pg.evaluate(BG) == DARK_BG, "theme: phone goes dark, page is dark")
+    state = ctx.storage_state()
+    ctx.close()
+    ctx, pg = load("light", state)
+    check(pg.evaluate(BG) == LIGHT_BG, "theme: phone back to light, page follows (override dropped)")
+    ctx.close()
+    # a phone pinned by the old build (plain string in storage) must follow the system again
+    ctx, pg = load("dark")
+    pg.evaluate("localStorage.setItem('japan-theme', 'light')")
+    pg.reload()
+    check(pg.evaluate(BG) == DARK_BG, "theme: legacy stored value is discarded")
+    ctx.close()
+    # live change while the page is open
+    ctx, pg = load("light")
+    pg.click("#theme")
+    pg.emulate_media(color_scheme="dark")
+    pg.wait_for_timeout(50)
+    pg.emulate_media(color_scheme="light")
+    pg.wait_for_timeout(50)
+    check(pg.evaluate(BG) == LIGHT_BG, "theme: live system change while open drops the override")
+    ctx.close()
+
+
 def run():
     srv, base = serve()
     src = (PUB / "japan" / "index.html").read_text(encoding="utf-8")
     check("—" not in src, "no em dashes in the page")
     with sync_playwright() as p:
         b = p.chromium.launch()
+        theme_follows_system(b, base)
         for width, height, name in [(380, 800, "phone-380"), (1280, 900, "desktop-1280")]:
             ctx = b.new_context(viewport={"width": width, "height": height}, device_scale_factor=2,
                                 timezone_id="Asia/Tokyo", reduced_motion="reduce")

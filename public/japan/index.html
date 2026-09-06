@@ -780,25 +780,41 @@ const TRIP = {
     return best || timed[0];
   }
 
-  /* ---------- theme ---------- */
+  /* ---------- theme ----------
+     Follows the phone. The toggle overrides it only until the phone itself changes
+     scheme; the override is stored with the system scheme it was set under. */
   const root = document.documentElement;
   const themeBtn = $("#theme");
+  const mq = matchMedia("(prefers-color-scheme: dark)");
+  const system = () => mq.matches ? "dark" : "light";
+  const KEY = "japan-theme";
+  function readOverride() {
+    try {
+      const raw = localStorage.getItem(KEY);
+      if (!raw) return null;
+      const v = JSON.parse(raw);
+      if (v && (v.t === "dark" || v.t === "light") && v.sys === system()) return v.t;
+    } catch (e) {}
+    try { localStorage.removeItem(KEY); } catch (e) {}
+    return null;
+  }
   function applyTheme(t) {
     if (t) root.setAttribute("data-theme", t); else root.removeAttribute("data-theme");
-    const dark = t ? t === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+    const dark = (t || system()) === "dark";
     themeBtn.setAttribute("aria-pressed", dark ? "true" : "false");
     themeBtn.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
   }
-  let saved = null;
-  try { saved = localStorage.getItem("japan-theme"); } catch (e) {}
-  applyTheme(saved);
+  applyTheme(readOverride());
   themeBtn.addEventListener("click", () => {
-    const dark = root.getAttribute("data-theme") ? root.getAttribute("data-theme") === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
-    const next = dark ? "light" : "dark";
-    try { localStorage.setItem("japan-theme", next); } catch (e) {}
-    applyTheme(next);
+    const current = root.getAttribute("data-theme") || system();
+    const next = current === "dark" ? "light" : "dark";
+    try {
+      if (next === system()) localStorage.removeItem(KEY);
+      else localStorage.setItem(KEY, JSON.stringify({ t: next, sys: system() }));
+    } catch (e) {}
+    applyTheme(next === system() ? null : next);
   });
-  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => { if (!root.getAttribute("data-theme")) applyTheme(null); });
+  mq.addEventListener("change", () => { try { localStorage.removeItem(KEY); } catch (e) {} applyTheme(null); });
 
   /* ---------- header ---------- */
   $("#trip-title").textContent = TRIP.title;
