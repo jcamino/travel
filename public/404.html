@@ -43,9 +43,10 @@
     box-shadow: inset 0 0 0 1px var(--ink), inset 0 0 0 6px var(--paper), inset 0 0 0 7px var(--ink);
     display: grid;
     grid-template-rows: 1fr auto;
-    padding: clamp(2.4rem, 6vw, 4.5rem);
+    padding: clamp(2.4rem, 6vw, 4.5rem) clamp(2.4rem, 7vw, 5.5rem);
   }
 
+  /* Chart margins: longitude along the top and bottom, latitude up the sides. */
   .ticks {
     position: absolute;
     display: flex;
@@ -57,6 +58,9 @@
   }
   .ticks.top    { top: 11px;    left: 18px; right: 18px; }
   .ticks.bottom { bottom: 11px; left: 18px; right: 18px; }
+  .ticks.left, .ticks.right { flex-direction: column; top: 2.8rem; bottom: 2.8rem; }
+  .ticks.left  { left: 12px;  align-items: flex-start; }
+  .ticks.right { right: 12px; align-items: flex-end; }
   .ticks span { position: relative; padding-top: .6rem; }
   .ticks span::before {
     content: "";
@@ -67,6 +71,11 @@
   }
   .ticks.bottom span { padding-top: 0; padding-bottom: .6rem; }
   .ticks.bottom span::before { top: auto; bottom: 0; }
+  .ticks.left span  { padding: 0 0 0 .65rem; }
+  .ticks.right span { padding: 0 .65rem 0 0; }
+  .ticks.left span::before, .ticks.right span::before { top: 50%; width: .35rem; height: 1px; }
+  .ticks.left span::before  { left: 0; }
+  .ticks.right span::before { left: auto; right: 0; }
 
   .rose {
     position: absolute;
@@ -153,6 +162,9 @@
   .legend a:hover .mark, .legend a:hover .where { color: #fff; }
   .legend a:focus-visible { outline: 2px solid var(--plot); outline-offset: 1px; }
 
+  @media (max-width: 60rem) {
+    .ticks.left, .ticks.right { display: none; }
+  }
   @media (max-width: 40rem) {
     .rose { display: none; }
     .ticks span:nth-child(n+4) { display: none; }
@@ -166,7 +178,13 @@
 <body>
 <div class="frame">
   <div class="ticks top" aria-hidden="true">
-    <span>7°40′W</span><span>7°20′W</span><span>7°00′W</span><span>6°40′W</span><span>6°20′W</span><span>6°00′W</span><span>5°40′W</span>
+    <span>5°00′W</span><span>4°40′W</span><span>4°20′W</span><span>4°00′W</span><span>3°40′W</span>
+  </div>
+  <div class="ticks left" aria-hidden="true">
+    <span>43°36′N</span><span>43°30′N</span><span>43°24′N</span><span>43°18′N</span><span>43°12′N</span>
+  </div>
+  <div class="ticks right" aria-hidden="true">
+    <span>43°36′N</span><span>43°30′N</span><span>43°24′N</span><span>43°18′N</span><span>43°12′N</span>
   </div>
 
   <svg class="rose" viewBox="0 0 100 100" aria-hidden="true">
@@ -199,7 +217,7 @@
   </div>
 
   <div class="ticks bottom" aria-hidden="true">
-    <span>43°30′N</span><span>43°24′N</span><span>43°18′N</span><span>43°12′N</span><span>43°06′N</span><span>43°00′N</span><span>42°54′N</span>
+    <span>5°00′W</span><span>4°40′W</span><span>4°20′W</span><span>4°00′W</span><span>3°40′W</span>
   </div>
 </div>
 <script>
