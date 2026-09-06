@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#EFEAE0" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121317" media="(prefers-color-scheme: dark)">
+<title>Japan, 17/18 to 26 September 2026</title>
+<meta name="description" content="Day by day guide for Javier and Eric, Tokyo then Kyoto, September 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@600;700&family=IBM+Plex+Sans+JP:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ---------- tokens ---------- */
+:root {
+  --paper: #EFEAE0;
+  --paper-2: #E7E1D5;
+  --ink: #1B1B22;
+  --muted: #6B6A72;
+  --rule: #D3CDBF;
+  --indigo: #1C2A5E;
+  --indigo-soft: rgba(28, 42, 94, .08);
+  --vermillion: #C43C1E;
+  --green: #3E7A55;
+  --stone: #8A8578;
+  --focus: #C43C1E;
+  --serif: "Shippori Mincho B1", ui-serif, "New York", Georgia, "Times New Roman", serif;
+  --sans: "IBM Plex Sans JP", system-ui, -apple-system, "Segoe UI", "Hiragino Sans", "Yu Gothic UI", sans-serif;
+  --rail-time: 3rem;
+  --rail-w: 1.75rem;
+  --t: 160ms;
+  color-scheme: light;
+}
+[data-theme="dark"] {
+  --paper: #121317;
+  --paper-2: #1A1B21;
+  --ink: #E6E1D6;
+  --muted: #9C99A2;
+  --rule: #2C2E37;
+  --indigo: #8FA1E3;
+  --indigo-soft: rgba(143, 161, 227, .12);
+  --vermillion: #E8704F;
+  --green: #7DBF94;
+  --stone: #8A8578;
+  --focus: #E8704F;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #121317;
+    --paper-2: #1A1B21;
+    --ink: #E6E1D6;
+    --muted: #9C99A2;
+    --rule: #2C2E37;
+    --indigo: #8FA1E3;
+    --indigo-soft: rgba(143, 161, 227, .12);
+    --vermillion: #E8704F;
+    --green: #7DBF94;
+    --focus: #E8704F;
+    color-scheme: dark;
+  }
+}
+@media (prefers-reduced-motion: reduce) { :root { --t: 0ms; } }
+
+/* ---------- base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.5;
+  font-feature-settings: "tnum";
+  padding-bottom: env(safe-area-inset-bottom);
+}
+a { color: var(--indigo); text-decoration-thickness: 1px; text-underline-offset: .15em; }
+a:hover { text-decoration-thickness: 2px; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 700; margin: 0; line-height: 1.15; letter-spacing: -.005em; }
+p { margin: 0; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+svg { display: block; }
+
+/* ---------- frame ---------- */
+.frame {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+@media (min-width: 900px) {
+  .frame {
+    max-width: 68rem;
+    display: grid;
+    grid-template-columns: 17rem 1fr;
+    column-gap: 3.5rem;
+    align-items: start;
+    padding: 0 2rem;
+  }
+  .side { position: sticky; top: 0; align-self: start; max-height: 100vh; overflow-y: auto; padding-bottom: 2rem; }
+}
+
+/* ---------- header ---------- */
+.hdr { padding: 1.25rem 0 .75rem; border-bottom: 1px solid var(--rule); }
+.hdr-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+@media (min-width: 900px) {
+  .hdr-row { flex-direction: column; gap: .75rem; }
+}
+.hdr h1 { font-size: 2.25rem; }
+.hdr .dates { font-family: var(--serif); font-weight: 600; font-size: 1.05rem; color: var(--indigo); margin-top: .15rem; }
+.hdr .about { color: var(--muted); font-size: .85rem; margin-top: .6rem; max-width: 36rem; }
+.hdr .about b { color: var(--ink); font-weight: 500; }
+.tools { display: flex; gap: .4rem; flex-shrink: 0; }
+.tool {
+  display: inline-flex; align-items: center; gap: .35rem;
+  height: 2rem; padding: 0 .6rem;
+  border: 1px solid var(--rule); border-radius: 1rem;
+  font-size: .8rem; color: var(--ink);
+  transition: border-color var(--t), background var(--t);
+}
+.tool:hover { border-color: var(--indigo); }
+.tool svg { width: 1rem; height: 1rem; }
+
+/* ---------- view switch ---------- */
+.views { display: flex; gap: 1.25rem; padding: .65rem 0 0; }
+.view-btn {
+  font-family: var(--serif); font-weight: 600; font-size: 1rem;
+  padding: .25rem 0 .35rem; border-bottom: 2px solid transparent; color: var(--muted);
+  transition: color var(--t), border-color var(--t);
+}
+.view-btn[aria-current="page"] { color: var(--ink); border-color: var(--indigo); }
+
+/* ---------- day strip ---------- */
+.strip {
+  display: flex; gap: .25rem;
+  overflow-x: auto; overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x proximity;
+  margin: 0 -1rem; padding: .5rem 1rem 0;
+  border-bottom: 1px solid var(--rule);
+  scrollbar-width: none;
+}
+.strip::-webkit-scrollbar { display: none; }
+.day-tab {
+  flex: 0 0 auto; scroll-snap-align: start;
+  min-width: 4.4rem; padding: .4rem .5rem .5rem;
+  display: flex; flex-direction: column; align-items: flex-start; gap: .05rem;
+  border-bottom: 3px solid transparent; margin-bottom: -1px;
+  color: var(--muted);
+  transition: color var(--t), border-color var(--t);
+}
+.day-tab .wd { font-size: .68rem; letter-spacing: .02em; }
+.day-tab .num { font-family: var(--serif); font-weight: 700; font-size: 1.5rem; line-height: 1; color: var(--ink); }
+.day-tab .num.hol { color: var(--vermillion); }
+.day-tab .num.sat { color: var(--indigo); }
+.day-tab .city { font-size: .72rem; margin-top: .15rem; }
+.day-tab .dots { display: flex; gap: 3px; margin-top: .35rem; height: 6px; }
+.day-tab .dots i { width: 6px; height: 6px; border-radius: 50%; display: block; }
+.day-tab[aria-current="date"] { border-color: var(--indigo); color: var(--indigo); }
+.day-tab[aria-current="date"] .num:not(.hol):not(.sat) { color: var(--indigo); }
+.day-tab.is-today .wd::after { content: " today"; color: var(--vermillion); }
+@media (min-width: 900px) {
+  .strip {
+    flex-direction: column; gap: 0; overflow: visible; margin: 0; padding: .75rem 0 0;
+    border-bottom: 0;
+  }
+  .day-tab {
+    flex-direction: row; align-items: baseline; gap: .6rem; width: 100%;
+    padding: .5rem .6rem; border-bottom: 1px solid var(--rule); border-left: 3px solid transparent; margin: 0;
+  }
+  .day-tab .wd { width: 4.6rem; white-space: nowrap; }
+  .day-tab .num { width: 2.6rem; font-size: 1.35rem; }
+  .day-tab .city { flex: 1; margin: 0; }
+  .day-tab .dots { margin: 0; align-self: center; }
+  .day-tab[aria-current="date"] { border-left-color: var(--indigo); background: var(--indigo-soft); }
+}
+
+/* ---------- filter chips ---------- */
+.chips { display: flex; gap: .4rem; flex-wrap: wrap; padding: .75rem 0 .25rem; }
+.chip {
+  display: inline-flex; align-items: center; gap: .3rem;
+  height: 1.9rem; padding: 0 .7rem 0 .5rem;
+  border: 1px solid var(--rule); border-radius: 1rem;
+  font-size: .8rem; color: var(--ink);
+  transition: background var(--t), border-color var(--t), color var(--t);
+}
+.chip svg { width: .95rem; height: .95rem; }
+.chip[aria-pressed="true"] { background: var(--indigo); border-color: var(--indigo); color: var(--paper); }
+.chip[aria-pressed="true"] svg .g-fill { fill: var(--paper); }
+.chip[aria-pressed="true"] svg .g-stroke { stroke: var(--paper); }
+.chip[aria-pressed="true"] svg .g-mark { stroke: var(--indigo); }
+
+/* ---------- day section ---------- */
+.day { padding: 1.25rem 0 0; transition: opacity var(--t); }
+.day.fading { opacity: 0; }
+.day-head { padding-bottom: 1rem; }
+.day-head .wd { font-size: .8rem; color: var(--muted); }
+.day-head h2 { font-size: 1.9rem; }
+.day-head h2 .hol { color: var(--vermillion); }
+.day-head .theme { font-family: var(--serif); font-weight: 600; font-size: 1.05rem; color: var(--indigo); margin-top: .2rem; }
+.day-head .base { font-size: .82rem; color: var(--muted); margin-top: .35rem; }
+.day-head .daynote { font-size: .85rem; margin-top: .5rem; color: var(--ink); border-left: 2px solid var(--rule); padding-left: .6rem; }
+
+/* ---------- the rail ---------- */
+.rail { position: relative; padding-bottom: 1.5rem; }
+.rail::before {
+  content: ""; position: absolute; top: 1.4rem; bottom: 2.2rem;
+  left: calc(var(--rail-time) + var(--rail-w) / 2 - 2px);
+  width: 4px; background: var(--indigo); border-radius: 2px;
+}
+.rail.empty::before { display: none; }
+.rail .empty-msg { padding: 1.5rem 0; color: var(--muted); font-size: .9rem; }
+.item {
+  display: grid; grid-template-columns: var(--rail-time) var(--rail-w) 1fr;
+  column-gap: .5rem; position: relative;
+}
+.item .time {
+  font-size: .78rem; font-weight: 500; color: var(--ink);
+  padding-top: 1.05rem; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+.item .time small { display: block; font-weight: 400; color: var(--muted); font-size: .68rem; }
+.item .stop {
+  position: relative; display: flex; justify-content: center; padding-top: .95rem;
+}
+.item .stop svg { width: 1.2rem; height: 1.2rem; background: var(--paper); border-radius: 50%; position: relative; z-index: 1; }
+.item.travel .stop svg { width: 1.45rem; height: 1.45rem; margin-top: -.12rem; }
+.card { border-bottom: 1px solid var(--rule); padding: .75rem 0 .8rem; min-width: 0; }
+.card-head {
+  display: grid; grid-template-columns: 1fr auto; column-gap: .6rem; align-items: start;
+  width: 100%; text-align: left; padding: 0; border-radius: 2px;
+}
+.card-head > div { max-width: 42rem; }
+.card-head .title { font-weight: 500; font-size: 1rem; line-height: 1.3; }
+.card-head .detail { color: var(--muted); font-size: .86rem; margin-top: .15rem; line-height: 1.4; }
+.card-head .tags { display: flex; gap: .35rem; flex-wrap: wrap; margin-top: .35rem; }
+.tag {
+  font-size: .68rem; letter-spacing: .01em; padding: .1rem .45rem;
+  border: 1px solid var(--rule); border-radius: 2px; color: var(--muted);
+}
+.tag.st-booked { color: var(--green); border-color: var(--green); }
+.tag.st-pending { color: var(--vermillion); border-color: var(--vermillion); }
+.tag.st-decided { color: var(--indigo); border-color: var(--indigo); }
+.tag.music { color: var(--indigo); border-color: var(--indigo); border-style: dashed; }
+.tag.now { color: var(--paper); background: var(--ink); border-color: var(--ink); }
+.chev { width: 1.1rem; height: 1.1rem; margin-top: .2rem; color: var(--muted); transition: transform var(--t); }
+.card-head[aria-expanded="true"] .chev { transform: rotate(180deg); }
+.card-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows var(--t) ease; }
+.card-body > div { overflow: hidden; min-height: 0; }
+.card-head[aria-expanded="true"] + .card-body { grid-template-rows: 1fr; }
+.notes { font-size: .88rem; padding-top: .6rem; display: grid; gap: .35rem; }
+.notes li { padding-left: .8rem; position: relative; }
+.notes li::before { content: ""; position: absolute; left: 0; top: .6em; width: .35rem; height: 1px; background: var(--muted); }
+.links { display: flex; flex-wrap: wrap; gap: .4rem .5rem; padding-top: .6rem; font-size: .82rem; }
+.links a {
+  display: inline-flex; align-items: center; gap: .3rem;
+  padding: .25rem .6rem; border: 1px solid var(--rule); border-radius: 1rem; text-decoration: none;
+  transition: border-color var(--t);
+}
+.links a:hover { border-color: var(--indigo); }
+.links a svg { width: .85rem; height: .85rem; }
+.conf { font-size: .82rem; padding-top: .6rem; display: grid; gap: .25rem; color: var(--muted); }
+.conf b { font-weight: 500; color: var(--ink); }
+.conf .blank { display: inline-block; min-width: 9rem; border-bottom: 1px dotted var(--muted); vertical-align: baseline; height: 1em; }
+.item.is-now .card { background: linear-gradient(to right, transparent, transparent); box-shadow: inset 3px 0 0 var(--ink); padding-left: .6rem; }
+.item.hidden { display: none; }
+
+/* ---------- open items ---------- */
+.open { padding: 1.5rem 0 2rem; border-top: 1px solid var(--rule); }
+.open h2 { font-size: 1.35rem; }
+.open .sub { color: var(--muted); font-size: .82rem; margin-top: .2rem; }
+.open ol { list-style: none; counter-reset: risk; margin-top: .75rem; }
+.open li { counter-increment: risk; display: grid; grid-template-columns: 1.75rem 1fr; gap: .5rem; padding: .5rem 0; border-bottom: 1px solid var(--rule); font-size: .92rem; }
+.open li::before { content: counter(risk); font-family: var(--serif); font-weight: 700; color: var(--vermillion); font-size: 1.1rem; line-height: 1.2; }
+
+/* ---------- bookings view ---------- */
+.bookings { padding: 1.25rem 0 2rem; }
+.bookings h2 { font-size: 1.9rem; }
+.bookings .sub { color: var(--muted); font-size: .85rem; margin-top: .3rem; }
+.bk { display: grid; grid-template-columns: var(--rail-time) 1fr; column-gap: .75rem; padding: .9rem 0; border-bottom: 1px solid var(--rule); }
+.bk .when { font-size: .78rem; color: var(--muted); font-variant-numeric: tabular-nums; padding-top: .15rem; }
+.bk .when b { display: block; font-family: var(--serif); font-weight: 700; font-size: 1.25rem; color: var(--ink); line-height: 1.1; }
+.bk .title { font-weight: 500; display: flex; align-items: center; gap: .4rem; }
+.bk .title svg { width: 1rem; height: 1rem; flex-shrink: 0; }
+.bk .detail { color: var(--muted); font-size: .86rem; margin-top: .15rem; }
+.bk .conf { padding-top: .45rem; }
+.bk .links { padding-top: .5rem; }
+.bk.hdr-day { border-bottom: 0; padding-bottom: 0; }
+
+/* ---------- footer ---------- */
+.foot { color: var(--muted); font-size: .75rem; padding: 1rem 0 2rem; border-top: 1px solid var(--rule); }
+.foot a { color: inherit; }
+
+/* ---------- print ---------- */
+@media print {
+  :root { --paper: #fff; --ink: #000; --muted: #444; --rule: #bbb; --indigo: #1C2A5E; --vermillion: #C43C1E; --green: #3E7A55; }
+  body { font-size: 10.5pt; }
+  .frame { max-width: none; display: block; padding: 0; }
+  .tools, .views, .chips, .strip, .chev, .jump, .foot .hint { display: none !important; }
+  .day { display: block !important; break-before: page; opacity: 1 !important; }
+  .day:first-of-type { break-before: auto; }
+  .item.hidden { display: grid !important; }
+  .card-body { display: block; }
+  .card-body > div { overflow: visible; }
+  .item { break-inside: avoid; }
+  .card { border-bottom-color: #ccc; }
+  .item .stop svg { background: #fff; }
+  .rail::before { background: #1C2A5E; }
+  .links a { border: 0; padding: 0; text-decoration: underline; }
+  .links a[data-map]::after { content: ""; }
+  .bookings, .open { break-before: page; }
+  a[href^="http"]:not([data-map])::after { content: " (" attr(href) ")"; font-size: .8em; color: #555; word-break: break-all; }
+  .print-all .view-days, .print-all .view-bookings { display: block !important; }
+}
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="side">
+    <header class="hdr">
+      <div class="hdr-row">
+        <div>
+          <h1 id="trip-title"></h1>
+          <p class="dates" id="trip-dates"></p>
+        </div>
+        <div class="tools">
+          <button class="tool jump" id="jump-today" type="button" title="Jump to today">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="8" r="2" fill="currentColor"/></svg>
+            <span>Today</span>
+          </button>
+          <button class="tool" id="theme" type="button" aria-label="Switch to dark mode" aria-pressed="false">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path id="theme-icon" d="M8 2a6 6 0 1 0 0 12A6 6 0 0 0 8 2zm0 1.5v9a4.5 4.5 0 0 1 0-9z" fill="currentColor"/></svg>
+          </button>
+        </div>
+      </div>
+      <p class="about" id="trip-about"></p>
+      <nav class="views" aria-label="View">
+        <button class="view-btn" type="button" data-view="days" aria-current="page">Timeline</button>
+        <button class="view-btn" type="button" data-view="bookings">Bookings</button>
+      </nav>
+    </header>
+    <nav class="strip" id="strip" aria-label="Days"></nav>
+  </div>
+
+  <main id="main">
+    <section class="view-days" id="view-days">
+      <div class="chips" id="chips" role="group" aria-label="Filter by status"></div>
+      <div id="days"></div>
+      <section class="open" id="open" aria-labelledby="open-h">
+        <h2 id="open-h">Open items</h2>
+        <p class="sub">Ordered by sellout risk, from the itinerary.</p>
+        <ol id="open-list"></ol>
+      </section>
+    </section>
+    <section class="view-bookings bookings" id="view-bookings" hidden aria-labelledby="bk-h">
+      <h2 id="bk-h">Bookings</h2>
+      <p class="sub">Only booked items, in trip order. Confirmation fields are filled in the data object at the top of this file.</p>
+      <div id="bk-list"></div>
+    </section>
+    <footer class="foot">
+      <p>Source: japan-itinerary-2026.md. Music picks cross-referenced against <a href="/japan/music/">the Silver Week music page</a>.</p>
+      <p class="hint">Filters and the selected day live in the address, so a view can be shared. Print for a paper copy of the whole trip.</p>
+    </footer>
+  </main>
+</div>
+
+<script>
+/* =====================================================================
+   DATA. Parsed from japan-itinerary-2026.md (single source of truth).
+   Music lane items come from /japan/music/ and are marked music: true.
+   Statuses: booked, pending, suggested, walkup, tbd, decided.
+   Blank strings are fields still to fill in.
+   ===================================================================== */
+const TRIP = {
+  title: "Japan",
+  dates: "17/18 to 26 September 2026",
+  who: "Javier and Eric",
+  about: [
+    "Two adults, both vegan, first time in Japan. 30L Osprey packs each (no oversized-baggage seats needed).",
+    "Sept 19 to 23 is Silver Week 2026: crowds and sellouts everywhere, all Nozomi seats reserved-only.",
+    "Bases: Hotel Son Shibuya (Tokyo, Sept 19 to 22) and BnA Alter Museum (Kyoto, Sept 23 to 25)."
+  ],
+  legend: {
+    booked: "paid and confirmed",
+    pending: "needs a booking, not yet secured",
+    suggested: "idea on the plan, not committed",
+    walkup: "no booking possible or needed",
+    tbd: "open decision",
+    decided: "settled, no booking needed here"
+  },
+  holidays: ["2026-09-21", "2026-09-22", "2026-09-23"],
+  musicPage: "/japan/music/",
+  days: [
+    {
+      date: "2026-09-17", label: "17/18", weekday: "Thu/Fri", city: "Outbound", theme: "Outbound (TBD)",
+      base: "",
+      items: [
+        { time: "", title: "Outbound flight, Option A or B", status: "tbd",
+          detail: "Two United award tickets held, only one will be kept.",
+          place: "", mapQuery: "", url: "",
+          notes: [
+            "Option A: SFO to HND Sept 17 (premium economy), lands Sept 18.",
+            "Option B: UA837 SFO 11:35 Sept 18 to NRT, lands ~15:00 Sept 19.",
+            "Choice hinges on the Takanaka ticket. Drop the loser before United auto-cancels the duplicate."
+          ] },
+        { time: "", date: "2026-09-18", title: "Masayoshi Takanaka", status: "pending",
+          detail: "Sept 18, Katsushika Symphony Hills (tour opener).",
+          place: "Katsushika Symphony Hills", mapQuery: "Katsushika Symphony Hills, Tokyo", url: "",
+          notes: [
+            "Sold out at official outlets; resale being sourced through Jun on Ticket Jam, cap ~¥46,000 listed price.",
+            "Music page: Takanaka also plays Hikone (JR 50 min from Kyoto) on Fri 25, 17:30 doors, 18:30 start, ¥11,000, on sale via the hall's ticket centre 0749-27-5200 (closed Mondays) or Lawson, Pia, e+. It collides with the harvest moon."
+          ] },
+        { time: "", date: "2026-09-18", title: "Tokyo hotel night, Sept 18", status: "pending",
+          detail: "Only if Option A.",
+          place: "", mapQuery: "", url: "", notes: [], conf: "", via: "" }
+      ]
+    },
+    {
+      date: "2026-09-19", label: "19", weekday: "Sat", city: "Tokyo", theme: "Arrive Tokyo",
+      base: "Hotel Son Shibuya",
+      items: [
+        { time: "14:30", title: "Eric lands NRT", status: "decided",
+          detail: "UA79 from EWR. Javier lands ~15:00 (Option B) or is already in Tokyo (Option A).",
+          place: "Narita Airport", mapQuery: "Narita International Airport", url: "", notes: [] },
+        { time: "", title: "Hotel Son Shibuya, check in", status: "booked",
+          detail: "Base for Sept 19 to 22.",
+          place: "Hotel Son Shibuya", mapQuery: "Hotel Son Shibuya, Tokyo", url: "", notes: [], conf: "", via: "" },
+        { time: "", title: "Shinjuku evening, late set at Shinjuku Pit Inn", status: "walkup",
+          detail: "Check lineup; usually walk-in.",
+          place: "Shinjuku Pit Inn", mapQuery: "Shinjuku Pit Inn", url: "https://pit-inn.com/schedule-day/",
+          notes: ["Music page: Sat 19 night set is The Blend with 峰厚介 (ts, 82) at 19:30, ¥3,500 incl. Arrive ~20:15 from the airport and catch the second half."] },
+        { time: "", title: "Backup: MOGRA Akihabara, Anison Index page.194", status: "suggested",
+          detail: "Anison night, if Pit Inn lineup is weak.",
+          place: "MOGRA Akihabara", mapQuery: "MOGRA Akihabara", url: "", notes: [] },
+        { time: "21:00", title: "Music page: 和ノ家追分 min'yō show, Asakusa", status: "suggested", music: true,
+          detail: "The 21:00 second show, ~¥3,500. Alternative to the Pit Inn late set on landing night.",
+          place: "和ノ家追分 Kazunoya Oiwake", mapQuery: "和ノ家追分 浅草", url: "",
+          musicRef: "Every night · 和ノ家追分 Kazunoya Oiwake",
+          notes: ["Min'yō sakaba; landing night, only 20:00 onwards is realistic."] }
+      ]
+    },
+    {
+      date: "2026-09-20", label: "20", weekday: "Sun", city: "Tokyo", theme: "Old Tokyo and jazz",
+      base: "Hotel Son Shibuya",
+      dayNotes: ["Giants game at Tokyo Dome dropped; Jingu on the 22nd is the game."],
+      items: [
+        { time: "", title: "Asakusa and Ueno morning", status: "suggested",
+          detail: "",
+          place: "Asakusa", mapQuery: "Asakusa, Tokyo", url: "", notes: [] },
+        { time: "11:00", title: "Music page: Bunraku 鑑賞教室, Kōtō-ku", status: "suggested", music: true,
+          detail: "11:00 to 13:45, ¥6,000. 二人三番叟 and the 勘平 acts of 忠臣蔵. Optional; drop it if three is too many.",
+          place: "江東区文化センター", mapQuery: "江東区文化センター", url: "https://ticket.ntj.jac.go.jp/",
+          musicRef: "Sun 20 · 11:00, 14:30, 19:00 · Bunraku",
+          notes: ["National Theatre ticket site, English button, foreign cards; 当日券 from 10:00 if seats remain.", "Ends 13:45; 40 minutes to Shinjuku for the 14:30 show."] },
+        { time: "14:30", title: "Music page: Pit Inn 昼の部, 東京民謡倶楽部", status: "suggested", music: true,
+          detail: "Tsugaru shamisen, shakuhachi and wadaiko inside a jazz band. Open 14:00, start 14:30. ¥5,500 adv, ¥6,050 door, one drink included. The Sunday pick.",
+          place: "Shinjuku Pit Inn", mapQuery: "Shinjuku Pit Inn", url: "https://pit-inn.com/schedule-day/",
+          musicRef: "Sun 20 · 14:30 · Pit Inn 昼の部",
+          notes: ["Reserve by email or phone from the venue page, cash at the door.", "小山豊 leads; 石若駿 on drums, Marty Holoubek on bass. About a hundred seats."] },
+        { time: "", title: "Free afternoon", status: "suggested",
+          detail: "Options: Yanaka, Kuramae, Tokyo Station area, or a long Shibuya-to-Daikanyama-to-Nakameguro walk.",
+          place: "", mapQuery: "", url: "", notes: [] },
+        { time: "", title: "Jazz night", status: "suggested",
+          detail: "Venue TBD from the jazz research.",
+          place: "", mapQuery: "", url: "",
+          notes: [
+            "Blue Note Tokyo and Cotton Club are reserved-table and need advance booking; Body & Soul, Somethin' Else, Intro, Naru are small rooms.",
+            "Music page: the Sunday evening pick is Keiji Haino at 月花舎 (below). Fallbacks: Violon's 78-rpm 昭和歌謡 concert in Asagaya, 18:00 (¥1,500, 25 seats, phone); Kabuki-za 幕見 京人形 at 18:55 (¥900)."
+          ] },
+        { time: "19:00", title: "Music page: 灰野敬二 Keiji Haino + 小林リコ, 月花舎", status: "suggested", music: true,
+          detail: "Jimbōchō listening room, a few dozen seats. ¥3,500 advance + ¥500 drink.",
+          place: "月花舎 Jimbōchō", mapQuery: "月花舎 神保町", url: "",
+          musicRef: "Sun 20 · evening · 灰野敬二 Keiji Haino",
+          notes: ["Reserve now by email to sakaiki@modalbeats.com; cash at the door."] }
+      ]
+    },
+    {
+      date: "2026-09-21", label: "21", weekday: "Mon", city: "Tokyo", theme: "Harajuku by day, Akihabara by night",
+      base: "Hotel Son Shibuya",
+      items: [
+        { time: "", title: "Meiji Shrine, Harajuku, Cat Street, Omotesando", status: "walkup",
+          detail: "",
+          place: "Meiji Shrine", mapQuery: "Meiji Jingu, Tokyo", url: "", notes: [] },
+        { time: "13:25", title: "Music page: Kabuki-za 幕見, ひらかな盛衰記〈逆櫓〉", status: "suggested", music: true,
+          detail: "13:25 to 15:12, ¥2,800 (+¥110). 竹本 gidayū narration and a full 立廻り.",
+          place: "Kabuki-za", mapQuery: "Kabukiza Theatre, Ginza", url: "",
+          musicRef: "Mon 21 · 13:25 then 18:30 · Kabuki-za",
+          notes: ["Reserved 4F seats go online at noon on Sunday (e-tix, card with 3-D Secure), or queue for the unreserved seats on the day."] },
+        { time: "", title: "MOGRA Akihabara, \"Blend New! P@rty!! / awa-ani\" anison night", status: "walkup",
+          detail: "Door charge, confirm age/ID rules.",
+          place: "MOGRA Akihabara", mapQuery: "MOGRA Akihabara", url: "",
+          notes: ["Music page lists a MOGRA day party 14:00 to 20:00 on Mon 21 as a candidate (cash, physical ID); the evening pick is Body & Soul below."] },
+        { time: "18:30", title: "Music page: Body & Soul, last Monday before it closes", status: "suggested", music: true,
+          detail: "52-year-old club, five minutes from the hotel, closing 27 Sept. 河合代介 (Hammond organ), 佐野康夫 (drums), 宮崎隆睦 (sax). Open 17:30, sets 18:30 and 20:00. ¥7,700 with tax + drinks.",
+          place: "Body & Soul, Udagawa-chō", mapQuery: "渋谷区宇田川町2-1 渋谷ホームズ B-15", url: "https://www.bodyandsoul.co.jp/schedule",
+          musicRef: "Mon 21 · 13:25 then 18:30 · Kabuki-za",
+          notes: [
+            "The club moved from Minami-Aoyama to Kōen-dōri, Shibuya; the jazz brief's address is stale.",
+            "Email reservation from the schedule page; this Monday is the last night still open to reserve. Other nights: phone 03-6455-0088 for returns.",
+            "Fallbacks the same evening: Here is Eden (ex-P-MODEL) at Show Boat, Kōenji, 18:00, ¥4,000 door only; DESTINY 8 first concert at WWW X, 19:00, ¥8,800, e+ until Sun 18:00."
+          ] }
+      ]
+    },
+    {
+      date: "2026-09-22", label: "22", weekday: "Tue", city: "Tokyo", theme: "Mt Takao and Jingu",
+      base: "Hotel Son Shibuya",
+      items: [
+        { time: "07:30", title: "Mt Takao hike", status: "walkup",
+          detail: "Start by 07:30, trail 6 up, Fuji views if clear, onsen at the base station after.",
+          place: "Mt Takao", mapQuery: "Takaosanguchi Station", url: "", notes: [] },
+        { time: "16:00", title: "Music page: 代々木八幡宮 例大祭 宵宮", status: "suggested", music: true,
+          detail: "Stalls and a 神楽殿 stage from dusk, free. Three stops from the hotel, 20 minutes from Jingu; fits 16:00 to 17:15.",
+          place: "代々木八幡宮", mapQuery: "代々木八幡宮", url: "",
+          musicRef: "Tue 22 · evening · 代々木八幡宮 例大祭 宵宮",
+          notes: ["友川カズキ at CLUB Que (19:00) was Tuesday's music pick and is lost to the game unless you drop it."] },
+        { time: "18:00", title: "Swallows vs Hanshin, Meiji Jingu Stadium", status: "decided", ticket: "pending",
+          detail: "Decided; tickets pending unless already bought. Outdoor 1926 ballpark, Hanshin traveling support, walkable from Shibuya.",
+          place: "Meiji Jingu Stadium", mapQuery: "Meiji Jingu Stadium", url: "", notes: ["Ends ~21:00."], conf: "", via: "" }
+      ]
+    },
+    {
+      date: "2026-09-23", label: "23", weekday: "Wed", city: "Tokyo to Kyoto", theme: "Tokyo to Kyoto",
+      base: "BnA Alter Museum from tonight",
+      items: [
+        { time: "", title: "Last Tokyo morning, Tsukiji outer market", status: "suggested",
+          detail: "Vegan-limited, plan substitutes. Checkout, leave bags at hotel desk.",
+          place: "Tsukiji Outer Market", mapQuery: "Tsukiji Outer Market", url: "", notes: [] },
+        { time: "14:30", endTime: "16:44", title: "Nozomi 41, Tokyo to Kyoto", status: "booked", travel: true,
+          detail: "Ordinary reserved seats D and E (cars 5 to 7). E side for the Fuji window ~40 min out.",
+          place: "Tokyo Station", mapQuery: "Tokyo Station", url: "", notes: [], conf: "", via: "" },
+        { time: "17:30", title: "BnA Alter Museum, Kyoto", status: "booked",
+          detail: "Check in and drop bags by ~17:30.",
+          place: "BnA Alter Museum", mapQuery: "BnA Alter Museum, Kyoto", url: "", notes: [], conf: "", via: "" },
+        { time: "18:00", title: "Music page: 山下達郎 Tatsuro Yamashita, Festival Hall, Osaka", status: "suggested", music: true,
+          detail: "Never performed outside Japan. Open 17:00, start 18:00, ¥15,000 all reserved. Only route: e+ cancel-wait lottery, open until Sun 13 Sept 18:00 JST.",
+          place: "Festival Hall, Nakanoshima", mapQuery: "Festival Hall Osaka Nakanoshima", url: "https://eplus.jp/tatsuro2026",
+          musicRef: "Wed 23 · 18:00 · 山下達郎",
+          notes: [
+            "Shinkansen reaches Kyoto 16:44, Shin-Osaka 17:00; Midōsuji line to Yodoyabashi and a five-minute walk puts you in the hall by 17:30 with bags.",
+            "One ticket per application, card payment, smartphone ticket only, e+ account with phone verification. Two people means two accounts and two lottery outcomes. Photo ID at the door; passports accepted.",
+            "Fallback the same night: environment 0g improv night (Kobi, 松本一哉, 江崎將史), Minami-Horie, 19:00, ¥2,500+1D, cash at the door.",
+            "This collides with Gion at dusk and the Kyoto dinner below."
+          ] },
+        { time: "", title: "Gion at dusk", status: "walkup",
+          detail: "Sunset ~17:50.",
+          place: "Gion", mapQuery: "Gion, Kyoto", url: "", notes: [] },
+        { time: "", title: "Vegan / shojin ryori dinner reservation", status: "pending",
+          detail: "",
+          place: "", mapQuery: "", url: "", notes: [] }
+      ]
+    },
+    {
+      date: "2026-09-24", label: "24", weekday: "Thu", city: "Kyoto", theme: "Fushimi Inari and Higashiyama",
+      base: "BnA Alter Museum",
+      items: [
+        { time: "", title: "Fushimi Inari at dawn", status: "walkup",
+          detail: "Full summit loop (2 to 3 h).",
+          place: "Fushimi Inari Taisha", mapQuery: "Fushimi Inari Taisha", url: "",
+          notes: ["Music page's morning is Nishi Honganji's 晨朝 chant at 06:00 instead (gates 05:30, Amida Hall, free, ten minutes from Karasuma; Higashi Honganji follows at 07:00). The two do not combine."] },
+        { time: "", title: "Kiyomizu-dera", status: "walkup",
+          detail: "After Fushimi Inari.",
+          place: "Kiyomizu-dera", mapQuery: "Kiyomizu-dera", url: "", notes: [] },
+        { time: "", title: "Jazz kissa night, or live jazz", status: "suggested",
+          detail: "Yamatoya, Lush Life, Rokuyousha; or live at Le Club Jazz or RAG.",
+          place: "", mapQuery: "", url: "", notes: ["Music page: Le Club Jazz and Candy lineups unread; RAG Thu 24 not listed."] },
+        { time: "19:30", title: "Music page: Lukas Ligeti & 内橋和久 Uchihashi Kazuhisa, UrBANGUILD", status: "suggested", music: true,
+          detail: "Free improvisation with daxophone, Kiyamachi, 10 min walk from base. Open 19:00, start 19:30. ¥3,500 + ¥700 drink advance, ¥3,800 + drink at the door.",
+          place: "UrBANGUILD", mapQuery: "UrBANGUILD Kyoto", url: "https://urbanguild.net/events",
+          musicRef: "Thu 24 · 06:00 then 19:30 · Nishi Honganji",
+          notes: [
+            "No external seller listed: reserve through the venue or pay at the door.",
+            "Same night, separate choices: Boris × DURAN at Yogibo META VALLEY, Osaka, 19:30, ¥5,000 + drink (TIGET, international path; Boris tours the US yearly); Blues The Butcher's release show in the 磔磔 sake warehouse, 19:00, ¥5,500, email; Sone in Kobe, three resident sets from 18:30, ¥2,200."
+          ] },
+        { time: "", title: "Vegan / shojin ryori dinner reservation", status: "pending",
+          detail: "",
+          place: "", mapQuery: "", url: "", notes: [] }
+      ]
+    },
+    {
+      date: "2026-09-25", label: "25", weekday: "Fri", city: "Kyoto", theme: "Arashiyama and harvest moon",
+      base: "BnA Alter Museum",
+      items: [
+        { time: "", title: "Sagano Romantic Train, Torokko Saga to Torokko Kameoka", status: "booked", travel: true,
+          detail: "Departure time and car number to fill in; car 5 \"The Rich\" is the open-air one; last season for the current retro fleet.",
+          place: "Torokko Saga Station", mapQuery: "Torokko Saga Station", url: "", notes: [], conf: "", via: "", car: "" },
+        { time: "", title: "Hozugawa river boat, Kameoka back to Arashiyama", status: "tbd",
+          detail: "~2 h on the water. Confirm whether reserved.",
+          place: "Hozugawa boat, Kameoka", mapQuery: "Hozugawa Kudari boarding, Kameoka", url: "", notes: [] },
+        { time: "", title: "Bamboo grove, Tenryu-ji grounds", status: "walkup",
+          detail: "",
+          place: "Arashiyama Bamboo Grove", mapQuery: "Arashiyama Bamboo Grove", url: "", notes: [] },
+        { time: "", title: "Shigetsu at Tenryu-ji, shojin ryori lunch", status: "pending",
+          detail: "",
+          place: "Shigetsu, Tenryu-ji", mapQuery: "Shigetsu Tenryu-ji Kyoto", url: "", notes: [] },
+        { time: "", title: "Jugoya (harvest moon) tonight: Daikakuji moon-viewing on the Osawa pond", status: "suggested",
+          detail: "The calm Kyoto option.",
+          place: "Daikaku-ji", mapQuery: "Daikaku-ji, Kyoto", url: "",
+          notes: [
+            "Music page: 観月の夕べ opens 17:30, ¥700 at the gate; the ¥7,000 dragon-boat ticket closed 24 July, same-day cancel-wait at 17:30 only. Daytime visit is a separate ticket (昼夜入替).",
+            "Music page ranks this as the fallback; its pick is Shimogamo then Yasaka below. Yasaka by 19:30 from Daikakuji is about 50 minutes door to door."
+          ] },
+        { time: "17:30", title: "Music page: Shimogamo 名月管絃祭, then Yasaka 祇園社観月祭", status: "suggested", music: true,
+          detail: "Two harvest-moon rites in one evening, both free, no ticket, standing. Shimogamo 17:30 to 21:00 (shakuhachi, gagaku, koto from the 橋殿 by firelight); Yasaka 19:00 to 21:00 (舞楽 19:30, koto 20:00, lion dance 20:30, taiko 20:45).",
+          place: "Shimogamo Jinja", mapQuery: "Shimogamo Jinja", url: "https://www.shimogamo-jinja.or.jp/",
+          musicRef: "Fri 25 · 17:30 then 19:00 · Shimogamo",
+          notes: [
+            "Leave Arashiyama by about 16:15. Shimogamo 17:30 to 18:35, walk to Demachiyanagi, Keihan to Gion-Shijō (5 min), stand on the west side of Yasaka's 舞殿 by 19:10.",
+            "If you only do one: Yasaka. Both stages are roofed if it rains. Over by about 21:00, which suits the early airport train.",
+            "Yasaka Jinja is 5 min from Gion-Shijō, 15 min walk from Kawaramachi."
+          ],
+          extraMap: { label: "Yasaka Jinja", query: "Yasaka Jinja, Gion" } },
+        { time: "", title: "Vegan dinner reservation", status: "pending",
+          detail: "If not doing Daikakuji.",
+          place: "", mapQuery: "", url: "", notes: [] }
+      ]
+    },
+    {
+      date: "2026-09-26", label: "26", weekday: "Sat", city: "Kyoto to KIX", theme: "Kyoto to KIX to Lijiang",
+      base: "",
+      items: [
+        { time: "08:00", approx: true, title: "Haruka limited express, Kyoto Station to KIX", status: "pending", travel: true,
+          detail: "Reserve; Saturday airport runs fill and there is no slack.",
+          place: "Kyoto Station", mapQuery: "Kyoto Station", url: "", notes: [], conf: "", via: "" },
+        { time: "12:20", endTime: "13:50", title: "Spring Airlines 9C 6576, KIX to PVG", status: "booked", travel: true,
+          detail: "Then 9C 6617 PVG 17:10 to LJG 20:50 (Javier). Eric stays on in Japan until Oct 8.",
+          place: "Kansai International Airport", mapQuery: "Kansai International Airport", url: "", notes: [], conf: "", via: "" }
+      ]
+    }
+  ],
+  openItems: [
+    "Kyoto vegan / shojin dinners, Sept 23, 24, 25, plus Shigetsu lunch Sept 25",
+    "Haruka Sept 26 ~08:00",
+    "Jingu tickets Sept 22 (if not already in hand)",
+    "Hozugawa boat Sept 25 (confirm booking status)",
+    "Jazz venue Sept 20 (book if Blue Note / Cotton Club)",
+    "Takanaka Sept 18 resale, then pick the outbound flight and cancel the other"
+  ]
+};
+
+/* ===================================================================== */
+(function () {
+  const STATUS = {
+    booked:    { label: "Booked" },
+    pending:   { label: "Pending" },
+    suggested: { label: "Suggested" },
+    walkup:    { label: "Walk-up" },
+    tbd:       { label: "TBD" },
+    decided:   { label: "Decided" }
+  };
+  const FILTERS = ["all", "booked", "pending", "suggested", "walkup", "music"];
+  const FILTER_LABEL = { all: "All", booked: "Booked", pending: "Pending", suggested: "Suggested", walkup: "Walk-up", music: "Music" };
+
+  /* status glyphs: colour plus a distinct shape for each */
+  function glyph(status, cls) {
+    const n = "http://www.w3.org/2000/svg";
+    const s = document.createElementNS(n, "svg");
+    s.setAttribute("viewBox", "0 0 20 20");
+    s.setAttribute("aria-hidden", "true");
+    if (cls) s.setAttribute("class", cls);
+    const el = (tag, attrs) => { const e = document.createElementNS(n, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); s.appendChild(e); return e; };
+    switch (status) {
+      case "booked":
+        el("circle", { cx: 10, cy: 10, r: 8, fill: "var(--green)", class: "g-fill" });
+        el("path", { d: "M6 10.5l2.6 2.6L14 7.5", fill: "none", stroke: "var(--paper)", "stroke-width": 2, "stroke-linecap": "round", "stroke-linejoin": "round", class: "g-mark" });
+        break;
+      case "pending":
+        el("circle", { cx: 10, cy: 10, r: 7, fill: "none", stroke: "var(--vermillion)", "stroke-width": 2.4, class: "g-stroke" });
+        el("circle", { cx: 10, cy: 10, r: 2.2, fill: "var(--vermillion)", class: "g-fill" });
+        break;
+      case "suggested":
+        el("circle", { cx: 10, cy: 10, r: 7.5, fill: "none", stroke: "var(--indigo)", "stroke-width": 1.5, class: "g-stroke" });
+        break;
+      case "walkup":
+        el("path", { d: "M10 2.5L17.5 10 10 17.5 2.5 10z", fill: "none", stroke: "var(--indigo)", "stroke-width": 1.6, "stroke-linejoin": "round", class: "g-stroke" });
+        break;
+      case "tbd":
+        el("circle", { cx: 10, cy: 10, r: 7.5, fill: "none", stroke: "var(--stone)", "stroke-width": 1.6, "stroke-dasharray": "2.6 2.2", class: "g-stroke" });
+        el("path", { d: "M8 8.2a2 2 0 1 1 3 1.7c-.7.4-1 .8-1 1.6M10 14h.01", fill: "none", stroke: "var(--stone)", "stroke-width": 1.6, "stroke-linecap": "round", class: "g-stroke" });
+        break;
+      case "decided":
+        el("path", { d: "M10 2.5L17.5 10 10 17.5 2.5 10z", fill: "var(--indigo)", class: "g-fill" });
+        break;
+      case "music":
+        el("path", { d: "M8 15.5V5l7-1.8v9.3", fill: "none", stroke: "var(--indigo)", "stroke-width": 1.6, "stroke-linejoin": "round", "stroke-linecap": "round", class: "g-stroke" });
+        el("circle", { cx: 6, cy: 15.5, r: 2, fill: "var(--indigo)", class: "g-fill" });
+        el("circle", { cx: 13, cy: 12.5, r: 2, fill: "var(--indigo)", class: "g-fill" });
+        break;
+      case "transfer":
+        el("circle", { cx: 10, cy: 10, r: 8.5, fill: "var(--paper)", stroke: "var(--indigo)", "stroke-width": 2 });
+        el("circle", { cx: 10, cy: 10, r: 4.5, fill: "var(--indigo)" });
+        break;
+    }
+    return s;
+  }
+  function stopGlyph(item) {
+    if (item.travel && item.status === "booked") {
+      /* transfer station: double ring in the booked colour */
+      const s = glyph("booked");
+      s.firstChild.setAttribute("r", 7);
+      const n = "http://www.w3.org/2000/svg";
+      const ring = document.createElementNS(n, "circle");
+      ring.setAttribute("cx", 10); ring.setAttribute("cy", 10); ring.setAttribute("r", 9.2);
+      ring.setAttribute("fill", "none"); ring.setAttribute("stroke", "var(--green)"); ring.setAttribute("stroke-width", 1.2);
+      s.insertBefore(ring, s.firstChild);
+      return s;
+    }
+    return glyph(item.status);
+  }
+
+  const COLOR = { booked: "var(--green)", pending: "var(--vermillion)", suggested: "var(--indigo)", walkup: "var(--indigo)", tbd: "var(--stone)", decided: "var(--indigo)" };
+
+  /* ---------- helpers ---------- */
+  const $ = (s, r) => (r || document).querySelector(s);
+  function h(tag, attrs, ...kids) {
+    const e = document.createElement(tag);
+    for (const k in attrs || {}) {
+      if (k === "class") e.className = attrs[k];
+      else if (k === "text") e.textContent = attrs[k];
+      else if (k.startsWith("on")) e.addEventListener(k.slice(2), attrs[k]);
+      else if (attrs[k] !== null && attrs[k] !== undefined && attrs[k] !== false) e.setAttribute(k, attrs[k]);
+    }
+    for (const kid of kids) if (kid !== null && kid !== undefined) e.append(kid);
+    return e;
+  }
+  const MONTH = "September";
+  function longDate(day) {
+    if (day.label.includes("/")) return "17 or 18 " + MONTH;
+    return day.label + " " + MONTH;
+  }
+  function isHoliday(day) { return TRIP.holidays.includes(day.date) || day.weekday === "Sun"; }
+  function gmaps(q) { return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q); }
+  function amaps(q) { return "https://maps.apple.com/?q=" + encodeURIComponent(q); }
+  function musicLink(ref) {
+    return TRIP.musicPage + "#:~:text=" + encodeURIComponent(ref);
+  }
+  function pinIcon() {
+    const n = "http://www.w3.org/2000/svg";
+    const s = document.createElementNS(n, "svg"); s.setAttribute("viewBox", "0 0 16 16"); s.setAttribute("aria-hidden", "true");
+    const p = document.createElementNS(n, "path");
+    p.setAttribute("d", "M8 1.5a4.5 4.5 0 0 0-4.5 4.5c0 3.4 4.5 8.5 4.5 8.5s4.5-5.1 4.5-8.5A4.5 4.5 0 0 0 8 1.5zm0 6.2a1.7 1.7 0 1 1 0-3.4 1.7 1.7 0 0 1 0 3.4z");
+    p.setAttribute("fill", "currentColor"); s.appendChild(p); return s;
+  }
+  function linkIcon() {
+    const n = "http://www.w3.org/2000/svg";
+    const s = document.createElementNS(n, "svg"); s.setAttribute("viewBox", "0 0 16 16"); s.setAttribute("aria-hidden", "true");
+    const p = document.createElementNS(n, "path");
+    p.setAttribute("d", "M9 3h4v4M13 3L7 9M11 9v3.5a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .5-.5H7");
+    p.setAttribute("fill", "none"); p.setAttribute("stroke", "currentColor"); p.setAttribute("stroke-width", "1.4"); p.setAttribute("stroke-linecap", "round"); s.appendChild(p); return s;
+  }
+
+  /* ---------- state in the hash ---------- */
+  function readHash() {
+    const p = new URLSearchParams(location.hash.replace(/^#/, ""));
+    return {
+      day: p.get("day") || "",
+      filter: FILTERS.includes(p.get("filter")) ? p.get("filter") : "all",
+      view: p.get("view") === "bookings" ? "bookings" : "days"
+    };
+  }
+  function writeHash(st) {
+    const p = new URLSearchParams();
+    if (st.day) p.set("day", st.day);
+    if (st.filter !== "all") p.set("filter", st.filter);
+    if (st.view !== "days") p.set("view", st.view);
+    const s = p.toString();
+    const next = s ? "#" + s : location.pathname + location.search;
+    if (location.hash !== (s ? "#" + s : "")) history.replaceState(null, "", next);
+  }
+  let state = readHash();
+
+  /* ---------- clock in Tokyo (override with ?now=2026-09-23T15:00 for testing) ---------- */
+  function tokyoNow() {
+    const q = new URLSearchParams(location.search).get("now");
+    if (q && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/.test(q)) return { date: q.slice(0, 10), minutes: +q.slice(11, 13) * 60 + +q.slice(14, 16) };
+    try {
+      const f = new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Tokyo", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hour12: false });
+      const parts = {};
+      for (const p of f.formatToParts(new Date())) parts[p.type] = p.value;
+      const hour = parts.hour === "24" ? 0 : +parts.hour;
+      return { date: parts.year + "-" + parts.month + "-" + parts.day, minutes: hour * 60 + +parts.minute };
+    } catch (e) { return null; }
+  }
+  const NOW = tokyoNow();
+  function dayForDate(dateStr) {
+    if (!dateStr) return null;
+    if (dateStr === "2026-09-18") return TRIP.days[0];
+    return TRIP.days.find(d => d.date === dateStr) || null;
+  }
+  const TODAY = NOW ? dayForDate(NOW.date) : null;
+  function fmtMinutes(m) { return String(Math.floor(m / 60)).padStart(2, "0") + ":" + String(m % 60).padStart(2, "0"); }
+  function nowItem(day) {
+    if (!TODAY || day !== TODAY) return null;
+    const timed = day.items.filter(i => i.time);
+    if (!timed.length) return null;
+    const toMin = t => +t.slice(0, 2) * 60 + +t.slice(3, 5);
+    let best = null;
+    for (const it of timed) { if (toMin(it.time) <= NOW.minutes) best = it; }
+    return best || timed[0];
+  }
+
+  /* ---------- theme ---------- */
+  const root = document.documentElement;
+  const themeBtn = $("#theme");
+  function applyTheme(t) {
+    if (t) root.setAttribute("data-theme", t); else root.removeAttribute("data-theme");
+    const dark = t ? t === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+    themeBtn.setAttribute("aria-pressed", dark ? "true" : "false");
+    themeBtn.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
+  }
+  let saved = null;
+  try { saved = localStorage.getItem("japan-theme"); } catch (e) {}
+  applyTheme(saved);
+  themeBtn.addEventListener("click", () => {
+    const dark = root.getAttribute("data-theme") ? root.getAttribute("data-theme") === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+    const next = dark ? "light" : "dark";
+    try { localStorage.setItem("japan-theme", next); } catch (e) {}
+    applyTheme(next);
+  });
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => { if (!root.getAttribute("data-theme")) applyTheme(null); });
+
+  /* ---------- header ---------- */
+  $("#trip-title").textContent = TRIP.title;
+  $("#trip-dates").textContent = TRIP.dates + ", " + TRIP.who;
+  const about = $("#trip-about");
+  TRIP.about.forEach((line, i) => { if (i) about.append(document.createElement("br")); about.append(line); });
+
+  /* ---------- day strip ---------- */
+  const strip = $("#strip");
+  function buildStrip() {
+    strip.textContent = "";
+    for (const day of TRIP.days) {
+      const dots = h("span", { class: "dots", "aria-hidden": "true" });
+      const seen = {};
+      for (const it of day.items) { if (!it.music && !seen[it.status]) { seen[it.status] = 1; dots.append(h("i", { style: "background:" + COLOR[it.status] })); } }
+      const numCls = "num" + (isHoliday(day) ? " hol" : (day.weekday === "Sat" ? " sat" : ""));
+      const b = h("button", { class: "day-tab" + (day === TODAY ? " is-today" : ""), type: "button", "data-day": day.date,
+        "aria-label": day.weekday + " " + longDate(day) + ", " + day.city, onclick: () => selectDay(day.date, true) },
+        h("span", { class: "wd", text: day.weekday }),
+        h("span", { class: numCls, text: day.label }),
+        h("span", { class: "city", text: day.city }),
+        dots);
+      strip.append(b);
+    }
+  }
+  function markStrip() {
+    for (const b of strip.children) {
+      if (b.dataset.day === state.day) b.setAttribute("aria-current", "date"); else b.removeAttribute("aria-current");
+    }
+    const cur = strip.querySelector("[aria-current]");
+    if (cur && cur.scrollIntoView) cur.scrollIntoView({ block: "nearest", inline: "center", behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  }
+
+  /* ---------- chips ---------- */
+  const chips = $("#chips");
+  for (const f of FILTERS) {
+    chips.append(h("button", { class: "chip", type: "button", "data-filter": f, "aria-pressed": "false", onclick: () => { state.filter = f; render(); } },
+      f === "all" ? null : glyph(f), h("span", { text: FILTER_LABEL[f] })));
+  }
+  function markChips() {
+    for (const c of chips.children) c.setAttribute("aria-pressed", c.dataset.filter === state.filter ? "true" : "false");
+  }
+  function passes(item) {
+    const f = state.filter;
+    if (f === "all") return true;
+    if (f === "music") return !!item.music;
+    if (f === "pending") return item.status === "pending" || item.ticket === "pending";
+    return item.status === f;
+  }
+
+  /* ---------- items ---------- */
+  function mapLinks(item) {
+    const out = [];
+    if (item.mapQuery) {
+      out.push(h("a", { href: gmaps(item.mapQuery), target: "_blank", rel: "noopener", "data-map": "google" }, pinIcon(), "Google Maps"));
+      out.push(h("a", { href: amaps(item.mapQuery), target: "_blank", rel: "noopener", "data-map": "apple" }, pinIcon(), "Apple Maps"));
+    }
+    if (item.extraMap) {
+      out.push(h("a", { href: gmaps(item.extraMap.query), target: "_blank", rel: "noopener", "data-map": "google" }, pinIcon(), item.extraMap.label + " on Google Maps"));
+      out.push(h("a", { href: amaps(item.extraMap.query), target: "_blank", rel: "noopener", "data-map": "apple" }, pinIcon(), item.extraMap.label + " on Apple Maps"));
+    }
+    if (item.url) out.push(h("a", { href: item.url, target: "_blank", rel: "noopener" }, linkIcon(), item.url.replace(/^https?:\/\//, "").replace(/\/$/, "")));
+    if (item.musicRef) out.push(h("a", { href: musicLink(item.musicRef) }, glyph("music"), "On the music page"));
+    return out;
+  }
+  function confBlock(item) {
+    if (item.status !== "booked" && item.ticket !== "pending" && !("conf" in item)) return null;
+    if (!("conf" in item)) return null;
+    const row = (label, val) => h("div", null, label + ": ", val ? h("b", { text: val }) : h("span", { class: "blank", "aria-label": "blank" }));
+    const c = h("div", { class: "conf" }, row("Confirmation", item.conf), row("Booked via", item.via));
+    if ("car" in item) c.append(row("Departure and car", item.car));
+    return c;
+  }
+  let uid = 0;
+  function renderItem(item, day, isNow) {
+    const id = "it" + (++uid);
+    const cls = "item" + (item.travel ? " travel" : "") + (isNow ? " is-now" : "") + (passes(item) ? "" : " hidden");
+    const time = h("div", { class: "time" });
+    if (item.time) {
+      time.append((item.approx ? "~" : "") + item.time);
+      if (item.endTime) time.append(h("small", { text: "to " + item.endTime }));
+      if (item.date && item.date !== day.date) time.append(h("small", { text: "Sept 18" }));
+    } else if (item.date && item.date !== day.date) {
+      time.append(h("small", { text: "Sept 18" }));
+    }
+    const tags = h("div", { class: "tags" });
+    tags.append(h("span", { class: "tag st-" + item.status, text: STATUS[item.status].label }));
+    if (item.ticket === "pending") tags.append(h("span", { class: "tag st-pending", text: "Tickets pending" }));
+    if (item.music) tags.append(h("span", { class: "tag music", text: "Music page" }));
+    if (isNow) tags.append(h("span", { class: "tag now", text: "Now, " + fmtMinutes(NOW.minutes) + " in Tokyo" }));
+
+    const head = h("button", { class: "card-head", type: "button", "aria-expanded": "false", "aria-controls": id },
+      h("div", null,
+        h("div", { class: "title", text: item.title }),
+        item.detail ? h("div", { class: "detail", text: item.detail }) : null,
+        tags),
+      (() => { const n = "http://www.w3.org/2000/svg"; const s = document.createElementNS(n, "svg"); s.setAttribute("viewBox", "0 0 16 16"); s.setAttribute("class", "chev"); s.setAttribute("aria-hidden", "true"); const p = document.createElementNS(n, "path"); p.setAttribute("d", "M3 6l5 5 5-5"); p.setAttribute("fill", "none"); p.setAttribute("stroke", "currentColor"); p.setAttribute("stroke-width", "1.6"); p.setAttribute("stroke-linecap", "round"); s.appendChild(p); return s; })());
+    head.addEventListener("click", () => head.setAttribute("aria-expanded", head.getAttribute("aria-expanded") === "true" ? "false" : "true"));
+
+    const inner = h("div");
+    if (item.place) inner.append(h("div", { class: "notes", style: "padding-top:.5rem" }, h("div", { text: item.place, style: "font-weight:500" })));
+    if (item.notes && item.notes.length) inner.append(h("ul", { class: "notes" }, ...item.notes.map(n => h("li", { text: n }))));
+    const cb = confBlock(item); if (cb) inner.append(cb);
+    const links = mapLinks(item); if (links.length) inner.append(h("div", { class: "links" }, ...links));
+    if (!inner.childNodes.length) inner.append(h("div", { class: "notes", text: "No notes." }));
+    const body = h("div", { class: "card-body", id: id }, inner);
+
+    return h("li", { class: cls },
+      time,
+      h("div", { class: "stop" }, stopGlyph(item)),
+      h("article", { class: "card" }, head, body));
+  }
+  function renderDay(day) {
+    const now = nowItem(day);
+    const head = h("header", { class: "day-head" },
+      h("p", { class: "wd", text: day.weekday + (day === TODAY ? ", today" : "") }),
+      h("h2", null, h("span", { class: isHoliday(day) ? "hol" : "", text: longDate(day) })),
+      h("p", { class: "theme", text: day.theme + (day.city !== day.theme && !day.theme.includes(day.city.split(" ")[0]) ? ", " + day.city : "") }),
+      day.base ? h("p", { class: "base", text: "Base: " + day.base }) : null);
+    if (day.dayNotes) for (const n of day.dayNotes) head.append(h("p", { class: "daynote", text: n }));
+    const list = h("ol", { class: "rail" }, ...day.items.map(it => renderItem(it, day, it === now)));
+    if (![...list.children].some(li => !li.classList.contains("hidden"))) {
+      list.classList.add("empty");
+      list.append(h("li", { class: "empty-msg", text: "Nothing " + FILTER_LABEL[state.filter].toLowerCase() + " on this day." }));
+    }
+    return h("section", { class: "day", "data-day": day.date, "aria-label": day.weekday + " " + longDate(day) }, head, list);
+  }
+  const daysEl = $("#days");
+  let printAll = false;
+  function renderDays() {
+    daysEl.textContent = "";
+    const shown = printAll ? TRIP.days : TRIP.days.filter(d => d.date === state.day);
+    for (const d of shown) daysEl.append(renderDay(d));
+  }
+  function selectDay(date, fade) {
+    if (state.day === date) return;
+    state.day = date;
+    const cur = $(".day", daysEl);
+    if (fade && cur && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      cur.classList.add("fading");
+      setTimeout(render, 90);
+    } else render();
+  }
+
+  /* ---------- open items ---------- */
+  const openList = $("#open-list");
+  for (const s of TRIP.openItems) openList.append(h("li", null, h("span", { text: s })));
+
+  /* ---------- bookings ---------- */
+  function renderBookings() {
+    const el = $("#bk-list"); el.textContent = "";
+    for (const day of TRIP.days) {
+      for (const it of day.items) {
+        if (it.status !== "booked") continue;
+        const when = h("div", { class: "when" }, h("b", { text: it.date ? "18" : day.label }), (it.time ? (it.approx ? "~" : "") + it.time : ""));
+        const body = h("div", null,
+          h("div", { class: "title" }, glyph("booked"), h("span", { text: it.title })),
+          it.detail ? h("div", { class: "detail", text: it.detail }) : null,
+          h("div", { class: "detail", text: day.weekday + " " + longDate(day) + (it.place ? ", " + it.place : "") }),
+          confBlock(it));
+        const links = mapLinks(it); if (links.length) body.append(h("div", { class: "links" }, ...links));
+        el.append(h("div", { class: "bk" }, when, body));
+      }
+    }
+  }
+  renderBookings();
+
+  /* ---------- views ---------- */
+  const viewBtns = document.querySelectorAll(".view-btn");
+  for (const b of viewBtns) b.addEventListener("click", () => { state.view = b.dataset.view; render(); });
+  function markViews() {
+    for (const b of viewBtns) { if (b.dataset.view === state.view) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current"); }
+    $("#view-days").hidden = state.view !== "days";
+    $("#view-bookings").hidden = state.view !== "bookings";
+    strip.hidden = state.view !== "days";
+  }
+
+  /* ---------- today ---------- */
+  $("#jump-today").addEventListener("click", () => {
+    state.view = "days";
+    let target = TODAY;
+    if (!target && NOW) target = NOW.date < TRIP.days[0].date ? TRIP.days[0] : TRIP.days[TRIP.days.length - 1];
+    if (!target) target = TRIP.days[0];
+    state.day = target.date;
+    render();
+    const nowEl = $(".item.is-now");
+    if (nowEl) nowEl.scrollIntoView({ block: "center", behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+    else $("#days").scrollIntoView({ block: "start" });
+  });
+  if (!TODAY) $("#jump-today").title = NOW && NOW.date > TRIP.days[TRIP.days.length - 1].date ? "Trip is over; jumps to the last day" : "Trip has not started; jumps to the first day";
+
+  /* ---------- render ---------- */
+  function render() {
+    if (!state.day || !TRIP.days.some(d => d.date === state.day)) state.day = (TODAY || TRIP.days[0]).date;
+    writeHash(state);
+    markViews();
+    markStrip();
+    markChips();
+    renderDays();
+  }
+  buildStrip();
+  const initialHadDay = !!readHash().day;
+  render();
+  if (TODAY && !initialHadDay) {
+    const nowEl = $(".item.is-now");
+    if (nowEl) requestAnimationFrame(() => nowEl.scrollIntoView({ block: "center" }));
+  }
+  window.addEventListener("hashchange", () => { state = readHash(); render(); });
+
+  /* print: every day, every note */
+  window.addEventListener("beforeprint", () => { printAll = true; document.body.classList.add("print-all"); renderDays(); document.querySelectorAll(".card-head").forEach(b => b.setAttribute("aria-expanded", "true")); });
+  window.addEventListener("afterprint", () => { printAll = false; document.body.classList.remove("print-all"); renderDays(); });
+
+  /* offline: keep a copy of this page only; nothing external is cached */
+  if ("serviceWorker" in navigator && location.protocol === "https:") {
+    navigator.serviceWorker.register("./sw.js", { scope: "/japan/" }).catch(() => {});
+  }
+})();
+</script>
+</body>
+</html>
