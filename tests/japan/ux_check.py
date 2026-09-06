@@ -148,6 +148,16 @@ def run():
             for tab in page.locator(".day-tab").all():
                 tab.click()
                 no_overflow(page, name, "day " + tab.get_attribute("data-day"))
+            # the strip glyphs must be exactly the statuses the day's rail shows
+            for tab in page.locator(".day-tab").all():
+                d = tab.get_attribute("data-day")
+                tab.click()
+                strip_set = sorted(set(page.evaluate(
+                    "d => [...document.querySelectorAll(`.day-tab[data-day='${d}'] .dots svg`)].map(e => e.dataset.status)", d)))
+                rail_set = sorted(set(page.evaluate(
+                    "() => [...document.querySelectorAll('.day .item .stop svg')].map(e => e.dataset.status)")))
+                check(strip_set == rail_set and strip_set != [],
+                      f"{name}: {d} strip glyphs match the rail ({strip_set} vs {rail_set})")
             page.click(".day-tab[data-day='2026-09-25']")
             g = page.locator("a[data-map=google]").count()
             a = page.locator("a[data-map=apple]").count()
@@ -157,8 +167,8 @@ def run():
             page.click(".view-btn[data-view=bookings]")
             check("view=bookings" in page.url, f"{name}: bookings view in hash")
             n = page.locator(".bk").count()
-            check(n == 6, f"{name}: six booked items (got {n})")
-            check(page.locator(".bk .blank").count() >= 12, f"{name}: blank confirmation fields present")
+            check(n == 7, f"{name}: seven booked items (got {n})")
+            check(page.locator(".bk .blank").count() >= 14, f"{name}: blank confirmation fields present")
             no_overflow(page, name, "bookings")
             page.screenshot(path=str(SHOTS / f"japan-{name}-bookings.png"), full_page=True)
             page.click(".view-btn[data-view=days]")

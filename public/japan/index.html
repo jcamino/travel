@@ -158,8 +158,8 @@ svg { display: block; }
 .day-tab .num.hol { color: var(--vermillion); }
 .day-tab .num.sat { color: var(--indigo); }
 .day-tab .city { font-size: .72rem; margin-top: .15rem; }
-.day-tab .dots { display: flex; gap: 3px; margin-top: .35rem; height: 6px; }
-.day-tab .dots i { width: 6px; height: 6px; border-radius: 50%; display: block; }
+.day-tab .dots { display: flex; gap: 2px; margin-top: .3rem; }
+.day-tab .dots svg { width: .7rem; height: .7rem; }
 .day-tab[aria-current="date"] { border-color: var(--indigo); color: var(--indigo); }
 .day-tab[aria-current="date"] .num:not(.hol):not(.sat) { color: var(--indigo); }
 .day-tab.is-today .wd::after { content: " today"; color: var(--vermillion); }
@@ -562,9 +562,11 @@ const TRIP = {
         { time: "", title: "Sagano Romantic Train, Torokko Saga to Torokko Kameoka", status: "booked", travel: true,
           detail: "Departure time and car number to fill in; car 5 \"The Rich\" is the open-air one; last season for the current retro fleet.",
           place: "Torokko Saga Station", mapQuery: "Torokko Saga Station", url: "", notes: [], conf: "", via: "", car: "" },
-        { time: "", title: "Hozugawa river boat, Kameoka back to Arashiyama", status: "tbd",
-          detail: "~2 h on the water. Confirm whether reserved.",
-          place: "Hozugawa boat, Kameoka", mapQuery: "Hozugawa Kudari boarding, Kameoka", url: "", notes: [] },
+        { time: "10:00", title: "Hozugawa river boat, Kameoka back to Arashiyama", status: "booked",
+          detail: "~2 h on the water, back in Arashiyama around midday.",
+          place: "Hozugawa boat, Kameoka", mapQuery: "Hozugawa Kudari boarding, Kameoka", url: "",
+          notes: ["Take the Romantic Train run that reaches Torokko Kameoka in time for the 10:00 boat."],
+          conf: "", via: "" },
         { time: "", title: "Bamboo grove, Tenryu-ji grounds", status: "walkup",
           detail: "",
           place: "Arashiyama Bamboo Grove", mapQuery: "Arashiyama Bamboo Grove", url: "", notes: [] },
@@ -643,6 +645,7 @@ const TRIP = {
     s.setAttribute("viewBox", "0 0 20 20");
     s.setAttribute("aria-hidden", "true");
     if (cls) s.setAttribute("class", cls);
+    s.setAttribute("data-status", status);
     const el = (tag, attrs) => { const e = document.createElementNS(n, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); s.appendChild(e); return e; };
     switch (status) {
       case "booked":
@@ -693,7 +696,6 @@ const TRIP = {
     return glyph(item.status);
   }
 
-  const COLOR = { booked: "var(--green)", pending: "var(--vermillion)", suggested: "var(--indigo)", walkup: "var(--indigo)", tbd: "var(--stone)", decided: "var(--indigo)" };
 
   /* ---------- helpers ---------- */
   const $ = (s, r) => (r || document).querySelector(s);
@@ -827,9 +829,10 @@ const TRIP = {
   function buildStrip() {
     strip.textContent = "";
     for (const day of TRIP.days) {
+      /* one glyph per status present that day, drawn exactly as the rail draws it */
       const dots = h("span", { class: "dots", "aria-hidden": "true" });
       const seen = {};
-      for (const it of day.items) { if (!it.music && !seen[it.status]) { seen[it.status] = 1; dots.append(h("i", { style: "background:" + COLOR[it.status] })); } }
+      for (const it of day.items) { if (!seen[it.status]) { seen[it.status] = 1; dots.append(glyph(it.status)); } }
       const numCls = "num" + (isHoliday(day) ? " hol" : (day.weekday === "Sat" ? " sat" : ""));
       const b = h("button", { class: "day-tab" + (day === TODAY ? " is-today" : ""), type: "button", "data-day": day.date,
         "aria-label": day.weekday + " " + longDate(day) + ", " + day.city, onclick: () => selectDay(day.date, true) },
