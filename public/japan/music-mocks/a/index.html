@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>深夜 city pop — Silver Week Japan-Only Book mockup</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Zen+Kaku+Gothic+New:wght@400;500;900&display=swap">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-size:16px;line-height:1.6;font-variant-numeric:tabular-nums}
+img,svg{max-width:100%}
+p{margin:0 0 .75em}
+h1,h2,h3,h4{margin:0}
+a{color:inherit}
+.vh{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;
+  clip-path:inset(50%);white-space:nowrap}
+:where(a,button,summary,[tabindex]):focus-visible{outline:2px solid currentColor;
+  outline-offset:3px}
+.switch{display:flex;flex-wrap:wrap;gap:0;font:600 13px/1 system-ui,sans-serif;
+  border-bottom:1px solid rgba(128,128,128,.4)}
+.switch a{flex:1 1 auto;padding:.7rem .8rem;text-decoration:none;text-align:center;
+  border-right:1px solid rgba(128,128,128,.4);opacity:.6}
+.switch a:last-child{border-right:0}
+.switch a[aria-current]{opacity:1;font-weight:700}
+.switch b{display:block;font-size:11px;font-weight:400;margin-top:.25rem;opacity:.75}
+.wrap{max-width:78rem;margin:0 auto;padding:0 20px 6rem}
+.sec{margin:4rem 0 0}
+.www{margin:.6rem 0 .8rem;display:grid;grid-template-columns:max-content minmax(0,1fr);
+  gap:.15rem .9rem}
+.www dt{font-size:.8rem;font-weight:700;padding-top:.25em;white-space:nowrap}
+.www dd{margin:0;font-size:.9rem;line-height:1.55}
+@media (max-width:560px){.www{grid-template-columns:1fr;gap:0}
+  .www dt{padding-top:.6em}}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:46rem;font-size:.8rem;
+  line-height:1.4;text-align:left}
+th,td{padding:.45rem .65rem;vertical-align:top}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;
+  transition:none!important}}
+
+:root{
+  --night:#0A1330; --deep:#050B1E; --panel:#101B41; --cyan:#4FE3F5;
+  --mag:#FF2E88; --orange:#FFA24C; --sand:#F7E9CF; --dim:#9DB0D8;
+}
+body{background:var(--deep);color:var(--sand);
+  font-family:"Zen Kaku Gothic New","Hiragino Sans",sans-serif}
+.switch{background:var(--night);border-color:rgba(79,227,245,.3)}
+.switch a{border-color:rgba(79,227,245,.3);color:var(--cyan)}
+.switch a[aria-current]{background:var(--mag);color:#0A1330}
+
+/* --- the sleeve front: sky, sun, horizon, grid --- */
+.hero{position:relative;overflow:hidden;isolation:isolate;
+  background:linear-gradient(180deg,#050B1E 0%,#12205A 34%,#7A2C74 58%,
+    #FF4F72 74%,#FFA24C 86%,#FFD79B 100%)}
+.hero .sun{position:absolute;right:6%;bottom:0;width:min(34vw,340px);
+  aspect-ratio:1;transform:translateY(34%);border-radius:50%;
+  background:linear-gradient(180deg,#FFF0B8,#FF2E88 68%,#B01860);
+  -webkit-mask-image:repeating-linear-gradient(180deg,#000 0 22px,transparent 22px 30px);
+  mask-image:repeating-linear-gradient(180deg,#000 0 22px,transparent 22px 30px);
+  z-index:0}
+.hero .horizon{position:absolute;left:0;right:0;bottom:92px;height:2px;
+  background:var(--cyan);box-shadow:0 0 0 0 transparent;z-index:1}
+.hero .inner{position:relative;z-index:2;max-width:78rem;margin:0 auto;
+  padding:3.5rem 20px 7rem}
+.kicker{font-size:.78rem;letter-spacing:.14em;color:var(--cyan);margin:0 0 1.1rem}
+h1{font-family:"Archivo Black","Zen Kaku Gothic New",sans-serif;font-weight:400;
+  font-size:clamp(2.4rem,8.2vw,6rem);line-height:.94;letter-spacing:-.02em;
+  max-width:14ch;
+  background:linear-gradient(180deg,#FFFFFF 4%,#CFE6F5 34%,#8FA7C8 47%,
+    #FFFFFF 53%,#FFD9A8 70%,#FF8FB8 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  text-shadow:0 3px 0 rgba(10,19,48,.35)}
+.lede{max-width:38rem;margin-top:1.3rem;font-size:1rem;line-height:1.65;
+  color:#EBF3FF}
+.lede+.lede{font-size:.9rem;color:#D6E0F2}
+
+/* --- the week, receding along the horizon --- */
+.week{position:relative;z-index:2;max-width:78rem;margin:-4.6rem auto 0;
+  padding:0 20px;display:grid;gap:8px;
+  grid-template-columns:repeat(auto-fit,minmax(118px,1fr))}
+.wk{background:rgba(5,11,30,.82);border:1px solid rgba(79,227,245,.45);
+  padding:.6rem .65rem .7rem;display:block;text-decoration:none;
+  backdrop-filter:blur(2px)}
+.wk .wd{font-family:"Archivo Black",sans-serif;font-size:1.7rem;line-height:1;
+  color:var(--cyan)}
+.wk .wj{font-size:.8rem;color:var(--mag);margin-left:.25em}
+.wk .wt{display:block;font-size:.74rem;color:var(--dim);margin:.35rem 0 .2rem}
+.wk .wp{display:block;font-size:.76rem;line-height:1.35;color:var(--sand);
+  min-height:2.7em}
+.wk .wy{display:block;font-size:.78rem;color:var(--orange);margin-top:.35rem}
+.wk[data-lamp="off"]{opacity:.6}
+.wk[data-lamp="held"]{border-color:var(--mag);border-width:2px;
+  background:rgba(5,11,30,.94)}
+.wk[data-lamp="held"] .wd{color:var(--mag)}
+
+/* --- the five as 12" sleeves --- */
+h2{font-family:"Archivo Black",sans-serif;font-weight:400;
+  font-size:clamp(1.2rem,3vw,1.6rem);line-height:1.15;
+  padding-bottom:.5rem;border-bottom:2px solid var(--cyan);
+  display:flex;gap:.7rem;align-items:baseline;margin-bottom:1.2rem}
+.secno{color:var(--mag)}
+.wall{display:grid;gap:1.4rem;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.sleeve{display:flex;flex-direction:column}
+/* the square is the sleeve front; the block under it is the shop's price card */
+.front{position:relative;aspect-ratio:1;padding:.95rem 1rem 1rem 2.5rem;
+  display:flex;flex-direction:column;overflow:hidden}
+.sleeve[data-i="0"] .front{background:linear-gradient(170deg,#1B1040,#6D1E63 55%,#FF6A4C)}
+.sleeve[data-i="1"] .front{background:linear-gradient(170deg,#04204B,#0B7FA8 52%,#8FE6D6)}
+.sleeve[data-i="2"] .front{background:linear-gradient(170deg,#123A6B,#5FC8E8 46%,#FFE9B0)}
+.sleeve[data-i="3"] .front{background:linear-gradient(170deg,#120A08,#4A2410 58%,#D98A3C)}
+.sleeve[data-i="4"] .front{background:linear-gradient(170deg,#08243B,#2A6E7A 50%,#E0B45C)}
+.front::before{content:"";position:absolute;inset:0;z-index:0;
+  background:repeating-linear-gradient(180deg,rgba(0,0,0,.18) 0 1px,transparent 1px 4px);
+  pointer-events:none}
+/* scrim so the act name holds up over the pale end of every gradient */
+.front::after{content:"";position:absolute;left:0;right:0;bottom:0;height:62%;
+  z-index:0;pointer-events:none;
+  background:linear-gradient(180deg,transparent,rgba(5,11,30,.82) 72%)}
+.obi{position:absolute;left:0;top:0;bottom:0;width:2rem;background:var(--mag);
+  color:#0A1330;display:flex;align-items:center;justify-content:center;
+  font-size:.76rem;font-weight:900;letter-spacing:.08em;
+  writing-mode:vertical-rl;text-orientation:upright}
+.sl-date,.sl-bill,.sl-sub{z-index:1}
+.sl-date{position:relative;display:flex;align-items:baseline;gap:.3rem;
+  margin:0 0 auto;line-height:.82;
+  font-family:"Archivo Black",sans-serif;color:#fff;
+  text-shadow:0 2px 10px rgba(0,0,0,.6)}
+.sl-date .dd{font-size:3.2rem}
+.sl-date .dj{font-size:1.1rem;color:var(--cyan)}
+.sl-bill{position:relative;font-weight:900;font-size:1.2rem;line-height:1.25;
+  color:#fff;margin:0;text-shadow:0 2px 12px rgba(0,0,0,.7)}
+.sl-bill span{display:block;font-size:.85rem;font-weight:500;color:#FFE6F2}
+.sl-sub{position:relative;font-size:.74rem;line-height:1.4;color:#F7ECDA;
+  margin:.3rem 0 0;text-shadow:0 1px 8px rgba(0,0,0,.8)}
+.sl-card{border:1px solid rgba(79,227,245,.35);border-top:0;padding:.6rem .7rem .7rem;
+  background:rgba(16,27,65,.65);flex:1;display:flex;flex-direction:column}
+.sl-card .t{font-size:.76rem;line-height:1.4;color:#DCE6F7}
+.sl-card .tm{font-size:.76rem;color:var(--cyan);margin:.35rem 0 0}
+.sl-price{display:flex;align-items:baseline;justify-content:space-between;gap:.5rem;
+  border-top:1px solid rgba(79,227,245,.3);margin-top:.55rem;padding-top:.4rem}
+.sl-price .y{font-family:"Archivo Black",sans-serif;font-size:1.2rem;
+  color:var(--orange);white-space:nowrap}
+.sl-price .st{font-size:.68rem;letter-spacing:.1em;color:var(--mag);
+  border:1px solid var(--mag);padding:.05em .35em}
+.sl-note{font-size:.7rem;line-height:1.4;color:var(--dim);margin:.35rem 0 0}
+
+/* --- the rest --- */
+.dayhead{font-family:"Archivo Black",sans-serif;font-weight:400;font-size:1.05rem;
+  color:var(--cyan);margin:2rem 0 1rem;line-height:1.35}
+.night3{display:grid;gap:1.6rem;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.n{border-top:2px solid var(--mag);padding-top:.7rem}
+.n .rank{font-family:"Archivo Black",sans-serif;font-size:1.4rem;color:var(--mag);
+  margin:0 0 .2rem;line-height:1}
+.n h4{font-size:1rem;line-height:1.4;color:#fff;margin-bottom:.3rem}
+.www dt{color:var(--cyan)}
+.tier{display:inline-block;font-size:.72rem;font-weight:700;padding:.1em .5em;
+  background:var(--cyan);color:#050B1E}
+.entry{display:grid;gap:1.4rem;grid-template-columns:6rem minmax(0,1fr)}
+@media (max-width:700px){.entry{grid-template-columns:1fr}}
+.slug{font-family:"Archivo Black",sans-serif;font-size:.85rem;color:#fff;line-height:1.3}
+.slug .st{display:block;font-size:.72rem;color:var(--dim);font-family:inherit}
+.slug .rk{display:block;font-size:1.8rem;color:var(--mag);margin-top:.3rem}
+.entry h3{font-size:1.1rem;line-height:1.4;color:#fff;margin-bottom:.4rem}
+.entry p{font-size:.92rem;max-width:46rem;color:#E7EEFA}
+.meta{color:var(--dim);font-size:.82rem}
+.entry b{color:var(--orange)}
+h3.tblhead{font-family:"Archivo Black",sans-serif;font-weight:400;font-size:1rem;
+  margin:1rem 0 .7rem;color:var(--cyan)}
+table{background:var(--panel)}
+th{background:var(--mag);color:#0A1330;font-weight:700}
+td{border-top:1px solid rgba(157,176,216,.25)}
+td b{color:#fff}
+.st-v{color:var(--cyan);font-weight:700}
+.st-x{color:var(--mag);font-weight:700}
+</style></head>
+<body>
+<nav class="switch" aria-label="Design mockups">
+<a href="../a/" aria-current="page">深夜 city pop<b>Nagai / Suzuki airbrush sleeve — the retro your top two picks earn</b></a>
+<a href="../b/">ぴあ 1987<b>Pulp listings magazine; the five picks are perforated ticket stubs</b></a>
+<a href="../c/">電光掲示板<b>Amber split-flap departure board — retro and cyberpunk at once</b></a>
+<a href="../d/">印刷サイバーパンク<b>Akira / GITS print: one spot ink, registration marks, a working HUD</b></a>
+<a href="/japan/music/">Live page<b>The riso flyer wall now published</b></a>
+</nav>
+<header class="hero">
+<div class="sun" aria-hidden="true"></div>
+<div class="horizon" aria-hidden="true"></div>
+<div class="inner">
+<p class="kicker">Music you cannot see stateside · Silver Week 2026</p>
+<h1>Silver Week Japan-Only Book</h1>
+<p class="lede">Tokyo Sat 19 – Tue 22 Sept, Kansai Wed 23 – Fri 25 Sept 2026. Two New Yorkers, Shibuya then downtown Kyoto. The test for everything here: could a Brooklyn resident see essentially this within a normal year without flying?</p>
+<p class="lede">Every event was read on the organiser’s or venue’s own page on 5–6 Sept 2026; one thing is booked, 高中正義 in Hikone on Fri 25.</p>
+</div></header>
+<div class="week"><a class="wk" href="#" data-lamp="ok"><span class="wd">19<span class="wj">土</span></span><span class="wt">Tokyo 18:00</span><span class="wp">金王八幡宮 例大祭 宵宮 → Pit Inn</span><span class="wy">¥3,500</span></a><a class="wk" href="#" data-lamp="ok"><span class="wd">20<span class="wj">日</span></span><span class="wt">Tokyo 14:30</span><span class="wp">東京民謡倶楽部 昼の部, Pit Inn</span><span class="wy">¥5,500</span></a><a class="wk" href="#" data-lamp="ok"><span class="wd">21<span class="wj">月</span></span><span class="wt">Tokyo 18:30</span><span class="wp">Body &amp; Soul, last open night</span><span class="wy">¥7,700</span></a><a class="wk" href="#" data-lamp="off"><span class="wd">22<span class="wj">火</span></span><span class="wt">Tokyo 18:00</span><span class="wp">Swallows vs Hanshin, Jingu — no music pick</span><span class="wy">—</span></a><a class="wk" href="#" data-lamp="wait"><span class="wd">23<span class="wj">水</span></span><span class="wt">Osaka 18:00</span><span class="wp">山下達郎, Festival Hall</span><span class="wy">¥15,000</span></a><a class="wk" href="#" data-lamp="ok"><span class="wd">24<span class="wj">木</span></span><span class="wt">Kyoto 19:30</span><span class="wp">Ligeti / 内橋和久, UrBANGUILD</span><span class="wy">¥3,500</span></a><a class="wk" href="#" data-lamp="held"><span class="wd">25<span class="wj">金</span></span><span class="wt">Hikone 18:30</span><span class="wp">高中正義 SUPER TAKANAKA LIVE</span><span class="wy">¥11,000</span></a></div>
+<div class="wrap">
+<section class="sec"><h2><span class="secno">0</span>Top five for the whole trip,
+in order</h2><div class="wall"><article class="sleeve" data-i="0"><div class="front"><div class="obi">Tier 2</div><p class="sl-date"><span class="dd">25</span><span class="dj">金</span></p><h3 class="sl-bill">高中正義</h3><p class="sl-sub">SUPER TAKANAKA LIVE 2026-2027, booked</p></div><div class="sl-card"><p class="t">ひこね市文化プラザ グランドホール<br>Hikone, JR 50 min from Kyoto</p><p class="tm">OPEN 17:30 / START 18:30</p><p class="sl-price"><span class="y">¥11,000</span><span class="st">HELD</span></p><p class="sl-note">all reserved; tickets held</p></div></article><article class="sleeve" data-i="1"><div class="front"><div class="obi">Tier 2</div><p class="sl-date"><span class="dd">23</span><span class="dj">水</span></p><h3 class="sl-bill">山下達郎</h3><p class="sl-sub">Tatsuro Yamashita PERFORMANCE 2026</p></div><div class="sl-card"><p class="t">フェスティバルホール<br>Festival Hall, Nakanoshima, Osaka</p><p class="tm">OPEN 17:00 / START 18:00</p><p class="sl-price"><span class="y">¥15,000</span><span class="st">LOTTERY</span></p><p class="sl-note">all reserved — e+ cancel-wait lottery to 13 Sept</p></div></article><article class="sleeve" data-i="2"><div class="front"><div class="obi">Tier 1</div><p class="sl-date"><span class="dd">20</span><span class="dj">日</span></p><h3 class="sl-bill">東京民謡倶楽部<span>昼の部</span></h3><p class="sl-sub">Tokyo Min’yō Club</p></div><div class="sl-card"><p class="t">Shinjuku Pit Inn<br>the 1965 basement</p><p class="tm">OPEN 14:00 / START 14:30</p><p class="sl-price"><span class="y">¥5,500</span><span class="st">ON SALE</span></p><p class="sl-note">advance, one drink included; ¥6,050 door</p></div></article><article class="sleeve" data-i="3"><div class="front"><div class="obi">Tier 1</div><p class="sl-date"><span class="dd">23</span><span class="dj">水</span></p><h3 class="sl-bill">御香宮神能<span>蝋燭能</span></h3><p class="sl-sub">Candle noh: 狂言 因幡堂 · 能 花月</p></div><div class="sl-card"><p class="t">御香宮神社 能舞台<br>Fushimi, Kintetsu 桃山御陵前 4 min</p><p class="tm">OPEN 17:45 / START 18:30</p><p class="sl-price"><span class="y">¥3,500</span><span class="st">B SEATS</span></p><p class="sl-note">B seats advance; ¥4,000 at the door; A sold out</p></div></article><article class="sleeve" data-i="4"><div class="front"><div class="obi">Tier 1</div><p class="sl-date"><span class="dd">21</span><span class="dj">月</span></p><h3 class="sl-bill">Body &amp; Soul<span>河合代介 Trio</span></h3><p class="sl-sub">52 years old, closing on 27 Sept</p></div><div class="sl-card"><p class="t">渋谷区宇田川町2-1<br>Udagawa-chō, on Kōen-dōri</p><p class="tm">OPEN 17:30 / SETS 18:30, 20:00</p><p class="sl-price"><span class="y">¥7,700</span><span class="st">RESERVE</span></p><p class="sl-note">music charge with tax, plus drinks</p></div></article></div></section>
+<section class="sec"><h2><span class="secno">0b</span>The best three each night</h2><h3 class="dayhead">Sat 19 Sept — you land at 15:00; in Shibuya by about 17:30, the whole evening is open</h3><div class="night3"><article class="n"><p class="rank">1</p><h4>金王八幡宮 例大祭 宵宮 stage, then Pit Inn: The Blend with 峰厚介</h4><dl class="www"><dt>What</dt><dd>The Shibuya shrine’s festival eve on your doorstep: a 神楽殿 stage with おはら節 and 渋谷音頭 at 16:00 and <b>koto at 18:00</b>, stalls, the precinct lit. Then 峰厚介 (tenor, b. 1944, on Tokyo stages since the 1960s, no US dates in decades) with 中村恵介 (tp), Hakuei Kim (p), 本田珠也 (ds).</dd><dt>When</dt><dd>Sat 19 · shrine stage from 18:00, leave it about 19:05 · Pit Inn 19:30 (Shibuya → Shinjuku-Sanchōme 10 min).</dd><dt>Where</dt><dd>金王八幡宮, Shibuya 3-chōme, a few minutes from the hotel; then Shinjuku Pit Inn, the 1965 basement.</dd><dt>Cost</dt><dd>shrine free · Pit Inn ¥3,500 incl. one drink, door, cash.</dd></dl><p><span class="tier">Tier 1</span></p></article><article class="n"><p class="rank">2</p><h4>和ノ家追分, either min’yō show</h4><dl class="www"><dt>What</dt><dd>The min’yō sakaba: resident Tsugaru-shamisen champions and singers, two shows a night, the audience joining in.</dd><dt>When</dt><dd>Sat 19 · shows 19:00 and 21:00; open 17:30–23:00. The 21:00 show fits after the Pit Inn (Shinjuku → Asakusa 30 min).</dd><dt>Where</dt><dd>和ノ家追分, Senzoku-dōri, Asakusa (TX Asakusa 10 min).</dd><dt>Cost</dt><dd>木戸銭 ¥2,000 incl. お通し + drinks; about ¥3,500.</dd></dl><p><span class="tier">Tier 1</span></p></article><article class="n"><p class="rank">3</p><h4>Body &amp; Soul, Saturday of the final week</h4><dl class="www"><dt>What</dt><dd>若井優也 Special Quartet feat. Chris Kazuki Jones, with 石若駿 on drums, in the closing club five minutes from the hotel.</dd><dt>When</dt><dd>Sat 19 · open 18:30, sets 19:30 and 21:00.</dd><dt>Where</dt><dd>Body &amp; Soul, 渋谷区宇田川町2-1 渋谷ホームズ B-15, Kōen-dōri, Shibuya.</dd><dt>Cost</dt><dd>¥7,700 + drinks.</dd></dl><p><span class="tier">Tier 1</span></p></article></div></section>
+<section class="sec"><h2><span class="secno">1</span>Ranked shortlist (non-jazz)</h2><article class="entry"><p class="slug"><span class="sd">Fri 25</span><span class="st">evening</span><span class="rk">1</span></p><div class="ebody"><h3>Yasaka Jinja 祇園社観月祭 (Gionsha Kangetsu-sai) — gagaku, bugaku, koto, shishimai and taiko offered to the harvest moon on the shrine’s 舞殿</h3><dl class="www"><dt>What</dt><dd>祇園社観月祭: rite on the 舞殿, 献詠 poem recital, 管弦・舞楽 by the shrine’s own 弥栄雅楽会, 生田流 koto, the Gion lion dance, the shrine’s taiko.</dd><dt>When</dt><dd>Fri 25 · 19:00 to about 21:00; 舞楽 19:30, koto 20:00, 獅子舞 20:30, taiko 20:45.</dd><dt>Where</dt><dd>Yasaka Jinja 舞殿, Gion, Kyoto (Gion-Shijō 5 min; 15 min walk from Kawaramachi).</dd><dt>Cost</dt><dd>free, standing.</dd></dl><p class="meta">Yasaka Jinja, Gion (Gion-Shijō stn 5 min; 15 min walk from Kawaramachi). Kyoto. · real rite, not a concert · <span class="tier">Tier 1</span> · <span class="st-v">VERIFIED</span></p><p><b>Why you cannot see this at home:</b> a shrine rite on the Buden with the shrine’s own gagaku society (弥栄雅楽会) playing 管弦 and dancing 舞楽 to the moon, followed by ikuta-ryū koto, the Gion lion dance and the shrine’s own taiko. Nothing in New York puts gagaku inside a working rite.</p><p><b>Programme (shrine’s own notice, 2026):</b> 19:00 rite at the 舞殿 → 19:15 献詠 poem recital → <b>19:30 管弦・舞楽</b> (弥栄雅楽会) → 20:00 箏曲 (生田流箏曲三弦) → 20:30 獅子舞 → 20:45 太鼓 「剣の舞」. Times approximate per the shrine.</p><p><b>Price:</b> no charge listed; the precinct is open and the notice names no ticket. ¥0 / ¥0 (treat a small offering as optional). <b>Collision:</b> Takanaka in Hikone, booked, doors 17:30; lost unless those tickets fall through. Airport train is early Sat, this ends ~21:00.</p></div></article></section>
+<section class="sec"><h2><span class="secno">5</span>Per-day tables</h2><h3 class="tblhead">Sat 19 Sept — land 15:00; in Shibuya by about 17:30</h3><div class="tw"><table><thead><tr><th scope="col">Slot</th><th scope="col">What</th><th scope="col">Where</th><th scope="col">When</th><th scope="col">¥ pp</th><th scope="col">Status</th><th scope="col">Note</th></tr></thead><tbody><tr><td>Day</td><td><b>金王八幡宮 例大祭 宵宮 stage</b> (おはら節・渋谷音頭 16:00, koto 18:00, ends ~19:30)</td><td>Shibuya 3-chōme</td><td>16:00–19:30</td><td>free</td><td class="st-v">V dates / S stage</td><td><b>the Saturday pick</b>, then Pit Inn</td></tr><tr><td>Eve</td><td>20000V mosaic vol.6 (KIRIHITO); Manda-la 2 上野茂都; Loft BALZAC</td><td>Higashi-Kōenji / Kichijōji / Kabukichō</td><td>19:00</td><td>—</td><td class="st-v">V</td><td>reachable; lower tier</td></tr><tr><td>Eve</td><td>ELECTRIC EEL SHOCK last one-man</td><td>La.mama, Dōgenzaka</td><td>20:00</td><td>3,000+D</td><td class="st-x">V SOLD OUT</td><td>door returns only</td></tr><tr><td>Eve</td><td>和ノ家追分 min’yō shows</td><td>Asakusa</td><td>19:00 / 21:00</td><td>~3,500</td><td class="st-v">V</td><td>21:00 fits after the Pit Inn</td></tr><tr><td>Eve · jazz</td><td><b>Pit Inn: The Blend — 峰厚介 (ts, 82)</b></td><td>Shinjuku</td><td>19:30</td><td>3,500 incl.</td><td class="st-v">V</td><td>full show, after the shrine stage</td></tr><tr><td>Eve · jazz</td><td>Body &amp; Soul final week: 若井優也 Sp Qt w/ 石若駿 (21:00 set)</td><td>Udagawa-chō</td><td>19:30 / 21:00</td><td>7,700 + drinks</td><td class="st-x">V 予約〆切</td><td>reserved; the Monday is the pick</td></tr></tbody></table></div></section>
+</div>
+
+</body></html>
