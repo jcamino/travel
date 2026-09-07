@@ -1,0 +1,1 @@
+ERR URLError: <urlopen error [Errno 11002] getaddrinfo failed> http://www.jittoku.net/

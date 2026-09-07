@@ -1,0 +1,1 @@
+ERR URLError: <urlopen error [Errno 11001] getaddrinfo failed> https://www.city.kishiwada.osaka.jp/site/danjiri/
