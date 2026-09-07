@@ -4,7 +4,7 @@
   "dates": "19 to 26 September 2026",
   "who": "Javier and Eric",
   "about": [
-    "Two adults, both vegan, first time in Japan. 30L Osprey packs each (no oversized-baggage seats needed).",
+    "Two adults, first time in Japan. Javier is vegan, Eric is not. 30L Osprey packs each (no oversized-baggage seats needed).",
     "Sept 19 to 23 is Silver Week 2026: crowds and sellouts everywhere, all Nozomi seats reserved-only.",
     "Bases: Hotel Son Shibuya (Tokyo, Sept 19 to 22) and BnA Alter Museum (Kyoto, Sept 23 to 25)."
   ],
@@ -23,7 +23,7 @@
   ],
   "musicPage": "/japan/music/",
   "openItems": [
-    "Kyoto vegan / shojin dinners, Sept 23, 24, 25, plus Shigetsu lunch Sept 25",
+    "Kyoto dinners Sept 23, 24, 25, each needing one vegan menu, plus Shigetsu lunch Sept 25",
     "Haruka Sept 26 ~08:00",
     "Jingu tickets Sept 22 (if not already in hand)",
     "Hozugawa boat Sept 25 (confirm booking status)",
@@ -78,7 +78,6 @@
 
 ## 2026-09-20 | Sun | 20 | Tokyo | Old Tokyo and jazz
 {base} Hotel Son Shibuya
-{daynote} Giants game at Tokyo Dome dropped; Jingu on the 22nd instead.
 
 ###  | Asakusa and Ueno morning
 {status} suggested
@@ -211,7 +210,7 @@
 
 ###  | Last Tokyo morning, Tsukiji outer market
 {status} suggested
-{detail} Vegan-limited, plan substitutes. Checkout, leave bags at hotel desk.
+{detail} Thin for Javier, fine for Eric; plan substitutes. Checkout, leave bags at hotel desk.
 {place} Tsukiji Outer Market
 {map} Tsukiji Outer Market
 {url}
@@ -256,7 +255,7 @@
 {map} Gion, Kyoto
 {url}
 
-###  | Vegan / shojin ryori dinner reservation
+###  | Dinner reservation, shojin or one vegan menu
 {status} pending
 {detail}
 {place}
@@ -340,7 +339,7 @@
 {url}
 - Music page: Le Club Jazz and Candy lineups unread; RAG Thu 24 not listed.
 
-###  | Vegan / shojin ryori dinner reservation
+###  | Dinner reservation, shojin or one vegan menu
 {status} pending
 {detail}
 {place}
