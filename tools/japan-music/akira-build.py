@@ -257,7 +257,14 @@ H2_FIVE = paint_h2(SEC['0']['h2'])
 H2_CAL = paint_h2(SEC['0b']['h2'])
 
 # ------------------------------------------------------------ everything else
-REST_KEYS = [k for k in ORDER if k not in ('0', '0b', '5')]
+# Section 1 is the only thing on the page that expires. It does not go in
+# the collapsed tail with the reference material; it goes above the fold.
+ACT_KEY = '1' if '1' in SEC else None
+ACT_HTML = ''
+if ACT_KEY:
+    ACT_HTML = ('<section class="sec acts" id="act">%s%s</section>'
+                % (paint_h2(SEC[ACT_KEY]['h2']), SEC[ACT_KEY]['rest']))
+REST_KEYS = [k for k in ORDER if k not in ('0', '0b', '5', ACT_KEY)]
 REST = []
 for k in REST_KEYS:
     t = SEC[k]['title']
@@ -295,7 +302,7 @@ summary,button,.wk,.act{cursor:pointer}
 .skip{position:fixed;left:8px;top:-4rem;z-index:80;background:var(--red);
   color:#fff;padding:.5rem .9rem;text-decoration:none;transition:top .12s;
   font-family:"Big Shoulders Display",sans-serif;letter-spacing:.1em}
-.skip::before{content:"Skip to the top five"}
+.skip::before{content:"Skip to this week's deadlines"}
 .skip:focus{top:8px}
 .wrap{max-width:74rem;margin:0 auto;
   padding:0 20px calc(5rem + env(safe-area-inset-bottom,0px))}
@@ -537,6 +544,13 @@ h2{font-family:"Big Shoulders Display",sans-serif;font-weight:900;
   margin:1rem 0 .6rem}
 
 /* ------------------------------------------------------ everything else */
+.acts{margin:1.6rem 0 0;border:1px solid var(--red);border-left:3px solid var(--red);
+  border-radius:2px;padding:1.1rem 1.2rem;background:rgba(224,35,75,.055)}
+.acts>h2{margin-top:0}
+.acts>.legend{margin:.6rem 0 1rem}
+.acts ol{margin:0;padding-left:1.1rem}
+.acts li{margin:.6rem 0;line-height:1.5}
+@media(max-width:640px){.acts{padding:.9rem .95rem;margin-top:1.1rem}}
 .rest{margin-top:3.4rem;border-top:1px solid var(--line);padding-top:1.4rem}
 .rest>p{color:var(--grey);font-size:.88rem;max-width:40rem}
 .chunk{border-bottom:1px solid var(--line)}
@@ -909,13 +923,14 @@ out = f"""<!doctype html>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Shippori+Mincho:wght@500;700&display=swap">
 <style>{CSS}</style></head>
 <body>
-<a class="skip" href="#five" aria-label="Skip to the top five"></a>
+<a class="skip" href="#act" aria-label="Skip to this week's deadlines"></a>
 <div class="live" id="live" aria-live="polite"></div>
 <nav class="rail" aria-label="The week">
 <div class="rail-inner">
 <div class="rail-sec">
 <a href="/japan/">Itinerary</a>
-<a href="#five">The five</a>
+<a href="#act">Act now</a>
+<a href="#five">The picks</a>
 <a href="#calendar">The week</a>
 <a href="#rest">The rest</a>
 </div>
@@ -932,6 +947,7 @@ out = f"""<!doctype html>
 <div class="introbody">{INTRO_REST}</div></details>
 </div></header>
 <main class="wrap">
+{ACT_HTML}
 
 <div class="filter-bar" id="filter-bar">
   <div class="filter-row">

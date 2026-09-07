@@ -36,7 +36,7 @@ summary,button,.wk,.act{cursor:pointer}
 .skip{position:fixed;left:8px;top:-4rem;z-index:80;background:var(--red);
   color:#fff;padding:.5rem .9rem;text-decoration:none;transition:top .12s;
   font-family:"Big Shoulders Display",sans-serif;letter-spacing:.1em}
-.skip::before{content:"Skip to the top five"}
+.skip::before{content:"Skip to this week's deadlines"}
 .skip:focus{top:8px}
 .wrap{max-width:74rem;margin:0 auto;
   padding:0 20px calc(5rem + env(safe-area-inset-bottom,0px))}
@@ -278,6 +278,13 @@ h2{font-family:"Big Shoulders Display",sans-serif;font-weight:900;
   margin:1rem 0 .6rem}
 
 /* ------------------------------------------------------ everything else */
+.acts{margin:1.6rem 0 0;border:1px solid var(--red);border-left:3px solid var(--red);
+  border-radius:2px;padding:1.1rem 1.2rem;background:rgba(224,35,75,.055)}
+.acts>h2{margin-top:0}
+.acts>.legend{margin:.6rem 0 1rem}
+.acts ol{margin:0;padding-left:1.1rem}
+.acts li{margin:.6rem 0;line-height:1.5}
+@media(max-width:640px){.acts{padding:.9rem .95rem;margin-top:1.1rem}}
 .rest{margin-top:3.4rem;border-top:1px solid var(--line);padding-top:1.4rem}
 .rest>p{color:var(--grey);font-size:.88rem;max-width:40rem}
 .chunk{border-bottom:1px solid var(--line)}
@@ -438,13 +445,14 @@ details.day.hidden-filter,tr.hidden-filter{display:none !important}
   .plate.dimmed{transform:none}}
 </style></head>
 <body>
-<a class="skip" href="#five" aria-label="Skip to the top five"></a>
+<a class="skip" href="#act" aria-label="Skip to this week's deadlines"></a>
 <div class="live" id="live" aria-live="polite"></div>
 <nav class="rail" aria-label="The week">
 <div class="rail-inner">
 <div class="rail-sec">
 <a href="/japan/">Itinerary</a>
-<a href="#five">The five</a>
+<a href="#act">Act now</a>
+<a href="#five">The picks</a>
 <a href="#calendar">The week</a>
 <a href="#rest">The rest</a>
 </div>
@@ -458,7 +466,7 @@ details.day.hidden-filter,tr.hidden-filter{display:none !important}
 
 <div class="kicker">Music you cannot see stateside · Silver Week 2026</div>
 <h1><span class="ink">Silver Week Japan-Only Book</span><span class="ink2" aria-hidden="true">Silver Week Japan-Only Book</span></h1>
-<p class="lede">Tokyo Sat 19 – Tue 22 Sept, Kansai Wed 23 – Fri 25 Sept 2026. Two New Yorkers, Shibuya then downtown Kyoto. The test for everything here: could a Brooklyn resident see essentially this within a normal year without flying? One thing is booked: 高中正義 in Hikone on Fri 25.</p>
+<p class="lede">Tokyo Sat 19 – Tue 22 Sept, Kansai Wed 23 – Fri 25 Sept 2026. Two New Yorkers, Shibuya then downtown Kyoto. Everything here is ranked on the show and the room together, with acts that tour Brooklyn regularly demoted unless the room earns it. One thing is booked: 高中正義 in Hikone on Fri 25.</p>
 <p class="lede"></p>
 <p class="jp1">日本限定</p>
 <details class="intro"><summary>The rules, and the two facts that shape the week</summary>
@@ -470,6 +478,15 @@ details.day.hidden-filter,tr.hidden-filter{display:none !important}
 </div></details>
 </div></header>
 <main class="wrap">
+<section class="sec acts" id="act"><h2><span class="secno">1 ·</span><span class="sectitle">Act this week</span></h2>
+<p class="legend">Live deadlines, soonest first. Everything else is standing advice in section 2.</p>
+<ol>
+<li><strong>山下達郎, Osaka Wed 23 — apply by Sun 13 Sept 18:00 JST.</strong> The e+ cancel-wait lottery at <a href="https://eplus.jp/tatsuro2026/">eplus.jp/tatsuro2026</a> opened 2 Sept and is the only route left: card payment, smartphone ticket, <strong>one ticket per application</strong>, so two people need two e+ accounts and two applications. Photo ID against the printed name at the door.</li>
+<li><strong>御香宮 蝋燭能, Wed 23 — buy on the web by Sun 13 Sept.</strong> B席 ¥3,500 is on sale online now; A席 is sold out. From 14 Sept the only route is phoning the shrine office and wiring the money, so buy it now and Wednesday is settled whichever way the Yamashita draw falls.</li>
+<li><strong>Optional, the same week.</strong> AKB48 Theater Sun 20: general applications close Tue 15 Sept 16:00 JST, overseas route by email to sfar@akb48.co.jp, 6 seats. DESTINY 8 at WWW X Mon 21: e+ general sale to Sun 20 18:00, and it collides with Blue Note.</li>
+</ol>
+
+</section>
 
 <div class="filter-bar" id="filter-bar">
   <div class="filter-row">
@@ -689,7 +706,7 @@ details.day.hidden-filter,tr.hidden-filter{display:none !important}
 </details></div></details><details class="day" name="day" id="day-21" data-lamp="ok"><summary><span class="cal-d">21<i>月</i></span><span class="cal-city">Tokyo</span><span class="cal-pick">Body &amp; Soul, its last night open to reserve</span><span class="cal-cost">¥7,700 + drinks</span><span class="cal-open" aria-hidden="true"></span></summary><div class="daybody"><nav class="daynav" aria-label="Adjacent nights"><a class="dn-prev" href="#day-20">20<i>日</i></a><span class="dn-now">21<i>月</i> Tokyo</span><a class="dn-next" href="#day-22">22<i>火</i></a></nav><h3 class="dayhead">Mon 21 Sept (holiday) — free all day</h3><div class="cards night">
 <div class="card"><h3>Body &amp; Soul, its last night open to reserve</h3>
 <p class="www"><b>What</b><span>河合代介 (Hammond organ), 佐野康夫 (drums), 宮崎隆睦 (sax) in the club's final week; it closes 27 Sept after 52 years, and every other night of the week is 予約〆切. <span class="t1">Tier 1</span> room</span><b>When</b><span>Mon 21 · open 17:30, sets 18:30 and 20:00.</span><b>Where</b><span>Body &amp; Soul, 渋谷区宇田川町2-1 渋谷ホームズ B-15, Kōen-dōri, five minutes from the hotel.</span><b>Cost</b><span>¥7,700 + drinks; メール予約 from the schedule page.</span></p>
-<p>Overall #4. The Miles Electric Band at Blue Note the same night is a touring US act. <span class="v">VERIFIED</span> <a href="https://bodyandsoul.co.jp/schedule">bodyandsoul.co.jp/schedule</a>.</p></div>
+<p>Overall #2. The Miles Electric Band at Blue Note the same night is a touring US act. <span class="v">VERIFIED</span> <a href="https://bodyandsoul.co.jp/schedule">bodyandsoul.co.jp/schedule</a>.</p></div>
 <div class="card"><h3>Kabuki-za 幕見: ひらかな盛衰記〈逆櫓〉</h3>
 <p class="www"><b>What</b><span>A single-act gallery ticket for 逆櫓: 竹本 gidayū narration and shamisen, a full 立廻り. The 幕見 gallery is itself a Japan-only format. <span class="t1">Tier 1</span></span><b>When</b><span>Mon 21 · 13:25–15:12. Evening acts are also sold although the 夜の部 is a 貸切: 沼津 16:40, 京人形 18:55, 一條大蔵譚 19:45.</span><b>Where</b><span>Kabuki-za 4F 幕見, Higashi-Ginza (station direct).</span><b>Cost</b><span>¥2,800 + ¥110; reserved 幕見 seats online from 12:00 Sun 20 (e-tix, card with 3-D Secure), unreserved at the window on the day.</span></p>
 <p><span class="v">VERIFIED</span> <a href="https://www.e-tix.jp/shochiku_makumi/">e-tix 幕見</a>, <a href="https://www.kabuki-bito.jp/theaters/kabukiza/play/978">timetable</a>.</p></div>
@@ -749,10 +766,10 @@ details.day.hidden-filter,tr.hidden-filter{display:none !important}
 </details></div></details><details class="day" name="day" id="day-23" data-lamp="wait"><summary><span class="cal-d">23<i>水</i></span><span class="cal-city">Osaka</span><span class="cal-pick">山下達郎 &quot;PERFORMANCE 2026&quot;</span><span class="cal-cost">¥15,000</span><span class="cal-open" aria-hidden="true"></span></summary><div class="daybody"><nav class="daynav" aria-label="Adjacent nights"><a class="dn-prev" href="#day-22">22<i>火</i></a><span class="dn-now">23<i>水</i> Osaka</span><a class="dn-next" href="#day-24">24<i>木</i></a></nav><h3 class="dayhead">Wed 23 Sept (holiday) — Shinkansen reaches Kyoto 16:44; Osaka is reachable</h3><div class="cards night">
 <div class="card"><h3>山下達郎 "PERFORMANCE 2026"</h3>
 <p class="www"><b>What</b><span>The city-pop originator's annual hall tour; he has never performed outside Japan. <span class="t2">Tier 2</span></span><b>When</b><span>Wed 23 · doors 17:00, start 18:00. Stay on the Shinkansen to Shin-Osaka (17:00), Midōsuji line to Yodoyabashi, in the hall by 17:30 with bags.</span><b>Where</b><span>フェスティバルホール, Nakanoshima, Osaka (Yodoyabashi / Higobashi).</span><b>Cost</b><span>¥15,000; only via the e+ cancel-wait lottery, deadline Sun 13 Sept 18:00 JST, one ticket per application, photo ID at the door.</span></p>
-<p>Overall #2, if the lottery lands. <span class="v">VERIFIED</span> <a href="https://eplus.jp/tatsuro2026/">eplus.jp/tatsuro2026</a>.</p></div>
+<p>Overall #4, and only if the lottery lands. <span class="v">VERIFIED</span> <a href="https://eplus.jp/tatsuro2026/">eplus.jp/tatsuro2026</a>.</p></div>
 <div class="card"><h3>御香宮神能『蝋燭能』: 狂言 因幡堂, 能 花月, by candlelight</h3>
 <p class="www"><b>What</b><span>The Fushimi shrine's once-a-year candle noh on its own stage: 狂言「因幡堂」 (茂山茂), 能「花月」 (杉浦豊彦), full hayashi and chorus, a tent if it rains. <span class="t1">Tier 1</span></span><b>When</b><span>Wed 23 · doors 17:45, start 18:30. Hotel first, then Keihan Gion-Shijō → 伏見桃山 (15 min) and a 6-minute walk; or Kintetsu from Kyoto Station to 桃山御陵前 (15 min, 4-minute walk).</span><b>Where</b><span>御香宮神社 能舞台, 御香宮門前町174, Fushimi, Kyoto.</span><b>Cost</b><span>B ¥3,500 adv / ¥4,000 door, cash, unreserved within the block; A sold out; web sales closed 13 Sept, office by phone only.</span></p>
-<p>Overall #4, and Wednesday's pick if the Yamashita lottery misses. <span class="v">VERIFIED</span> <a href="https://www.gokounomiya.kyoto.jp/shinno/shinno.html">gokounomiya.kyoto.jp</a>.</p></div>
+<p>Overall #1, and Wednesday's pick whichever way the Yamashita lottery falls. <span class="v">VERIFIED</span> <a href="https://www.gokounomiya.kyoto.jp/shinno/shinno.html">gokounomiya.kyoto.jp</a>.</p></div>
 <div class="card"><h3>environment 0g: Christian Kobi / 松本一哉 / 江崎將史</h3>
 <p class="www"><b>What</b><span>Kansai improv in its own Osaka basement: 江崎將史 (trumpet, onkyō), 松本一哉 (water, percussion), Christian Kobi (sax). <span class="t2">Tier 2</span></span><b>When</b><span>Wed 23 · open 18:30, start 19:00. Kyoto → Osaka by JR special rapid 30 min.</span><b>Where</b><span>environment 0g, 大阪市西区南堀江3-6-1 B1F, Minami-Horie (Yotsubashi / Sakuragawa).</span><b>Cost</b><span>¥2,500 + drink adv / ¥3,000 door, cash; email nuthingsjajouka@gmail.com or door.</span></p>
 <p>Third choice on Wednesday, 15 minutes from Festival Hall. <span class="v">VERIFIED</span> <a href="https://nuthings.wordpress.com/2026%e5%b9%b409%e6%9c%88/">nuthings 2026年09月</a>.</p></div>
@@ -774,7 +791,7 @@ details.day.hidden-filter,tr.hidden-filter{display:none !important}
 </details></div></details><details class="day" name="day" id="day-24" data-lamp="ok"><summary><span class="cal-d">24<i>木</i></span><span class="cal-city">Kyoto</span><span class="cal-pick">Thu 24 · 06:00 then 19:30 · Nishi Honganji 晨朝, then UrBANGUILD: Lukas Ligeti &amp; 内橋和久, with 山内弘太</span><span class="cal-cost">¥3,500 + ¥700 drink adv</span><span class="cal-open" aria-hidden="true"></span></summary><div class="daybody"><nav class="daynav" aria-label="Adjacent nights"><a class="dn-prev" href="#day-23">23<i>水</i></a><span class="dn-now">24<i>木</i> Kyoto</span><a class="dn-next" href="#day-25">25<i>金</i></a></nav><h3 class="dayhead">Thu 24 Sept — free all day; Osaka, Kobe and Nara in range</h3><div class="cards night">
 <div class="card"><h3>Thu 24 · 06:00 then 19:30 · Nishi Honganji 晨朝, then UrBANGUILD: Lukas Ligeti &amp; 内橋和久, with 山内弘太</h3>
 <p class="www"><b>What</b><span>Free improvisation: Uchihashi (Altered States, the Ground Zero years, daxophone; based between Kansai and Berlin) with Ligeti on drums and electronics; a young Kyoto guitarist opens. <span class="t2">Tier 2</span></span><b>When</b><span>Thu 24 · open 19:00, start 19:30, to about 21:30. Morning: Nishi Honganji 晨朝 chant 06:00 (gates 05:30), Higashi Honganji 07:00 next door, free.</span><b>Where</b><span>UrBANGUILD, Kiyamachi-Sanjō, upstairs, 10 min walk from base.</span><b>Cost</b><span>¥3,500 + ¥700 drink adv / ¥3,800 + drink door; venue contact or door.</span></p>
-<p>Overall #6, the first outside the five. Rules out Christian McBride at Billboard Osaka (20:30), whom New York hears often. <span class="v">VERIFIED</span> <a href="http://urbanguild.net/events/">urbanguild.net/events</a>.</p></div>
+<p>The first outside the ranking. Rules out Christian McBride at Billboard Osaka (20:30), whom New York hears often. <span class="v">VERIFIED</span> <a href="http://urbanguild.net/events/">urbanguild.net/events</a>.</p></div>
 <div class="card"><h3>Thu 24 · 19:00 · 磔磔 Takutaku: blues.the-butcher-590213 "Live at Takutaku" release show</h3>
 <p class="www"><b>What</b><span>永井"ホトケ"隆, 沼澤尚, 中條卓 and KOTEZ, the domestic blues institution, releasing the album they recorded in this 1974 sake-warehouse room. <span class="t2">Tier 2</span> in a <span class="t1">Tier 1</span> room</span><b>When</b><span>Thu 24 · open 18:00, start 19:00.</span><b>Where</b><span>磔磔, Shijō-Takakura, Kyoto, 8 min walk from base.</span><b>Cost</b><span>¥5,500 adv / ¥6,000 door; 磔磔 email reservation or counter.</span></p>
 <p><span class="v">VERIFIED</span> <a href="https://takutaku.jp/schedule/?date=2026/09/24">takutaku.jp</a>. Pick one of this, UrBANGUILD and Billboard.</p></div>
@@ -801,10 +818,10 @@ details.day.hidden-filter,tr.hidden-filter{display:none !important}
 </details></div></details><details class="day" name="day" id="day-25" data-lamp="held"><summary><span class="cal-d">25<i>金</i></span><span class="cal-city">Hikone</span><span class="cal-pick">高中正義 SUPER TAKANAKA LIVE, Hikone — booked</span><span class="cal-cost">¥11,000, tickets held</span><span class="cal-open" aria-hidden="true"></span></summary><div class="daybody"><nav class="daynav" aria-label="Adjacent nights"><a class="dn-prev" href="#day-24">24<i>木</i></a><span class="dn-now">25<i>金</i> Hikone</span><span class="dn-next"></span></nav><h3 class="dayhead">Fri 25 Sept — Arashiyama until about 15:00; Takanaka in Hikone, booked; the harvest-moon rites collide; early airport train on Sat</h3><div class="cards night">
 <div class="card"><h3>高中正義 SUPER TAKANAKA LIVE, Hikone — booked</h3>
 <p class="www"><b>What</b><span>Takanaka's autumn hall tour, グランドホール. <span class="t3">Tier 3</span>: he sold out Brooklyn Paramount on 4–5 April 2026</span><b>When</b><span>Fri 25 · doors 17:30, start 18:30. Leave Arashiyama by about 15:00.</span><b>Where</b><span>ひこね市文化プラザ, Hikone (JR 新快速 from Kyoto about 50 min, then a taxi, or 湖国バス from 南彦根).</span><b>Cost</b><span>¥11,000, tickets held.</span></p>
-<p>Overall #1. Every Kyoto moon rite below runs while you are in the hall. <span class="v">VERIFIED</span> <a href="https://takanaka.com/live/">takanaka.com</a>.</p></div>
+<p>Rank 0, the one ticket already held. Every Kyoto moon rite below runs while you are in the hall. <span class="v">VERIFIED</span> <a href="https://takanaka.com/live/">takanaka.com</a>.</p></div>
 <div class="card"><h3>Shimogamo 名月管絃祭, then Yasaka 祇園社観月祭</h3>
 <p class="www"><b>What</b><span>Two moon rites in one evening: shakuhachi, gagaku and koto from Shimogamo's 橋殿 by firelight, then the rite, poem recital, 舞楽 by 弥栄雅楽会, koto, lion dance and taiko on Yasaka's 舞殿. <span class="t1">Tier 1</span></span><b>When</b><span>Fri 25 · Shimogamo 17:30–21:00 (leave it about 18:35) · Yasaka 19:00 to about 21:00, 舞楽 19:30. Leave Arashiyama by 16:15.</span><b>Where</b><span>Shimogamo Jinja, Demachiyanagi → Keihan to Gion-Shijō (5 min) → Yasaka Jinja, Gion. Both roofed if it rains.</span><b>Cost</b><span>free, no ticket.</span></p>
-<p>Overall #1 until the Takanaka tickets; both run while you are in Hikone. If those tickets fall through, this, and if only one, Yasaka. <span class="v">VERIFIED</span> <a href="https://www.shimogamo-jinja.or.jp/saiji/meigetsu2026">Shimogamo</a>, <a href="https://www.yasaka-jinja.or.jp/">Yasaka</a>.</p></div>
+<p>These would lead Friday if the Takanaka tickets were not already held; both run while you are in Hikone. If those tickets fall through, this, and if only one, Yasaka. <span class="v">VERIFIED</span> <a href="https://www.shimogamo-jinja.or.jp/saiji/meigetsu2026">Shimogamo</a>, <a href="https://www.yasaka-jinja.or.jp/">Yasaka</a>.</p></div>
 <div class="card"><h3>Daikaku-ji 観月の夕べ, where you already are</h3>
 <p class="www"><b>What</b><span>Moon-viewing over Ōsawa pond, a Buddhist service under the moon 19:00–19:30, dragon-headed boats for holders of the ¥7,000 lottery ticket that closed in July (same-day cancel-wait at 17:30). The temple's 2026 pages list no gagaku, koto or shakuhachi. <span class="t2">Tier 2</span> for music</span><b>When</b><span>Fri 25 · 17:30–21:00 (also 26–27). From here Yasaka by 19:30 is about 50 minutes door to door, so Daikaku-ji can replace Shimogamo, not Yasaka.</span><b>Where</b><span>Daikaku-ji, Saga-Arashiyama, Kyoto.</span><b>Cost</b><span>¥700 at the gate; boat ticket closed.</span></p>
 <p><span class="v">VERIFIED</span> <a href="https://www.daikakuji.or.jp/r8kangetsukokuchi/">daikakuji.or.jp notice</a>.</p></div>
@@ -838,15 +855,7 @@ details.day.hidden-filter,tr.hidden-filter{display:none !important}
 <section class="rest" id="rest">
 <p>The rest of the book: the full ranked shortlists, the categories, the
 booking friction, and what could not be verified.</p>
-<details class="chunk" id="chunk-1"><summary>1 · Act this week</summary><div class="chunkbody">
-<p class="legend">Live deadlines, soonest first. Everything else is standing advice in section 2.</p>
-<ol>
-<li><strong>山下達郎, Osaka Wed 23 — apply by Sun 13 Sept 18:00 JST.</strong> The e+ cancel-wait lottery at <a href="https://eplus.jp/tatsuro2026/">eplus.jp/tatsuro2026</a> opened 2 Sept and is the only route left: card payment, smartphone ticket, <strong>one ticket per application</strong>, so two people need two e+ accounts and two applications. Photo ID against the printed name at the door.</li>
-<li><strong>御香宮 蝋燭能, Wed 23 — buy on the web by Sun 13 Sept.</strong> B席 ¥3,500 is on sale online now; A席 is sold out. From 14 Sept the only route is phoning the shrine office and wiring the money, so buy it now and Wednesday is settled whichever way the Yamashita draw falls.</li>
-<li><strong>Optional, the same week.</strong> AKB48 Theater Sun 20: general applications close Tue 15 Sept 16:00 JST, overseas route by email to sfar@akb48.co.jp, 6 seats. DESTINY 8 at WWW X Mon 21: e+ general sale to Sun 20 18:00, and it collides with Blue Note.</li>
-</ol>
-
-</div></details><details class="chunk" id="chunk-2"><summary>2 · Book before you fly</summary><div class="chunkbody">
+<details class="chunk" id="chunk-2"><summary>2 · Book before you fly</summary><div class="chunkbody">
 <p class="legend">Each line names the event, its date and the place; the deadline or route follows.</p>
 <ol>
 <li><strong>山下達郎, Osaka Wed 23 (deadline Sun 13 Sept 18:00 JST).</strong> The only route is the e+ cancel-wait lottery, open since 2 Sept, at <a href="https://eplus.jp/tatsuro2026/">eplus.jp/tatsuro2026</a>: one ticket per application, credit card, smartphone ticket (e+ app), and an e+ account that registers a mobile number and passes phone verification — whether a non-Japanese number passes is not stated (try the e+ English portal, else a Japanese contact's help). Two people = two accounts, two applications. At the door, each ticket holder shows photo ID matching the printed name; passports are accepted; checks start 45 min before doors (16:15). No resale of any kind.</li>

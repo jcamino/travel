@@ -187,7 +187,7 @@
 
 {kicker} Music you cannot see stateside · Silver Week 2026
 # Silver Week Japan-Only Book
-{lede} Tokyo Sat 19 – Tue 22 Sept, Kansai Wed 23 – Fri 25 Sept 2026. Two New Yorkers, Shibuya then downtown Kyoto. The test for everything here: could a Brooklyn resident see essentially this within a normal year without flying? One thing is booked: 高中正義 in Hikone on Fri 25.
+{lede} Tokyo Sat 19 – Tue 22 Sept, Kansai Wed 23 – Fri 25 Sept 2026. Two New Yorkers, Shibuya then downtown Kyoto. Everything here is ranked on the show and the room together, with acts that tour Brooklyn regularly demoted unless the room earns it. One thing is booked: 高中正義 in Hikone on Fri 25.
 {lede} Every event was read on the organiser's or venue's own page on 5–6 Sept 2026. Fixed points: Sat 19 lands at 15:00, evening open from about 17:30; Sun 20 and Mon 21 are free; Tue 22 is Mt Takao in the morning and **Swallows vs Hanshin at Jingu at 18:00** ([NPB](https://npb.jp/games/2026/schedule_09_detail.html)); Wed 23 the Shinkansen reaches Kyoto at 16:44; Thu 24 is free; Fri 25 is Arashiyama until about 15:00, then **高中正義 SUPER TAKANAKA LIVE in Hikone, doors 17:30, start 18:30, booked**, with an early airport train on Sat 26. Open a day for that night's three, then the table of everything else. Section 1 is what closes this week; section 2 is everything else to arrange before you fly. Open a day for that night's picks and the rest of the day with them.
 {legend} {v:VERIFIED} = read on the organiser's or venue's own page. {s:SECONDARY} = search snippet, blog, aggregator or inference. The tier badge demotes, it does not rank: {t1:Tier 1} the form or setting exists only in Japan · {t2:Tier 2} the artist essentially never leaves Japan · {t3:Tier 3} tours Brooklyn, so it has to earn its place on the room · {smp:SAMPLER} tourist product.
 
@@ -278,7 +278,7 @@ The most Japan-only listening event of the week. {v:VERIFIED} [meikyoku-kissa-vi
 {cards night}
 {card} Body & Soul, its last night open to reserve
 {www} What: 河合代介 (Hammond organ), 佐野康夫 (drums), 宮崎隆睦 (sax) in the club's final week; it closes 27 Sept after 52 years, and every other night of the week is 予約〆切. {t1:Tier 1} room | When: Mon 21 · open 17:30, sets 18:30 and 20:00. | Where: Body & Soul, 渋谷区宇田川町2-1 渋谷ホームズ B-15, Kōen-dōri, five minutes from the hotel. | Cost: ¥7,700 + drinks; メール予約 from the schedule page.
-Overall #4. The Miles Electric Band at Blue Note the same night is a touring US act. {v:VERIFIED} [bodyandsoul.co.jp/schedule](https://bodyandsoul.co.jp/schedule).
+Overall #2. The Miles Electric Band at Blue Note the same night is a touring US act. {v:VERIFIED} [bodyandsoul.co.jp/schedule](https://bodyandsoul.co.jp/schedule).
 {/card}
 {card} Kabuki-za 幕見: ひらかな盛衰記〈逆櫓〉
 {www} What: A single-act gallery ticket for 逆櫓: 竹本 gidayū narration and shamisen, a full 立廻り. The 幕見 gallery is itself a Japan-only format. {t1:Tier 1} | When: Mon 21 · 13:25–15:12. Evening acts are also sold although the 夜の部 is a 貸切: 沼津 16:40, 京人形 18:55, 一條大蔵譚 19:45. | Where: Kabuki-za 4F 幕見, Higashi-Ginza (station direct). | Cost: ¥2,800 + ¥110; reserved 幕見 seats online from 12:00 Sun 20 (e-tix, card with 3-D Secure), unreserved at the window on the day.
@@ -310,11 +310,11 @@ The Kabuki-za, Pit Inn and every live house have started by then. {v:VERIFIED}
 {cards night}
 {card} 山下達郎 "PERFORMANCE 2026"
 {www} What: The city-pop originator's annual hall tour; he has never performed outside Japan. {t2:Tier 2} | When: Wed 23 · doors 17:00, start 18:00. Stay on the Shinkansen to Shin-Osaka (17:00), Midōsuji line to Yodoyabashi, in the hall by 17:30 with bags. | Where: フェスティバルホール, Nakanoshima, Osaka (Yodoyabashi / Higobashi). | Cost: ¥15,000; only via the e+ cancel-wait lottery, deadline Sun 13 Sept 18:00 JST, one ticket per application, photo ID at the door.
-Overall #2, if the lottery lands. {v:VERIFIED} [eplus.jp/tatsuro2026](https://eplus.jp/tatsuro2026/).
+Overall #4, and only if the lottery lands. {v:VERIFIED} [eplus.jp/tatsuro2026](https://eplus.jp/tatsuro2026/).
 {/card}
 {card} 御香宮神能『蝋燭能』: 狂言 因幡堂, 能 花月, by candlelight
 {www} What: The Fushimi shrine's once-a-year candle noh on its own stage: 狂言「因幡堂」 (茂山茂), 能「花月」 (杉浦豊彦), full hayashi and chorus, a tent if it rains. {t1:Tier 1} | When: Wed 23 · doors 17:45, start 18:30. Hotel first, then Keihan Gion-Shijō → 伏見桃山 (15 min) and a 6-minute walk; or Kintetsu from Kyoto Station to 桃山御陵前 (15 min, 4-minute walk). | Where: 御香宮神社 能舞台, 御香宮門前町174, Fushimi, Kyoto. | Cost: B ¥3,500 adv / ¥4,000 door, cash, unreserved within the block; A sold out; web sales closed 13 Sept, office by phone only.
-Overall #4, and Wednesday's pick if the Yamashita lottery misses. {v:VERIFIED} [gokounomiya.kyoto.jp](https://www.gokounomiya.kyoto.jp/shinno/shinno.html).
+Overall #1, and Wednesday's pick whichever way the Yamashita lottery falls. {v:VERIFIED} [gokounomiya.kyoto.jp](https://www.gokounomiya.kyoto.jp/shinno/shinno.html).
 {/card}
 {card} environment 0g: Christian Kobi / 松本一哉 / 江崎將史
 {www} What: Kansai improv in its own Osaka basement: 江崎將史 (trumpet, onkyō), 松本一哉 (water, percussion), Christian Kobi (sax). {t2:Tier 2} | When: Wed 23 · open 18:30, start 19:00. Kyoto → Osaka by JR special rapid 30 min. | Where: environment 0g, 大阪市西区南堀江3-6-1 B1F, Minami-Horie (Yotsubashi / Sakuragawa). | Cost: ¥2,500 + drink adv / ¥3,000 door, cash; email nuthingsjajouka@gmail.com or door.
@@ -326,7 +326,7 @@ Third choice on Wednesday, 15 minutes from Festival Hall. {v:VERIFIED} [nuthings
 {cards night}
 {card} Thu 24 · 06:00 then 19:30 · Nishi Honganji 晨朝, then UrBANGUILD: Lukas Ligeti & 内橋和久, with 山内弘太
 {www} What: Free improvisation: Uchihashi (Altered States, the Ground Zero years, daxophone; based between Kansai and Berlin) with Ligeti on drums and electronics; a young Kyoto guitarist opens. {t2:Tier 2} | When: Thu 24 · open 19:00, start 19:30, to about 21:30. Morning: Nishi Honganji 晨朝 chant 06:00 (gates 05:30), Higashi Honganji 07:00 next door, free. | Where: UrBANGUILD, Kiyamachi-Sanjō, upstairs, 10 min walk from base. | Cost: ¥3,500 + ¥700 drink adv / ¥3,800 + drink door; venue contact or door.
-Overall #6, the first outside the five. Rules out Christian McBride at Billboard Osaka (20:30), whom New York hears often. {v:VERIFIED} [urbanguild.net/events](http://urbanguild.net/events/).
+The first outside the ranking. Rules out Christian McBride at Billboard Osaka (20:30), whom New York hears often. {v:VERIFIED} [urbanguild.net/events](http://urbanguild.net/events/).
 {/card}
 {card} Thu 24 · 19:00 · 磔磔 Takutaku: blues.the-butcher-590213 "Live at Takutaku" release show
 {www} What: 永井"ホトケ"隆, 沼澤尚, 中條卓 and KOTEZ, the domestic blues institution, releasing the album they recorded in this 1974 sake-warehouse room. {t2:Tier 2} in a {t1:Tier 1} room | When: Thu 24 · open 18:00, start 19:00. | Where: 磔磔, Shijō-Takakura, Kyoto, 8 min walk from base. | Cost: ¥5,500 adv / ¥6,000 door; 磔磔 email reservation or counter.
@@ -342,11 +342,11 @@ Overall #6, the first outside the five. Rules out Christian McBride at Billboard
 {cards night}
 {card} 高中正義 SUPER TAKANAKA LIVE, Hikone — booked
 {www} What: Takanaka's autumn hall tour, グランドホール. {t3:Tier 3}: he sold out Brooklyn Paramount on 4–5 April 2026 | When: Fri 25 · doors 17:30, start 18:30. Leave Arashiyama by about 15:00. | Where: ひこね市文化プラザ, Hikone (JR 新快速 from Kyoto about 50 min, then a taxi, or 湖国バス from 南彦根). | Cost: ¥11,000, tickets held.
-Overall #1. Every Kyoto moon rite below runs while you are in the hall. {v:VERIFIED} [takanaka.com](https://takanaka.com/live/).
+Rank 0, the one ticket already held. Every Kyoto moon rite below runs while you are in the hall. {v:VERIFIED} [takanaka.com](https://takanaka.com/live/).
 {/card}
 {card} Shimogamo 名月管絃祭, then Yasaka 祇園社観月祭
 {www} What: Two moon rites in one evening: shakuhachi, gagaku and koto from Shimogamo's 橋殿 by firelight, then the rite, poem recital, 舞楽 by 弥栄雅楽会, koto, lion dance and taiko on Yasaka's 舞殿. {t1:Tier 1} | When: Fri 25 · Shimogamo 17:30–21:00 (leave it about 18:35) · Yasaka 19:00 to about 21:00, 舞楽 19:30. Leave Arashiyama by 16:15. | Where: Shimogamo Jinja, Demachiyanagi → Keihan to Gion-Shijō (5 min) → Yasaka Jinja, Gion. Both roofed if it rains. | Cost: free, no ticket.
-Overall #1 until the Takanaka tickets; both run while you are in Hikone. If those tickets fall through, this, and if only one, Yasaka. {v:VERIFIED} [Shimogamo](https://www.shimogamo-jinja.or.jp/saiji/meigetsu2026), [Yasaka](https://www.yasaka-jinja.or.jp/).
+These would lead Friday if the Takanaka tickets were not already held; both run while you are in Hikone. If those tickets fall through, this, and if only one, Yasaka. {v:VERIFIED} [Shimogamo](https://www.shimogamo-jinja.or.jp/saiji/meigetsu2026), [Yasaka](https://www.yasaka-jinja.or.jp/).
 {/card}
 {card} Daikaku-ji 観月の夕べ, where you already are
 {www} What: Moon-viewing over Ōsawa pond, a Buddhist service under the moon 19:00–19:30, dragon-headed boats for holders of the ¥7,000 lottery ticket that closed in July (same-day cancel-wait at 17:30). The temple's 2026 pages list no gagaku, koto or shakuhachi. {t2:Tier 2} for music | When: Fri 25 · 17:30–21:00 (also 26–27). From here Yasaka by 19:30 is about 50 minutes door to door, so Daikaku-ji can replace Shimogamo, not Yasaka. | Where: Daikaku-ji, Saga-Arashiyama, Kyoto. | Cost: ¥700 at the gate; boat ticket closed.
