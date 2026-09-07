@@ -3,8 +3,8 @@
 
 Two things up front: the top five for the whole trip, and the calendar.
 Tapping a day opens that day's best three, its "Also that day" line and its
-per-day table. Everything else in the book stays on the page, collapsed, so
-`tests/japan-music/content_check.py` still proves no sentence or link is lost.
+per-day table. The booking list sits between them, open. Walk-in rooms and
+the traditional-stage list stay collapsed at the bottom.
 
 Text is never altered: only tags and attributes are added, and sections are
 re-ordered into the disclosure structure.
@@ -45,7 +45,9 @@ for i, (pos, whole, inner) in enumerate(marks):
     key = re.sub('<[^>]+>', '', inner).split('\u00b7')[0].strip()
     SEC[key] = dict(h2=whole, title=inner, rest=body[pos + len(whole):end])
     ORDER.append(key)
-assert ORDER[:2] == ['0', '0b'], ORDER[:3]
+assert ORDER[:3] == ['0', '0b', '1'], ORDER[:4]
+assert 'Book' in SEC['1']['title'], SEC['1']['title']
+assert '2' in SEC, ORDER
 
 DAYRE = re.compile(r'^(Sat|Sun|Mon|Tue|Wed|Thu|Fri) (\d{1,2})')
 
@@ -65,17 +67,14 @@ def day_blocks(section_key, follow):
     return lead, out
 
 
-# A short standfirst stays up front; the rest of the lede, the legend and the
-# two-facts note go behind one disclosure. Split on a sentence boundary so no
-# checked fragment is broken.
-SPLIT_AT = 'Every event was read'
-_i = head_block.index(SPLIT_AT)
-_j = head_block.index('</p>', _i)
-STANDFIRST = head_block[:_i].rstrip() + '</p>'
-INTRO_REST = '<p class="lede">' + head_block[_i:]
+# The first lede stays up front; the rest of the head (second lede, legend,
+# two-facts note) goes behind one disclosure.
+_m = re.search(r'(<p class="lede">.*?</p>)', head_block, re.S)
+STANDFIRST = head_block[:_m.end()]
+INTRO_REST = head_block[_m.end():]
 
 LEAD_0B, NIGHT = day_blocks('0b', r'<div class="cards night">')
-LEAD_5, TABLES = day_blocks('5', r'<div class="tw">')
+LEAD_5, TABLES = day_blocks('2', r'<div class="tw">')
 # Trip shape, from the front matter: the order of the week, which city you
 # sleep in, the kanji for the weekday, and the lamp (held = already booked,
 # wait = not yet secured, ok = walk up, off = the night is spoken for).
@@ -103,7 +102,7 @@ def first_card(day):
     cost = re.split(r'[;.]', cost)[0].strip()
     cost = re.split(r' / ', cost)[0].strip()
     if len(cost) > 34:
-        cost = cost[:33].rstrip(' ,') + '…'
+        cost = cost[:33].rstrip(' ,') + 'ΓÇª'
     return title, cost
 
 
@@ -173,7 +172,7 @@ for n, d in enumerate(DAYS):
         f'</div></details>')
 
 # ------------------------------------------------------------ everything else
-REST_KEYS = [k for k in ORDER if k not in ('0', '0b', '5')]
+REST_KEYS = [k for k in ORDER if k not in ('0', '0b', '1', '2')]
 REST = []
 for k in REST_KEYS:
     t = SEC[k]['title']
@@ -267,6 +266,8 @@ h2{font-family:"Big Shoulders Display",sans-serif;font-weight:900;
 .sectitle{flex:1 1 auto;min-width:0}
 .sec{margin:3.4rem 0 0}
 .sec>.legend{margin:.8rem 0 1.4rem}
+.sec ol{max-width:44rem;padding-left:1.2em;color:#C9CBCE;font-size:.92rem}
+.sec li{margin:.55rem 0;line-height:1.7}
 /* long section notes are clamped to two lines and open on click; the clamp is
    added by script, so with no JS the whole note is simply visible */
 .legend.clamp{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
@@ -534,19 +535,23 @@ out = f"""<!doctype html>
 </div>
 </section>
 
+<section class="sec" id="book">
+{SEC['1']['h2']}
+{SEC['1']['rest']}
+</section>
+
 <section class="sec" id="calendar">
 {SEC['0b']['h2']}
 {LEAD_0B}
 <details class="calnote"><summary>What a day opens to</summary>
-<div class="calnotebody">{SEC['5']['h2']}{LEAD_5}</div></details>
+<div class="calnotebody">{SEC['2']['h2']}{LEAD_5}</div></details>
 <div class="cal">
 {''.join(CELLS)}
 </div>
 </section>
 
 <section class="rest" id="rest">
-<p>The rest of the book: the full ranked shortlists, the categories, the
-booking friction, and what could not be verified.</p>
+<p>Walk-in listening rooms, and the traditional-stage list for the week.</p>
 {''.join(REST)}
 </section>
 
