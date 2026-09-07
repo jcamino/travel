@@ -28,10 +28,11 @@
   --serif: "Shippori Mincho B1", ui-serif, "New York", Georgia, "Times New Roman", serif;
   --sans: "IBM Plex Sans JP", system-ui, -apple-system, "Segoe UI", "Hiragino Sans", "Yu Gothic UI", sans-serif;
   --rail-time: 3rem;
-  --rail-w: 1.75rem;
+  --rail-w: 2.3rem;
   --rail-gap: .5rem;
-  --track: .58rem;   /* how far a fork's second line sits off the trunk */
+  --track: 1.05rem;  /* how far a fork's second line sits off the trunk */
   --stop-c: 1.55rem; /* centre of a stop glyph, from the top of its cell */
+  --stop-r: .6rem;   /* and its radius, so a junction can start clear of it */
   --t: 160ms;
   color-scheme: light;
 }
@@ -297,32 +298,44 @@ svg { display: block; }
 .item.br-unpicked .fork-label { color: var(--muted); font-weight: 400; }
 .dots .dimmed { opacity: .28; }
 
-/* The line itself forks. A second track leaves the trunk at the first item of
-   a group and rejoins at the last; the items that can happen either way stay
-   on the trunk while it runs alongside them. */
+/* The line itself forks. A branch line leaves the trunk at the first item of a
+   group, runs alongside it carrying that group's stops, and rejoins at the
+   last. Items inside the span that belong to no option -- the JR to Nara on
+   the 24th, which you catch whichever way the morning goes -- stay on the
+   trunk while the branch runs past them.
+   Junctions start clear of --stop-r, or the glyph's opaque disc eats them. */
 .item.br-span .stop::after {
   content: ""; position: absolute; z-index: 0;
   left: calc(50% + var(--track) - 1px); width: 2px; top: 0; bottom: 0;
-  background: var(--indigo); opacity: .5;
+  background: var(--indigo); opacity: .55;
 }
-.item.br-span-first .stop::after { top: calc(var(--stop-c) + .62rem); }
-.item.br-span-last .stop::after { bottom: calc(100% - var(--stop-c) + .62rem); }
+.item.br-span-first .stop::after { top: var(--stop-c); }
+.item.br-span-last .stop::after { bottom: calc(100% - var(--stop-c)); }
+/* the junction itself: out of the trunk and down, or up and back into it */
 .item.br-span-first .stop::before,
 .item.br-span-last .stop::before {
   content: ""; position: absolute; z-index: 0;
-  left: 50%; width: var(--track); height: .62rem;
-  border-right: 2px solid var(--indigo); opacity: .5;
+  left: calc(50% + var(--stop-r)); width: calc(var(--track) - var(--stop-r));
+  height: .55rem; opacity: .55;
+  border-right: 2px solid var(--indigo);
 }
 .item.br-span-first .stop::before {
-  top: var(--stop-c);
-  border-top: 2px solid var(--indigo); border-top-right-radius: .62rem;
+  top: calc(var(--stop-c) - 1px);
+  border-top: 2px solid var(--indigo); border-top-right-radius: .55rem;
 }
 .item.br-span-last .stop::before {
-  bottom: calc(100% - var(--stop-c));
-  border-bottom: 2px solid var(--indigo); border-bottom-right-radius: .62rem;
+  bottom: calc(100% - var(--stop-c) - 1px);
+  border-bottom: 2px solid var(--indigo); border-bottom-right-radius: .55rem;
 }
-/* a stop that belongs to the fork rides the second track */
+/* a stop that belongs to the fork rides the branch line, not the trunk */
 .item.br-member .stop svg { transform: translateX(var(--track)); }
+/* a member in the middle of a span still needs joining to its line */
+.item.br-member:not(.br-span-first):not(.br-span-last) .stop::before {
+  content: ""; position: absolute; z-index: 0;
+  left: calc(50% + var(--stop-r)); width: calc(var(--track) - var(--stop-r));
+  top: calc(var(--stop-c) - 1px); height: 2px;
+  background: var(--indigo); opacity: .55;
+}
 
 /* ---------- open items ---------- */
 .open { padding: 1.5rem 0 2rem; border-top: 1px solid var(--rule); }

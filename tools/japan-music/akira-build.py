@@ -82,7 +82,9 @@ if '5' in SEC:
 else:
     LEAD_5, TABLES = '', {}
 # Trip shape, from the front matter: the order of the week, which city you
-# sleep in, the kanji for the weekday, and the lamp (held = already booked,
+# sleep in, the kanji for the weekday, and the lamp (held = already booked;
+# the lamp key stays "held" because CSS and the filter select on it, but the
+# word shown to the reader is "booked",
 # wait = not yet secured, ok = walk up, off = the night is spoken for).
 DAYS = [d['day'] for d in META['days']]
 CITY = {d['day']: d['city'] for d in META['days']}
@@ -93,7 +95,7 @@ if TABLES:
     assert list(TABLES) == DAYS, list(TABLES)
 
 LAMP_WORD = {
-    'ok': 'walk-up', 'wait': 'wait', 'held': 'held', 'off': 'spoken for'}
+    'ok': 'walk-up', 'wait': 'wait', 'held': 'booked', 'off': 'spoken for'}
 
 
 def paint_h2(h2html):
@@ -907,7 +909,16 @@ JS = r"""
     }
 
     function coast(){
-      if(moto) moto.classList.remove('moving','fast');
+      if(!moto) return;
+      moto.classList.remove('moving','fast');
+      // Parked at the top there is no "up" left to face. He pivots on his rear
+      // wheel, so mirrored at x=0 his nose hangs off the left edge of the rail;
+      // point him back into the page instead. Only once he has come to rest, so
+      // this never fires mid-scroll.
+      if(facing<0&&scrollY()<=1){
+        facing=1; revAccum=0;
+        moto.style.setProperty('--dir',1);
+      }
     }
 
     window.addEventListener('scroll',function(){
@@ -1112,7 +1123,7 @@ out = f"""<!doctype html>
       <button type="button" class="chip" data-filter="kansai">Kansai</button>
       <button type="button" class="chip" data-filter="jazz">Jazz</button>
       <button type="button" class="chip" data-filter="trad">Noh / Rites</button>
-      <button type="button" class="chip" data-filter="booked">Held</button>
+      <button type="button" class="chip" data-filter="booked">Booked</button>
     </div>
   </div>
   <div class="filter-msg" id="filter-msg" aria-live="polite">Showing all events across Tokyo &amp; Kansai</div>

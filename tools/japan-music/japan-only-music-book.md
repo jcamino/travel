@@ -68,7 +68,7 @@
         ]
       ],
       "price": "¥11,000",
-      "note": "all reserved; tickets held",
+      "note": "all reserved; booked",
       "tier": "Tier 3",
       "status": "HELD",
       "ref": "TK-2609251830"
@@ -194,14 +194,14 @@
 {note} **Two facts that shape the week, both verified.** (1) 21, 22 and 23 Sept 2026 are public holidays (敬老の日, 休日, 秋分の日) per the [Cabinet Office CSV](https://www8.cao.go.jp/chosei/shukujitsu/syukujitsu.csv) {v:VERIFIED}. (2) **中秋の名月 (harvest moon) is Friday 25 September 2026**, with the astronomical full moon two days later on the 27th, per the [National Astronomical Observatory](https://www.nao.ac.jp/astro/sky/2026/09-topics03.html) {v:VERIFIED}. That puts the Kyoto/Osaka/Nara moon-viewing rites on your last night, which is also the Takanaka night in Hikone; every one of them is confirmed for the 25th below, and none can be combined with the concert.
 
 ## 0 · Top picks
-{legend} Ranked on the show and the room together, then demoted for anything that tours Brooklyn regularly into a room worth nothing in particular. Takanaka is rank 0: the tickets are held and the evening is spent. Two of the four are the same Wednesday — the candle noh is the better room, Yamashita only if the lottery lands. Next in line: Uchihashi at UrBANGUILD (Thu 24), 友川カズキ at CLUB Que (Tue 22) if the Swallows game goes, Haino at 月花舎 (Sun 20).
+{legend} Ranked on the show and the room together, then demoted for anything that tours Brooklyn regularly into a room worth nothing in particular. Takanaka is rank 0: the tickets are booked and the evening is spent. Two of the four are the same Wednesday — the candle noh is the better room, Yamashita only if the lottery lands. Next in line: Uchihashi at UrBANGUILD (Thu 24), 友川カズキ at CLUB Que (Tue 22) if the Swallows game goes, Haino at 月花舎 (Sun 20).
 {cards}
 
 {card} Fri 25 · doors 17:30, start 18:30 · 高中正義 SUPER TAKANAKA LIVE 2026-2027, ひこね市文化プラザ グランドホール Hikone Bunka Plaza, Hikone — booked: the guitarist who sold out Brooklyn Paramount in April, five months later in a civic hall fifty minutes from Kyoto
-{www} What: 高中正義 Takanaka Masayoshi, 73, the guitarist of Sadistic Mika Band and of the instrumental records that defined Japanese fusion (SEYCHELLES 1976, JOLLY JIVE 1979, 虹伝説 The Rainbow Goblins 1981, the single BLUE LAGOON), on the current hall tour with his band. No running time is published; allow until about 21:00. | When: Fri 25 Sept · doors 17:30, start 18:30. Leave Arashiyama by about 15:00. | Where: ひこね市文化プラザ グランドホール, 野瀬町 187-4, Hikone, Shiga. JR 新快速 Kyoto → Hikone about 50 min, then a taxi (about 10 min); or one local stop back to 南彦根, the hall's own nearest station, and the 湖国バス 県立大学線 to the ひこね市文化プラザ stop, or 22 min on foot. | Cost: ¥11,000 all reserved, tickets held.
+{www} What: 高中正義 Takanaka Masayoshi, 73, the guitarist of Sadistic Mika Band and of the instrumental records that defined Japanese fusion (SEYCHELLES 1976, JOLLY JIVE 1979, 虹伝説 The Rainbow Goblins 1981, the single BLUE LAGOON), on the current hall tour with his band. No running time is published; allow until about 21:00. | When: Fri 25 Sept · doors 17:30, start 18:30. Leave Arashiyama by about 15:00. | Where: ひこね市文化プラザ グランドホール, 野瀬町 187-4, Hikone, Shiga. JR 新快速 Kyoto → Hikone about 50 min, then a taxi (about 10 min); or one local stop back to 南彦根, the hall's own nearest station, and the 湖国バス 県立大学線 to the ひこね市文化プラザ stop, or 22 min on foot. | Cost: ¥11,000 all reserved, tickets booked.
 {meta} {t3:Tier 3} (Brooklyn Paramount, 4–5 April 2026, sold out) · booked · {v:VERIFIED} [takanaka.com/live](https://takanaka.com/live/) (doors, start, price, and the world-tour dates), [bunpla.jp access](https://www.bunpla.jp/access/)
 **What it is.** Takanaka has made records since 1972, and since the streaming revival he tours the world: SUPER TAKANAKA WORLD LIVE 2026 sold out two nights at London's O2 Academy Brixton, **two nights at Brooklyn Paramount on 4 and 5 April**, the Aragon Ballroom in Chicago, The Masonic in San Francisco, two nights at the Hollywood Palladium and two in Sydney, after two nights at the Wiltern in Los Angeles in March 2025. This tour is three September halls (Katsushika 18 Sept, Hikone 25 Sept, Sendai 27 Sept) and the Hikone date is the one that fits the trip. It is a civic hall in a castle town on Lake Biwa. Tickets are ¥11,000 all reserved.
-**Why it is rank 0.** The tickets are held and the evening is already spent, so there is nothing to decide. Ranked on the room it would place low: he sold out Brooklyn Paramount in April, and ひこね市文化プラザ is a civic hall.
+**Why it is rank 0.** The tickets are booked and the evening is already spent, so there is nothing to decide. Ranked on the room it would place low: he sold out Brooklyn Paramount in April, and ひこね市文化プラザ is a civic hall.
 **The evening.** Leave Arashiyama by about 15:00 (JR Saga-Arashiyama → Kyoto, 16 min), take the 新快速 from Kyoto toward Maibara (Hikone in about 50 min, four an hour), and be at the hall for doors at 17:30. Back the same way; trains toward Kyoto run past 22:30 {s:SECONDARY} (not read on JR's own timetable; check the last 新快速 on the day). Every Kyoto rite (Shimogamo 17:30, Daikaku-ji 17:30, Yasaka 19:00) runs while you are in the hall, so nothing of the 観月 is recoverable. Sat 26 is the early airport train.
 {/card}
 
@@ -341,12 +341,12 @@ The first outside the ranking. Rules out Christian McBride at Billboard Osaka (2
 ### Fri 25 Sept — Arashiyama until about 15:00; Takanaka in Hikone, booked; the harvest-moon rites collide; early airport train on Sat
 {cards night}
 {card} 高中正義 SUPER TAKANAKA LIVE, Hikone — booked
-{www} What: Takanaka's autumn hall tour, グランドホール. {t3:Tier 3}: he sold out Brooklyn Paramount on 4–5 April 2026 | When: Fri 25 · doors 17:30, start 18:30. Leave Arashiyama by about 15:00. | Where: ひこね市文化プラザ, Hikone (JR 新快速 from Kyoto about 50 min, then a taxi, or 湖国バス from 南彦根). | Cost: ¥11,000, tickets held.
-Rank 0, the one ticket already held. Every Kyoto moon rite below runs while you are in the hall. {v:VERIFIED} [takanaka.com](https://takanaka.com/live/).
+{www} What: Takanaka's autumn hall tour, グランドホール. {t3:Tier 3}: he sold out Brooklyn Paramount on 4–5 April 2026 | When: Fri 25 · doors 17:30, start 18:30. Leave Arashiyama by about 15:00. | Where: ひこね市文化プラザ, Hikone (JR 新快速 from Kyoto about 50 min, then a taxi, or 湖国バス from 南彦根). | Cost: ¥11,000, tickets booked.
+Rank 0, the one ticket already booked. Every Kyoto moon rite below runs while you are in the hall. {v:VERIFIED} [takanaka.com](https://takanaka.com/live/).
 {/card}
 {card} Shimogamo 名月管絃祭, then Yasaka 祇園社観月祭
 {www} What: Two moon rites in one evening: shakuhachi, gagaku and koto from Shimogamo's 橋殿 by firelight, then the rite, poem recital, 舞楽 by 弥栄雅楽会, koto, lion dance and taiko on Yasaka's 舞殿. {t1:Tier 1} | When: Fri 25 · Shimogamo 17:30–21:00 (leave it about 18:35) · Yasaka 19:00 to about 21:00, 舞楽 19:30. Leave Arashiyama by 16:15. | Where: Shimogamo Jinja, Demachiyanagi → Keihan to Gion-Shijō (5 min) → Yasaka Jinja, Gion. Both roofed if it rains. | Cost: free, no ticket.
-These would lead Friday if the Takanaka tickets were not already held; both run while you are in Hikone. If those tickets fall through, this, and if only one, Yasaka. {v:VERIFIED} [Shimogamo](https://www.shimogamo-jinja.or.jp/saiji/meigetsu2026), [Yasaka](https://www.yasaka-jinja.or.jp/).
+These would lead Friday if the Takanaka tickets were not already booked; both run while you are in Hikone. If those tickets fall through, this, and if only one, Yasaka. {v:VERIFIED} [Shimogamo](https://www.shimogamo-jinja.or.jp/saiji/meigetsu2026), [Yasaka](https://www.yasaka-jinja.or.jp/).
 {/card}
 {card} Daikaku-ji 観月の夕べ, where you already are
 {www} What: Moon-viewing over Ōsawa pond, a Buddhist service under the moon 19:00–19:30, dragon-headed boats for holders of the ¥7,000 lottery ticket that closed in July (same-day cancel-wait at 17:30). The temple's 2026 pages list no gagaku, koto or shakuhachi. {t2:Tier 2} for music | When: Fri 25 · 17:30–21:00 (also 26–27). From here Yasaka by 19:30 is about 50 minutes door to door, so Daikaku-ji can replace Shimogamo, not Yasaka. | Where: Daikaku-ji, Saga-Arashiyama, Kyoto. | Cost: ¥700 at the gate; boat ticket closed.
