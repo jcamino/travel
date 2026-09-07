@@ -76,7 +76,8 @@ STANDFIRST = head_block[:_m.end()]
 INTRO_REST = head_block[_m.end():]
 
 LEAD_0B, NIGHT = day_blocks('0b', r'<div class="cards night">')
-LEAD_2, TABLES = day_blocks('2', r'<div class="tw">')
+TBL_KEY = next((k for k in ORDER if 'per-day' in SEC[k]['title'].lower()), '5' if '5' in SEC else '2')
+LEAD_TBL, TABLES = day_blocks(TBL_KEY, r'<div class="tw">')
 # Trip shape, from the front matter: the order of the week, which city you
 # sleep in, the kanji for the weekday, and the lamp (held = already booked,
 # wait = not yet secured, ok = walk up, off = the night is spoken for).
@@ -218,7 +219,7 @@ for n, d in enumerate(DAYS):
         f'</div></details>')
 
 # ------------------------------------------------------------ everything else
-REST_KEYS = [k for k in ORDER if k not in ('0', '0b', '1', '2')]
+REST_KEYS = [k for k in ORDER if k not in ('0', '0b', '1', TBL_KEY)]
 REST = []
 for k in REST_KEYS:
     t = SEC[k]['title']
@@ -1134,7 +1135,7 @@ out = f"""<!doctype html>
 {SEC['0b']['h2']}
 {LEAD_0B}
 <details class="calnote"><summary>What a day opens to</summary>
-<div class="calnotebody">{SEC['2']['h2']}{LEAD_2}</div></details>
+<div class="calnotebody">{SEC[TBL_KEY]['h2']}{LEAD_TBL}</div>
 
 <div class="cal-bar">
   <div class="cal-legend" aria-label="Status indicator key">
