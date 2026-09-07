@@ -51,6 +51,15 @@ since disappeared reads as *no choice*, never as a day with every option
 struck through. And one option may cover several items: on the 23rd, `gion`
 is both the dusk walk and the dinner after it, because they are one plan.
 
+The rail draws this literally. A branch line leaves the trunk just above a
+group's first item, runs alongside carrying that group's stops, and rejoins
+just below its last. Members need not be adjacent: on the 24th the JR to
+Nara sits between the sake and Uji and belongs to no option, so it stays on
+the trunk while the branch runs past it. Two forks on one day may therefore
+not overlap — the second would paint over the first — and `dialect_check.py`
+asserts they don't. The junctions are drawn clear of `--stop-r`, the glyph
+radius, because a stop's disc is opaque and would otherwise swallow them.
+
 Choosing is the browser's business, not the trip's. Picks live in
 `localStorage` under `japan-picks`, keyed `date/group`, and nothing is dimmed
 until you pick; tapping the chosen option again undecides the fork. `trip.md`
