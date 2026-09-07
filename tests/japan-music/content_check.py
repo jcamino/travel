@@ -2,11 +2,13 @@
 """Content-preservation gate for /japan/music.
 
 Usage: python tests/japan-music/content_check.py public/japan/music/index.html
+       python tests/japan-music/content_check.py public/japan/music-4.6/index.html tools/japan-music/japan-only-music-book-4.6.md
 
 Checks that the built page still carries every text fragment and every
-outbound link of the markdown source (`tools/japan-music/japan-only-music-book.md`),
-and that every `{musicref}` string on the itinerary page is present so the
-itinerary's `#:~:text=` links still land.
+outbound link of the markdown source (default
+`tools/japan-music/japan-only-music-book.md`; pass a second path for the
+traveler cut), and that every `{musicref}` string on the itinerary page
+is present so the itinerary's `#:~:text=` links still land.
 
 The design may add navigation labels, reorder sections, and re-render tags as
 stamps or glyphs, but it may not drop or paraphrase the source.
@@ -20,7 +22,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-SRC_MD = ROOT / "tools" / "japan-music" / "japan-only-music-book.md"
+DEFAULT_MD = ROOT / "tools" / "japan-music" / "japan-only-music-book.md"
 TRIP = ROOT / "tools" / "japan" / "trip.md"
 sys.path.insert(0, str(ROOT / "tools" / "japan-music"))
 import mdbook  # noqa: E402
@@ -65,8 +67,8 @@ def musicrefs():
                       re.M)
 
 
-def main(target: str) -> int:
-    _, body_md = mdbook.split_source(SRC_MD.read_text(encoding="utf-8"))
+def main(target: str, src_md: Path = DEFAULT_MD) -> int:
+    _, body_md = mdbook.split_source(src_md.read_text(encoding="utf-8"))
     src = mdbook.md_to_html(body_md)
     dst = Path(target).read_text(encoding="utf-8")
     src_text, dst_text = strip(src), strip(dst)
@@ -91,7 +93,8 @@ def main(target: str) -> int:
             missing.append(frag)
 
     lost_links = sorted(links(src) - links(dst))
-    lost_refs = [r for r in musicrefs() if r not in dst_text]
+    check_refs = "4.6" in src_md.name
+    lost_refs = [r for r in musicrefs() if r not in dst_text] if check_refs else []
 
     src_words, dst_words = len(src_text.split()), len(dst_text.split())
     print(f"source words {src_words}, target words {dst_words}")
@@ -111,7 +114,8 @@ def main(target: str) -> int:
 
 if __name__ == "__main__":
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-    if len(sys.argv) != 2:
+    if len(sys.argv) not in (2, 3):
         print(__doc__)
         sys.exit(2)
-    sys.exit(main(sys.argv[1]))
+    src = Path(sys.argv[2]) if len(sys.argv) == 3 else DEFAULT_MD
+    sys.exit(main(sys.argv[1], src))
