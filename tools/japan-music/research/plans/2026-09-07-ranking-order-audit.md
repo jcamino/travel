@@ -1,5 +1,14 @@
 # Ranking-order audit — `## 0 · Top five for the whole trip, in order`
 
+> **Status, 7 Sept 2026: acted on in `4ffbc12`.** Finding 1 closed by option
+> (b) plus a new criterion from Javier — show and room together, demoted for
+> acts that tour Brooklyn into dull rooms — with Takanaka pulled out as rank 0.
+> Finding 3 closed by re-reading the sellers: 御香宮 web sales run *until* 13
+> Sept (the page said "closed", and B seats are buyable online now), and AKB48
+> closes 15 Sept at 16:00. Yamashita's 13 Sept 18:00 was confirmed correct.
+> Finding 2 was **not** acted on: the two Wednesday branches are still ranked
+> apart, at 1 and 4, with the collision stated in the legend instead.
+
 Checked 7 Sept 2026 against the page's own stated test. No sources were
 re-fetched; this is an internal-consistency audit only. Every tier label below
 is quoted from the page's own `{meta}` lines.

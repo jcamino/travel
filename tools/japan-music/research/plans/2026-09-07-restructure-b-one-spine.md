@@ -1,5 +1,13 @@
 # Restructure B — one spine, seven days
 
+> **Status, 7 Sept 2026: superseded in `69014b6`, at a fraction of the cost.**
+> The source merge described below was written and then reverted. It was
+> unnecessary: `akira-build.py` already folds a day's table into that day's
+> plate, but it looks for the tables in section 5 and they were numbered 2, so
+> the fold never fired. Renumbering turned it on. The per-day duplication is
+> gone from the page without rewriting seven day-blocks or touching a musicref.
+> Read the plan below as the reasoning, not as the thing that was done.
+
 **Goal:** same as A, reached by deletion rather than re-filing. Cut the page's
 duplication so there is one place to look per day.
 

@@ -1,5 +1,10 @@
 # Restructure A — deadline-first
 
+> **Status, 7 Sept 2026: shipped in `4ffbc12`.** Section 1 "Act this week"
+> exists and carries three lines; the old booking list is section 2. The
+> deadline dates were verified against the sellers first, which changed two of
+> them — see the audit.
+
 **Goal:** a reader on a phone, deciding what to book, gets the answer in one
 screen. Everything that cannot be missed is above the fold; everything else is
 reference below it.
