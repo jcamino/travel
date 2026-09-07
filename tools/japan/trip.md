@@ -263,31 +263,62 @@
 {map}
 {url}
 
-## 2026-09-24 | Thu | 24 | Kyoto | Fushimi Inari and Higashiyama
+## 2026-09-24 | Thu | 24 | Kyoto | Fushimi Inari, Nara, Higashiyama
 {base} BnA Alter Museum
 
-###  | Fushimi Inari at dawn
+###  | Fushimi Inari at dawn: the 千本鳥居 thousand torii
 {status} walkup
-{detail} Full summit loop (2 to 3 h).
+{detail} The tunnel of vermilion gates behind the main hall. Free, open all hours, and empty before about 08:00.
+{place} Fushimi Inari Taisha
+{map} Fushimi Inari Taisha
+{url} https://inari.jp/
+- Music page's morning is Nishi Honganji's 晨朝 chant at 06:00 instead (gates 05:30, Amida Hall, free, ten minutes from Karasuma; Higashi Honganji follows at 07:00). Cannot do both.
+
+###  | Fushimi Inari summit loop
+{status} walkup
+{detail} Straight on past the torii and up Inari-san, 233 m. Two to three hours round trip, with the 四つ辻 viewpoint over Kyoto about halfway.
 {place} Fushimi Inari Taisha
 {map} Fushimi Inari Taisha
 {url}
-- Music page's morning is Nishi Honganji's 晨朝 chant at 06:00 instead (gates 05:30, Amida Hall, free, ten minutes from Karasuma; Higashi Honganji follows at 07:00). Cannot do both.
+- Wear something you can climb in; it is stone steps most of the way.
+
+###  | JR Nara line, Inari to Nara
+{travel}
+{status} suggested
+{detail} Inari station is on the JR Nara line, so the day carries on south instead of doubling back. About 45 min on the local.
+{place} Inari Station
+{map} Inari Station, Kyoto
+{url}
+- Times to confirm; the rapid services skip Inari, so it is the local from here or the rapid from Kyoto.
+
+###  | Nara Park: the deer, then Tōdai-ji
+{status} suggested
+{detail} The deer roam loose across the park and bow for 鹿せんべい crackers sold at the stalls. Tōdai-ji's Daibutsuden holds the Great Buddha.
+{place} Nara Park
+{map} Nara Park, Nara
+{url} https://www3.pref.nara.jp/park/
+{extramap} Tōdai-ji | Todai-ji, Nara
+- Opening hours and the Daibutsuden fee to confirm before you go.
+- The deer are wild animals, not an attraction: they headbutt for food and the park says to bow back and show empty hands.
 
 ###  | Kiyomizu-dera
 {status} walkup
-{detail} After Fushimi Inari.
+{detail} On the way back from Nara, late afternoon. Check the closing time before you commit to it.
 {place} Kiyomizu-dera
 {map} Kiyomizu-dera
-{url}
+{url} https://www.kiyomizudera.or.jp/
 
-###  | Jazz kissa night, or live jazz
+### 19:00 | Music page: blues.the-butcher-590213 release show, 磔磔
+{music}
 {status} suggested
-{detail} Yamatoya, Lush Life, Rokuyousha; or live at Le Club Jazz or RAG.
-{place}
-{map}
-{url}
-- Music page: Le Club Jazz and Candy lineups unread; RAG Thu 24 not listed.
+{detail} The domestic blues institution releasing "Live at Takutaku", the album they recorded in this room: a 1974 sake warehouse on Shijō-Takakura, 8 min walk from base. Open 18:00, start 19:00. ¥5,500 advance, ¥6,000 at the door.
+{musicref} Thu 24 · 19:00 · 磔磔 Takutaku
+{place} 磔磔 Takutaku
+{map} Takutaku, Shijo-Takakura, Kyoto
+{url} https://takutaku.jp/
+- Clashes with UrBANGUILD below (19:30). One or the other.
+- 永井"ホトケ"隆, 沼澤尚, 中條卓 and KOTEZ. Tier 2 players in a Tier 1 room.
+- Advance tickets by email through the venue site, or over the counter at 磔磔.
 
 ### 19:30 | Music page: Lukas Ligeti & 内橋和久 Uchihashi Kazuhisa, UrBANGUILD
 {music}
@@ -299,6 +330,15 @@
 {url} https://urbanguild.net/events
 - No external seller listed; reserve through the venue or pay at the door.
 - Other options tonight: Boris × DURAN at Yogibo META VALLEY, Osaka, 19:30, ¥5,000 + drink (TIGET, international path; Boris tours the US yearly); Blues The Butcher's release show in the 磔磔 sake warehouse, 19:00, ¥5,500, email; Sone in Kobe, three resident sets from 18:30, ¥2,200.
+- Clashes with the 磔磔 release show above (19:00). One or the other.
+
+###  | Jazz kissa night, or live jazz
+{status} suggested
+{detail} Yamatoya, Lush Life, Rokuyousha; or live at Le Club Jazz or RAG.
+{place}
+{map}
+{url}
+- Music page: Le Club Jazz and Candy lineups unread; RAG Thu 24 not listed.
 
 ###  | Vegan / shojin ryori dinner reservation
 {status} pending
@@ -357,35 +397,6 @@
 - Booked on Sept 6. Javier may still go to the Sept 18 Katsushika date on his own.
 - Music page: Tier 2, never plays the US. Hall ticket centre 0749-27-5200 (closed Mondays).
 - Collides with every harvest-moon rite in Kyoto (Shimogamo, Yasaka, Daikakuji). Leave Arashiyama with time for the JR to Hikone; the Haruka to KIX is ~08:00 next morning.
-
-###  | Jugoya (harvest moon) tonight: Daikakuji moon-viewing on the Osawa pond
-{status} suggested
-{detail} The calm Kyoto option. Collides with Takanaka in Hikone (18:30).
-{place} Daikaku-ji
-{map} Daikaku-ji, Kyoto
-{url}
-- Music page: 観月の夕べ opens 17:30, ¥700 at the gate; the ¥7,000 dragon-boat ticket closed 24 July, same-day cancel-wait at 17:30 only. Daytime visit is a separate ticket (昼夜入替).
-- Music page ranks this as the fallback; its pick is Shimogamo then Yasaka below. Yasaka by 19:30 from Daikakuji is about 50 minutes door to door.
-
-### 17:30 | Music page: Shimogamo 名月管絃祭, then Yasaka 祇園社観月祭
-{music}
-{status} suggested
-{detail} Collides with Takanaka in Hikone (18:30). Two harvest-moon rites in one evening, both free, no ticket, standing. Shimogamo 17:30 to 21:00 (shakuhachi, gagaku, koto from the 橋殿 by firelight); Yasaka 19:00 to 21:00 (舞楽 19:30, koto 20:00, lion dance 20:30, taiko 20:45).
-{musicref} Fri 25 · 17:30 then 19:00 · Shimogamo
-{place} Shimogamo Jinja
-{map} Shimogamo Jinja
-{url} https://www.shimogamo-jinja.or.jp/
-{extramap} Yasaka Jinja | Yasaka Jinja, Gion
-- Leave Arashiyama by about 16:15. Shimogamo 17:30 to 18:35, walk to Demachiyanagi, Keihan to Gion-Shijō (5 min), stand on the west side of Yasaka's 舞殿 by 19:10.
-- If you only do one: Yasaka. Both stages are roofed if it rains. Over by about 21:00, which suits the early airport train.
-- Yasaka Jinja is 5 min from Gion-Shijō, 15 min walk from Kawaramachi.
-
-###  | Vegan dinner reservation
-{status} pending
-{detail} If not doing Daikakuji.
-{place}
-{map}
-{url}
 
 ## 2026-09-26 | Sat | 26 | Kyoto to KIX | Kyoto to KIX to Lijiang
 {base} 
