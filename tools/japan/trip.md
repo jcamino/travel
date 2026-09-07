@@ -350,13 +350,13 @@
 ## 2026-09-25 | Fri | 25 | Kyoto | Arashiyama, then Takanaka in Hikone
 {base} BnA Alter Museum
 
-###  | Sagano Romantic Train, Torokko Saga to Torokko Kameoka
+### 09:02 | Sagano Romantic Train, Torokko Saga to Torokko Kameoka
 {travel}
 {status} booked
-{detail} Departure time and car number to fill in; car 5 "The Rich" is the open-air one; last season for the current retro fleet.
+{detail} 09:02 from Torokko Saga, car 5 — "The Rich", the open-sided one with no glass. Last season for the current retro fleet.
 {conf}
 {via}
-{car}
+{car} 5
 {place} Torokko Saga Station
 {map} Torokko Saga Station
 {url}
@@ -369,7 +369,7 @@
 {place} Hozugawa boat, Kameoka
 {map} Hozugawa Kudari boarding, Kameoka
 {url}
-- Take the Romantic Train run that reaches Torokko Kameoka in time for the 10:00 boat.
+- The 09:02 is the run that reaches Torokko Kameoka in time for the 10:00 boat.
 
 ###  | Bamboo grove, Tenryu-ji grounds
 {status} walkup
