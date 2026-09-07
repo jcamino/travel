@@ -188,7 +188,7 @@
 {kicker} Music you cannot see stateside · Silver Week 2026
 # Silver Week Japan-Only Book
 {lede} Tokyo Sat 19 – Tue 22 Sept, Kansai Wed 23 – Fri 25 Sept 2026. Two New Yorkers, Shibuya then downtown Kyoto. The test for everything here: could a Brooklyn resident see essentially this within a normal year without flying? One thing is booked: 高中正義 in Hikone on Fri 25.
-{lede} Every event was read on the organiser's or venue's own page on 5–6 Sept 2026. Fixed points: Sat 19 lands at 15:00, evening open from about 17:30; Sun 20 and Mon 21 are free; Tue 22 is Mt Takao in the morning and **Swallows vs Hanshin at Jingu at 18:00** ([NPB](https://npb.jp/games/2026/schedule_09_detail.html)); Wed 23 the Shinkansen reaches Kyoto at 16:44; Thu 24 is free; Fri 25 is Arashiyama until about 15:00, then **高中正義 SUPER TAKANAKA LIVE in Hikone, doors 17:30, start 18:30, booked**, with an early airport train on Sat 26. Open a day for that night's three, then the table of everything else. Section 1 is what closes this week; section 2 is everything else to arrange before you fly.
+{lede} Every event was read on the organiser's or venue's own page on 5–6 Sept 2026. Fixed points: Sat 19 lands at 15:00, evening open from about 17:30; Sun 20 and Mon 21 are free; Tue 22 is Mt Takao in the morning and **Swallows vs Hanshin at Jingu at 18:00** ([NPB](https://npb.jp/games/2026/schedule_09_detail.html)); Wed 23 the Shinkansen reaches Kyoto at 16:44; Thu 24 is free; Fri 25 is Arashiyama until about 15:00, then **高中正義 SUPER TAKANAKA LIVE in Hikone, doors 17:30, start 18:30, booked**, with an early airport train on Sat 26. Open a day for that night's three, then the table of everything else. Section 1 is what closes this week; section 2 is everything else to arrange before you fly. Open a day for that night's picks and the rest of the day with them.
 {legend} {v:VERIFIED} = read on the organiser's or venue's own page. {s:SECONDARY} = search snippet, blog, aggregator or inference. The tier badge demotes, it does not rank: {t1:Tier 1} the form or setting exists only in Japan · {t2:Tier 2} the artist essentially never leaves Japan · {t3:Tier 3} tours Brooklyn, so it has to earn its place on the room · {smp:SAMPLER} tourist product.
 
 {note} **Two facts that shape the week, both verified.** (1) 21, 22 and 23 Sept 2026 are public holidays (敬老の日, 休日, 秋分の日) per the [Cabinet Office CSV](https://www8.cao.go.jp/chosei/shukujitsu/syukujitsu.csv) {v:VERIFIED}. (2) **中秋の名月 (harvest moon) is Friday 25 September 2026**, with the astronomical full moon two days later on the 27th, per the [National Astronomical Observatory](https://www.nao.ac.jp/astro/sky/2026/09-topics03.html) {v:VERIFIED}. That puts the Kyoto/Osaka/Nara moon-viewing rites on your last night, which is also the Takanaka night in Hikone; every one of them is confirmed for the 25th below, and none can be combined with the concert.
@@ -240,7 +240,7 @@
 {/cards}
 
 ## 0b · The best three each night
-{legend} One ranking per day, Sat 19 to Fri 25, on the same test. Three entries unless the day has an obvious single answer or a fixed commitment; the rest of each day is in the per-day tables (section 3). Prices per person, drink charges included where the venue states one.
+{legend} One ranking per day, Sat 19 to Fri 25, on the same test. Three entries unless the day has an obvious single answer or a fixed commitment; everything else that day opens under the same day. Prices per person, drink charges included where the venue states one.
 ### Sat 19 Sept — you land at 15:00; in Shibuya by about 17:30, the whole evening is open
 {cards night}
 {card} 金王八幡宮 例大祭 宵宮 stage, then Pit Inn: The Blend with 峰厚介
@@ -386,7 +386,54 @@ Kamigamo {v:VERIFIED} by the shrine's own annual page (仲秋, 16:30, open entry
 - **Free rites:** Yasaka, Shimogamo, Kamigamo, Sumiyoshi, Nara, Yoyogi-Hachiman, temple 晨朝 — nothing to book. Daikaku-ji ¥700 at the gate.
 {/ol}
 
-## 3 · Per-day tables
+## 3 · Reference: walk-in rooms
+{legend} A second view, gathered for lookup, of rooms already named above: what each one is, where it is, when it is open. None needs booking.
+{table}
+^| What (room) | Where | When (hours / closed) | Charge | Talking | Status | Source |
+| **名曲喫茶ライオン Lion** (1926) | Dōgenzaka 2-19-13, 10 min from base | **13:00–20:00** (LO 19:30), open every day (New Year, mid-Aug holidays); 定時コンサート **15:00 and 19:00** (~1 h), requests otherwise, one per group | drinks only; coffee ~¥550 {s:S} | no loud talk; no photos/video; no outside food; keyboards silent | {v:V} | [lion.main.jp/shop](https://lion.main.jp/shop/shop.htm), [request](https://lion.main.jp/request/request.htm), [rules](https://lion.main.jp/readme/readme.htm) |
+| **名曲喫茶ヴィオロン Violon** (1979) | Asagaya-kita 2-9-5 | Record time **12:00–17:00**; evenings are lives (see Sun 20); **closed Tuesdays** (22nd) | drink ¥500 (the site's own phrase); live charges vary from 2026 | quiet | {v:V} | [meikyoku-kissa-violon.com](http://meikyoku-kissa-violon.com/), [Sept lives](http://meikyoku-kissa-violon.com/live202609.html) |
+| **名曲喫茶ミニヨン Mignon** | Ogikubo | Mon–Sat 12:00–21:00, Sun/hol 11:00–19:00, **closed Wednesdays** | drinks | allowed, quietly | {s:S} | [Santatsu](https://san-tatsu.jp/articles/41026/), [Time Out](https://www.timeout.jp/tokyo/ja/%E3%83%AC%E3%82%B9%E3%83%88%E3%83%A9%E3%83%B3/%E5%90%8D%E6%9B%B2%E5%96%AB%E8%8C%B6%E3%83%9F%E3%83%8B%E3%83%A8%E3%83%B3) |
+| **BAR MARTHA** | Ebisu 1-22-23 | **19:00–03:00**, no reservations, open daily (5-day New Year and summer breaks) | charge not published (widely reported ~¥1,000) {s:S} | no loud talk; **no photos**, no SNS | {v:V} | [martha-records.com](https://www.martha-records.com/martha.html) |
+| **Grandfather's** (1971 rock bar) | Shibuya 1-24-7 B1 (Miyamasuzaka) | 17:00–02:00, Tue–Sun; **closed Mondays** (so not Mon 21) | no charge; drinks from ¥500 {s:S}; smoking | yes | {v:V} | [grandfather.jp](http://grandfather.jp/), [Time Out](https://www.timeout.jp/tokyo/ja/%E3%83%90%E3%83%BC/grandfathers) |
+| **名曲喫茶 柳月堂 Yanagetsudō** | Demachiyanagi (2F over the bakery) | 10:00–21:00 (LO 20:30); closed-day reports conflict (無休 vs Tue) — phone 075-781-5162 | listening room +¥500, separate 談話室 without charge | listening room: 私語厳禁 | {s:S} | [Kyotopi](https://kyotopi.jp/articles/piY9u) |
+| Osaka | マヅラ (Osaka Ekimae Dai-1 Bldg; founded 1947 as a meikyoku kissa, now a retro kissa); クラシック音楽喫茶 あんさんぶる (Sekime) | — | — | — | {s:S} | [Rurubu](https://rurubu.jp/andmore/article/9934), [Hot Pepper](https://www.hotpepper.jp/strJ000857579/) |
+| 月花舎 Gekkasha | Jimbōchō | café/bar 1F, listening space B1 (the Haino room) | — | — | {s:S} | [gekkasha.modalbeats.com](http://gekkasha.modalbeats.com/) |
+{/table}
+
+### Jazz kissa
+{legend} Same columns: the room, where, when it is open on your days.
+{table}
+^| What (room) | Where | When (hours / closed) | Charge | Talking | Status | Source |
+| **ジャズ喫茶いーぐる Eagle** (1967) | Yotsuya 1-8, Tokyo | Mon–Fri 11:30–23:20, Sat 12:00–23:20, **closed Sundays and holidays** — i.e. closed Sun 20, Mon 21, Tue 22; open only your landing Saturday | drinks | silent until 18:00, bar mode after | {v:V} | [jazz-eagle.com](http://jazz-eagle.com/information.html) |
+| **JAZZ SPOT YAMATOYA** (1970) | Kumano-jinja crossing, Sakyō, Kyoto | 12:00–22:00 (LO 21:30); **closed Wed and Thu** (added 2025) — so Fri 25 daytime only | soft drinks from ¥700, beer from ¥850; alcohol charge ¥600 after 19:00; ~30 seats | quiet | {v:V} | [jazz-yamatoya.com](https://jazz-yamatoya.com/) |
+| **Jazz In ろくでなし Rokudenashi** | Kiyamachi-Shijō-sagaru, 5 min from base | Mon–Thu 14:00–02:00, Fri–Sat 14:00–05:00; cash; occasional lives | drinks | yes (bar) | {s:S} | [Kyoto jazz kissa map](https://kyotojazzkissa-map.com/current-jazzkissa/rokudenashi/), [rokude.com](https://rokude.com/) |
+| **Murra** | Takano, Sakyō, Kyoto | 12:30–23:30; closed Tue and Wed (open Thu 24, Fri 25) | drinks | — | {s:S} | [map](https://kyotojazzkissa-map.com/current-jazzkissa/murra/) |
+| **Hanaya** | Higashiyama-Sanjō, Kyoto | 18:00–23:00; closed Sun and Mon | drinks | — | {s:S} | [map](https://kyotojazzkissa-map.com/current-jazzkissa/hanaya/) |
+| **Lush Life** | Demachiyanagi, Kyoto (next to Yanagetsudō) | 12:00–22:00; closed Tue | drinks | — | {s:S} | [map](https://kyotojazzkissa-map.com/current-jazzkissa/lush-life/) |
+| DUG (Shinjuku), Meg (Kichijōji), Rompercicci (Nakano), Chigusa (Yokohama), Jamjam (Kobe) | — | DUG's site returned 404 at both paths tried; Meg's site timed out twice; the others were not fetched | — | — | — | could not verify |
+{/table}
+
+## 4 · Reference: traditional stage
+{legend} A second view, by date, of the traditional-stage entries above: what is on, where, when, and whether you can buy it.
+{table}
+^| When (date) | What | Where | When (time) | ¥ pp | Music on stage | Bookable by you? | Status |
+| 2–26 Sept, in window 19–22 | Kabuki-za 秀山祭九月大歌舞伎 (昼 11:00, 夜 16:00; 21 night 貸切, 25 day 貸切; 幕見 open) | Higashi-Ginza | see card | 幕見 ¥600–2,800; house ¥5,000–20,000 | 三社祭 (清元 dance), 雛鶴三番叟, 京人形 (常磐津×長唄), 一條大蔵譚 | 幕見 online from noon the day before (card + 3DS); house seats via チケットWeb松竹 / 0570-000-489 | {v:V} |
+| Sun 20 | 梅若会定式能 「定家」 | 梅若能楽学院会館 | 12:30 | 7,000 | full hayashi and chorus | door (自由席) | {v:V} |
+| Sun 20 | Bunraku 鑑賞教室 忠臣蔵 | 江東区文化センター | 11:00 / 14:30 | 6,000 | gidayū + shamisen | NTJ English site, foreign cards; 当日券 10:00 | {v:V} |
+| Sat 19 | 宝生会定期公演 (11:00 六浦/項羽; 15:30 咸陽宮/富士太鼓) | 宝生能楽堂 Suidōbashi | 11:00 / 15:30 | 5,500 | 富士太鼓 is a drum play | ✕ landing day | {v:V} |
+| Wed 23 | 能を知る会 東京公演 「皇帝」 (English 字幕e能) | 観世能楽堂 GINZA SIX | 13:00 | 7,100–9,300 | hayashi | ✕ Shinkansen | {v:V} |
+| Wed 23 | 関西観世花の会 「三輪」 13:30; 茂山狂言会 14:00 (Kongō) | Kyoto | 13:30 / 14:00 | 5,000–8,000 | — | ✕ arrive 16:44 | {v:V} |
+| **Wed 23** | **御香宮神能『蝋燭能』** 狂言 因幡堂 (茂山茂) / 能 花月 (杉浦豊彦) | 御香宮神社 能舞台, Fushimi | 17:45 / 18:30 | B 3,500 adv / 4,000 door; A sold out | full hayashi and chorus, candlelight, tent if rain | office by phone (JP, bank transfer) or B door tickets at 17:45 | {v:V} |
+| Thu 24 – Fri 25 | Noh in Kansai: none listed (the 23rd's candle noh above is the only one in your Kansai days). Tokyo: 新宿御苑 森の薪能 (24th 18:30, ¥6,000–11,000, Pia), 国立能楽堂 特別公演 野村万作/大槻文藏 (25th 17:00, ¥8,400–12,000) | Tokyo | — | — | — | ✕ you are in Kansai | {v:V} |
+| Sept | Hōgaku halls: Kioi Hall is closed for building works (its 12 Sept and November 邦楽 events are held elsewhere); National Theatre 邦楽 (none in Sept); Kyoto Art Center (no traditional music in window); 春秋座 (琉球芸能 special is not in the window; 日本芸能史 lectures from 28 Sept); e+ traditional-music listings Tokyo/Osaka/Kyoto: nothing 19–25 Sept | — | — | — | — | — | {v:V} |
+| Sept 15–30 | 明治座 松平健×コロッケ (歌謡ショー) | Ningyōchō | 11:00 / 16:30 | 7,000 / 14,000 | live band 歌謡ショー | ticket.meijiza.co.jp / phone | {v:V} |
+| Thu–Mon (closed Tue/Wed) | DRUM TAO Theater Kyoto (opened spring 2026) | Kyoto Stn Avanti 9F | 19:00 / 21:00 | 10,000 / 15,000 incl. drink | taiko show | online, cards | {v:V} {t3:Tier 3} |
+| daily | Gion Corner | Yasaka Hall | 18:00 / 19:00 | 3,300–6,600 | koto, gagaku, kyōgen, bunraku-or-noh excerpts | online / door | {v:V} {smp:SAMPLER} |
+| Sept | Kongō (13th reopening; 20th postponed; 27th 宇髙青蘭能之会), Ōtsuki (5, 12, 16, 18–19 万作の会, 26–27), Yamamoto (tea-ceremony days 22–23 only), Cerulean Tower (next 12 Oct), Kita (Tokyo: 24th lecture, 26th 青年能), Yarai (13th 九皐会), Tessenkai (27th 青山能) | — | — | — | — | — | {v:V} none in window |
+{/table}
+{legend} Read 5–6 Sept 2026 on each organiser's own page; Fushimi candle noh and the 15:00 landing revised 7 Sept.
+
+## 5 · Per-day tables
 {legend} Everything found, one line per item (what, where, when, price); daytime and evening separated. ✕ = collides with the game, with travel, or with a stronger option. Prices per person, charges in where known. n/p = not published.
 
 ### Sat 19 Sept — land 15:00; in Shibuya by about 17:30
@@ -518,50 +565,3 @@ Kamigamo {v:VERIFIED} by the shrine's own annual page (仲秋, 16:30, open entry
 | .day Eve · jazz | **高中正義 SUPER TAKANAKA LIVE, ひこね市文化プラザ** (Tier 3: Brooklyn Paramount, April 2026) | Hikone (JR 50 min) | 17:30 / 18:30 | 11,000 | {v:V} booked | leave Arashiyama by 15:00 |
 | .day Eve · jazz | Over Seas (Osaka) 寺井尚之 & 東ともみ duo 19:00; GALLON Ryu Miho & Eric Lee ¥4,500; RAG TOMPEI 18:30; Sone 新井雅代 18:30; Big Apple (Kobe) うむうむ。 19:30; Pit Inn TReS (Tokyo); Body & Soul 井上陽介 (Tokyo, 予約〆切); Blue Note Ulysses Owens (Tokyo); Bonds Rosary closed | Kansai / Tokyo | — | — | {v:V}/{s:S} | ✕ Takanaka |
 {/table}
-
-## 4 · Walk-in rooms
-{legend} What each room is, where it is, when it is open; none needs booking.
-{table}
-^| What (room) | Where | When (hours / closed) | Charge | Talking | Status | Source |
-| **名曲喫茶ライオン Lion** (1926) | Dōgenzaka 2-19-13, 10 min from base | **13:00–20:00** (LO 19:30), open every day (New Year, mid-Aug holidays); 定時コンサート **15:00 and 19:00** (~1 h), requests otherwise, one per group | drinks only; coffee ~¥550 {s:S} | no loud talk; no photos/video; no outside food; keyboards silent | {v:V} | [lion.main.jp/shop](https://lion.main.jp/shop/shop.htm), [request](https://lion.main.jp/request/request.htm), [rules](https://lion.main.jp/readme/readme.htm) |
-| **名曲喫茶ヴィオロン Violon** (1979) | Asagaya-kita 2-9-5 | Record time **12:00–17:00**; evenings are lives (see Sun 20); **closed Tuesdays** (22nd) | drink ¥500 (the site's own phrase); live charges vary from 2026 | quiet | {v:V} | [meikyoku-kissa-violon.com](http://meikyoku-kissa-violon.com/), [Sept lives](http://meikyoku-kissa-violon.com/live202609.html) |
-| **名曲喫茶ミニヨン Mignon** | Ogikubo | Mon–Sat 12:00–21:00, Sun/hol 11:00–19:00, **closed Wednesdays** | drinks | allowed, quietly | {s:S} | [Santatsu](https://san-tatsu.jp/articles/41026/), [Time Out](https://www.timeout.jp/tokyo/ja/%E3%83%AC%E3%82%B9%E3%83%88%E3%83%A9%E3%83%B3/%E5%90%8D%E6%9B%B2%E5%96%AB%E8%8C%B6%E3%83%9F%E3%83%8B%E3%83%A8%E3%83%B3) |
-| **BAR MARTHA** | Ebisu 1-22-23 | **19:00–03:00**, no reservations, open daily (5-day New Year and summer breaks) | charge not published (widely reported ~¥1,000) {s:S} | no loud talk; **no photos**, no SNS | {v:V} | [martha-records.com](https://www.martha-records.com/martha.html) |
-| **Grandfather's** (1971 rock bar) | Shibuya 1-24-7 B1 (Miyamasuzaka) | 17:00–02:00, Tue–Sun; **closed Mondays** (so not Mon 21) | no charge; drinks from ¥500 {s:S}; smoking | yes | {v:V} | [grandfather.jp](http://grandfather.jp/), [Time Out](https://www.timeout.jp/tokyo/ja/%E3%83%90%E3%83%BC/grandfathers) |
-| **名曲喫茶 柳月堂 Yanagetsudō** | Demachiyanagi (2F over the bakery) | 10:00–21:00 (LO 20:30); closed-day reports conflict (無休 vs Tue) — phone 075-781-5162 | listening room +¥500, separate 談話室 without charge | listening room: 私語厳禁 | {s:S} | [Kyotopi](https://kyotopi.jp/articles/piY9u) |
-| Osaka | マヅラ (Osaka Ekimae Dai-1 Bldg; founded 1947 as a meikyoku kissa, now a retro kissa); クラシック音楽喫茶 あんさんぶる (Sekime) | — | — | — | {s:S} | [Rurubu](https://rurubu.jp/andmore/article/9934), [Hot Pepper](https://www.hotpepper.jp/strJ000857579/) |
-| 月花舎 Gekkasha | Jimbōchō | café/bar 1F, listening space B1 (the Haino room) | — | — | {s:S} | [gekkasha.modalbeats.com](http://gekkasha.modalbeats.com/) |
-{/table}
-
-### Jazz kissa
-{legend} Same columns: the room, where, when it is open on your days.
-{table}
-^| What (room) | Where | When (hours / closed) | Charge | Talking | Status | Source |
-| **ジャズ喫茶いーぐる Eagle** (1967) | Yotsuya 1-8, Tokyo | Mon–Fri 11:30–23:20, Sat 12:00–23:20, **closed Sundays and holidays** — i.e. closed Sun 20, Mon 21, Tue 22; open only your landing Saturday | drinks | silent until 18:00, bar mode after | {v:V} | [jazz-eagle.com](http://jazz-eagle.com/information.html) |
-| **JAZZ SPOT YAMATOYA** (1970) | Kumano-jinja crossing, Sakyō, Kyoto | 12:00–22:00 (LO 21:30); **closed Wed and Thu** (added 2025) — so Fri 25 daytime only | soft drinks from ¥700, beer from ¥850; alcohol charge ¥600 after 19:00; ~30 seats | quiet | {v:V} | [jazz-yamatoya.com](https://jazz-yamatoya.com/) |
-| **Jazz In ろくでなし Rokudenashi** | Kiyamachi-Shijō-sagaru, 5 min from base | Mon–Thu 14:00–02:00, Fri–Sat 14:00–05:00; cash; occasional lives | drinks | yes (bar) | {s:S} | [Kyoto jazz kissa map](https://kyotojazzkissa-map.com/current-jazzkissa/rokudenashi/), [rokude.com](https://rokude.com/) |
-| **Murra** | Takano, Sakyō, Kyoto | 12:30–23:30; closed Tue and Wed (open Thu 24, Fri 25) | drinks | — | {s:S} | [map](https://kyotojazzkissa-map.com/current-jazzkissa/murra/) |
-| **Hanaya** | Higashiyama-Sanjō, Kyoto | 18:00–23:00; closed Sun and Mon | drinks | — | {s:S} | [map](https://kyotojazzkissa-map.com/current-jazzkissa/hanaya/) |
-| **Lush Life** | Demachiyanagi, Kyoto (next to Yanagetsudō) | 12:00–22:00; closed Tue | drinks | — | {s:S} | [map](https://kyotojazzkissa-map.com/current-jazzkissa/lush-life/) |
-| DUG (Shinjuku), Meg (Kichijōji), Rompercicci (Nakano), Chigusa (Yokohama), Jamjam (Kobe) | — | DUG's site returned 404 at both paths tried; Meg's site timed out twice; the others were not fetched | — | — | — | could not verify |
-{/table}
-
-## 5 · Traditional stage
-{legend} What is on stage, where, on which date and at what time, and whether you can buy it.
-{table}
-^| When (date) | What | Where | When (time) | ¥ pp | Music on stage | Bookable by you? | Status |
-| 2–26 Sept, in window 19–22 | Kabuki-za 秀山祭九月大歌舞伎 (昼 11:00, 夜 16:00; 21 night 貸切, 25 day 貸切; 幕見 open) | Higashi-Ginza | see card | 幕見 ¥600–2,800; house ¥5,000–20,000 | 三社祭 (清元 dance), 雛鶴三番叟, 京人形 (常磐津×長唄), 一條大蔵譚 | 幕見 online from noon the day before (card + 3DS); house seats via チケットWeb松竹 / 0570-000-489 | {v:V} |
-| Sun 20 | 梅若会定式能 「定家」 | 梅若能楽学院会館 | 12:30 | 7,000 | full hayashi and chorus | door (自由席) | {v:V} |
-| Sun 20 | Bunraku 鑑賞教室 忠臣蔵 | 江東区文化センター | 11:00 / 14:30 | 6,000 | gidayū + shamisen | NTJ English site, foreign cards; 当日券 10:00 | {v:V} |
-| Sat 19 | 宝生会定期公演 (11:00 六浦/項羽; 15:30 咸陽宮/富士太鼓) | 宝生能楽堂 Suidōbashi | 11:00 / 15:30 | 5,500 | 富士太鼓 is a drum play | ✕ landing day | {v:V} |
-| Wed 23 | 能を知る会 東京公演 「皇帝」 (English 字幕e能) | 観世能楽堂 GINZA SIX | 13:00 | 7,100–9,300 | hayashi | ✕ Shinkansen | {v:V} |
-| Wed 23 | 関西観世花の会 「三輪」 13:30; 茂山狂言会 14:00 (Kongō) | Kyoto | 13:30 / 14:00 | 5,000–8,000 | — | ✕ arrive 16:44 | {v:V} |
-| **Wed 23** | **御香宮神能『蝋燭能』** 狂言 因幡堂 (茂山茂) / 能 花月 (杉浦豊彦) | 御香宮神社 能舞台, Fushimi | 17:45 / 18:30 | B 3,500 adv / 4,000 door; A sold out | full hayashi and chorus, candlelight, tent if rain | office by phone (JP, bank transfer) or B door tickets at 17:45 | {v:V} |
-| Thu 24 – Fri 25 | Noh in Kansai: none listed (the 23rd's candle noh above is the only one in your Kansai days). Tokyo: 新宿御苑 森の薪能 (24th 18:30, ¥6,000–11,000, Pia), 国立能楽堂 特別公演 野村万作/大槻文藏 (25th 17:00, ¥8,400–12,000) | Tokyo | — | — | — | ✕ you are in Kansai | {v:V} |
-| Sept | Hōgaku halls: Kioi Hall is closed for building works (its 12 Sept and November 邦楽 events are held elsewhere); National Theatre 邦楽 (none in Sept); Kyoto Art Center (no traditional music in window); 春秋座 (琉球芸能 special is not in the window; 日本芸能史 lectures from 28 Sept); e+ traditional-music listings Tokyo/Osaka/Kyoto: nothing 19–25 Sept | — | — | — | — | — | {v:V} |
-| Sept 15–30 | 明治座 松平健×コロッケ (歌謡ショー) | Ningyōchō | 11:00 / 16:30 | 7,000 / 14,000 | live band 歌謡ショー | ticket.meijiza.co.jp / phone | {v:V} |
-| Thu–Mon (closed Tue/Wed) | DRUM TAO Theater Kyoto (opened spring 2026) | Kyoto Stn Avanti 9F | 19:00 / 21:00 | 10,000 / 15,000 incl. drink | taiko show | online, cards | {v:V} {t3:Tier 3} |
-| daily | Gion Corner | Yasaka Hall | 18:00 / 19:00 | 3,300–6,600 | koto, gagaku, kyōgen, bunraku-or-noh excerpts | online / door | {v:V} {smp:SAMPLER} |
-| Sept | Kongō (13th reopening; 20th postponed; 27th 宇髙青蘭能之会), Ōtsuki (5, 12, 16, 18–19 万作の会, 26–27), Yamamoto (tea-ceremony days 22–23 only), Cerulean Tower (next 12 Oct), Kita (Tokyo: 24th lecture, 26th 青年能), Yarai (13th 九皐会), Tessenkai (27th 青山能) | — | — | — | — | — | {v:V} none in window |
-{/table}
-{legend} Read 5–6 Sept 2026 on each organiser's own page; Fushimi candle noh and the 15:00 landing revised 7 Sept.
