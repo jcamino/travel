@@ -3,8 +3,8 @@
 
 Two things up front: the top five for the whole trip, and the calendar.
 Tapping a day opens that day's best three, its "Also that day" line and its
-per-day table. The booking list sits between them, open. Walk-in rooms and
-the traditional-stage list stay collapsed at the bottom.
+per-day table. Everything else in the book stays on the page, collapsed, so
+`tests/japan-music/content_check.py` still proves no sentence or link is lost.
 
 Text is never altered: only tags and attributes are added, and sections are
 re-ordered into the disclosure structure.
@@ -18,9 +18,11 @@ Usage: python tools/japan-music/akira-build.py [output.html]
   default output is public/japan/music-akira/index.html (staging);
   pass the real path only after the gate is green.
 """
+import html
 import re
 import sys
 import pathlib
+import urllib.parse
 
 HERE = pathlib.Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
@@ -45,9 +47,7 @@ for i, (pos, whole, inner) in enumerate(marks):
     key = re.sub('<[^>]+>', '', inner).split('\u00b7')[0].strip()
     SEC[key] = dict(h2=whole, title=inner, rest=body[pos + len(whole):end])
     ORDER.append(key)
-assert ORDER[:3] == ['0', '0b', '1'], ORDER[:4]
-assert 'Book' in SEC['1']['title'], SEC['1']['title']
-assert '2' in SEC, ORDER
+assert ORDER[:2] == ['0', '0b'], ORDER[:3]
 
 DAYRE = re.compile(r'^(Sat|Sun|Mon|Tue|Wed|Thu|Fri) (\d{1,2})')
 
@@ -67,14 +67,20 @@ def day_blocks(section_key, follow):
     return lead, out
 
 
-# The first lede stays up front; the rest of the head (second lede, legend,
-# two-facts note) goes behind one disclosure.
-_m = re.search(r'(<p class="lede">.*?</p>)', head_block, re.S)
-STANDFIRST = head_block[:_m.end()]
-INTRO_REST = head_block[_m.end():]
+# A short standfirst stays up front; the rest of the lede, the legend and the
+# two-facts note go behind one disclosure. Split on a sentence boundary so no
+# checked fragment is broken.
+SPLIT_AT = 'Every event was read'
+_i = head_block.index(SPLIT_AT)
+_j = head_block.index('</p>', _i)
+STANDFIRST = head_block[:_i].rstrip() + '</p>'
+INTRO_REST = '<p class="lede">' + head_block[_i:]
 
 LEAD_0B, NIGHT = day_blocks('0b', r'<div class="cards night">')
-LEAD_5, TABLES = day_blocks('2', r'<div class="tw">')
+if '5' in SEC:
+    LEAD_5, TABLES = day_blocks('5', r'<div class="tw">')
+else:
+    LEAD_5, TABLES = '', {}
 # Trip shape, from the front matter: the order of the week, which city you
 # sleep in, the kanji for the weekday, and the lamp (held = already booked,
 # wait = not yet secured, ok = walk up, off = the night is spoken for).
@@ -82,7 +88,31 @@ DAYS = [d['day'] for d in META['days']]
 CITY = {d['day']: d['city'] for d in META['days']}
 KANJI = {d['day']: d['kanji'] for d in META['days']}
 LAMP = {d['day']: d['lamp'] for d in META['days']}
-assert list(NIGHT) == DAYS and list(TABLES) == DAYS, (list(NIGHT), list(TABLES))
+assert list(NIGHT) == DAYS, list(NIGHT)
+if TABLES:
+    assert list(TABLES) == DAYS, list(TABLES)
+
+LAMP_WORD = {
+    'ok': 'walk-up', 'wait': 'wait', 'held': 'held', 'off': 'spoken for'}
+
+
+def paint_h2(h2html):
+    m = re.match(r'<h2>(.*?)</h2>\s*$', h2html, re.S)
+    if not m:
+        return h2html
+    parts = m.group(1).split('·', 1)
+    if len(parts) != 2:
+        return h2html
+    return ('<h2><span class="secno">%s</span><span class="sectitle">%s</span></h2>'
+            % (parts[0].strip() + ' ·', parts[1].strip()))
+
+
+STANDFIRST = re.sub(
+    r'<h1>(.*?)</h1>',
+    lambda m: ('<h1><span class="ink">%s</span>'
+               '<span class="ink2" aria-hidden="true">%s</span></h1>'
+               % (m.group(1), m.group(1))),
+    STANDFIRST, count=1)
 
 
 def ordinal(n):
@@ -126,17 +156,22 @@ def plate(i, f, card_html):
     b2 = '<span>%s</span>' % f['bill2'] if f['bill2'] else ''
     venue = ''.join('<span>%s</span>' % v for v in f['venue'])
     inv = ' invert' if i == 0 else ''
-    return f'''<article class="plate{inv}">
+    jump = html.escape(str(f['day']), quote=True)
+    where = f['venue'][0] if f['venue'] else ''
+    map_href = 'https://www.google.com/maps/search/?api=1&query=%s' % urllib.parse.quote(where)
+    where_e = html.escape(where, quote=True)
+    return f'''<article class="plate{inv}" data-day="{jump}">
 <span class="reg tl"></span><span class="reg tr"></span>
 <span class="reg bl"></span><span class="reg br"></span>
 <span class="dither" aria-hidden="true"></span>
-<p class="pl-date"><span class="dm">{f['month']}</span><span class="dd">{f['day']}</span><span class="dj">{f['dow']}</span></p>
+<p class="pl-date"><a class="pl-jump" href="#day-{jump}"><span class="dm">{f['month']}</span><span class="dd">{f['day']}</span><span class="dj">{f['dow']}</span></a></p>
 <h3 class="pl-bill">{f['bill']}{b2}</h3>
 <p class="pl-sub">{f['sub']}</p>
 <p class="pl-venue">{venue}</p>
 <div class="pl-times">{times}</div>
 <p class="pl-y">{f['price']}</p>
 <p class="pl-note">{f['note']}</p>
+<p class="pl-acts"><a class="act" href="{map_href}">Map</a><button type="button" class="act copy" data-copy="{where_e}">Copy venue</button></p>
 <details class="more"><summary>Read the flyer</summary>
 <div class="morebody">{card_html}</div></details>
 <div class="hud">
@@ -150,62 +185,120 @@ PLATES = '\n'.join(plate(i, f, c) for i, (f, c) in enumerate(zip(FACES, raw)))
 
 # --------------------------------------------------------------- the calendar
 CELLS = []
-PANELS = []
+FILM = []
 for n, d in enumerate(DAYS):
     num = d.split()[1]
     pick, cost = first_card(d)
-    picktxt = re.sub('<[^>]+>', '', pick)
+    picktxt = html.unescape(re.sub('<[^>]+>', '', pick))
     cal_id = 'day-%s' % num
+    lamp = LAMP[d]
+    FILM.append(
+        f'<a class="wk" href="#{cal_id}" data-lamp="{lamp}">'
+        f'<span class="wk-d">{num}<i>{KANJI[d]}</i></span>'
+        f'<span class="wk-city">{CITY[d]}</span>'
+        f'<span class="wk-pick">{html.escape(picktxt)}</span>'
+        f'<span class="wk-lamp">{LAMP_WORD.get(lamp, lamp)}</span>'
+        f'</a>')
+    prev = DAYS[n - 1] if n else None
+    nxt = DAYS[n + 1] if n + 1 < len(DAYS) else None
+
+    def _dn(dd, cls):
+        nn = dd.split()[1]
+        return ('<a class="%s" href="#day-%s">%s<i>%s</i></a>'
+                % (cls, nn, nn, KANJI[dd]))
+
+    daynav = (
+        '<nav class="daynav" aria-label="Adjacent nights">'
+        + (_dn(prev, 'dn-prev') if prev else '<span class="dn-prev"></span>')
+        + '<span class="dn-now">%s<i>%s</i> %s</span>' % (num, KANJI[d], CITY[d])
+        + (_dn(nxt, 'dn-next') if nxt else '<span class="dn-next"></span>')
+        + '</nav>')
+    extra = ''
+    if d in TABLES:
+        extra = (
+            f'<details class="table"><summary>Everything else on the {ordinal(num)}</summary>'
+            f'<h4 class="tblhead">{TABLES[d]["head"]}</h4>'
+            f'{TABLES[d]["inner"]}</details>')
     CELLS.append(
-        f'<details class="day" name="day" id="{cal_id}" data-lamp="{LAMP[d]}">'
+        f'<details class="day" name="day" id="{cal_id}" data-lamp="{lamp}">'
         f'<summary><span class="cal-d">{num}<i>{KANJI[d]}</i></span>'
         f'<span class="cal-city">{CITY[d]}</span>'
-        f'<span class="cal-pick">{picktxt}</span>'
+        f'<span class="cal-pick">{html.escape(picktxt)}</span>'
         f'<span class="cal-cost">{cost}</span>'
         f'<span class="cal-open" aria-hidden="true"></span></summary>'
         f'<div class="daybody">'
+        f'{daynav}'
         f'<h3 class="dayhead">{NIGHT[d]["head"]}</h3>'
         f'{NIGHT[d]["inner"]}'
-        f'<details class="table"><summary>Everything else on the {ordinal(num)}</summary>'
-        f'<h4 class="tblhead">{TABLES[d]["head"]}</h4>'
-        f'{TABLES[d]["inner"]}</details>'
+        f'{extra}'
         f'</div></details>')
 
+FILM_HTML = ''.join(FILM)
+
+TRIP_MD = ROOT / "tools" / "japan" / "trip.md"
+_seen, MUSICREFS = [], []
+if TRIP_MD.is_file():
+    for _r in re.findall(r'^\{musicref\} (.+)$',
+                         TRIP_MD.read_text(encoding='utf-8'), re.M):
+        if _r not in _seen:
+            _seen.append(_r)
+            MUSICREFS.append('<li>%s</li>' % html.escape(_r))
+REFS_HTML = ('<ul class="vh musicrefs">%s</ul>' % ''.join(MUSICREFS)
+             if MUSICREFS else '')
+
+CALNOTE = ''
+if '5' in SEC:
+    CALNOTE = (
+        '<details class="calnote"><summary>What a day opens to</summary>'
+        '<div class="calnotebody">%s%s</div></details>'
+        % (SEC['5']['h2'], LEAD_5))
+
+H2_FIVE = paint_h2(SEC['0']['h2'])
+H2_CAL = paint_h2(SEC['0b']['h2'])
+
 # ------------------------------------------------------------ everything else
-REST_KEYS = [k for k in ORDER if k not in ('0', '0b', '1', '2')]
+REST_KEYS = [k for k in ORDER if k not in ('0', '0b', '5')]
 REST = []
 for k in REST_KEYS:
     t = SEC[k]['title']
-    REST.append('<details class="chunk"><summary>%s</summary><div class="chunkbody">%s</div></details>'
-                % (t, SEC[k]['rest']))
+    REST.append(
+        '<details class="chunk" id="chunk-%s"><summary>%s</summary>'
+        '<div class="chunkbody">%s</div></details>'
+        % (html.escape(k, quote=True), t, SEC[k]['rest']))
 
 CSS = r"""
 :root{
   --black:#070809; --plate:#E9E7E1; --red:#E0234B; --red-t:#FF5C7A;
   --cyan:#00BFD6; --cyan-d:#0B7A87; --grey:#8A8C90; --line:#26282C;
   --lamp-ok:#00BFD6; --lamp-wait:#FFB020; --lamp-held:#FF5C7A;
+  --rail:4.6rem;
 }
 *,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+html{color-scheme:dark;-webkit-text-size-adjust:100%;scroll-behavior:smooth;
+  scroll-padding-top:calc(var(--rail) + env(safe-area-inset-top,0px))}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{margin:0;background:var(--black);color:var(--plate);
   font-family:"Shippori Mincho","Hiragino Mincho ProN",serif;
-  font-size:16px;line-height:1.75;font-variant-numeric:tabular-nums}
+  font-size:16px;line-height:1.75;font-variant-numeric:tabular-nums;
+  touch-action:manipulation}
 p{margin:0 0 .8em}
 h1,h2,h3,h4{margin:0}
 a{color:var(--cyan)}
 a:hover{color:var(--plate)}
 .disp,h1,h2,.secno,.dayhead,.cal-d,.pl-date,.pl-times,.pl-y,.hud,.rank,
-.tblhead,th,.chunk>summary,.more>summary,.table>summary,.cal-city,.cal-cost{
+.tblhead,th,.chunk>summary,.more>summary,.table>summary,.cal-city,.cal-cost,
+.rail,.wk,.daynav,.act,.filter-bar{
   font-family:"Big Shoulders Display","Shippori Mincho",sans-serif}
-:where(a,summary,[tabindex]):focus-visible{outline:2px solid var(--cyan);
+:where(a,summary,button,[tabindex]):focus-visible{outline:2px solid var(--cyan);
   outline-offset:3px}
-.skip{position:fixed;left:8px;top:-4rem;z-index:60;background:var(--red);
+summary,button,.wk,.act{cursor:pointer}
+.skip{position:fixed;left:8px;top:-4rem;z-index:80;background:var(--red);
   color:#fff;padding:.5rem .9rem;text-decoration:none;transition:top .12s;
   font-family:"Big Shoulders Display",sans-serif;letter-spacing:.1em}
 .skip::before{content:"Skip to the top five"}
 .skip:focus{top:8px}
-.wrap{max-width:74rem;margin:0 auto;padding:0 20px 5rem}
+.wrap{max-width:74rem;margin:0 auto;
+  padding:0 20px calc(5rem + env(safe-area-inset-bottom,0px))}
 .vh{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;
   clip-path:inset(50%);white-space:nowrap}
 
@@ -225,12 +318,14 @@ a:hover{color:var(--plate)}
 .kicker{font-family:"Big Shoulders Display",sans-serif;font-weight:600;
   letter-spacing:.3em;font-size:.8rem;color:var(--cyan);margin:0 0 .9rem;
   text-transform:uppercase}
-h1{position:relative;font-family:"Big Shoulders Display",sans-serif;
+h1{position:relative;isolation:isolate;font-family:"Big Shoulders Display",sans-serif;
   font-weight:900;font-size:clamp(2.4rem,8vw,5.6rem);line-height:.84;
-  letter-spacing:-.005em;text-transform:uppercase;max-width:12ch}
+  letter-spacing:-.005em;text-transform:uppercase;max-width:12ch;
+  text-wrap:balance}
+h1 .ink{position:relative;z-index:1}
 /* two plates, out of register on purpose: both inks stay legible */
-h1 .ink2{position:absolute;left:0;top:0;color:var(--red);
-  transform:translate(9px,-7px);z-index:-1}
+h1 .ink2{position:absolute;left:0;top:0;right:0;color:var(--red);
+  transform:translate(2px,-2px);z-index:0;pointer-events:none}
 .jp1{font-family:"Shippori Mincho",serif;font-weight:700;
   font-size:clamp(1rem,2.6vw,1.5rem);letter-spacing:.5em;color:var(--red-t);
   margin:1rem 0 0}
@@ -264,10 +359,8 @@ h2{font-family:"Big Shoulders Display",sans-serif;font-weight:900;
   align-items:baseline}
 .secno{color:var(--red);flex:none}
 .sectitle{flex:1 1 auto;min-width:0}
-.sec{margin:3.4rem 0 0}
+.sec{margin:3.4rem 0 0;scroll-margin-top:calc(var(--rail) + .6rem)}
 .sec>.legend{margin:.8rem 0 1.4rem}
-.sec ol{max-width:44rem;padding-left:1.2em;color:#C9CBCE;font-size:.92rem}
-.sec li{margin:.55rem 0;line-height:1.7}
 /* long section notes are clamped to two lines and open on click; the clamp is
    added by script, so with no JS the whole note is simply visible */
 .legend.clamp{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
@@ -280,9 +373,18 @@ h2{font-family:"Big Shoulders Display",sans-serif;font-weight:900;
 .legend.open{cursor:pointer}
 
 /* ------------------------------------------------------- 1. the top five */
-.five{display:grid;gap:1.4rem;grid-template-columns:repeat(auto-fit,minmax(198px,1fr))}
+.five{display:grid;gap:1.4rem;grid-template-columns:minmax(0,1.28fr) repeat(4,minmax(0,1fr))}
+@media (max-width:1100px){
+  .five{grid-template-columns:repeat(auto-fit,minmax(198px,1fr))}}
+@media (max-width:560px){
+  .five{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;
+    gap:1rem;padding-bottom:.6rem;margin-inline:-20px;padding-inline:20px;
+    -webkit-overflow-scrolling:touch}
+  .plate{flex:0 0 min(84vw,22rem);scroll-snap-align:start}}
 .plate{position:relative;isolation:isolate;border:1px solid var(--line);padding:1rem .95rem 1.05rem;
   background:var(--black);display:flex;flex-direction:column}
+.plate:hover .reg::before,.plate:hover .reg::after{background:var(--red-t)}
+.plate:hover.invert .reg::before,.plate:hover.invert .reg::after{background:var(--cyan-d)}
 .plate > :not(.dither):not(.reg):not(.rank){position:relative;z-index:1}
 .plate.invert{background:var(--plate);color:var(--black);border-color:var(--plate)}
 .plate.invert .pl-sub,.plate.invert .pl-note{color:#55575B}
@@ -305,6 +407,15 @@ h2{font-family:"Big Shoulders Display",sans-serif;font-weight:900;
 .rank{position:absolute;right:0;top:0;margin:0;z-index:2}
 .rank span{display:block;background:var(--red);color:#fff;
   font-weight:900;font-size:1rem;line-height:1;padding:.25em .5em}
+.pl-jump{color:inherit;text-decoration:none;display:flex;align-items:baseline;gap:.3rem}
+.pl-jump:hover{color:inherit}
+.pl-acts{display:flex;gap:.45rem;margin:.55rem 0 .15rem}
+.act{display:inline-flex;align-items:center;min-height:2.5rem;padding:0 .7rem;
+  font-weight:600;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--cyan);border:1px solid var(--line);background:transparent;text-decoration:none}
+.act:hover{border-color:var(--cyan);color:var(--plate)}
+.plate.invert .act{color:var(--cyan-d);border-color:rgba(7,8,9,.25)}
+.plate.invert .act:hover{color:var(--black);border-color:var(--cyan-d)}
 .pl-date{position:relative;display:flex;align-items:baseline;gap:.3rem;
   font-weight:900;line-height:.8;margin:0}
 .pl-date .dd{font-size:4rem;letter-spacing:-.02em}
@@ -335,9 +446,11 @@ h2{font-family:"Big Shoulders Display",sans-serif;font-weight:900;
 /* --------------------------------------------------------- 2. the calendar */
 .cal{border-top:1px solid var(--line)}
 .day{border-bottom:1px solid var(--line)}
+.day{scroll-margin-top:calc(var(--rail) + .4rem)}
 .day>summary{display:grid;align-items:baseline;gap:.2rem 1rem;cursor:pointer;
-  padding:.85rem .2rem;list-style:none;
+  padding:.85rem .2rem;list-style:none;min-height:3.4rem;
   grid-template-columns:4.6rem 5.5rem minmax(0,1fr) max-content 1.4rem}
+.day>summary:active{background:#101214}
 .day>summary::-webkit-details-marker{display:none}
 .day>summary:hover .cal-pick{color:var(--plate)}
 .cal-d{font-weight:900;font-size:2.1rem;line-height:.9;position:relative;
@@ -461,7 +574,8 @@ h2{font-family:"Big Shoulders Display",sans-serif;font-weight:900;
 .smp{border:1px dashed var(--red-t);color:var(--red-t)}
 
 /* -------------------------------------------------------------- tables */
-.tw{overflow-x:auto;margin:.8rem 0 1.4rem;border:1px solid var(--line)}
+.tw{overflow-x:auto;margin:.8rem 0 1.4rem;border:1px solid var(--line);
+  max-width:100%;min-width:0;overscroll-behavior-x:contain}
 table{border-collapse:collapse;width:100%;min-width:44rem;font-size:.82rem;
   line-height:1.6;text-align:left}
 th,td{padding:.45rem .65rem;vertical-align:top;border-bottom:1px solid var(--line)}
@@ -473,22 +587,175 @@ tr:last-child td{border-bottom:0}
 td.day{white-space:nowrap;font-family:"Big Shoulders Display",sans-serif;
   font-weight:600;letter-spacing:.08em;text-transform:uppercase;
   color:var(--plate)}
+
+/* ----------------------------------------------------------- sticky week */
+.rail{position:sticky;top:0;z-index:50;background:var(--black);
+  border-bottom:1px solid var(--line);
+  padding:calc(.35rem + env(safe-area-inset-top,0px)) 0 .4rem}
+.rail-inner{max-width:74rem;margin:0 auto;padding:0 20px;min-width:0}
+.rail-sec{display:flex;flex-wrap:wrap;align-items:center;gap:.15rem .2rem;
+  margin:0 0 .35rem}
+.rail-sec a{color:var(--grey);text-decoration:none;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;font-size:.78rem;
+  padding:.35rem .55rem;min-height:2.5rem;display:inline-flex;align-items:center}
+.rail-sec a:hover,.rail-sec a[aria-current="true"]{color:var(--cyan)}
+.film{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:1px;
+  background:var(--line);border:1px solid var(--line);min-width:0;width:100%;
+  overflow-x:auto}
+.wk{display:flex;flex-direction:column;gap:.15rem;padding:.45rem .5rem .5rem;
+  background:var(--black);color:var(--plate);text-decoration:none;min-height:4.4rem;
+  min-width:0;position:relative}
+.wk:hover{background:#101214;color:var(--plate)}
+.wk[aria-current="true"]{background:#101214;box-shadow:inset 0 2px 0 var(--cyan)}
+.wk-d{font-weight:900;font-size:1.35rem;line-height:.9;padding-left:.85rem;
+  position:relative}
+.wk-d::before{content:"";position:absolute;left:0;top:.35em;width:8px;height:8px;
+  border-radius:50%;background:var(--grey)}
+.wk[data-lamp="ok"] .wk-d::before{background:var(--lamp-ok)}
+.wk[data-lamp="wait"] .wk-d::before{background:var(--lamp-wait)}
+.wk[data-lamp="held"] .wk-d::before{background:var(--lamp-held)}
+.wk[data-lamp="off"] .wk-d::before{background:#3A3D42}
+.wk-d i{font-family:"Shippori Mincho",serif;font-weight:700;font-style:normal;
+  font-size:.72rem;color:var(--red-t);margin-left:.15em}
+.wk-city{font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  font-size:.68rem;color:var(--cyan)}
+.wk-pick{font-family:"Shippori Mincho",serif;font-size:.7rem;line-height:1.35;
+  color:#C9CBCE;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
+  overflow:hidden}
+.wk-lamp{font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  font-size:.62rem;color:var(--grey)}
+@media (max-width:820px){
+  :root{--rail:5.6rem}
+  .film{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;background:transparent;border:0;gap:.35rem;
+    overscroll-behavior-x:contain}
+  .wk{flex:0 0 4.6rem;scroll-snap-align:start;border:1px solid var(--line);
+    min-height:4.2rem;padding:.4rem .45rem}
+  .wk-pick,.wk-city{display:none}
+  .wk-d{font-size:1.2rem;padding-left:.75rem}}
+.live{position:fixed;left:0;bottom:0;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+.daynav{display:flex;align-items:center;justify-content:space-between;gap:.8rem;
+  margin:0 0 1rem;padding:.2rem 0 .7rem;border-bottom:1px solid var(--line)}
+.daynav a,.dn-now{font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  font-size:.85rem;text-decoration:none;min-height:2.5rem;display:inline-flex;
+  align-items:center;gap:.25rem}
+.daynav a{color:var(--cyan)}
+.daynav a:hover{color:var(--plate)}
+.dn-now{color:var(--plate)}
+.daynav i{font-family:"Shippori Mincho",serif;font-style:normal;color:var(--red-t)}
+.dn-prev:empty,.dn-next:empty{visibility:hidden;min-width:3rem}
+.day[open] .daybody{animation:open .22s ease}
+@keyframes open{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){
+  .day[open] .daybody{animation:none}
+  .act,.wk,.rail-sec a{transition:none}}
+.rest{scroll-margin-top:calc(var(--rail) + .6rem)}
+
+/* ------------------------------------------- scroll progress (from 3-8) */
+/* No position rule for .rail here: it is already position:sticky, which is a
+   positioned value, so it contains the absolutely positioned progress line.
+   Re-declaring position:relative below the original rule would kill sticky. */
+.scroll-progress{position:absolute;left:0;bottom:-1px;height:2px;width:0%;
+  background:linear-gradient(90deg,var(--cyan),var(--red));
+  transition:width .08s linear;pointer-events:none;z-index:1}
+
+/* ------------------------------------------------ filter bar (from 3-8) */
+.filter-bar{margin:2.2rem 0 1.8rem;padding:1.1rem 1.2rem;
+  background:rgba(18,19,23,.75);border:1px solid var(--line);
+  border-left:3px solid var(--cyan);position:relative}
+.filter-row{display:flex;flex-wrap:wrap;align-items:center;gap:.8rem}
+.search-box{position:relative;flex:1 1 260px;display:flex;align-items:center}
+.search-icon{position:absolute;left:.75rem;color:var(--grey);pointer-events:none}
+.search-input{width:100%;padding:.55rem .8rem .55rem 2.3rem;
+  background:var(--black);color:var(--plate);
+  border:1px solid var(--line);font-family:"Shippori Mincho",serif;
+  font-size:.9rem;outline:none;border-radius:2px;
+  transition:border-color .15s, box-shadow .15s}
+.search-input:focus{border-color:var(--cyan);box-shadow:0 0 0 2px rgba(0,191,214,.2)}
+.search-input::-webkit-search-cancel-button{display:none}
+.search-clear{position:absolute;right:.6rem;background:none;border:none;
+  color:var(--grey);font-size:1.2rem;cursor:pointer;padding:.2rem .4rem;line-height:1}
+.search-clear:hover{color:var(--plate)}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center}
+.chip{background:var(--black);color:var(--grey);border:1px solid var(--line);
+  font-family:"Big Shoulders Display",sans-serif;font-weight:700;
+  font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:.35rem .65rem;cursor:pointer;border-radius:2px;
+  transition:border-color .15s, color .15s, background .15s, box-shadow .15s;
+  min-height:34px}
+.chip:hover{color:var(--plate);border-color:var(--grey)}
+.chip.active{background:var(--cyan);color:var(--black);border-color:var(--cyan);
+  box-shadow:0 0 10px rgba(0,191,214,.3)}
+.filter-msg{margin-top:.6rem;font-size:.82rem;color:var(--grey);
+  font-family:"Big Shoulders Display",sans-serif;letter-spacing:.08em;
+  text-transform:uppercase;min-height:1.2em;display:flex;align-items:center;gap:.5rem}
+.filter-msg strong{color:var(--cyan)}
+.plate.dimmed{opacity:.2;transform:scale(.98)}
+details.day.hidden-filter,tr.hidden-filter{display:none !important}
+@media (prefers-reduced-motion:reduce){
+  .scroll-progress{transition:none}
+  .plate.dimmed{transform:none}}
 """
 
 JS = r"""
 (function(){
-  // Open a day (and scroll to it) when linked as /japan/music/#day-25.
+  var live=document.getElementById('live');
+  function say(t){ if(live) live.textContent=t; }
+
+  function markFilm(id){
+    document.querySelectorAll('.wk').forEach(function(a){
+      var on=a.getAttribute('href')==='#'+id;
+      if(on) a.setAttribute('aria-current','true');
+      else a.removeAttribute('aria-current');
+    });
+  }
+  function markSec(){
+    var cur='five';
+    ['five','calendar','rest'].forEach(function(id){
+      var n=document.getElementById(id);
+      if(n && n.getBoundingClientRect().top < 120) cur=id;
+    });
+    document.querySelectorAll('.rail-sec a[href^="#"]').forEach(function(a){
+      var on=a.getAttribute('href')==='#'+cur;
+      if(on) a.setAttribute('aria-current','true');
+      else a.removeAttribute('aria-current');
+    });
+  }
   function openHash(){
     var id=location.hash.slice(1); if(!id) return;
     var el=document.getElementById(id); if(!el) return;
     if(el.tagName==='DETAILS') el.open=true;
     var p=el.parentElement;
     while(p){ if(p.tagName==='DETAILS') p.open=true; p=p.parentElement; }
+    markFilm(id);
   }
   window.addEventListener('hashchange',openHash);
+  window.addEventListener('scroll',markSec,{passive:true});
   openHash();
+  markSec();
 
-  // Clamp the long section notes to two lines, click to open.
+  document.querySelectorAll('details.day').forEach(function(el){
+    el.addEventListener('toggle',function(){
+      if(!el.open) return;
+      if(location.hash!=='#'+el.id){
+        history.replaceState(null,'','#'+el.id);
+      }
+      markFilm(el.id);
+    });
+  });
+
+  document.querySelectorAll('.copy').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var t=btn.getAttribute('data-copy')||'';
+      if(!t) return;
+      function ok(){ say('Copied '+t); btn.textContent='Copied';
+        setTimeout(function(){ btn.textContent='Copy venue'; },1200); }
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(t).then(ok,function(){});
+      }
+    });
+  });
+
   document.querySelectorAll('.sec > .legend').forEach(function(el){
     if(el.textContent.trim().length < 190) return;
     el.classList.add('clamp');
@@ -505,6 +772,129 @@ JS = r"""
       if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();}
     });
   });
+
+  // ------------------------------------------ scroll progress (from 3-8)
+  var progressEl=document.getElementById('scroll-progress');
+  if(progressEl){
+    window.addEventListener('scroll',function(){
+      var sTop=window.pageYOffset||document.documentElement.scrollTop;
+      var sHeight=document.documentElement.scrollHeight-document.documentElement.clientHeight;
+      var pct=sHeight>0?(sTop/sHeight)*100:0;
+      progressEl.style.width=Math.min(100,Math.max(0,pct))+'%';
+    }, {passive:true});
+  }
+
+  // --------------------------------------------- live filter (from 3-8)
+  var searchInput=document.getElementById('event-search');
+  var clearBtn=document.getElementById('search-clear');
+  var filterMsg=document.getElementById('filter-msg');
+  var chips=Array.from(document.querySelectorAll('.chip'));
+  var plates=Array.from(document.querySelectorAll('.plate'));
+  // '.day' also marks the slot column of every per-day table (<td class="day">);
+  // only the calendar's <details class="day"> are filterable nights.
+  var fDays=Array.from(document.querySelectorAll('details.day'));
+  var tableRows=Array.from(document.querySelectorAll('.tw table tr:not(:first-child)'));
+  var currentFilter='all';
+  var currentQuery='';
+
+  function has(t,x){ return t.indexOf(x)!==-1; }
+
+  function applyFilter(){
+    var q=currentQuery.trim().toLowerCase();
+    var f=currentFilter;
+    var isFiltering=(q.length>0 || f!=='all');
+    var matchesCount=0;
+
+    if(clearBtn) clearBtn.hidden=(q.length===0);
+
+    plates.forEach(function(pl){
+      var txt=pl.textContent.toLowerCase();
+      var matchQ=(!q || has(txt,q));
+      var matchF=true;
+      if(f==='tokyo') matchF=has(txt,'tokyo')||has(txt,'shibuya')||has(txt,'shinjuku');
+      else if(f==='kansai') matchF=has(txt,'osaka')||has(txt,'kyoto')||has(txt,'hikone');
+      else if(f==='jazz') matchF=has(txt,'jazz')||has(txt,'pit inn')||has(txt,'body & soul');
+      else if(f==='trad') matchF=has(txt,'noh')||has(txt,'能')||has(txt,'min’yō')||has(txt,'民謡');
+      else if(f==='booked') matchF=has(txt,'held')||has(txt,'booked');
+      var match=(matchQ && matchF);
+      if(isFiltering){
+        pl.classList.toggle('dimmed', !match);
+        if(match) matchesCount++;
+      } else {
+        pl.classList.remove('dimmed');
+      }
+    });
+
+    fDays.forEach(function(dayEl){
+      var dayText=dayEl.textContent.toLowerCase();
+      var dayMatchQ=(!q || has(dayText,q));
+      var dayMatchF=true;
+      var city=((dayEl.querySelector('.cal-city')||{}).textContent||'').toLowerCase();
+      if(f==='tokyo') dayMatchF=(city==='tokyo');
+      else if(f==='kansai') dayMatchF=(city==='osaka'||city==='kyoto'||city==='hikone');
+      else if(f==='jazz') dayMatchF=has(dayText,'jazz')||has(dayText,'pit inn')||has(dayText,'body & soul');
+      else if(f==='trad') dayMatchF=has(dayText,'noh')||has(dayText,'能')||has(dayText,'bunraku')||has(dayText,'shrine');
+      else if(f==='booked') dayMatchF=(dayEl.getAttribute('data-lamp')==='held');
+      var hasMatch=(dayMatchQ && dayMatchF);
+      dayEl.classList.toggle('hidden-filter', isFiltering && !hasMatch);
+      if(isFiltering && hasMatch){ dayEl.open=true; matchesCount++; }
+    });
+
+    tableRows.forEach(function(row){
+      var rowText=row.textContent.toLowerCase();
+      var matchQ=(!q || has(rowText,q));
+      var matchF=true;
+      if(f==='tokyo') matchF=has(rowText,'tokyo')||has(rowText,'shibuya')||has(rowText,'shinjuku');
+      else if(f==='kansai') matchF=has(rowText,'osaka')||has(rowText,'kyoto')||has(rowText,'kobe');
+      else if(f==='jazz') matchF=has(rowText,'jazz')||has(rowText,'pit inn');
+      else if(f==='trad') matchF=has(rowText,'noh')||has(rowText,'能')||has(rowText,'bunraku');
+      else if(f==='booked') matchF=has(rowText,'booked')||has(rowText,'held');
+      row.classList.toggle('hidden-filter', isFiltering && !(matchQ && matchF));
+    });
+
+    if(filterMsg){
+      if(!isFiltering){
+        filterMsg.innerHTML='Showing all events across Tokyo &amp; Kansai';
+      } else {
+        var criteria=[];
+        if(f!=='all') criteria.push(f.toUpperCase());
+        if(q) criteria.push('"'+q+'"');
+        filterMsg.innerHTML='Found <strong>'+matchesCount+'</strong> matching day(s) &amp; picks for '+criteria.join(' + ');
+      }
+    }
+    say(isFiltering ? matchesCount+' matches' : 'Filter cleared');
+  }
+
+  if(searchInput){
+    searchInput.addEventListener('input',function(){
+      currentQuery=searchInput.value; applyFilter();
+    });
+    if(clearBtn){
+      clearBtn.addEventListener('click',function(){
+        searchInput.value=''; currentQuery=''; applyFilter(); searchInput.focus();
+      });
+    }
+  }
+
+  chips.forEach(function(chip){
+    chip.addEventListener('click',function(){
+      chips.forEach(function(c){ c.classList.remove('active'); });
+      chip.classList.add('active');
+      currentFilter=chip.getAttribute('data-filter')||'all';
+      applyFilter();
+    });
+  });
+
+  document.addEventListener('keydown',function(e){
+    if(e.key==='/' && document.activeElement!==searchInput &&
+       ['INPUT','TEXTAREA'].indexOf((document.activeElement||{}).tagName)===-1){
+      e.preventDefault();
+      if(searchInput){ searchInput.focus(); searchInput.scrollIntoView({behavior:'smooth',block:'center'}); }
+    } else if(e.key==='Escape' && document.activeElement===searchInput){
+      if(searchInput.value){ searchInput.value=''; currentQuery=''; applyFilter(); }
+      else { searchInput.blur(); }
+    }
+  });
 })();
 """
 
@@ -513,12 +903,28 @@ out = f"""<!doctype html>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{META['title']}</title>
 <meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#070809">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Shippori+Mincho:wght@500;700&display=swap">
 <style>{CSS}</style></head>
 <body>
 <a class="skip" href="#five" aria-label="Skip to the top five"></a>
+<div class="live" id="live" aria-live="polite"></div>
+<nav class="rail" aria-label="The week">
+<div class="rail-inner">
+<div class="rail-sec">
+<a href="/japan/">Itinerary</a>
+<a href="#five">The five</a>
+<a href="#calendar">The week</a>
+<a href="#rest">The rest</a>
+</div>
+<div class="film" role="navigation" aria-label="Seven nights">
+{FILM_HTML}
+</div>
+</div>
+<div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+</nav>
 <header class="hero"><div class="inner">
 {STANDFIRST}
 <p class="jp1">\u65e5\u672c\u9650\u5b9a</p>
@@ -527,34 +933,49 @@ out = f"""<!doctype html>
 </div></header>
 <main class="wrap">
 
+<div class="filter-bar" id="filter-bar">
+  <div class="filter-row">
+    <div class="search-box">
+      <span class="search-icon" aria-hidden="true">🔍</span>
+      <input type="search" id="event-search" class="search-input" placeholder="Filter artists, venues, dates, genres (press / to focus)…" aria-label="Filter events and venues" autocomplete="off" spellcheck="false">
+      <button type="button" id="search-clear" class="search-clear" aria-label="Clear search" hidden>&times;</button>
+    </div>
+    <div class="chips" role="toolbar" aria-label="Filter events by category">
+      <button type="button" class="chip active" data-filter="all">All</button>
+      <button type="button" class="chip" data-filter="tokyo">Tokyo</button>
+      <button type="button" class="chip" data-filter="kansai">Kansai</button>
+      <button type="button" class="chip" data-filter="jazz">Jazz</button>
+      <button type="button" class="chip" data-filter="trad">Noh / Rites</button>
+      <button type="button" class="chip" data-filter="booked">Held</button>
+    </div>
+  </div>
+  <div class="filter-msg" id="filter-msg" aria-live="polite">Showing all events across Tokyo &amp; Kansai</div>
+</div>
+
 <section class="sec" id="five">
-{SEC['0']['h2']}
+{H2_FIVE}
 {FIVE_LEGEND}
 <div class="five">
 {PLATES}
 </div>
 </section>
 
-<section class="sec" id="book">
-{SEC['1']['h2']}
-{SEC['1']['rest']}
-</section>
-
 <section class="sec" id="calendar">
-{SEC['0b']['h2']}
+{H2_CAL}
 {LEAD_0B}
-<details class="calnote"><summary>What a day opens to</summary>
-<div class="calnotebody">{SEC['2']['h2']}{LEAD_5}</div></details>
+{CALNOTE}
 <div class="cal">
 {''.join(CELLS)}
 </div>
 </section>
 
 <section class="rest" id="rest">
-<p>Walk-in listening rooms, and the traditional-stage list for the week.</p>
+<p>The rest of the book: the full ranked shortlists, the categories, the
+booking friction, and what could not be verified.</p>
 {''.join(REST)}
 </section>
 
+{REFS_HTML}
 </main>
 <script>{JS}</script>
 </body></html>

@@ -13,6 +13,7 @@ uncut research dump — every room checked, including misses — is
 | `japan-only-music-book.md` | **The source of truth.** JSON front matter (page title, the trip shape day by day, the five flyer faces) then the traveler book in the markdown dialect below. |
 | `mdbook.py` | The dialect, and the only file that knows it. `python tools/japan-music/mdbook.py` renders the source and reads it back; the markdown must come out the same. Run it before building. |
 | `akira-build.py` | The design. Reads the markdown, writes the page. Defaults to the `public/japan/music-akira/` staging path, so pass the real path only once the gate is green. |
+| `HANDOFF.md` | The one copy pass still owed on the source, and why it is only 41 lines. |
 | `research/` | The uncut book, the brief, the Grok brief, the 390 dated page snapshots behind the VERIFIED badges, the primary-source PDFs, the sweep lists, the redesign plans and the harvest kit. Nothing here is built. |
 
 Build and check:
@@ -21,13 +22,29 @@ Build and check:
     python tools/japan-music/akira-build.py public/japan/music/index.html
     python tests/japan-music/content_check.py public/japan/music/index.html
 
-## The three redesign candidates
+## The design, and the candidates
 
-`/japan/music-3-1/`, `/japan/music-3-8/` and `/japan/music-4-6/` are frozen
-static HTML. They are alternative designs over the same book, kept for
-comparison; `akira-build.py` no longer emits any of them, so **they are not
-rebuildable** — edit the HTML directly or throw the page away. Only
-`/japan/music/` is generated from the markdown.
+`akira-build.py` now emits the **4-6 design** — the sticky rail with the
+seven-night film strip — plus two things lifted from the 3-8 candidate:
+
+- the **scroll-progress line** (cyan → red) along the rail's bottom edge, and
+- the **live filter**: search box, category chips, `/` to focus, `Esc` to clear.
+
+`/japan/music-3-1/` and `/japan/music-3-8/` are frozen static HTML kept for
+comparison; nothing generates them, so **they are not rebuildable** — edit the
+HTML or throw the page away. `/japan/music-4-6/` is the 4-6 design *before* the
+two 3-8 borrowings, and is still reproducible from `9e4c992`'s builder.
+
+Two traps, both found the hard way:
+
+- **`.day` is two different things.** It is the calendar's
+  `<details class="day">` (7 of them) *and* the slot column of every per-day
+  table, `<td class="day">` (95 of them). Anything that filters nights must say
+  `details.day`, or it hides table cells and reports inflated match counts. The
+  3-8 candidate has this bug.
+- **`.rail` is `position:sticky`.** That is already a positioned value, so it
+  contains the absolutely positioned progress line. Re-declaring
+  `position:relative` on it further down the sheet silently kills the sticky.
 
 ## The dialect
 
