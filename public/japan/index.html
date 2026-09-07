@@ -134,6 +134,15 @@ svg { display: block; }
   transition: color var(--t), border-color var(--t);
 }
 .view-btn[aria-current="page"] { color: var(--ink); border-color: var(--indigo); }
+/* Not a third view: it leaves the page, so it sits apart and says so. */
+.view-link {
+  margin-left: auto; align-self: center;
+  font-family: var(--serif); font-weight: 600; font-size: 1rem;
+  padding: .25rem 0 .35rem; color: var(--indigo);
+  border-bottom: 2px solid transparent; transition: border-color var(--t);
+}
+.view-link:hover, .view-link:focus-visible { border-bottom-color: var(--indigo); }
+.view-link .arr { font-size: .8em; padding-left: .15em; }
 
 /* ---------- day strip ---------- */
 .strip {
@@ -341,6 +350,7 @@ svg { display: block; }
       <nav class="views" aria-label="View">
         <button class="view-btn" type="button" data-view="days" aria-current="page">Timeline</button>
         <button class="view-btn" type="button" data-view="bookings">Bookings</button>
+        <a class="view-link" id="music-link" href="/japan/music/">Music page<span class="arr" aria-hidden="true">&#8599;</span></a>
       </nav>
     </header>
     <nav class="strip" id="strip" aria-label="Days"></nav>
@@ -882,6 +892,7 @@ const TRIP = {
   /* ---------- header ---------- */
   $("#trip-title").textContent = TRIP.title;
   $("#trip-dates").textContent = TRIP.dates + ", " + TRIP.who;
+  $("#music-link").href = TRIP.musicPage;
   const about = $("#trip-about");
   TRIP.about.forEach((line, i) => { if (i) about.append(document.createElement("br")); about.append(line); });
 
