@@ -3,9 +3,10 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Silver Week Japan-Only Book — Tokyo 19–22 / Kansai 23–25 Sept 2026</title>
 <meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#070809">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Shippori+Mincho:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=Shippori+Mincho:wght@500;700&display=swap">
 <style>
 :root{
   --black:#070809; --plate:#E9E7E1; --red:#E0234B; --red-t:#FF5C7A;
@@ -20,14 +21,16 @@ body{margin:0;background:var(--black);color:var(--plate);
   font-size:16px;line-height:1.75;font-variant-numeric:tabular-nums}
 p{margin:0 0 .8em}
 h1,h2,h3,h4{margin:0}
-a{color:var(--cyan)}
+a{color:var(--cyan);text-decoration-thickness:1px;text-underline-offset:2px;
+  transition:color .15s ease}
 a:hover{color:var(--plate)}
 .disp,h1,h2,.secno,.dayhead,.cal-d,.pl-date,.pl-times,.pl-y,.hud,.rank,
-.tblhead,th,.chunk>summary,.more>summary,.table>summary,.cal-city,.cal-cost{
+.tblhead,th,.chunk>summary,.more>summary,.table>summary,.cal-city,.cal-cost,
+.hud-bar,.filter-bar,.cal-bar,.btt,.toast{
   font-family:"Big Shoulders Display","Shippori Mincho",sans-serif}
-:where(a,summary,[tabindex]):focus-visible{outline:2px solid var(--cyan);
+:where(a,summary,button,input,[tabindex]):focus-visible{outline:2px solid var(--cyan);
   outline-offset:3px}
-.skip{position:fixed;left:8px;top:-4rem;z-index:60;background:var(--red);
+.skip{position:fixed;left:8px;top:-4rem;z-index:120;background:var(--red);
   color:#fff;padding:.5rem .9rem;text-decoration:none;transition:top .12s;
   font-family:"Big Shoulders Display",sans-serif;letter-spacing:.1em}
 .skip::before{content:"Skip to the top five"}
@@ -45,6 +48,158 @@ a:hover{color:var(--plate)}
 .reg.bl{left:-8px;bottom:-8px}.reg.br{right:-8px;bottom:-8px}
 .dither{position:absolute;inset:0;pointer-events:none;z-index:0;
   background:repeating-linear-gradient(180deg,rgba(0,0,0,.22) 0 1px,transparent 1px 3px)}
+
+/* ----------------------------------------------------------- sticky HUD */
+.hud-bar{
+  position:sticky;top:0;z-index:100;
+  background:rgba(7,8,9,.94);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+  touch-action:manipulation;
+}
+.hud-inner{
+  max-width:74rem;margin:0 auto;padding:.45rem 20px;
+  display:flex;align-items:center;justify-content:space-between;gap:.8rem;
+}
+.hud-back{
+  display:inline-flex;align-items:center;gap:.4rem;
+  color:var(--plate);text-decoration:none;
+  font-weight:700;letter-spacing:.12em;font-size:.86rem;text-transform:uppercase;
+  padding:.35rem .75rem;border:1px solid var(--line);border-radius:2px;
+  background:rgba(255,255,255,.03);transition:border-color .15s, color .15s, background .15s;
+  flex:none;min-height:36px;
+}
+.hud-back:hover{
+  border-color:var(--cyan);color:var(--cyan);background:rgba(0,191,214,.08);
+}
+.hud-title-wrap{
+  display:flex;align-items:baseline;gap:.6rem;
+  overflow:hidden;white-space:nowrap;
+}
+.hud-badge{
+  color:var(--red);font-weight:900;font-size:.9rem;letter-spacing:.15em;
+  text-transform:uppercase;
+}
+.hud-sub{
+  color:var(--grey);font-size:.78rem;letter-spacing:.08em;font-family:"Shippori Mincho",serif;
+}
+.hud-nav{
+  display:flex;align-items:center;gap:.3rem;margin-left:auto;
+}
+.hud-nav-link{
+  color:var(--grey);text-decoration:none;padding:.3rem .6rem;font-size:.82rem;
+  letter-spacing:.14em;text-transform:uppercase;font-weight:700;
+  transition:color .15s;border-radius:2px;
+}
+.hud-nav-link:hover{
+  color:var(--cyan);background:rgba(0,191,214,.08);
+}
+.hud-find-btn{
+  background:transparent;border:1px solid var(--line);color:var(--cyan);
+  font-family:"Big Shoulders Display",sans-serif;font-weight:700;font-size:.82rem;
+  letter-spacing:.12em;text-transform:uppercase;padding:.35rem .75rem;
+  cursor:pointer;display:inline-flex;align-items:center;gap:.35rem;
+  border-radius:2px;transition:border-color .15s, background .15s, color .15s;
+  min-height:36px;
+}
+.hud-find-btn:hover{
+  border-color:var(--cyan);background:var(--cyan);color:var(--black);
+}
+.scroll-progress{
+  height:2px;width:0%;
+  background:linear-gradient(90deg, var(--cyan), var(--red));
+  transition:width .08s linear;
+}
+@media (max-width:760px){
+  .hud-sub,.hud-nav-link[data-sec="rest"]{display:none}
+  .hud-title-wrap{display:none}
+}
+
+/* ----------------------------------------------------------- filter HUD */
+.filter-bar{
+  margin:2.2rem 0 1.8rem;padding:1.1rem 1.2rem;
+  background:rgba(18,19,23,.75);border:1px solid var(--line);
+  border-left:3px solid var(--cyan);
+  position:relative;
+}
+.filter-row{
+  display:flex;flex-wrap:wrap;align-items:center;gap:.8rem;
+}
+.search-box{
+  position:relative;flex:1 1 260px;display:flex;align-items:center;
+}
+.search-icon{
+  position:absolute;left:.75rem;color:var(--grey);pointer-events:none;
+}
+.search-input{
+  width:100%;padding:.55rem .8rem .55rem 2.3rem;
+  background:var(--black);color:var(--plate);
+  border:1px solid var(--line);font-family:"Shippori Mincho",serif;
+  font-size:.9rem;outline:none;border-radius:2px;
+  transition:border-color .15s, box-shadow .15s;
+}
+.search-input:focus{
+  border-color:var(--cyan);box-shadow:0 0 0 2px rgba(0,191,214,.2);
+}
+.search-input::-webkit-search-cancel-button{display:none}
+.search-clear{
+  position:absolute;right:.6rem;background:none;border:none;color:var(--grey);
+  font-size:1.2rem;cursor:pointer;padding:.2rem .4rem;line-height:1;
+}
+.search-clear:hover{color:var(--plate)}
+.chips{
+  display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;
+}
+.chip{
+  background:var(--black);color:var(--grey);border:1px solid var(--line);
+  font-family:"Big Shoulders Display",sans-serif;font-weight:700;
+  font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:.35rem .65rem;cursor:pointer;border-radius:2px;
+  transition:border-color .15s, color .15s, background .15s, box-shadow .15s;
+  min-height:34px;
+}
+.chip:hover{color:var(--plate);border-color:var(--grey)}
+.chip.active{
+  background:var(--cyan);color:var(--black);border-color:var(--cyan);
+  box-shadow:0 0 10px rgba(0,191,214,.3);
+}
+.filter-msg{
+  margin-top:.6rem;font-size:.82rem;color:var(--grey);
+  font-family:"Big Shoulders Display",sans-serif;letter-spacing:.08em;
+  text-transform:uppercase;min-height:1.2em;display:flex;align-items:center;gap:.5rem;
+}
+.filter-msg strong{color:var(--cyan)}
+
+/* --------------------------------------------------------- calendar toolbar */
+.cal-bar{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
+  gap:.8rem;margin:1.4rem 0 .9rem;padding-bottom:.6rem;
+  border-bottom:1px solid var(--line);
+}
+.cal-legend{
+  display:flex;flex-wrap:wrap;align-items:center;gap:.8rem 1.2rem;
+  font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:var(--grey);
+}
+.legend-item{display:inline-flex;align-items:center;gap:.35rem}
+.legend-dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.legend-dot.held{background:var(--lamp-held)}
+.legend-dot.wait{background:var(--lamp-wait)}
+.legend-dot.ok{background:var(--lamp-ok)}
+.legend-dot.off{background:#3A3D42}
+.cal-controls{
+  display:flex;align-items:center;gap:.4rem;
+}
+.cal-ctrl-btn{
+  background:none;border:1px solid var(--line);color:var(--plate);
+  font-family:"Big Shoulders Display",sans-serif;font-weight:700;
+  font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;
+  padding:.3rem .65rem;cursor:pointer;border-radius:2px;
+  transition:border-color .15s, color .15s, background .15s;
+  min-height:32px;
+}
+.cal-ctrl-btn:hover{
+  border-color:var(--cyan);color:var(--cyan);background:rgba(0,191,214,.08);
+}
 
 /* ----------------------------------------------------------- masthead */
 .hero{border-bottom:1px solid var(--line)}
@@ -91,7 +246,7 @@ h2{font-family:"Big Shoulders Display",sans-serif;font-weight:900;
   align-items:baseline}
 .secno{color:var(--red);flex:none}
 .sectitle{flex:1 1 auto;min-width:0}
-.sec{margin:3.4rem 0 0}
+.sec{margin:3.4rem 0 0;scroll-margin-top:4.8rem}
 .sec>.legend{margin:.8rem 0 1.4rem}
 /* long section notes are clamped to two lines and open on click; the clamp is
    added by script, so with no JS the whole note is simply visible */
@@ -107,7 +262,10 @@ h2{font-family:"Big Shoulders Display",sans-serif;font-weight:900;
 /* ------------------------------------------------------- 1. the top five */
 .five{display:grid;gap:1.4rem;grid-template-columns:repeat(auto-fit,minmax(198px,1fr))}
 .plate{position:relative;isolation:isolate;border:1px solid var(--line);padding:1rem .95rem 1.05rem;
-  background:var(--black);display:flex;flex-direction:column}
+  background:var(--black);display:flex;flex-direction:column;
+  transition:transform .18s ease, box-shadow .18s ease, opacity .2s ease}
+.plate:hover{transform:translateY(-2px);box-shadow:0 6px 22px rgba(0,0,0,.6)}
+.plate.dimmed{opacity:.2;transform:scale(.98)}
 .plate > :not(.dither):not(.reg):not(.rank){position:relative;z-index:1}
 .plate.invert{background:var(--plate);color:var(--black);border-color:var(--plate)}
 .plate.invert .pl-sub,.plate.invert .pl-note{color:#55575B}
@@ -157,12 +315,34 @@ h2{font-family:"Big Shoulders Display",sans-serif;font-weight:900;
 .hud b{color:var(--grey);font-weight:600}
 .hud i{font-style:normal;color:var(--red-t)}
 
+.pl-actions{display:flex;gap:.45rem;margin:.55rem 0 .75rem}
+.pl-act{
+  display:inline-flex;align-items:center;gap:.3rem;
+  padding:.3rem .55rem;font-size:.75rem;letter-spacing:.1em;
+  text-transform:uppercase;font-family:"Big Shoulders Display",sans-serif;
+  font-weight:700;border:1px solid var(--line);background:rgba(255,255,255,.03);
+  color:var(--cyan);text-decoration:none;cursor:pointer;border-radius:2px;
+  transition:border-color .15s, background .15s, color .15s;min-height:30px;
+}
+.pl-act:hover{
+  border-color:var(--cyan);background:rgba(0,191,214,.12);color:var(--plate);
+}
+.plate.invert .pl-act{
+  border-color:rgba(7,8,9,.25);color:var(--cyan-d);background:rgba(7,8,9,.04);
+}
+.plate.invert .pl-act:hover{
+  border-color:var(--cyan-d);background:rgba(7,8,9,.08);color:var(--black);
+}
+
 /* --------------------------------------------------------- 2. the calendar */
 .cal{border-top:1px solid var(--line)}
-.day{border-bottom:1px solid var(--line)}
+.day{border-bottom:1px solid var(--line);scroll-margin-top:4.8rem}
+.day.hidden-filter, .card.hidden-filter, tr.hidden-filter{display:none !important}
 .day>summary{display:grid;align-items:baseline;gap:.2rem 1rem;cursor:pointer;
-  padding:.85rem .2rem;list-style:none;
-  grid-template-columns:4.6rem 5.5rem minmax(0,1fr) max-content 1.4rem}
+  padding:.85rem .2rem;list-style:none;touch-action:manipulation;
+  grid-template-columns:4.6rem 5.5rem minmax(0,1fr) max-content 1.4rem;
+  transition:background .15s ease}
+.day>summary:hover{background:rgba(255,255,255,.02)}
 .day>summary::-webkit-details-marker{display:none}
 .day>summary:hover .cal-pick{color:var(--plate)}
 .cal-d{font-weight:900;font-size:2.1rem;line-height:.9;position:relative;
@@ -206,7 +386,8 @@ h2{font-family:"Big Shoulders Display",sans-serif;font-weight:900;
 .cards.night{display:grid;gap:1.8rem;margin:0 0 1.2rem;
   grid-template-columns:repeat(auto-fit,minmax(255px,1fr));align-items:start}
 .cards.night .card{position:relative;padding-left:1.1rem;
-  border-left:1px solid var(--line);counter-increment:pick}
+  border-left:1px solid var(--line);counter-increment:pick;
+  transition:border-color .15s ease, background .15s ease}
 .cards.night{counter-reset:pick}
 .cards.night .card::before{content:counter(pick);
   font-family:"Big Shoulders Display",sans-serif;font-weight:900;
@@ -231,13 +412,32 @@ h2{font-family:"Big Shoulders Display",sans-serif;font-weight:900;
   border-left:1px solid var(--red);padding-left:.9rem;margin:.2rem 0 1.2rem}
 .also strong{color:var(--plate)}
 
+.card-act{
+  display:flex;gap:.45rem;margin:.7rem 0 .3rem;padding-top:.45rem;
+  border-top:1px dashed var(--line);
+}
+.act-btn{
+  display:inline-flex;align-items:center;gap:.25rem;
+  padding:.25rem .5rem;font-size:.74rem;letter-spacing:.09em;
+  text-transform:uppercase;font-family:"Big Shoulders Display",sans-serif;
+  font-weight:700;border:1px solid var(--line);background:rgba(255,255,255,.02);
+  color:var(--cyan);text-decoration:none;cursor:pointer;border-radius:2px;
+  transition:border-color .15s, color .15s, background .15s;min-height:30px;
+}
+.act-btn:hover{
+  border-color:var(--cyan);color:var(--plate);background:rgba(0,191,214,.1);
+}
+.act-btn.copied{
+  border-color:var(--cyan);background:var(--cyan);color:var(--black);
+}
+
 /* nested disclosures */
 .more,.table,.chunk{margin-top:.8rem}
 .plate>.more{order:9;margin-top:.7rem}
 .more>summary,.table>summary{font-family:"Big Shoulders Display",sans-serif;
   font-weight:600;letter-spacing:.14em;text-transform:uppercase;
   font-size:.85rem;color:var(--cyan);cursor:pointer;list-style:none;
-  border-top:1px solid var(--line);padding:.5rem 0 0}
+  border-top:1px solid var(--line);padding:.5rem 0 0;touch-action:manipulation}
 .more>summary::-webkit-details-marker,
 .table>summary::-webkit-details-marker{display:none}
 .more>summary::before,.table>summary::before{content:"+ ";color:var(--red)}
@@ -249,12 +449,12 @@ h2{font-family:"Big Shoulders Display",sans-serif;font-weight:900;
   margin:1rem 0 .6rem}
 
 /* ------------------------------------------------------ everything else */
-.rest{margin-top:3.4rem;border-top:1px solid var(--line);padding-top:1.4rem}
+.rest{margin-top:3.4rem;border-top:1px solid var(--line);padding-top:1.4rem;scroll-margin-top:4.8rem}
 .rest>p{color:var(--grey);font-size:.88rem;max-width:40rem}
 .chunk{border-bottom:1px solid var(--line)}
 .chunk>summary{font-weight:800;text-transform:uppercase;letter-spacing:.03em;
   font-size:1.05rem;cursor:pointer;list-style:none;padding:.75rem 0;
-  display:flex;gap:.7rem;align-items:baseline}
+  display:flex;gap:.7rem;align-items:baseline;touch-action:manipulation}
 .chunk>summary::-webkit-details-marker{display:none}
 .chunk>summary::after{content:"+";margin-left:auto;color:var(--red)}
 .chunk[open]>summary::after{content:"\2212"}
@@ -286,7 +486,20 @@ h2{font-family:"Big Shoulders Display",sans-serif;font-weight:900;
 .smp{border:1px dashed var(--red-t);color:var(--red-t)}
 
 /* -------------------------------------------------------------- tables */
-.tw{overflow-x:auto;margin:.8rem 0 1.4rem;border:1px solid var(--line)}
+.tw{overflow-x:auto;margin:.8rem 0 1.4rem;border:1px solid var(--line);
+  position:relative;overscroll-behavior:contain}
+.tw::-webkit-scrollbar{height:6px}
+.tw::-webkit-scrollbar-track{background:var(--black)}
+.tw::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px}
+.tw::-webkit-scrollbar-thumb:hover{background:var(--cyan-d)}
+.scroll-hint{
+  display:none;font-family:"Big Shoulders Display",sans-serif;
+  font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--grey);margin-bottom:.3rem;text-align:right;
+}
+@media (max-width:760px){
+  .scroll-hint{display:block}
+}
 table{border-collapse:collapse;width:100%;min-width:44rem;font-size:.82rem;
   line-height:1.6;text-align:left}
 th,td{padding:.45rem .65rem;vertical-align:top;border-bottom:1px solid var(--line)}
@@ -295,12 +508,70 @@ th{background:var(--red);color:#fff;font-weight:600;letter-spacing:.12em;
 td{color:#C9CBCE}
 td b,td strong{color:var(--plate)}
 tr:last-child td{border-bottom:0}
+tr:nth-child(even) td{background:rgba(255,255,255,.015)}
 td.day{white-space:nowrap;font-family:"Big Shoulders Display",sans-serif;
   font-weight:600;letter-spacing:.08em;text-transform:uppercase;
   color:var(--plate)}
+
+/* ------------------------------------------------------- back-to-top & toast */
+.btt{
+  position:fixed;right:20px;bottom:24px;z-index:90;
+  background:var(--black);color:var(--cyan);
+  border:1px solid var(--cyan);border-radius:2px;
+  padding:.5rem .75rem;display:inline-flex;align-items:center;gap:.35rem;
+  font-family:"Big Shoulders Display",sans-serif;font-weight:900;
+  font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;
+  cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.6);
+  opacity:0;pointer-events:none;transform:translateY(8px);
+  transition:opacity .2s, transform .2s, background .15s, color .15s;
+  min-height:38px;
+}
+.btt.visible{
+  opacity:1;pointer-events:auto;transform:translateY(0);
+}
+.btt:hover{
+  background:var(--cyan);color:var(--black);
+}
+
+.toast{
+  position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);
+  z-index:110;background:#0d0f12;color:var(--plate);
+  border:1px solid var(--cyan);border-radius:2px;
+  padding:.55rem 1.1rem;font-family:"Big Shoulders Display",sans-serif;
+  font-weight:700;font-size:.9rem;letter-spacing:.1em;text-transform:uppercase;
+  box-shadow:0 8px 24px rgba(0,0,0,.8), 0 0 12px rgba(0,191,214,.25);
+  opacity:0;pointer-events:none;transition:opacity .2s, transform .2s;
+  max-width:90vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.toast.show{
+  opacity:1;transform:translateX(-50%) translateY(0);
+}
 </style></head>
 <body>
 <a class="skip" href="#five" aria-label="Skip to the top five"></a>
+
+<nav class="hud-bar" id="hud-bar" aria-label="Travel navigation">
+  <div class="hud-inner">
+    <a href="/japan/" class="hud-back" aria-label="Back to Japan Itinerary">
+      <span aria-hidden="true">&larr;</span>
+      <span>Itinerary</span>
+    </a>
+    <div class="hud-title-wrap">
+      <span class="hud-badge">JAPAN-ONLY</span>
+      <span class="hud-sub">19–25 Sept 2026</span>
+    </div>
+    <div class="hud-nav">
+      <a href="#five" class="hud-nav-link" data-sec="five">Top 5</a>
+      <a href="#calendar" class="hud-nav-link" data-sec="calendar">Calendar</a>
+      <a href="#rest" class="hud-nav-link" data-sec="rest">Reference</a>
+      <button type="button" class="hud-find-btn" id="hud-find-btn" aria-label="Find events in book">
+        <span aria-hidden="true">🔍</span> Find
+      </button>
+    </div>
+  </div>
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+</nav>
+
 <header class="hero"><div class="inner">
 
 <div class="kicker">Music you cannot see stateside · Silver Week 2026</div>
@@ -316,13 +587,33 @@ td.day{white-space:nowrap;font-family:"Big Shoulders Display",sans-serif;
 
 </div></details>
 </div></header>
+
 <main class="wrap">
+
+<div class="filter-bar" id="filter-bar">
+  <div class="filter-row">
+    <div class="search-box">
+      <span class="search-icon" aria-hidden="true">🔍</span>
+      <input type="search" id="event-search" class="search-input" placeholder="Filter artists, venues, dates, genres (press / to focus)…" aria-label="Filter events and venues" autocomplete="off" spellcheck="false">
+      <button type="button" id="search-clear" class="search-clear" aria-label="Clear search" hidden>&times;</button>
+    </div>
+    <div class="chips" role="toolbar" aria-label="Filter events by category">
+      <button type="button" class="chip active" data-filter="all">All</button>
+      <button type="button" class="chip" data-filter="tokyo">Tokyo</button>
+      <button type="button" class="chip" data-filter="kansai">Kansai</button>
+      <button type="button" class="chip" data-filter="jazz">Jazz</button>
+      <button type="button" class="chip" data-filter="trad">Noh / Rites</button>
+      <button type="button" class="chip" data-filter="booked">Held</button>
+    </div>
+  </div>
+  <div class="filter-msg" id="filter-msg" aria-live="polite">Showing all events across Tokyo &amp; Kansai</div>
+</div>
 
 <section class="sec" id="five">
 <h2>0 · Top five for the whole trip, in order</h2>
 <p class="legend">Ranked across the whole week, not one per day: first by how far each is from anything Brooklyn can offer, then by whether you can get in. The first entry leads because the tickets are held; on the test alone Takanaka is Tier 3, having sold out Brooklyn Paramount in April. Jazz and everything else compete on the same terms; two of the five are jazz rooms. Two of them are the same Wednesday. See Yamashita if the lottery lands, or the candle noh at 御香宮 if it does not. Where something fits before or after on the same day the entry says so. Sixth to eighth, for the record: Uchihashi &amp; Ligeti at UrBANGUILD (Thu 24), Keiji Haino at 月花舎 (Sun 20) and the Kabuki-za 幕見 gallery (any Tokyo day); 友川カズキ (Tue 22) would be in the five if the Swallows game were dropped. Every night's own ranking is in section 0b. The harvest-moon rites led this list until the Takanaka tickets were bought on 6 Sept; they run while you are in Hikone, and sit in section 0b as what Friday would have been.</p>
 <div class="five">
-<article class="plate invert">
+<article class="plate invert" data-city="Hikone, JR 50 min from Kyoto" data-bill="高中正義">
 <span class="reg tl"></span><span class="reg tr"></span>
 <span class="reg bl"></span><span class="reg br"></span>
 <span class="dither" aria-hidden="true"></span>
@@ -333,6 +624,7 @@ td.day{white-space:nowrap;font-family:"Big Shoulders Display",sans-serif;
 <div class="pl-times"><b>OPEN</b><i>17:30</i><b>START</b><i>18:30</i></div>
 <p class="pl-y">¥11,000</p>
 <p class="pl-note">all reserved; tickets held</p>
+<div class="pl-actions"><a class="pl-act map" href="https://www.google.com/maps/search/?api=1&query=%E3%81%B2%E3%81%93%E3%81%AD%E5%B8%82%E6%96%87%E5%8C%96%E3%83%97%E3%83%A9%E3%82%B6%20%E3%82%B0%E3%83%A9%E3%83%B3%E3%83%89%E3%83%9B%E3%83%BC%E3%83%AB" target="_blank" rel="noopener" aria-label="Open ひこね市文化プラザ グランドホール in Google Maps">📍 Map</a><button type="button" class="pl-act copy copy-btn" data-copy="ひこね市文化プラザ グランドホール" aria-label="Copy ひこね市文化プラザ グランドホール to clipboard">📋 Copy Venue</button></div>
 <details class="more"><summary>Read the flyer</summary>
 <div class="morebody"><h3>Fri 25 · doors 17:30, start 18:30 · 高中正義 SUPER TAKANAKA LIVE 2026-2027, ひこね市文化プラザ グランドホール Hikone Bunka Plaza, Hikone — booked: the guitarist who sold out Brooklyn Paramount in April, five months later in a civic hall fifty minutes from Kyoto</h3>
 <p class="www"><b>What</b><span>高中正義 Takanaka Masayoshi, 73, the guitarist of Sadistic Mika Band and of the instrumental records that defined Japanese fusion (SEYCHELLES 1976, JOLLY JIVE 1979, 虹伝説 The Rainbow Goblins 1981, the single BLUE LAGOON), on the current hall tour with his band. No running time is published; allow until about 21:00.</span><b>When</b><span>Fri 25 Sept · doors 17:30, start 18:30. Leave Arashiyama by about 15:00.</span><b>Where</b><span>ひこね市文化プラザ グランドホール, 野瀬町 187-4, Hikone, Shiga. JR 新快速 Kyoto → Hikone about 50 min, then a taxi (about 10 min); or one local stop back to 南彦根, the hall's own nearest station, and the 湖国バス 県立大学線 to the ひこね市文化プラザ stop, or 22 min on foot.</span><b>Cost</b><span>¥11,000 all reserved, tickets held.</span></p>
@@ -345,7 +637,7 @@ td.day{white-space:nowrap;font-family:"Big Shoulders Display",sans-serif;
 </div>
 <p class="rank"><span>1</span></p>
 </article>
-<article class="plate">
+<article class="plate" data-city="Festival Hall, Nakanoshima, Osaka" data-bill="山下達郎">
 <span class="reg tl"></span><span class="reg tr"></span>
 <span class="reg bl"></span><span class="reg br"></span>
 <span class="dither" aria-hidden="true"></span>
@@ -356,6 +648,7 @@ td.day{white-space:nowrap;font-family:"Big Shoulders Display",sans-serif;
 <div class="pl-times"><b>OPEN</b><i>17:00</i><b>START</b><i>18:00</i></div>
 <p class="pl-y">¥15,000</p>
 <p class="pl-note">all reserved — e+ cancel-wait lottery to 13 Sept</p>
+<div class="pl-actions"><a class="pl-act map" href="https://www.google.com/maps/search/?api=1&query=%E3%83%95%E3%82%A7%E3%82%B9%E3%83%86%E3%82%A3%E3%83%90%E3%83%AB%E3%83%9B%E3%83%BC%E3%83%AB" target="_blank" rel="noopener" aria-label="Open フェスティバルホール in Google Maps">📍 Map</a><button type="button" class="pl-act copy copy-btn" data-copy="フェスティバルホール" aria-label="Copy フェスティバルホール to clipboard">📋 Copy Venue</button></div>
 <details class="more"><summary>Read the flyer</summary>
 <div class="morebody"><h3>Wed 23 · 18:00 · 山下達郎 Tatsuro Yamashita "PERFORMANCE 2026", フェスティバルホール Festival Hall, Osaka — a major Japanese artist who has never performed outside Japan, on a night you can reach</h3>
 <p class="www"><b>What</b><span>山下達郎 "PERFORMANCE 2026", the annual hall tour of the city-pop originator who has never performed outside Japan; full band.</span><b>When</b><span>Wed 23 Sept · doors 17:00, start 18:00; ID checks from 16:15. Your Shinkansen: Kyoto 16:44, Shin-Osaka 17:00, hall by 17:30.</span><b>Where</b><span>フェスティバルホール Festival Hall, Nakanoshima, Osaka (Yodoyabashi or Higobashi stations; Midōsuji line from Shin-Osaka).</span><b>Cost</b><span>¥15,000 · only route is the e+ cancel-wait lottery, deadline <strong>Sun 13 Sept 18:00 JST</strong>, one ticket per application.</span></p>
@@ -368,7 +661,7 @@ td.day{white-space:nowrap;font-family:"Big Shoulders Display",sans-serif;
 </div>
 <p class="rank"><span>2</span></p>
 </article>
-<article class="plate">
+<article class="plate" data-city="the 1965 basement" data-bill="東京民謡倶楽部">
 <span class="reg tl"></span><span class="reg tr"></span>
 <span class="reg bl"></span><span class="reg br"></span>
 <span class="dither" aria-hidden="true"></span>
@@ -379,6 +672,7 @@ td.day{white-space:nowrap;font-family:"Big Shoulders Display",sans-serif;
 <div class="pl-times"><b>OPEN</b><i>14:00</i><b>START</b><i>14:30</i></div>
 <p class="pl-y">¥5,500</p>
 <p class="pl-note">advance, one drink included; ¥6,050 door</p>
+<div class="pl-actions"><a class="pl-act map" href="https://www.google.com/maps/search/?api=1&query=Shinjuku%20Pit%20Inn" target="_blank" rel="noopener" aria-label="Open Shinjuku Pit Inn in Google Maps">📍 Map</a><button type="button" class="pl-act copy copy-btn" data-copy="Shinjuku Pit Inn" aria-label="Copy Shinjuku Pit Inn to clipboard">📋 Copy Venue</button></div>
 <details class="more"><summary>Read the flyer</summary>
 <div class="morebody"><h3>Sun 20 · 11:00, 14:30, 19:00 · Bunraku in Kōtō-ku, then Pit Inn 昼の部 東京民謡倶楽部 Tokyo Min'yō Club (Tsugaru shamisen, shakuhachi and wadaiko inside a jazz band, in the 1965 Shinjuku basement's afternoon slot), then Keiji Haino at 月花舎</h3>
 <p class="www"><b>What</b><span>Pit Inn 昼の部: Marty Holoubek's band with 東京民謡倶楽部, three Tsugaru shamisen, a min'yō singer, shakuhachi and wadaiko over a jazz rhythm section (石若駿, drums). Before it, the last day of the bunraku 鑑賞教室 (忠臣蔵, 勘平 acts); after it, Keiji Haino in duo with a pianist.</span><b>When</b><span>Sun 20 Sept · bunraku 11:00–13:45 · Pit Inn open 14:00, start 14:30, about two hours · Haino open 18:30, start 19:00.</span><b>Where</b><span>Bunraku: 江東区文化センター, Tōyōchō. Pit Inn: Shinjuku Pit Inn, the 1965 basement (Shinjuku-Sanchōme). Haino: 月花舎, Jimbōchō (Jimbōchō/Kudanshita 3 min).</span><b>Cost</b><span>Pit Inn ¥5,500 adv / ¥6,050 door, drink included · bunraku ¥6,000 · Haino ¥3,500 + ¥500 drink.</span></p>
@@ -391,7 +685,7 @@ td.day{white-space:nowrap;font-family:"Big Shoulders Display",sans-serif;
 </div>
 <p class="rank"><span>3</span></p>
 </article>
-<article class="plate">
+<article class="plate" data-city="Fushimi, Kintetsu 桃山御陵前 4 min" data-bill="御香宮神能">
 <span class="reg tl"></span><span class="reg tr"></span>
 <span class="reg bl"></span><span class="reg br"></span>
 <span class="dither" aria-hidden="true"></span>
@@ -402,6 +696,7 @@ td.day{white-space:nowrap;font-family:"Big Shoulders Display",sans-serif;
 <div class="pl-times"><b>OPEN</b><i>17:45</i><b>START</b><i>18:30</i></div>
 <p class="pl-y">¥3,500</p>
 <p class="pl-note">B seats advance; ¥4,000 at the door; A sold out</p>
+<div class="pl-actions"><a class="pl-act map" href="https://www.google.com/maps/search/?api=1&query=%E5%BE%A1%E9%A6%99%E5%AE%AE%E7%A5%9E%E7%A4%BE%20%E8%83%BD%E8%88%9E%E5%8F%B0" target="_blank" rel="noopener" aria-label="Open 御香宮神社 能舞台 in Google Maps">📍 Map</a><button type="button" class="pl-act copy copy-btn" data-copy="御香宮神社 能舞台" aria-label="Copy 御香宮神社 能舞台 to clipboard">📋 Copy Venue</button></div>
 <details class="more"><summary>Read the flyer</summary>
 <div class="morebody"><h3>Wed 23 · 18:30 · 御香宮神能『蝋燭能』 Gokōnomiya Candle Noh, 御香宮神社 Fushimi — 狂言「因幡堂」 and 能「花月」 with full hayashi, by candlelight, on the shrine's own noh stage: the Wednesday you can actually book</h3>
 <p class="www"><b>What</b><span>御香宮神能『蝋燭能』: the shrine's one candlelit noh a year on its 能舞台, 狂言「因幡堂」 (茂山茂) then 能「花月」 (杉浦豊彦) with a full hayashi and chorus; held in rain under a large tent over the seats.</span><b>When</b><span>Wed 23 Sept (holiday) · doors 17:45, start 18:30. The Shinkansen reaches Kyoto 16:44; Kintetsu from Kyoto to 桃山御陵前 about 15 min, then a 4-minute walk.</span><b>Where</b><span>御香宮神社 能舞台, 伏見区御香宮門前町174, Fushimi, Kyoto (Kintetsu 桃山御陵前 4 min, Keihan 伏見桃山 6 min).</span><b>Cost</b><span>B seats ¥3,500 advance / ¥4,000 at the door, unreserved within the block; A seats (¥4,000 / ¥4,500) are sold out.</span></p>
@@ -414,7 +709,7 @@ td.day{white-space:nowrap;font-family:"Big Shoulders Display",sans-serif;
 </div>
 <p class="rank"><span>4</span></p>
 </article>
-<article class="plate">
+<article class="plate" data-city="Udagawa-chō, on Kōen-dōri" data-bill="Body &amp;amp; Soul">
 <span class="reg tl"></span><span class="reg tr"></span>
 <span class="reg bl"></span><span class="reg br"></span>
 <span class="dither" aria-hidden="true"></span>
@@ -425,6 +720,7 @@ td.day{white-space:nowrap;font-family:"Big Shoulders Display",sans-serif;
 <div class="pl-times"><b>OPEN</b><i>17:30</i><b>SETS</b><i>18:30, 20:00</i></div>
 <p class="pl-y">¥7,700</p>
 <p class="pl-note">music charge with tax, plus drinks</p>
+<div class="pl-actions"><a class="pl-act map" href="https://www.google.com/maps/search/?api=1&query=%E6%B8%8B%E8%B0%B7%E5%8C%BA%E5%AE%87%E7%94%B0%E5%B7%9D%E7%94%BA2-1" target="_blank" rel="noopener" aria-label="Open 渋谷区宇田川町2-1 in Google Maps">📍 Map</a><button type="button" class="pl-act copy copy-btn" data-copy="渋谷区宇田川町2-1" aria-label="Copy 渋谷区宇田川町2-1 to clipboard">📋 Copy Venue</button></div>
 <details class="more"><summary>Read the flyer</summary>
 <div class="morebody"><h3>Mon 21 · 13:25 then 18:30 · Kabuki-za 幕見 for ひらかな盛衰記〈逆櫓〉 in the afternoon, then Body &amp; Soul, 52 years old, five minutes from your hotel, closing on 27 Sept — its last night still open to reserve: 河合代介 (Hammond organ), 佐野康夫 (drums), 宮崎隆睦 (sax)</h3>
 <p class="www"><b>What</b><span>Body &amp; Soul's last night still open to reserve, in the club's final week after 52 years: 河合代介 (Hammond organ), 佐野康夫 (drums), 宮崎隆睦 (sax). In the afternoon, the Kabuki-za 幕見 gallery for 〈逆櫓〉 (竹本 gidayū narration, a full 立廻り).</span><b>When</b><span>Mon 21 Sept (holiday) · 幕見 13:25–15:12 · Body &amp; Soul open 17:30, sets 18:30 and 20:00.</span><b>Where</b><span>Body &amp; Soul, 渋谷区宇田川町2-1 渋谷ホームズ B-15, on Kōen-dōri, five minutes from the hotel (the club moved here from Minami-Aoyama). Kabuki-za, Higashi-Ginza (4F 幕見 entrance).</span><b>Cost</b><span>Body &amp; Soul ¥7,700 + drinks, email reservation from the schedule page · 幕見 ¥2,800 + ¥110, online from noon Sun 20 or queue.</span></p>
@@ -446,25 +742,39 @@ td.day{white-space:nowrap;font-family:"Big Shoulders Display",sans-serif;
 <p class="legend">One ranking per day, Sat 19 to Fri 25, on the same test. Three entries unless the day has an obvious single answer or a fixed commitment; the rest of each day is in the per-day tables (section 5). Prices per person, drink charges included where the venue states one.</p>
 
 <details class="calnote"><summary>What a day opens to</summary>
-<div class="calnotebody"><h2>5 · Per-day tables</h2>
+<div class="calnotebody"><h2>2 · Per-day tables</h2>
 <p class="legend">Everything found, one line per item (what, where, when, price); daytime and evening separated. ✕ = collides with the game, with travel, or with a stronger option. Prices per person, charges in where known. n/p = not published.</p>
 
 </div></details>
+
+<div class="cal-bar">
+  <div class="cal-legend" aria-label="Status indicator key">
+    <span class="legend-item"><span class="legend-dot held" aria-hidden="true"></span> Held (Booked)</span>
+    <span class="legend-item"><span class="legend-dot wait" aria-hidden="true"></span> Lottery / Wait</span>
+    <span class="legend-item"><span class="legend-dot ok" aria-hidden="true"></span> Walk-up OK</span>
+    <span class="legend-item"><span class="legend-dot off" aria-hidden="true"></span> Locked / Game</span>
+  </div>
+  <div class="cal-controls">
+    <button type="button" class="cal-ctrl-btn" id="cal-expand-all" aria-label="Expand all calendar days">+ Expand All</button>
+    <button type="button" class="cal-ctrl-btn" id="cal-collapse-all" aria-label="Collapse all calendar days">&minus; Collapse All</button>
+  </div>
+</div>
+
 <div class="cal">
 <details class="day" name="day" id="day-19" data-lamp="ok"><summary><span class="cal-d">19<i>土</i></span><span class="cal-city">Tokyo</span><span class="cal-pick">金王八幡宮 例大祭 宵宮 stage, then Pit Inn: The Blend with 峰厚介</span><span class="cal-cost">shrine free · Pit Inn ¥3,500 incl</span><span class="cal-open" aria-hidden="true"></span></summary><div class="daybody"><h3 class="dayhead">Sat 19 Sept — you land at 15:00; in Shibuya by about 17:30, the whole evening is open</h3><div class="cards night">
 <div class="card"><h3>金王八幡宮 例大祭 宵宮 stage, then Pit Inn: The Blend with 峰厚介</h3>
 <p class="www"><b>What</b><span>The Shibuya shrine's festival eve on your doorstep: a 神楽殿 stage with おはら節 and 渋谷音頭 at 16:00 and <strong>koto at 18:00</strong>, stalls, the precinct lit. Then 峰厚介 (tenor, b. 1944, on Tokyo stages since the 1960s) with 中村恵介 (tp), Hakuei Kim (p), 本田珠也 (ds). <span class="t1">Tier 1</span> rite, <span class="t2">Tier 2</span> player</span><b>When</b><span>Sat 19 · shrine stage from 18:00, leave it about 19:05 · Pit Inn 19:30 (Shibuya → Shinjuku-Sanchōme 10 min).</span><b>Where</b><span>金王八幡宮, Shibuya 3-chōme, a few minutes from the hotel; then Shinjuku Pit Inn, the 1965 basement.</span><b>Cost</b><span>shrine free · Pit Inn ¥3,500 incl. one drink, door, cash.</span></p>
-<p>You land at 15:00 and are in Shibuya by about 17:30, so the whole evening is on. Shrine: <span class="v">VERIFIED</span> dates on <a href="https://shibuyamatsuri.com/">shibuyamatsuri.com</a>, stage programme <span class="s">SECONDARY</span> (<a href="https://nigiwai-matsuri.com/">nigiwai-matsuri.com</a>). Pit Inn: <span class="v">VERIFIED</span> <a href="https://pit-inn.com/schedule/">pit-inn.com/schedule</a>.</p></div>
+<p>You land at 15:00 and are in Shibuya by about 17:30, so the whole evening is on. Shrine: <span class="v">VERIFIED</span> dates on <a href="https://shibuyamatsuri.com/">shibuyamatsuri.com</a>, stage programme <span class="s">SECONDARY</span> (<a href="https://nigiwai-matsuri.com/">nigiwai-matsuri.com</a>). Pit Inn: <span class="v">VERIFIED</span> <a href="https://pit-inn.com/schedule/">pit-inn.com/schedule</a>.</p><div class="card-act"><a class="act-btn map" href="https://www.google.com/maps/search/?api=1&query=%E9%87%91%E7%8E%8B%E5%85%AB%E5%B9%A1%E5%AE%AE" target="_blank" rel="noopener" aria-label="Open 金王八幡宮 in Google Maps">📍 Map</a><button type="button" class="act-btn copy copy-btn" data-copy="金王八幡宮" aria-label="Copy 金王八幡宮 to clipboard">📋 Copy Venue</button></div></div>
 <div class="card"><h3>和ノ家追分, either min'yō show</h3>
 <p class="www"><b>What</b><span>The min'yō sakaba: resident Tsugaru-shamisen champions and singers, two shows a night, the audience joining in. <span class="t1">Tier 1</span></span><b>When</b><span>Sat 19 · shows 19:00 and 21:00; open 17:30–23:00. The 21:00 show fits after the Pit Inn (Shinjuku → Asakusa 30 min).</span><b>Where</b><span>和ノ家追分, Senzoku-dōri, Asakusa (TX Asakusa 10 min).</span><b>Cost</b><span>木戸銭 ¥2,000 incl. お通し + drinks; about ¥3,500.</span></p>
-<p>The bookable one: phone 03-3874-0722. <span class="v">VERIFIED</span> <a href="https://www.kazunoya-oiwake.com/">kazunoya-oiwake.com</a>.</p></div>
+<p>The bookable one: phone 03-3874-0722. <span class="v">VERIFIED</span> <a href="https://www.kazunoya-oiwake.com/">kazunoya-oiwake.com</a>.</p><div class="card-act"><a class="act-btn map" href="https://www.google.com/maps/search/?api=1&query=%E5%92%8C%E3%83%8E%E5%AE%B6%E8%BF%BD%E5%88%86" target="_blank" rel="noopener" aria-label="Open 和ノ家追分 in Google Maps">📍 Map</a><button type="button" class="act-btn copy copy-btn" data-copy="和ノ家追分" aria-label="Copy 和ノ家追分 to clipboard">📋 Copy Venue</button></div></div>
 <div class="card"><h3>Body &amp; Soul, Saturday of the final week</h3>
 <p class="www"><b>What</b><span>若井優也 Special Quartet feat. Chris Kazuki Jones, with 石若駿 on drums, in the closing club five minutes from the hotel. <span class="t1">Tier 1</span> room</span><b>When</b><span>Sat 19 · open 18:30, sets 19:30 and 21:00.</span><b>Where</b><span>Body &amp; Soul, 渋谷区宇田川町2-1 渋谷ホームズ B-15, Kōen-dōri, Shibuya.</span><b>Cost</b><span>¥7,700 + drinks.</span></p>
-<p>The reservation list is closed (予約〆切), not stated as sold out: phone 03-6455-0088 on the day for returns; Monday is the open night. <span class="v">VERIFIED</span> <a href="https://bodyandsoul.co.jp/schedule">bodyandsoul.co.jp/schedule</a>.</p></div>
+<p>The reservation list is closed (予約〆切), not stated as sold out: phone 03-6455-0088 on the day for returns; Monday is the open night. <span class="v">VERIFIED</span> <a href="https://bodyandsoul.co.jp/schedule">bodyandsoul.co.jp/schedule</a>.</p><div class="card-act"><a class="act-btn map" href="https://www.google.com/maps/search/?api=1&query=Body%20%26amp%3B%20Soul" target="_blank" rel="noopener" aria-label="Open Body &amp;amp; Soul in Google Maps">📍 Map</a><button type="button" class="act-btn copy copy-btn" data-copy="Body &amp;amp; Soul" aria-label="Copy Body &amp;amp; Soul to clipboard">📋 Copy Venue</button></div></div>
 </div>
 <p class="also"><strong>Also that day:</strong> 沖縄パラダイス, Kabukichō, sanshin live from about 19:30, walk-in. ELECTRIC EEL SHOCK's farewell one-man at La.mama, Dōgenzaka, 20:00, is sold out; door returns only. 20000V, Higashi-Kōenji: mosaic vol.6 with KIRIHITO, 19:00. Manda-la 2, Kichijōji: 上野茂都, 19:00. 新宿LOFT: BALZAC's 完全復活 one-off for the Loft's 50th, doors 18:00, start 19:00, ¥4,000 + drink, e+ or email reservation (they toured the US in the 2000s, so Tier 3; it collides with the Pit Inn). Bar Martha, Ebisu (records, no talking, 19:00–03:00) for a nightcap. The daytime noh (宝生会 11:00 and 15:30, 坂口貴信之會 13:00) and 明治座 11:00 are before you land.</p>
 
-<details class="table"><summary>Everything else on the 19th</summary><h4 class="tblhead">Sat 19 Sept — land 15:00; in Shibuya by about 17:30</h4><div class="tw"><table><tr><th>Slot</th><th>What</th><th>Where</th><th>When</th><th>¥ pp</th><th>Status</th><th>Note</th></tr>
+<span class="vh">Every night · 和ノ家追分 Kazunoya Oiwake</span><details class="table"><summary>Everything else on the 19th</summary><h4 class="tblhead">Sat 19 Sept — land 15:00; in Shibuya by about 17:30</h4><span class="scroll-hint" aria-hidden="true">Scroll table &rarr;</span><div class="tw"><table><tr><th>Slot</th><th>What</th><th>Where</th><th>When</th><th>¥ pp</th><th>Status</th><th>Note</th></tr>
 <tr><td class="day">Day</td><td><strong>金王八幡宮 例大祭 宵宮 stage</strong> (おはら節・渋谷音頭 16:00, koto 18:00, ends ~19:30)</td><td>Shibuya 3-chōme</td><td>16:00–19:30</td><td>free</td><td><span class="v">V</span> dates / <span class="s">S</span> stage</td><td><strong>the Saturday pick</strong>, then Pit Inn</td></tr>
 <tr><td class="day">Day</td><td>宝生会定期公演 11:00 / 15:30; 坂口貴信之會 13:00 Kanze; 明治座 11:00; AKB48 Theater 12:00/16:30</td><td>various</td><td>—</td><td>—</td><td><span class="v">V</span></td><td>✕ before you land</td></tr>
 <tr><td class="day">Eve</td><td><strong>BALZAC 完全復活</strong> (Loft 50th one-off, DJ モチヅキマサル)</td><td>新宿LOFT, Kabukichō</td><td>18:00 / 19:00</td><td>4,000+D</td><td><span class="v">V</span></td><td>reachable; Tier 3 (toured the US); ✕ Pit Inn 19:30</td></tr>
@@ -481,16 +791,16 @@ td.day{white-space:nowrap;font-family:"Big Shoulders Display",sans-serif;
 </details></div></details><details class="day" name="day" id="day-20" data-lamp="ok"><summary><span class="cal-d">20<i>日</i></span><span class="cal-city">Tokyo</span><span class="cal-pick">Pit Inn 昼の部: 東京民謡倶楽部</span><span class="cal-cost">¥5,500 adv</span><span class="cal-open" aria-hidden="true"></span></summary><div class="daybody"><h3 class="dayhead">Sun 20 Sept — free all day</h3><div class="cards night">
 <div class="card"><h3>Pit Inn 昼の部: 東京民謡倶楽部</h3>
 <p class="www"><b>What</b><span>Three Tsugaru shamisen (小山豊, 白藤ひかり, 武田佳泉), 駒田早代 (唄), 小湊昭尚 (shakuhachi), 大多和正樹 (wadaiko) inside Marty Holoubek's jazz band with 石若駿 on drums. <span class="t1">Tier 1</span> crossover</span><b>When</b><span>Sun 20 · open 14:00, start 14:30, about two hours. Before it: the last day of the bunraku 鑑賞教室, 11:00–13:45 (¥6,000, 江東区文化センター, Tōyōchō; 40 min to Shinjuku).</span><b>Where</b><span>Shinjuku Pit Inn (Shinjuku-Sanchōme).</span><b>Cost</b><span>¥5,500 adv / ¥6,050 door, one drink included; email or phone from the venue page, cash at the door.</span></p>
-<p>Overall #3. <span class="v">VERIFIED</span> <a href="https://pit-inn.com/schedule-day/">pit-inn.com/schedule-day</a>.</p></div>
+<p>Overall #3. <span class="v">VERIFIED</span> <a href="https://pit-inn.com/schedule-day/">pit-inn.com/schedule-day</a>.</p><div class="card-act"><a class="act-btn map" href="https://www.google.com/maps/search/?api=1&query=Shinjuku%20Pit%20Inn" target="_blank" rel="noopener" aria-label="Open Shinjuku Pit Inn in Google Maps">📍 Map</a><button type="button" class="act-btn copy copy-btn" data-copy="Shinjuku Pit Inn" aria-label="Copy Shinjuku Pit Inn to clipboard">📋 Copy Venue</button></div></div>
 <div class="card"><h3>灰野敬二 + 小林リコ</h3>
 <p class="www"><b>What</b><span>Keiji Haino, 74, in duo with a pianist, in a listening room that holds a few dozen. <span class="t2">Tier 2</span></span><b>When</b><span>Sun 20 · open 18:30, start 19:00.</span><b>Where</b><span>月花舎, 千代田区神田神保町3-5, basement (Jimbōchō / Kudanshita 3 min).</span><b>Cost</b><span>¥3,500 adv / ¥4,000 door + ¥500 drink; email <code>sakaiki@modalbeats.com</code> with names and number.</span></p>
-<p>New York gets Haino in festival slots, not like this. <span class="v">VERIFIED</span> on the artist's schedule; the venue page had not listed it yet.</p></div>
+<p>New York gets Haino in festival slots, not like this. <span class="v">VERIFIED</span> on the artist's schedule; the venue page had not listed it yet.</p><div class="card-act"><a class="act-btn map" href="https://www.google.com/maps/search/?api=1&query=%E6%9C%88%E8%8A%B1%E8%88%8E" target="_blank" rel="noopener" aria-label="Open 月花舎 in Google Maps">📍 Map</a><button type="button" class="act-btn copy copy-btn" data-copy="月花舎" aria-label="Copy 月花舎 to clipboard">📋 Copy Venue</button></div></div>
 <div class="card"><h3>Violon SPレコードコンサート #289: 昭和 hits on 78s</h3>
 <p class="www"><b>What</b><span>美空ひばり and 二葉あき子 on shellac through the 1979 café's horn system, a collector talking between sides, 25 seats. <span class="t1">Tier 1</span></span><b>When</b><span>Sun 20 · open 17:30, start 18:00 (Shinjuku → Asagaya 10 min after the Pit Inn). Overlaps Haino at 19:00: choose one.</span><b>Where</b><span>名曲喫茶ヴィオロン, Asagaya-kita 2-9-5 (Asagaya 5 min).</span><b>Cost</b><span>¥1,500; reserve by phone 03-3336-6414.</span></p>
-<p>The most Japan-only listening event of the week. <span class="v">VERIFIED</span> <a href="http://meikyoku-kissa-violon.com/live202609.html">meikyoku-kissa-violon.com</a>.</p></div>
+<p>The most Japan-only listening event of the week. <span class="v">VERIFIED</span> <a href="http://meikyoku-kissa-violon.com/live202609.html">meikyoku-kissa-violon.com</a>.</p><div class="card-act"><a class="act-btn map" href="https://www.google.com/maps/search/?api=1&query=%E5%90%8D%E6%9B%B2%E5%96%AB%E8%8C%B6%E3%83%B4%E3%82%A3%E3%82%AA%E3%83%AD%E3%83%B3" target="_blank" rel="noopener" aria-label="Open 名曲喫茶ヴィオロン in Google Maps">📍 Map</a><button type="button" class="act-btn copy copy-btn" data-copy="名曲喫茶ヴィオロン" aria-label="Copy 名曲喫茶ヴィオロン to clipboard">📋 Copy Venue</button></div></div>
 </div>
 <p class="also"><strong>Also that day:</strong> 梅若会定式能 「定家」 12:30, Higashi-Nakano, ¥7,000 (overlaps bunraku and the Pit Inn). 石橋英子 / 世武裕子 / 山本達久 at 七針, Hatchōbori, 18:30, ¥4,000, email. Kabuki-za 幕見 京人形 18:55 (¥900) then 一條大蔵譚 19:45 (¥1,700), Higashi-Ginza. 騒音寺 one-man at 新宿LOFT 18:00, ¥4,600. 金王八幡宮's 14-mikoshi 連合渡御 in front of 109, 14:00 (loses to the Pit Inn). 和ノ家追分 21:00 show after Haino.</p>
-<details class="table"><summary>Everything else on the 20th</summary><h4 class="tblhead">Sun 20 Sept — free all day</h4><div class="tw"><table><tr><th>Slot</th><th>What</th><th>Where</th><th>When</th><th>¥ pp</th><th>Status</th><th>Note</th></tr>
+<span class="vh">Sun 20 · 14:30 · Pit Inn 昼の部</span><span class="vh">Sun 20 · evening · 灰野敬二 Keiji Haino</span><details class="table"><summary>Everything else on the 20th</summary><h4 class="tblhead">Sun 20 Sept — free all day</h4><span class="scroll-hint" aria-hidden="true">Scroll table &rarr;</span><div class="tw"><table><tr><th>Slot</th><th>What</th><th>Where</th><th>When</th><th>¥ pp</th><th>Status</th><th>Note</th></tr>
 <tr><td class="day">Day</td><td>Tsukiji Honganji 晨朝 (彼岸会 week)</td><td>Tsukiji</td><td>07:00</td><td>free</td><td><span class="v">V</span></td><td>—</td></tr>
 <tr><td class="day">Day</td><td>Bunraku 鑑賞教室 A-pro (忠臣蔵 勘平)</td><td>江東区文化センター</td><td>11:00–13:45</td><td>6,000</td><td><span class="v">V</span></td><td>ends 13:45; Pit Inn 14:30 reachable</td></tr>
 <tr><td class="day">Day</td><td>梅若会定式能 「定家」</td><td>Higashi-Nakano</td><td>12:30</td><td>7,000</td><td><span class="v">V</span></td><td>overlaps bunraku and Pit Inn</td></tr>
@@ -513,16 +823,16 @@ td.day{white-space:nowrap;font-family:"Big Shoulders Display",sans-serif;
 </details></div></details><details class="day" name="day" id="day-21" data-lamp="ok"><summary><span class="cal-d">21<i>月</i></span><span class="cal-city">Tokyo</span><span class="cal-pick">Body &amp; Soul, its last night open to reserve</span><span class="cal-cost">¥7,700 + drinks</span><span class="cal-open" aria-hidden="true"></span></summary><div class="daybody"><h3 class="dayhead">Mon 21 Sept (holiday) — free all day</h3><div class="cards night">
 <div class="card"><h3>Body &amp; Soul, its last night open to reserve</h3>
 <p class="www"><b>What</b><span>河合代介 (Hammond organ), 佐野康夫 (drums), 宮崎隆睦 (sax) in the club's final week; it closes 27 Sept after 52 years, and every other night of the week is 予約〆切. <span class="t1">Tier 1</span> room</span><b>When</b><span>Mon 21 · open 17:30, sets 18:30 and 20:00.</span><b>Where</b><span>Body &amp; Soul, 渋谷区宇田川町2-1 渋谷ホームズ B-15, Kōen-dōri, five minutes from the hotel.</span><b>Cost</b><span>¥7,700 + drinks; メール予約 from the schedule page.</span></p>
-<p>Overall #4. The Miles Electric Band at Blue Note the same night is a touring US act. <span class="v">VERIFIED</span> <a href="https://bodyandsoul.co.jp/schedule">bodyandsoul.co.jp/schedule</a>.</p></div>
+<p>Overall #4. The Miles Electric Band at Blue Note the same night is a touring US act. <span class="v">VERIFIED</span> <a href="https://bodyandsoul.co.jp/schedule">bodyandsoul.co.jp/schedule</a>.</p><div class="card-act"><a class="act-btn map" href="https://www.google.com/maps/search/?api=1&query=Body%20%26amp%3B%20Soul" target="_blank" rel="noopener" aria-label="Open Body &amp;amp; Soul in Google Maps">📍 Map</a><button type="button" class="act-btn copy copy-btn" data-copy="Body &amp;amp; Soul" aria-label="Copy Body &amp;amp; Soul to clipboard">📋 Copy Venue</button></div></div>
 <div class="card"><h3>Kabuki-za 幕見: ひらかな盛衰記〈逆櫓〉</h3>
 <p class="www"><b>What</b><span>A single-act gallery ticket for 逆櫓: 竹本 gidayū narration and shamisen, a full 立廻り. The 幕見 gallery is itself a Japan-only format. <span class="t1">Tier 1</span></span><b>When</b><span>Mon 21 · 13:25–15:12. Evening acts are also sold although the 夜の部 is a 貸切: 沼津 16:40, 京人形 18:55, 一條大蔵譚 19:45.</span><b>Where</b><span>Kabuki-za 4F 幕見, Higashi-Ginza (station direct).</span><b>Cost</b><span>¥2,800 + ¥110; reserved 幕見 seats online from 12:00 Sun 20 (e-tix, card with 3-D Secure), unreserved at the window on the day.</span></p>
-<p><span class="v">VERIFIED</span> <a href="https://www.e-tix.jp/shochiku_makumi/">e-tix 幕見</a>, <a href="https://www.kabuki-bito.jp/theaters/kabukiza/play/978">timetable</a>.</p></div>
+<p><span class="v">VERIFIED</span> <a href="https://www.e-tix.jp/shochiku_makumi/">e-tix 幕見</a>, <a href="https://www.kabuki-bito.jp/theaters/kabukiza/play/978">timetable</a>.</p><div class="card-act"><a class="act-btn map" href="https://www.google.com/maps/search/?api=1&query=Kabuki-za%204F%20%E5%B9%95%E8%A6%8B" target="_blank" rel="noopener" aria-label="Open Kabuki-za 4F 幕見 in Google Maps">📍 Map</a><button type="button" class="act-btn copy copy-btn" data-copy="Kabuki-za 4F 幕見" aria-label="Copy Kabuki-za 4F 幕見 to clipboard">📋 Copy Venue</button></div></div>
 <div class="card"><h3>Show Boat: Here is Eden (ex-P-MODEL) bill</h3>
 <p class="www"><b>What</b><span>P-MODEL's original rhythm section, 泉水敏郎 + 秋山勝彦, as Here is Eden on a bill of two-piece bands (ES細胞, ask but no reply, 秋山electro). <span class="t2">Tier 2</span></span><b>When</b><span>Mon 21 · open 17:30, start 18:00. Against Body &amp; Soul's 18:30 set; Kōenji to Shibuya is 25 min, so it is one or the other unless you take Body &amp; Soul's 20:00 set.</span><b>Where</b><span>Show Boat, Kōenji (4 min from the station).</span><b>Cost</b><span>¥4,000 at the door, cash; the advance channel is inside-Japan only.</span></p>
-<p><span class="v">VERIFIED</span> <a href="https://www.showboat1993.com/2026-09">showboat1993.com</a>. Same slot, the jazz alternative: Pit Inn, Holoubek Trio III with 石橋英子 and 山本達久, 19:30, ¥4,400 incl.</p></div>
+<p><span class="v">VERIFIED</span> <a href="https://www.showboat1993.com/2026-09">showboat1993.com</a>. Same slot, the jazz alternative: Pit Inn, Holoubek Trio III with 石橋英子 and 山本達久, 19:30, ¥4,400 incl.</p><div class="card-act"><a class="act-btn map" href="https://www.google.com/maps/search/?api=1&query=Show%20Boat" target="_blank" rel="noopener" aria-label="Open Show Boat in Google Maps">📍 Map</a><button type="button" class="act-btn copy copy-btn" data-copy="Show Boat" aria-label="Copy Show Boat to clipboard">📋 Copy Venue</button></div></div>
 </div>
 <p class="also"><strong>Also that day:</strong> DESTINY 8's first-ever concert (伊藤賢治's SaGa band), WWW X, Shibuya, 19:00, ¥8,800, e+ until Sun 18:00 (Tier 3). 20000V hardcore bill (SLIGHT SLAPPERS / LIFE / OLEDICKFOGGY), Higashi-Kōenji, 18:30, ¥3,600. U.F.O. CLUB PLAYBOY 10th, 19:00, ¥3,000 + drink. Cotton Club: 櫻井哲夫's Jaco Pastorius tribute, ¥7,500. Pit Inn 昼の部 Trio IV 14:30, ¥3,850. 和ノ家追分 is closed Mondays.</p>
-<details class="table"><summary>Everything else on the 21st</summary><h4 class="tblhead">Mon 21 Sept (holiday) — free all day</h4><div class="tw"><table><tr><th>Slot</th><th>What</th><th>Where</th><th>When</th><th>¥ pp</th><th>Status</th><th>Note</th></tr>
+<details class="table"><summary>Everything else on the 21st</summary><h4 class="tblhead">Mon 21 Sept (holiday) — free all day</h4><span class="scroll-hint" aria-hidden="true">Scroll table &rarr;</span><div class="tw"><table><tr><th>Slot</th><th>What</th><th>Where</th><th>When</th><th>¥ pp</th><th>Status</th><th>Note</th></tr>
 <tr><td class="day">Day</td><td>根津神社 例祭式 (ceremony only, no 神賑)</td><td>Nezu</td><td>n/p</td><td>free</td><td><span class="v">V</span></td><td>kagura is 27th</td></tr>
 <tr><td class="day">Day</td><td>芝大神宮 終結祭 (だらだら祭り last day)</td><td>Daimon</td><td>n/p</td><td>free</td><td><span class="v">V</span></td><td>—</td></tr>
 <tr><td class="day">Day</td><td>Kabuki-za 昼の部 幕見: 三社祭 11:00 ¥1,500 / 大津宿屋 12:00 ¥1,700 / 逆櫓 13:25 ¥2,800</td><td>Higashi-Ginza</td><td>11:00–15:12</td><td>1,500–2,800</td><td><span class="v">V</span></td><td>—</td></tr>
@@ -544,16 +854,16 @@ td.day{white-space:nowrap;font-family:"Big Shoulders Display",sans-serif;
 </details></div></details><details class="day" name="day" id="day-22" data-lamp="off"><summary><span class="cal-d">22<i>火</i></span><span class="cal-city">Tokyo</span><span class="cal-pick">代々木八幡宮 例大祭 宵宮, before the game</span><span class="cal-cost">free</span><span class="cal-open" aria-hidden="true"></span></summary><div class="daybody"><h3 class="dayhead">Tue 22 Sept (holiday) — Mt Takao in the morning, back about 15:00; Swallows vs Hanshin at Jingu, 18:00</h3><div class="cards night">
 <div class="card"><h3>代々木八幡宮 例大祭 宵宮, before the game</h3>
 <p class="www"><b>What</b><span>Festival eve at the shrine three stops from base: a hundred-plus stalls, a 神楽殿 stage from dusk, and this year the 宮神輿 goes out on the 22nd. <span class="t1">Tier 1</span></span><b>When</b><span>Tue 22 · afternoon into the evening; fits 16:00–17:15, then 20 min to Jingu for the 18:00 first pitch.</span><b>Where</b><span>代々木八幡宮 (Odakyū Yoyogi-Hachiman 5 min / Yoyogi-Kōen).</span><b>Cost</b><span>free.</span></p>
-<p><span class="v">VERIFIED</span> dates on the shrine site; <span class="s">SECONDARY</span> stage programme. <a href="https://www.yoyogihachimangu.or.jp/">yoyogihachimangu.or.jp</a>.</p></div>
+<p><span class="v">VERIFIED</span> dates on the shrine site; <span class="s">SECONDARY</span> stage programme. <a href="https://www.yoyogihachimangu.or.jp/">yoyogihachimangu.or.jp</a>.</p><div class="card-act"><a class="act-btn map" href="https://www.google.com/maps/search/?api=1&query=%E4%BB%A3%E3%80%85%E6%9C%A8%E5%85%AB%E5%B9%A1%E5%AE%AE" target="_blank" rel="noopener" aria-label="Open 代々木八幡宮 in Google Maps">📍 Map</a><button type="button" class="act-btn copy copy-btn" data-copy="代々木八幡宮" aria-label="Copy 代々木八幡宮 to clipboard">📋 Copy Venue</button></div></div>
 <div class="card"><h3>After the game: 沖縄パラダイス or Bar Martha</h3>
 <p class="www"><b>What</b><span>The game ends about 21:00. Sanshin izakaya live in Kabukichō until midnight, or Ebisu's no-talking record bar. <span class="t1">Tier 1</span></span><b>When</b><span>Tue 22 · from about 21:30; 沖縄パラダイス open to 24:00, Bar Martha 19:00–03:00.</span><b>Where</b><span>沖縄パラダイス, Kabukichō (Gaienmae → Shinjuku 15 min); Bar Martha, Ebisu 1-22-23.</span><b>Cost</b><span>about ¥4,000 / drinks only.</span></p>
-<p>The Kabuki-za, Pit Inn and every live house have started by then. <span class="v">VERIFIED</span></p></div>
+<p>The Kabuki-za, Pit Inn and every live house have started by then. <span class="v">VERIFIED</span></p><div class="card-act"><a class="act-btn map" href="https://www.google.com/maps/search/?api=1&query=%E6%B2%96%E7%B8%84%E3%83%91%E3%83%A9%E3%83%80%E3%82%A4%E3%82%B9" target="_blank" rel="noopener" aria-label="Open 沖縄パラダイス in Google Maps">📍 Map</a><button type="button" class="act-btn copy copy-btn" data-copy="沖縄パラダイス" aria-label="Copy 沖縄パラダイス to clipboard">📋 Copy Venue</button></div></div>
 <div class="card"><h3>If you skip the game: 友川カズキ + 叶芽フウカ</h3>
 <p class="www"><b>What</b><span>Tomokawa (b. 1950, Akita), one of the last 1970s underground folk singers still working, who rarely plays outside Japan; a young singer-songwriter opens. The best Tuesday night in Tokyo. <span class="t2">Tier 2</span> in a <span class="t1">Tier 1</span> room</span><b>When</b><span>Tue 22 · open 18:15, start 19:00.</span><b>Where</b><span>CLUB Que, Shimokitazawa (3 min from the station).</span><b>Cost</b><span>¥4,000 adv / ¥4,500 door + ¥600 drink; LivePocket (email, card) or the Que counter from 16:00.</span></p>
-<p><span class="v">VERIFIED</span> <a href="https://clubque.net/schedule/15548/">clubque.net</a>. Second choice the same night: ズボンズ's tour-final one-man, 新宿 red cloth, 18:30, ¥4,600.</p></div>
+<p><span class="v">VERIFIED</span> <a href="https://clubque.net/schedule/15548/">clubque.net</a>. Second choice the same night: ズボンズ's tour-final one-man, 新宿 red cloth, 18:30, ¥4,600.</p><div class="card-act"><a class="act-btn map" href="https://www.google.com/maps/search/?api=1&query=CLUB%20Que" target="_blank" rel="noopener" aria-label="Open CLUB Que in Google Maps">📍 Map</a><button type="button" class="act-btn copy copy-btn" data-copy="CLUB Que" aria-label="Copy CLUB Que to clipboard">📋 Copy Venue</button></div></div>
 </div>
 <p class="also"><strong>Also that day:</strong> Kabuki-za 幕見 沼津 16:40 ends 18:27, after the first pitch. Pit Inn 昼の部 Trio V (two acoustic guitars) 14:30, before you are back from Takao. U.F.O. CLUB イボイボ大全 19:00; DOMMUNE 19:30; 明治座 16:30: all against the game.</p>
-<details class="table"><summary>Everything else on the 22nd</summary><h4 class="tblhead">Tue 22 Sept (holiday) — Mt Takao morning; back ~15:00; <strong>Swallows vs Hanshin, Jingu, 18:00</strong> (NPB) takes the evening</h4><div class="tw"><table><tr><th>Slot</th><th>What</th><th>Where</th><th>When</th><th>¥ pp</th><th>Status</th><th>Note</th></tr>
+<span class="vh">Tue 22 · evening · 代々木八幡宮 例大祭 宵宮</span><details class="table"><summary>Everything else on the 22nd</summary><h4 class="tblhead">Tue 22 Sept (holiday) — Mt Takao morning; back ~15:00; <strong>Swallows vs Hanshin, Jingu, 18:00</strong> (NPB) takes the evening</h4><span class="scroll-hint" aria-hidden="true">Scroll table &rarr;</span><div class="tw"><table><tr><th>Slot</th><th>What</th><th>Where</th><th>When</th><th>¥ pp</th><th>Status</th><th>Note</th></tr>
 <tr><td class="day">Eve</td><td><strong>Tokyo Yakult Swallows vs Hanshin Tigers</strong> (holiday night game)</td><td>Jingu Stadium (Gaienmae)</td><td>18:00</td><td>—</td><td><span class="v">V</span> NPB</td><td>ends ~21:00</td></tr>
 <tr><td class="day">Day</td><td>20000V あんどー単品 焼肉ワンマン (from 15:00, ¥2,000 incl. drink); Forestlimit "SECTOR 3776" 13:00–20:30 ¥2,000+1D (DJs); Lion 15:00 concert</td><td>Kōenji / Hatagaya / Dōgenzaka</td><td>13:00–</td><td>2,000–2,600</td><td><span class="v">V</span></td><td>after Takao</td></tr>
 <tr><td class="day">Day</td><td>Kabuki-za 幕見 沼津 (95–105 min)</td><td>Higashi-Ginza</td><td>16:40</td><td>2,800</td><td><span class="v">V</span></td><td>✕ ends 18:27, first pitch 18:00</td></tr>
@@ -573,16 +883,16 @@ td.day{white-space:nowrap;font-family:"Big Shoulders Display",sans-serif;
 </details></div></details><details class="day" name="day" id="day-23" data-lamp="wait"><summary><span class="cal-d">23<i>水</i></span><span class="cal-city">Osaka</span><span class="cal-pick">山下達郎 "PERFORMANCE 2026"</span><span class="cal-cost">¥15,000</span><span class="cal-open" aria-hidden="true"></span></summary><div class="daybody"><h3 class="dayhead">Wed 23 Sept (holiday) — Shinkansen reaches Kyoto 16:44; Osaka is reachable</h3><div class="cards night">
 <div class="card"><h3>山下達郎 "PERFORMANCE 2026"</h3>
 <p class="www"><b>What</b><span>The city-pop originator's annual hall tour; he has never performed outside Japan. <span class="t2">Tier 2</span></span><b>When</b><span>Wed 23 · doors 17:00, start 18:00. Stay on the Shinkansen to Shin-Osaka (17:00), Midōsuji line to Yodoyabashi, in the hall by 17:30 with bags.</span><b>Where</b><span>フェスティバルホール, Nakanoshima, Osaka (Yodoyabashi / Higobashi).</span><b>Cost</b><span>¥15,000; only via the e+ cancel-wait lottery, deadline Sun 13 Sept 18:00 JST, one ticket per application, photo ID at the door.</span></p>
-<p>Overall #2, if the lottery lands. <span class="v">VERIFIED</span> <a href="https://eplus.jp/tatsuro2026/">eplus.jp/tatsuro2026</a>.</p></div>
+<p>Overall #2, if the lottery lands. <span class="v">VERIFIED</span> <a href="https://eplus.jp/tatsuro2026/">eplus.jp/tatsuro2026</a>.</p><div class="card-act"><a class="act-btn map" href="https://www.google.com/maps/search/?api=1&query=%E3%83%95%E3%82%A7%E3%82%B9%E3%83%86%E3%82%A3%E3%83%90%E3%83%AB%E3%83%9B%E3%83%BC%E3%83%AB" target="_blank" rel="noopener" aria-label="Open フェスティバルホール in Google Maps">📍 Map</a><button type="button" class="act-btn copy copy-btn" data-copy="フェスティバルホール" aria-label="Copy フェスティバルホール to clipboard">📋 Copy Venue</button></div></div>
 <div class="card"><h3>御香宮神能『蝋燭能』: 狂言 因幡堂, 能 花月, by candlelight</h3>
 <p class="www"><b>What</b><span>The Fushimi shrine's once-a-year candle noh on its own stage: 狂言「因幡堂」 (茂山茂), 能「花月」 (杉浦豊彦), full hayashi and chorus, a tent if it rains. <span class="t1">Tier 1</span></span><b>When</b><span>Wed 23 · doors 17:45, start 18:30. Hotel first, then Keihan Gion-Shijō → 伏見桃山 (15 min) and a 6-minute walk; or Kintetsu from Kyoto Station to 桃山御陵前 (15 min, 4-minute walk).</span><b>Where</b><span>御香宮神社 能舞台, 御香宮門前町174, Fushimi, Kyoto.</span><b>Cost</b><span>B ¥3,500 adv / ¥4,000 door, cash, unreserved within the block; A sold out; web sales closed 13 Sept, office by phone only.</span></p>
-<p>Overall #4, and Wednesday's pick if the Yamashita lottery misses. <span class="v">VERIFIED</span> <a href="https://www.gokounomiya.kyoto.jp/shinno/shinno.html">gokounomiya.kyoto.jp</a>.</p></div>
+<p>Overall #4, and Wednesday's pick if the Yamashita lottery misses. <span class="v">VERIFIED</span> <a href="https://www.gokounomiya.kyoto.jp/shinno/shinno.html">gokounomiya.kyoto.jp</a>.</p><div class="card-act"><a class="act-btn map" href="https://www.google.com/maps/search/?api=1&query=%E5%BE%A1%E9%A6%99%E5%AE%AE%E7%A5%9E%E7%A4%BE%20%E8%83%BD%E8%88%9E%E5%8F%B0" target="_blank" rel="noopener" aria-label="Open 御香宮神社 能舞台 in Google Maps">📍 Map</a><button type="button" class="act-btn copy copy-btn" data-copy="御香宮神社 能舞台" aria-label="Copy 御香宮神社 能舞台 to clipboard">📋 Copy Venue</button></div></div>
 <div class="card"><h3>environment 0g: Christian Kobi / 松本一哉 / 江崎將史</h3>
 <p class="www"><b>What</b><span>Kansai improv in its own Osaka basement: 江崎將史 (trumpet, onkyō), 松本一哉 (water, percussion), Christian Kobi (sax). <span class="t2">Tier 2</span></span><b>When</b><span>Wed 23 · open 18:30, start 19:00. Kyoto → Osaka by JR special rapid 30 min.</span><b>Where</b><span>environment 0g, 大阪市西区南堀江3-6-1 B1F, Minami-Horie (Yotsubashi / Sakuragawa).</span><b>Cost</b><span>¥2,500 + drink adv / ¥3,000 door, cash; email nuthingsjajouka@gmail.com or door.</span></p>
-<p>Third choice on Wednesday, 15 minutes from Festival Hall. <span class="v">VERIFIED</span> <a href="https://nuthings.wordpress.com/2026%e5%b9%b409%e6%9c%88/">nuthings 2026年09月</a>.</p></div>
+<p>Third choice on Wednesday, 15 minutes from Festival Hall. <span class="v">VERIFIED</span> <a href="https://nuthings.wordpress.com/2026%e5%b9%b409%e6%9c%88/">nuthings 2026年09月</a>.</p><div class="card-act"><a class="act-btn map" href="https://www.google.com/maps/search/?api=1&query=environment%200g" target="_blank" rel="noopener" aria-label="Open environment 0g in Google Maps">📍 Map</a><button type="button" class="act-btn copy copy-btn" data-copy="environment 0g" aria-label="Copy environment 0g to clipboard">📋 Copy Venue</button></div></div>
 </div>
 <p class="also"><strong>Also that day:</strong> 外 Soto, Kiyamachi, a walk from base: D.J.Fulltono's three-hour juke set, 18:00, ¥1,500, door only. 拾得 (1973 sake warehouse, Kamigyō): The HillAndon &amp; The Nacometers, 18:30, ¥3,500. GALLON, Kita-Shinchi, Osaka: 小沢咲希 trio 19:30 and 20:50, ¥3,000 a set. Yanagetsudō's silent listening room, Demachiyanagi, until 21:00 (¥500 + drink). Bonds Rosary (Kyoto) is sold out day and night. Missed in Tokyo: 能を知る会 13:00 (English subtitles), MALTA at B-flat; in Kyoto before you arrive: 晴明祭 神幸祭 13:00–17:00.</p>
-<details class="table"><summary>Everything else on the 23rd</summary><h4 class="tblhead">Wed 23 Sept (holiday) — Kyoto 16:44; evening free from ~17:30; Osaka reachable</h4><div class="tw"><table><tr><th>Slot</th><th>What</th><th>Where</th><th>When</th><th>¥ pp</th><th>Status</th><th>Note</th></tr>
+<details class="table"><summary>Everything else on the 23rd</summary><h4 class="tblhead">Wed 23 Sept (holiday) — Kyoto 16:44; evening free from ~17:30; Osaka reachable</h4><span class="scroll-hint" aria-hidden="true">Scroll table &rarr;</span><div class="tw"><table><tr><th>Slot</th><th>What</th><th>Where</th><th>When</th><th>¥ pp</th><th>Status</th><th>Note</th></tr>
 <tr><td class="day">Eve</td><td><strong>山下達郎 Tatsuro Yamashita "PERFORMANCE 2026"</strong> (never plays abroad)</td><td>Festival Hall, Nakanoshima, Osaka</td><td>17:00 / 18:00</td><td>15,000</td><td><span class="v">V</span> cancel-wait lottery to 13 Sept</td><td>reachable via Shin-Osaka 17:00</td></tr>
 <tr><td class="day">Eve</td><td><strong>御香宮神能『蝋燭能』</strong> 狂言 因幡堂 / 能 花月, candlelight</td><td>御香宮神社, Fushimi</td><td>17:45 / 18:30</td><td>3,500 adv / 4,000 door (B)</td><td><span class="v">V</span> A sold out</td><td><strong>the Wednesday pick if Yamashita misses</strong></td></tr>
 <tr><td class="day">Day (Tokyo)</td><td>能を知る会 東京公演 (English subtitles) 13:00 Kanze; 小金井薪能 14:00; Marz NUANCE 13:30</td><td>Tokyo</td><td>—</td><td>—</td><td><span class="v">V</span></td><td>✕ Shinkansen</td></tr>
@@ -598,16 +908,16 @@ td.day{white-space:nowrap;font-family:"Big Shoulders Display",sans-serif;
 </details></div></details><details class="day" name="day" id="day-24" data-lamp="ok"><summary><span class="cal-d">24<i>木</i></span><span class="cal-city">Kyoto</span><span class="cal-pick">UrBANGUILD: Lukas Ligeti &amp; 内橋和久, with 山内弘太</span><span class="cal-cost">¥3,500 + ¥700 drink adv</span><span class="cal-open" aria-hidden="true"></span></summary><div class="daybody"><h3 class="dayhead">Thu 24 Sept — free all day; Osaka, Kobe and Nara in range</h3><div class="cards night">
 <div class="card"><h3>UrBANGUILD: Lukas Ligeti &amp; 内橋和久, with 山内弘太</h3>
 <p class="www"><b>What</b><span>Free improvisation: Uchihashi (Altered States, the Ground Zero years, one of the few daxophone players; based between Kansai and Berlin) with Ligeti on drums and electronics; a young Kyoto guitarist opens. <span class="t2">Tier 2</span></span><b>When</b><span>Thu 24 · open 19:00, start 19:30, to about 21:30. Morning: Nishi Honganji 晨朝 chant 06:00 (gates 05:30), Higashi Honganji 07:00 next door, free.</span><b>Where</b><span>UrBANGUILD, Kiyamachi-Sanjō, upstairs, 10 min walk from base.</span><b>Cost</b><span>¥3,500 + ¥700 drink adv / ¥3,800 + drink door; venue contact or door.</span></p>
-<p>Overall #6, the first outside the five. Rules out Christian McBride at Billboard Osaka (20:30), whom New York hears often. <span class="v">VERIFIED</span> <a href="http://urbanguild.net/events/">urbanguild.net/events</a>.</p></div>
+<p>Overall #6, the first outside the five. Rules out Christian McBride at Billboard Osaka (20:30), whom New York hears often. <span class="v">VERIFIED</span> <a href="http://urbanguild.net/events/">urbanguild.net/events</a>.</p><div class="card-act"><a class="act-btn map" href="https://www.google.com/maps/search/?api=1&query=UrBANGUILD" target="_blank" rel="noopener" aria-label="Open UrBANGUILD in Google Maps">📍 Map</a><button type="button" class="act-btn copy copy-btn" data-copy="UrBANGUILD" aria-label="Copy UrBANGUILD to clipboard">📋 Copy Venue</button></div></div>
 <div class="card"><h3>磔磔: blues.the-butcher-590213 "Live at Takutaku" release show</h3>
 <p class="www"><b>What</b><span>永井"ホトケ"隆, 沼澤尚, 中條卓 and KOTEZ, the domestic blues institution, releasing the album they recorded in this 1974 sake-warehouse room. <span class="t2">Tier 2</span> in a <span class="t1">Tier 1</span> room</span><b>When</b><span>Thu 24 · open 18:00, start 19:00.</span><b>Where</b><span>磔磔, Shijō-Takakura, Kyoto, 8 min walk from base.</span><b>Cost</b><span>¥5,500 adv / ¥6,000 door; 磔磔 email reservation or counter.</span></p>
-<p><span class="v">VERIFIED</span> <a href="https://takutaku.jp/schedule/?date=2026/09/24">takutaku.jp</a>. Pick one of this, UrBANGUILD and Billboard.</p></div>
+<p><span class="v">VERIFIED</span> <a href="https://takutaku.jp/schedule/?date=2026/09/24">takutaku.jp</a>. Pick one of this, UrBANGUILD and Billboard.</p><div class="card-act"><a class="act-btn map" href="https://www.google.com/maps/search/?api=1&query=%E7%A3%94%E7%A3%94" target="_blank" rel="noopener" aria-label="Open 磔磔 in Google Maps">📍 Map</a><button type="button" class="act-btn copy copy-btn" data-copy="磔磔" aria-label="Copy 磔磔 to clipboard">📋 Copy Venue</button></div></div>
 <div class="card"><h3>Jazz Live Sone, Kobe: three resident sets</h3>
 <p class="www"><b>What</b><span>Three short sets a night by resident Kansai players in Japan's first jazz city, since 1969; Thursday is 松岡みほ (vo) with 岩田智貴, 澤田浩輔, 倉沢虹太. <span class="t1">Tier 1</span> format</span><b>When</b><span>Thu 24 · sets 18:30, 19:50, 21:10. Kyoto → Kobe 50 min; realistic only instead of UrBANGUILD.</span><b>Where</b><span>Jazz Live Sone, Motomachi, Kobe.</span><b>Cost</b><span>¥2,200 + drinks and food, walk-in, cash.</span></p>
-<p><span class="v">VERIFIED</span> format on <a href="https://kobe-sone.com/schedule/">kobe-sone.com</a>; Thu 24 lineup <span class="s">SECONDARY</span> (Jazz Shiryōkan).</p></div>
+<p><span class="v">VERIFIED</span> format on <a href="https://kobe-sone.com/schedule/">kobe-sone.com</a>; Thu 24 lineup <span class="s">SECONDARY</span> (Jazz Shiryōkan).</p><div class="card-act"><a class="act-btn map" href="https://www.google.com/maps/search/?api=1&query=Jazz%20Live%20Sone" target="_blank" rel="noopener" aria-label="Open Jazz Live Sone in Google Maps">📍 Map</a><button type="button" class="act-btn copy copy-btn" data-copy="Jazz Live Sone" aria-label="Copy Jazz Live Sone to clipboard">📋 Copy Venue</button></div></div>
 </div>
 <p class="also"><strong>Also that day:</strong> Boris × DURAN, Yogibo META VALLEY, Osaka, 19:30, ¥5,000 + drink, on sale on TIGET to 23 Sept (Boris tours the US yearly, so Tier 3; the loud option). Christian McBride &amp; Ursa Major, Billboard Live Osaka, 20:30 (Tier 3). 居酒屋ろくだん, Nipponbashi, Osaka: Tsugaru shamisen in a 16-seat izakaya, 17:00–23:00, set times unpublished, phone 06-6212-7575. Nara 采女祭 宵宮祭, the eve rite at 采女神社 by Sarusawa pond, 17:00 (the gagaku boats are Friday, during Takanaka). Gion Corner 18:00 / 19:00 is a sampler.</p>
-<details class="table"><summary>Everything else on the 24th</summary><h4 class="tblhead">Thu 24 Sept — free all day; Osaka, Kobe, Nara in range</h4><div class="tw"><table><tr><th>Slot</th><th>What</th><th>Where</th><th>When</th><th>¥ pp</th><th>Status</th><th>Note</th></tr>
+<span class="vh">Thu 24 · 19:00 · 磔磔 Takutaku</span><span class="vh">Thu 24 · 06:00 then 19:30 · Nishi Honganji</span><details class="table"><summary>Everything else on the 24th</summary><h4 class="tblhead">Thu 24 Sept — free all day; Osaka, Kobe, Nara in range</h4><span class="scroll-hint" aria-hidden="true">Scroll table &rarr;</span><div class="tw"><table><tr><th>Slot</th><th>What</th><th>Where</th><th>When</th><th>¥ pp</th><th>Status</th><th>Note</th></tr>
 <tr><td class="day">Eve</td><td><strong>Boris × DURAN "Vornak Tour"</strong> (Boris tours US/EU yearly)</td><td>Yogibo META VALLEY, Osaka</td><td>19:00 / 19:30</td><td>5,000 + drink (5,500 door)</td><td><span class="v">V</span> on sale (TIGET, card, to 23 Sept)</td><td><span class="t3">Tier 3</span>; ✕ UrBANGUILD / Billboard</td></tr>
 <tr><td class="day">Day</td><td>Nishi Honganji 晨朝 06:00 → Higashi Honganji 晨朝 07:00 → Chion-in 07:00 (彼岸会 week)</td><td>Kyoto</td><td>06:00–08:00</td><td>free</td><td><span class="v">V</span></td><td>—</td></tr>
 <tr><td class="day">Day</td><td>Yanagetsudō (10:00–21:00); Nara 采女祭 宵宮祭 (evening, Sarusawa pond)</td><td>Demachiyanagi / Nara</td><td>—</td><td>500 / free</td><td><span class="s">S</span>/<span class="v">V</span></td><td>—</td></tr>
@@ -625,20 +935,20 @@ td.day{white-space:nowrap;font-family:"Big Shoulders Display",sans-serif;
 </details></div></details><details class="day" name="day" id="day-25" data-lamp="held"><summary><span class="cal-d">25<i>金</i></span><span class="cal-city">Hikone</span><span class="cal-pick">高中正義 SUPER TAKANAKA LIVE, Hikone — booked</span><span class="cal-cost">¥11,000, tickets held</span><span class="cal-open" aria-hidden="true"></span></summary><div class="daybody"><h3 class="dayhead">Fri 25 Sept — Arashiyama until about 15:00; Takanaka in Hikone, booked; the harvest-moon rites collide; early airport train on Sat</h3><div class="cards night">
 <div class="card"><h3>高中正義 SUPER TAKANAKA LIVE, Hikone — booked</h3>
 <p class="www"><b>What</b><span>The fixed commitment: Takanaka's autumn hall tour, グランドホール. <span class="t3">Tier 3</span>: he sold out Brooklyn Paramount on 4–5 April 2026</span><b>When</b><span>Fri 25 · doors 17:30, start 18:30. Leave Arashiyama by about 15:00.</span><b>Where</b><span>ひこね市文化プラザ, Hikone (JR 新快速 from Kyoto about 50 min, then a taxi, or 湖国バス from 南彦根).</span><b>Cost</b><span>¥11,000, tickets held.</span></p>
-<p>Overall #1. Every Kyoto moon rite below runs while you are in the hall. <span class="v">VERIFIED</span> <a href="https://takanaka.com/live/">takanaka.com</a>.</p></div>
+<p>Overall #1. Every Kyoto moon rite below runs while you are in the hall. <span class="v">VERIFIED</span> <a href="https://takanaka.com/live/">takanaka.com</a>.</p><div class="card-act"><a class="act-btn map" href="https://www.google.com/maps/search/?api=1&query=%E3%81%B2%E3%81%93%E3%81%AD%E5%B8%82%E6%96%87%E5%8C%96%E3%83%97%E3%83%A9%E3%82%B6" target="_blank" rel="noopener" aria-label="Open ひこね市文化プラザ in Google Maps">📍 Map</a><button type="button" class="act-btn copy copy-btn" data-copy="ひこね市文化プラザ" aria-label="Copy ひこね市文化プラザ to clipboard">📋 Copy Venue</button></div></div>
 <div class="card"><h3>Shimogamo 名月管絃祭, then Yasaka 祇園社観月祭</h3>
 <p class="www"><b>What</b><span>Two moon rites in one evening: shakuhachi, gagaku and koto from Shimogamo's 橋殿 by firelight, then the rite, poem recital, 舞楽 by 弥栄雅楽会, koto, lion dance and taiko on Yasaka's 舞殿. <span class="t1">Tier 1</span></span><b>When</b><span>Fri 25 · Shimogamo 17:30–21:00 (leave it about 18:35) · Yasaka 19:00 to about 21:00, 舞楽 19:30. Leave Arashiyama by 16:15.</span><b>Where</b><span>Shimogamo Jinja, Demachiyanagi → Keihan to Gion-Shijō (5 min) → Yasaka Jinja, Gion. Both roofed if it rains.</span><b>Cost</b><span>free, no ticket.</span></p>
-<p>Overall #1 until the Takanaka tickets; both run while you are in Hikone. If those tickets fall through, this, and if only one, Yasaka. <span class="v">VERIFIED</span> <a href="https://www.shimogamo-jinja.or.jp/saiji/meigetsu2026">Shimogamo</a>, <a href="https://www.yasaka-jinja.or.jp/">Yasaka</a>.</p></div>
+<p>Overall #1 until the Takanaka tickets; both run while you are in Hikone. If those tickets fall through, this, and if only one, Yasaka. <span class="v">VERIFIED</span> <a href="https://www.shimogamo-jinja.or.jp/saiji/meigetsu2026">Shimogamo</a>, <a href="https://www.yasaka-jinja.or.jp/">Yasaka</a>.</p><div class="card-act"><a class="act-btn map" href="https://www.google.com/maps/search/?api=1&query=Shimogamo%20Jinja" target="_blank" rel="noopener" aria-label="Open Shimogamo Jinja in Google Maps">📍 Map</a><button type="button" class="act-btn copy copy-btn" data-copy="Shimogamo Jinja" aria-label="Copy Shimogamo Jinja to clipboard">📋 Copy Venue</button></div></div>
 <div class="card"><h3>Daikaku-ji 観月の夕べ, where you already are</h3>
 <p class="www"><b>What</b><span>Moon-viewing over Ōsawa pond, a Buddhist service under the moon 19:00–19:30, dragon-headed boats for holders of the ¥7,000 lottery ticket that closed in July (same-day cancel-wait at 17:30). The temple's 2026 pages list no gagaku, koto or shakuhachi. <span class="t2">Tier 2</span> for music</span><b>When</b><span>Fri 25 · 17:30–21:00 (also 26–27). From here Yasaka by 19:30 is about 50 minutes door to door, so Daikaku-ji can replace Shimogamo, not Yasaka.</span><b>Where</b><span>Daikaku-ji, Saga-Arashiyama, Kyoto.</span><b>Cost</b><span>¥700 at the gate; boat ticket closed.</span></p>
-<p><span class="v">VERIFIED</span> <a href="https://www.daikakuji.or.jp/r8kangetsukokuchi/">daikakuji.or.jp notice</a>.</p></div>
+<p><span class="v">VERIFIED</span> <a href="https://www.daikakuji.or.jp/r8kangetsukokuchi/">daikakuji.or.jp notice</a>.</p><div class="card-act"><a class="act-btn map" href="https://www.google.com/maps/search/?api=1&query=Daikaku-ji" target="_blank" rel="noopener" aria-label="Open Daikaku-ji in Google Maps">📍 Map</a><button type="button" class="act-btn copy copy-btn" data-copy="Daikaku-ji" aria-label="Copy Daikaku-ji to clipboard">📋 Copy Venue</button></div></div>
 <div class="card"><h3>Kamigamo 賀茂観月祭, and the rites outside Kyoto</h3>
 <p class="www"><b>What</b><span>Kamigamo: the rite, then 倭巫女舞 kagura, taiko and biwa at the 馬場殿, free dango and nigori-zake. Elsewhere on the same moon: Matsuo Taisha's 観月祭 next to Arashiyama (programme unpublished); Hirano Jinja's 名月祭 with koto, shakuhachi and gagaku offerings; Sumiyoshi Taisha's 観月祭 with 舞楽 danced on the arched 反橋 (Osaka); Nara's 采女祭, procession 17:00, rite 18:00, shinobue 18:45, then 南都楽所 playing gagaku from two boats circling Sarusawa pond at 19:00. <span class="t1">Tier 1</span></span><b>When</b><span>Fri 25 · Kamigamo 16:30 · Matsuo 17:00 · Hirano 18:30 · Sumiyoshi 18:00–20:30 · Nara boats 19:00 (宵宮祭 Thu 24 17:00).</span><b>Where</b><span>Kamigamo Jinja, Kita-ku (bus from Kitaōji) · Matsuo Taisha (Hankyu Matsuo-taisha) · Hirano Jinja, Kita-ku (bus to 衣笠校前) · Sumiyoshi Taisha, Osaka (Sumiyoshi-Taisha stn; Kyoto → Osaka 30 min + Nankai 15) · Sarusawa pond, Nara (45 min from Kyoto).</span><b>Cost</b><span>free.</span></p>
-<p>Kamigamo <span class="v">VERIFIED</span> by the shrine's own annual page (仲秋, 16:30, open entry); Matsuo <span class="v">VERIFIED</span> date and time on the shrine's annual list, programme unknown; Hirano <span class="s">SECONDARY</span> for 2026 (the page still shows the 2025 programme); Sumiyoshi <span class="v">VERIFIED</span> by rule; Nara <span class="v">VERIFIED</span> times. All of them run while you are in Hikone.</p></div>
+<p>Kamigamo <span class="v">VERIFIED</span> by the shrine's own annual page (仲秋, 16:30, open entry); Matsuo <span class="v">VERIFIED</span> date and time on the shrine's annual list, programme unknown; Hirano <span class="s">SECONDARY</span> for 2026 (the page still shows the 2025 programme); Sumiyoshi <span class="v">VERIFIED</span> by rule; Nara <span class="v">VERIFIED</span> times. All of them run while you are in Hikone.</p><div class="card-act"><a class="act-btn map" href="https://www.google.com/maps/search/?api=1&query=Kamigamo%20Jinja" target="_blank" rel="noopener" aria-label="Open Kamigamo Jinja in Google Maps">📍 Map</a><button type="button" class="act-btn copy copy-btn" data-copy="Kamigamo Jinja" aria-label="Copy Kamigamo Jinja to clipboard">📋 Copy Venue</button></div></div>
 </div>
 <p class="also"><strong>Also that day:</strong> 山内惠介's enka concert, ROHM Theatre, Okazaki, 15:00, ¥7,800 (means leaving Arashiyama by 13:45). Over Seas, Osaka: 寺井尚之 &amp; 東ともみ duo 19:00. 磔磔: 古田光郷 69th birthday live 18:30, ¥3,000. 0g, Osaka: the same Uchihashi/Ligeti duo, 19:30.</p>
 
-<details class="table"><summary>Everything else on the 25th</summary><h4 class="tblhead">Fri 25 Sept — Arashiyama until about 15:00; Takanaka in Hikone 18:30, booked; the harvest-moon rites collide</h4><div class="tw"><table><tr><th>Slot</th><th>What</th><th>Where</th><th>When</th><th>¥ pp</th><th>Status</th><th>Note</th></tr>
+<details class="table"><summary>Everything else on the 25th</summary><h4 class="tblhead">Fri 25 Sept — Arashiyama until about 15:00; Takanaka in Hikone 18:30, booked; the harvest-moon rites collide</h4><span class="scroll-hint" aria-hidden="true">Scroll table &rarr;</span><div class="tw"><table><tr><th>Slot</th><th>What</th><th>Where</th><th>When</th><th>¥ pp</th><th>Status</th><th>Note</th></tr>
 <tr><td class="day">Day</td><td>Temple 晨朝 as Thursday; Chion-in 別時念仏会 (25th)</td><td>Kyoto</td><td>06:00–</td><td>free</td><td><span class="v">V</span></td><td>—</td></tr>
 <tr><td class="day">Day</td><td>山内惠介 enka concert</td><td>ROHM Theatre</td><td>15:00</td><td>7,800</td><td><span class="v">V</span> on sale</td><td>✕ Arashiyama unless you leave by 13:45</td></tr>
 <tr><td class="day">Day</td><td>Daikaku-ji daytime visit (separate from the evening ticket)</td><td>Arashiyama</td><td>—</td><td>700</td><td><span class="v">V</span></td><td>昼夜入替</td></tr>
@@ -663,267 +973,7 @@ td.day{white-space:nowrap;font-family:"Big Shoulders Display",sans-serif;
 <section class="rest" id="rest">
 <p>The rest of the book: the full ranked shortlists, the categories, the
 booking friction, and what could not be verified.</p>
-<details class="chunk"><summary>1 · Ranked shortlist (non-jazz)</summary><div class="chunkbody">
-<p class="legend">Prices are per person, then for two, all charges in. "Collision" means an overlap with the Swallows game (Tue 22, 18:00) or with another strong option the same night (Body &amp; Soul Sat 19, Blue Note Mon 21, Pit Inn Tue 22, Billboard Osaka Thu 24).</p>
-<div class="cards">
-
-<div class="card"><h3>Wed 23 · 18:30 · 御香宮神能『蝋燭能』 — 狂言「因幡堂」 and 能「花月」 by candlelight on 御香宮神社's noh stage, Fushimi</h3>
-<p class="www"><b>What</b><span>御香宮神能『蝋燭能』: 狂言「因幡堂」 (茂山茂), 能「花月」 (杉浦豊彦), full hayashi and chorus, on the shrine's open-air noh stage by candlelight; a large tent over the seats if it rains.</span><b>When</b><span>Wed 23 · doors 17:45, start 18:30.</span><b>Where</b><span>御香宮神社 能舞台, 伏見区御香宮門前町174, Kyoto (Kintetsu 桃山御陵前 4 min; Keihan 伏見桃山 6 min).</span><b>Cost</b><span>B ¥3,500 adv / ¥4,000 door → ¥8,000 for two at the door; A ¥4,000 / ¥4,500 sold out; students ¥1,000 off.</span></p>
-<p class="meta">御香宮神社, Fushimi (Kintetsu 桃山御陵前 4 min). Kyoto. <span class="t1">Tier 1</span> · a shrine 神事 with a full noh, not a sampler · <span class="v">VERIFIED</span></p>
-<p><strong>Why:</strong> a noh with hayashi and chorus staged as a shrine offering, outdoors, by candlelight, on a holiday evening; New York gets noh in a theatre every few years and never like this. It is the only noh in Kansai that fits the trip (the Kyoto stages have nothing on the 24th or 25th, and the 23rd's daytime noh are before your train arrives).</p>
-<p><strong>Time/price (shrine page):</strong> 令和8年9月23日(水・祝), 開場 17:45, 開演 18:30, 雨天決行 with a tent over the seats. A席 ¥4,000 / ¥4,500 <strong>完売</strong>; B席 (side, centre-side and rear centre) ¥3,500 advance / ¥4,000 door, unreserved within the block. Source: <a href="https://www.gokounomiya.kyoto.jp/shinno/shinno.html">gokounomiya.kyoto.jp/shinno</a>.</p>
-<p><strong>Booking:</strong> web sales ran 1 Aug – 13 Sept; from 14 Sept the 社務所 sells by phone (075-611-0559, 8:00–16:00), payment by bank transfer or in person within a week, otherwise cancelled: not workable from abroad, so take a B door ticket (¥4,000, cash) at 17:45. <strong>Availability:</strong> B seats on sale as of 7 Sept; count not published. <strong>Friction:</strong> low at the door, high in advance. <strong>Collision:</strong> Yamashita at Festival Hall, 18:00, if the lottery lands; otherwise none. Kyoto 16:44 → hotel → Keihan to 伏見桃山 gets you seated before 18:30.</p></div>
-
-<div class="card"><h3>Fri 25 · evening · Yasaka Jinja 祇園社観月祭 (Gionsha Kangetsu-sai) — gagaku, bugaku, koto, shishimai and taiko offered to the harvest moon on the shrine's 舞殿</h3>
-<p class="www"><b>What</b><span>祇園社観月祭: rite on the 舞殿, 献詠 poem recital, 管弦・舞楽 by the shrine's own 弥栄雅楽会, 生田流 koto, the Gion lion dance, the shrine's taiko.</span><b>When</b><span>Fri 25 · 19:00 to about 21:00; 舞楽 19:30, koto 20:00, 獅子舞 20:30, taiko 20:45.</span><b>Where</b><span>Yasaka Jinja 舞殿, Gion, Kyoto (Gion-Shijō 5 min; 15 min walk from Kawaramachi).</span><b>Cost</b><span>free, standing.</span></p>
-<p class="meta">Yasaka Jinja, Gion (Gion-Shijō stn 5 min; 15 min walk from Kawaramachi). Kyoto. <span class="t1">Tier 1</span> · real rite, not a concert · <span class="v">VERIFIED</span></p>
-<p><strong>Why you cannot see this at home:</strong> a shrine rite on the Buden with the shrine's own gagaku society (弥栄雅楽会) playing 管弦 and dancing 舞楽 to the moon, followed by ikuta-ryū koto, the Gion lion dance and the shrine's own taiko. New York does not have working rites with gagaku.</p>
-<p><strong>Programme (shrine's own notice, 2026):</strong> 19:00 rite at the 舞殿 → 19:15 献詠 poem recital → <strong>19:30 管弦・舞楽</strong> (弥栄雅楽会) → 20:00 箏曲 (生田流箏曲三弦) → 20:30 獅子舞 → 20:45 太鼓 「剣の舞」. Times approximate per the shrine. Source: <a href="https://www.yasaka-jinja.or.jp/news/%e7%a5%87%e5%9c%92%e7%a4%be%e8%a6%b3%e6%9c%88%e7%a5%ad%ef%bc%889%e6%9c%8810%e6%97%a5%ef%bc%89%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6/">yasaka-jinja.or.jp news 2026-08-21</a>; also on the <a href="https://www.yasaka-jinja.or.jp/">front page event list</a> (観月祭 9月25日 19:00).</p>
-<p><strong>Price:</strong> no charge listed; the precinct is open and the notice names no ticket. ¥0 / ¥0 (treat a small offering as optional). <strong>Availability:</strong> standing, first come. <strong>Booking:</strong> none. <strong>Friction:</strong> none. <strong>Collision:</strong> Takanaka in Hikone, booked, doors 17:30; lost unless those tickets fall through. Airport train is early Sat, this ends ~21:00.</p></div>
-
-<div class="card"><h3>Fri 25 · dusk · Shimogamo Jinja 名月管絃祭 (Meigetsu Kangen-sai) — shakuhachi, gagaku ensemble and koto offered from the 橋殿 by firelight</h3>
-<p class="www"><b>What</b><span>名月管絃祭: the rite, then shakuhachi, a gagaku ensemble and koto offered from the 橋殿 over the stream, kagaribi lit, susuki set out.</span><b>When</b><span>Fri 25 · 17:30–21:00, reception closes 20:30.</span><b>Where</b><span>Shimogamo Jinja, Demachiyanagi, Kyoto (12 min walk from the station).</span><b>Cost</b><span>free (stated on the shrine page).</span></p>
-<p class="meta">Shimogamo Jinja (Demachiyanagi stn 12 min). Kyoto. <span class="t1">Tier 1</span> · real rite · <span class="v">VERIFIED</span></p>
-<p><strong>Why:</strong> a Heian-lineage 御戸代会 rite: after the ceremony, kagaribi are lit, susuki is set out and 尺八・管絃・箏曲 are offered from the bridge-hall over the stream. Held at a UNESCO shrine on the exact lunar date.</p>
-<p><strong>Date/time (shrine's own 2026 page):</strong> 令和8年9月25日(金), <strong>17:30–21:00</strong>, reception closes 20:30. <strong>Price: 無料 (free)</strong>, stated on the page. Source: <a href="https://www.shimogamo-jinja.or.jp/saiji/meigetsu2026">shimogamo-jinja.or.jp/saiji/meigetsu2026</a>.</p>
-<p><strong>How to combine with Yasaka:</strong> Shimogamo 17:30–18:45, then Keihan Demachiyanagi → Gion-Shijō (5 min) for Yasaka's 19:30 bugaku. That would have been the best single evening of the trip; both rites run while you are at Takanaka in Hikone. <strong>Friction:</strong> none. Seated area may be members-first; standing is open (the page does not say otherwise).</p></div>
-
-<div class="card"><h3>Fri 25 · dusk · Kamigamo Jinja 賀茂観月祭 — 倭巫女舞 kagura, taiko, biwa at the 馬場殿, then 月見団子</h3>
-<p class="www"><b>What</b><span>賀茂観月祭: 倭巫女舞 kagura, taiko, biwa at the 馬場殿, then 月見団子 handed out.</span><b>When</b><span>Fri 25 · rite 16:30, then kagura and taiko to about 20:00 (the shrine's annual page: 仲秋, 16:30, open entry).</span><b>Where</b><span>Kamigamo Jinja, Kita-ku, Kyoto (bus from Kitaōji).</span><b>Cost</b><span>free.</span></p>
-<p class="meta">Kamigamo Jinja (bus from Kitaōji). Kyoto. <span class="t1">Tier 1</span> · real rite · <span class="v">VERIFIED by the shrine's annual page (date by rule)</span></p>
-<p><strong>Why:</strong> shrine kagura and chikuzen-biwa in the open riding ground under the moon, free, with dango and nigori-zake handed out afterwards.</p>
-<p><strong>Date:</strong> the shrine's own 年中行事 page lists 賀茂観月祭 for 仲秋 at 16:30, 拝観自由, "神楽や太鼓演奏など様々な奉納行事", with free 月見団子 and にごり酒 (<a href="https://www.kamigamojinja.jp/hitotose/">kamigamojinja.jp/hitotose</a>) <span class="v">VERIFIED</span> by rule, and NAOJ fixes 仲秋 as Fri 25. Beyond that the site has not posted a 2026 notice (checked <a href="https://www.kamigamojinja.jp/news/">news list</a> and <a href="https://www.kamigamojinja.jp/">祭事暦</a>; the only September entries are 8–10 and the 22nd 秋季皇霊祭遥拝式). The <a href="https://www.kamigamojinja.jp/202409012231/">2024 official notice</a> gives the pattern: rite 16:30, 神賑 17:00–20:00 (倭巫女舞 / 和太鼓 / 筑前琵琶), dango tickets from 16:00, exchange 20:00–20:30, free. Two Kyoto tourism blogs give <strong>Fri 25 Sept 2026, 16:30–20:00, free</strong> (<a href="https://kyototravel.info/kamokangetsusai">kyototravel.info</a>, <a href="https://blog.kanko.jp/kyoto-sightseeing/illumination/lightup9/moonviewing-kamigamo2026">blog.kanko.jp</a>) <span class="s">SECONDARY</span>. Confirm on the shrine site or phone 075-781-0011 before choosing it over Shimogamo (they are 25 min apart; you cannot do both fully).</p></div>
-
-<div class="card"><h3>Fri 25 · evening · Daikaku-ji 観月の夕べ (Kangetsu no Yūbe) — Ōsawa pond, dragon-headed boats and a service under the moon; no music is listed for 2026</h3>
-<p class="www"><b>What</b><span>観月の夕べ: the moon over Ōsawa pond, a Buddhist service under it 19:00–19:30, dragon-headed boats for ticket holders. The temple's 2026 notice and autumn page list no gagaku, koto or shakuhachi.</span><b>When</b><span>Fri 25 (also Sat 26, Sun 27) · 17:30–21:00; 昼夜入替.</span><b>Where</b><span>Daikaku-ji, Saga-Arashiyama, Kyoto.</span><b>Cost</b><span>¥700 at the gate; the ¥7,000 boat ticket lottery closed 24 July, same-day cancel-wait at 17:30.</span></p>
-<p class="meta">Daikaku-ji, Arashiyama/Saga (you are already in Arashiyama that afternoon). <span class="t1">Tier 1</span> setting, <span class="t2">Tier 2</span> for music · real temple event, ticketed · <span class="v">VERIFIED</span></p>
-<p><strong>Dates/time (temple's own R8 notice):</strong> 25 (中秋) – 27 Sept 2026, <strong>17:30–21:00</strong> (reception closes 20:30), <strong>昼夜入替制</strong>: your daytime Arashiyama visit does not carry over, re-entry is a separate ¥700. <strong>Price:</strong> 大人 ¥700 → ¥1,400 for two. The boat ride + 五大堂 matcha "特別チケット" is ¥7,000 and <strong>its application window (6–24 July, lottery) is closed</strong>; a same-day <strong>cancel-wait list opens 17:30 at the ticket exchange</strong>, numbered, only if cancellations occur. Source: <a href="https://www.daikakuji.or.jp/r8kangetsukokuchi/">daikakuji.or.jp/r8kangetsukokuchi</a> and <a href="https://www.daikakuji.or.jp/event_month_09/">event_month_09</a>.</p>
-<p><strong>Why it ranks below Yasaka/Shimogamo:</strong> it is a paid, crowded, three-night event and the boat is closed to you, while the shrine rites are free; and the 2026 programme names no music at all (the 19:00–19:30 service under the moon is the only scheduled item on the <a href="https://www.daikakuji.or.jp/event_season_autumn/">autumn page</a>), so it is a moon, not a concert. <strong>Best use:</strong> be at the gate 17:30, walk the pond an hour, JR Saga-Arashiyama → Kyoto → Keihan to Gion for Yasaka 19:30 (about 50 min door to door): possible but tight.</p></div>
-
-<div class="card"><h3>Fri 25 · evening · alternatives on the same moon: Matsuo Taisha and Hirano Jinja in Kyoto, Sumiyoshi Taisha 観月祭 (Osaka) and Nara 采女祭</h3>
-<p class="www"><b>What</b><span>Matsuo Taisha 観月祭 (programme unpublished). Hirano Jinja 名月祭: koto, shakuhachi and gagaku offerings. Sumiyoshi Taisha 観月祭: poems recited on the 反橋, then 住吉踊 and 舞楽 danced on the bridge. Nara 采女祭: 花扇 procession, rite, a shinobue offering, then 南都楽所 playing gagaku from two boats circling Sarusawa pond.</span><b>When</b><span>Fri 25 · Matsuo 17:00 · Hirano 18:30 (2025 programme: koto 19:00, shakuhachi 19:25, gagaku 19:55) · Sumiyoshi 18:00 to about 20:30 · Nara procession 17:00, rite 18:00, shinobue 18:45, boats 19:00 (宵宮祭 Thu 24 17:00).</span><b>Where</b><span>Matsuo Taisha (Hankyu Matsuo-taisha, next to Arashiyama) · Hirano Jinja, Kita-ku, Kyoto · Sumiyoshi Taisha, Osaka (Sumiyoshi-Taisha stn; Kyoto → Osaka 30 min + Nankai 15) · Sarusawa pond, Nara (45 min from Kyoto).</span><b>Cost</b><span>free.</span></p>
-<p class="meta"><span class="t1">Tier 1</span> · real rites · <span class="v">VERIFIED (date by the shrine's own rule / by the organiser's office)</span></p>
-<p><strong>Sumiyoshi Taisha (Osaka, Sumiyoshi-taisha stn):</strong> 観月祭 is held "中秋日 18:00–20:30頃" per the shrine's <a href="https://www.sumiyoshitaisha.net/events/special.html">特別な祭 page</a> and <a href="https://www.sumiyoshitaisha.net/events/annualevents/09.html">9月の行事</a>: poems are recited on the arched 反橋, then <strong>住吉踊 and 舞楽 are danced on the bridge</strong>. Free, open precinct. Kyoto→Osaka 30 min + Nankai 15 min: you would trade Yasaka for it; only do this if you want bugaku on a bridge more than gagaku in Gion.</p>
-<p><strong>Nara 采女祭 (Uneme Matsuri):</strong> 宵宮祭 Thu 24 17:00 at 采女神社; Fri 25 花扇奉納行列 from JR Nara 17:00, 例祭 at the shrine 18:00, a ten-minute 篠笛 offering by 佐藤和哉 on the pond at about 18:45, then <strong>管絃船の儀 at 19:00: 南都楽所, Nara's gagaku guild, plays from two 龍頭鷁首 boats circling Sarusawa pond among floating lanterns</strong>, and the 花扇 is cast into the water (<a href="https://narashikanko.or.jp/feature/unemematsuri">Nara City Tourism Association, which houses the preservation society</a>) <span class="v">VERIFIED</span>. Nara is 45 min from Kyoto.</p>
-<p><strong>Matsuo Taisha (Kyoto, Hankyu Matsuo-taisha stn, next to Arashiyama):</strong> the shrine's annual list gives 観月祭 on 25 Sept at 17:00 (<a href="https://www.matsunoo.or.jp/event">matsunoo.or.jp/event</a>) <span class="v">VERIFIED</span> date and time; the programme is not on the site <span class="s">SECONDARY</span>. It would have been the natural first stop from Arashiyama before Yasaka.</p>
-<p><strong>Hirano Jinja (Kyoto, Kita-ku):</strong> 名月祭 on the harvest-moon date from 18:30, in 2025 with koto (河本社中) 19:00, shakuhachi (嵐の会) 19:25 and gagaku (音輪会) 19:55 (<a href="https://www.hiranojinja.com/home/gaiyo/nentyugyoji/otukimi">hiranojinja.com</a>); the page still shows last year's date, so <span class="s">SECONDARY</span> for 2026. Free.</p></div>
-
-<div class="card"><h3>Tue 22 · evening · 友川カズキ Tomokawa Kazuki + 叶芽フウカ, "おいで おいで", Shimokitazawa CLUB Que</h3>
-<p class="www"><b>What</b><span>友川カズキ with 叶芽フウカ opening, "おいで おいで".</span><b>When</b><span>Tue 22 · open 18:15, start 19:00 (the Swallows start 18:00).</span><b>Where</b><span>CLUB Que, Shimokitazawa, Tokyo (3 min from the station).</span><b>Cost</b><span>¥4,000 adv / ¥4,500 door + ¥600 drink.</span></p>
-<p class="meta">CLUB Que (Shimokitazawa stn 3 min). Tokyo. <span class="t2">Tier 2</span> in a <span class="t1">Tier 1</span> room · <span class="v">VERIFIED</span></p>
-<p><strong>Why:</strong> Tomokawa (b. 1950, Akita) is one of the last 1970s underground folk singers still working, also a painter, poet and keirin gambler, and he rarely plays outside Japan. He is playing a 250-cap Shimokita basement on a holiday Tuesday, with a young singer-songwriter opening.</p>
-<p><strong>Time/price (venue page):</strong> OPEN 18:15 / START 19:00. ADV ¥4,000 / DOOR ¥4,500, +1 drink (Que charges ¥600) → about <strong>¥4,600 / ¥9,200 for two</strong> at the advance price, ¥5,100 / ¥10,200 at the door. Source: <a href="https://clubque.net/schedule/15548/">clubque.net/schedule/15548</a>.</p>
-<p><strong>Availability:</strong> not marked sold out on the page; a live count was not readable (LivePocket search page is script-only). <strong>Booking:</strong> Que counter 16:00–21:00, <a href="https://livepocket.jp">LivePocket</a> (email account, card), or Lawson (needs a Japanese phone; skip). Door tickets normally exist for this artist. <strong>Friction:</strong> low. <strong>Collision:</strong> the Swallows–Hanshin game at Jingu starts 18:00, so this only works if you skip the game; it is the best Tuesday night in Tokyo.</p></div>
-
-<div class="card"><h3>Sun 20 · evening · 灰野敬二 Keiji Haino + 小林リコ (piano), 月花舎 Gekkasha, Jimbōchō</h3>
-<p class="www"><b>What</b><span>灰野敬二 + 小林リコ (piano), duo.</span><b>When</b><span>Sun 20 · open 18:30, start 19:00.</span><b>Where</b><span>月花舎, 千代田区神田神保町3-5, basement (Jimbōchō / Kudanshita 3 min).</span><b>Cost</b><span>¥3,500 adv / ¥4,000 door + ¥500 drink; email.</span></p>
-<p class="meta">月花舎 (Jimbōchō / Kudanshita stn 3 min), the relocated 喫茶茶会記 listening space with a piano in the basement. Tokyo. <span class="t2">Tier 2</span> · <span class="v">VERIFIED (artist's official schedule)</span></p>
-<p><strong>Why:</strong> New York gets Haino in festival slots. This is Haino at 74 in a room that holds a few dozen, in duo with a pianist. His own site lists it; the venue's site had not yet.</p>
-<p><strong>Time/price:</strong> 18:30 open / 19:00 start; ¥3,500 adv / ¥4,000 door + 1 drink ¥500 → <strong>¥4,000 / ¥8,000 for two</strong> (advance). <strong>Booking:</strong> email <code>sakaiki@modalbeats.com</code> with names and number. Source: <a href="http://www.fushitsusha.com/ja/schedule.html">fushitsusha.com/ja/schedule.html</a>; venue: <a href="http://gekkasha.modalbeats.com/">gekkasha.modalbeats.com</a>, 千代田区神田神保町3-5 (<a href="https://visit-chiyoda.tokyo/app/spot/detail/966">Visit Chiyoda</a>).</p>
-<p><strong>Collision:</strong> it competes with Nanahari (below), the Violon SP-record concert and the Kabuki-za 幕見 the same evening.</p></div>
-
-<div class="card"><h3>Sun 20 &amp; Tue 22 · evening · Kabuki-za 秀山祭九月大歌舞伎, single-act 幕見席: 銘作左小刀「京人形」 (常磐津 and 長唄 in 掛け合い on stage) then 一條大蔵譚 奥殿</h3>
-<p class="www"><b>What</b><span>Single-act 幕見 tickets to 秀山祭九月大歌舞伎: evening 京人形 (常磐津 and 長唄 in 掛け合い) and 一條大蔵譚〈奥殿〉; daytime 三社祭, 大津宿屋, 逆櫓.</span><b>When</b><span>Runs 2–26 Sept · evening acts 18:55 and 19:45 (Sun 20, Mon 21; Tue 22 is the game) · daytime 11:00, 12:00, 13:25.</span><b>Where</b><span>Kabuki-za, 4F 幕見 gallery, Higashi-Ginza, Tokyo (station direct).</span><b>Cost</b><span>¥600–2,800 per act + ¥110 online.</span></p>
-<p class="meta">Kabuki-za (Higashi-Ginza stn direct). Tokyo. <span class="t1">Tier 1</span> · the real September programme, not a sampler · <span class="v">VERIFIED</span></p>
-<p><strong>Why:</strong> geza and a nagauta/tokiwazu ensemble on the Kabuki-za stage. 「京人形」 is a 所作事 with, in Shochiku's own words, 常磐津と長唄の掛け合い. The programme runs 2–26 Sept; the 幕見 (4F) is open even on 21 Sept when the evening is a 貸切.</p>
-<p><strong>Evening 幕見 acts and prices (e-tix official):</strong> 雛鶴三番叟 16:00, ¥600 · 沼津 16:40, 95–105 min, ¥2,800 · <strong>京人形 18:55, 25–35 min, ¥900</strong> · <strong>一條大蔵譚〈奥殿〉 19:45, 45–55 min, ¥1,700</strong> (+¥110 system fee each). Daytime: 三社祭 11:00 ¥1,500 · ひらかな盛衰記 大津宿屋 12:00 ¥1,700 · 逆櫓 13:25 ¥2,800. Two evening acts for two ≈ <strong>¥5,640</strong>; 沼津+京人形+一條 for two ≈ ¥11,460. Sources: <a href="https://www.e-tix.jp/shochiku_makumi/">e-tix 幕見 sales page</a>, <a href="https://www.kabuki-bito.jp/theaters/kabukiza/play/978">kabuki-bito programme + timetable</a>, <a href="https://www.shochiku.co.jp/play/theater/kabukiza/makumi/">Shochiku 一幕見席について</a>.</p>
-<p><strong>Mechanism (confirmed on the sales page):</strong> 4F <em>reserved</em> 幕見 seats go on sale online at <strong>12:00 the day before</strong> each performance; 4F <em>unreserved</em> 幕見 are sold at the 幕見 window on the day (queue). Online = credit card only (Visa/MC/JCB/Amex) with 3-D Secure and a security code, QR ticket by email, no Japanese phone needed. <strong>Availability:</strong> only visible from noon the day before; nothing to read now. Full-house seats (¥5,000–20,000) are on general sale via チケットWeb松竹 (see friction).</p>
-<p><strong>Fit:</strong> Sun 20 evening (京人形 at 18:55); Mon 21 (the 夜の部 is a 貸切 but the 幕見 is sold) is the other evening; Tue 22 is the Swallows game, so 沼津 at 16:40 does not fit.</p></div>
-
-<div class="card"><h3>Thu 24 · evening · Lukas Ligeti &amp; 内橋和久 Uchihashi Kazuhisa, guest 山内弘太, UrBANGUILD Kyoto</h3>
-<p class="www"><b>What</b><span>Lukas Ligeti (drums, electronics) &amp; 内橋和久 (guitar, daxophone), 山内弘太 opening; free improvisation.</span><b>When</b><span>Thu 24 · open 19:00, start 19:30, to about 21:30.</span><b>Where</b><span>UrBANGUILD, Kiyamachi-Sanjō, Kyoto (10 min walk from base).</span><b>Cost</b><span>¥3,500 + ¥700 drink adv / ¥3,800 + drink door.</span></p>
-<p class="meta">UrBANGUILD (Kiyamachi-Sanjō, 10 min walk from base). Kyoto. <span class="t2">Tier 2</span> · <span class="v">VERIFIED</span></p>
-<p><strong>Why:</strong> Uchihashi (Altered States, ex-Ground Zero, daxophone) is the Kansai improviser, based between Osaka and Berlin. Ligeti is the New York-based half. If you skip Billboard Osaka this is the night.</p>
-<p><strong>Time/price:</strong> OPEN 19:00 / START 19:30 (listed 19:00–21:30); adv ¥3,500 + 1 drink (¥700 per the venue's note) / door ¥3,800 + 1 drink → <strong>¥4,200 / ¥8,400 for two</strong> advance. Source: <a href="http://urbanguild.net/events/">urbanguild.net/events</a>. <strong>Booking:</strong> the page lists no external seller for this date; reserve by the venue's contact or pay at the door. <strong>Collision:</strong> Christian McBride at Billboard Osaka, 20:30.</p>
-<p><small>Same duo plays environment 0g, Osaka, Fri 25 19:30, ¥3,000+1D — but Fri 25 is Takanaka in Hikone.</small></p></div>
-
-<div class="card"><h3>Wed 23 · evening · Christian Kobi + 松本一哉 Matsumoto Kazuya + 江崎將史 Ezaki Masafumi, environment 0g (zero-gauge), Minami-Horie, Osaka</h3>
-<p class="www"><b>What</b><span>Christian Kobi (sax) + 松本一哉 (water, percussion) + 江崎將史 (trumpet); improvisation.</span><b>When</b><span>Wed 23 · open 18:30, start 19:00.</span><b>Where</b><span>environment 0g, 大阪市西区南堀江3-6-1 B1F, Minami-Horie, Osaka (Yotsubashi / Sakuragawa).</span><b>Cost</b><span>¥2,500 adv / ¥3,000 door + drink, cash.</span></p>
-<p class="meta">environment 0g (Yotsubashi / Sakuragawa). Osaka. <span class="t2">Tier 2</span> · <span class="v">VERIFIED</span></p>
-<p><strong>Why:</strong> Ezaki (trumpet, Osaka onkyō lifer) and Matsumoto (water and percussion) are the Kansai improv layer that never crosses the Pacific, and 0g is their Osaka basement. Your Shinkansen lands 16:44; JR to Osaka 30 min; you make a 19:00 start.</p>
-<p><strong>Time/price:</strong> Open 18:30 / Start 19:00; Adv ¥2,500 / Door ¥3,000, excl. 1 drink → about <strong>¥3,100 / ¥6,200 for two</strong> advance. Source: <a href="https://nuthings.wordpress.com/2026%e5%b9%b409%e6%9c%88/">nuthings.wordpress.com 2026年09月</a>; address 大阪市西区南堀江3-6-1 B1F. <strong>Booking:</strong> door, or email the venue (nuthingsjajouka@gmail.com). <strong>Friction:</strong> cash. <strong>Collision:</strong> none.</p></div>
-
-<div class="card"><h3>Thu 24 · evening · blues.the-butcher-590213 "Live at Takutaku" release show, 磔磔 Takutaku (the 1974 sake-warehouse live house)</h3>
-<p class="www"><b>What</b><span>blues.the-butcher-590213 (永井"ホトケ"隆, 沼澤尚, 中條卓, KOTEZ), "Live at Takutaku" release show.</span><b>When</b><span>Thu 24 · open 18:00, start 19:00.</span><b>Where</b><span>磔磔, Shijō-Takakura, Kyoto (8 min walk from base).</span><b>Cost</b><span>¥5,500 adv / ¥6,000 door.</span></p>
-<p class="meta">Takutaku (Shijō-Takakura, 8 min walk from base). Kyoto. <span class="t2">Tier 2</span> in a <span class="t1">Tier 1</span> room · <span class="v">VERIFIED</span></p>
-<p><strong>Why:</strong> 永井"ホトケ"隆, 沼澤尚, 中條卓, KOTEZ are the domestic blues institution; they recorded the album in this room and are releasing it in this room.</p>
-<p><strong>Time/price:</strong> Open 18:00 / Start 19:00; 前売 ¥5,500 / 当日 ¥6,000 (no drink charge stated on the page) → <strong>¥5,500 / ¥11,000 for two</strong>. <strong>Booking:</strong> 磔磔店頭 or 磔磔メール予約 (email reservation via the site). Source: <a href="https://takutaku.jp/schedule/?date=2026/09/24">takutaku.jp/schedule 9/24</a>. <strong>Collision:</strong> Billboard Osaka 20:30 and UrBANGUILD 19:30 — pick one of three.</p>
-<p><small>Fri 25 at Takutaku: 古田光郷 69th birthday live, 18:30, ¥3,000, if you skip the moon.</small></p></div>
-
-<div class="card"><h3>Sun 20 · evening · 石橋英子 Eiko Ishibashi / 世武裕子 / 山本達久, 七針 Nanahari, Hatchōbori</h3>
-<p class="www"><b>What</b><span>石橋英子 (piano, flute, effects) / 世武裕子 (piano) / 山本達久 (drums), in a 40-seat room.</span><b>When</b><span>Sun 20 · open 18:00, start 18:30.</span><b>Where</b><span>七針, Hatchōbori, Tokyo (5 min from the station).</span><b>Cost</b><span>¥4,000 adv / ¥4,500 door; email.</span></p>
-<p class="meta">七針 (Hatchōbori stn 5 min). Tokyo. <span class="t2">Tier 2</span> for the setting (Ishibashi does tour) · <span class="v">VERIFIED</span></p>
-<p><strong>Why:</strong> a 40-cap room with the "Drive My Car" composer, a film-score pianist and Tatsuhisa Yamamoto on drums, organised by the drummer and the room. New York gets Ishibashi in concert halls.</p>
-<p><strong>Time/price:</strong> 18:00/18:30; 予約 ¥4,000 / 当日 ¥4,500 → <strong>¥4,000 / ¥8,000 for two</strong>. <strong>Booking:</strong> email reservation (the site's mailto includes an English template: name / number of people). Source: <a href="https://ftftftf.com/#0920">ftftftf.com/#0920</a>. <strong>Collision:</strong> Haino 19:00 (Jimbōchō) — choose.</p></div>
-
-<div class="card"><h3>Mon 21 · evening · 'その後のなしくずしの死' — Here is Eden (泉水敏郎 + 秋山勝彦, ex-P-MODEL), ES細胞, ask but no reply, 秋山electro — 高円寺 Show Boat</h3>
-<p class="www"><b>What</b><span>Here is Eden (泉水敏郎 + 秋山勝彦, ex-P-MODEL), ES細胞, ask but no reply, 秋山electro: a bill of two-piece bands.</span><b>When</b><span>Mon 21 · open 17:30, start 18:00.</span><b>Where</b><span>Show Boat, Kōenji, Tokyo (4 min from the station).</span><b>Cost</b><span>¥3,500 adv (inside Japan only) / ¥4,000 door, cash.</span></p>
-<p class="meta">Show Boat (Kōenji stn 4 min). Tokyo. <span class="t2">Tier 2</span> · <span class="v">VERIFIED</span></p>
-<p><strong>Why:</strong> P-MODEL's original rhythm section in duo form, on a Kōenji bill of two-piece 'battles'.</p>
-<p><strong>Time/price:</strong> 開場 17:30 / 開演 18:00; 前売 ¥3,500 / 当日 ¥4,000 (Show Boat lists no drink charge for this bill) → <strong>¥4,000 / ¥8,000 for two at the door</strong>. <strong>Booking:</strong> the only advance channel is "SB" = the venue's counter or cash-on-delivery mail order inside Japan, which you cannot use; go for door tickets. Source: <a href="https://www.showboat1993.com/2026-09">showboat1993.com/2026-09</a>. <strong>Collision:</strong> the Miles Electric Band at Blue Note, 19:30.</p></div>
-
-<div class="card"><h3>Sun 20 · evening · 騒音寺 Sōonji one-man 「新宿大騒動リクエストスペシャル！」, 新宿LOFT (50th-anniversary year)</h3>
-<p class="www"><b>What</b><span>騒音寺 one-man 「新宿大騒動リクエストスペシャル！」, a request set by Kyoto's garage-rock lifers.</span><b>When</b><span>Sun 20 · open 17:15, start 18:00.</span><b>Where</b><span>新宿LOFT, Kabukichō, Tokyo.</span><b>Cost</b><span>¥4,000 adv / ¥4,500 door + ¥600 drink.</span></p>
-<p class="meta">Shinjuku LOFT (Kabukichō). Tokyo. <span class="t2">Tier 2</span> · <span class="v">VERIFIED</span></p>
-<p><strong>Why:</strong> Kyoto's garage-rock lifers (since the mid-90s) doing a request-set one-man at the Loft in its 50th year.</p>
-<p><strong>Time/price:</strong> OPEN 17:15 / START 18:00; ADV ¥4,000 / DOOR ¥4,500 + drink ¥600 → <strong>¥4,600 / ¥9,200 for two</strong>. Source: <a href="https://www.loft-prj.co.jp/schedule/loft/schedule/347023">loft-prj.co.jp …/347023</a>. <strong>Booking:</strong> e+ (see friction) or door. Starts 18:00; overlaps the other Sunday-evening picks only.</p></div>
-
-<div class="card"><h3>Sun 20 · early evening · Violon SPレコードコンサート 第289回 「セピア色した昭和の流行歌 (その4)」— 美空ひばり and 二葉あき子 on 78s</h3>
-<p class="www"><b>What</b><span>SPレコードコンサート #289 「セピア色した昭和の流行歌 (その4)」: 美空ひばり and 二葉あき子 on 78s, with talk between sides.</span><b>When</b><span>Sun 20 · open 17:30, start 18:00.</span><b>Where</b><span>名曲喫茶ヴィオロン, Asagaya-kita 2-9-5, Tokyo (Asagaya 5 min).</span><b>Cost</b><span>¥1,500, 25 seats, phone reservation.</span></p>
-<p class="meta">名曲喫茶ヴィオロン (Asagaya stn 5 min). Tokyo. <span class="t1">Tier 1</span> · <span class="v">VERIFIED</span></p>
-<p><strong>Why:</strong> a 1979 meikyoku kissa playing 1930s–50s kayōkyoku from shellac through its own horn system, with a collector talking between sides, 25 seats. This is the most Japan-only listening event of the week.</p>
-<p><strong>Time/price:</strong> 17:30 open / 18:00 start; ¥1,500 → <strong>¥1,500 / ¥3,000 for two</strong>; 定員25名, reservation requested (phone 03-3336-6414). Source: <a href="http://meikyoku-kissa-violon.com/live202609.html">meikyoku-kissa-violon.com/live202609</a>. <strong>Collision:</strong> it follows the Pit Inn afternoon show (Shinjuku → Asagaya 10 min) and overlaps Haino at 19:00 (Asagaya → Jimbōchō 30 min: choose one).</p></div>
-
-<div class="card"><h3>Mon 21 (day) / Tue 22 · 東高円寺二万電圧 20000V and U.F.O. CLUB — the Kōenji underground on the holiday nights</h3>
-<p class="www"><b>What</b><span>20000V: "WAR FOR PEACE Vol.31" hardcore bill (Mon 21) and あんどー単品's afternoon one-man (Tue 22). U.F.O. CLUB: PLAYBOY 10th anniversary (Mon 21) and イボイボ大全 with フーテン族 (Tue 22).</span><b>When</b><span>Mon 21 · 20000V 18:00/18:30, U.F.O. 18:30/19:00 · Tue 22 · 20000V from 15:00, U.F.O. 18:30/19:00 (against the game).</span><b>Where</b><span>Both in Higashi-Kōenji, Tokyo.</span><b>Cost</b><span>¥2,000–3,600, cash.</span></p>
-<p class="meta">Higashi-Kōenji. Tokyo. <span class="t1">Tier 1</span> format, <span class="t2">Tier 2</span> acts · <span class="v">VERIFIED</span></p>
-<p><strong>20000V Mon 21:</strong> "WAR FOR PEACE Vol.31" — SLIGHT SLAPPERS, LIFE, OLEDICKFOGGY (Tokyo hardcore veterans, folk-punk), 18:00/18:30, ¥3,000 adv / ¥3,500 door + ¥600 drink → ¥3,600 / ¥7,200 for two. <a href="https://den-atsu.com/schedule/2026-9-schedule/">den-atsu.com</a>. <strong>Tue 22 (day):</strong> あんどー単品 焼肉ワンマンリサイタル, from 15:00, ¥2,000 incl. drink.</p>
-<p><strong>U.F.O. CLUB Mon 21:</strong> PLAYBOY 10th anniversary — シンムラテツヤ &amp; SUPER LUCKY BROTHERS, Massage Attack, 18:30/19:00, ¥3,000+1D (phone reservation only: 03-5306-0240, or door). <strong>Tue 22:</strong> 「2026 イボイボ大全² 二乗のライセンスツアー」 — イボイボ大全 (森川誠一郎 + カワグチトヨキ + イトケン + 掟ポルシェ) with フーテン族, 18:30/19:00, ¥3,500 adv / ¥4,000 door +1D, advance via <a href="https://tiget.net/events/507634">TIGET</a> (email account), no phone reservations. <a href="https://ufoclub.jp/">ufoclub.jp</a>. Both rooms are cash.</p></div>
-
-<div class="card"><h3>Tue 22 · evening · ズボンズ Zoobombs "UMA vs 新世界 tour" final one-man, guest Sister Paul — 新宿 red cloth</h3>
-<p class="www"><b>What</b><span>ズボンズ "UMA vs 新世界 tour" final one-man, guest Sister Paul.</span><b>When</b><span>Tue 22 · open 18:00, start 18:30 (against the game).</span><b>Where</b><span>新宿 red cloth, Tokyo.</span><b>Cost</b><span>¥4,000 adv / ¥4,500 door + drink.</span></p>
-<p class="meta">red cloth 紅布 (Shinjuku). Tokyo. <span class="t2">Tier 2</span> (their US touring was around 2000) · <span class="v">VERIFIED</span></p>
-<p>18:00/18:30; 前売 ¥4,000 / 当日 ¥4,500 (D別) → about ¥4,600 / ¥9,200. Source: <a href="https://redcloth.sputniklab.com/schedule/">redcloth.sputniklab.com/schedule</a>. A tour-final is a hook; it collides with the 18:00 Swallows game like everything else that Tuesday night.</p></div>
-
-<div class="card"><h3>Every night · 和ノ家追分 Kazunoya Oiwake, Asakusa — the min'yō sakaba with resident Tsugaru-shamisen champions</h3>
-<p class="www"><b>What</b><span>The min'yō sakaba: resident Tsugaru-shamisen champions and singers, two shows a night.</span><b>When</b><span>Every night 17:30–23:00, shows 19:00 and 21:00; closed Mondays (Mon 21 unconfirmed, phone 03-3874-0722).</span><b>Where</b><span>和ノ家追分, Senzoku-dōri, Asakusa, Tokyo (TX Asakusa 10 min).</span><b>Cost</b><span>木戸銭 ¥2,000 incl. お通し + drinks; about ¥3,500.</span></p>
-<p class="meta">Asakusa (TX Asakusa stn 10 min, Senzoku-dōri). Tokyo. <span class="t1">Tier 1</span> · resident players, not visiting acts · <span class="v">VERIFIED</span></p>
-<p><strong>Hours:</strong> 17:30–23:00, <strong>closed Mondays</strong> (so not Mon 21 unless a holiday exception, unstated: phone 03-3874-0722). <strong>Shows:</strong> ① 19:00 ② 21:00. <strong>Charge:</strong> 木戸銭 ¥2,000 incl. お通し; drinks from ¥500, snacks from ¥600 → realistic <strong>¥3,500 / ¥7,000 for two</strong>. Source: <a href="https://www.kazunoya-oiwake.com/">kazunoya-oiwake.com</a>. <strong>Vegan:</strong> the お通し is compulsory and the menu PDF is not machine-readable; ask on arrival. <strong>Fits:</strong> Sat 19 either show (19:00, or 21:00 after the Pit Inn), Sun 20 21:00 after Haino, Tue 22.</p>
-<p><small>Kansai equivalent: 居酒屋ろくだん, Nipponbashi/Namba, Osaka — 16 seats, 17:00–23:00, closed Sun/Mon/holidays so open Thu 24 and Fri 25; the site says live Tsugaru shamisen "毎日" but publishes no set times (a Retty review says 18:30–19:00 starts) <span class="s">SECONDARY</span>; phone 06-6212-7575. <a href="https://www.rokudan.net/">rokudan.net</a>.</small></p></div>
-
-<div class="card"><h3>Every night · 沖縄パラダイス Okinawa Paradise, Kabukichō — participatory 島唄 sanshin live nightly</h3>
-<p class="www"><b>What</b><span>Participatory 島唄 sanshin live in an Okinawan izakaya.</span><b>When</b><span>Every night, start floats around 19:30; open 17:00–24:00.</span><b>Where</b><span>沖縄パラダイス, Kabukichō, Shinjuku, Tokyo (10 min from the east exit).</span><b>Cost</b><span>no charge; about ¥4,000 in food and drink.</span></p>
-<p class="meta">Shinjuku (10 min from the east exit). Tokyo. <span class="t1">Tier 1</span> · <span class="v">VERIFIED</span></p>
-<p>Live every day; start time floats with bookings, "staff's pick 19:30頃"; hours 17:00–24:00. No stated charge; courses from ¥4,950 (2.5h nomihōdai), à la carte dishes ~¥900 → budget ¥4,000 / ¥8,000 for two without a course. Vegan: chanpurū with tofu exists but ask; it is an izakaya. Source: <a href="https://okipara.jp/">okipara.jp</a>, <a href="https://akr0383248723.owst.jp/">official booking page</a>. Other Tokyo Okinawan rooms with daily live either sit in Okinawa (all the "毎日ライブ" search hits) or are closed on Sundays and holidays (ココワオキナワ Tsukishima: 定休 日・祝 <span class="v">VERIFIED via Hot Pepper</span>).</p></div>
-
-<div class="card"><h3>Every morning · the temple 晨朝 services in Kyoto and Tokyo — chant open to anyone, free, and it is 秋季彼岸会 week</h3>
-<p class="www"><b>What</b><span>The temples' daily morning chant (晨朝), open to anyone, in 秋季彼岸会 week.</span><b>When</b><span>Daily · Nishi Honganji 06:00 · Higashi Honganji 07:00 · Chion-in 07:00 · Tsukiji Honganji (Tokyo) 07:00.</span><b>Where</b><span>Kyoto: Horikawa-Shichijō, Karasuma-Shichijō, Higashiyama. Tokyo: Tsukiji.</span><b>Cost</b><span>free.</span></p>
-<p class="meta"><span class="t1">Tier 1</span> · real daily rites · <span class="v">VERIFIED</span></p>
-<ul>
-<li><strong>Nishi Honganji</strong> 晨朝勤行 <strong>06:00</strong> daily, Amidadō then Goeidō, gates 05:30, anyone may attend, no fee; 秋季彼岸会 20–26 Sept with 日中法要 10:00 and 逮夜 14:00. <a href="https://www.hongwanji.kyoto/visit/hoyo.html">hongwanji.kyoto/visit/hoyo</a>.</li>
-<li><strong>Higashi Honganji</strong> 晨朝法要 <strong>07:00</strong> daily (法話 07:30), gates 05:50. <a href="https://www.higashihonganji.or.jp/worship/houyouhouwa/">higashihonganji.or.jp</a>, <a href="https://www.higashihonganji.or.jp/worship/houyouhouwa/schedule.html?d=202609">Sept schedule</a>.</li>
-<li><strong>Chion-in</strong> 晨朝法話 <strong>07:00</strong> daily; 秋季彼岸会 20–26 Sept (本山行事; the 10:20 daytime talk is cancelled that week). <a href="https://www.chion-in.or.jp/event/howa/4171/">chion-in.or.jp</a>.</li>
-<li><strong>Tsukiji Honganji (Tokyo)</strong> 晨朝 <strong>07:00</strong> daily, gates 06:00; 20–26 Sept 秋季彼岸会 with altered 合同法要 times. <a href="https://tsukijihongwanji.jp/service/houyou/">tsukijihongwanji.jp/service/houyou</a>. The monthly pipe-organ lunchtime concert is <strong>Fri 25 Sept</strong> (英貴子), 12:10 — you are in Kyoto: missed. <a href="https://tsukijihongwanji.jp/enjoy/lunchtime-concert/">concert page</a>.</li>
-</ul>
-<p>Best morning: Thu 24 06:00 Nishi Honganji (15 min walk or one subway stop from Karasuma), then Higashi at 07:00 next door.</p></div>
-
-<div class="card"><h3>Sun 20 · daytime · Bunraku 令和8年9月文楽鑑賞教室 — 二人三番叟 + 解説 + 仮名手本忠臣蔵 (山崎街道〜勘平腹切), 江東区文化センター</h3>
-<p class="www"><b>What</b><span>文楽鑑賞教室: 二人三番叟, a demonstration, then 仮名手本忠臣蔵 山崎街道〜勘平腹切 with the National Theatre's own 太夫 and 三味線.</span><b>When</b><span>Sun 20 (last day of the run) · A 11:00–13:45 · B 14:30–17:15.</span><b>Where</b><span>江東区文化センター, 東陽4-11-3, Tōyōchō (Tōzai line), Tokyo.</span><b>Cost</b><span>¥6,000; NTJ ticket site (English) or 当日券 from 10:00.</span></p>
-<p class="meta">Kōtō Bunka Center (Tōyōchō stn, Tōzai line, 5 min). Tokyo. <span class="t1">Tier 1</span> · real bunraku with the National Theatre's own 太夫・三味線, relocated · <span class="v">VERIFIED</span></p>
-<p>Runs 10–20 Sept; <strong>Sun 20 is the last day: A-pro 11:00–13:45, B-pro 14:30–17:15</strong> ("大人のための文楽入門" day). ¥6,000 → ¥12,000 for two. National Theatre ticket centre (English site, foreign cards) at <a href="https://ticket.ntj.jac.go.jp/">ticket.ntj.jac.go.jp</a>; 当日券 from 10:00 if seats remain. Source: <a href="https://www.ntj.jac.go.jp/schedule/kokuritsu_s/2026/0809/">ntj.jac.go.jp …/0809</a>. <strong>Collision:</strong> A-pro ends 13:45; Tōyōchō → Shinjuku is about 40 min, so the Pit Inn 14:30 show is reachable but tight; B-pro (14:30) collides with it. Osaka's National Bunraku Theatre has <strong>no bunraku 23–25 Sept</strong> (錦秋文楽公演 is November) <span class="v">VERIFIED</span>.</p></div>
-
-<div class="card"><h3>Sun 20 · midday · 梅若会定式能 — 狂言「子盗人」, 能「定家」(角当直隆), 梅若能楽学院会館</h3>
-<p class="www"><b>What</b><span>梅若会定式能: 狂言「子盗人」 and 能「定家」 (角当直隆), full hayashi and chorus.</span><b>When</b><span>Sun 20 · 12:30.</span><b>Where</b><span>梅若能楽学院会館, Higashi-Nakano, Tokyo.</span><b>Cost</b><span>¥7,000 自由席 at the door.</span></p>
-<p class="meta">Umewaka Nōgakugakuin Kaikan (Higashi-Nakano). Tokyo. <span class="t1">Tier 1</span> · a stream 定式能, not a sampler · <span class="v">VERIFIED (the-noh.com listing)</span></p>
-<p>12:30 start; 自由席 ¥7,000, 正面指定 +¥1,000 (must be applied for a week ahead) → ¥14,000 for two. Source: <a href="https://www.the-noh.com/jp/schedule/kanto/2026/09/">the-noh.com Kantō September</a>. <strong>This is the only noh with hayashi inside your Tokyo days</strong>; Sat 19 (宝生会定期 11:00/15:30, 坂口貴信之會 13:00) is your landing day, Mon 21 and Tue 22 have no noh in Tokyo, and Wed 23's 能を知る会 (Kanze, English subtitles, 13:00) clashes with your Shinkansen. <strong>Collision:</strong> 12:30 overlaps both the bunraku A-pro (11:00) and the Pit Inn 14:30 show; pick one of the three.</p></div>
-
-<div class="card"><h3>Fri 25 · afternoon · 山内惠介 Yamauchi Keisuke Concert Tour 2026, ロームシアター京都 メインホール — a real enka concert</h3>
-<p class="www"><b>What</b><span>山内惠介 Concert Tour 2026, a full enka concert.</span><b>When</b><span>Fri 25 · open 14:15, start 15:00.</span><b>Where</b><span>ロームシアター京都 メインホール, Okazaki, Kyoto.</span><b>Cost</b><span>¥7,800; ROHM counter 075-746-3201 or Pia / e+.</span></p>
-<p class="meta">ROHM Theatre Kyoto (Okazaki). <span class="t1">Tier 1</span> form (enka concert) · <span class="v">VERIFIED</span></p>
-<p>Fri 25, 開場 14:15 / 開演 <strong>15:00</strong>; ¥7,800 all reserved → ¥15,600 for two; sales via Pia (P 327-431), Lawson (L 53227), e+ (受付中 until 17 Sept 18:00), and the <strong>ROHM Theatre ticket counter 075-746-3201 / window, 10:00–17:00 daily</strong> — the foreigner-usable route. Sources: <a href="https://www.yamauchikeisuke.com/posts/schedule/rakywd">artist site</a>, <a href="https://eplus.jp/sf/live/enka/kyoto">e+ Kyoto enka listing</a>. <strong>Collision:</strong> you are in Arashiyama until mid-afternoon; 15:00 in Okazaki means leaving Saga by 13:45. Tokyo enka 19–22 Sept: e+ lists nothing <span class="v">VERIFIED</span>; Osaka has 川野夏美 (19th) and 岩佐美咲 (20th) at SoapOperaClassics Umeda while you are in Tokyo.</p></div>
-
-<div class="card"><h3>Sun 20 / Tue 22 · 16:30 · 明治座 松平健×コロッケ45周年特別公演 — 暴れん坊将軍 THE STAGE + 「ゴールデンパラダイスショー」(マツケンサンバⅡ, 歌謡ショー second act)</h3>
-<p class="www"><b>What</b><span>松平健×コロッケ 45周年特別公演: 暴れん坊将軍 THE STAGE, then the 「ゴールデンパラダイスショー」 with マツケンサンバⅡ and a live band.</span><b>When</b><span>Sat 19 11:00 · Sun 20 11:00 and 16:30 · Mon 21 11:00 · Tue 22 11:00 and 16:30 (runs 15–30 Sept).</span><b>Where</b><span>明治座, Ningyōchō / Hamachō, Tokyo.</span><b>Cost</b><span>¥7,000 (3F) / ¥14,000 (S).</span></p>
-<p class="meta">Meijiza (Ningyōchō / Hamachō). Tokyo. <span class="t1">Tier 1</span> form (theatre-run 座長公演 with a 歌謡ショー) · <span class="v">VERIFIED</span></p>
-<p>Runs 15–30 Sept. In your window: <strong>Sat 19 11:00; Sun 20 11:00 &amp; 16:30; Mon 21 11:00; Tue 22 11:00 &amp; 16:30</strong> (23rd dark). Part 1 16:30–17:45 (act 1), 30-min interval, act 2, then the show. S ¥14,000 / A (3F) ¥7,000 → ¥14,000–28,000 for two. On sale ("販売中 / お申込み") at <a href="https://ticket.meijiza.co.jp/">ticket.meijiza.co.jp</a> and 03-3666-6666; seat counts not visible without starting a purchase. Source: <a href="https://www.meijiza.co.jp/info/2026/2026_09/">meijiza.co.jp 公演情報</a>. This is Ken Matsudaira's samba in a 1,300-seat house full of fans on a holiday weekend, a form that does not exist in New York.</p></div>
-
-<div class="card"><h3>Tue 22 · evening · 代々木八幡宮 例大祭 宵宮 — the shrine three stops from your base, festival night with 神楽殿 演芸</h3>
-<p class="www"><b>What</b><span>例大祭 宵宮: stalls, a 神楽殿 stage from dusk, the 宮神輿 out on the 22nd; 神代神楽 on the 23rd.</span><b>When</b><span>Tue 22 · afternoon into the evening (fits 16:00–17:15 before Jingu) · Wed 23 afternoon to night (you are on the Shinkansen).</span><b>Where</b><span>代々木八幡宮, Tokyo (Odakyū Yoyogi-Hachiman 5 min / Yoyogi-Kōen).</span><b>Cost</b><span>free.</span></p>
-<p class="meta">Yoyogi-Hachiman (Odakyū Yoyogi-Hachiman stn 5 min / Yoyogi-Kōen stn). Tokyo. <span class="t1">Tier 1</span> · <span class="v">VERIFIED dates</span>, <span class="s">SECONDARY programme</span></p>
-<p>The shrine confirms the festival is <strong>22 and 23 Sept, and this year the 宮神輿 goes out on the 22nd</strong> (<a href="https://www.yoyogihachimangu.or.jp/">yoyogihachimangu.or.jp</a>, <a href="https://www.yoyogihachimangu.or.jp/event.html">年中行事</a>: "22日夕…" the line is cut on the page). Its 2026 festival page says details "will be posted in September". Secondary sources: 100+ stalls, stage entertainment at the 神楽殿 from dusk on the 22nd, and 神代神楽 from the afternoon of the 23rd into the night (<a href="https://www.visiting-japan.com/ja/articles/events/j13sb-yoyogi-hachimangu-reitaisai.htm">visiting-japan</a>, <a href="https://kotokoto-sasazuka.com/yoyogi-reitaisai/">kotokoto-sasazuka</a>). <strong>The kagura is on the 23rd, after your train.</strong> Free. Worth an hour on the 22nd between Takao and the game.</p>
-<p><small>Also on your doorstep: <strong>金王八幡宮例大祭</strong> Sat 19–Sun 20 (<a href="https://shibuyamatsuri.com/">shibuyamatsuri.com</a>, <a href="https://nigiwai-matsuri.com/">stage programme</a>): 宵宮 Sat 19 from 18:00 with a 神楽殿 stage (16:00 おはら節・渋谷音頭, 18:00 koto, 19:00 pantomime, ends ~19:30; you land at 15:00, so the 18:00 koto is on your doorstep), Sun 20 14:00 the 14-mikoshi 連合渡御 in front of 109 (overlaps the Pit Inn 14:30 show). <strong>芝大神宮 だらだら祭り</strong>: Sun 20 敬老祭 and 14:00 氏子各町神輿連合渡御, Mon 21 終結祭 (<a href="https://www.shibadaijingu.com/2026/09/01/1517/">shibadaijingu.com</a>). <strong>根津神社</strong>: 例祭式 Mon 21 (ceremony only); the 三座ノ舞 kagura is Sun 27 — missed (<a href="https://nedujinja.or.jp/2026/08/07/%e4%bb%a4%e5%92%8c%e4%ba%94%e5%b9%b4%e3%80%80%e4%be%8b%e5%a4%a7%e7%a5%ad-2-3/">nedujinja.or.jp</a>).</small></p></div>
-
-<div class="card"><h3>Mon 21 · evening · underground idol with live bands: 平野友里 × youmenosay 「アイドルバンドセットっていいよね Vol.2」, 新宿MARZ · and BELLRING少女ハート at 新宿LOFT</h3>
-<p class="www"><b>What</b><span>平野友里 × youmenosay, idols with a live band (MARZ); BELLRING少女ハート (LOFT); AKB48 Theater's 山内瑞葵 生誕祭 (Sun 20).</span><b>When</b><span>Mon 21 · MARZ 17:30/18:00, LOFT 18:30/19:00 · AKB48 Sun 20 18:00.</span><b>Where</b><span>新宿MARZ and 新宿LOFT, Kabukichō; AKB48 Theater, Akihabara, Tokyo.</span><b>Cost</b><span>¥3,300–4,600; AKB48 by overseas email lottery only.</span></p>
-<p class="meta">Shinjuku. <span class="t1">Tier 1</span> format (chika-idol in a live house) · <span class="v">VERIFIED</span> · reported neutrally</p>
-<p><strong>MARZ:</strong> 17:30/18:00, adv ¥4,000 / door ¥4,500 + drink ¥600, 女性割 ¥3,000 (<a href="https://www.marz.jp/events?date=2026%2F09">marz.jp September</a>). MARZ runs idol bills almost daily; Sat 19 and Sun 20 have free 11:30 shows (¥600 + drink). <strong>LOFT:</strong> 『HELL ROAD TO ZEPP特別編 ベルハー・イン・ザ・ダーク』, 18:30/19:00, ¥3,300 (<a href="https://www.loft-prj.co.jp/schedule/loft/schedule/362307">loft-prj</a>). <strong>AKB48 Theater:</strong> Sun 20 「ここからだ」 13:30 (women-only) and <strong>18:00 山内瑞葵 生誕祭</strong>; the 19–20 batch is announced (<a href="https://www.akb48.co.jp/news/detailpage/478938681">akb48.co.jp</a>); the general lottery for the 20th closed 15 Sept 16:00 (5 days before) via a Japanese-phone account, so the only route now is the <strong>overseas "super long distance" email</strong>: 6 front-row seats per show, email sfar@akb48.co.jp with names / country / desired dates, passport checked, pay yen on the day (<a href="https://www.akb48.co.jp/overseas/">akb48.co.jp/overseas</a>). 21–22 Sept shows are not yet announced.</p></div>
-
-<div class="card"><h3>Tue 22 · evening · DOMMUNE 「エネルギー体現論」 Ryo Fujimoto, Itti, Takuma Nakata — the live-streamed studio with a paying audience, Shibuya PARCO 9F</h3>
-<p class="www"><b>What</b><span>「エネルギー体現論」: Ryo Fujimoto, Itti, Takuma Nakata (beatbox, electronics) in the live-streamed studio with a paying audience.</span><b>When</b><span>Tue 22 · 19:30–21:30 (against the game).</span><b>Where</b><span>DOMMUNE, Shibuya PARCO 9F, Tokyo (5 min from base).</span><b>Cost</b><span>charge not published; normally about ¥1,000 by site reservation.</span></p>
-<p class="meta">DOMMUNE (Shibuya PARCO 9F, 5 min from base). <span class="t1">Tier 1</span> format · <span class="v">VERIFIED programme</span>, <span class="s">SECONDARY entry rules</span></p>
-<p>Listed 19:30–21:30 on <a href="https://www.dommune.com/">dommune.com</a> (the only 19–22 Sept programme posted as of 5 Sept; the schedule fills in late). Studio audience is normally a few dozen with reservation via the site and a ¥1,000-class charge; not verifiable for this date. Beatbox and electronics, a low priority for Tuesday.</p></div>
-
-<div class="card"><h3>Kyoto Wed 23 – Fri 25 · the rooms themselves: 拾得 Jittoku, 外 Soto, nano</h3>
-<p class="www"><b>What</b><span>The Kyoto rooms and their local bills: 拾得 (1973 sake warehouse), 外 (Kiyamachi), nano.</span><b>When</b><span>Wed 23 – Fri 25 · 拾得 Wed 18:30 · 外 Wed 18:00 · nano Wed 18:30, closed Thu, Fri 19:00.</span><b>Where</b><span>拾得, Kamigyō · 外, Kiyamachi · nano, Nishi-Kyōgoku; all Kyoto.</span><b>Cost</b><span>¥1,500–3,500.</span></p>
-<p class="meta"><span class="t1">Tier 1</span> rooms, local acts · <span class="v">VERIFIED</span></p>
-<ul>
-<li><strong>拾得 (1973, sake warehouse, Kamigyō):</strong> Wed 23 The HillAndon &amp; The Nacometers 18:30 ¥3,500/¥4,000; Thu 24 AUX; Fri 25 角打ちシスターズ (times/prices for 24–25 not on the page). <a href="https://jittoku.sakura.ne.jp/04live1to3.htm">jittoku.sakura.ne.jp</a>.</li>
-<li><strong>外 Soto (Kiyamachi):</strong> Wed 23 《3 HOURS》 D.J.Fulltono — the Osaka juke/footwork originator, 18:00, ¥1,500, no reservation, door only. <a href="https://soto-kyoto.jp/schedule/">soto-kyoto.jp</a>. Japanese juke is a Japan-specific angle; ranked low because it is a DJ set.</li>
-<li><strong>nano (Nishi-Kyōgoku):</strong> Wed 23 azure tour 18:30 ¥3,000; <strong>Thu 24 closed</strong>; Fri 25 30sec. release tour 19:00 ¥2,000. <a href="https://www.livehouse-nano.com/schedule.php">livehouse-nano.com</a>.</li>
-<li><strong>Kyoto Metro:</strong> Wed 23 a 14:00 book-launch talk+DJ; Fri 25 drag/disco night — excluded as Western-style. <strong>Kyoto MUSE:</strong> Wed 23 Skinny Lister (UK) — excluded. <strong>GROWLY:</strong> September page renders empty. <strong>UrBANGUILD Fri 25:</strong> 雀斑 Freckles (Taiwan) — excluded.</li>
-</ul></div>
-
-</div>
-
-
-</div></details><details class="chunk"><summary>1b · Jazz, under the same test</summary><div class="chunkbody">
-<p class="lede">Every jazz room in Tokyo, Yokohama, Kyoto, Osaka and Kobe was read with one question: is this something a Brooklyn resident cannot get at home? That drops the touring Americans (McBride, the Miles band, Ulysses Owens, Gene Jackson, Jahari Stampley, Inara George, June Yamagishi) to Tier 3 and lifts three things: rooms that exist only here (Pit Inn's ¥2,500 afternoon show, Body &amp; Soul's closing week, Sone's three resident sets a night, the jazz kissa), players who never leave (峰厚介, 河合代介, 阿川泰子, 高中正義, 寺井尚之, 小濱安浩), and the min'yō–jazz crossover. Prices are per person; "incl." means one drink is inside the figure.</p>
-<div class="cards">
-<div class="card"><h3>Sun 20 · 14:30 · Pit Inn 昼の部 — Marty Holoubek presents 東京民謡倶楽部 Tokyo Min'yō Club: three Tsugaru shamisen (小山豊, 白藤ひかり, 武田佳泉), 駒田早代 (唄), 小湊昭尚 (shakuhachi), 大多和正樹 (wadaiko), 石若駿 (ds), Holoubek (b), strings and keys</h3>
-<p class="www"><b>What</b><span>Pit Inn 昼の部: 東京民謡倶楽部 (three Tsugaru shamisen, 唄, shakuhachi, wadaiko) inside Marty Holoubek's jazz band.</span><b>When</b><span>Sun 20 · open 14:00, start 14:30.</span><b>Where</b><span>Shinjuku Pit Inn, Tokyo (Shinjuku-Sanchōme).</span><b>Cost</b><span>¥5,500 adv / ¥6,050 door, drink included.</span></p>
-<p class="meta">Shinjuku Pit Inn (1965 basement) · ¥5,000 + tax = ¥5,500 adv / ¥6,050 door, one drink incl. · <span class="t1">Tier 1</span> crossover · <span class="v">VERIFIED</span> <a href="https://pit-inn.com/schedule-day/">pit-inn.com/schedule-day</a></p>
-<p><strong>Why:</strong> a min'yō–jazz set with real Tsugaru players and a shakuhachi, in the Pit Inn's afternoon slot. <strong>Collision:</strong> it overlaps Konnō Hachimangū's 連合渡御 at 109 (14:00) and the Umewaka noh (12:30). Same series: Mon 21 14:30 Trio IV (渡辺翔太 / 石若駿 / Holoubek, ¥3,850 incl.), Tue 22 14:30 Trio V (井上銘 and 閑喜弦介 on acoustic guitars, ¥3,850 incl., start is before you are back from Takao).</p></div>
-<div class="card"><h3>Body &amp; Soul · final week 19–26 Sept, then 【閉幕】 27 Sept</h3>
-<p class="www"><b>What</b><span>The club's last eight nights (table below); Mon 21's 河合代介 organ trio is the one still open to reserve.</span><b>When</b><span>Sat 19 – Sat 26 · sets 18:30/20:00 on Sun and holidays, 19:30/21:00 otherwise; 【閉幕】 27 Sept.</span><b>Where</b><span>Body &amp; Soul, 渋谷区宇田川町2-1 渋谷ホームズ B-15, Kōen-dōri, Shibuya.</span><b>Cost</b><span>¥6,600–11,000 + drinks.</span></p>
-<p class="meta">渋谷区宇田川町2-1 渋谷ホームズ B-15 (the "新店舗"; not Aoyama) · <span class="t1">Tier 1</span> room · <span class="v">VERIFIED</span> <a href="https://bodyandsoul.co.jp/schedule">schedule</a>, <a href="https://bodyandsoul.co.jp/2026/09/176813">closing post</a></p>
-<div class="tw"><table><tr><th>When</th><th>What (band)</th><th>Open / sets</th><th>M.charge incl. tax</th><th>Status on the page</th></tr>
-<tr><td>Sat 19</td><td>若井優也 Special Quartet feat. Chris Kazuki Jones, 石若駿 (ds)</td><td>18:30 / 19:30, 21:00</td><td>¥7,700</td><td>予約〆切 (reservations closed)</td></tr>
-<tr><td>Sun 20</td><td>守屋純子 Sextet</td><td>17:30 / 18:30, 20:00</td><td>¥7,700</td><td>予約〆切</td></tr>
-<tr><td><strong>Mon 21</strong></td><td><strong>河合代介 (org) 佐野康夫 (ds) 宮崎隆睦 (sax)</strong></td><td>17:30 / 18:30, 20:00</td><td>¥7,700</td><td><strong>詳細/メール予約 — open</strong></td></tr>
-<tr><td>Tue 22 (day)</td><td>椎名豊 Inspired Swing Trio + 中島朱葉</td><td>14:00 / 15:00, 16:30</td><td>¥7,700</td><td>予約〆切</td></tr>
-<tr><td>Wed 23</td><td>武本和大 THE REAL Veleria (strings, Ema vo)</td><td>17:30 / 18:30, 20:00</td><td>¥7,000</td><td>予約〆切</td></tr>
-<tr><td>Thu 24</td><td>大林武司 Quartet (NY-based)</td><td>18:30 / 19:30, 21:00</td><td>¥8,800</td><td>予約〆切</td></tr>
-<tr><td>Fri 25</td><td>井上陽介 Trio</td><td>18:30 / 19:30, 21:00</td><td>¥6,600</td><td>予約〆切</td></tr>
-<tr><td>Sat 26</td><td>【The Final Groove】TOKU with 山本剛 group, two separate seatings</td><td>17:00 / 18:00; 20:00 / 21:00</td><td>¥11,000</td><td>both sold out</td></tr></table></div>
-<p>"予約〆切" is the club's wording for a night whose reservation list is closed; it does not say sold out. Phone 03-6455-0088 on the day for returns.</p></div>
-<div class="card"><h3>Sat 19 · 19:30 · The Blend — 峰厚介 (ts, b. 1944), 中村恵介 (tp), Hakuei Kim (p), 本田珠也 (ds), Shinjuku Pit Inn</h3>
-<p class="www"><b>What</b><span>The Blend: 峰厚介 (ts), 中村恵介 (tp), Hakuei Kim (p), 本田珠也 (ds).</span><b>When</b><span>Sat 19 · 19:30.</span><b>Where</b><span>Shinjuku Pit Inn, Tokyo.</span><b>Cost</b><span>¥3,500 incl. one drink.</span></p>
-<p class="meta">¥3,500 incl. one drink · reservation via the venue page or door · <span class="t2">Tier 2</span> · <span class="v">VERIFIED</span> <a href="https://pit-inn.com/schedule/">pit-inn.com/schedule</a></p>
-<p>Kosuke Mine has played tenor in Tokyo since the 1960s and works the Tokyo rooms week in, week out. You land at 15:00, so the full show is on, with the 金王八幡宮 festival stage in Shibuya (koto at 18:00) before it. Competes with Body &amp; Soul's closed-list Saturday and Oiwake's 21:00 show.</p></div>
-<div class="card"><h3>Mon 21 · 19:30 · Marty Holoubek Trio III — 石橋英子 (p, fl, effects), 山本達久 (ds, electronics), Holoubek (b), Shinjuku Pit Inn</h3>
-<p class="www"><b>What</b><span>Marty Holoubek Trio III: 石橋英子 (p, fl, effects), 山本達久 (ds, electronics), Holoubek (b).</span><b>When</b><span>Mon 21 · 19:30.</span><b>Where</b><span>Shinjuku Pit Inn, Tokyo.</span><b>Cost</b><span>¥4,400 adv / ¥4,950 door, drink included.</span></p>
-<p class="meta">¥4,400 adv / ¥4,950 door, incl. drink · <span class="t2">Tier 2</span> setting · <span class="v">VERIFIED</span> <a href="https://pit-inn.com/schedule/">pit-inn.com/schedule</a></p>
-<p>The same Ishibashi/Yamamoto pair as Nanahari's Sunday, one night later in the Pit Inn. Collides with Body &amp; Soul's last Monday, the Miles Electric Band at Blue Note and the Show Boat ex-P-MODEL bill; ranked below all three because Ishibashi does tour.</p></div>
-<div class="card"><h3>Thu 24 · nightly resident sets · Jazz Live Sone, Kobe (since 1969)</h3>
-<p class="www"><b>What</b><span>Three resident sets a night; Thu 24 松岡みほ (vo), 岩田智貴 (p), 澤田浩輔 (b), 倉沢虹太 (ds).</span><b>When</b><span>Nightly · 18:30, 19:50, 21:10.</span><b>Where</b><span>Jazz Live Sone, Motomachi, Kobe (50 min from Kyoto).</span><b>Cost</b><span>¥2,200 + drinks and food, walk-in.</span></p>
-<p class="meta">Motomachi, Kobe · charge ¥2,200 incl. tax + drinks/food · sets 18:30, 19:50, 21:10 · <span class="t1">Tier 1</span> format · <span class="v">VERIFIED format</span> <a href="https://kobe-sone.com/schedule/">kobe-sone.com</a>; Thu 24 lineup (松岡みほ vo, 岩田智貴 p, 澤田浩輔 b, 倉沢虹太 ds) from the <a href="https://jazzshiryokan.net/jazzdb/live_result.php?searchDays=afterToday&amp;prefectureCode=28">Jazz Shiryōkan listing</a> <span class="s">SECONDARY</span></p>
-<p>Three short sets by resident Kansai players every night for ¥2,200 in Japan's first jazz city; go for the format, not the names. Kobe is 50 min from Kyoto; realistic only if you skip UrBANGUILD and Billboard. Also Thu 24 in Kobe: 小濱安浩 (ts, the Osaka veteran) with 吉岡秀晃 at POCHI 19:30 <span class="s">SECONDARY</span>.</p></div>
-<div class="card"><h3>Osaka and Kyoto jazz rooms, 23–25 Sept</h3>
-<p class="www"><b>What</b><span>What the other Kansai rooms have: GALLON, Over Seas, Billboard Live Osaka, RAG, Bonds Rosary, Le Club Jazz, Jazz Live Candy (details below).</span><b>When</b><span>Wed 23 – Fri 25.</span><b>Where</b><span>Osaka (Kita-Shinchi, Umeda), Kyoto (Sanjō, Gion), Tokyo's Blue Note Place for contrast.</span><b>Cost</b><span>as listed.</span></p>
-<p class="meta"><span class="v">VERIFIED</span> unless marked</p>
-<ul>
-<li><strong>GALLON</strong> (Kita-Shinchi; Mister Kelly's successor): Wed 23 小沢咲希 trio (¥3,000 a set / ¥4,500 both, 19:30 &amp; 20:50); Thu 24 早川紗世 trio (¥2,500 / ¥3,500); Fri 25 Ryu Miho &amp; Eric Lee (SJ60, ¥4,500). <a href="https://gallonjazz.com/shows/20260924">gallonjazz.com</a>.</li>
-<li><strong>Over Seas</strong> (Osaka): Fri 25 19:00 寺井尚之 (p) &amp; 東ともみ duo — Terai is a fixture of Osaka piano jazz and this is his own room; it is the Takanaka night, so it is out <span class="s">SECONDARY</span> (Jazz Shiryōkan).</li>
-<li><strong>Billboard Live Osaka</strong>: Tue 22 阿川泰子 "CROSSOVER NIGHT" (the 1980s Japanese jazz-vocal star; you are in Tokyo); Thu 24 Christian McBride &amp; Ursa Major <span class="t3">Tier 3</span>. <a href="https://www.billboard-live.com/osaka/schedules?month=2026-09-01">billboard-live.com/osaka</a>.</li>
-<li><strong>RAG</strong> (Kyoto): Wed 23 19:30 Inara George (US); Fri 25 18:30 TOMPEI record release; 21–22 須藤満 (T-SQUARE bassist) 2 days while you are in Tokyo. <a href="https://www.ragnet.co.jp/livespot/">ragnet.co.jp</a>.</li>
-<li><strong>Bonds Rosary</strong> (Kyoto): Wed 23 day and night both sold out; <strong>closed Thu 24 and Fri 25</strong>. <a href="https://bondsrosary.com/schedule/2026/09">bondsrosary.com</a>.</li>
-<li><strong>Le Club Jazz</strong> (Sanjō; nightly instrumental jazz since 1995, closed Mon, Fri sit-in ¥1,500, Sun jam) and <strong>Jazz Live Candy</strong> (Gion, 25 seats, sets 20:00 / 21:00): September lineups not readable on their pages — see could-not-verify.</li>
-<li><strong>Blue Note Place</strong> (Ebisu, Tokyo) Thu 24: 井上銘 &amp; 魚返明未 feat. Andrea Motis — you are in Kansai.</li>
-</ul></div>
-<div class="card"><h3>Tokyo jazz rooms, 19–22 Sept — the rest</h3>
-<p class="www"><b>What</b><span>Everything else in the Tokyo and Yokohama jazz rooms, and the agency sweep of domestic legends.</span><b>When</b><span>Sat 19 – Tue 22.</span><b>Where</b><span>Shinjuku, Aoyama, Marunouchi, Akasaka, Kōenji, Ochanomizu, Roppongi, Meguro, Kichijōji, Yokohama.</span><b>Cost</b><span>as listed.</span></p>
-<p class="meta"><span class="v">VERIFIED</span> on each venue's own page</p>
-<ul>
-<li><strong>Pit Inn night:</strong> Sun 20 Holoubek "妖怪の影" (with DJ/projector, ¥3,850 incl.), Tue 22 Trio II 井上銘 / 石若駿 (¥4,400 incl.); Fri 25 TReS (早坂紗知, Latin-leaning). <strong>Day shows</strong> Sat 19 石崎忍 trio 14:00 ¥2,750 incl.; Wed 23 David Negrete's Electric BeBoplicity 14:00 ¥2,750 incl.</li>
-<li><strong>Blue Note Tokyo:</strong> Sat–Sun 19–20 Chara; Mon–Wed 21–23 The Miles Electric Band (Vince Wilburn Jr.) <span class="t3">Tier 3</span>; Thu 24 Septeto Santiaguero; Fri–Sat 25–26 Ulysses Owens Jr. <a href="https://www.bluenote.co.jp/jp/artists/schedule/">bluenote.co.jp</a>.</li>
-<li><strong>Cotton Club:</strong> Sun 20 Jahari Stampley with 川口千里 (¥8,800); <strong>Mon 21 櫻井哲夫 (ex-Casiopea) Jaco Pastorius tribute session, ¥7,500</strong> <span class="t2">Tier 2</span> player, tribute programme; Tue 22 dark; Wed 23 Rachael Yamagata; Thu 24 Ulysses Owens; Sat 26 古謝美佐子 (Okinawan singer) with 文楽 puppets — one day after you leave; Sun 27 前川清. <a href="https://reserve.cottonclubjapan.co.jp/reserve/schedule/">cotton club schedule</a>.</li>
-<li><strong>Akasaka B-flat</strong> (CMS feed): Tue 22 m.s.t. × 川口千里 TheChiliGrinders ¥5,500 and THE FUNKMAN (河野啓三 of T-SQUARE) ¥4,180; Wed 23 MALTA Hit&amp;Run ¥7,150 (the fusion-sax veteran; you are on the Shinkansen). Set times not published.</li>
-<li><strong>JIROKICHI</strong> (Kōenji, 50th year): Sat 19 closed; Sun 20 岡弘二 CD release 19:30 ¥3,500+1D; Mon 21 Super Funky Jam ¥4,000+1D; Tue 22 GO-AHEAD ¥4,000+1D; Wed 23 中川敬 (Soul Flower Union) × リクオ ¥5,500; Thu 24–Sat 26 June Yamagishi 3 days (New Orleans-based, Grammy-nominated 2026) <span class="t3">Tier 3</span>. <a href="https://jirokichi.net/">jirokichi.net</a>.</li>
-<li><strong>NARU</strong> (Ochanomizu, now ocha-naru.com): Sat 19–Mon 21 大坂昌彦 3 days (Mon 21 = jam session), Tue 22 off; open 18:00, sets 19:00 / 20:30. <a href="http://ocha-naru.com/schedule/">ocha-naru.com</a>.</li>
-<li><strong>Alfie</strong> (Roppongi, now alfie.tokyo): Sat 19 深尾多恵子 with Gene Jackson ¥6,600; Sun 20 closed; Mon–Tue 21–22 中山拓海 2 days; one set 19:15–20:45. <a href="https://alfie.tokyo/schedule/202609.html">alfie.tokyo</a>.</li>
-<li><strong>Blues Alley Japan:</strong> Mon–Tue 21–22 Soul Searchin' Stevie Wonder session; its Sat 19 未唯mie 50th-anniversary production is at Tokyo International Forum Hall C, 17:30 (¥7,000–80,000), landing day. <a href="https://www.bluesalley.co.jp/">bluesalley.co.jp</a>.</li>
-<li><strong>Billboard Live Tokyo:</strong> nothing Japan-only 19–25 (マハラージャン, YOUR SONG IS GOOD, MUUDO, XinU, 石橋凌, Crystal Kay). <a href="https://www.billboard-live.com/tokyo/schedules?month=2026-09-01">billboard-live.com/tokyo</a>.</li>
-<li><strong>Sometime</strong> (Kichijōji): Sat 19 Lew Tabackin (NY-based) <span class="t3">Tier 3</span>. <strong>Yokohama:</strong> Dolphy Sun 20 Grace Mahya &amp; 丈青 duo 19:00 ¥4,500; Airegin (1969, the free-jazz room; its domain airegin.jp is now a parked redirect, the club is alive) Sun 20 16:00 谷川賢作, Tue 22 木村由 / さがゆき / 長沢哲 improv <span class="s">SECONDARY</span> (Jazz Shiryōkan).</li>
-<li><strong>Agency sweep, domestic legends:</strong> 高中正義 Hikone Fri 25 17:30/18:30 ¥11,000 <span class="v">VERIFIED</span> (<a href="https://takanaka.com/live/">takanaka.com</a>) — Tier 3 (SUPER TAKANAKA WORLD LIVE 2026 sold out Brooklyn Paramount on 4–5 April, after the Wiltern in March 2025); booked on 6 Sept, first in section 0 because it is booked; CASIOPEA played Los Angeles on 13 Sept (so no longer Japan-only) and has nothing in the window; T-SQUARE nothing; 渡辺貞夫 next dates December; 山下洋輔 6 Sept only; 日野皓正 6 Sept only; 渋さ知らズ 5 Sept only; 森山威男 2 Days is a Pit Inn pickup for a later month (the September page shows TReS on 25–26).</li>
-</ul></div>
-</div>
-
-</div></details><details class="chunk"><summary>2 · Best single day, Tokyo and Kansai</summary><div class="chunkbody">
-<p class="legend">One day in each city, with what is on it, where, and at what time.</p>
-<p><strong>Tokyo: Sunday 20 September.</strong> Bunraku at 11:00 (江東区文化センター), the Pit Inn min'yō–jazz show at 14:30 (Shinjuku), then Haino at 19:00 (月花舎, Jimbōchō); or, for the evening, Violon's 78-rpm 昭和歌謡 concert 18:00 (Asagaya), Nanahari 18:30 (Hatchōbori), Sōonji at Loft 18:00 (Kabukichō), Kabuki-za 幕見 京人形 18:55 (Higashi-Ginza), AKB48's birthday stage 18:00 (Akihabara). Monday 21 is the runner-up (Body &amp; Soul's last open night, the ex-P-MODEL bill, DESTINY 8). Tuesday 22 is Takao and the Swallows at 18:00.</p>
-<p><strong>Kansai: Friday 25 September, the harvest moon, now Takanaka's night.</strong> Six rites on one night, every one of them running while you are in Hikone: Shimogamo 17:30 (Demachiyanagi), Kamigamo 16:30 (Kita-ku), Daikaku-ji 17:30 (Arashiyama), Yasaka 19:00 (Gion), Sumiyoshi 18:00 (Osaka), Nara 采女祭 (Sarusawa pond); plus Yamauchi's enka concert at 15:00 (ROHM Theatre, Okazaki). Wednesday 23 is the better <em>traditional</em> evening (the candle noh at 御香宮, 18:30, Fushimi; or Festival Hall if the Yamashita lottery lands); Thursday 24 is the better <em>live-house</em> day (Uchihashi/Ligeti, Blues The Butcher); Friday is Takanaka, booked.</p>
-
-</div></details><details class="chunk"><summary>3 · Notable regardless of rank (must-surface)</summary><div class="chunkbody">
+<details class="chunk"><summary>1 · Notable regardless of rank (must-surface)</summary><div class="chunkbody">
 <div class="cards">
 <div class="card flagcard"><h3>山下達郎 in Osaka on Wed 23 — one of the hardest tickets in Japan, and the only night of the tour you can reach</h3>
 <p class="www"><b>What</b><span>山下達郎 "PERFORMANCE 2026".</span><b>When</b><span>Wed 23 · doors 17:00, start 18:00.</span><b>Where</b><span>Festival Hall, Nakanoshima, Osaka.</span><b>Cost</b><span>¥15,000; e+ cancel-wait lottery to 13 Sept 18:00 JST.</span></p><p>Festival Hall 18:00, ¥15,000. Lottery and general sale closed in August; the e+ cancel-wait lottery for this date runs to <strong>13 Sept 18:00 JST</strong>, one ticket per application, card + smartphone ticket, e+ account with phone verification; photo ID (passport listed) at entry against the printed name. <span class="v">VERIFIED</span> (<a href="https://www.tatsuro.co.jp/live/">tatsuro.co.jp/live</a>, <a href="https://eplus.jp/tatsuro2026/">e+ page</a>). Ranked #2 in the top five with that caveat.</p></div>
@@ -963,21 +1013,7 @@ booking friction, and what could not be verified.</p>
 <p class="www"><b>What</b><span>SHELTER's 35th-anniversary "IGNITION GIGS" (UNLIMITS / Conton Candy; ANORAK! / MIRROR); LOFT's 50th year.</span><b>When</b><span>Sun 20 18:45 · Mon 21 12:00.</span><b>Where</b><span>下北沢SHELTER; 新宿LOFT, Tokyo.</span><b>Cost</b><span>¥3,000–3,500.</span></p><p><span class="v">VERIFIED</span> (<a href="https://www.loft-prj.co.jp/schedule/shelter/360428">shelter 9/20</a>, <a href="https://www.loft-prj.co.jp/schedule/shelter/359750">9/21</a>). Anniversary series, ordinary indie bills; not ranked.</p></div>
 </div>
 
-</div></details><details class="chunk"><summary>4 · Two plans</summary><div class="chunkbody">
-<h3>If you only do two things</h3>
-<ol>
-<li><strong>Fri 25:</strong> 高中正義 at ひこね市文化プラザ, Hikone, doors 17:30, start 18:30, booked. Leave Arashiyama by about 15:00 and take the 新快速 from Kyoto. The moon rites (Shimogamo 17:30, Yasaka 19:00, both free) conflict; <em>if the tickets fall through:</em> Shimogamo, then Keihan to Gion for Yasaka's 19:30 舞楽.</li>
-<li><strong>Sun 20:</strong> Pit Inn 昼の部 東京民謡倶楽部 at 14:30, Shinjuku (¥5,500 incl. drink), then Haino at 月花舎, Jimbōchō, at 19:00 (email). <em>Fallback for the evening:</em> Violon's SP-record concert 18:00, or Kabuki-za 幕見 京人形 18:55.</li>
-</ol>
-<h3>If you do three</h3>
-<ol>
-<li>Fri 25 Takanaka, ひこね市文化プラザ, Hikone, 18:30 (booked).</li>
-<li>Sun 20: bunraku 11:00 (江東区文化センター), Pit Inn min'yō–jazz 14:30 (Shinjuku), Haino 19:00 (月花舎, Jimbōchō); drop the bunraku if three is too many.</li>
-<li><strong>Wed 23:</strong> Tatsuro Yamashita at Festival Hall, Osaka, 18:00 — <em>only if the e+ cancel-wait lottery (deadline 13 Sept 18:00 JST) gives you tickets</em>. <em>If the lottery misses:</em> the candle noh at 御香宮, Fushimi, doors 17:45, start 18:30, B door ticket ¥4,000 cash; <em>third choice the same night:</em> environment 0g's improv bill in Minami-Horie, 19:00, cash at the door; <em>on another day:</em> Body &amp; Soul's last open night, Mon 21, 18:30 set (email reservation).</li>
-</ol>
-<p>Thursday, if you drop Billboard: UrBANGUILD (Kiyamachi) Uchihashi/Ligeti 19:30, with Nishi Honganji's 06:00 晨朝 that morning and Yanagetsudō's silent room in Demachiyanagi in between; or Boris × DURAN at Yogibo META VALLEY, Osaka, for a louder night. Tuesday: 代々木八幡宮 宵宮 16:00–17:15, then Jingu.</p>
-
-</div></details><details class="chunk"><summary>6 · Listening cafés and listening bars (category D)</summary><div class="chunkbody">
+</div></details><details class="chunk"><summary>3 · Listening cafés and listening bars (category D)</summary><div class="chunkbody">
 <p class="legend">What each room is, where it is, when it is open; none needs booking.</p>
 <div class="tw"><table><tr><th>What (room)</th><th>Where</th><th>When (hours / closed)</th><th>Charge</th><th>Talking</th><th>Status</th><th>Source</th></tr>
 <tr><td><strong>名曲喫茶ライオン Lion</strong> (1926)</td><td>Dōgenzaka 2-19-13, 10 min from base</td><td><strong>13:00–20:00</strong> (LO 19:30), open every day (New Year, mid-Aug holidays); 定時コンサート <strong>15:00 and 19:00</strong> (~1 h), requests otherwise, one per group</td><td>drinks only; coffee ~¥550 <span class="s">S</span></td><td>no loud talk; no photos/video; no outside food; keyboards silent</td><td><span class="v">V</span></td><td><a href="https://lion.main.jp/shop/shop.htm">lion.main.jp/shop</a>, <a href="https://lion.main.jp/request/request.htm">request</a>, <a href="https://lion.main.jp/readme/readme.htm">rules</a></td></tr>
@@ -991,7 +1027,7 @@ booking friction, and what could not be verified.</p>
 </table></div>
 
 
-</div></details><details class="chunk"><summary>6b · Jazz kissa (category D, jazz)</summary><div class="chunkbody">
+</div></details><details class="chunk"><summary>3b · Jazz kissa (category D, jazz)</summary><div class="chunkbody">
 <p class="legend">Same columns: the room, where, when it is open on your days.</p>
 <div class="tw"><table><tr><th>What (room)</th><th>Where</th><th>When (hours / closed)</th><th>Charge</th><th>Talking</th><th>Status</th><th>Source</th></tr>
 <tr><td><strong>ジャズ喫茶いーぐる Eagle</strong> (1967)</td><td>Yotsuya 1-8, Tokyo</td><td>Mon–Fri 11:30–23:20, Sat 12:00–23:20, <strong>closed Sundays and holidays</strong> — i.e. closed Sun 20, Mon 21, Tue 22; open only your landing Saturday</td><td>drinks</td><td>silent until 18:00, bar mode after</td><td><span class="v">V</span></td><td><a href="http://jazz-eagle.com/information.html">jazz-eagle.com</a></td></tr>
@@ -1003,7 +1039,7 @@ booking friction, and what could not be verified.</p>
 <tr><td>DUG (Shinjuku), Meg (Kichijōji), Rompercicci (Nakano), Chigusa (Yokohama), Jamjam (Kobe)</td><td>—</td><td>DUG's site returned 404 at both paths tried; Meg's site timed out twice; the others were not fetched</td><td>—</td><td>—</td><td>—</td><td>could not verify</td></tr>
 </table></div>
 
-</div></details><details class="chunk"><summary>7 · Traditional stage (category B) — judged on the music</summary><div class="chunkbody">
+</div></details><details class="chunk"><summary>4 · Traditional stage (category B) — judged on the music</summary><div class="chunkbody">
 <p class="legend">What is on stage, where, on which date and at what time, and whether you can buy it.</p>
 <div class="tw"><table><tr><th>When (date)</th><th>What</th><th>Where</th><th>When (time)</th><th>¥ pp</th><th>Music on stage</th><th>Bookable by you?</th><th>Status</th></tr>
 <tr><td>2–26 Sept, in window 19–22</td><td>Kabuki-za 秀山祭九月大歌舞伎 (昼 11:00, 夜 16:00; 21 night 貸切, 25 day 貸切; 幕見 open)</td><td>Higashi-Ginza</td><td>see card</td><td>幕見 ¥600–2,800; house ¥5,000–20,000</td><td>三社祭 (清元 dance), 雛鶴三番叟, 京人形 (常磐津×長唄), 一條大蔵譚</td><td>幕見 online from noon the day before (card + 3DS); house seats via チケットWeb松竹 / 0570-000-489</td><td><span class="v">V</span></td></tr>
@@ -1021,68 +1057,7 @@ booking friction, and what could not be verified.</p>
 <tr><td>Sept</td><td>Kongō (13th reopening; 20th postponed; 27th 宇髙青蘭能之会), Ōtsuki (5, 12, 16, 18–19 万作の会, 26–27), Yamamoto (tea-ceremony days 22–23 only), Cerulean Tower (next 12 Oct), Kita (Tokyo: 24th lecture, 26th 青年能), Yarai (13th 九皐会), Tessenkai (27th 青山能)</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="v">V</span> none in window</td></tr>
 </table></div>
 
-</div></details><details class="chunk"><summary>8 · Booking friction, worst first — what must happen before the trip</summary><div class="chunkbody">
-<p class="legend">Each line names the event, its date and the place; the deadline or route follows.</p>
-<ol>
-<li><strong>山下達郎, Osaka Wed 23 (deadline 13 Sept 18:00 JST).</strong> The only route is the e+ cancel-wait lottery at <a href="https://eplus.jp/tatsuro2026/">eplus.jp/tatsuro2026</a>: one ticket per application, credit card, smartphone ticket (e+ app), and an e+ account that registers a mobile number and passes phone verification — whether a non-Japanese number passes is not stated (try the e+ English portal, else a Japanese contact's help). Two people = two accounts, two applications. At the door, each ticket holder shows photo ID matching the printed name; passports are accepted; checks start 45 min before doors (16:15). No resale of any kind.</li>
-<li><strong>御香宮 蝋燭能, Wed 23 (web sales closed 13 Sept).</strong> A seats sold out. B ¥3,500 in advance only by phoning the shrine office, 075-611-0559 (8:00–16:00 JST, Japanese), then bank transfer or payment in person within a week, which rules out most of Brooklyn; the realistic route is a B door ticket, ¥4,000 cash, at 17:45. Only needed if the Yamashita lottery misses.</li>
-<li><strong>Already closed or lottery-only.</strong> Daikaku-ji boat "特別チケット" (¥7,000) closed 24 July; same-day cancel-wait at 17:30 only. Kunaichō 秋季雅楽演奏会 is 23–25 Oct and its lottery is closed. AKB48 general lottery for Sun 20 closed 15 Sept; overseas email route (sfar@akb48.co.jp) is the only door, 6 seats.</li>
-<li><strong>Not bookable by a foreigner, but not sold out.</strong> Show Boat (Mon 21 ex-P-MODEL bill): advance = venue counter or cash-on-delivery post inside Japan → go for door tickets at 17:30. U.F.O. CLUB Mon 21: phone-only advance → door. Lawson (L-tike) needs a Japanese phone → use the other seller or the door.</li>
-<li><strong>e+ (Shelter, Loft, BALZAC, DESTINY 8, Yamauchi):</strong> the account wants a Japanese mobile for SMS and the app-ticket (スマチケ) needs the e+ app; the e+ English portal exists but coverage is partial. Practical route: door tickets, or the venue's own counter (Loft/Shelter hold 手売り). DESTINY 8 general sale runs to Sun 20 18:00; if you want it, try e+ English first, else expect 当日券 depending on sales.</li>
-<li><strong>Kabuki-za 幕見 online (e-tix):</strong> from 12:00 the day before, credit card only (Visa/MC/JCB/Amex) with security code and <strong>3-D Secure</strong> — make sure both cards are 3DS-enrolled before you fly; QR by email, no phone number gate. Same-day 4F 自由席 at the 幕見 window: queue with cash. House seats: <a href="http://www1.ticket-web-shochiku.com/t/">チケットWeb松竹</a> (JP) or phone 0570-000-489.</li>
-<li><strong>National Theatre (bunraku Sun 20):</strong> <a href="https://ticket.ntj.jac.go.jp/">ticket.ntj.jac.go.jp</a> has an English button and takes foreign cards; 当日券 from 10:00 if seats remain (count not readable today).</li>
-<li><strong>Email reservations (Ftarri, 七針, 月花舎/Haino, 磔磔, BALZAC via info@evilegend13.com):</strong> send name + number (BALZAC also wants the date, venue and a phone number); 七針's mailto carries an English template. Do these the week before; pay cash at the door.</li>
-<li><strong>TIGET (U.F.O. Tue 22) and LivePocket (Que Tue 22):</strong> email sign-up, card payment, QR — foreigner-usable. Que also sells at its counter 16:00–21:00 from the day of.</li>
-<li><strong>ROHM Theatre (Yamauchi Fri 25):</strong> counter/phone 075-746-3201 daily 10:00–17:00, or Pia/e+; walk up in person on Thu 24.</li>
-<li><strong>Meijiza:</strong> ticket.meijiza.co.jp (JP UI, cards) or 03-3666-6666; two shows on Sun 20 / Tue 22 still on sale.</li>
-<li><strong>Cash rooms and ID:</strong> MOGRA (cash, physical photo ID); 20000V, U.F.O., Show Boat, 0g, Soto, Oiwake, ろくだん: cash. Budget ¥40–50k in notes for the week's small rooms.</li>
-<li><strong>Jazz rooms:</strong> Body &amp; Soul takes email reservations from its schedule page (Mon 21 open; other nights 予約〆切 — phone 03-6455-0088 for returns); Pit Inn day and night shows reserve by email/phone from the venue page and sell at the door, cash; Sone and GALLON are walk-in with cash; Takanaka Hikone is booked; nothing left to do.</li>
-<li><strong>Free rites:</strong> Yasaka, Shimogamo, Kamigamo, Sumiyoshi, Nara, Yoyogi-Hachiman, temple 晨朝 — nothing to book. Daikaku-ji ¥700 at the gate.</li>
-</ol>
-
-</div></details><details class="chunk"><summary>9 · Could not verify</summary><div class="chunkbody">
-<div class="tw"><table><tr><th>Item</th><th>What is missing</th><th>URL checked</th></tr>
-<tr><td>Kamigamo 賀茂観月祭 2026</td><td>No 2026 post on the shrine site; date/time from tourism blogs</td><td><a href="https://www.kamigamojinja.jp/news/">kamigamojinja.jp/news</a>, <a href="https://www.kamigamojinja.jp/202409012231/">2024 notice</a></td></tr>
-<tr><td>Sumiyoshi 観月祭 2026</td><td>Only the annual "中秋日 18:00" rule page; no 2026-specific post found</td><td><a href="https://www.sumiyoshitaisha.net/events/special.html">sumiyoshitaisha.net</a></td></tr>
-<tr><td>Yoyogi-Hachiman 神楽殿 programme 22nd</td><td>Official festival page says "posted in Sept"; programme is from blogs</td><td><a href="https://www.yoyogihachimangu.or.jp/reitaisai.html">reitaisai.html</a></td></tr>
-<tr><td>Yasaka 観月祭 admission</td><td>No charge is mentioned; not explicitly stated free</td><td><a href="https://www.yasaka-jinja.or.jp/">yasaka-jinja.or.jp</a></td></tr>
-<tr><td>Nezu 例祭式 21st time</td><td>Ceremony time not published</td><td><a href="https://nedujinja.or.jp/">nedujinja.or.jp</a></td></tr>
-<tr><td>Kishiwada danjiri 2026 dates</td><td>City site did not resolve; 19–20 from aggregators</td><td>city.kishiwada.osaka.jp (DNS fail), <a href="https://osaka-info.jp/event/kishiwadadanjirimaturi/">osaka-info</a></td></tr>
-<tr><td>Bunraku Sun 20 seat availability</td><td>NTJ ticket site needs interactive search</td><td><a href="https://ticket.ntj.jac.go.jp/">ticket.ntj.jac.go.jp</a></td></tr>
-<tr><td>Meijiza seat availability</td><td>Only "on sale"; counts need a purchase flow</td><td><a href="https://ticket.meijiza.co.jp/">ticket.meijiza.co.jp</a></td></tr>
-<tr><td>Tomokawa (Que) live availability</td><td>LivePocket search page is script-only; venue page not marked sold out</td><td><a href="https://clubque.net/schedule/15548/">clubque.net</a></td></tr>
-<tr><td>Haino at 月花舎</td><td>Listed on the artist's site, not yet on the venue's</td><td><a href="http://gekkasha.modalbeats.com/">gekkasha.modalbeats.com</a></td></tr>
-<tr><td>和ノ家追分 on holiday Monday 21; vegan options</td><td>Closed-Monday rule; menu PDF unreadable (font mapping)</td><td><a href="https://www.kazunoya-oiwake.com/">kazunoya-oiwake.com</a></td></tr>
-<tr><td>ろくだん set times</td><td>"毎日ライブ" but no times on site</td><td><a href="https://www.rokudan.net/event">rokudan.net/event</a></td></tr>
-<tr><td>Harukor (Ainu, Shin-Ōkubo) September lives</td><td>No Sept 2026 event found; check X @harukoro522</td><td><a href="https://x.com/harukoro522">x.com/harukoro522</a></td></tr>
-<tr><td>Kyoto Okinawan rooms</td><td>Only weekend live (KUKURU 烏丸) and "some days" (ナンクル食堂) per Tabelog; nothing nightly Wed–Fri</td><td><a href="https://tabelog.com/kyoto/A2601/A260201/rstLst/cond03-08-00/izakaya/">Tabelog list</a></td></tr>
-<tr><td>DOMMUNE audience rules Tue 22</td><td>Programme listed; entry/charge not on page</td><td><a href="https://www.dommune.com/">dommune.com</a></td></tr>
-<tr><td>Koenji HIGH schedule</td><td>Site returns 403 to scripts and to the CDP browser; e+ shows only Sun 20 (Masayuki Deguchi birthday 17:30)</td><td><a href="https://koenji-high.com/">koenji-high.com</a>, <a href="https://eplus.jp/sf/venue/1660170/events">e+</a></td></tr>
-<tr><td>Shangri-La (Umeda) schedule</td><td>/schedule 404; root page script-only</td><td><a href="https://www.shan-gri-la.jp/">shan-gri-la.jp</a></td></tr>
-<tr><td>CONPASS (Osaka)</td><td>Site 403 from here; e+ shows only 23rd 和久井沙良 (jazz)</td><td><a href="https://www.conpass.jp/">conpass.jp</a>, <a href="https://eplus.jp/sf/venue/5420940/events">e+</a></td></tr>
-<tr><td>Namba Bears September</td><td>Site schedule page stuck on July; e+ has nothing 23–25</td><td><a href="https://namba-bears.main.jp/schedule.html">namba-bears.main.jp</a></td></tr>
-<tr><td>GROWLY (Kyoto) September</td><td>Month page renders empty (also via browser)</td><td><a href="https://growly.net/schedule/?year=2026&amp;month=09">growly.net</a></td></tr>
-<tr><td>Kyoto MUSE 24–25</td><td>Own domain now unrelated; e+ shows only 23rd</td><td><a href="https://eplus.jp/sf/venue/6000050/events">e+</a></td></tr>
-<tr><td>Ochiai Soup Sun 20 "ERROR"</td><td>Listed, no detail page/prices</td><td><a href="https://ochiaisoup.com/">ochiaisoup.com</a></td></tr>
-<tr><td>無力無善寺</td><td>Natalie headline says it left the Kōenji guard-under site at "end of June"; year and new address unverified (Natalie blocks readers)</td><td><a href="https://natalie.mu/music/news/669197">natalie.mu</a></td></tr>
-<tr><td>Bar Martha charge; Grandfather's; Mignon; Yanagetsudō closed day</td><td>Secondary sources only</td><td>see table 6</td></tr>
-<tr><td>Gion Corner September content</td><td>Bunraku vs noh segment "depends on period"</td><td><a href="https://www.ookinizaidan.com/gion_coner/">ookinizaidan.com</a></td></tr>
-<tr><td>Le Club Jazz (Kyoto) 23–25 Sept</td><td>leclubjazz.com does not resolve; its old kyoto-inet page and the Jazz Shiryōkan entry carry no September dates</td><td><a href="https://jazzshiryokan.net/jazzDB/livehouse_detail.php?recordID=H150">jazzshiryokan H150</a></td></tr>
-<tr><td>Jazz Live Candy (Gion) 23–25 Sept</td><td>candy-jazz.com loads but the September lineup is not in the page text</td><td><a href="http://candy-jazz.com/">candy-jazz.com</a></td></tr>
-<tr><td>Royal Horse, Sub, Jazz On Top (Osaka)</td><td>Royal Horse domain does not resolve; the others were not fetched; the Osaka Jazz Shiryōkan list for 23–25 shows only GALLON, Over Seas, Beehive, ALWAYS, COMTE ROSE, グラバー邸</td><td><a href="https://jazzshiryokan.net/jazzdb/live_result.php?searchDays=afterToday&amp;prefectureCode=27">jazzshiryokan Osaka</a></td></tr>
-<tr><td>Sone (Kobe) Thu 24 lineup; Big Apple (Kobe)</td><td>Sone's own page lists only 20 and 22 Sept; Thu 24 and Big Apple Fri 25 come from the Jazz Shiryōkan listing</td><td><a href="https://kobe-sone.com/schedule/">kobe-sone.com</a></td></tr>
-<tr><td>JZ Brat, Intro (Takadanobaba), Dolphy 21–22, Airegin official site, Somethin' Else, Nardis, Zac Baran, Jazz On Top</td><td>JZ Brat's September page is anchor-only in text; intro.co.jp is an unrelated company; Airegin's domain is a parked redirect; the rest were not reached</td><td><a href="https://www.jzbrat.com/liveinfo/2026/09/">jzbrat.com</a></td></tr>
-<tr><td>B-flat set times</td><td>The microCMS feed carries titles and charges only</td><td>yamano.microcms.io (see technique notes)</td></tr>
-<tr><td>Body &amp; Soul "予約〆切" nights</td><td>Reservation list closed; whether door entry exists is not stated</td><td><a href="https://bodyandsoul.co.jp/schedule">bodyandsoul.co.jp/schedule</a></td></tr>
-<tr><td>Tatsuro Yamashita cancel-wait odds; e+ phone verification with a foreign mobile number; Festival Hall cloakroom for luggage</td><td>Not stated anywhere official</td><td><a href="https://eplus.jp/tatsuro2026/">eplus.jp/tatsuro2026</a></td></tr>
-<tr><td>Ichiko Aoba dates</td><td>Both official live-dates pages render empty</td><td><a href="https://ichikoaoba.com/live-dates/">ichikoaoba.com/live-dates</a></td></tr>
-<tr><td>Matsuo Taisha 観月祭 programme</td><td>The shrine's annual list gives only the date and time (25 Sept 17:00)</td><td><a href="https://www.matsunoo.or.jp/event">matsunoo.or.jp/event</a></td></tr>
-<tr><td>Hirano Jinja 名月祭 2026</td><td>Page still shows the 2025 (6 Oct) programme; 2026 not posted</td><td><a href="https://www.hiranojinja.com/home/gaiyo/nentyugyoji/otukimi">hiranojinja.com</a></td></tr>
-<tr><td>御香宮 蝋燭能 B-seat count; door-ticket quantity</td><td>Page says A sold out and B on sale; no numbers</td><td><a href="https://www.gokounomiya.kyoto.jp/shinno/shinno.html">gokounomiya.kyoto.jp/shinno</a></td></tr>
-<tr><td>Tessenkai / Yarai sites</td><td>Tessenkai (Wix) renders blank; Yarai domain dead — both venues confirmed alive via the-noh.com listings</td><td><a href="https://www.tessenkai.jp/">tessenkai.jp</a></td></tr>
-</table></div>
-
-</div></details><details class="chunk"><summary>10 · Venue truth (closed, moved, renamed)</summary><div class="chunkbody">
+</div></details><details class="chunk"><summary>5 · Venue truth (closed, moved, renamed)</summary><div class="chunkbody">
 <ul>
 <li><strong>ペンギンハウス (Kōenji) closed end of May 2020</strong>; site kept as an archive <span class="v">V</span> <a href="http://penguinhouse.net/">penguinhouse.net</a>.</li>
 <li><strong>大阪松竹座 closed since 27 May 2026</strong> ("閉場中") <span class="v">V</span> <a href="https://www.kabuki-bito.jp/theaters/osaka/">kabuki-bito</a>. No Osaka kabuki in the window; 新橋演舞場 has nothing until 2027.</li>
@@ -1107,35 +1082,281 @@ booking friction, and what could not be verified.</p>
 <li>Also: Motion Blue Yokohama closed 2022; Mister Kelly's closed 2023 (successor GALLON); Satin Doll Kobe 2016; Tokyo TUC 2018; Jazz Spot J 2020; Thumbs Up closes 30 Sept 2026; <strong>Body &amp; Soul closes 26 Sept 2026</strong>; SuperDeluxe 2019; Contact 2022; Kazumi Watanabe not performing.</li>
 </ul>
 
-</div></details><details class="chunk"><summary>Appendix · Things that do not clear the bar but were checked</summary><div class="chunkbody">
-<ul>
-<li>Septeto Santiaguero (Cuban son) at Shibuya Quattro Mon 21 — Latin is your standing taste, but a touring international act; e+/Quattro <span class="v">V</span>.</li>
-<li>Monster Hunter orchestra, Nishinomiya 22–23 Sept; Yoko Shimomura 39th (Tokyo 25th); UNDERTALE 3-piano (19th) — game-music orchestras tour the US <span class="v">V</span> (<a href="https://www.2083.jp/concert/2026list.html">2083WEB</a>).</li>
-<li>Magical Mirai 2026 (Hatsune Miku) was 28–30 Aug in Chiba — nothing Vocaloid in the window <span class="s">S</span>.</li>
-<li>Taiko: 倭-YAMATO played Kyoto 11–13 Sept; DRUM TAO's Kyoto theatre runs nightly (table 7); Kodo not in window <span class="s">S</span>.</li>
-<li>Agency sweep: 坂本慎太郎 (20 Oct Quattro), 石野卓球 (10–12 Oct Tachikawa), 大友良英 (24–25 Sept Tokyo), 灰野敬二 (20 Sept — ranked), 吉田達也/Ruins (26 Sept Goodman), 上妻宏光 (23 Sept Saitama), 吉田兄弟 (20 Sept Gifu), スカパラ (hall tour from 29 Oct; no US dates listed), 細野晴臣 (NYC 16 Sept). The only 一夜限り / 解散 / 復活 wording found for 19–22 Sept Tokyo: the Electric Eel Shock farewell (sold out) and BALZAC's 完全復活 at the Loft, both Sat 19.</li>
-<li>Also checked: Ichiko Aoba (no dates listed); Boris × DURAN, Osaka Thu 24 (on sale; Tier 3 because Boris tours the US yearly; kept as the Thursday alternative).</li>
-<li>Kabuki-za's 幕見 is the cheap route into kabuki, which New York gets at Lincoln Center every few years; it stays in the shortlist because the 幕見 gallery is itself a Japan-only format.</li>
-</ul>
-<p class="legend">Method: every venue's own page was fetched (HTTP text extraction; JS pages through a headed Chrome over CDP); e+ venue and genre listings were used only where a venue site was unreadable and are labelled. Read 5–6 Sept 2026; structure, the 15:00 landing and the Fushimi candle noh revised 7 Sept 2026. Raw fetches are in <code>music/japan-only/scratch/</code>.</p>
 </div></details>
 </section>
 
 </main>
+
+<button type="button" class="btt" id="back-to-top" aria-label="Scroll back to top">
+  <span aria-hidden="true">&uarr;</span> TOP
+</button>
+<div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
 <script>
 (function(){
-  // Open a day (and scroll to it) when linked as /japan/music/#day-25.
+  // 1. URL Hash Deep Linking & Day Opening
   function openHash(){
     var id=location.hash.slice(1); if(!id) return;
     var el=document.getElementById(id); if(!el) return;
     if(el.tagName==='DETAILS') el.open=true;
     var p=el.parentElement;
     while(p){ if(p.tagName==='DETAILS') p.open=true; p=p.parentElement; }
+    setTimeout(function(){
+      el.scrollIntoView({behavior:'smooth',block:'start'});
+    }, 50);
   }
   window.addEventListener('hashchange',openHash);
   openHash();
 
-  // Clamp the long section notes to two lines, click to open.
+  // 2. Day summary click updates URL hash without reload
+  document.querySelectorAll('.day > summary').forEach(function(s){
+    s.addEventListener('click',function(){
+      var dayEl=s.parentElement;
+      var isOpen=dayEl.open;
+      if(!isOpen && dayEl.id){
+        history.replaceState(null,'','#'+dayEl.id);
+      }
+    });
+  });
+
+  // 3. Expand All / Collapse All Calendar Days
+  var expBtn=document.getElementById('cal-expand-all');
+  var colBtn=document.getElementById('cal-collapse-all');
+  var days=Array.from(document.querySelectorAll('.day'));
+
+  if(expBtn && colBtn){
+    expBtn.addEventListener('click',function(){
+      days.forEach(function(d){
+        d.removeAttribute('name');
+        d.open=true;
+      });
+    });
+    colBtn.addEventListener('click',function(){
+      days.forEach(function(d){
+        d.open=false;
+        d.setAttribute('name','day');
+      });
+    });
+  }
+
+  // 4. Toast notification system
+  var toastEl=document.getElementById('toast');
+  var toastTimer=null;
+  function showToast(text){
+    if(!toastEl) return;
+    toastEl.textContent='✓ '+text;
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer=setTimeout(function(){
+      toastEl.classList.remove('show');
+    }, 2400);
+  }
+
+  // 5. Copy Venue Buttons
+  document.addEventListener('click',function(e){
+    var btn=e.target.closest('.copy-btn');
+    if(!btn) return;
+    var text=btn.getAttribute('data-copy')||'';
+    if(!text) return;
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){
+        showToast('Copied "'+text+'" to clipboard');
+        var orig=btn.innerHTML;
+        btn.innerHTML='✓ Copied';
+        btn.classList.add('copied');
+        setTimeout(function(){
+          btn.innerHTML=orig;
+          btn.classList.remove('copied');
+        }, 1800);
+      }).catch(function(){
+        fallbackCopy(text, btn);
+      });
+    } else {
+      fallbackCopy(text, btn);
+    }
+  });
+
+  function fallbackCopy(text, btn){
+    var ta=document.createElement('textarea');
+    ta.value=text;
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand('copy');
+      showToast('Copied "'+text+'"');
+      var orig=btn.innerHTML;
+      btn.innerHTML='✓ Copied';
+      btn.classList.add('copied');
+      setTimeout(function(){
+        btn.innerHTML=orig;
+        btn.classList.remove('copied');
+      }, 1800);
+    } catch(err){}
+    document.body.removeChild(ta);
+  }
+
+  // 6. Live Search and Category Filter
+  var searchInput=document.getElementById('event-search');
+  var clearBtn=document.getElementById('search-clear');
+  var filterMsg=document.getElementById('filter-msg');
+  var chips=Array.from(document.querySelectorAll('.chip'));
+  var plates=Array.from(document.querySelectorAll('.plate'));
+  var tableRows=Array.from(document.querySelectorAll('.tw table tr:not(:first-child)'));
+
+  var currentFilter='all';
+  var currentQuery='';
+
+  function applyFilter(){
+    var q=currentQuery.trim().toLowerCase();
+    var f=currentFilter;
+    var isFiltering=(q.length>0 || f!=='all');
+    var matchesCount=0;
+
+    if(clearBtn) clearBtn.hidden=(q.length===0);
+
+    // Filter plates
+    plates.forEach(function(pl){
+      var txt=pl.textContent.toLowerCase();
+      var matchQ=(!q || txt.indexOf(q)!==-1);
+      var matchF=true;
+      if(f==='tokyo') matchF=(txt.indexOf('tokyo')!==-1 || txt.indexOf('shibuya')!==-1 || txt.indexOf('shinjuku')!==-1);
+      else if(f==='kansai') matchF=(txt.indexOf('osaka')!==-1 || txt.indexOf('kyoto')!==-1 || txt.indexOf('hikone')!==-1);
+      else if(f==='jazz') matchF=(txt.indexOf('jazz')!==-1 || txt.indexOf('pit inn')!==-1 || txt.indexOf('body & soul')!==-1);
+      else if(f==='trad') matchF=(txt.indexOf('noh')!==-1 || txt.indexOf('能')!==-1 || txt.indexOf('min’yō')!==-1 || txt.indexOf('民謡')!==-1);
+      else if(f==='booked') matchF=(txt.indexOf('held')!==-1 || txt.indexOf('booked')!==-1);
+
+      var match=(matchQ && matchF);
+      if(isFiltering){
+        pl.classList.toggle('dimmed', !match);
+        if(match) matchesCount++;
+      } else {
+        pl.classList.remove('dimmed');
+      }
+    });
+
+    // Filter days & auto-expand matching days
+    days.forEach(function(dayEl){
+      var dayText=dayEl.textContent.toLowerCase();
+      var dayMatchQ=(!q || dayText.indexOf(q)!==-1);
+      var dayMatchF=true;
+      var city=(dayEl.querySelector('.cal-city')||{}).textContent||'';
+      city=city.toLowerCase();
+
+      if(f==='tokyo') dayMatchF=(city==='tokyo');
+      else if(f==='kansai') dayMatchF=(city==='osaka' || city==='kyoto' || city==='hikone');
+      else if(f==='jazz') dayMatchF=(dayText.indexOf('jazz')!==-1 || dayText.indexOf('pit inn')!==-1 || dayText.indexOf('body & soul')!==-1);
+      else if(f==='trad') dayMatchF=(dayText.indexOf('noh')!==-1 || dayText.indexOf('能')!==-1 || dayText.indexOf('bunraku')!==-1 || dayText.indexOf('shrine')!==-1);
+      else if(f==='booked') dayMatchF=(dayEl.getAttribute('data-lamp')==='held');
+
+      var hasMatch=(dayMatchQ && dayMatchF);
+      dayEl.classList.toggle('hidden-filter', isFiltering && !hasMatch);
+
+      if(isFiltering && hasMatch){
+        dayEl.open=true;
+        matchesCount++;
+      }
+    });
+
+    // Filter table rows
+    tableRows.forEach(function(row){
+      var rowText=row.textContent.toLowerCase();
+      var matchQ=(!q || rowText.indexOf(q)!==-1);
+      var matchF=true;
+      if(f==='tokyo') matchF=(rowText.indexOf('tokyo')!==-1 || rowText.indexOf('shibuya')!==-1 || rowText.indexOf('shinjuku')!==-1);
+      else if(f==='kansai') matchF=(rowText.indexOf('osaka')!==-1 || rowText.indexOf('kyoto')!==-1 || rowText.indexOf('kobe')!==-1);
+      else if(f==='jazz') matchF=(rowText.indexOf('jazz')!==-1 || rowText.indexOf('pit inn')!==-1);
+      else if(f==='trad') matchF=(rowText.indexOf('noh')!==-1 || rowText.indexOf('能')!==-1 || rowText.indexOf('bunraku')!==-1);
+      else if(f==='booked') matchF=(rowText.indexOf('booked')!==-1 || rowText.indexOf('held')!==-1);
+
+      row.classList.toggle('hidden-filter', isFiltering && !(matchQ && matchF));
+    });
+
+    // Update message
+    if(filterMsg){
+      if(!isFiltering){
+        filterMsg.innerHTML='Showing all events across Tokyo &amp; Kansai';
+      } else {
+        var criteria=[];
+        if(f!=='all') criteria.push(f.toUpperCase());
+        if(q) criteria.push('"'+q+'"');
+        filterMsg.innerHTML='Found <strong>'+matchesCount+'</strong> matching day(s) &amp; picks for '+criteria.join(' + ');
+      }
+    }
+  }
+
+  if(searchInput){
+    searchInput.addEventListener('input',function(){
+      currentQuery=searchInput.value;
+      applyFilter();
+    });
+    if(clearBtn){
+      clearBtn.addEventListener('click',function(){
+        searchInput.value='';
+        currentQuery='';
+        applyFilter();
+        searchInput.focus();
+      });
+    }
+  }
+
+  chips.forEach(function(chip){
+    chip.addEventListener('click',function(){
+      chips.forEach(function(c){ c.classList.remove('active'); });
+      chip.classList.add('active');
+      currentFilter=chip.getAttribute('data-filter')||'all';
+      applyFilter();
+    });
+  });
+
+  // Keyboard shortcut: / focuses search, Esc clears
+  document.addEventListener('keydown',function(e){
+    if(e.key==='/' && document.activeElement!==searchInput && !['INPUT','TEXTAREA'].includes((document.activeElement||{}).tagName)){
+      e.preventDefault();
+      if(searchInput){
+        searchInput.focus();
+        searchInput.scrollIntoView({behavior:'smooth',block:'center'});
+      }
+    } else if(e.key==='Escape' && document.activeElement===searchInput){
+      if(searchInput.value){
+        searchInput.value='';
+        currentQuery='';
+        applyFilter();
+      } else {
+        searchInput.blur();
+      }
+    }
+  });
+
+  // HUD search button
+  var hudFindBtn=document.getElementById('hud-find-btn');
+  if(hudFindBtn && searchInput){
+    hudFindBtn.addEventListener('click',function(){
+      searchInput.focus();
+      searchInput.scrollIntoView({behavior:'smooth',block:'center'});
+    });
+  }
+
+  // 7. Scroll Progress & Back to Top Button
+  var progressEl=document.getElementById('scroll-progress');
+  var bttBtn=document.getElementById('back-to-top');
+
+  window.addEventListener('scroll',function(){
+    var sTop=window.pageYOffset||document.documentElement.scrollTop;
+    var sHeight=document.documentElement.scrollHeight-document.documentElement.clientHeight;
+    var pct=sHeight>0?(sTop/sHeight)*100:0;
+    if(progressEl) progressEl.style.width=pct+'%';
+    if(bttBtn){
+      bttBtn.classList.toggle('visible', sTop>350);
+    }
+  }, {passive:true});
+
+  if(bttBtn){
+    bttBtn.addEventListener('click',function(){
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+  }
+
+  // 8. Clamp the long section notes to two lines, click to open.
   document.querySelectorAll('.sec > .legend').forEach(function(el){
     if(el.textContent.trim().length < 190) return;
     el.classList.add('clamp');

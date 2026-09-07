@@ -3,12 +3,17 @@
 The page at `public/japan/music/index.html` is generated. Edit the markdown,
 not the HTML.
 
+The published page is the traveler book: the five plates, the week as a
+calendar, what to book before the flight, and two reference tables. The
+uncut research dump — every room checked, including misses — is
+`research/japan-only-music-book.full.md`.
+
 | File | What it is |
 |---|---|
-| `japan-only-music-book.md` | **The source of truth.** JSON front matter (page title, the trip shape day by day, the five flyer faces) then the research in the markdown dialect below. |
+| `japan-only-music-book.md` | **The source of truth.** JSON front matter (page title, the trip shape day by day, the five flyer faces) then the traveler book in the markdown dialect below. |
 | `mdbook.py` | The dialect, and the only file that knows it. `python tools/japan-music/mdbook.py` renders the source and reads it back; the markdown must come out the same. Run it before building. |
 | `akira-build.py` | The design. Reads the markdown, writes the page. Defaults to the `public/japan/music-akira/` staging path, so pass the real path only once the gate is green. |
-| `research/` | The brief, the Grok brief, the 390 dated page snapshots behind the VERIFIED badges, the primary-source PDFs, the sweep lists, the redesign plans and the harvest kit. Nothing here is built. |
+| `research/` | The uncut book, the brief, the Grok brief, the 390 dated page snapshots behind the VERIFIED badges, the primary-source PDFs, the sweep lists, the redesign plans and the harvest kit. Nothing here is built. |
 
 Build and check:
 

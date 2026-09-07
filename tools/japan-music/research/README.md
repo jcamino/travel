@@ -6,6 +6,7 @@ for the VERIFIED and SECONDARY badges on the page, and the kit to sweep again.
 
 | | |
 |---|---|
+| `japan-only-music-book.full.md` | The uncut research dump, frozen when the published page was cut down to the traveler book. Same dialect as `../japan-only-music-book.md`. |
 | `brief.md` | The self-contained brief the book answers: what live music in Silver Week could two Brooklyn residents not see at home. Defines the ranking test (distance from Brooklyn first, then whether you can get in) and the tier scheme. |
 | `grok-plan.md` | The parallel non-jazz brief, ranked by irreproducibility in New York with jazz flagged only for collisions. Pass 10 reviewed it against the organisers' own pages and took the candle noh at 御香宮, the Matsuo and Hirano moon rites, the Uneme times and the BALZAC revival into the book. |
 | `pages/` | 390 dated snapshots of organisers' and venues' own pages, each headed `### <status> <url>`. These are the receipts: venue pages change, and after September there is no other way to show what was read. Safe to delete once the trip is over. |

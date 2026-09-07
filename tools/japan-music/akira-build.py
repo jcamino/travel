@@ -69,14 +69,11 @@ def day_blocks(section_key, follow):
     return lead, out
 
 
-# A short standfirst stays up front; the rest of the lede, the legend and the
-# two-facts note go behind one disclosure. Split on a sentence boundary so no
-# checked fragment is broken.
-SPLIT_AT = 'Every event was read'
-_i = head_block.index(SPLIT_AT)
-_j = head_block.index('</p>', _i)
-STANDFIRST = head_block[:_i].rstrip() + '</p>'
-INTRO_REST = '<p class="lede">' + head_block[_i:]
+# The first lede stays up front; the rest of the head (second lede, legend,
+# two-facts note) goes behind one disclosure.
+_m = re.search(r'(<p class="lede">.*?</p>)', head_block, re.S)
+STANDFIRST = head_block[:_m.end()]
+INTRO_REST = head_block[_m.end():]
 
 LEAD_0B, NIGHT = day_blocks('0b', r'<div class="cards night">')
 LEAD_2, TABLES = day_blocks('2', r'<div class="tw">')
@@ -221,7 +218,7 @@ for n, d in enumerate(DAYS):
         f'</div></details>')
 
 # ------------------------------------------------------------ everything else
-REST_KEYS = [k for k in ORDER if k not in ('0', '0b', '2')]
+REST_KEYS = [k for k in ORDER if k not in ('0', '0b', '1', '2')]
 REST = []
 for k in REST_KEYS:
     t = SEC[k]['title']
@@ -1124,6 +1121,11 @@ out = f"""<!doctype html>
 </div>
 </section>
 
+<section class="sec" id="book">
+{SEC['1']['h2']}
+{SEC['1']['rest']}
+</section>
+
 <section class="sec" id="calendar">
 {SEC['0b']['h2']}
 {LEAD_0B}
@@ -1149,8 +1151,7 @@ out = f"""<!doctype html>
 </section>
 
 <section class="rest" id="rest">
-<p>The rest of the book: the full ranked shortlists, the categories, the
-booking friction, and what could not be verified.</p>
+<p>Walk-in listening rooms, and the traditional-stage list for the week.</p>
 {''.join(REST)}
 </section>
 
