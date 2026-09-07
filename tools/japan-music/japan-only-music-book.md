@@ -367,6 +367,14 @@ Kamigamo {v:VERIFIED} by the shrine's own annual page (仲秋, 16:30, open entry
 - **Optional, the same week.** AKB48 Theater Sun 20: general applications close Tue 15 Sept 16:00 JST, overseas route by email to sfar@akb48.co.jp, 6 seats. DESTINY 8 at WWW X Mon 21: e+ general sale to Sun 20 18:00, and it collides with Blue Note.
 {/ol}
 
+## If you only do three things
+{legend} One already booked, one to buy this week, one that will not exist next month. Everything else on this page is optional.
+{ol}
+- **高中正義 SUPER TAKANAKA LIVE, Hikone, Fri 25.** The tickets are booked and the evening is spent: 50 minutes on the 新快速 from Kyoto to a civic hall on Lake Biwa, for the guitarist who made the records Japanese fusion is built on.
+- **御香宮 蝋燭能, Fushimi, Wed 23.** The best room on the page, and the shrine stages it once a year: its own 能舞台, lit by candle, with full hayashi. B席 ¥3,500 is on the web until Sun 13 Sept; after that the only route is phoning the shrine office and wiring the money.
+- **Body & Soul, Shibuya, Mon 21.** 52 years old, closing for good on 27 Sept, five minutes from where you sleep. Monday is its last night still open to reserve, by email from the venue's schedule page.
+{/ol}
+
 ## 3 · Book before you fly
 {legend} Each line names the event, its date and the place; the deadline or route follows.
 {ol}

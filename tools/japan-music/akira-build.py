@@ -55,6 +55,7 @@ for i, (pos, whole, inner) in enumerate(marks):
 FIVE_KEY, CAL_KEY = ORDER[0], ORDER[1]
 TABLES_KEY = 'Per-day tables'
 ACT_KEY = 'Act this week'
+THREE_KEY = 'If you only do three things'
 assert FIVE_KEY in SEC and CAL_KEY in SEC, ORDER[:3]
 assert TABLES_KEY in SEC, f"no {TABLES_KEY!r} section; day plates lose their tables"
 
@@ -270,12 +271,16 @@ H2_CAL = paint_h2(SEC[CAL_KEY]['h2'])
 # ------------------------------------------------------------ everything else
 # Section 1 is the only thing on the page that expires. It does not go in
 # the collapsed tail with the reference material; it goes above the fold.
+THREE_HTML = ''
+if THREE_KEY in SEC:
+    THREE_HTML = ('<section class="sec three" id="three">%s%s</section>'
+                  % (paint_h2(SEC[THREE_KEY]['h2']), SEC[THREE_KEY]['rest']))
 ACT_HTML = ''
 if ACT_KEY in SEC:
     ACT_HTML = ('<section class="sec acts" id="act">%s%s</section>'
                 % (paint_h2(SEC[ACT_KEY]['h2']), SEC[ACT_KEY]['rest']))
 REST_KEYS = [k for k in ORDER
-             if k not in (FIVE_KEY, CAL_KEY, TABLES_KEY, ACT_KEY)]
+             if k not in (FIVE_KEY, CAL_KEY, TABLES_KEY, ACT_KEY, THREE_KEY)]
 REST = []
 for k in REST_KEYS:
     t = SEC[k]['title']
@@ -594,7 +599,18 @@ h2{font-family:"Big Shoulders Display",sans-serif;font-weight:900;
   margin:1rem 0 .6rem}
 
 /* ------------------------------------------------------ everything else */
-.acts{margin:1.6rem 0 0;border:1px solid var(--red);border-left:3px solid var(--red);
+.three{margin:1.6rem 0 0;border:1px solid var(--cyan);border-left:3px solid var(--cyan);
+  border-radius:2px;padding:1.1rem 1.2rem;background:rgba(0,191,214,.05)}
+.three>h2{margin-top:0}
+.three>.legend{margin:.6rem 0 1rem}
+.three ol{margin:0;padding-left:0;list-style:none;counter-reset:three}
+.three li{counter-increment:three;margin:.75rem 0;line-height:1.5;
+  padding-left:2.1rem;position:relative}
+.three li::before{content:counter(three);position:absolute;left:0;top:-.1rem;
+  font-family:"Big Shoulders Display",sans-serif;font-weight:900;font-size:1.5rem;
+  color:var(--cyan);line-height:1}
+@media(max-width:640px){.three{padding:.9rem .95rem;margin-top:1.1rem}}
+.acts{margin:1.1rem 0 0;border:1px solid var(--red);border-left:3px solid var(--red);
   border-radius:2px;padding:1.1rem 1.2rem;background:rgba(224,35,75,.055)}
 .acts>h2{margin-top:0}
 .acts>.legend{margin:.6rem 0 1rem}
@@ -1117,6 +1133,7 @@ out = f"""<!doctype html>
 <div class="introbody">{INTRO_REST}</div></details>
 </div></header>
 <main class="wrap">
+{THREE_HTML}
 {ACT_HTML}
 
 <div class="filter-bar" id="filter-bar">

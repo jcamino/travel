@@ -172,6 +172,12 @@ JS = r"""
     if (!blocks.length) blocks = [document.body];
     blocks.forEach(function(block){
       var seen = {};
+      // The two pinned blocks are the summary a hurried reader gets. A
+      // bracket mid-phrase there costs more than it explains, so they mark
+      // the term for tap and hover but do not interrupt the sentence.
+      var terse = block.classList
+                && (block.classList.contains('three')
+                 || block.classList.contains('acts'));
       var walker = document.createTreeWalker(block, NodeFilter.SHOW_TEXT, {
         acceptNode: function(n){
           if (!n.nodeValue || !/[A-Za-z]/.test(n.nodeValue)) return NodeFilter.FILTER_REJECT;
@@ -210,7 +216,7 @@ JS = r"""
           b.title = entry.long;
           b.setAttribute('aria-label', m[2] + ' — ' + entry.short);
           out.appendChild(b);
-          if (entry.inline){
+          if (entry.inline && !terse){
             var g = document.createElement('span');
             g.className = 'glx-in';
             g.textContent = ' (' + entry.short + ')';
