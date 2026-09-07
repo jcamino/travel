@@ -29,6 +29,24 @@ import sys
 
 HERE = pathlib.Path(__file__).resolve().parent
 MAP = json.loads((HERE / "translations.json").read_text(encoding="utf-8"))
+GLOSS = json.loads((HERE / "glossary.json").read_text(encoding="utf-8"))
+
+# The page writes these with macrons; the glossary keys are typed without, so
+# every surface form the prose actually uses has to point at the same entry.
+ALIASES = {
+    "kyogen": ["kyōgen"], "gidayu": ["gidayū"], "min'yo": ["min'yō"],
+    "tayu": ["tayū"], "Tsugaru": ["Tsugaru shamisen"], "wadaiko": [],
+    "jinjo": [], "live house": ["livehouse"], "78s": ["78-rpm", "78rpm"],
+    "drink charge": ["drink charges"], "shrine": ["shrines"],
+    "temple": ["temples"], "mikoshi": [], "kissa": ["kissaten"],
+}
+LOOKUP = {}
+for _k, _v in GLOSS.items():
+    for _form in [_k] + ALIASES.get(_k, []):
+        LOOKUP[_form] = _k
+# longest surface form first, so "meikyoku kissa" wins over "kissa" and
+# "Tsugaru shamisen" over "shamisen"
+LOOKUP = dict(sorted(LOOKUP.items(), key=lambda kv: (-len(kv[0]), kv[0])))
 
 CSS = """
 .langbar{display:flex;gap:0;align-items:center;margin:0 0 0 auto;
@@ -47,6 +65,32 @@ body.lang-ja i.en{display:none}
    no marker. Python decides which by the case of the first letter. */
 i.en.gloss{border-bottom:1px dotted rgba(138,140,144,.5)}
 @media (max-width:520px){.langbar button{padding:.24rem .45rem;font-size:.7rem}}
+
+/* A term you can ask about. Underlined rather than coloured, so a page that
+   is already carrying red and cyan does not gain a third signal. */
+button.gl{appearance:none;background:none;border:0;padding:0;margin:0;color:inherit;
+  font:inherit;cursor:help;text-decoration:underline dotted var(--cyan);
+  text-underline-offset:3px}
+button.gl:hover,button.gl:focus-visible{color:var(--cyan);outline:none}
+button.gl::after{content:"?";font-size:.62em;vertical-align:.45em;color:var(--cyan);
+  margin-left:.1em;font-weight:700}
+
+.glsheet{position:fixed;left:0;right:0;bottom:0;z-index:60;transform:translateY(101%);
+  transition:transform .2s ease;background:#0d0f11;border-top:2px solid var(--cyan);
+  padding:1rem 1.1rem 1.3rem;max-height:60vh;overflow:auto;
+  box-shadow:0 -18px 40px rgba(0,0,0,.6)}
+.glsheet[data-open="1"]{transform:translateY(0)}
+.glsheet h4{margin:0 0 .5rem;font-family:"Big Shoulders Display",sans-serif;
+  font-weight:900;text-transform:uppercase;letter-spacing:.04em;font-size:1.15rem;
+  color:var(--cyan)}
+.glsheet p{margin:0;max-width:42rem;line-height:1.55}
+.glsheet button.glx{position:absolute;top:.5rem;right:.7rem;background:none;border:0;
+  color:var(--grey);font-size:1.5rem;line-height:1;cursor:pointer}
+@media(prefers-reduced-motion:reduce){.glsheet{transition:none}}
+
+.gllist{margin:0;padding:0;list-style:none}
+.gllist li{padding:.55rem 0;border-bottom:1px solid var(--line)}
+.gllist b{color:var(--cyan);font-weight:700}
 """
 
 JS = r"""
@@ -113,6 +157,111 @@ JS = r"""
     });
   }
 
+  // ---------------------------------------------------------- glossary
+  var GL = __GLOSS__, GLKEYS = __GLKEYS__;
+  var GRE = new RegExp('(^|[^A-Za-z’\'ōū])('
+    + GLKEYS.map(function(k){ return k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }).join('|')
+    + ')(?![A-Za-z’ōū])', 'gi');
+
+  // One mark per term per block. Marking all 19 "noh"s would be unreadable;
+  // marking the first in each card puts the explanation where you are reading.
+  var BLOCKS = '.plate, details.day, details.chunk, .acts, header.hero, .sec';
+  function marklex(){
+    var blocks = [].slice.call(document.querySelectorAll(BLOCKS));
+    if (!blocks.length) blocks = [document.body];
+    blocks.forEach(function(block){
+      var seen = {};
+      var walker = document.createTreeWalker(block, NodeFilter.SHOW_TEXT, {
+        acceptNode: function(n){
+          if (!n.nodeValue || !/[A-Za-z]/.test(n.nodeValue)) return NodeFilter.FILTER_REJECT;
+          var p = n.parentNode;
+          while (p && p !== block){
+            if (SKIP[p.nodeName] || p.nodeName === 'BUTTON'
+                || (p.classList && (p.classList.contains('ja')
+                                 || p.classList.contains('glsheet')
+                                 || p.classList.contains('gllist'))))
+              return NodeFilter.FILTER_REJECT;
+            p = p.parentNode;
+          }
+          return NodeFilter.FILTER_ACCEPT;
+        }
+      });
+      var todo = [], n;
+      while ((n = walker.nextNode())) todo.push(n);
+      todo.forEach(function(node){
+        var text = node.nodeValue, out = null, last = 0, m;
+        GRE.lastIndex = 0;
+        while ((m = GRE.exec(text))){
+          var key = GL[m[2].toLowerCase()];
+          if (!key || seen[key]) continue;
+          seen[key] = 1;
+          out = out || document.createDocumentFragment();
+          var upto = m.index + m[1].length;
+          if (upto > last) out.appendChild(document.createTextNode(text.slice(last, upto)));
+          var b = document.createElement('button');
+          b.type = 'button'; b.className = 'gl'; b.dataset.gl = key;
+          b.textContent = m[2];
+          b.setAttribute('aria-label', m[2] + ' — what is this?');
+          out.appendChild(b);
+          last = upto + m[2].length;
+        }
+        if (!out) return;
+        if (last < text.length) out.appendChild(document.createTextNode(text.slice(last)));
+        node.parentNode.replaceChild(out, node);
+      });
+    });
+  }
+
+  var sheet;
+  function openGloss(key){
+    if (!sheet) return;
+    sheet.querySelector('h4').textContent = key;
+    sheet.querySelector('p').textContent = __DEFS__[key] || '';
+    sheet.dataset.open = '1';
+    sheet.setAttribute('aria-hidden', 'false');
+    sheet.querySelector('.glx').focus();
+  }
+  function closeGloss(){
+    if (!sheet) return;
+    sheet.dataset.open = '0';
+    sheet.setAttribute('aria-hidden', 'true');
+  }
+  function buildSheet(){
+    sheet = document.createElement('aside');
+    sheet.className = 'glsheet'; sheet.dataset.open = '0';
+    sheet.setAttribute('role', 'dialog');
+    sheet.setAttribute('aria-label', 'Glossary');
+    sheet.setAttribute('aria-hidden', 'true');
+    sheet.innerHTML = '<button type="button" class="glx" aria-label="Close">&times;</button>'
+                    + '<h4></h4><p></p>';
+    document.body.appendChild(sheet);
+    sheet.querySelector('.glx').addEventListener('click', closeGloss);
+    document.addEventListener('click', function(e){
+      var b = e.target.closest && e.target.closest('button.gl');
+      if (b) { openGloss(b.dataset.gl); return; }
+      if (sheet.dataset.open === '1' && !e.target.closest('.glsheet')) closeGloss();
+    });
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape') closeGloss();
+    });
+  }
+  // A browsable copy, for the reader who wants to read the lot rather than
+  // tap one word at a time.
+  function buildList(){
+    var rest = document.querySelector('#rest');
+    if (!rest) return;
+    var d = document.createElement('details');
+    d.className = 'chunk'; d.id = 'chunk-glossary';
+    var names = Object.keys(__DEFS__).sort(function(a,b){ return a.localeCompare(b); });
+    d.innerHTML = '<summary>Glossary &middot; what these words mean</summary>'
+      + '<div class="chunkbody"><ul class="gllist">'
+      + names.map(function(k){
+          return '<li><b>' + k + '</b> &mdash; ' + __DEFS__[k] + '</li>';
+        }).join('')
+      + '</ul></div>';
+    rest.appendChild(d);
+  }
+
   function setLang(lang){
     document.body.classList.toggle('lang-en', lang === 'en');
     document.body.classList.toggle('lang-ja', lang !== 'en');
@@ -129,6 +278,9 @@ JS = r"""
 
   function init(){
     wrap(document.body);
+    marklex();
+    buildSheet();
+    buildList();
     var sec = document.querySelector('.rail .rail-sec');
     if (sec){
       var bar = document.createElement('div');
@@ -155,20 +307,28 @@ JS = r"""
 """
 
 
+def _j(obj) -> str:
+    """JSON for embedding in a <script>; `</` would close the block early."""
+    return json.dumps(obj, ensure_ascii=False).replace("</", "<\\/")
+
+
 def inject(path: pathlib.Path) -> None:
     page = path.read_text(encoding="utf-8")
     if "jm-lang" in page:
         raise SystemExit("i18n.py: already injected; rebuild with akira-build.py first")
-    # </script> inside a script literal would close the block early
-    payload = json.dumps(MAP, ensure_ascii=False).replace("</", "<\\/")
-    block = ("<style>" + CSS + "</style>\n<script>"
-             + JS.replace("__MAP__", payload) + "</script>\n")
+    js = (JS.replace("__MAP__", _j(MAP))
+            .replace("__GLOSS__", _j({k.lower(): v for k, v in LOOKUP.items()}))
+            .replace("__GLKEYS__", _j(list(LOOKUP)))
+            .replace("__DEFS__", _j(GLOSS)))
+    for token in ("__MAP__", "__GLOSS__", "__GLKEYS__", "__DEFS__"):
+        assert token not in js, f"{token} was never substituted"
+    block = "<style>" + CSS + "</style>\n<script>" + js + "</script>\n"
     assert page.count("</body>") == 1, "unexpected page shape"
     path.write_text(page.replace("</body>", block + "</body>"), encoding="utf-8",
                     newline="\n")
     jp = len(re.findall(r"[぀-ヿ㐀-鿿ｦ-ﾟ]+", page))
     print(f"wrote {path} (+{len(block)} bytes) | {len(MAP)} terms | "
-          f"{jp} Japanese runs on the page")
+          f"{len(GLOSS)} glossary entries | {jp} Japanese runs on the page")
 
 
 if __name__ == "__main__":

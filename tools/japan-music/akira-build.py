@@ -276,7 +276,7 @@ for k in REST_KEYS:
 # Kaneda's bike, side profile, facing right; the flip is done in CSS.
 # viewBox 64x34, ground at y=33, so both wheels rest on the progress line.
 MOTO_SVG = r"""<div class="moto" id="moto" aria-hidden="true">
-<svg class="moto-body" viewBox="0 0 64 34" width="24" height="13" fill="none" focusable="false">
+<svg class="moto-body" viewBox="0 0 64 34" width="36" height="19" fill="none" focusable="false">
 <defs><linearGradient id="mthrust" x1="0" y1="0" x2="1" y2="0">
 <stop offset="0" stop-color="#00BFD6" stop-opacity="0"/>
 <stop offset=".55" stop-color="#00BFD6" stop-opacity=".3"/>
@@ -644,7 +644,7 @@ td.day{white-space:nowrap;font-family:"Big Shoulders Display",sans-serif;
 /* ----------------------------------------------------------- sticky week */
 .rail{position:sticky;top:0;z-index:50;background:var(--black);
   border-bottom:1px solid var(--line);
-  padding:calc(.35rem + env(safe-area-inset-top,0px)) 0 .4rem}
+  padding:calc(.35rem + env(safe-area-inset-top,0px)) 0 .6rem}
 .rail-inner{max-width:74rem;margin:0 auto;padding:0 20px;min-width:0}
 .rail-sec{display:flex;flex-wrap:wrap;align-items:center;gap:.15rem .2rem;
   margin:0 0 .35rem}
@@ -721,10 +721,12 @@ td.day{white-space:nowrap;font-family:"Big Shoulders Display",sans-serif;
 /* Decorative. Rides the leading edge of the progress line and turns around
    when the scroll direction flips. Same containing block as .scroll-progress
    (.rail is position:sticky) -- do not add position:relative to .rail. */
-/* 24x13 is the biggest he can be and still clear the film strip's bottom
-   line of lamp text ("WALK-UP", "SPOKEN FOR") at the desktop --rail height.
-   bottom:0 seats the wheels in the 2px line rather than perching above it. */
-.moto{position:absolute;left:0;bottom:0;width:24px;height:13px;
+/* 36x19 against a 19.4px gap: the floor is the *ink* of the film strip's
+   bottom line of lamp text ("WALK-UP", "SPOKEN FOR"), not its line box, which
+   hides 3.7px of leading. The rail's padding-bottom above is .6rem rather
+   than .4rem to buy the last 3px of that. bottom:0 seats the wheels in the
+   2px line rather than perching him above it. */
+.moto{position:absolute;left:0;bottom:0;width:36px;height:19px;
   pointer-events:none;z-index:2;will-change:transform}
 .moto-body{display:block;width:100%;height:100%;overflow:visible;
   transform:scaleX(var(--dir,1));transform-origin:50% 96%;
@@ -866,8 +868,16 @@ JS = r"""
   if(progressEl){
     var moto=document.getElementById('moto');
     var rail=progressEl.parentNode;
-    var lastY=window.pageYOffset||document.documentElement.scrollTop;
-    var facing=1, queued=false, idleT=null, railW=0, motoW=0;
+    function scrollY(){
+      var max=document.documentElement.scrollHeight-document.documentElement.clientHeight;
+      var y=window.pageYOffset||document.documentElement.scrollTop;
+      // Elastic overscroll reports positions past both ends and then settles
+      // back. Unclamped, that settle reads as a reversal, and he used to spin
+      // round at the foot of the page before the reader had scrolled up at all.
+      return y<0?0:(y>max?max:y);
+    }
+    var lastY=scrollY();
+    var facing=1, revAccum=0, queued=false, idleT=null, railW=0, motoW=0;
 
     function measure(){
       railW=rail.clientWidth;
@@ -876,9 +886,8 @@ JS = r"""
 
     function paint(){
       queued=false;
-      var sTop=window.pageYOffset||document.documentElement.scrollTop;
       var sHeight=document.documentElement.scrollHeight-document.documentElement.clientHeight;
-      var pct=sHeight>0?(sTop/sHeight)*100:0;
+      var pct=sHeight>0?(scrollY()/sHeight)*100:0;
       pct=Math.min(100,Math.max(0,pct));
       progressEl.style.width=pct+'%';
       if(moto&&railW>motoW){
@@ -894,14 +903,21 @@ JS = r"""
     }
 
     window.addEventListener('scroll',function(){
-      var y=window.pageYOffset||document.documentElement.scrollTop;
+      var y=scrollY();
       var dy=y-lastY;
       // 1.5px of hysteresis: a trackpad's jitter must not spin him round.
       if(Math.abs(dy)>1.5){
-        var d=dy>0?1:-1;
-        if(d!==facing){
-          facing=d;
-          if(moto) moto.style.setProperty('--dir',facing);
+        if((dy>0?1:-1)===facing){
+          revAccum=0;
+        }else{
+          // Turning round is a commitment, not one stray frame: 8px of travel
+          // against the way he is pointed, and any step back the other way
+          // spends the credit. Momentum tails and settles never reach it.
+          revAccum+=Math.abs(dy);
+          if(revAccum>8){
+            facing=-facing; revAccum=0;
+            if(moto) moto.style.setProperty('--dir',facing);
+          }
         }
         if(moto){
           moto.classList.add('moving');
