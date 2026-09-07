@@ -11,15 +11,18 @@ the HTML.
 | `build.py` | Puts the second inside the first. `python tools/japan/build.py [output.html]`. |
 
     python tools/japan/build.py
-    python tests/japan/ux_check.py     # renders and screenshots the result
+    python tests/japan/dialect_check.py # trip.md round-trips, branches are sound
+    python tests/japan/ux_check.py      # renders and screenshots the result
 
 ## The dialect
 
     ## 2026-09-19 | Sat | 19 | Tokyo | Arrive Tokyo
     {base} Hotel Son Shibuya
     {daynote} ...                      repeatable, optional
+    {branchgroup} id | label           repeatable, optional
 
     ### 15:00 | Both in Tokyo by about 15:00
+    {branch} groupId | optionId        optional, joins a branch group
     {status} decided
     {end} 16:44                        optional
     {approx} {music} {travel}          flags, present or absent
@@ -33,6 +36,26 @@ the HTML.
 
 None of `* ` [ ] { } |` occurs in the trip's own text, so the markers need no
 escaping; a `"` is written plainly and escaped on the way into JS.
+
+## On branches
+
+A branch is a set of items on one day of which only one can happen: on the
+24th it is the Inari summit, the Fushimi sake tasting, or the Uji tea stop,
+and there is time for one. The day declares the fork with `{branchgroup}` and
+each item joins it with `{branch}`, so the conflict lives in the data rather
+than in a note reading "one or the other".
+
+Two things follow from the shape. Option ids are slugs, not positions, so a
+choice already made survives an edit to this file — and an option id that has
+since disappeared reads as *no choice*, never as a day with every option
+struck through. And one option may cover several items: on the 23rd, `gion`
+is both the dusk walk and the dinner after it, because they are one plan.
+
+Choosing is the browser's business, not the trip's. Picks live in
+`localStorage` under `japan-picks`, keyed `date/group`, and nothing is dimmed
+until you pick; tapping the chosen option again undecides the fork. `trip.md`
+stays the source of truth, so a fork that settles for good gets written back
+here as `{status} decided` and its `{branch}` lines deleted.
 
 ## On the JS layout
 

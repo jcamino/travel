@@ -58,6 +58,40 @@ def no_overflow(page, name, what):
     check(o["scrollW"] <= o["w"] and not o["bad"], f"{name}: no horizontal overflow, {what} {o['bad']}")
 
 
+def branches(page, name, base):
+    """The 24th's morning fork: pick one, the other two go quiet."""
+    page.goto(base + "/japan/#day=2026-09-24", wait_until="networkidle")
+    forks = page.locator(".item .pick")
+    check(forks.count() == 5, f"{name}: the 24th shows five branch controls (got {forks.count()})")
+    check(page.locator(".item.br-unpicked").count() == 0, f"{name}: nothing is struck out before a choice")
+    no_overflow(page, name, "branch controls")
+
+    page.locator('.pick[data-group=morning][data-option=sake]').click()
+    picked = page.locator(".item.br-picked")
+    check(picked.count() == 1 and "sake" in picked.locator(".title").inner_text(),
+          f"{name}: choosing the sake marks exactly that item")
+    unpicked = page.locator('.item.br-unpicked [data-group=morning]')
+    check(unpicked.count() == 2, f"{name}: its two siblings go quiet (got {unpicked.count()})")
+    check(page.locator('.day-tab[data-day="2026-09-24"] .dots .dimmed').count() == 2,
+          f"{name}: the strip dims the same two dots")
+
+    page.reload(wait_until="networkidle")
+    check(page.locator('.pick[data-group=morning][data-option=sake][aria-pressed=true]').count() == 1,
+          f"{name}: the choice survives a reload")
+
+    page.locator('.pick[data-group=morning][data-option=sake]').click()
+    check(page.locator(".item.br-unpicked").count() == 0,
+          f"{name}: tapping the chosen one again undecides the fork")
+
+    # a choice that no longer exists must read as no choice, not as everything struck
+    page.evaluate("() => localStorage.setItem('japan-picks', JSON.stringify({'2026-09-24/morning': 'gone'}))")
+    page.reload(wait_until="networkidle")
+    check(page.locator(".item.br-unpicked").count() == 0,
+          f"{name}: a stale option id degrades to no choice")
+    page.evaluate("() => localStorage.removeItem('japan-picks')")
+    page.goto(base + "/japan/?now=2026-09-23T15:00", wait_until="networkidle")  # leave it as we found it
+
+
 BG = "getComputedStyle(document.body).backgroundColor"
 DARK_BG, LIGHT_BG = "rgb(18, 19, 23)", "rgb(239, 234, 224)"
 
@@ -132,6 +166,7 @@ def run():
             check("Nozomi" in page.locator(".item.is-now .title").inner_text(),
                   f"{name}: now item is the 14:30 Nozomi at 15:00")
             no_overflow(page, name, "collapsed")
+            branches(page, name, base)
             for btn in page.locator(".card-head").all():
                 btn.click()
             no_overflow(page, name, "all cards expanded")

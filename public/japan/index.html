@@ -278,6 +278,23 @@ svg { display: block; }
 .item.is-now .card { background: linear-gradient(to right, transparent, transparent); box-shadow: inset 3px 0 0 var(--ink); padding-left: .6rem; }
 .item.hidden { display: none; }
 
+/* ---------- branches: items only one of which can happen ---------- */
+.branch { display: flex; align-items: baseline; gap: .4rem .55rem; flex-wrap: wrap; margin-bottom: .4rem; font-size: .76rem; }
+.branch .fork-label { color: var(--vermillion); font-family: var(--serif); font-weight: 600; }
+.pick {
+  font: inherit; font-size: .74rem; cursor: pointer; white-space: nowrap;
+  background: none; color: var(--muted);
+  border: 1px solid var(--rule); border-radius: 1rem; padding: .1rem .55rem;
+  transition: color var(--t), border-color var(--t);
+}
+.pick:hover { color: var(--ink); border-color: var(--indigo); }
+.item.br-picked .pick { color: var(--green); border-color: var(--green); }
+.item.br-picked .fork-label { color: var(--muted); font-weight: 400; }
+.item.br-unpicked { opacity: .45; }
+.item.br-unpicked .card-head .title { text-decoration: line-through; text-decoration-thickness: 1px; }
+.item.br-unpicked .fork-label { color: var(--muted); font-weight: 400; }
+.dots .dimmed { opacity: .28; }
+
 /* ---------- open items ---------- */
 .open { padding: 1.5rem 0 2rem; border-top: 1px solid var(--rule); }
 .open h2 { font-size: 1.35rem; }
@@ -408,30 +425,38 @@ const TRIP = {
     {
       date: "2026-09-19", label: "19", weekday: "Sat", city: "Tokyo", theme: "Arrive Tokyo",
       base: "Hotel Son Shibuya",
+      branchGroups: [{ id: "landing", label: "Pick one: the Pit Inn late set, the Asakusa min’yō show, or MOGRA" }],
       items: [
         { time: "15:00", approx: true, title: "Both in Tokyo by about 15:00", status: "decided",
           detail: "Eric lands NRT 14:30, UA79 from EWR. Javier arrives around the same time.",
           place: "Narita Airport", mapQuery: "Narita International Airport", url: "",
           notes: [] },
-        { time: "", title: "Hotel Son Shibuya, check in", status: "booked",
+        { time: "17:30", endTime: "18:15", approx: true, title: "Hotel Son Shibuya, check in", status: "booked",
           detail: "Base for Sept 19 to 22.",
           place: "Hotel Son Shibuya", mapQuery: "Hotel Son Shibuya, Tokyo", url: "",
-          notes: [],
+          notes: [
+            "Narita to Shibuya is about 90 minutes on the N’EX plus a transfer, so the room is realistically yours around 17:30."
+          ],
           conf: "", via: "" },
-        { time: "", title: "Shinjuku evening, late set at Shinjuku Pit Inn", status: "walkup",
+        { time: "19:30", endTime: "22:00", title: "Shinjuku evening, late set at Shinjuku Pit Inn", status: "walkup",
           detail: "Check lineup; usually walk-in.",
           place: "Shinjuku Pit Inn", mapQuery: "Shinjuku Pit Inn", url: "https://pit-inn.com/schedule-day/",
+          branch: { group: "landing", option: "pitinn" },
           notes: [
             "Music page: Sat 19 night set is The Blend with 峰厚介 (ts, 82) at 19:30, ¥3,500 incl. Arrive ~20:15 from the airport and catch the second half."
           ] },
-        { time: "", title: "Backup: MOGRA Akihabara, Anison Index page.194", status: "suggested",
+        { time: "20:00", endTime: "23:30", approx: true, title: "Backup: MOGRA Akihabara, Anison Index page.194", status: "suggested",
           detail: "Anison night, if Pit Inn lineup is weak.",
           place: "MOGRA Akihabara", mapQuery: "MOGRA Akihabara", url: "",
-          notes: [] },
+          branch: { group: "landing", option: "mogra" },
+          notes: [
+            "Hours and lineup unconfirmed: no Saturday 19 date for MOGRA appears anywhere in the music research. Check the venue schedule before counting on this."
+          ] },
         { time: "21:00", title: "Music page: 和ノ家追分 min'yō show, Asakusa", status: "suggested", music: true,
           detail: "The 21:00 second show, ~¥3,500. Alternative to the Pit Inn late set on landing night.",
           place: "和ノ家追分 Kazunoya Oiwake", mapQuery: "和ノ家追分 浅草", url: "",
           musicRef: "Every night · 和ノ家追分 Kazunoya Oiwake",
+          branch: { group: "landing", option: "oiwake" },
           notes: [
             "Min'yō sakaba; landing night, only 20:00 onwards is realistic."
           ] }
@@ -441,10 +466,13 @@ const TRIP = {
       date: "2026-09-20", label: "20", weekday: "Sun", city: "Tokyo", theme: "Old Tokyo and jazz",
       base: "Hotel Son Shibuya",
       items: [
-        { time: "", title: "Asakusa and Ueno morning", status: "suggested",
+        { time: "08:00", endTime: "10:30", title: "Asakusa and Ueno morning", status: "suggested",
           detail: "",
           place: "Asakusa", mapQuery: "Asakusa, Tokyo", url: "",
-          notes: [] },
+          notes: [
+            "Sensō-ji’s grounds never close and the main hall opens at 06:00; Nakamise shops wake up between 09:00 and 10:00. Ueno Park is open 05:00 to 23:00.",
+            "Leave by 10:30 to make the 11:00 bunraku in Kōtō-ku."
+          ] },
         { time: "11:00", title: "Music page: Bunraku 鑑賞教室, Kōtō-ku", status: "suggested", music: true,
           detail: "11:00 to 13:45, ¥6,000. 二人三番叟 and the 勘平 acts of 忠臣蔵. Optional; drop it if three is too many.",
           place: "江東区文化センター", mapQuery: "江東区文化センター", url: "https://ticket.ntj.jac.go.jp/",
@@ -461,11 +489,11 @@ const TRIP = {
             "Reserve by email or phone from the venue page, cash at the door.",
             "小山豊 leads; 石若駿 on drums, Marty Holoubek on bass. About a hundred seats."
           ] },
-        { time: "", title: "Free afternoon", status: "suggested",
+        { time: "16:30", endTime: "18:30", title: "Free afternoon", status: "suggested",
           detail: "Options: Yanaka, Kuramae, Tokyo Station area, or a long Shibuya-to-Daikanyama-to-Nakameguro walk.",
           place: "", mapQuery: "", url: "",
           notes: [] },
-        { time: "", title: "Jazz night", status: "suggested",
+        { time: "19:00", endTime: "22:00", title: "Jazz night", status: "suggested",
           detail: "Venue TBD from the jazz research.",
           place: "", mapQuery: "", url: "",
           notes: [
@@ -484,21 +512,26 @@ const TRIP = {
     {
       date: "2026-09-21", label: "21", weekday: "Mon", city: "Tokyo", theme: "Harajuku by day, Akihabara by night",
       base: "Hotel Son Shibuya",
+      branchGroups: [{ id: "mon", label: "Pick one: MOGRA, the Kabuki-za maku-mi, or Body & Soul’s last Monday" }],
       items: [
-        { time: "", title: "Meiji Shrine, Harajuku, Cat Street, Omotesando", status: "walkup",
+        { time: "09:00", endTime: "12:30", title: "Meiji Shrine, Harajuku, Cat Street, Omotesando", status: "walkup",
           detail: "",
           place: "Meiji Shrine", mapQuery: "Meiji Jingu, Tokyo", url: "",
-          notes: [] },
+          notes: [
+            "The shrine gates follow the sun: 05:20 to 17:20 in September. Free, and the Inner Garden is a separate ¥500."
+          ] },
         { time: "13:25", title: "Music page: Kabuki-za 幕見, ひらかな盛衰記〈逆櫓〉", status: "suggested", music: true,
           detail: "13:25 to 15:12, ¥2,800 (+¥110). 竹本 gidayū narration and a full 立廻り.",
           place: "Kabuki-za", mapQuery: "Kabukiza Theatre, Ginza", url: "",
           musicRef: "Mon 21 · 13:25 then 18:30 · Kabuki-za",
+          branch: { group: "mon", option: "kabuki" },
           notes: [
             "Reserved 4F seats go online at noon on Sunday (e-tix, card with 3-D Secure), or queue for the unreserved seats on the day."
           ] },
-        { time: "", title: "MOGRA Akihabara, \"Blend New! P@rty!! / awa-ani\" anison night", status: "walkup",
+        { time: "14:00", endTime: "20:00", title: "MOGRA Akihabara, \"Blend New! P@rty!! / awa-ani\" anison night", status: "walkup",
           detail: "Door charge, confirm age/ID rules.",
           place: "MOGRA Akihabara", mapQuery: "MOGRA Akihabara", url: "",
+          branch: { group: "mon", option: "mogra" },
           notes: [
             "Music page lists a MOGRA day party 14:00 to 20:00 on Mon 21 as a candidate (cash, physical ID); the evening pick is Body & Soul below."
           ] },
@@ -506,6 +539,7 @@ const TRIP = {
           detail: "52-year-old club, five minutes from the hotel, closing 27 Sept. 河合代介 (Hammond organ), 佐野康夫 (drums), 宮崎隆睦 (sax). Open 17:30, sets 18:30 and 20:00. ¥7,700 with tax + drinks.",
           place: "Body & Soul, Udagawa-chō", mapQuery: "渋谷区宇田川町2-1 渋谷ホームズ B-15", url: "https://www.bodyandsoul.co.jp/schedule",
           musicRef: "Mon 21 · 13:25 then 18:30 · Kabuki-za",
+          branch: { group: "mon", option: "bodyandsoul" },
           notes: [
             "The club moved from Minami-Aoyama to Kōen-dōri, Shibuya; the jazz brief's address is stale.",
             "Email reservation from the schedule page; this Monday is the last night still open to reserve. Other nights: phone 03-6455-0088 for returns.",
@@ -540,11 +574,14 @@ const TRIP = {
     {
       date: "2026-09-23", label: "23", weekday: "Wed", city: "Tokyo to Kyoto", theme: "Tokyo to Kyoto",
       base: "BnA Alter Museum from tonight",
+      branchGroups: [{ id: "arrival", label: "Pick one: Tatsuro in Osaka, or Gion at dusk and a Kyoto dinner" }],
       items: [
-        { time: "", title: "Last Tokyo morning, Tsukiji outer market", status: "suggested",
+        { time: "08:00", endTime: "10:30", title: "Last Tokyo morning, Tsukiji outer market", status: "suggested",
           detail: "Thin for Javier, fine for Eric; plan substitutes. Checkout, leave bags at hotel desk.",
           place: "Tsukiji Outer Market", mapQuery: "Tsukiji Outer Market", url: "",
-          notes: [] },
+          notes: [
+            "The market runs 05:00 to 14:00, with the professional hours to 09:00 and the public ones after. Wednesday 23 September is an open day on the market calendar, but Wednesday is when many of the bigger fishmongers stay shut, so it is a street-food morning rather than a shopping one."
+          ] },
         { time: "14:30", endTime: "16:44", title: "Nozomi 41, Tokyo to Kyoto", status: "booked", travel: true,
           detail: "Ordinary reserved seats D and E (cars 5 to 7). E side for the Fuji window ~40 min out.",
           place: "Tokyo Station", mapQuery: "Tokyo Station", url: "",
@@ -555,49 +592,73 @@ const TRIP = {
           place: "BnA Alter Museum", mapQuery: "BnA Alter Museum, Kyoto", url: "",
           notes: [],
           conf: "", via: "" },
+        { time: "17:50", endTime: "19:00", title: "Gion at dusk", status: "walkup",
+          detail: "Sunset ~17:50.",
+          place: "Gion", mapQuery: "Gion, Kyoto", url: "",
+          branch: { group: "arrival", option: "gion" },
+          notes: [] },
         { time: "18:00", title: "Music page: 山下達郎 Tatsuro Yamashita, Festival Hall, Osaka", status: "suggested", music: true,
           detail: "Never performed outside Japan. Open 17:00, start 18:00, ¥15,000 all reserved. e+ cancel-wait lottery only, open until Sun 13 Sept 18:00 JST.",
           place: "Festival Hall, Nakanoshima", mapQuery: "Festival Hall Osaka Nakanoshima", url: "https://eplus.jp/tatsuro2026",
           musicRef: "Wed 23 · 18:00 · 山下達郎",
+          branch: { group: "arrival", option: "tatsuro" },
           notes: [
             "Shinkansen reaches Kyoto 16:44, Shin-Osaka 17:00; Midōsuji line to Yodoyabashi and a five-minute walk puts you in the hall by 17:30 with bags.",
             "One ticket per application, card payment, smartphone ticket only, e+ account with phone verification. Two people means two accounts and two lottery outcomes. Photo ID at the door; passports accepted.",
             "Fallback the same night: environment 0g improv night (Kobi, 松本一哉, 江崎將史), Minami-Horie, 19:00, ¥2,500+1D, cash at the door.",
             "This collides with Gion at dusk and the Kyoto dinner below."
           ] },
-        { time: "", title: "Gion at dusk", status: "walkup",
-          detail: "Sunset ~17:50.",
-          place: "Gion", mapQuery: "Gion, Kyoto", url: "",
-          notes: [] },
-        { time: "", title: "Dinner reservation, shojin or one vegan menu", status: "pending",
+        { time: "19:30", endTime: "21:30", title: "Dinner reservation, shojin or one vegan menu", status: "pending",
           detail: "",
           place: "", mapQuery: "", url: "",
+          branch: { group: "arrival", option: "gion" },
           notes: [] }
       ]
     },
     {
       date: "2026-09-24", label: "24", weekday: "Thu", city: "Kyoto", theme: "Fushimi Inari, Nara, Higashiyama",
       base: "BnA Alter Museum",
+      branchGroups: [{ id: "morning", label: "Pick one: the summit, the sake, or Uji" }, { id: "evening", label: "Pick one: the 磔磔 release show or UrBANGUILD" }],
       items: [
-        { time: "", title: "Fushimi Inari at dawn: the 千本鳥居 thousand torii", status: "walkup",
+        { time: "06:00", endTime: "08:00", title: "Fushimi Inari at dawn: the 千本鳥居 thousand torii", status: "walkup",
           detail: "The tunnel of vermilion gates behind the main hall. Free, open all hours, and empty before about 08:00.",
           place: "Fushimi Inari Taisha", mapQuery: "Fushimi Inari Taisha", url: "https://inari.jp/",
           notes: [
-            "Music page's morning is Nishi Honganji's 晨朝 chant at 06:00 instead (gates 05:30, Amida Hall, free, ten minutes from Karasuma; Higashi Honganji follows at 07:00). Cannot do both."
+            "Music page's morning is Nishi Honganji's 晨朝 chant at 06:00 instead (gates 05:30, Amida Hall, free, ten minutes from Karasuma; Higashi Honganji follows at 07:00). Cannot do both.",
+            "The shrine has no gates and no closing time, which is what makes the dawn hour possible."
           ] },
-        { time: "", title: "Fushimi Inari summit loop", status: "walkup",
+        { time: "08:00", endTime: "11:00", title: "Fushimi Inari summit loop", status: "walkup",
           detail: "Straight on past the torii and up Inari-san, 233 m. Two to three hours round trip, with the 四つ辻 viewpoint over Kyoto about halfway.",
           place: "Fushimi Inari Taisha", mapQuery: "Fushimi Inari Taisha", url: "",
+          branch: { group: "morning", option: "summit" },
           notes: [
             "Wear something you can climb in; it is stone steps most of the way."
           ] },
-        { time: "", title: "JR Nara line, Inari to Nara", status: "suggested", travel: true,
+        { time: "10:00", title: "Option: Fushimi sake district, brewery tour and tasting", status: "suggested",
+          detail: "Eric's sake idea, in the district you are already standing in. Kyoto Insider Sake Experience runs a 1.5 h tasting for ¥9,800, seven pours with food, or a 3 h version with the brewery museum for ¥12,300. Starts 10:00 or 11:00, book ahead.",
+          place: "Fushimi Sake District", mapQuery: "Fushimi Sake District, Kyoto", url: "https://kyotosakeexperience.com/tours/",
+          branch: { group: "morning", option: "sake" },
+          notes: [
+            "Keihan Fushimi-Inari to Fushimi-Momoyama is about ten minutes, so this follows the dawn torii without doubling back.",
+            "Gekkeikan Ōkura Sake Museum is the walk-up version: ¥600 including three tastings, 09:30 to 16:30, reservation advised at busy times.",
+            "Costs the summit loop above. There is room for the summit, the sake, or the Uji tea stop below, but not for all three."
+          ] },
+        { time: "11:30", endTime: "12:15", approx: true, title: "JR Nara line, Inari to Nara", status: "suggested", travel: true,
           detail: "Inari station is on the JR Nara line, so the day carries on south instead of doubling back. About 45 min on the local.",
           place: "Inari Station", mapQuery: "Inari Station, Kyoto", url: "",
           notes: [
             "Times to confirm; the rapid services skip Inari, so it is the local from here or the rapid from Kyoto."
           ] },
-        { time: "", title: "Nara Park: the deer, then Tōdai-ji", status: "suggested",
+        { time: "11:30", endTime: "13:00", title: "Option: Uji, matcha stop on the way to Nara", status: "suggested",
+          detail: "Eric's tea idea, at a fraction of Obubu's price and with no detour. Uji is the matcha town, and it sits on the JR Nara line between Inari and Nara. Byōdō-in, Nakamura Tōkichi, and the tea shops along the river. 60 to 90 minutes.",
+          place: "Uji", mapQuery: "Uji, Kyoto", url: "https://www.kyoto-uji-kankou.or.jp/taihoan-en.html",
+          branch: { group: "morning", option: "uji" },
+          notes: [
+            "Taihō-an, the city's tea house, takes walk-ins: ¥1,500 for usucha, about 20 minutes. The hands-on otemae course is ¥2,400 and needs three days' notice.",
+            "Obubu's guided tour does run Sept 23 to 25, but it is 11:00 to 15:00 out in Wazuka, ¥19,800 to ¥22,000 each, and the Kyoto Station shuttle does not run in September. It fits no day of this trip.",
+            "Costs an hour or more of the Nara afternoon, and the Daibutsuden gate shuts at 17:30."
+          ] },
+        { time: "13:00", endTime: "16:30", title: "Nara Park: the deer, then Tōdai-ji", status: "suggested",
           detail: "The deer roam loose across the park. Tōdai-ji's Daibutsuden, which holds the Great Buddha, is open 7:30 to 17:30 through October, ¥800 for an adult.",
           place: "Nara Park", mapQuery: "Nara Park, Nara", url: "https://www.todaiji.or.jp/information/haikan/",
           extraMap: { label: "Tōdai-ji", query: "Todai-ji, Nara" },
@@ -605,16 +666,24 @@ const TRIP = {
             "September to November is the rut, and the 24th is in it. The Nara Deer Preservation Foundation says the stags turn aggressive then and are dangerous to go near, cut antlers or not; the antler-cutting is in October, so they still have them.",
             "Feed them nothing except the 鹿せんべい sold in the park. They are wild animals and do attack people: biting, striking, butting and charging (naradeer.com)."
           ] },
-        { time: "", title: "Kiyomizu-dera", status: "walkup",
+        { time: "17:30", endTime: "18:00", title: "Kiyomizu-dera", status: "walkup",
           detail: "On the way back from Nara, late afternoon. Opens 06:00, gates close 18:00 in September.",
           place: "Kiyomizu-dera", mapQuery: "Kiyomizu-dera", url: "https://www.kiyomizudera.or.jp/news/open-hour.php",
           notes: [
-            "The temple publishes its hours but not its admission fee; pay at the gate."
+            "The temple publishes its hours but not its admission fee; pay at the gate.",
+            "Only works if you leave Nara by about 16:15; the gate shuts at 18:00 and Nara to Kyoto is 45 minutes. Otherwise this is the first thing the day loses."
+          ] },
+        { time: "17:30", endTime: "18:45", title: "Dinner reservation, shojin or one vegan menu", status: "pending",
+          detail: "",
+          place: "", mapQuery: "", url: "",
+          notes: [
+            "Before the gig, not after: both music picks start at 19:00 or 19:30."
           ] },
         { time: "19:00", title: "Music page: blues.the-butcher-590213 release show, 磔磔", status: "suggested", music: true,
           detail: "The domestic blues institution releasing \"Live at Takutaku\", the album they recorded in this room: a 1974 sake warehouse on Shijō-Takakura, 8 min walk from base. Open 18:00, start 19:00. ¥5,500 advance, ¥6,000 at the door.",
           place: "磔磔 Takutaku", mapQuery: "Takutaku, Shijo-Takakura, Kyoto", url: "https://takutaku.jp/",
           musicRef: "Thu 24 · 19:00 · 磔磔 Takutaku",
+          branch: { group: "evening", option: "takutaku" },
           notes: [
             "Clashes with UrBANGUILD below (19:30). One or the other.",
             "永井\"ホトケ\"隆, 沼澤尚, 中條卓 and KOTEZ. Tier 2 players in a Tier 1 room.",
@@ -624,21 +693,18 @@ const TRIP = {
           detail: "Free improvisation with daxophone, Kiyamachi, 10 min walk from base. Open 19:00, start 19:30. ¥3,500 + ¥700 drink advance, ¥3,800 + drink at the door.",
           place: "UrBANGUILD", mapQuery: "UrBANGUILD Kyoto", url: "https://urbanguild.net/events",
           musicRef: "Thu 24 · 06:00 then 19:30 · Nishi Honganji",
+          branch: { group: "evening", option: "urbanguild" },
           notes: [
             "No external seller listed; reserve through the venue or pay at the door.",
             "Other options tonight: Boris × DURAN at Yogibo META VALLEY, Osaka, 19:30, ¥5,000 + drink (TIGET, international path; Boris tours the US yearly); Blues The Butcher's release show in the 磔磔 sake warehouse, 19:00, ¥5,500, email; Sone in Kobe, three resident sets from 18:30, ¥2,200.",
             "Clashes with the 磔磔 release show above (19:00). One or the other."
           ] },
-        { time: "", title: "Jazz kissa night, or live jazz", status: "suggested",
+        { time: "21:30", endTime: "23:30", title: "Jazz kissa night, or live jazz", status: "suggested",
           detail: "Yamatoya, Lush Life, Rokuyousha; or live at Le Club Jazz or RAG.",
           place: "", mapQuery: "", url: "",
           notes: [
             "Music page: Le Club Jazz and Candy lineups unread; RAG Thu 24 not listed."
-          ] },
-        { time: "", title: "Dinner reservation, shojin or one vegan menu", status: "pending",
-          detail: "",
-          place: "", mapQuery: "", url: "",
-          notes: [] }
+          ] }
       ]
     },
     {
@@ -646,7 +712,7 @@ const TRIP = {
       base: "BnA Alter Museum",
       items: [
         { time: "09:02", title: "Sagano Romantic Train, Torokko Saga to Torokko Kameoka", status: "booked", travel: true,
-          detail: "09:02 from Torokko Saga, car 5 — \"The Rich\", the open-sided one with no glass. Last season for the current retro fleet.",
+          detail: "09:02 from Torokko Saga, car 5. \"The Rich\" is the open-sided one, with no glass in the windows. Last season for the current retro fleet.",
           place: "Torokko Saga Station", mapQuery: "Torokko Saga Station", url: "",
           notes: [],
           conf: "", via: "", car: "5" },
@@ -657,14 +723,19 @@ const TRIP = {
             "The 09:02 is the run that reaches Torokko Kameoka in time for the 10:00 boat."
           ],
           conf: "", via: "" },
-        { time: "", title: "Bamboo grove, Tenryu-ji grounds", status: "walkup",
-          detail: "",
-          place: "Arashiyama Bamboo Grove", mapQuery: "Arashiyama Bamboo Grove", url: "",
-          notes: [] },
-        { time: "", title: "Shigetsu at Tenryu-ji, shojin ryori lunch", status: "pending",
+        { time: "12:30", endTime: "13:45", title: "Shigetsu at Tenryu-ji, shojin ryori lunch", status: "pending",
           detail: "",
           place: "Shigetsu, Tenryu-ji", mapQuery: "Shigetsu Tenryu-ji Kyoto", url: "",
-          notes: [] },
+          notes: [
+            "Lunch only, 11:00 to 14:00, seven days a week, and it needs a reservation at least a day ahead: 075-882-9725. Sets are ¥3,300, ¥5,500 and ¥8,000, plus ¥500 for the Sogen garden."
+          ] },
+        { time: "13:45", endTime: "15:15", title: "Bamboo grove, Tenryu-ji grounds", status: "walkup",
+          detail: "",
+          place: "Arashiyama Bamboo Grove", mapQuery: "Arashiyama Bamboo Grove", url: "",
+          notes: [
+            "Tenryu-ji is open 08:30 to 17:00, last entry 16:50. The grove itself is open ground with no gate.",
+            "Leave by 15:15: Kyōto to Hikone is a 50-minute JR run and the hall doors are at 17:30."
+          ] },
         { time: "17:30", endTime: "18:30 start", title: "高中正義 SUPER TAKANAKA LIVE, Hikone", status: "booked",
           detail: "ひこね市文化プラザ, doors 17:30, start 18:30, ¥11,000. Hikone is JR 50 min from Kyoto.",
           place: "ひこね市文化プラザ Hikone Bunka Plaza", mapQuery: "ひこね市文化プラザ", url: "",
@@ -903,7 +974,7 @@ const TRIP = {
     for (const day of TRIP.days) {
       /* one glyph per item, in the day's order, drawn exactly as the rail draws it */
       const dots = h("span", { class: "dots", "aria-hidden": "true" });
-      for (const it of day.items) dots.append(glyph(it.status));
+      for (const it of day.items) dots.append(glyph(it.status, branchState(it, day) === "unpicked" ? "dimmed" : null));
       const numCls = "num" + (isHoliday(day) ? " hol" : (day.weekday === "Sat" ? " sat" : ""));
       const b = h("button", { class: "day-tab" + (day === TODAY ? " is-today" : ""), type: "button", "data-day": day.date,
         "aria-label": day.weekday + " " + longDate(day) + ", " + day.city, onclick: () => selectDay(day.date, true) },
@@ -939,6 +1010,54 @@ const TRIP = {
     return item.status === f;
   }
 
+  /* ---------- branches ----------
+     A branch is a set of items on one day of which only one can happen. The
+     choice is this browser's, not the trip's: trip.md stays the source of
+     truth, and a settled fork is written back there as {status} decided. */
+  const PICK_KEY = "japan-picks";
+  function readPicks() {
+    try {
+      const raw = localStorage.getItem(PICK_KEY);
+      if (!raw) return {};
+      const v = JSON.parse(raw);
+      return (v && typeof v === "object" && !Array.isArray(v)) ? v : {};
+    } catch (e) { return {}; }
+  }
+  let picks = readPicks();
+  const pickKey = (day, group) => day.date + "/" + group;
+  /* a stored option that no longer exists reads as no choice at all, so an
+     edit to trip.md can never leave a day with every option struck through */
+  function chosen(day, group) {
+    const want = picks[pickKey(day, group)];
+    if (!want) return null;
+    const real = day.items.some(i => i.branch && i.branch.group === group && i.branch.option === want);
+    return real ? want : null;
+  }
+  function branchState(item, day) {
+    if (!item.branch) return null;
+    const c = chosen(day, item.branch.group);
+    if (!c) return "open";
+    return c === item.branch.option ? "picked" : "unpicked";
+  }
+  function setPick(day, group, option) {
+    const k = pickKey(day, group);
+    if (picks[k] === option) delete picks[k];   /* tap the chosen one to undecide */
+    else picks[k] = option;
+    try { localStorage.setItem(PICK_KEY, JSON.stringify(picks)); } catch (e) {}
+    render();
+  }
+  function branchLine(item, day) {
+    if (!item.branch) return null;
+    const g = (day.branchGroups || []).find(x => x.id === item.branch.group);
+    const st = branchState(item, day);
+    return h("div", { class: "branch" },
+      g ? h("span", { class: "fork-label", text: g.label }) : null,
+      h("button", { class: "pick", type: "button", "data-group": item.branch.group,
+        "data-option": item.branch.option, "aria-pressed": st === "picked" ? "true" : "false",
+        onclick: () => setPick(day, item.branch.group, item.branch.option) },
+        h("span", { text: st === "picked" ? "Chosen" : "Choose this" })));
+  }
+
   /* ---------- items ---------- */
   function mapLinks(item) {
     const out = [];
@@ -965,7 +1084,9 @@ const TRIP = {
   let uid = 0;
   function renderItem(item, day, isNow) {
     const id = "it" + (++uid);
-    const cls = "item" + (item.travel ? " travel" : "") + (isNow ? " is-now" : "") + (passes(item) ? "" : " hidden");
+    const br = branchState(item, day);
+    const cls = "item" + (item.travel ? " travel" : "") + (isNow ? " is-now" : "")
+      + (br ? " br-" + br : "") + (passes(item) ? "" : " hidden");
     const time = h("div", { class: "time" });
     if (item.time) {
       time.append((item.approx ? "~" : "") + item.time);
@@ -996,7 +1117,7 @@ const TRIP = {
     return h("li", { class: cls },
       time,
       h("div", { class: "stop" }, stopGlyph(item)),
-      h("article", { class: "card" }, head, body));
+      h("article", { class: "card" }, branchLine(item, day), head, body));
   }
   function renderDay(day) {
     const now = nowItem(day);
@@ -1082,11 +1203,11 @@ const TRIP = {
     if (!state.day || !TRIP.days.some(d => d.date === state.day)) state.day = (TODAY || TRIP.days[0]).date;
     writeHash(state);
     markViews();
+    buildStrip();
     markStrip();
     markChips();
     renderDays();
   }
-  buildStrip();
   const initialHadDay = !!readHash().day;
   render();
   if (TODAY && !initialHadDay) {

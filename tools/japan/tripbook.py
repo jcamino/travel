@@ -11,8 +11,10 @@ The dialect is line-oriented and lossless:
   ## 2026-09-19 | Sat | 19 | Tokyo | Arrive Tokyo
   {base} Hotel Son Shibuya
   {daynote} ...                      repeatable, optional
+  {branchgroup} id | label           repeatable, optional
 
   ### 15:00 | Both in Tokyo by about 15:00
+  {branch} groupId | optionId        optional, joins a branch group
   {status} decided
   {end} 16:44                        optional
   {approx} {music} {travel}          flags, present or absent
@@ -23,6 +25,12 @@ The dialect is line-oriented and lossless:
   {extramap} label | query           optional
   {conf} ... {via} ... {car} ...     optional, may be empty
   - a note                           repeatable
+
+A branch is a set of items on one day of which only one can happen: the summit
+or the sake or Uji, but not all three. The day declares the fork with
+`{branchgroup}` and each item joins it with `{branch}`, so the conflict lives
+in the data instead of in a note that says "one or the other". Option ids are
+slugs rather than positions, so a stored choice survives editing this file.
 
 The JS is emitted in one fixed shape, a key group per line and every non-empty
 note on its own line, so editing one note is a one-line diff. None of the
@@ -73,6 +81,7 @@ def item_js(item, last):
     out += _group(item, ['place', 'mapQuery', 'url'], 10)
     out += _group(item, ['musicRef'], 10)
     out += _group(item, ['extraMap'], 10)
+    out += _group(item, ['branch'], 10)
     if item['notes']:
         out.append(' ' * 10 + 'notes: [')
         for n in item['notes'][:-1]:
@@ -118,6 +127,9 @@ def trip_js(trip):
         if 'dayNotes' in d:
             L.append('      dayNotes: [%s],'
                      % ', '.join(_s(x) for x in d['dayNotes']))
+        if 'branchGroups' in d:
+            L.append('      branchGroups: [%s],'
+                     % ', '.join(_v(g) for g in d['branchGroups']))
         L.append('      items: [')
         for i, item in enumerate(d['items']):
             L += item_js(item, i == len(d['items']) - 1)
@@ -139,12 +151,17 @@ def trip_to_md(trip):
         out.append('{base} %s' % d['base'])
         for n in d.get('dayNotes', []):
             out.append('{daynote} %s' % n)
+        for g in d.get('branchGroups', []):
+            out.append('{branchgroup} %s | %s' % (g['id'], g['label']))
         for item in d['items']:
             out.append('')
             out.append('### %s | %s' % (item['time'], item['title']))
             flags = ' '.join('{%s}' % f for f in FLAGS if f in item)
             if flags:
                 out.append(flags)
+            if 'branch' in item:
+                out.append('{branch} %s | %s' % (item['branch']['group'],
+                                                 item['branch']['option']))
             for marker, key in VALUE:
                 if key in item:
                     out.append(('{%s} %s' % (marker, item[key])).rstrip())
@@ -196,6 +213,13 @@ def md_to_trip(meta, md):
                 day['base'] = value
             elif marker == 'daynote':
                 day.setdefault('dayNotes', []).append(value)
+            elif marker == 'branchgroup':
+                gid, _, label = value.partition(' | ')
+                day.setdefault('branchGroups', []).append({'id': gid,
+                                                          'label': label})
+            elif marker == 'branch':
+                group, _, option = value.partition(' | ')
+                item['branch'] = {'group': group, 'option': option}
             elif marker == 'extramap':
                 label, _, query = value.partition(' | ')
                 item['extraMap'] = {'label': label, 'query': query}
@@ -210,7 +234,7 @@ def md_to_trip(meta, md):
                 item[TO_KEY[marker]] = value
     # put every item's keys back into the page's own order
     order = HEAD + ['detail', 'place', 'mapQuery', 'url', 'musicRef',
-                    'extraMap', 'notes'] + TAIL
+                    'extraMap', 'branch', 'notes'] + TAIL
     for d in days:
         d['items'] = [{k: it[k] for k in order if k in it} for it in d['items']]
     return trip

@@ -278,6 +278,23 @@ svg { display: block; }
 .item.is-now .card { background: linear-gradient(to right, transparent, transparent); box-shadow: inset 3px 0 0 var(--ink); padding-left: .6rem; }
 .item.hidden { display: none; }
 
+/* ---------- branches: items only one of which can happen ---------- */
+.branch { display: flex; align-items: baseline; gap: .4rem .55rem; flex-wrap: wrap; margin-bottom: .4rem; font-size: .76rem; }
+.branch .fork-label { color: var(--vermillion); font-family: var(--serif); font-weight: 600; }
+.pick {
+  font: inherit; font-size: .74rem; cursor: pointer; white-space: nowrap;
+  background: none; color: var(--muted);
+  border: 1px solid var(--rule); border-radius: 1rem; padding: .1rem .55rem;
+  transition: color var(--t), border-color var(--t);
+}
+.pick:hover { color: var(--ink); border-color: var(--indigo); }
+.item.br-picked .pick { color: var(--green); border-color: var(--green); }
+.item.br-picked .fork-label { color: var(--muted); font-weight: 400; }
+.item.br-unpicked { opacity: .45; }
+.item.br-unpicked .card-head .title { text-decoration: line-through; text-decoration-thickness: 1px; }
+.item.br-unpicked .fork-label { color: var(--muted); font-weight: 400; }
+.dots .dimmed { opacity: .28; }
+
 /* ---------- open items ---------- */
 .open { padding: 1.5rem 0 2rem; border-top: 1px solid var(--rule); }
 .open h2 { font-size: 1.35rem; }
@@ -594,7 +611,7 @@ svg { display: block; }
     for (const day of TRIP.days) {
       /* one glyph per item, in the day's order, drawn exactly as the rail draws it */
       const dots = h("span", { class: "dots", "aria-hidden": "true" });
-      for (const it of day.items) dots.append(glyph(it.status));
+      for (const it of day.items) dots.append(glyph(it.status, branchState(it, day) === "unpicked" ? "dimmed" : null));
       const numCls = "num" + (isHoliday(day) ? " hol" : (day.weekday === "Sat" ? " sat" : ""));
       const b = h("button", { class: "day-tab" + (day === TODAY ? " is-today" : ""), type: "button", "data-day": day.date,
         "aria-label": day.weekday + " " + longDate(day) + ", " + day.city, onclick: () => selectDay(day.date, true) },
@@ -630,6 +647,54 @@ svg { display: block; }
     return item.status === f;
   }
 
+  /* ---------- branches ----------
+     A branch is a set of items on one day of which only one can happen. The
+     choice is this browser's, not the trip's: trip.md stays the source of
+     truth, and a settled fork is written back there as {status} decided. */
+  const PICK_KEY = "japan-picks";
+  function readPicks() {
+    try {
+      const raw = localStorage.getItem(PICK_KEY);
+      if (!raw) return {};
+      const v = JSON.parse(raw);
+      return (v && typeof v === "object" && !Array.isArray(v)) ? v : {};
+    } catch (e) { return {}; }
+  }
+  let picks = readPicks();
+  const pickKey = (day, group) => day.date + "/" + group;
+  /* a stored option that no longer exists reads as no choice at all, so an
+     edit to trip.md can never leave a day with every option struck through */
+  function chosen(day, group) {
+    const want = picks[pickKey(day, group)];
+    if (!want) return null;
+    const real = day.items.some(i => i.branch && i.branch.group === group && i.branch.option === want);
+    return real ? want : null;
+  }
+  function branchState(item, day) {
+    if (!item.branch) return null;
+    const c = chosen(day, item.branch.group);
+    if (!c) return "open";
+    return c === item.branch.option ? "picked" : "unpicked";
+  }
+  function setPick(day, group, option) {
+    const k = pickKey(day, group);
+    if (picks[k] === option) delete picks[k];   /* tap the chosen one to undecide */
+    else picks[k] = option;
+    try { localStorage.setItem(PICK_KEY, JSON.stringify(picks)); } catch (e) {}
+    render();
+  }
+  function branchLine(item, day) {
+    if (!item.branch) return null;
+    const g = (day.branchGroups || []).find(x => x.id === item.branch.group);
+    const st = branchState(item, day);
+    return h("div", { class: "branch" },
+      g ? h("span", { class: "fork-label", text: g.label }) : null,
+      h("button", { class: "pick", type: "button", "data-group": item.branch.group,
+        "data-option": item.branch.option, "aria-pressed": st === "picked" ? "true" : "false",
+        onclick: () => setPick(day, item.branch.group, item.branch.option) },
+        h("span", { text: st === "picked" ? "Chosen" : "Choose this" })));
+  }
+
   /* ---------- items ---------- */
   function mapLinks(item) {
     const out = [];
@@ -656,7 +721,9 @@ svg { display: block; }
   let uid = 0;
   function renderItem(item, day, isNow) {
     const id = "it" + (++uid);
-    const cls = "item" + (item.travel ? " travel" : "") + (isNow ? " is-now" : "") + (passes(item) ? "" : " hidden");
+    const br = branchState(item, day);
+    const cls = "item" + (item.travel ? " travel" : "") + (isNow ? " is-now" : "")
+      + (br ? " br-" + br : "") + (passes(item) ? "" : " hidden");
     const time = h("div", { class: "time" });
     if (item.time) {
       time.append((item.approx ? "~" : "") + item.time);
@@ -687,7 +754,7 @@ svg { display: block; }
     return h("li", { class: cls },
       time,
       h("div", { class: "stop" }, stopGlyph(item)),
-      h("article", { class: "card" }, head, body));
+      h("article", { class: "card" }, branchLine(item, day), head, body));
   }
   function renderDay(day) {
     const now = nowItem(day);
@@ -773,11 +840,11 @@ svg { display: block; }
     if (!state.day || !TRIP.days.some(d => d.date === state.day)) state.day = (TODAY || TRIP.days[0]).date;
     writeHash(state);
     markViews();
+    buildStrip();
     markStrip();
     markChips();
     renderDays();
   }
-  buildStrip();
   const initialHadDay = !!readHash().day;
   render();
   if (TODAY && !initialHadDay) {
