@@ -78,7 +78,7 @@
 
 ## 2026-09-20 | Sun | 20 | Tokyo | Old Tokyo and jazz
 {base} Hotel Son Shibuya
-{daynote} Giants game at Tokyo Dome dropped; Jingu on the 22nd is the game.
+{daynote} Giants game at Tokyo Dome dropped; Jingu on the 22nd instead.
 
 ###  | Asakusa and Ueno morning
 {status} suggested
@@ -193,7 +193,7 @@
 {place} 代々木八幡宮
 {map} 代々木八幡宮
 {url}
-- 友川カズキ at CLUB Que (19:00) was Tuesday's music pick and is lost to the game unless you drop it.
+- 友川カズキ at CLUB Que (19:00) was Tuesday's music pick and conflicts with the game unless you skip it.
 
 ### 18:00 | Swallows vs Hanshin, Meiji Jingu Stadium
 {status} decided
@@ -239,7 +239,7 @@
 ### 18:00 | Music page: 山下達郎 Tatsuro Yamashita, Festival Hall, Osaka
 {music}
 {status} suggested
-{detail} Never performed outside Japan. Open 17:00, start 18:00, ¥15,000 all reserved. Only route: e+ cancel-wait lottery, open until Sun 13 Sept 18:00 JST.
+{detail} Never performed outside Japan. Open 17:00, start 18:00, ¥15,000 all reserved. e+ cancel-wait lottery only, open until Sun 13 Sept 18:00 JST.
 {musicref} Wed 23 · 18:00 · 山下達郎
 {place} Festival Hall, Nakanoshima
 {map} Festival Hall Osaka Nakanoshima
@@ -272,7 +272,7 @@
 {place} Fushimi Inari Taisha
 {map} Fushimi Inari Taisha
 {url}
-- Music page's morning is Nishi Honganji's 晨朝 chant at 06:00 instead (gates 05:30, Amida Hall, free, ten minutes from Karasuma; Higashi Honganji follows at 07:00). The two do not combine.
+- Music page's morning is Nishi Honganji's 晨朝 chant at 06:00 instead (gates 05:30, Amida Hall, free, ten minutes from Karasuma; Higashi Honganji follows at 07:00). Cannot do both.
 
 ###  | Kiyomizu-dera
 {status} walkup
@@ -297,8 +297,8 @@
 {place} UrBANGUILD
 {map} UrBANGUILD Kyoto
 {url} https://urbanguild.net/events
-- No external seller listed: reserve through the venue or pay at the door.
-- Same night, separate choices: Boris × DURAN at Yogibo META VALLEY, Osaka, 19:30, ¥5,000 + drink (TIGET, international path; Boris tours the US yearly); Blues The Butcher's release show in the 磔磔 sake warehouse, 19:00, ¥5,500, email; Sone in Kobe, three resident sets from 18:30, ¥2,200.
+- No external seller listed; reserve through the venue or pay at the door.
+- Other options tonight: Boris × DURAN at Yogibo META VALLEY, Osaka, 19:30, ¥5,000 + drink (TIGET, international path; Boris tours the US yearly); Blues The Butcher's release show in the 磔磔 sake warehouse, 19:00, ¥5,500, email; Sone in Kobe, three resident sets from 18:30, ¥2,200.
 
 ###  | Vegan / shojin ryori dinner reservation
 {status} pending
