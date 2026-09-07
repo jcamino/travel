@@ -3,14 +3,14 @@
 The page at `public/japan/music/index.html` is generated. Edit the markdown,
 not the HTML.
 
-The live page at `/japan/music/` is the full research book. The traveler cut
-is a separate page at `/travel/music-4.6/` (branch URL; also `/japan/music-4.6/`),
-built from `japan-only-music-book-4.6.md`.
+The published page is the traveler book: the five plates, what to book
+before the flight, the week as a calendar, and two reference tables. The
+uncut research dump — every room checked, including misses — is
+`research/japan-only-music-book.full.md`.
 
 | File | What it is |
 |---|---|
-| `japan-only-music-book.md` | **Live source.** JSON front matter then the full research book. |
-| `japan-only-music-book-4.6.md` | Traveler cut that builds `/travel/music-4.6/`. |
+| `japan-only-music-book.md` | **The source of truth.** JSON front matter (page title, the trip shape day by day, the five flyer faces) then the traveler book in the markdown dialect below. |
 | `mdbook.py` | The dialect, and the only file that knows it. `python tools/japan-music/mdbook.py` renders the source and reads it back; the markdown must come out the same. Run it before building. |
 | `akira-build.py` | The design. Reads the markdown, writes the page. Defaults to the `public/japan/music-akira/` staging path, so pass the real path only once the gate is green. |
 | `research/` | The uncut book, the brief, the Grok brief, the 390 dated page snapshots behind the VERIFIED badges, the primary-source PDFs, the sweep lists, the redesign plans and the harvest kit. Nothing here is built. |
@@ -21,9 +21,13 @@ Build and check:
     python tools/japan-music/akira-build.py public/japan/music/index.html
     python tests/japan-music/content_check.py public/japan/music/index.html
 
-    python tools/japan-music/mdbook.py tools/japan-music/japan-only-music-book-4.6.md
-    python tools/japan-music/akira-build.py public/travel/music-4.6/index.html tools/japan-music/japan-only-music-book-4.6.md
-    python tests/japan-music/content_check.py public/travel/music-4.6/index.html tools/japan-music/japan-only-music-book-4.6.md
+## The three redesign candidates
+
+`/japan/music-3-1/`, `/japan/music-3-8/` and `/japan/music-4-6/` are frozen
+static HTML. They are alternative designs over the same book, kept for
+comparison; `akira-build.py` no longer emits any of them, so **they are not
+rebuildable** — edit the HTML directly or throw the page away. Only
+`/japan/music/` is generated from the markdown.
 
 ## The dialect
 
