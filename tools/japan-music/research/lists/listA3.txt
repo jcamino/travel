@@ -1,0 +1,12 @@
+tsukiji_houyou|https://tsukijihongwanji.jp/service/houyou/
+tsukiji_organ|https://tsukijihongwanji.jp/enjoy/lunchtime-concert/
+tsukiji_month|https://tsukijihongwanji.jp/info/event-this-month/
+higashi|https://www.higashihonganji.or.jp/
+nishi|https://www.hongwanji.kyoto/
+chionin|https://www.chion-in.or.jp/
+tofukuji|https://tofukuji.jp/
+yasaka|https://www.yasaka-jinja.or.jp/
+heian|https://www.heianjingu.or.jp/
+inari|https://inari.jp/
+kamigamo_news|https://www.kamigamojinja.jp/news/
+kishiwada|https://www.city.kishiwada.osaka.jp/site/danjiri/

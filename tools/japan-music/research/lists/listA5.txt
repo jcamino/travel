@@ -1,0 +1,4 @@
+nishi_hoyo|https://www.hongwanji.kyoto/visit/hoyo.html
+nishi_visit|https://www.hongwanji.kyoto/visit/index.html
+nishi_event|https://www.hongwanji.kyoto/see/event.html
+higashi_daily|https://www.higashihonganji.or.jp/worship/daily/

@@ -1,0 +1,8 @@
+metro_sched|https://www.metro.ne.jp/schedule/
+urbanguild_ev|http://urbanguild.net/events/
+soto_sched|https://soto-kyoto.jp/schedule/
+nano_sched|https://www.livehouse-nano.com/schedule.php
+growly_sched|https://growly.net/schedule/
+bears_sched|https://namba-bears.main.jp/schedule.html
+circus_sched|https://circus-osaka.com/schedule/
+varit_sched|https://varit.jp/schedule/

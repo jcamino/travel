@@ -1,0 +1,13 @@
+nao_moon|https://www.nao.ac.jp/astro/sky/2026/09-topics03.html
+shimogamo|https://www.shimogamo-jinja.or.jp/
+daikakuji|https://www.daikakuji.or.jp/
+kamigamo|https://www.kamigamojinja.jp/
+sumiyoshi|https://www.sumiyoshitaisha.net/
+uneme|https://narashikanko.or.jp/event/unemematsuri/
+nezu|https://www.nedujinja.or.jp/
+shibadaijingu|http://www.shibadaijingu.com/
+meijijingu|https://www.meijijingu.or.jp/
+yasukuni|https://www.yasukuni.or.jp/
+tsukiji|https://tsukijihongwanji.jp/
+nashinoki|https://nashinoki.jp/
+seimei|https://www.seimeijinja.jp/

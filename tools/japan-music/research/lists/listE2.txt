@@ -1,0 +1,17 @@
+three_sep|https://www.toos.co.jp/3/events/event/on/2026/09/
+basement_sep|https://toos.co.jp/basementbar/event/on/2026/09/
+shelter_sep|https://www.loft-prj.co.jp/schedule/shelter/date/2026/09
+loft_sep|https://www.loft-prj.co.jp/schedule/loft/date/2026/09
+onest_sep|https://shibuya-o.com/nest/schedule/?y=2026&m=9
+lamama|https://www.lamama.net/
+quattro|https://www.club-quattro.com/shibuya/schedule/
+dommune|https://www.dommune.com/
+antiknock|https://www.antiknock.net/
+marz|https://www.marz.jp/
+redcloth|https://www.red-cloth.com/
+mandala2|https://www.mandala.gr.jp/mandala2/
+warp|https://warp.rinky.info/
+ftarri|https://www.ftarri.com/suidobashi/
+soup|https://ochiaisoup.com/
+forestlimit|https://forestlimit.com/
+nanahari|https://nanahari.jp/

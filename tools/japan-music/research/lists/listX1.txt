@@ -1,0 +1,4 @@
+gioncorner|https://www.kyoto-gioncorner.com/
+soup|https://ochiaisoup.com/
+yoyogi_reitaisai|https://www.yoyogihachimangu.or.jp/
+timeout_muzenji|https://www.timeout.jp/tokyo/ja/%E9%9F%B3%E6%A5%BD/%E7%84%A1%E5%8A%9B%E7%84%A1%E5%96%84%E5%AF%BA

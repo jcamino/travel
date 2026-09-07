@@ -1,0 +1,3 @@
+pitinn_day|https://pit-inn.com/schedule-day
+cotton_sched|https://reserve.cottonclubjapan.co.jp/reserve/schedule/
+sone_idx|https://kobe-sone.com/schedule/index.php

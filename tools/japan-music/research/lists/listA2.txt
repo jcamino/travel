@@ -1,0 +1,12 @@
+shimogamo_meigetsu|https://www.shimogamo-jinja.or.jp/saiji/meigetsu2026
+daikakuji_r8|https://www.daikakuji.or.jp/r8kangetsukokuchi/
+daikakuji_sep|https://www.daikakuji.or.jp/event_month_09/
+sumiyoshi_sep|https://www.sumiyoshitaisha.net/events/annualevents/09.html
+nezu_post|https://nedujinja.or.jp/2026/08/07/%e4%bb%a4%e5%92%8c%e4%ba%94%e5%b9%b4%e3%80%80%e4%be%8b%e5%a4%a7%e7%a5%ad-2-3/
+shiba_post|https://www.shibadaijingu.com/2026/09/01/1517/
+meiji_event|https://www.meijijingu.or.jp/event/
+yasukuni_sched|https://www.yasukuni.or.jp/schedule/
+yasukuni_saiji|https://www.yasukuni.or.jp/schedule/saiji.html
+nashinoki_hagi|https://www.nashinoki.jp/%E8%A4%87%E8%A3%BD-%E4%BB%A4%E5%92%8C-%E5%B9%B4%E8%90%A9%E3%81%BE%E3%81%A4%E3%82%8A%E8%A9%B3%E7%B4%B0-1
+seimei_vol|https://www.seimeijinja.jp/seimeisai2026volunteer/
+seimei_sai|https://www.seimeijinja.jp/seimeisai/

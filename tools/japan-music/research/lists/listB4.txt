@@ -1,0 +1,2 @@
+kabuki_shinbashi|https://www.kabuki-bito.jp/theaters/shinbashi/
+kabuki_osaka|https://www.kabuki-bito.jp/theaters/osaka/

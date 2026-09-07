@@ -8,7 +8,7 @@ not the HTML.
 | `japan-only-music-book.md` | **The source of truth.** JSON front matter (page title, the trip shape day by day, the five flyer faces) then the research in the markdown dialect below. |
 | `mdbook.py` | The dialect, and the only file that knows it. `python tools/japan-music/mdbook.py` renders the source and reads it back; the markdown must come out the same. Run it before building. |
 | `akira-build.py` | The design. Reads the markdown, writes the page. Defaults to the `public/japan/music-akira/` staging path, so pass the real path only once the gate is green. |
-| `grok-plan.md` | The parallel non-jazz brief that pass 10 was reviewed against. Research input, kept for the record; nothing reads it. |
+| `research/` | The brief, the Grok brief, the 390 dated page snapshots behind the VERIFIED badges, the primary-source PDFs, the sweep lists, the redesign plans and the harvest kit. Nothing here is built. |
 
 Build and check:
 

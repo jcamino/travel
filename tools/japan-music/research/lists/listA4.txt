@@ -1,0 +1,7 @@
+yasaka_kangetsu|https://www.yasaka-jinja.or.jp/news/%e7%a5%87%e5%9c%92%e7%a4%be%e8%a6%b3%e6%9c%88%e7%a5%ad%ef%bc%889%e6%9c%8810%e6%97%a5%ef%bc%89%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6/
+yasaka_news|https://www.yasaka-jinja.or.jp/news/
+higashi_sched|https://www.higashihonganji.or.jp/worship/houyouhouwa/schedule.html?d=202609
+seimei_r8|https://www.seimeijinja.jp/r8seimeisai/
+sumiyoshi_special|https://www.sumiyoshitaisha.net/events/special.html
+chionin_howa|https://www.chion-in.or.jp/event/howa/4171/
+inari_rite|https://inari.jp/rite/?month=9%E6%9C%88

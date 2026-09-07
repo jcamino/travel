@@ -1,0 +1,10 @@
+three_0919|https://www.toos.co.jp/3/events/event/on/2026/09/19
+three_0920|https://www.toos.co.jp/3/events/event/on/2026/09/20
+three_0921|https://www.toos.co.jp/3/events/event/on/2026/09/21
+three_0922|https://www.toos.co.jp/3/events/event/on/2026/09/22
+bb_0919|https://toos.co.jp/basementbar/event/on/2026/09/19
+bb_0920|https://toos.co.jp/basementbar/event/on/2026/09/20
+bb_0922|https://toos.co.jp/basementbar/event/on/2026/09/22
+mandala2_sched|https://www.mandala.gr.jp/mandala2/Schedule.html
+showboat_sep|https://www.showboat1993.com/2026-09
+dommune_sched|https://www.dommune.com/schedules/
