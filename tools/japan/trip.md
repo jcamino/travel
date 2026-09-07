@@ -150,9 +150,8 @@
 {url}
 - Reserve now by email to sakaiki@modalbeats.com; cash at the door.
 
-## 2026-09-21 | Mon | 21 | Tokyo | Harajuku by day, Akihabara by night
+## 2026-09-21 | Mon | 21 | Tokyo | Harajuku, Ginza, Akihabara, Shibuya
 {base} Hotel Son Shibuya
-{branchgroup} mon | Pick one: MOGRA, the Kabuki-za maku-mi, or Body & Soul’s last Monday
 
 ### 09:00 | Meiji Shrine, Harajuku, Cat Street, Omotesando
 {status} walkup
@@ -165,35 +164,37 @@
 
 ### 13:25 | Music page: Kabuki-za 幕見, ひらかな盛衰記〈逆櫓〉
 {music}
-{branch} mon | kabuki
 {status} suggested
+{end} 15:12
 {detail} 13:25 to 15:12, ¥2,800 (+¥110). 竹本 gidayū narration and a full 立廻り.
 {musicref} Mon 21 · 13:25 then 18:30 · Kabuki-za
 {place} Kabuki-za
 {map} Kabukiza Theatre, Ginza
 {url}
 - Reserved 4F seats go online at noon on Sunday (e-tix, card with 3-D Secure), or queue for the unreserved seats on the day.
+- Higashi-Ginza to Akihabara is about 12 minutes on the Hibiya line, so the 幕見 and the MOGRA party both fit in the same afternoon.
 
-### 14:00 | MOGRA Akihabara, "Blend New! P@rty!! / awa-ani" anison night
-{branch} mon | mogra
+### 15:45 | MOGRA Akihabara, "Blend New! P@rty!! / awa-ani" anison night
 {status} walkup
-{end} 20:00
-{detail} Door charge, confirm age/ID rules.
+{end} 19:15
+{detail} Door charge, cash, physical photo ID. The party itself runs 14:00 to 20:00 and you can come and go, so the Kabuki-za before it costs nothing.
 {place} MOGRA Akihabara
 {map} MOGRA Akihabara
 {url}
-- Music page lists a MOGRA day party 14:00 to 20:00 on Mon 21 as a candidate (cash, physical ID); the evening pick is Body & Soul below.
+- The one MOGRA date the music research confirms: a day party, 14:00 to 20:00, cash and physical ID.
+- Leaving at 19:15 still gives three and a half hours here. Akihabara to Shibuya is about 30 minutes, which makes the 20:00 set at Body & Soul comfortable.
 
-### 18:30 | Music page: Body & Soul, last Monday before it closes
+### 20:00 | Music page: Body & Soul, last Monday before it closes
 {music}
-{branch} mon | bodyandsoul
 {status} suggested
-{detail} 52-year-old club, five minutes from the hotel, closing 27 Sept. 河合代介 (Hammond organ), 佐野康夫 (drums), 宮崎隆睦 (sax). Open 17:30, sets 18:30 and 20:00. ¥7,700 with tax + drinks.
+{end} 21:30
+{detail} 52-year-old club, five minutes from the hotel, closing 27 Sept. 河合代介 (Hammond organ), 佐野康夫 (drums), 宮崎隆睦 (sax). Open 17:30, sets 18:30 and 20:00; take the second and the whole afternoon stays free. ¥7,700 with tax + drinks.
 {musicref} Mon 21 · 13:25 then 18:30 · Kabuki-za
 {place} Body & Soul, Udagawa-chō
 {map} 渋谷区宇田川町2-1 渋谷ホームズ B-15
 {url} https://www.bodyandsoul.co.jp/schedule
 - The club moved from Minami-Aoyama to Kōen-dōri, Shibuya; the jazz brief's address is stale.
+- Ask which set the reservation is for, and whether the ¥7,700 covers both or one seating. If it is per seating, book the 20:00.
 - Email reservation from the schedule page; this Monday is the last night still open to reserve. Other nights: phone 03-6455-0088 for returns.
 - Fallbacks the same evening: Here is Eden (ex-P-MODEL) at Show Boat, Kōenji, 18:00, ¥4,000 door only; DESTINY 8 first concert at WWW X, 19:00, ¥8,800, e+ until Sun 18:00.
 
