@@ -43,7 +43,7 @@ a:hover{color:var(--plate)}
 .reg::after{top:50%;left:0;right:0;height:1px;margin-top:-.5px}
 .reg.tl{left:-8px;top:-8px}.reg.tr{right:-8px;top:-8px}
 .reg.bl{left:-8px;bottom:-8px}.reg.br{right:-8px;bottom:-8px}
-.dither{position:absolute;inset:0;pointer-events:none;
+.dither{position:absolute;inset:0;pointer-events:none;z-index:0;
   background:repeating-linear-gradient(180deg,rgba(0,0,0,.22) 0 1px,transparent 1px 3px)}
 
 /* ----------------------------------------------------------- masthead */
@@ -106,8 +106,9 @@ h2{font-family:"Big Shoulders Display",sans-serif;font-weight:900;
 
 /* ------------------------------------------------------- 1. the top five */
 .five{display:grid;gap:1.4rem;grid-template-columns:repeat(auto-fit,minmax(198px,1fr))}
-.plate{position:relative;border:1px solid var(--line);padding:1rem .95rem 1.05rem;
+.plate{position:relative;isolation:isolate;border:1px solid var(--line);padding:1rem .95rem 1.05rem;
   background:var(--black);display:flex;flex-direction:column}
+.plate > :not(.dither):not(.reg):not(.rank){position:relative;z-index:1}
 .plate.invert{background:var(--plate);color:var(--black);border-color:var(--plate)}
 .plate.invert .pl-sub,.plate.invert .pl-note{color:#55575B}
 .plate.invert .pl-venue{border-color:rgba(7,8,9,.25)}
@@ -119,7 +120,14 @@ h2{font-family:"Big Shoulders Display",sans-serif;font-weight:900;
 .plate.invert .dither{opacity:.35}
 .plate.invert .more>summary{color:var(--cyan-d);border-color:rgba(7,8,9,.25)}
 .plate.invert .rank span{background:var(--black);color:var(--plate)}
-.rank{position:absolute;right:0;top:0;margin:0}
+/* booked plate is light paper; dark-theme greys (#C9CBCE) fail on it */
+.plate.invert .www span,.plate.invert .card p,.plate.invert .card li{color:var(--black)}
+.plate.invert .www b,.plate.invert .t2{color:var(--cyan-d)}
+.plate.invert .t2{border-color:var(--cyan-d)}
+.plate.invert a{color:var(--cyan-d)}
+.plate.invert a:hover{color:var(--black)}
+.plate.invert .v,.plate.invert .s,.plate.invert .t3{color:#55575B}
+.rank{position:absolute;right:0;top:0;margin:0;z-index:2}
 .rank span{display:block;background:var(--red);color:#fff;
   font-weight:900;font-size:1rem;line-height:1;padding:.25em .5em}
 .pl-date{position:relative;display:flex;align-items:baseline;gap:.3rem;
