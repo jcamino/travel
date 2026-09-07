@@ -23,11 +23,13 @@
   ],
   "musicPage": "/japan/music/",
   "openItems": [
+    "Body & Soul Sept 21, 20:00 set: phone 03-6455-0088, their web form 403s from here",
+    "Pit Inn Sept 20: requested 7 Sept, waiting on the 予約完了メール (chase by 12 Sept)",
+    "御香宮 candle noh Sept 23: buy B seats on the web by Sun 13 Sept",
     "Kyoto dinners Sept 23, 24, 25, each needing one vegan menu, plus Shigetsu lunch Sept 25",
     "Haruka Sept 26 ~08:00",
     "Jingu tickets Sept 22 (if not already in hand)",
-    "Hozugawa boat Sept 25 (confirm booking status)",
-    "Jazz venue Sept 20 (book if Blue Note / Cotton Club)"
+    "Hozugawa boat Sept 25 (confirm booking status)"
   ]
 }
 ---
@@ -113,14 +115,20 @@
 
 ### 14:30 | Music page: Pit Inn 昼の部, 東京民謡倶楽部
 {music}
-{status} suggested
+{status} pending
+{ticket} pending
 {detail} Tsugaru shamisen, shakuhachi and wadaiko inside a jazz band. Open 14:00, start 14:30. ¥5,500 adv, ¥6,050 door, one drink included. The Sunday pick.
 {musicref} Sun 20 · 14:30 · Pit Inn 昼の部
+{via} pit-inn.com reservation form, 7 Sept
 {place} Shinjuku Pit Inn
 {map} Shinjuku Pit Inn
-{url} https://pit-inn.com/schedule-day/
-- Reserve by email or phone from the venue page, cash at the door.
+{url} https://pit-inn.com/artist_live_info/260920hirumarty/
+- Requested for 2 on 7 Sept through the venue's reservation form; the auto-reply came back the same night naming 2026年9月20日, Open14:00/Start14:30, 2名様.
+- Not confirmed yet. The auto-reply says so outright: staff send a separate 予約完了メール within a few days, and only that is the booking. Chase shinjuku@pit-inn.com if nothing by 12 Sept.
+- Headcount can still change until 23:00 on Sat 19; after that it is door price only.
+- The reservation is not a ticket. Buy it at the Pit Inn desk from 13:00, then come back for the 14:00 opening; entry runs in 整理番号 order and the number was fixed when the form went in.
 - 小山豊 leads; 石若駿 on drums, Marty Holoubek on bass. About a hundred seats.
+- Full booking notes in tools/japan/pit.md.
 
 ### 16:30 | Free afternoon
 {status} suggested
@@ -186,16 +194,21 @@
 
 ### 20:00 | Music page: Body & Soul, last Monday before it closes
 {music}
-{status} suggested
+{status} pending
 {end} 21:30
-{detail} 52-year-old club, five minutes from the hotel, closing 27 Sept. 河合代介 (Hammond organ), 佐野康夫 (drums), 宮崎隆睦 (sax). Open 17:30, sets 18:30 and 20:00; take the second and the whole afternoon stays free. ¥7,700 with tax + drinks.
+{ticket} pending
+{detail} 52-year-old club, five minutes from the hotel, closing 27 Sept. 河合代介 (Hammond organ), 佐野康夫 (drums), 宮崎隆睦 (sax). Open (祝)17:30, 1st 18:30, 2nd 20:00; take the second and the whole afternoon stays free. ¥7,700 with tax + drinks.
 {musicref} Mon 21 · 13:25 then 18:30 · Kabuki-za
 {place} Body & Soul, Udagawa-chō
 {map} 渋谷区宇田川町2-1 渋谷ホームズ B-15
-{url} https://www.bodyandsoul.co.jp/schedule
+{url} https://bodyandsoul.co.jp/event/260921
+- NOT REQUESTED YET, and it cannot be done from here. The venue's reservation form posts to its own wp-json endpoint, and the host (XSERVER) returns 403 to that endpoint for this network while ordinary pages load fine. Two attempts on 7 Sept hung at "submitting" and sent nothing; no auto-reply arrived, so there is no half-made booking to undo.
+- The route left is the phone: 03-6455-0088, Japanese, from Japan hours. Ask for Mon 21 Sept, 2nd stage 20:00, two people, dinner yes, arriving 19:30.
+- Monday is the only night of the closing week still open; every other date 19 to 26 Sept reads 予約〆切.
+- Arrive by 30 minutes before your stage, so 19:30 for the 20:00.
+- Their F&B rule: one drink plus one dish, or one drink per stage.
+- The ¥7,700 music charge is listed once for the night, and the schedule flags one-set and full-turnover nights explicitly. The 21st is flagged as neither, so the charge covers the room and the 18:30 is there too if you want it.
 - The club moved from Minami-Aoyama to Kōen-dōri, Shibuya; the jazz brief's address is stale.
-- Ask which set the reservation is for, and whether the ¥7,700 covers both or one seating. If it is per seating, book the 20:00.
-- Email reservation from the schedule page; this Monday is the last night still open to reserve. Other nights: phone 03-6455-0088 for returns.
 - Fallbacks the same evening: Here is Eden (ex-P-MODEL) at Show Boat, Kōenji, 18:00, ¥4,000 door only; DESTINY 8 first concert at WWW X, 19:00, ¥8,800, e+ until Sun 18:00.
 
 ## 2026-09-22 | Tue | 22 | Tokyo | Mt Takao and Jingu
