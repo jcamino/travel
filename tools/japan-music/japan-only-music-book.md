@@ -69,7 +69,7 @@
       ],
       "price": "¥11,000",
       "note": "all reserved; tickets held",
-      "tier": "Tier 2",
+      "tier": "Tier 3",
       "status": "HELD",
       "ref": "TK-2609251830"
     },
@@ -194,14 +194,14 @@
 
 
 ## 0 · Top five for the whole trip, in order
-{legend} Ranked across the whole week, not one per day: first by how far each is from anything Brooklyn can offer, then by whether you can get in. Jazz and everything else compete on the same terms; two of the five are jazz rooms. Two of them are the same Wednesday. See Yamashita if the lottery lands, or the candle noh at 御香宮 if it does not. Where something fits before or after on the same day the entry says so. Sixth to eighth, for the record: Uchihashi & Ligeti at UrBANGUILD (Thu 24), Keiji Haino at 月花舎 (Sun 20) and the Kabuki-za 幕見 gallery (any Tokyo day); 友川カズキ (Tue 22) would be in the five if the Swallows game were dropped. Every night's own ranking is in section 0b. The harvest-moon rites led this list until the Takanaka tickets were bought on 6 Sept; they run while you are in Hikone, and sit in section 0b as what Friday would have been.
+{legend} Ranked across the whole week, not one per day: first by how far each is from anything Brooklyn can offer, then by whether you can get in. The first entry leads because the tickets are held; on the test alone Takanaka is Tier 3, having sold out Brooklyn Paramount in April. Jazz and everything else compete on the same terms; two of the five are jazz rooms. Two of them are the same Wednesday. See Yamashita if the lottery lands, or the candle noh at 御香宮 if it does not. Where something fits before or after on the same day the entry says so. Sixth to eighth, for the record: Uchihashi & Ligeti at UrBANGUILD (Thu 24), Keiji Haino at 月花舎 (Sun 20) and the Kabuki-za 幕見 gallery (any Tokyo day); 友川カズキ (Tue 22) would be in the five if the Swallows game were dropped. Every night's own ranking is in section 0b. The harvest-moon rites led this list until the Takanaka tickets were bought on 6 Sept; they run while you are in Hikone, and sit in section 0b as what Friday would have been.
 {cards}
 
-{card} Fri 25 · doors 17:30, start 18:30 · 高中正義 SUPER TAKANAKA LIVE 2026-2027, ひこね市文化プラザ グランドホール Hikone Bunka Plaza, Hikone — booked: the guitarist who has never played the United States, in a civic hall fifty minutes from Kyoto
+{card} Fri 25 · doors 17:30, start 18:30 · 高中正義 SUPER TAKANAKA LIVE 2026-2027, ひこね市文化プラザ グランドホール Hikone Bunka Plaza, Hikone — booked: the guitarist who sold out Brooklyn Paramount in April, five months later in a civic hall fifty minutes from Kyoto
 {www} What: 高中正義 Takanaka Masayoshi, 73, the guitarist of Sadistic Mika Band and of the instrumental records that defined Japanese fusion (SEYCHELLES 1976, JOLLY JIVE 1979, 虹伝説 The Rainbow Goblins 1981, the single BLUE LAGOON), on the current hall tour with his band. No running time is published; allow until about 21:00. | When: Fri 25 Sept · doors 17:30, start 18:30. Leave Arashiyama by about 15:00. | Where: ひこね市文化プラザ グランドホール, 野瀬町 187-4, Hikone, Shiga. JR 新快速 Kyoto → Hikone about 50 min, then a taxi (about 10 min); or one local stop back to 南彦根, the hall's own nearest station, and the 湖国バス 県立大学線 to the ひこね市文化プラザ stop, or 22 min on foot. | Cost: ¥11,000 all reserved, tickets held.
-{meta} {t2:Tier 2} · booked · {v:VERIFIED} [takanaka.com/live](https://takanaka.com/live/) (doors, start, price), [bunpla.jp access](https://www.bunpla.jp/access/)
-**What it is.** Takanaka has made records since 1972 and has never toured the United States; the closest a New Yorker gets is the reissues. This tour is three September halls (Katsushika 18 Sept, Hikone 25 Sept, Sendai 27 Sept) and the Hikone date is the one that fits the trip. It is a civic hall in a castle town on Lake Biwa, with an audience that grew up with these records. Tickets are ¥11,000 all reserved.
-**Why it is first.** The ranking test is distance from Brooklyn, then whether you can get in. Takanaka is Tier 2 rather than Tier 1, but you hold the tickets, which no other entry on this page can say, and Tatsuro Yamashita below is the same kind of artist with no ticket. The cost is the harvest-moon rites, so this sat in section 3 until 6 Sept as "a Tier-2 legend on the wrong night".
+{meta} {t3:Tier 3} (Brooklyn Paramount, 4–5 April 2026, sold out) · booked · {v:VERIFIED} [takanaka.com/live](https://takanaka.com/live/) (doors, start, price, and the world-tour dates), [bunpla.jp access](https://www.bunpla.jp/access/)
+**What it is.** Takanaka has made records since 1972, and since the streaming revival he tours the world: SUPER TAKANAKA WORLD LIVE 2026 sold out two nights at London's O2 Academy Brixton, **two nights at Brooklyn Paramount on 4 and 5 April**, the Aragon Ballroom in Chicago, The Masonic in San Francisco, two nights at the Hollywood Palladium and two in Sydney, after two nights at the Wiltern in Los Angeles in March 2025. A Brooklyn resident could have walked to him this spring. This tour is three September halls (Katsushika 18 Sept, Hikone 25 Sept, Sendai 27 Sept) and the Hikone date is the one that fits the trip. It is a civic hall in a castle town on Lake Biwa, with an audience that grew up with these records. Tickets are ¥11,000 all reserved.
+**Why it is first anyway.** The ranking test is distance from Brooklyn, then whether you can get in, and Takanaka fails the first half: he played Brooklyn five months ago, so he is Tier 3 here, exportable, in the same class as Boris and the Miles band. It leads the page because you hold the tickets, which no other entry can say, and because it takes the evening; on the test alone it would sit in section 3. The cost is the harvest-moon rites.
 **The evening.** Leave Arashiyama by about 15:00 (JR Saga-Arashiyama → Kyoto, 16 min), take the 新快速 from Kyoto toward Maibara (Hikone in about 50 min, four an hour), and be at the hall for doors at 17:30. Back the same way; trains toward Kyoto run past 22:30 {s:SECONDARY} (not read on JR's own timetable; check the last 新快速 on the day). Every Kyoto rite (Shimogamo 17:30, Daikaku-ji 17:30, Yasaka 19:00) runs while you are in the hall, so nothing of the 観月 is recoverable. Sat 26 is the early airport train.
 {/card}
 
@@ -244,7 +244,7 @@
 ### Sat 19 Sept — you land at 15:00; in Shibuya by about 17:30, the whole evening is open
 {cards night}
 {card} 金王八幡宮 例大祭 宵宮 stage, then Pit Inn: The Blend with 峰厚介
-{www} What: The Shibuya shrine's festival eve on your doorstep: a 神楽殿 stage with おはら節 and 渋谷音頭 at 16:00 and **koto at 18:00**, stalls, the precinct lit. Then 峰厚介 (tenor, b. 1944, on Tokyo stages since the 1960s, no US dates in decades) with 中村恵介 (tp), Hakuei Kim (p), 本田珠也 (ds). {t1:Tier 1} rite, {t2:Tier 2} player | When: Sat 19 · shrine stage from 18:00, leave it about 19:05 · Pit Inn 19:30 (Shibuya → Shinjuku-Sanchōme 10 min). | Where: 金王八幡宮, Shibuya 3-chōme, a few minutes from the hotel; then Shinjuku Pit Inn, the 1965 basement. | Cost: shrine free · Pit Inn ¥3,500 incl. one drink, door, cash.
+{www} What: The Shibuya shrine's festival eve on your doorstep: a 神楽殿 stage with おはら節 and 渋谷音頭 at 16:00 and **koto at 18:00**, stalls, the precinct lit. Then 峰厚介 (tenor, b. 1944, on Tokyo stages since the 1960s) with 中村恵介 (tp), Hakuei Kim (p), 本田珠也 (ds). {t1:Tier 1} rite, {t2:Tier 2} player | When: Sat 19 · shrine stage from 18:00, leave it about 19:05 · Pit Inn 19:30 (Shibuya → Shinjuku-Sanchōme 10 min). | Where: 金王八幡宮, Shibuya 3-chōme, a few minutes from the hotel; then Shinjuku Pit Inn, the 1965 basement. | Cost: shrine free · Pit Inn ¥3,500 incl. one drink, door, cash.
 You land at 15:00 and are in Shibuya by about 17:30, so the whole evening is on. Shrine: {v:VERIFIED} dates on [shibuyamatsuri.com](https://shibuyamatsuri.com/), stage programme {s:SECONDARY} ([nigiwai-matsuri.com](https://nigiwai-matsuri.com/)). Pit Inn: {v:VERIFIED} [pit-inn.com/schedule](https://pit-inn.com/schedule/).
 {/card}
 {card} 和ノ家追分, either min'yō show
@@ -301,7 +301,7 @@ Overall #4. The Miles Electric Band at Blue Note the same night is a touring US 
 The Kabuki-za, Pit Inn and every live house have started by then. {v:VERIFIED}
 {/card}
 {card} If you skip the game: 友川カズキ + 叶芽フウカ
-{www} What: Tomokawa (b. 1950, Akita), one of the last 1970s underground folk singers still working, who does not tour America; a young singer-songwriter opens. The best Tuesday night in Tokyo. {t2:Tier 2} in a {t1:Tier 1} room | When: Tue 22 · open 18:15, start 19:00. | Where: CLUB Que, Shimokitazawa (3 min from the station). | Cost: ¥4,000 adv / ¥4,500 door + ¥600 drink; LivePocket (email, card) or the Que counter from 16:00.
+{www} What: Tomokawa (b. 1950, Akita), one of the last 1970s underground folk singers still working, who rarely plays outside Japan; a young singer-songwriter opens. The best Tuesday night in Tokyo. {t2:Tier 2} in a {t1:Tier 1} room | When: Tue 22 · open 18:15, start 19:00. | Where: CLUB Que, Shimokitazawa (3 min from the station). | Cost: ¥4,000 adv / ¥4,500 door + ¥600 drink; LivePocket (email, card) or the Que counter from 16:00.
 {v:VERIFIED} [clubque.net](https://clubque.net/schedule/15548/). Second choice the same night: ズボンズ's tour-final one-man, 新宿 red cloth, 18:30, ¥4,600.
 {/card}
 {/cards}
@@ -325,7 +325,7 @@ Third choice on Wednesday, 15 minutes from Festival Hall. {v:VERIFIED} [nuthings
 ### Thu 24 Sept — free all day; Osaka, Kobe and Nara in range
 {cards night}
 {card} UrBANGUILD: Lukas Ligeti & 内橋和久, with 山内弘太
-{www} What: Free improvisation: Uchihashi (Altered States, the Ground Zero years, one of the few daxophone players; he has not played New York in years) with Ligeti on drums and electronics; a young Kyoto guitarist opens. {t2:Tier 2} | When: Thu 24 · open 19:00, start 19:30, to about 21:30. Morning: Nishi Honganji 晨朝 chant 06:00 (gates 05:30), Higashi Honganji 07:00 next door, free. | Where: UrBANGUILD, Kiyamachi-Sanjō, upstairs, 10 min walk from base. | Cost: ¥3,500 + ¥700 drink adv / ¥3,800 + drink door; venue contact or door.
+{www} What: Free improvisation: Uchihashi (Altered States, the Ground Zero years, one of the few daxophone players; based between Kansai and Berlin) with Ligeti on drums and electronics; a young Kyoto guitarist opens. {t2:Tier 2} | When: Thu 24 · open 19:00, start 19:30, to about 21:30. Morning: Nishi Honganji 晨朝 chant 06:00 (gates 05:30), Higashi Honganji 07:00 next door, free. | Where: UrBANGUILD, Kiyamachi-Sanjō, upstairs, 10 min walk from base. | Cost: ¥3,500 + ¥700 drink adv / ¥3,800 + drink door; venue contact or door.
 Overall #6, the first outside the five. Rules out Christian McBride at Billboard Osaka (20:30), whom New York hears often. {v:VERIFIED} [urbanguild.net/events](http://urbanguild.net/events/).
 {/card}
 {card} 磔磔: blues.the-butcher-590213 "Live at Takutaku" release show
@@ -341,7 +341,7 @@ Overall #6, the first outside the five. Rules out Christian McBride at Billboard
 ### Fri 25 Sept — Arashiyama until about 15:00; Takanaka in Hikone, booked; the harvest-moon rites collide; early airport train on Sat
 {cards night}
 {card} 高中正義 SUPER TAKANAKA LIVE, Hikone — booked
-{www} What: The fixed commitment: Takanaka's hall tour, グランドホール. {t2:Tier 2} | When: Fri 25 · doors 17:30, start 18:30. Leave Arashiyama by about 15:00. | Where: ひこね市文化プラザ, Hikone (JR 新快速 from Kyoto about 50 min, then a taxi, or 湖国バス from 南彦根). | Cost: ¥11,000, tickets held.
+{www} What: The fixed commitment: Takanaka's autumn hall tour, グランドホール. {t3:Tier 3}: he sold out Brooklyn Paramount on 4–5 April 2026 | When: Fri 25 · doors 17:30, start 18:30. Leave Arashiyama by about 15:00. | Where: ひこね市文化プラザ, Hikone (JR 新快速 from Kyoto about 50 min, then a taxi, or 湖国バス from 南彦根). | Cost: ¥11,000, tickets held.
 Overall #1. Every Kyoto moon rite below runs while you are in the hall. {v:VERIFIED} [takanaka.com](https://takanaka.com/live/).
 {/card}
 {card} Shimogamo 名月管絃祭, then Yasaka 祇園社観月祭
@@ -413,7 +413,7 @@ Kamigamo {v:VERIFIED} by the shrine's own annual page (仲秋, 16:30, open entry
 {card} Tue 22 · evening · 友川カズキ Tomokawa Kazuki + 叶芽フウカ, "おいで おいで", Shimokitazawa CLUB Que
 {www} What: 友川カズキ with 叶芽フウカ opening, "おいで おいで". | When: Tue 22 · open 18:15, start 19:00 (the Swallows start 18:00). | Where: CLUB Que, Shimokitazawa, Tokyo (3 min from the station). | Cost: ¥4,000 adv / ¥4,500 door + ¥600 drink.
 {meta} CLUB Que (Shimokitazawa stn 3 min). Tokyo. {t2:Tier 2} in a {t1:Tier 1} room · {v:VERIFIED}
-**Why:** Tomokawa (b. 1950, Akita) is one of the last 1970s underground folk singers still working, also a painter, poet and keirin gambler, and he does not tour America. He is playing a 250-cap Shimokita basement on a holiday Tuesday, with a young singer-songwriter opening.
+**Why:** Tomokawa (b. 1950, Akita) is one of the last 1970s underground folk singers still working, also a painter, poet and keirin gambler, and he rarely plays outside Japan. He is playing a 250-cap Shimokita basement on a holiday Tuesday, with a young singer-songwriter opening.
 **Time/price (venue page):** OPEN 18:15 / START 19:00. ADV ¥4,000 / DOOR ¥4,500, +1 drink (Que charges ¥600) → about **¥4,600 / ¥9,200 for two** at the advance price, ¥5,100 / ¥10,200 at the door. Source: [clubque.net/schedule/15548](https://clubque.net/schedule/15548/).
 **Availability:** not marked sold out on the page; a live count was not readable (LivePocket search page is script-only). **Booking:** Que counter 16:00–21:00, [LivePocket](https://livepocket.jp) (email account, card), or Lawson (needs a Japanese phone; skip). Door tickets normally exist for this artist. **Friction:** low. **Collision:** the Swallows–Hanshin game at Jingu starts 18:00, so this only works if you skip the game; it is the best Tuesday night in Tokyo.
 {/card}
@@ -438,7 +438,7 @@ Kamigamo {v:VERIFIED} by the shrine's own annual page (仲秋, 16:30, open entry
 {card} Thu 24 · evening · Lukas Ligeti & 内橋和久 Uchihashi Kazuhisa, guest 山内弘太, UrBANGUILD Kyoto
 {www} What: Lukas Ligeti (drums, electronics) & 内橋和久 (guitar, daxophone), 山内弘太 opening; free improvisation. | When: Thu 24 · open 19:00, start 19:30, to about 21:30. | Where: UrBANGUILD, Kiyamachi-Sanjō, Kyoto (10 min walk from base). | Cost: ¥3,500 + ¥700 drink adv / ¥3,800 + drink door.
 {meta} UrBANGUILD (Kiyamachi-Sanjō, 10 min walk from base). Kyoto. {t2:Tier 2} · {v:VERIFIED}
-**Why:** Uchihashi (Altered States, ex-Ground Zero, daxophone) is the Kansai improviser who does not come to New York. Ligeti does play in New York. If you skip Billboard Osaka this is the night.
+**Why:** Uchihashi (Altered States, ex-Ground Zero, daxophone) is the Kansai improviser, based between Osaka and Berlin. Ligeti is the New York-based half. If you skip Billboard Osaka this is the night.
 **Time/price:** OPEN 19:00 / START 19:30 (listed 19:00–21:30); adv ¥3,500 + 1 drink (¥700 per the venue's note) / door ¥3,800 + 1 drink → **¥4,200 / ¥8,400 for two** advance. Source: [urbanguild.net/events](http://urbanguild.net/events/). **Booking:** the page lists no external seller for this date; reserve by the venue's contact or pay at the door. **Collision:** Christian McBride at Billboard Osaka, 20:30.
 {small} Same duo plays environment 0g, Osaka, Fri 25 19:30, ¥3,000+1D — but Fri 25 is Takanaka in Hikone.
 {/card}
@@ -495,7 +495,7 @@ Kamigamo {v:VERIFIED} by the shrine's own annual page (仲秋, 16:30, open entry
 
 {card} Tue 22 · evening · ズボンズ Zoobombs "UMA vs 新世界 tour" final one-man, guest Sister Paul — 新宿 red cloth
 {www} What: ズボンズ "UMA vs 新世界 tour" final one-man, guest Sister Paul. | When: Tue 22 · open 18:00, start 18:30 (against the game). | Where: 新宿 red cloth, Tokyo. | Cost: ¥4,000 adv / ¥4,500 door + drink.
-{meta} red cloth 紅布 (Shinjuku). Tokyo. {t2:Tier 2} (they toured the US two decades ago; not since) · {v:VERIFIED}
+{meta} red cloth 紅布 (Shinjuku). Tokyo. {t2:Tier 2} (their US touring was around 2000) · {v:VERIFIED}
 18:00/18:30; 前売 ¥4,000 / 当日 ¥4,500 (D別) → about ¥4,600 / ¥9,200. Source: [redcloth.sputniklab.com/schedule](https://redcloth.sputniklab.com/schedule/). A tour-final is a hook; it collides with the 18:00 Swallows game like everything else that Tuesday night.
 {/card}
 
@@ -608,7 +608,7 @@ Listed 19:30–21:30 on [dommune.com](https://www.dommune.com/) (the only 19–2
 {card} Sat 19 · 19:30 · The Blend — 峰厚介 (ts, b. 1944), 中村恵介 (tp), Hakuei Kim (p), 本田珠也 (ds), Shinjuku Pit Inn
 {www} What: The Blend: 峰厚介 (ts), 中村恵介 (tp), Hakuei Kim (p), 本田珠也 (ds). | When: Sat 19 · 19:30. | Where: Shinjuku Pit Inn, Tokyo. | Cost: ¥3,500 incl. one drink.
 {meta} ¥3,500 incl. one drink · reservation via the venue page or door · {t2:Tier 2} · {v:VERIFIED} [pit-inn.com/schedule](https://pit-inn.com/schedule/)
-Kosuke Mine has played tenor in Tokyo since the 1960s and has not played the US in decades. You land at 15:00, so the full show is on, with the 金王八幡宮 festival stage in Shibuya (koto at 18:00) before it. Competes with Body & Soul's closed-list Saturday and Oiwake's 21:00 show.
+Kosuke Mine has played tenor in Tokyo since the 1960s and works the Tokyo rooms week in, week out. You land at 15:00, so the full show is on, with the 金王八幡宮 festival stage in Shibuya (koto at 18:00) before it. Competes with Body & Soul's closed-list Saturday and Oiwake's 21:00 show.
 {/card}
 {card} Mon 21 · 19:30 · Marty Holoubek Trio III — 石橋英子 (p, fl, effects), 山本達久 (ds, electronics), Holoubek (b), Shinjuku Pit Inn
 {www} What: Marty Holoubek Trio III: 石橋英子 (p, fl, effects), 山本達久 (ds, electronics), Holoubek (b). | When: Mon 21 · 19:30. | Where: Shinjuku Pit Inn, Tokyo. | Cost: ¥4,400 adv / ¥4,950 door, drink included.
@@ -647,7 +647,7 @@ Three short sets by resident Kansai players every night for ¥2,200 in Japan's f
 - **Blues Alley Japan:** Mon–Tue 21–22 Soul Searchin' Stevie Wonder session; its Sat 19 未唯mie 50th-anniversary production is at Tokyo International Forum Hall C, 17:30 (¥7,000–80,000), landing day. [bluesalley.co.jp](https://www.bluesalley.co.jp/).
 - **Billboard Live Tokyo:** nothing Japan-only 19–25 (マハラージャン, YOUR SONG IS GOOD, MUUDO, XinU, 石橋凌, Crystal Kay). [billboard-live.com/tokyo](https://www.billboard-live.com/tokyo/schedules?month=2026-09-01).
 - **Sometime** (Kichijōji): Sat 19 Lew Tabackin (NY-based) {t3:Tier 3}. **Yokohama:** Dolphy Sun 20 Grace Mahya & 丈青 duo 19:00 ¥4,500; Airegin (1969, the free-jazz room; its domain airegin.jp is now a parked redirect, the club is alive) Sun 20 16:00 谷川賢作, Tue 22 木村由 / さがゆき / 長沢哲 improv {s:SECONDARY} (Jazz Shiryōkan).
-- **Agency sweep, domestic legends:** 高中正義 Hikone Fri 25 17:30/18:30 ¥11,000 {v:VERIFIED} ([takanaka.com](https://takanaka.com/live/)) — Tier 2, never plays the US; booked on 6 Sept, overall #1 in section 0; CASIOPEA played Los Angeles on 13 Sept (so no longer Japan-only) and has nothing in the window; T-SQUARE nothing; 渡辺貞夫 next dates December; 山下洋輔 6 Sept only; 日野皓正 6 Sept only; 渋さ知らズ 5 Sept only; 森山威男 2 Days is a Pit Inn pickup for a later month (the September page shows TReS on 25–26).
+- **Agency sweep, domestic legends:** 高中正義 Hikone Fri 25 17:30/18:30 ¥11,000 {v:VERIFIED} ([takanaka.com](https://takanaka.com/live/)) — Tier 3 (SUPER TAKANAKA WORLD LIVE 2026 sold out Brooklyn Paramount on 4–5 April, after the Wiltern in March 2025); booked on 6 Sept, first in section 0 because it is booked; CASIOPEA played Los Angeles on 13 Sept (so no longer Japan-only) and has nothing in the window; T-SQUARE nothing; 渡辺貞夫 next dates December; 山下洋輔 6 Sept only; 日野皓正 6 Sept only; 渋さ知らズ 5 Sept only; 森山威男 2 Days is a Pit Inn pickup for a later month (the September page shows TReS on 25–26).
 {/ul}
 {/card}
 {/cards}
@@ -714,7 +714,7 @@ Reachable from a 15:00 landing. Advance by e+ or by email to `info@evilegend13.c
 {/card}
 {card flag} 高中正義 SUPER TAKANAKA LIVE 2026-2027, Hikone, Fri 25 Sept 18:30 — booked on 6 Sept, now overall #1
 {www} What: 高中正義 SUPER TAKANAKA LIVE 2026-2027. | When: Fri 25 · open 17:30, start 18:30. | Where: ひこね市文化プラザ, Hikone (JR 50 min from Kyoto). | Cost: ¥11,000 all reserved, tickets held.
-^Bought 6 Sept (the hall's ticket centre is 0749-27-5200; Lawson/Pia/e+ also sold it). {v:VERIFIED} ([takanaka.com/live](https://takanaka.com/live/)). He never tours the US. This conflicts with the moon rites; the full entry is first in section 0.
+^Bought 6 Sept (the hall's ticket centre is 0749-27-5200; Lawson/Pia/e+ also sold it). {v:VERIFIED} ([takanaka.com/live](https://takanaka.com/live/)). He sold out Brooklyn Paramount on 4–5 April 2026 on a world tour (London, Chicago, San Francisco, Los Angeles, Sydney), so on the test he is Tier 3; it leads section 0 because it is booked. This conflicts with the moon rites; the full entry is first in section 0.
 {/card}
 {card flag} The Miles Electric Band (Vince Wilburn Jr.), Blue Note Tokyo, 21–23 Sept, and Christian McBride, Billboard Osaka, Thu 24
 {www} What: The Miles Electric Band; Christian McBride & Ursa Major. | When: Mon 21 – Wed 23 (Miles) · Thu 24 20:30 (McBride). | Where: Blue Note Tokyo, Aoyama · Billboard Live Osaka, Umeda. | Cost: Tier 3, both seen at home.
@@ -873,7 +873,7 @@ Thursday, if you drop Billboard: UrBANGUILD (Kiyamachi) Uchihashi/Ligeti 19:30, 
 | .day Eve | Nara 采女祭 例祭 (rite 18:00, shinobue 18:45, 管絃船 with 南都楽所 gagaku 19:00) | Sarusawa pond | 17:00–19:30 | free | {v:V} dates | ✕ Takanaka |
 | .day Eve | 磔磔 古田光郷 69th 18:30 ¥3,000; 0g 内橋和久 & Ligeti 19:30 ¥3,000+1D; 拾得 角打ちシスターズ; nano 30sec. 19:00; UrBANGUILD 雀斑 (TW); Metro drag night; DRUM TAO 19:00/21:00 | Kansai | — | — | {v:V} | ✕ Takanaka |
 | .day Missed | 国立能楽堂 特別公演 野村万作/大槻文藏 17:00 (Tokyo); Tsukiji organ 12:10 (Tokyo); 大友良英 Polaris (Tokyo); 下村陽子 39th orchestra (Tokyo); Marz UNIVERSE 19:00 (Tokyo) | Tokyo | — | — | {v:V} | — |
-| .day Eve · jazz | **高中正義 SUPER TAKANAKA LIVE, ひこね市文化プラザ** (Tier 2, never in the US) | Hikone (JR 50 min) | 17:30 / 18:30 | 11,000 | {v:V} booked | the fixed point; leave Arashiyama by 15:00 |
+| .day Eve · jazz | **高中正義 SUPER TAKANAKA LIVE, ひこね市文化プラザ** (Tier 3: Brooklyn Paramount, April 2026) | Hikone (JR 50 min) | 17:30 / 18:30 | 11,000 | {v:V} booked | the fixed point; leave Arashiyama by 15:00 |
 | .day Eve · jazz | Over Seas (Osaka) 寺井尚之 & 東ともみ duo 19:00; GALLON Ryu Miho & Eric Lee ¥4,500; RAG TOMPEI 18:30; Sone 新井雅代 18:30; Big Apple (Kobe) うむうむ。 19:30; Pit Inn TReS (Tokyo); Body & Soul 井上陽介 (Tokyo, 予約〆切); Blue Note Ulysses Owens (Tokyo); Bonds Rosary closed | Kansai / Tokyo | — | — | {v:V}/{s:S} | ✕ Takanaka |
 {/table}
 
