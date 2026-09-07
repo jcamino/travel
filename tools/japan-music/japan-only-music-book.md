@@ -394,8 +394,8 @@ Kamigamo {v:VERIFIED} by the shrine's own annual page (仲秋, 16:30, open entry
 - **Free rites:** Yasaka, Shimogamo, Kamigamo, Sumiyoshi, Nara, Yoyogi-Hachiman, temple 晨朝 — nothing to book. Daikaku-ji ¥700 at the gate.
 {/ol}
 
-## 4 · Reference: walk-in rooms
-{legend} Rooms already named above, gathered for lookup: what each one is, where it is, when it is open. None needs booking.
+## 4 · Listening rooms: meikyoku kissa and jazz kissa
+{legend} Fifteen rooms where the record collection is the act. Nothing to book: what each one is, where it is, when it is open. The oldest here opened in 1926.
 {table}
 ^| What (room) | Where | When (hours / closed) | Charge | Talking | Status | Source |
 | **名曲喫茶ライオン Lion** (1926) | Dōgenzaka 2-19-13, 10 min from base | **13:00–20:00** (LO 19:30), open every day (New Year, mid-Aug holidays); 定時コンサート **15:00 and 19:00** (~1 h), requests otherwise, one per group | drinks only; coffee ~¥550 {s:S} | no loud talk; no photos/video; no outside food; keyboards silent | {v:V} | [lion.main.jp/shop](https://lion.main.jp/shop/shop.htm), [request](https://lion.main.jp/request/request.htm), [rules](https://lion.main.jp/readme/readme.htm) |
@@ -439,6 +439,24 @@ Kamigamo {v:VERIFIED} by the shrine's own annual page (仲秋, 16:30, open entry
 | daily | Gion Corner | Yasaka Hall | 18:00 / 19:00 | 3,300–6,600 | koto, gagaku, kyōgen, bunraku-or-noh excerpts | online / door | {v:V} {smp:SAMPLER} |
 | Sept | Kongō (13th reopening; 20th postponed; 27th 宇髙青蘭能之会), Ōtsuki (5, 12, 16, 18–19 万作の会, 26–27), Yamamoto (tea-ceremony days 22–23 only), Cerulean Tower (next 12 Oct), Kita (Tokyo: 24th lecture, 26th 青年能), Yarai (13th 九皐会), Tessenkai (27th 青山能) | — | — | — | — | — | {v:V} none in window |
 {/table}
+
+## 6 · Esoterica
+{legend} The strange end of the week, gathered from the day tables so you can see it in one place. Each line says which day it is on; the full row, with the source link, is in that day.
+{ul}
+- **78s in a 1979 listening cafe.** Violon SPレコードコンサート #289, 昭和 hits on shellac, Sun 20 at 18:00, ¥1,500, Asagaya. Twenty-five seats and you reserve by phone.
+- **晨朝.** Thu 24: Nishi Honganji at 06:00, Higashi Honganji 07:00, Chion-in 07:00, all free, all walk-in. Also Tsukiji Honganji Sun 20 at 07:00 and Kyoto again Fri 25.
+- **The daxophone.** UrBANGUILD, Lukas Ligeti with 内橋和久 and 山内弘太, Thu 24 at 19:30, ¥4,200, upstairs on Kiyamachi.
+- **environment 0g.** Christian Kobi with 松本一哉 and 江崎將史, Wed 23 at 19:00, ¥3,100, Minami-Horie in Osaka.
+- **外.** D.J.Fulltono for three hours, Wed 23 from 18:00, ¥1,500, Kiyamachi, walk in.
+- **拾得.** A 1970s Kyoto folk room in a converted sake warehouse: The HillAndon and The Nacometers, Wed 23 at 18:30, ¥3,500, Kamigyō.
+- **居酒屋ろくだん.** Tsugaru shamisen played across sixteen seats in an Osaka izakaya, Thu 24, 17:00 to 23:00, about ¥4,000, Nipponbashi. Phone to check the set times.
+- **U.F.O. CLUB.** Higashi-Kōenji psychedelia, Mon 21 at 19:00, ¥3,000 plus a drink, and イボイボ大全 with フーテン族 Tue 22 at 19:00. Phone or door only, no online sale.
+- **20000V.** The hardcore basement, also Higashi-Kōenji: Sat 19, then SLIGHT SLAPPERS Mon 21 at 18:30 for ¥3,600, and あんどー単品's 焼肉ワンマン from 15:00 on Tue 22 for ¥2,000 with a drink. Cash.
+- **MOGRA.** The Akihabara anime-and-club-music room, day party Mon 21 from 14:00 to 20:00. Cash, and they want physical photo ID.
+- **Ftarri.** The Kanda experimental record shop with a room at the back: Kobi and Korber with 池田若菜, Mon 21 at 20:00. Reserve by email.
+- **BALZAC 完全復活.** A one-off for 新宿LOFT's 50th, Sat 19, doors 18:00, ¥4,000 plus a drink, Kabukichō.
+{/ul}
+
 {legend} Read 5–6 Sept 2026 on each organiser's own page; Fushimi candle noh and the 15:00 landing revised 7 Sept.
 
 ## Per-day tables

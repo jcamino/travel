@@ -115,6 +115,9 @@ JS = r"""
   }
 
   var SKIP = {SCRIPT:1, STYLE:1, TEXTAREA:1, NOSCRIPT:1};
+  // Headings are labels. A glossary bracket inside one turns
+  // "jazz kissa" into a sentence, so they are marked nowhere.
+  var NOGLOSS = {H1:1, H2:1, H3:1, H4:1, H5:1, H6:1, SUMMARY:1};
   function wrap(root){
     var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
       acceptNode: function(n){
@@ -183,7 +186,7 @@ JS = r"""
           if (!n.nodeValue || !/[A-Za-z]/.test(n.nodeValue)) return NodeFilter.FILTER_REJECT;
           var p = n.parentNode;
           while (p && p !== block){
-            if (SKIP[p.nodeName] || p.nodeName === 'BUTTON'
+            if (SKIP[p.nodeName] || NOGLOSS[p.nodeName] || p.nodeName === 'BUTTON'
                 || (p.classList && (p.classList.contains('i18n')
                                  || p.classList.contains('ja')
                                  || p.classList.contains('en')
