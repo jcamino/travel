@@ -273,6 +273,45 @@ for k in REST_KEYS:
         '<div class="chunkbody">%s</div></details>'
         % (html.escape(k, quote=True), t, SEC[k]['rest']))
 
+# Kaneda's bike, side profile, facing right; the flip is done in CSS.
+# viewBox 64x34, ground at y=33, so both wheels rest on the progress line.
+MOTO_SVG = r"""<div class="moto" id="moto" aria-hidden="true">
+<svg class="moto-body" viewBox="0 0 64 34" width="24" height="13" fill="none" focusable="false">
+<defs><linearGradient id="mthrust" x1="0" y1="0" x2="1" y2="0">
+<stop offset="0" stop-color="#00BFD6" stop-opacity="0"/>
+<stop offset=".55" stop-color="#00BFD6" stop-opacity=".3"/>
+<stop offset="1" stop-color="#DFFBFF" stop-opacity=".85"/></linearGradient></defs>
+<ellipse cx="33" cy="32.5" rx="25" ry="2" fill="#000" opacity=".55"/>
+<path class="moto-thrust" d="M-16 20.4 6 19.2 6 23.2-16 21.8Z" fill="url(#mthrust)"/>
+<g>
+<circle cx="15" cy="27" r="6" fill="#0A0B0D" stroke="#2E3238"/>
+<g class="spoke"><path d="M15 21.8v10.4M9.8 27h10.4" stroke="var(--cyan)" stroke-width="1.4" opacity=".5"/></g>
+<circle cx="15" cy="27" r="2.3" fill="#16181C" stroke="var(--cyan)" opacity=".9"/>
+</g>
+<g>
+<circle cx="50" cy="27.5" r="5.5" fill="#0A0B0D" stroke="#2E3238"/>
+<g class="spoke"><path d="M50 22.7v9.6M45.2 27.5h9.6" stroke="var(--cyan)" stroke-width="1.3" opacity=".5"/></g>
+<circle cx="50" cy="27.5" r="2.1" fill="#16181C" stroke="var(--cyan)" opacity=".9"/>
+</g>
+<path d="M20 23.4 45 22.8 44.7 25 20 25.4Z" fill="#4A0818"/>
+<path d="M5.4 22.4C4.6 17.2 6.2 13 10.4 11.3 13.8 10 18 9.9 20.8 11.2c2.7 1.3 3.9 3.5 4.3 6l9.1.8c4.8-1.9 9.9-2.3 14.7-1.2 6 1.4 10.8 2.9 12.9 4.1 1 .6.4 1.6-1.5 1.7l-15.3.4c-6.8 1.3-17.4 1.6-26 1.4-6.5-.15-11.4 0-13.6-2Z" fill="var(--red)"/>
+<path d="M43.5 16c5.4-.5 11.9 1.3 18.3 4.7.9.6.5 1.8-1.5 1.9l-13.1.4c-.4-2.8-1.7-5.2-3.7-7Z" fill="#AF1338"/>
+<path d="M10.4 11.3c3.4-1.3 7.6-1.4 10.4-.1" stroke="var(--red-t)" stroke-width="1" opacity=".7" fill="none"/>
+<rect x="7" y="15.2" width="6.4" height="2.9" rx="1.45" fill="var(--plate)" opacity=".92"/>
+<path d="M10.2 15.2h1.75a1.45 1.45 0 0 1 0 2.9H10.2Z" fill="var(--cyan)"/>
+<path d="M35.8 16.1 39.4 17.1" stroke="#16181C" stroke-width="2.3" stroke-linecap="round"/>
+<g stroke="var(--plate)" stroke-linecap="round">
+<path d="M16.2 13.2 19.6 9.8 25 6.6" stroke-width="4.1"/>
+<path d="M16.8 12.8 22.2 19" stroke-width="2.7"/>
+<path d="M25 7.2 37.4 16" stroke-width="2.1"/>
+</g>
+<circle cx="28.4" cy="4.3" r="2.85" fill="var(--plate)"/>
+<path d="M27.2 3.7 30.4 3.2" stroke="var(--cyan)" stroke-width="1.5" stroke-linecap="round"/>
+<circle cx="60.6" cy="21.3" r="3" fill="var(--cyan)" opacity=".22"/>
+<circle cx="60.6" cy="21.3" r="1.35" fill="#DFFBFF"/>
+</svg>
+</div>"""
+
 CSS = r"""
 :root{
   --black:#070809; --plate:#E9E7E1; --red:#E0234B; --red-t:#FF5C7A;
@@ -669,9 +708,42 @@ td.day{white-space:nowrap;font-family:"Big Shoulders Display",sans-serif;
 /* No position rule for .rail here: it is already position:sticky, which is a
    positioned value, so it contains the absolutely positioned progress line.
    Re-declaring position:relative below the original rule would kill sticky. */
+/* The gradient is sized to the viewport, not to the bar, so the trail is
+   *revealed* cyan-first and warms to red as the page runs out. Sized to the
+   bar it would rescale, and the tip would be red at every scroll position --
+   which is exactly where the red bike sits. */
 .scroll-progress{position:absolute;left:0;bottom:-1px;height:2px;width:0%;
   background:linear-gradient(90deg,var(--cyan),var(--red));
+  background-size:100vw 100%;
   transition:width .08s linear;pointer-events:none;z-index:1}
+
+/* --------------------------------------------------- Kaneda, on the trail */
+/* Decorative. Rides the leading edge of the progress line and turns around
+   when the scroll direction flips. Same containing block as .scroll-progress
+   (.rail is position:sticky) -- do not add position:relative to .rail. */
+/* 24x13 is the biggest he can be and still clear the film strip's bottom
+   line of lamp text ("WALK-UP", "SPOKEN FOR") at the desktop --rail height.
+   bottom:0 seats the wheels in the 2px line rather than perching above it. */
+.moto{position:absolute;left:0;bottom:0;width:24px;height:13px;
+  pointer-events:none;z-index:2;will-change:transform}
+.moto-body{display:block;width:100%;height:100%;overflow:visible;
+  transform:scaleX(var(--dir,1));transform-origin:50% 96%;
+  transition:transform .22s cubic-bezier(.34,1.4,.64,1)}
+/* Nose up on the fast burst. scaleX(-1) mirrors the rotation with it, so the
+   nose still lifts when he is pointed the other way. */
+.moto.fast .moto-body{transform:scaleX(var(--dir,1)) rotate(-5deg)}
+.moto-thrust{opacity:0;transition:opacity .18s ease}
+.moto.moving .moto-thrust{opacity:1}
+.moto .spoke{transform-box:fill-box;transform-origin:center;
+  animation:motospin .9s linear infinite;animation-play-state:paused}
+.moto.moving .spoke{animation-play-state:running}
+.moto.fast .spoke{animation-duration:.28s}
+@keyframes motospin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){
+  .moto-body{transition:none}
+  .moto.fast .moto-body{transform:scaleX(var(--dir,1))}
+  .moto .spoke{animation:none}
+  .moto-thrust{display:none}}
 
 /* ------------------------------------------------ filter bar (from 3-8) */
 .filter-bar{margin:2.2rem 0 1.8rem;padding:1.1rem 1.2rem;
@@ -788,14 +860,67 @@ JS = r"""
   });
 
   // ------------------------------------------ scroll progress (from 3-8)
+  // ...and the bike that draws it. One rAF-throttled writer for both, so the
+  // trail and its rider can never disagree about where the tip is.
   var progressEl=document.getElementById('scroll-progress');
   if(progressEl){
-    window.addEventListener('scroll',function(){
+    var moto=document.getElementById('moto');
+    var rail=progressEl.parentNode;
+    var lastY=window.pageYOffset||document.documentElement.scrollTop;
+    var facing=1, queued=false, idleT=null, railW=0, motoW=0;
+
+    function measure(){
+      railW=rail.clientWidth;
+      motoW=moto?moto.offsetWidth:0;
+    }
+
+    function paint(){
+      queued=false;
       var sTop=window.pageYOffset||document.documentElement.scrollTop;
       var sHeight=document.documentElement.scrollHeight-document.documentElement.clientHeight;
       var pct=sHeight>0?(sTop/sHeight)*100:0;
-      progressEl.style.width=Math.min(100,Math.max(0,pct))+'%';
+      pct=Math.min(100,Math.max(0,pct));
+      progressEl.style.width=pct+'%';
+      if(moto&&railW>motoW){
+        // Centred on the tip, then clamped, so he is flush left at the top of
+        // the page and flush right at the bottom and never rides off the rail.
+        var x=Math.max(0,Math.min(railW-motoW,(pct/100)*railW-motoW/2));
+        moto.style.transform='translate3d('+x.toFixed(1)+'px,0,0)';
+      }
+    }
+
+    function coast(){
+      if(moto) moto.classList.remove('moving','fast');
+    }
+
+    window.addEventListener('scroll',function(){
+      var y=window.pageYOffset||document.documentElement.scrollTop;
+      var dy=y-lastY;
+      // 1.5px of hysteresis: a trackpad's jitter must not spin him round.
+      if(Math.abs(dy)>1.5){
+        var d=dy>0?1:-1;
+        if(d!==facing){
+          facing=d;
+          if(moto) moto.style.setProperty('--dir',facing);
+        }
+        if(moto){
+          moto.classList.add('moving');
+          moto.classList.toggle('fast',Math.abs(dy)>34);
+        }
+        lastY=y;
+        clearTimeout(idleT);
+        idleT=setTimeout(coast,420);
+      }
+      if(!queued){queued=true;requestAnimationFrame(paint);}
     }, {passive:true});
+
+    window.addEventListener('resize',function(){
+      measure();
+      if(!queued){queued=true;requestAnimationFrame(paint);}
+    }, {passive:true});
+
+    measure();
+    paint();
   }
 
   // --------------------------------------------- live filter (from 3-8)
@@ -939,11 +1064,12 @@ out = f"""<!doctype html>
 </div>
 </div>
 <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+{MOTO_SVG}
 </nav>
 <header class="hero"><div class="inner">
 {STANDFIRST}
 <p class="jp1">\u65e5\u672c\u9650\u5b9a</p>
-<details class="intro"><summary>The rules, and the two facts that shape the week</summary>
+<details class="intro"><summary>Page context</summary>
 <div class="introbody">{INTRO_REST}</div></details>
 </div></header>
 <main class="wrap">
