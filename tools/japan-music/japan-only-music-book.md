@@ -1,6 +1,6 @@
 ---
 {
-  "title": "Silver Week Japan-Only Book — Tokyo 19–22 / Kansai 23–25 Sept 2026",
+  "title": "Japan Music Schedule — Tokyo 19–22 / Kansai 23–25 Sept 2026",
   "days": [
     {
       "day": "Sat 19",

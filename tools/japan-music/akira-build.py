@@ -1130,3 +1130,10 @@ DST.write_text(out, encoding="utf-8", newline="\n")
 print("wrote", DST, len(out), "bytes")
 print("five plates:", out.count('class="plate'), "| days:", out.count('class="day"'),
       "| rest chunks:", len(REST))
+
+# The English toggle is injected here rather than woven into the template so
+# the page above stays exactly as content_check.py expects to find it: the
+# injection only appends a <style> and a <script>, and the swap happens in the
+# browser, so no Japanese text in the document is moved or wrapped on disk.
+import i18n  # noqa: E402
+i18n.inject(DST)
