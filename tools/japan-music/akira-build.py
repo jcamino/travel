@@ -240,8 +240,8 @@ body{margin:0;background:var(--black);color:var(--plate);
 p{margin:0 0 .8em}
 h1,h2,h3,h4{margin:0}
 a{color:var(--cyan);text-decoration-thickness:1px;text-underline-offset:2px;
-  transition:color .15s ease}
-a:hover{color:var(--plate)}
+  transition:color .15s ease, text-shadow .15s ease}
+a:hover{color:var(--plate);text-shadow:0 0 8px rgba(0,191,214,.5)}
 .disp,h1,h2,.secno,.dayhead,.cal-d,.pl-date,.pl-times,.pl-y,.hud,.rank,
 .tblhead,th,.chunk>summary,.more>summary,.table>summary,.cal-city,.cal-cost,
 .hud-bar,.filter-bar,.cal-bar,.btt,.toast{
@@ -249,10 +249,10 @@ a:hover{color:var(--plate)}
 :where(a,summary,button,input,[tabindex]):focus-visible{outline:2px solid var(--cyan);
   outline-offset:3px}
 .skip{position:fixed;left:8px;top:-4rem;z-index:120;background:var(--red);
-  color:#fff;padding:.5rem .9rem;text-decoration:none;transition:top .12s;
+  color:#fff;padding:.5rem .9rem;text-decoration:none;transition:top .12s, box-shadow .12s;
   font-family:"Big Shoulders Display",sans-serif;letter-spacing:.1em}
 .skip::before{content:"Skip to the top five"}
-.skip:focus{top:8px}
+.skip:focus{top:8px;box-shadow:0 0 16px rgba(224,35,75,.6)}
 .wrap{max-width:74rem;margin:0 auto;padding:0 20px 5rem}
 .vh{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;
   clip-path:inset(50%);white-space:nowrap}
@@ -446,7 +446,8 @@ h1 .ink2{position:absolute;left:0;top:0;color:var(--red);
 .intro>summary,.calnote>summary{font-family:"Big Shoulders Display",sans-serif;
   font-weight:600;letter-spacing:.14em;text-transform:uppercase;font-size:.85rem;
   color:var(--cyan);cursor:pointer;list-style:none;padding:.55rem 0;
-  border-top:1px solid var(--line);max-width:36rem}
+  border-top:1px solid var(--line);max-width:36rem;transition:color .2s ease, text-shadow .2s ease}
+.intro>summary:hover,.calnote>summary:hover{color:var(--plate);text-shadow:0 0 8px rgba(0,191,214,.3)}
 .intro>summary::-webkit-details-marker,
 .calnote>summary::-webkit-details-marker{display:none}
 .intro>summary::before,.calnote>summary::before{content:"+ ";color:var(--red)}
@@ -501,7 +502,7 @@ h2{font-family:"Big Shoulders Display",sans-serif;font-weight:900;
 .plate.invert .www b,.plate.invert .t2{color:var(--cyan-d)}
 .plate.invert .t2{border-color:var(--cyan-d)}
 .plate.invert a{color:var(--cyan-d)}
-.plate.invert a:hover{color:var(--black)}
+.plate.invert a:hover{color:var(--black);text-shadow:none}
 .plate.invert .v,.plate.invert .s,.plate.invert .t3{color:#55575B}
 .rank{position:absolute;right:0;top:0;margin:0;z-index:2}
 .rank span{display:block;background:var(--red);color:#fff;
@@ -655,7 +656,9 @@ h2{font-family:"Big Shoulders Display",sans-serif;font-weight:900;
 .more>summary,.table>summary{font-family:"Big Shoulders Display",sans-serif;
   font-weight:600;letter-spacing:.14em;text-transform:uppercase;
   font-size:.85rem;color:var(--cyan);cursor:pointer;list-style:none;
-  border-top:1px solid var(--line);padding:.5rem 0 0;touch-action:manipulation}
+  border-top:1px solid var(--line);padding:.5rem 0 0;touch-action:manipulation;transition:color .2s ease, text-shadow .2s ease}
+.more>summary:hover,.table>summary:hover{color:var(--plate);text-shadow:0 0 8px rgba(0,191,214,.3)}
+.plate.invert .more>summary:hover{color:var(--black);text-shadow:none}
 .more>summary::-webkit-details-marker,
 .table>summary::-webkit-details-marker{display:none}
 .more>summary::before,.table>summary::before{content:"+ ";color:var(--red)}
@@ -672,7 +675,8 @@ h2{font-family:"Big Shoulders Display",sans-serif;font-weight:900;
 .chunk{border-bottom:1px solid var(--line)}
 .chunk>summary{font-weight:800;text-transform:uppercase;letter-spacing:.03em;
   font-size:1.05rem;cursor:pointer;list-style:none;padding:.75rem 0;
-  display:flex;gap:.7rem;align-items:baseline;touch-action:manipulation}
+  display:flex;gap:.7rem;align-items:baseline;touch-action:manipulation;transition:color .2s ease, text-shadow .2s ease}
+.chunk>summary:hover{color:var(--cyan);text-shadow:0 0 8px rgba(0,191,214,.3)}
 .chunk>summary::-webkit-details-marker{display:none}
 .chunk>summary::after{content:"+";margin-left:auto;color:var(--red)}
 .chunk[open]>summary::after{content:"\2212"}
