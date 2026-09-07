@@ -1,45 +1,217 @@
 {
- "noh": "Japan's oldest surviving theatre, going back to the 1300s. Masked, very slow, chanted rather than spoken, with a small chorus and a drum-and-flute group on a bare cedar stage. A play runs 60 to 90 minutes and rewards patience more than plot; most Japanese audiences read the story first and so should you.",
- "kyogen": "The comic plays performed between noh pieces on the same stage. Spoken, unmasked, broad and short, usually about 15 minutes: servants outwitting masters, drunks, bad poets. They exist to break the intensity of the noh.",
- "bunraku": "Puppet theatre written for adults, from Osaka. Three visible operators work one half-life-size puppet while a chanter voices every character and a shamisen player drives the pace. The operators wear black and you stop seeing them within about ten minutes.",
- "kabuki": "Popular theatre from around 1600: stylised, loud, spectacular, all-male, with trap doors, revolving stages and held poses the audience shouts at. Individual acts are self-contained, which is why a single-act ticket makes sense.",
- "makumi": "The single-act ticket for the Kabuki-za's fourth-floor gallery, sold from noon the day before and at the door on the day. Roughly 900 to 2,800 yen against 15,000-plus for a full-day seat downstairs. You see one act, about 60 to 90 minutes, from the very top of the house.",
- "gidayu": "The chanted narration of bunraku and some kabuki. One performer does the narration and every character's voice, driven by a heavy, low-tuned shamisen. Closer to opera recitative than to speech, and physically punishing to perform.",
- "tayu": "The chanter in bunraku, who speaks all the parts and the narration alone.",
- "hayashi": "The instrumental ensemble of noh and kabuki: a bamboo flute plus two or three hand drums, sometimes a stick drum. A full hayashi means the complete group rather than a reduced one, so a bigger and louder performance.",
- "min'yo": "Japanese regional folk song. Work songs, fishing and packhorse songs, festival songs, each tied to a particular province and sung in a hard, forward, deliberately un-classical voice, usually over shamisen. Still a living competition tradition, not a revival.",
- "Tsugaru": "Tsugaru shamisen is the fast, percussive, improvising style from the far north of Honshu. Struck hard with a big plectrum, full of tremolo and showing off; much closer to blues guitar than to court music, and the easiest shamisen style to enjoy with no preparation.",
- "shamisen": "A three-string fretless lute with a skin-covered box body, played with a large plectrum. Since the 1600s it has been the backbone of almost all Japanese theatre and popular music.",
- "shakuhachi": "An end-blown bamboo flute, originally used for Zen meditation rather than performance. Breathy and vocal, able to go from almost nothing to very loud; the bending and smearing of pitch is the point, not a flaw.",
- "koto": "A long floor-standing zither, thirteen silk or nylon strings over movable bridges, plucked with picks worn on three fingers. To Western ears it is the default sound of classical Japan.",
- "wadaiko": "Japanese drum-ensemble playing on big barrel drums struck with heavy sticks. Physical, choreographed and extremely loud.",
- "taiko": "Japanese drum. Also the ensemble style built on them, which is loud and physical.",
- "gagaku": "The court music of the imperial household, brought from Tang China and Korea and performed continuously for over 1,200 years, which makes it the oldest orchestral music still played anywhere. Slow, floating, with sustained mouth-organ chords and no steady pulse to hold on to.",
- "bugaku": "The masked court dance performed to gagaku, with the same 1,200-year unbroken line.",
- "kagura": "Shinto ritual dance and music performed at a shrine for the deity rather than for a paying audience. Usually on a dedicated open-sided stage in the precinct, and usually free to stand and watch.",
- "mikoshi": "A portable shrine: a heavy gilded palanquin carried at a run by teams of shouting bearers, to move the deity around its parish during a festival. The shouting and the lurching are deliberate.",
- "jazz kissa": "A listening bar built around a serious record collection and a large valve-and-horn system. You buy a drink, you do not talk, and the owner chooses the records. A postwar Japanese institution that barely exists anywhere else.",
- "meikyoku kissa": "The same idea as a jazz kissa but for classical music, the name meaning famous-piece cafe. Some have run since the 1920s and several enforce silence strictly.",
- "kissa": "Short for kissaten, a Japanese coffee house. Older, quieter and far more owner-driven than a modern cafe.",
- "shrine": "A Shinto site, marked by a torii gate. Shrines hold festivals, processions and kagura. Distinct from a temple, which is Buddhist.",
- "temple": "A Buddhist site. Temples hold chanted services, some open to anyone who walks in at dawn. Distinct from a shrine, which is Shinto.",
- "jinjo": "The dawn Buddhist service, chanted by the monks around six in the morning. Usually free and open to anyone who walks in.",
- "moon viewing": "Autumn moon-viewing rites. Shrines and temples stage music, dance and boat rides for the harvest moon, and in Kyoto several of them fall on the same night, so they compete with each other.",
- "Silver Week": "The cluster of Japanese public holidays in late September. It means crowds, full trains, and venues running holiday schedules.",
- "city pop": "The polished, groove-driven Japanese pop of roughly 1978 to 1986, made for a newly rich urban audience and rediscovered worldwide through streaming and YouTube.",
- "enka": "Sentimental Japanese ballad singing, heavy vibrato, themes of loss and the sea. Socially it occupies about the same place as country music does in the States.",
- "daxophone": "An invented instrument: a single wooden blade, bowed or struck, that shrieks and talks. Perhaps a few dozen players in the world.",
- "free improvisation": "Music made up in real time with no tune, key or chord sequence agreed beforehand.",
- "hall tour": "The standard Japanese touring circuit of mid-size civic concert halls. All seated, all reserved, and usually the only way a major domestic act tours.",
- "one-man": "Japanese usage for a solo headline show: one act, no support bill.",
- "all reserved": "Every seat is assigned. No standing area, no general admission, and the seat number is fixed when you buy.",
- "drink charge": "Most small Japanese venues add a compulsory drink fee, usually 500 to 700 yen, on top of the ticket. Paid in cash at the door and not included in advertised prices.",
- "organ trio": "Hammond organ, drums and a horn or guitar. The classic soul-jazz bar format, where the organ's foot pedals play the bass.",
- "residency": "A run of several nights at one venue under the same bandleader, with the supporting cast changing each night.",
- "izakaya": "A Japanese pub: small plates, drinks, loud, and at the cheap end no reservation culture at all.",
- "live house": "The Japanese term for a small music venue, typically 100 to 500 capacity, usually standing, usually with a drink charge.",
- "torchlight": "Noh performed outdoors at night by firelight, which is a summer and autumn tradition rather than a tourist invention.",
- "candlelit": "The stage lit by candle rather than electric light, which is done once a year at a few noh stages. It changes what you can see of the mask.",
- "78s": "Shellac 78rpm records, pre-1950, about three minutes a side. Played on period equipment, one side at a time, with the surface noise left in.",
- "gallery": "The cheapest tier of a Japanese theatre, at the top of the house. At the Kabuki-za it is the fourth floor and it is sold separately as a single-act ticket."
+ "noh": {
+  "short": "masked medieval theatre, very slow",
+  "inline": true,
+  "long": "Japan's oldest surviving theatre, going back to the 1300s. Masked, very slow, chanted rather than spoken, with a small chorus and a drum-and-flute group on a bare cedar stage. A play runs 60 to 90 minutes and rewards patience more than plot; most Japanese audiences read the story first and so should you."
+ },
+ "kyogen": {
+  "short": "the comic interludes between noh plays",
+  "inline": true,
+  "long": "The comic plays performed between noh pieces on the same stage. Spoken, unmasked, broad and short, usually about 15 minutes: servants outwitting masters, drunks, bad poets. They exist to break the intensity of the noh."
+ },
+ "bunraku": {
+  "short": "puppet theatre for adults",
+  "inline": true,
+  "long": "Puppet theatre written for adults, from Osaka. Three visible operators work one half-life-size puppet while a chanter voices every character and a shamisen player drives the pace. The operators wear black and you stop seeing them within about ten minutes."
+ },
+ "kabuki": {
+  "short": "stylised popular theatre, all-male",
+  "inline": true,
+  "long": "Popular theatre from around 1600: stylised, loud, spectacular, all-male, with trap doors, revolving stages and held poses the audience shouts at. Individual acts are self-contained, which is why a single-act ticket makes sense."
+ },
+ "makumi": {
+  "short": "cheap single-act gallery ticket",
+  "inline": true,
+  "long": "The single-act ticket for the Kabuki-za's fourth-floor gallery, sold from noon the day before and at the door on the day. Roughly 900 to 2,800 yen against 15,000-plus for a full-day seat downstairs. You see one act, about 60 to 90 minutes, from the very top of the house."
+ },
+ "gidayu": {
+  "short": "chanted narration over heavy shamisen",
+  "inline": true,
+  "long": "The chanted narration of bunraku and some kabuki. One performer does the narration and every character's voice, driven by a heavy, low-tuned shamisen. Closer to opera recitative than to speech, and physically punishing to perform."
+ },
+ "tayu": {
+  "short": "the chanter who voices every part",
+  "inline": true,
+  "long": "The chanter in bunraku, who speaks all the parts and the narration alone."
+ },
+ "hayashi": {
+  "short": "flute and hand drums",
+  "inline": true,
+  "long": "The instrumental ensemble of noh and kabuki: a bamboo flute plus two or three hand drums, sometimes a stick drum. A full hayashi means the complete group rather than a reduced one, so a bigger and louder performance."
+ },
+ "min'yo": {
+  "short": "regional folk song",
+  "inline": true,
+  "long": "Japanese regional folk song. Work songs, fishing and packhorse songs, festival songs, each tied to a particular province and sung in a hard, forward, deliberately un-classical voice, usually over shamisen. Still a living competition tradition, not a revival."
+ },
+ "Tsugaru": {
+  "short": "fast, percussive northern shamisen",
+  "inline": true,
+  "long": "Tsugaru shamisen is the fast, percussive, improvising style from the far north of Honshu. Struck hard with a big plectrum, full of tremolo and showing off; much closer to blues guitar than to court music, and the easiest shamisen style to enjoy with no preparation."
+ },
+ "shamisen": {
+  "short": "three-string plucked lute",
+  "inline": true,
+  "long": "A three-string fretless lute with a skin-covered box body, played with a large plectrum. Since the 1600s it has been the backbone of almost all Japanese theatre and popular music."
+ },
+ "shakuhachi": {
+  "short": "breathy bamboo flute",
+  "inline": true,
+  "long": "An end-blown bamboo flute, originally used for Zen meditation rather than performance. Breathy and vocal, able to go from almost nothing to very loud; the bending and smearing of pitch is the point, not a flaw."
+ },
+ "koto": {
+  "short": "thirteen-string zither",
+  "inline": true,
+  "long": "A long floor-standing zither, thirteen silk or nylon strings over movable bridges, plucked with picks worn on three fingers. To Western ears it is the default sound of classical Japan."
+ },
+ "wadaiko": {
+  "short": "drum-ensemble playing",
+  "inline": true,
+  "long": "Japanese drum-ensemble playing on big barrel drums struck with heavy sticks. Physical, choreographed and extremely loud."
+ },
+ "taiko": {
+  "short": "Japanese drum",
+  "inline": false,
+  "long": "Japanese drum. Also the ensemble style built on them, which is loud and physical."
+ },
+ "gagaku": {
+  "short": "1,200-year-old court orchestra",
+  "inline": true,
+  "long": "The court music of the imperial household, brought from Tang China and Korea and performed continuously for over 1,200 years, which makes it the oldest orchestral music still played anywhere. Slow, floating, with sustained mouth-organ chords and no steady pulse to hold on to."
+ },
+ "bugaku": {
+  "short": "masked court dance",
+  "inline": true,
+  "long": "The masked court dance performed to gagaku, with the same 1,200-year unbroken line."
+ },
+ "kagura": {
+  "short": "shrine ritual dance",
+  "inline": true,
+  "long": "Shinto ritual dance and music performed at a shrine for the deity rather than for a paying audience. Usually on a dedicated open-sided stage in the precinct, and usually free to stand and watch."
+ },
+ "mikoshi": {
+  "short": "portable shrine carried at a run",
+  "inline": true,
+  "long": "A portable shrine: a heavy gilded palanquin carried at a run by teams of shouting bearers, to move the deity around its parish during a festival. The shouting and the lurching are deliberate."
+ },
+ "jazz kissa": {
+  "short": "listening bar, no talking",
+  "inline": true,
+  "long": "A listening bar built around a serious record collection and a large valve-and-horn system. You buy a drink, you do not talk, and the owner chooses the records. A postwar Japanese institution that barely exists anywhere else."
+ },
+ "meikyoku kissa": {
+  "short": "classical listening cafe",
+  "inline": true,
+  "long": "The same idea as a jazz kissa but for classical music, the name meaning famous-piece cafe. Some have run since the 1920s and several enforce silence strictly."
+ },
+ "kissa": {
+  "short": "old-style coffee house",
+  "inline": true,
+  "long": "Short for kissaten, a Japanese coffee house. Older, quieter and far more owner-driven than a modern cafe."
+ },
+ "shrine": {
+  "short": "Shinto, not Buddhist",
+  "inline": false,
+  "long": "A Shinto site, marked by a torii gate. Shrines hold festivals, processions and kagura. Distinct from a temple, which is Buddhist."
+ },
+ "temple": {
+  "short": "Buddhist, not Shinto",
+  "inline": false,
+  "long": "A Buddhist site. Temples hold chanted services, some open to anyone who walks in at dawn. Distinct from a shrine, which is Shinto."
+ },
+ "jinjo": {
+  "short": "dawn chanted service, free",
+  "inline": true,
+  "long": "The dawn Buddhist service, chanted by the monks around six in the morning. Usually free and open to anyone who walks in."
+ },
+ "moon viewing": {
+  "short": "autumn harvest-moon rites",
+  "inline": false,
+  "long": "Autumn moon-viewing rites. Shrines and temples stage music, dance and boat rides for the harvest moon, and in Kyoto several of them fall on the same night, so they compete with each other."
+ },
+ "Silver Week": {
+  "short": "late-September holiday run",
+  "inline": true,
+  "long": "The cluster of Japanese public holidays in late September. It means crowds, full trains, and venues running holiday schedules."
+ },
+ "city pop": {
+  "short": "polished Japanese pop, 1978-86",
+  "inline": true,
+  "long": "The polished, groove-driven Japanese pop of roughly 1978 to 1986, made for a newly rich urban audience and rediscovered worldwide through streaming and YouTube."
+ },
+ "enka": {
+  "short": "sentimental ballad singing",
+  "inline": true,
+  "long": "Sentimental Japanese ballad singing, heavy vibrato, themes of loss and the sea. Socially it occupies about the same place as country music does in the States."
+ },
+ "daxophone": {
+  "short": "invented instrument, a bowed wooden blade",
+  "inline": true,
+  "long": "An invented instrument: a single wooden blade, bowed or struck, that shrieks and talks. Perhaps a few dozen players in the world."
+ },
+ "free improvisation": {
+  "short": "made up on the spot",
+  "inline": false,
+  "long": "Music made up in real time with no tune, key or chord sequence agreed beforehand."
+ },
+ "hall tour": {
+  "short": "circuit of civic concert halls",
+  "inline": false,
+  "long": "The standard Japanese touring circuit of mid-size civic concert halls. All seated, all reserved, and usually the only way a major domestic act tours."
+ },
+ "one-man": {
+  "short": "solo headline show, no support",
+  "inline": true,
+  "long": "Japanese usage for a solo headline show: one act, no support bill."
+ },
+ "all reserved": {
+  "short": "assigned seats, no standing",
+  "inline": false,
+  "long": "Every seat is assigned. No standing area, no general admission, and the seat number is fixed when you buy."
+ },
+ "drink charge": {
+  "short": "compulsory cash fee on top",
+  "inline": true,
+  "long": "Most small Japanese venues add a compulsory drink fee, usually 500 to 700 yen, on top of the ticket. Paid in cash at the door and not included in advertised prices."
+ },
+ "organ trio": {
+  "short": "Hammond organ, drums, horn",
+  "inline": false,
+  "long": "Hammond organ, drums and a horn or guitar. The classic soul-jazz bar format, where the organ's foot pedals play the bass."
+ },
+ "residency": {
+  "short": "several nights, same bandleader",
+  "inline": false,
+  "long": "A run of several nights at one venue under the same bandleader, with the supporting cast changing each night."
+ },
+ "izakaya": {
+  "short": "Japanese pub",
+  "inline": false,
+  "long": "A Japanese pub: small plates, drinks, loud, and at the cheap end no reservation culture at all."
+ },
+ "live house": {
+  "short": "small standing venue",
+  "inline": true,
+  "long": "The Japanese term for a small music venue, typically 100 to 500 capacity, usually standing, usually with a drink charge."
+ },
+ "torchlight": {
+  "short": "outdoors by firelight",
+  "inline": false,
+  "long": "Noh performed outdoors at night by firelight, which is a summer and autumn tradition rather than a tourist invention."
+ },
+ "candlelit": {
+  "short": "lit by candle, once a year",
+  "inline": false,
+  "long": "The stage lit by candle rather than electric light, which is done once a year at a few noh stages. It changes what you can see of the mask."
+ },
+ "78s": {
+  "short": "shellac records, three minutes a side",
+  "inline": true,
+  "long": "Shellac 78rpm records, pre-1950, about three minutes a side. Played on period equipment, one side at a time, with the surface noise left in."
+ },
+ "gallery": {
+  "short": "cheapest tier, top of the house",
+  "inline": false,
+  "long": "The cheapest tier of a Japanese theatre, at the top of the house. At the Kabuki-za it is the fourth floor and it is sold separately as a single-act ticket."
+ }
 }

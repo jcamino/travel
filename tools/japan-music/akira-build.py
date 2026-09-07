@@ -715,7 +715,7 @@ td.day{white-space:nowrap;font-family:"Big Shoulders Display",sans-serif;
 .scroll-progress{position:absolute;left:0;bottom:-1px;height:2px;width:0%;
   background:linear-gradient(90deg,var(--cyan),var(--red));
   background-size:100vw 100%;
-  transition:width .08s linear;pointer-events:none;z-index:1}
+  pointer-events:none;z-index:1}
 
 /* --------------------------------------------------- Kaneda, on the trail */
 /* Decorative. Rides the leading edge of the progress line and turns around
@@ -729,7 +729,7 @@ td.day{white-space:nowrap;font-family:"Big Shoulders Display",sans-serif;
 .moto{position:absolute;left:0;bottom:0;width:36px;height:19px;
   pointer-events:none;z-index:2;will-change:transform}
 .moto-body{display:block;width:100%;height:100%;overflow:visible;
-  transform:scaleX(var(--dir,1));transform-origin:50% 96%;
+  transform:scaleX(var(--dir,1));transform-origin:23.4% 90%;
   transition:transform .22s cubic-bezier(.34,1.4,.64,1)}
 /* Nose up on the fast burst. scaleX(-1) mirrors the rotation with it, so the
    nose still lifts when he is pointed the other way. */
@@ -781,7 +781,6 @@ td.day{white-space:nowrap;font-family:"Big Shoulders Display",sans-serif;
 .plate.dimmed{opacity:.2;transform:scale(.98)}
 details.day.hidden-filter,tr.hidden-filter{display:none !important}
 @media (prefers-reduced-motion:reduce){
-  .scroll-progress{transition:none}
   .plate.dimmed{transform:none}}
 """
 
@@ -877,11 +876,15 @@ JS = r"""
       return y<0?0:(y>max?max:y);
     }
     var lastY=scrollY();
-    var facing=1, revAccum=0, queued=false, idleT=null, railW=0, motoW=0;
+    var facing=1, revAccum=0, queued=false, idleT=null, railW=0, motoW=0, rearOff=0;
 
     function measure(){
       railW=rail.clientWidth;
       motoW=moto?moto.offsetWidth:0;
+      // 15/64 is the rear wheel's centre in the SVG's own viewBox, and it is
+      // also .moto-body's transform-origin, so the flip pivots on this point
+      // and the trail stays welded to it.
+      rearOff=motoW*15/64;
     }
 
     function paint(){
@@ -889,12 +892,17 @@ JS = r"""
       var sHeight=document.documentElement.scrollHeight-document.documentElement.clientHeight;
       var pct=sHeight>0?(scrollY()/sHeight)*100:0;
       pct=Math.min(100,Math.max(0,pct));
-      progressEl.style.width=pct+'%';
       if(moto&&railW>motoW){
-        // Centred on the tip, then clamped, so he is flush left at the top of
-        // the page and flush right at the bottom and never rides off the rail.
-        var x=Math.max(0,Math.min(railW-motoW,(pct/100)*railW-motoW/2));
+        // One number drives both. He runs flush left at the top of the page to
+        // flush right at the bottom; the trail stops at his rear wheel rather
+        // than running under him and out the front. Written in the same frame,
+        // off the same x, with no transition on either -- that is the whole of
+        // keeping them in sync.
+        var x=(pct/100)*(railW-motoW);
         moto.style.transform='translate3d('+x.toFixed(1)+'px,0,0)';
+        progressEl.style.width=(x+rearOff).toFixed(1)+'px';
+      }else{
+        progressEl.style.width=pct+'%';
       }
     }
 

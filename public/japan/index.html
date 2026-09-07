@@ -30,6 +30,8 @@
   --rail-time: 3rem;
   --rail-w: 1.75rem;
   --rail-gap: .5rem;
+  --track: .58rem;   /* how far a fork's second line sits off the trunk */
+  --stop-c: 1.55rem; /* centre of a stop glyph, from the top of its cell */
   --t: 160ms;
   color-scheme: light;
 }
@@ -295,6 +297,33 @@ svg { display: block; }
 .item.br-unpicked .fork-label { color: var(--muted); font-weight: 400; }
 .dots .dimmed { opacity: .28; }
 
+/* The line itself forks. A second track leaves the trunk at the first item of
+   a group and rejoins at the last; the items that can happen either way stay
+   on the trunk while it runs alongside them. */
+.item.br-span .stop::after {
+  content: ""; position: absolute; z-index: 0;
+  left: calc(50% + var(--track) - 1px); width: 2px; top: 0; bottom: 0;
+  background: var(--indigo); opacity: .5;
+}
+.item.br-span-first .stop::after { top: calc(var(--stop-c) + .62rem); }
+.item.br-span-last .stop::after { bottom: calc(100% - var(--stop-c) + .62rem); }
+.item.br-span-first .stop::before,
+.item.br-span-last .stop::before {
+  content: ""; position: absolute; z-index: 0;
+  left: 50%; width: var(--track); height: .62rem;
+  border-right: 2px solid var(--indigo); opacity: .5;
+}
+.item.br-span-first .stop::before {
+  top: var(--stop-c);
+  border-top: 2px solid var(--indigo); border-top-right-radius: .62rem;
+}
+.item.br-span-last .stop::before {
+  bottom: calc(100% - var(--stop-c));
+  border-bottom: 2px solid var(--indigo); border-bottom-right-radius: .62rem;
+}
+/* a stop that belongs to the fork rides the second track */
+.item.br-member .stop svg { transform: translateX(var(--track)); }
+
 /* ---------- open items ---------- */
 .open { padding: 1.5rem 0 2rem; border-top: 1px solid var(--rule); }
 .open h2 { font-size: 1.35rem; }
@@ -389,7 +418,7 @@ svg { display: block; }
       <div id="bk-list"></div>
     </section>
     <footer class="foot">
-      <p>Source: japan-itinerary-2026.md. Music picks cross-referenced against <a href="/japan/music/">the Silver Week music page</a>.</p>
+      <p>Source: tools/japan/trip.md. Music picks cross-referenced against <a href="/japan/music/">the Silver Week music page</a>.</p>
       <p class="hint">Filters and the selected day live in the address, so a view can be shared. Print for a paper copy of the whole trip.</p>
     </footer>
   </main>
@@ -397,7 +426,7 @@ svg { display: block; }
 
 <script>
 /* =====================================================================
-   DATA. Parsed from japan-itinerary-2026.md (single source of truth).
+   DATA. Parsed from tools/japan/trip.md (single source of truth).
    Music lane items come from /japan/music/ and are marked music: true.
    Statuses: booked, pending, suggested, walkup, tbd, decided.
    Blank strings are fields still to fill in.
@@ -1046,6 +1075,26 @@ const TRIP = {
     try { localStorage.setItem(PICK_KEY, JSON.stringify(picks)); } catch (e) {}
     render();
   }
+  /* Where each fork leaves the trunk and where it rejoins. A group's members
+     need not be adjacent -- the 24th runs the JR to Nara between the sake and
+     Uji, and that train happens whichever option wins -- so the span covers
+     everything from the first member to the last, and items inside it that
+     belong to no option simply stay on the trunk. */
+  function branchGeometry(day) {
+    const geo = new Map();
+    for (const g of (day.branchGroups || [])) {
+      const idx = [];
+      day.items.forEach((it, i) => { if (it.branch && it.branch.group === g.id) idx.push(i); });
+      if (idx.length < 2) continue;
+      const lo = idx[0], hi = idx[idx.length - 1];
+      for (let i = lo; i <= hi; i++) {
+        const it = day.items[i];
+        geo.set(it, { first: i === lo, last: i === hi,
+                      member: !!(it.branch && it.branch.group === g.id) });
+      }
+    }
+    return geo;
+  }
   function branchLine(item, day) {
     if (!item.branch) return null;
     const g = (day.branchGroups || []).find(x => x.id === item.branch.group);
@@ -1082,11 +1131,15 @@ const TRIP = {
     return c;
   }
   let uid = 0;
-  function renderItem(item, day, isNow) {
+  function renderItem(item, day, isNow, span) {
     const id = "it" + (++uid);
     const br = branchState(item, day);
     const cls = "item" + (item.travel ? " travel" : "") + (isNow ? " is-now" : "")
-      + (br ? " br-" + br : "") + (passes(item) ? "" : " hidden");
+      + (br ? " br-" + br : "")
+      + (span ? " br-span" + (span.first ? " br-span-first" : "")
+                           + (span.last ? " br-span-last" : "")
+                           + (span.member ? " br-member" : "") : "")
+      + (passes(item) ? "" : " hidden");
     const time = h("div", { class: "time" });
     if (item.time) {
       time.append((item.approx ? "~" : "") + item.time);
@@ -1127,7 +1180,8 @@ const TRIP = {
       h("p", { class: "theme", text: day.theme + (day.city !== day.theme && !day.theme.includes(day.city.split(" ")[0]) ? ", " + day.city : "") }),
       day.base ? h("p", { class: "base", text: "Base: " + day.base }) : null);
     if (day.dayNotes) for (const n of day.dayNotes) head.append(h("p", { class: "daynote", text: n }));
-    const list = h("ol", { class: "rail" }, ...day.items.map(it => renderItem(it, day, it === now)));
+    const geo = branchGeometry(day);
+    const list = h("ol", { class: "rail" }, ...day.items.map(it => renderItem(it, day, it === now, geo.get(it))));
     if (![...list.children].some(li => !li.classList.contains("hidden"))) {
       list.classList.add("empty");
       list.append(h("li", { class: "empty-msg", text: "Nothing " + FILTER_LABEL[state.filter].toLowerCase() + " on this day." }));

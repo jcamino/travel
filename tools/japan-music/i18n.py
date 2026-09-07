@@ -88,9 +88,10 @@ button.gl::after{content:"?";font-size:.62em;vertical-align:.45em;color:var(--cy
   color:var(--grey);font-size:1.5rem;line-height:1;cursor:pointer}
 @media(prefers-reduced-motion:reduce){.glsheet{transition:none}}
 
-.gllist{margin:0;padding:0;list-style:none}
-.gllist li{padding:.55rem 0;border-bottom:1px solid var(--line)}
-.gllist b{color:var(--cyan);font-weight:700}
+/* The bracketed gloss is the answer for most readers, so it is always there
+   and never needs a tap. Dimmed so the sentence still reads as a sentence. */
+.glx-in{color:var(--grey);font-size:.92em}
+@media (max-width:520px){.glx-in{font-size:.88em}}
 """
 
 JS = r"""
@@ -177,7 +178,10 @@ JS = r"""
           var p = n.parentNode;
           while (p && p !== block){
             if (SKIP[p.nodeName] || p.nodeName === 'BUTTON'
-                || (p.classList && (p.classList.contains('ja')
+                || (p.classList && (p.classList.contains('i18n')
+                                 || p.classList.contains('ja')
+                                 || p.classList.contains('en')
+                                 || p.classList.contains('glx-in')
                                  || p.classList.contains('glsheet')
                                  || p.classList.contains('gllist'))))
               return NodeFilter.FILTER_REJECT;
@@ -198,11 +202,20 @@ JS = r"""
           out = out || document.createDocumentFragment();
           var upto = m.index + m[1].length;
           if (upto > last) out.appendChild(document.createTextNode(text.slice(last, upto)));
+          var entry = __DEFS__[key];
           var b = document.createElement('button');
           b.type = 'button'; b.className = 'gl'; b.dataset.gl = key;
           b.textContent = m[2];
-          b.setAttribute('aria-label', m[2] + ' — what is this?');
+          // native tooltip on desktop; the sheet is the touch equivalent
+          b.title = entry.long;
+          b.setAttribute('aria-label', m[2] + ' — ' + entry.short);
           out.appendChild(b);
+          if (entry.inline){
+            var g = document.createElement('span');
+            g.className = 'glx-in';
+            g.textContent = ' (' + entry.short + ')';
+            out.appendChild(g);
+          }
           last = upto + m[2].length;
         }
         if (!out) return;
@@ -216,7 +229,7 @@ JS = r"""
   function openGloss(key){
     if (!sheet) return;
     sheet.querySelector('h4').textContent = key;
-    sheet.querySelector('p').textContent = __DEFS__[key] || '';
+    sheet.querySelector('p').textContent = (__DEFS__[key] || {}).long || '';
     sheet.dataset.open = '1';
     sheet.setAttribute('aria-hidden', 'false');
     sheet.querySelector('.glx').focus();
@@ -245,23 +258,6 @@ JS = r"""
       if (e.key === 'Escape') closeGloss();
     });
   }
-  // A browsable copy, for the reader who wants to read the lot rather than
-  // tap one word at a time.
-  function buildList(){
-    var rest = document.querySelector('#rest');
-    if (!rest) return;
-    var d = document.createElement('details');
-    d.className = 'chunk'; d.id = 'chunk-glossary';
-    var names = Object.keys(__DEFS__).sort(function(a,b){ return a.localeCompare(b); });
-    d.innerHTML = '<summary>Glossary &middot; what these words mean</summary>'
-      + '<div class="chunkbody"><ul class="gllist">'
-      + names.map(function(k){
-          return '<li><b>' + k + '</b> &mdash; ' + __DEFS__[k] + '</li>';
-        }).join('')
-      + '</ul></div>';
-    rest.appendChild(d);
-  }
-
   function setLang(lang){
     document.body.classList.toggle('lang-en', lang === 'en');
     document.body.classList.toggle('lang-ja', lang !== 'en');
@@ -280,7 +276,6 @@ JS = r"""
     wrap(document.body);
     marklex();
     buildSheet();
-    buildList();
     var sec = document.querySelector('.rail .rail-sec');
     if (sec){
       var bar = document.createElement('div');
