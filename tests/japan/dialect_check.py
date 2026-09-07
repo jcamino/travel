@@ -117,6 +117,19 @@ def run():
             check(len(opts) >= 2, "%s/%s offers at least two options %s"
                   % (d["date"], gid, sorted(opts)))
 
+        # the page draws one branch line per fork, from the first member to the
+        # last, so two forks may not overlap -- the second would paint over the
+        # first and the rail would show a junction that goes nowhere
+        spans = []
+        for gid in sorted(declared):
+            at = [i for i, it in enumerate(d["items"])
+                  if it.get("branch", {}).get("group") == gid]
+            if at:
+                spans.append((at[0], at[-1], gid))
+        for (a1, b1, g1), (a2, b2, g2) in zip(sorted(spans), sorted(spans)[1:]):
+            check(b1 < a2, "%s: forks %s and %s do not overlap (%d-%d, %d-%d)"
+                  % (d["date"], g1, g2, a1, b1, a2, b2))
+
     print("\n%d failure(s)" % len(fails))
     sys.exit(1 if fails else 0)
 

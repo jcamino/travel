@@ -66,6 +66,16 @@ def branches(page, name, base):
     check(page.locator(".item.br-unpicked").count() == 0, f"{name}: nothing is struck out before a choice")
     no_overflow(page, name, "branch controls")
 
+    # the line forks: morning spans four items (three options plus the train
+    # you catch either way), evening two; only the options ride the branch
+    check(page.locator(".item.br-span").count() == 6, f"{name}: six items sit inside a fork's span")
+    check(page.locator(".item.br-span-first").count() == 2 and page.locator(".item.br-span-last").count() == 2,
+          f"{name}: two junctions out of the trunk and two back")
+    check(page.locator(".item.br-member").count() == 5, f"{name}: five stops ride a branch line")
+    through = page.locator(".item.br-span:not(.br-member) .title")
+    check(through.count() == 1 and "JR Nara" in through.inner_text(),
+          f"{name}: the JR to Nara stays on the trunk inside the fork")
+
     page.locator('.pick[data-group=morning][data-option=sake]').click()
     picked = page.locator(".item.br-picked")
     check(picked.count() == 1 and "sake" in picked.locator(".title").inner_text(),

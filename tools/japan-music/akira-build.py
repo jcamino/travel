@@ -47,7 +47,16 @@ for i, (pos, whole, inner) in enumerate(marks):
     key = re.sub('<[^>]+>', '', inner).split('\u00b7')[0].strip()
     SEC[key] = dict(h2=whole, title=inner, rest=body[pos + len(whole):end])
     ORDER.append(key)
-assert ORDER[:2] == ['0', '0b'], ORDER[:3]
+# Sections are addressed by role, not by number. They have been renumbered
+# three times and every hardcoded "SEC['5']" silently stopped matching --
+# which is how the per-day tables quietly failed to fold into the day plates
+# for several commits. The two lead sections are positional; the other two
+# special ones are found by name and carry no chapter number in the source.
+FIVE_KEY, CAL_KEY = ORDER[0], ORDER[1]
+TABLES_KEY = 'Per-day tables'
+ACT_KEY = 'Act this week'
+assert FIVE_KEY in SEC and CAL_KEY in SEC, ORDER[:3]
+assert TABLES_KEY in SEC, f"no {TABLES_KEY!r} section; day plates lose their tables"
 
 DAYRE = re.compile(r'^(Sat|Sun|Mon|Tue|Wed|Thu|Fri) (\d{1,2})')
 
@@ -76,9 +85,9 @@ _j = head_block.index('</p>', _i)
 STANDFIRST = head_block[:_i].rstrip() + '</p>'
 INTRO_REST = '<p class="lede">' + head_block[_i:]
 
-LEAD_0B, NIGHT = day_blocks('0b', r'<div class="cards night">')
-if '5' in SEC:
-    LEAD_5, TABLES = day_blocks('5', r'<div class="tw">')
+LEAD_0B, NIGHT = day_blocks(CAL_KEY, r'<div class="cards night">')
+if TABLES_KEY in SEC:
+    LEAD_5, TABLES = day_blocks(TABLES_KEY, r'<div class="tw">')
 else:
     LEAD_5, TABLES = '', {}
 # Trip shape, from the front matter: the order of the week, which city you
@@ -140,7 +149,7 @@ def first_card(day):
 
 # ------------------------------------------------------------------ the five
 m = re.match(r'(?s)^\s*(<p class="legend">.*?</p>)\s*<div class="cards">\s*'
-             r'(.*?)\s*</div>\s*$', SEC['0']['rest'])
+             r'(.*?)\s*</div>\s*$', SEC[FIVE_KEY]['rest'])
 assert m, 'section 0 shape changed'
 FIVE_LEGEND, cards_blob = m.group(1), m.group(2)
 raw = [c.strip() for c in cards_blob.split('<div class="card">') if c.strip()]
@@ -249,24 +258,24 @@ REFS_HTML = ('<ul class="vh musicrefs">%s</ul>' % ''.join(MUSICREFS)
              if MUSICREFS else '')
 
 CALNOTE = ''
-if '5' in SEC:
+if TABLES_KEY in SEC:
     CALNOTE = (
         '<details class="calnote"><summary>What a day opens to</summary>'
         '<div class="calnotebody">%s%s</div></details>'
-        % (SEC['5']['h2'], LEAD_5))
+        % (SEC[TABLES_KEY]['h2'], LEAD_5))
 
-H2_FIVE = paint_h2(SEC['0']['h2'])
-H2_CAL = paint_h2(SEC['0b']['h2'])
+H2_FIVE = paint_h2(SEC[FIVE_KEY]['h2'])
+H2_CAL = paint_h2(SEC[CAL_KEY]['h2'])
 
 # ------------------------------------------------------------ everything else
 # Section 1 is the only thing on the page that expires. It does not go in
 # the collapsed tail with the reference material; it goes above the fold.
-ACT_KEY = '1' if '1' in SEC else None
 ACT_HTML = ''
-if ACT_KEY:
+if ACT_KEY in SEC:
     ACT_HTML = ('<section class="sec acts" id="act">%s%s</section>'
                 % (paint_h2(SEC[ACT_KEY]['h2']), SEC[ACT_KEY]['rest']))
-REST_KEYS = [k for k in ORDER if k not in ('0', '0b', '5', ACT_KEY)]
+REST_KEYS = [k for k in ORDER
+             if k not in (FIVE_KEY, CAL_KEY, TABLES_KEY, ACT_KEY)]
 REST = []
 for k in REST_KEYS:
     t = SEC[k]['title']

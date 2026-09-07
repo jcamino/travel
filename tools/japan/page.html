@@ -272,6 +272,8 @@ svg { display: block; }
   display: inline-flex; align-items: center; gap: .3rem;
   padding: .25rem .6rem; border: 1px solid var(--rule); border-radius: 1rem; text-decoration: none;
   transition: border-color var(--t);
+  /* a long url must break rather than push the card past the viewport */
+  max-width: 100%; min-width: 0; overflow-wrap: anywhere;
 }
 .links a:hover { border-color: var(--indigo); }
 .links a svg { width: .85rem; height: .85rem; }
@@ -309,33 +311,27 @@ svg { display: block; }
   left: calc(50% + var(--track) - 1px); width: 2px; top: 0; bottom: 0;
   background: var(--indigo); opacity: .55;
 }
-.item.br-span-first .stop::after { top: var(--stop-c); }
-.item.br-span-last .stop::after { bottom: calc(100% - var(--stop-c)); }
-/* the junction itself: out of the trunk and down, or up and back into it */
+.item.br-span-first .stop::after { top: calc(var(--stop-c) - var(--stop-r)); }
+.item.br-span-last .stop::after { bottom: calc(100% - var(--stop-c) - var(--stop-r)); }
+/* The junction, drawn clear of the glyph: the branch leaves the trunk just
+   above its first stop and rejoins just below its last, so both corners stay
+   in the open instead of vanishing under an opaque disc. */
 .item.br-span-first .stop::before,
 .item.br-span-last .stop::before {
   content: ""; position: absolute; z-index: 0;
-  left: calc(50% + var(--stop-r)); width: calc(var(--track) - var(--stop-r));
-  height: .55rem; opacity: .55;
+  left: 50%; width: var(--track); height: .5rem; opacity: .55;
   border-right: 2px solid var(--indigo);
 }
 .item.br-span-first .stop::before {
-  top: calc(var(--stop-c) - 1px);
-  border-top: 2px solid var(--indigo); border-top-right-radius: .55rem;
+  top: calc(var(--stop-c) - var(--stop-r) - .5rem);
+  border-top: 2px solid var(--indigo); border-top-right-radius: .5rem;
 }
 .item.br-span-last .stop::before {
-  bottom: calc(100% - var(--stop-c) - 1px);
-  border-bottom: 2px solid var(--indigo); border-bottom-right-radius: .55rem;
+  top: calc(var(--stop-c) + var(--stop-r));
+  border-bottom: 2px solid var(--indigo); border-bottom-right-radius: .5rem;
 }
 /* a stop that belongs to the fork rides the branch line, not the trunk */
 .item.br-member .stop svg { transform: translateX(var(--track)); }
-/* a member in the middle of a span still needs joining to its line */
-.item.br-member:not(.br-span-first):not(.br-span-last) .stop::before {
-  content: ""; position: absolute; z-index: 0;
-  left: calc(50% + var(--stop-r)); width: calc(var(--track) - var(--stop-r));
-  top: calc(var(--stop-c) - 1px); height: 2px;
-  background: var(--indigo); opacity: .55;
-}
 
 /* ---------- open items ---------- */
 .open { padding: 1.5rem 0 2rem; border-top: 1px solid var(--rule); }

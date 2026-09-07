@@ -188,12 +188,12 @@
 {kicker} Music you cannot see stateside · Silver Week 2026
 # Japan Music Schedule
 {lede} Tokyo Sat 19 – Tue 22 Sept, Kansai Wed 23 – Fri 25 Sept 2026. Two New Yorkers, Shibuya then downtown Kyoto. Everything here is ranked on the show and the room together, with acts that tour Brooklyn regularly demoted unless the room earns it. One thing is booked: 高中正義 in Hikone on Fri 25.
-{lede} Every event was read on the organiser's or venue's own page on 5–6 Sept 2026. Fixed points: Sat 19 lands at 15:00, evening open from about 17:30; Sun 20 and Mon 21 are free; Tue 22 is Mt Takao in the morning and **Swallows vs Hanshin at Jingu at 18:00** ([NPB](https://npb.jp/games/2026/schedule_09_detail.html)); Wed 23 the Shinkansen reaches Kyoto at 16:44; Thu 24 is free; Fri 25 is Arashiyama until about 15:00, then **高中正義 SUPER TAKANAKA LIVE in Hikone, doors 17:30, start 18:30, booked**, with an early airport train on Sat 26. Open a day for that night's three, then the table of everything else. Section 1 is what closes this week; section 2 is everything else to arrange before you fly. Open a day for that night's picks and the rest of the day with them.
+{lede} Every event was read on the organiser's or venue's own page on 5–6 Sept 2026. Fixed points: Sat 19 lands at 15:00, evening open from about 17:30; Sun 20 and Mon 21 are free; Tue 22 is Mt Takao in the morning and **Swallows vs Hanshin at Jingu at 18:00** ([NPB](https://npb.jp/games/2026/schedule_09_detail.html)); Wed 23 the Shinkansen reaches Kyoto at 16:44; Thu 24 is free; Fri 25 is Arashiyama until about 15:00, then **高中正義 SUPER TAKANAKA LIVE in Hikone, doors 17:30, start 18:30, booked**, with an early airport train on Sat 26. Open a day for that night's three, then the table of everything else. "Act this week" is what closes in the next few days; section 3 is everything else to arrange before you fly. Open a day for that night's picks and the rest of the day with them.
 {legend} {v:VERIFIED} = read on the organiser's or venue's own page. {s:SECONDARY} = search snippet, blog, aggregator or inference. The tier badge demotes, it does not rank: {t1:Tier 1} the form or setting exists only in Japan · {t2:Tier 2} the artist essentially never leaves Japan · {t3:Tier 3} tours Brooklyn, so it has to earn its place on the room · {smp:SAMPLER} tourist product.
 
 {note} **Two facts that shape the week, both verified.** (1) 21, 22 and 23 Sept 2026 are public holidays (敬老の日, 休日, 秋分の日) per the [Cabinet Office CSV](https://www8.cao.go.jp/chosei/shukujitsu/syukujitsu.csv) {v:VERIFIED}. (2) **中秋の名月 (harvest moon) is Friday 25 September 2026**, with the astronomical full moon two days later on the 27th, per the [National Astronomical Observatory](https://www.nao.ac.jp/astro/sky/2026/09-topics03.html) {v:VERIFIED}. That puts the Kyoto/Osaka/Nara moon-viewing rites on your last night, which is also the Takanaka night in Hikone; every one of them is confirmed for the 25th below, and none can be combined with the concert.
 
-## 0 · Top picks
+## 1 · Top picks
 {legend} Ranked on the show and the room together, then demoted for anything that tours Brooklyn regularly into a room worth nothing in particular. Takanaka is rank 0: the tickets are booked and the evening is spent. Two of the four are the same Wednesday — the candle noh is the better room, Yamashita only if the lottery lands. Next in line: Uchihashi at UrBANGUILD (Thu 24), 友川カズキ at CLUB Que (Tue 22) if the Swallows game goes, Haino at 月花舎 (Sun 20).
 {cards}
 
@@ -239,7 +239,7 @@
 
 {/cards}
 
-## 0b · The best three each night
+## 2 · The best three each night
 {legend} One ranking per day, Sat 19 to Fri 25, on the same test. Three entries unless the day has an obvious single answer or a fixed commitment; everything else that day opens under the same day. Prices per person, drink charges included where the venue states one.
 ### Sat 19 Sept — you land at 15:00; in Shibuya by about 17:30, the whole evening is open
 {cards night}
@@ -359,15 +359,15 @@ Kamigamo {v:VERIFIED} by the shrine's own annual page (仲秋, 16:30, open entry
 {/cards}
 {also} **Also that day:** 山内惠介's enka concert, ROHM Theatre, Okazaki, 15:00, ¥7,800 (means leaving Arashiyama by 13:45). Over Seas, Osaka: 寺井尚之 & 東ともみ duo 19:00. 磔磔: 古田光郷 69th birthday live 18:30, ¥3,000. 0g, Osaka: the same Uchihashi/Ligeti duo, 19:30.
 
-## 1 · Act this week
-{legend} Live deadlines, soonest first. Everything else is standing advice in section 2.
+## Act this week
+{legend} Live deadlines, soonest first. Everything else is standing advice in section 3.
 {ol}
 - **山下達郎, Osaka Wed 23 — apply by Sun 13 Sept 18:00 JST.** The e+ cancel-wait lottery at [eplus.jp/tatsuro2026](https://eplus.jp/tatsuro2026/) opened 2 Sept and is the only route left: card payment, smartphone ticket, **one ticket per application**, so two people need two e+ accounts and two applications. Photo ID against the printed name at the door.
 - **御香宮 蝋燭能, Wed 23 — buy on the web by Sun 13 Sept.** B席 ¥3,500 is on sale online now; A席 is sold out. From 14 Sept the only route is phoning the shrine office and wiring the money, so buy it now, whichever way the Yamashita draw falls.
 - **Optional, the same week.** AKB48 Theater Sun 20: general applications close Tue 15 Sept 16:00 JST, overseas route by email to sfar@akb48.co.jp, 6 seats. DESTINY 8 at WWW X Mon 21: e+ general sale to Sun 20 18:00, and it collides with Blue Note.
 {/ol}
 
-## 2 · Book before you fly
+## 3 · Book before you fly
 {legend} Each line names the event, its date and the place; the deadline or route follows.
 {ol}
 - **山下達郎, Osaka Wed 23 (deadline Sun 13 Sept 18:00 JST).** The only route is the e+ cancel-wait lottery, open since 2 Sept, at [eplus.jp/tatsuro2026](https://eplus.jp/tatsuro2026/): one ticket per application, credit card, smartphone ticket (e+ app), and an e+ account that registers a mobile number and passes phone verification — whether a non-Japanese number passes is not stated (try the e+ English portal, else a Japanese contact's help). Two people = two accounts, two applications. At the door, each ticket holder shows photo ID matching the printed name; passports are accepted; checks start 45 min before doors (16:15). No resale of any kind.
@@ -386,7 +386,7 @@ Kamigamo {v:VERIFIED} by the shrine's own annual page (仲秋, 16:30, open entry
 - **Free rites:** Yasaka, Shimogamo, Kamigamo, Sumiyoshi, Nara, Yoyogi-Hachiman, temple 晨朝 — nothing to book. Daikaku-ji ¥700 at the gate.
 {/ol}
 
-## 3 · Reference: walk-in rooms
+## 4 · Reference: walk-in rooms
 {legend} Rooms already named above, gathered for lookup: what each one is, where it is, when it is open. None needs booking.
 {table}
 ^| What (room) | Where | When (hours / closed) | Charge | Talking | Status | Source |
@@ -413,7 +413,7 @@ Kamigamo {v:VERIFIED} by the shrine's own annual page (仲秋, 16:30, open entry
 | DUG (Shinjuku), Meg (Kichijōji), Rompercicci (Nakano), Chigusa (Yokohama), Jamjam (Kobe) | — | DUG's site returned 404 at both paths tried; Meg's site timed out twice; the others were not fetched | — | — | — | could not verify |
 {/table}
 
-## 4 · Reference: traditional stage
+## 5 · Reference: traditional stage
 {legend} The traditional-stage entries above, by date: what is on, where, when, and whether you can buy it.
 {table}
 ^| When (date) | What | Where | When (time) | ¥ pp | Music on stage | Bookable by you? | Status |
@@ -433,7 +433,7 @@ Kamigamo {v:VERIFIED} by the shrine's own annual page (仲秋, 16:30, open entry
 {/table}
 {legend} Read 5–6 Sept 2026 on each organiser's own page; Fushimi candle noh and the 15:00 landing revised 7 Sept.
 
-## 5 · Per-day tables
+## Per-day tables
 {legend} Everything found, one line per item (what, where, when, price); daytime and evening separated. ✕ = collides with the game, with travel, or with a stronger option. Prices per person, charges in where known. n/p = not published.
 
 ### Sat 19 Sept — land 15:00; in Shibuya by about 17:30
