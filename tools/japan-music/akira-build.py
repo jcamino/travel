@@ -158,9 +158,31 @@ raw = [c[:c.rindex('</div>')] for c in raw]
 assert len(raw) == 5, len(raw)
 
 # Flyer faces for the five, from the front matter: the plate on the front
-# of each pick. Keep in sync with the picks in section 0 of the book.
+# of each pick. The faces and the cards are two hand-maintained lists in
+# different orders, so they are matched on bill + day, never by position:
+# zipping them put the wrong flyer inside four of the five plates (the
+# Body & Soul plate opened onto Yamashita) until 7 Sept 2026.
 FACES = [dict(f, times=[tuple(t) for t in f['times']])
          for f in META['five']]
+
+HEADS = [re.search(r'<h3>(.*?)</h3>', c, re.S) for c in raw]
+assert all(HEADS), 'a section 0 card has no heading to match on'
+HEADS = [h.group(1) for h in HEADS]
+
+
+def face_for(head):
+    """The front-matter face belonging to this card, by its bill and day."""
+    d = DAYRE.match(re.sub('<[^>]+>', '', head).strip())
+    day = d.group(2) if d else ''
+    hits = [f for f in FACES if f['bill'] in head and f['day'] == day]
+    assert len(hits) == 1, (head[:70], day, [f['bill'] for f in hits])
+    return hits[0]
+
+
+# Card order is the ranking the prose argues (Takanaka is rank 0, booked;
+# the candle noh is first), so the plates follow the cards, not the JSON.
+PAIRS = [(face_for(h), c) for h, c in zip(HEADS, raw)]
+assert len({f['ref'] for f, _ in PAIRS}) == len(FACES), 'a face matched twice'
 
 
 def plate(i, f, card_html):
@@ -189,11 +211,11 @@ def plate(i, f, card_html):
 <div class="hud">
 <b>Tier</b><i>{f['tier']}</i><b>Status</b><i>{f['status']}</i><b>Ref</b><span>{f['ref']}</span>
 </div>
-<p class="rank"><span>{i + 1}</span></p>
+<p class="rank"><span>{i}</span></p>
 </article>'''
 
 
-PLATES = '\n'.join(plate(i, f, c) for i, (f, c) in enumerate(zip(FACES, raw)))
+PLATES = '\n'.join(plate(i, f, c) for i, (f, c) in enumerate(PAIRS))
 
 # --------------------------------------------------------------- the calendar
 CELLS = []
