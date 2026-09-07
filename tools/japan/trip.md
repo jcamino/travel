@@ -292,20 +292,21 @@
 
 ###  | Nara Park: the deer, then Tōdai-ji
 {status} suggested
-{detail} The deer roam loose across the park and bow for 鹿せんべい crackers sold at the stalls. Tōdai-ji's Daibutsuden holds the Great Buddha.
+{detail} The deer roam loose across the park. Tōdai-ji's Daibutsuden, which holds the Great Buddha, is open 7:30 to 17:30 through October, ¥800 for an adult.
 {place} Nara Park
 {map} Nara Park, Nara
-{url} https://www3.pref.nara.jp/park/
+{url} https://www.todaiji.or.jp/information/haikan/
 {extramap} Tōdai-ji | Todai-ji, Nara
-- Opening hours and the Daibutsuden fee to confirm before you go.
-- The deer are wild animals, not an attraction: they headbutt for food and the park says to bow back and show empty hands.
+- September to November is the rut, and the 24th is in it. The Nara Deer Preservation Foundation says the stags turn aggressive then and are dangerous to go near, cut antlers or not; the antler-cutting is in October, so they still have them.
+- Feed them nothing except the 鹿せんべい sold in the park. They are wild animals and do attack people: biting, striking, butting and charging (naradeer.com).
 
 ###  | Kiyomizu-dera
 {status} walkup
-{detail} On the way back from Nara, late afternoon. Check the closing time before you commit to it.
+{detail} On the way back from Nara, late afternoon. Opens 06:00, gates close 18:00 in September.
 {place} Kiyomizu-dera
 {map} Kiyomizu-dera
-{url} https://www.kiyomizudera.or.jp/
+{url} https://www.kiyomizudera.or.jp/news/open-hour.php
+- The temple publishes its hours but not its admission fee; pay at the gate.
 
 ### 19:00 | Music page: blues.the-butcher-590213 release show, 磔磔
 {music}
