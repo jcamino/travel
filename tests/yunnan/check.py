@@ -323,6 +323,15 @@ check("A11", all(f"e.data.type === '{t}'" in sw for t in ("build", "prune", "war
 check("A11", 'type: "warm"' in scripts and "function pickFor" in scripts, "the page asks the worker to warm the files this screen uses")
 check("A11", 'register("sw.js", {scope: "./"})' in scripts, "the page registers sw.js with scope ./")
 check("A11", "cache: 'no-store'" in sw and "./build.txt" in sw, "worker polls build.txt with no-store")
+# A blocked file must not wedge the upgrade: addAll rejects whole, so one 403 from a proxy would fail the
+# install and leave the old worker answering every navigation with no way back (seen on a VPN, 8 Sep 2026).
+check("A11", "addAll(" not in sw and "c.add(reload(u)).catch(" in sw, "install caches the page files one at a time and survives a blocked one")
+# entering at /yunnan redirects to /yunnan/; fetching the request's own URL made that throw every time
+check("A11", "new Request('./', {cache: 'no-store'})" in sw, "the newer page is fetched at the canonical './'")
+check("A11", "res.redirected" not in sw.split("function page(")[1].split("}")[0] if "function page(" in sw else True,
+      "the freshness check does not reject on a redirect")
+check("A11", "function swSelfCheck" in scripts and "sessionStorage" in scripts,
+      "the page checks build.txt itself and reloads once if it is behind")
 
 # ---------------------------------------------------------------- A12 CSS invariants
 rules = {

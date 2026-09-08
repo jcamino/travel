@@ -1006,6 +1006,53 @@ class B21_ActivitiesWide(Base):
         self.assertEqual(page.evaluate("() => location.hash"), "#activities")
 
 
+# ---------------------------------------------------------------- B22 the page notices it is behind
+class B22_SelfCheck(Base):
+    """A worker that cannot be replaced used to pin the page to an old build for ever. The page now
+    asks build.txt itself and reloads once when the server names a build it is not."""
+
+    def test_B22_reloads_when_behind(self):
+        ctx = self.new_context()
+        loads = []
+        ctx.route(re.compile(r"/build\.txt(\?|$)"),
+                  lambda route: route.fulfill(status=200, content_type="text/plain", body="yunnan-0000000000"))
+        page = ctx.new_page()
+        page.on("framenavigated", lambda f: loads.append(f.url) if f == page.main_frame else None)
+        page.on("pageerror", lambda e: self.errors.append(f"pageerror: {e}"))
+        page.clock.install(time=CLOCK[self.clock])
+        page.goto(BASE, wait_until="load")
+        page.wait_for_timeout(7000)
+        self.assertGreaterEqual(len(loads), 2, "the page should have reloaded itself once")
+        page.wait_for_timeout(7000)
+        self.assertLessEqual(len(loads), 3, f"it must not loop: {len(loads)} navigations")
+
+    def test_B22_quiet_when_current(self):
+        ctx = self.new_context()
+        loads = []
+        ctx.route(re.compile(r"/build\.txt(\?|$)"),
+                  lambda route: route.fulfill(status=200, content_type="text/plain", body=BUILD))
+        page = ctx.new_page()
+        page.on("framenavigated", lambda f: loads.append(f.url) if f == page.main_frame else None)
+        page.on("pageerror", lambda e: self.errors.append(f"pageerror: {e}"))
+        page.clock.install(time=CLOCK[self.clock])
+        page.goto(BASE, wait_until="load")
+        page.wait_for_timeout(7000)
+        self.assertEqual(len(loads), 1, "a page on the current build must not reload")
+
+    def test_B22_survives_a_blocked_build_file(self):
+        ctx = self.new_context()
+        loads = []
+        ctx.route(re.compile(r"/build\.txt(\?|$)"), lambda route: route.fulfill(status=403, body="blocked"))
+        page = ctx.new_page()
+        page.on("framenavigated", lambda f: loads.append(f.url) if f == page.main_frame else None)
+        page.on("pageerror", lambda e: self.errors.append(f"pageerror: {e}"))
+        page.clock.install(time=CLOCK[self.clock])
+        page.goto(BASE, wait_until="load")
+        page.wait_for_timeout(7000)
+        self.assertEqual(len(loads), 1, "a blocked build.txt must not make the page reload")
+        expect(page.locator("#activities")).to_be_hidden()   # and the page still works
+
+
 @extended
 class B18_Keyboard(Base):
     def test_B18_focus_order_and_rings(self):

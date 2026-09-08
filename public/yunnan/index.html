@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Fourteen Nights</title>
 <meta name="description" content="Fourteen nights in western Yunnan, 24 September to 8 October 2026: Dali, Lijiang, Shangri-La, Shaxi and Tengchong, the history of the road, one chapter per hotel night.">
-<meta name="build" content="yunnan-b25fda1f1b">
+<meta name="build" content="yunnan-c30ac52d8b">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="travel.jcamino.net">
 <meta property="og:title" content="Fourteen Nights">
@@ -2931,6 +2931,19 @@ if ("serviceWorker" in navigator && /^https?:$/.test(location.protocol)) {
      quietly: right away, or, if a text field is being typed in, the next time the page is hidden. */
   var swWas = !!navigator.serviceWorker.controller, swReload = false;
   var myBuild = (document.querySelector('meta[name="build"]') || {}).content || "";
+  /* The worker is not the only judge. A file blocked by a proxy once left a worker that could not be
+     replaced, and this page had no way to notice it was old. So ask build.txt directly a moment after
+     load: if the server names a build this page is not, reload. Once per session, so a server that
+     disagrees for any other reason cannot put the page in a loop. */
+  function swSelfCheck(){
+    var KEY = "yn-selfcheck";
+    try { if (sessionStorage.getItem(KEY) === myBuild) return; } catch (x) {}
+    fetch("build.txt", {cache: "no-store"}).then(function(r){ return r.ok ? r.text() : null; }).then(function(b){
+      if (!b || !myBuild || b.trim() === myBuild) return;
+      try { sessionStorage.setItem(KEY, myBuild); } catch (x) {}
+      swApply();
+    }).catch(function(){});
+  }
   function swBuild(cb){
     var c = navigator.serviceWorker.controller, done = false;
     function fin(b){ if (!done) { done = true; cb(b); } }
@@ -2973,6 +2986,7 @@ if ("serviceWorker" in navigator && /^https?:$/.test(location.protocol)) {
   addEventListener("load", function(){ setTimeout(function(){ idle(swWarm); }, 3000); });
   navigator.serviceWorker.addEventListener("controllerchange", function(){ if (swWas) swSettle(false); swWas = true; setTimeout(swWarm, 2000); });
   if (swWas) setTimeout(function(){ swSettle(true); }, 3000);
+  setTimeout(swSelfCheck, 2500);
   navigator.serviceWorker.register("sw.js", {scope: "./"}).then(function(reg){
     setTimeout(function(){ reg.update().catch(function(){}); }, 4000);
     addEventListener("online", function(){ reg.update().catch(function(){}); });
