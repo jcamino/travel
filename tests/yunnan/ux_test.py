@@ -929,6 +929,83 @@ class B20_WideLayout(Base):
         expect(page.locator("#bar")).to_be_visible()
 
 
+# ---------------------------------------------------------------- B21 activities: the plan without the history
+class B21_Activities(Base):
+    def enter(self, page):
+        page.click(".cover .gobtn")
+        expect(page.locator("#activities")).to_be_visible()
+
+    def shown(self, page, sel):
+        return page.evaluate("s => Array.from(document.querySelectorAll(s)).filter(e => e.offsetHeight > 0).length", sel)
+
+    def test_B21_button_and_mode(self):
+        page = self.open()
+        expect(page.locator(".cover .gobtn")).to_be_visible()
+        expect(page.locator("#barActsL")).to_have_text("PLAN")
+        self.assertTrue(page.locator("#activities").is_hidden(), "the view stays out of the way until asked for")
+        self.enter(page)
+        self.assertEqual(page.evaluate("() => location.hash"), "#activities")
+        expect(page.locator("#barActsL")).to_have_text("STORY")
+        for sel in (".cover", ".howto", ".sources", ".foot", "#ch0 .ch-title", "#ch0 .ch-num", ".bonus-btn"):
+            self.assertEqual(self.shown(page, sel), 0, f"{sel} should be out of the way")
+        self.assertEqual(self.shown(page, ".chapter > .wrap > figure"), 0, "no chapter pictures in the plan")
+        self.assertEqual(self.shown(page, ".day"), 15, "all fifteen day cards")
+        self.assertEqual(self.shown(page, ".bonus-list"), 7, "every stop's ideas already unfolded")
+        self.assertEqual(page.locator("#acal button").count(), 16, "All days plus fifteen")
+        page.click('.acts-row button[data-acts="0"]')
+        expect(page.locator(".cover")).to_be_visible()
+        self.assertEqual(page.evaluate("() => location.hash"), "")
+        self.assertEqual(self.shown(page, ".bonus-list"), 0, "the ideas fold away again with the history")
+
+    def test_B21_one_day(self):
+        page = self.open()
+        self.enter(page)
+        page.click('#acal button[data-actday="5"]')
+        self.assertEqual(page.evaluate("() => location.hash"), "#activities-5")
+        self.assertEqual(page.evaluate("() => Array.from(document.querySelectorAll('.day')).filter(d => d.offsetHeight > 0).map(d => d.dataset.day)"), ["5"])
+        self.assertEqual(page.evaluate("() => Array.from(document.querySelectorAll('.chapter')).filter(c => c.offsetHeight > 0).map(c => c.id)"), ["ch1"])
+        self.assertGreater(self.shown(page, ".bonus-list li"), 0, "day 5 keeps some ideas")
+        self.assertTrue(page.evaluate("""() => Array.from(document.querySelectorAll('.bonus-list li'))
+            .filter(l => l.offsetHeight > 0).every(l => l.dataset.days.indexOf(' 5 ') >= 0)"""), "only ideas that name day 5")
+        self.assertTrue(page.evaluate("""() => Array.from(document.querySelectorAll('.bonus-list h4')).filter(h => h.offsetHeight > 0)
+            .every(h => { const u = h.nextElementSibling; return u && Array.from(u.children).some(li => li.offsetHeight > 0); })"""), "no heading over an empty list")
+        expect(page.locator("#barL1")).to_have_text("DAY 5 · MON 28 SEP")
+        page.evaluate("() => window.scrollTo(0, 900)")
+        page.wait_for_timeout(400)
+        expect(page.locator("#barL1")).to_have_text("DAY 5 · MON 28 SEP")   # one day at a time: the bar holds
+        page.click('#acal button[data-actday="0"]')
+        self.assertEqual(self.shown(page, ".day"), 15)
+
+    def test_B21_shared_link(self):
+        page = self.open(query="#activities-11")
+        self.assertTrue(page.evaluate("() => document.body.classList.contains('plan')"), "a shared link opens the plan")
+        self.assertEqual(page.evaluate("() => Array.from(document.querySelectorAll('.day')).filter(d => d.offsetHeight > 0).map(d => d.dataset.day)"), ["11"])
+        self.assertEqual(page.evaluate("""() => document.querySelector('#acal button[aria-pressed="true"]').dataset.actday"""), "11")
+        expect(page.locator("#barL1")).to_have_text("DAY 11 · SUN 4 OCT")
+        self.assertEqual(page.evaluate("() => window.scrollY"), 0, "a shared link starts at the top of the plan")
+
+    def test_B21_bar_and_back(self):
+        page = self.open(query="#activities-5")
+        page.click("#barMain")
+        page.click('#cells .cell[data-n="9"]')
+        page.wait_for_timeout(300)
+        self.assertEqual(page.evaluate("() => location.hash"), "#activities-9", "the bar's day picker moves the filter")
+        self.assertEqual(page.evaluate("() => Array.from(document.querySelectorAll('.day')).filter(d => d.offsetHeight > 0).map(d => d.dataset.day)"), ["9"])
+        page.go_back()
+        page.wait_for_timeout(300)
+        self.assertEqual(page.evaluate("() => Array.from(document.querySelectorAll('.day')).filter(d => d.offsetHeight > 0).map(d => d.dataset.day)"), ["5"], "Back returns to the day before")
+
+
+@extended
+class B21_ActivitiesWide(Base):
+    def test_B21_rail_button(self):
+        page = self.open(self.new_context(**WIDE))
+        expect(page.locator(".rail .gobtn")).to_be_visible()
+        page.click(".rail .gobtn")
+        expect(page.locator("#activities")).to_be_visible()
+        self.assertEqual(page.evaluate("() => location.hash"), "#activities")
+
+
 @extended
 class B18_Keyboard(Base):
     def test_B18_focus_order_and_rings(self):

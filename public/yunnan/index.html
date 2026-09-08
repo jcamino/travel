@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Fourteen Nights</title>
 <meta name="description" content="Fourteen nights in western Yunnan, 24 September to 8 October 2026: Dali, Lijiang, Shangri-La, Shaxi and Tengchong, the history of the road, one chapter per hotel night.">
-<meta name="build" content="yunnan-798c12b04d">
+<meta name="build" content="yunnan-b25fda1f1b">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="travel.jcamino.net">
 <meta property="og:title" content="Fourteen Nights">
@@ -307,14 +307,66 @@ p{margin:0 0 1.1rem; text-wrap:pretty}
 .bonus-list .meta a{display:inline; padding:4px 0}
 .bonus-list .skip{color:var(--moth)}
 .bonus-list .skip b{color:var(--ember)}
-.bonus-list .tag{display:inline-block; margin:0 .5em .15em 0; padding:1px 9px; border-radius:999px; border:1px solid var(--lacquer); font-family:var(--mono); font-size:0.9375rem; letter-spacing:.04em; color:var(--moth); vertical-align:baseline}
-.bonus-list .tag.t1{color:var(--lamp); border-color:rgba(242,184,90,.45)}
-.bonus-list .tag.t2{color:#8fc7a6; border-color:rgba(143,199,166,.45)}
-.bonus-list .tag.t3{color:var(--ember); border-color:rgba(217,102,58,.5)}
+.tag{display:inline-block; margin:0 .5em .15em 0; padding:1px 9px; border-radius:999px; border:1px solid var(--lacquer); font-family:var(--mono); font-size:0.9375rem; letter-spacing:.04em; color:var(--moth); vertical-align:baseline}
+.tag.t1{color:var(--lamp); border-color:rgba(242,184,90,.45)}
+.tag.t2{color:#8fc7a6; border-color:rgba(143,199,166,.45)}
+.tag.t3{color:var(--ember); border-color:rgba(217,102,58,.5)}
 .credits{list-style:none; margin:1rem 0 0; padding:0; color:#8b92aa; font-size:0.875rem; line-height:1.5}
 .credits li{margin:0 0 .4rem; padding-left:1rem; text-indent:-1rem; overflow-wrap:anywhere}
 .credits li.drawn{margin-top:.9rem; padding-left:0; text-indent:0}
 .credits li a{color:#a9b5cc; display:inline; padding:4px 0}
+
+/* ---------- activities: the plan and the suggestions on their own, the history out of the way ---------- */
+.acts{display:none; padding:clamp(40px,8vh,72px) 0 4px}
+body.plan .acts{display:block}
+.acts h2{font-style:italic; font-size:2.125rem; margin:.3rem 0 1rem}
+.acts .lead{margin-bottom:.9rem}
+.acts-note{color:var(--moth); font-size:0.9375rem; line-height:1.55}
+.acal{display:grid; grid-template-columns:repeat(auto-fill,minmax(96px,1fr)); gap:8px; margin:1.4rem 0 1rem; padding:0; list-style:none}
+.acal li{min-width:0}
+.acal button{position:relative; display:flex; flex-direction:column; gap:1px; width:100%; height:100%; min-height:76px; padding:8px 8px 7px;
+  border:1px solid var(--lacquer); border-radius:8px; background:#090c1a; color:var(--paper); text-align:left; white-space:nowrap; overflow:hidden;
+  font-family:var(--mono); font-size:0.9375rem; letter-spacing:.02em; line-height:1.25; font-variant-numeric:tabular-nums}
+.acal button b{font-weight:400; color:var(--lamp)}
+.acal button small{font-size:0.9375rem; color:var(--moth); display:block; overflow:hidden; text-overflow:ellipsis}
+.acal button .pl{white-space:normal; overflow-wrap:anywhere; line-height:1.15}
+.acal button .k{position:absolute; top:6px; right:8px; font-size:0.8125rem; color:var(--moth)}
+.acal .all{grid-column:span 2}
+.acal .dawn button{background:var(--sh-ground); border-color:var(--sh-soft)}
+.acal .dawn button b{color:var(--sh)}
+.acal button[aria-pressed="true"]{background:rgba(242,184,90,.16); border-color:var(--lamp); box-shadow:0 0 0 1px var(--lamp)}
+.acal button:active{background:#213060}
+.acts-row{display:flex; flex-wrap:wrap; align-items:center; gap:8px 10px; margin:1.2rem 0 .2rem}
+.acts-row button{min-height:44px; padding:0 16px; border:1px solid var(--lacquer); border-radius:8px; background:none; color:var(--lamp);
+  font-family:var(--mono); font-size:0.9375rem; letter-spacing:.04em}
+.acts-row button:active{background:rgba(242,184,90,.1)}
+.acts-row .said{font-family:var(--mono); font-size:0.9375rem; color:var(--moth); overflow-wrap:anywhere; min-width:0}
+/* the way in: on the cover, in the rail, and always in the bar */
+.gobtn{display:flex; align-items:center; gap:14px; width:100%; text-align:left; margin-top:10px; border:1px solid var(--lamp);
+  background:rgba(242,184,90,.15); color:var(--lamp); border-radius:10px; padding:12px 16px; min-height:54px; line-height:1.35}
+.gobtn .mono{display:block; font-size:0.9375rem; color:var(--moth); margin-bottom:2px}
+.gobtn .go-txt{flex:1 1 auto; min-width:0}
+.gobtn svg{flex:0 0 26px; width:26px; height:26px}
+.gobtn:active{background:rgba(242,184,90,.25)}
+.rail .gobtn{margin:0 0 16px}
+.bar-acts{flex:0 0 62px; border:0; border-left:1px solid var(--lacquer-soft); background:none; color:var(--lamp);
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px;
+  font-family:var(--mono); font-size:0.6875rem; letter-spacing:.09em}
+.bar-acts svg{width:23px; height:23px}
+.bar-acts[aria-pressed="true"]{background:rgba(242,184,90,.12)}
+.bar-acts:focus-visible{outline-offset:-4px}
+/* what activities mode puts away: the history, its pictures, its notes, the sources and the credits */
+body.plan .cover,body.plan .howto,body.plan .house,body.plan .sources,body.plan .foot,body.plan .bonus-btn,
+body.plan .chapter > .wrap > .ch-num,body.plan .chapter > .wrap > .ch-title,body.plan .chapter > .wrap > p,
+body.plan .chapter > .wrap > .note,body.plan .chapter > .wrap > figure,body.plan .chapter > .wrap > .pair,
+body.plan .chapter > .wrap > .more,body.plan .chapter > .wrap > .gal{display:none}
+body.plan .bonus-list[hidden]{display:block}
+body.plan .chapter{padding:clamp(28px,5vh,48px) 0 20px}
+body.plan .ch-tag{margin:0; font-size:1rem; color:var(--lamp)}
+body.plan .days{margin-top:1rem}
+body.plan .bonus{margin-top:1.3rem}
+body.plan .bonus-list{margin-top:0}
+.a-off{display:none !important}
 
 /* ---------- night bar ---------- */
 .bar{position:fixed; left:0; right:0; bottom:0; z-index:40; height:calc(var(--barh) + env(safe-area-inset-bottom));
@@ -530,7 +582,7 @@ p{margin:0 0 1.1rem; text-wrap:pretty}
 }
 @media print{
   body{background:#fff; color:#111; padding:0}
-  .bar,.panel,.sheet,.lb,.flame,.rail,.log,.tile{display:none !important}
+  .bar,.panel,.sheet,.lb,.flame,.rail,.log,.tile,.gobtn,.acts-row{display:none !important}
   .fig .frame{background:#fff; border-color:#999}
   main,.cover,.house,.sources,.foot{margin-left:0}
   .credits[hidden]{display:block !important}
@@ -589,6 +641,7 @@ html.cn .intl-only{display:none}
 
 <aside class="rail" aria-label="Night map and the nights">
   <h2>Fourteen Nights</h2>
+  <button class="gobtn" type="button" data-acts="1" aria-pressed="false"><span class="go-txt"><span class="mono">Not in the tour</span><span>Activities &amp; calendar</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.6" width="18" height="16" rx="2.6"/><path d="M3 9.6h18M8 2.6v4M16 2.6v4"/><path d="M12 11.9l1.15 2.33 2.57.37-1.86 1.81.44 2.56L12 17.76l-2.3 1.21.44-2.56-1.86-1.81 2.57-.37z" fill="currentColor" stroke="none"/></svg></button>
   <div class="nightmap" data-map="rail"></div>
   <figure class="fig prof" data-prof="rail"><div class="frame"></div><figcaption>Fifteen days by altitude. Click a day.</figcaption></figure>
   <ol class="rail-list" id="railList"></ol>
@@ -613,18 +666,33 @@ html.cn .intl-only{display:none}
       <figcaption>Where you sleep on night one: the shore of Erhai, Dali.</figcaption>
     </figure>
     <button class="tile" id="tile" type="button"><span class="tile-txt"><span class="mono" id="tileTop">Tonight</span><span id="tileMain">Fourteen nights, one chapter each</span></span><span class="tile-map" data-map="mini" aria-hidden="true"></span></button>
+    <button class="gobtn" type="button" data-acts="1" aria-pressed="false"><span class="go-txt"><span class="mono">Everything the tour leaves out</span><span>Activities &amp; calendar</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.6" width="18" height="16" rx="2.6"/><path d="M3 9.6h18M8 2.6v4M16 2.6v4"/><path d="M12 11.9l1.15 2.33 2.57.37-1.86 1.81.44 2.56L12 17.76l-2.3 1.21.44-2.56-1.86-1.81 2.57-.37z" fill="currentColor" stroke="none"/></svg></button>
   </div>
   <div class="flame" aria-hidden="true"><i></i></div>
 </header>
 
 <main>
+<section class="acts" id="activities" aria-labelledby="actsT">
+  <div class="wrap">
+    <div class="ch-tag mono"><span>The plan</span> <span class="han">行程</span> <span>24 Sep &ndash; 8 Oct 2026</span></div>
+    <h2 id="actsT">Activities &amp; calendar</h2>
+    <p class="lead">The fifteen days on their own, and under each stop everything the tour does not include: museums, music, walks, tables, and the ones to decline.</p>
+    <p class="acts-note">Pick a day to see that day alone, with only the ideas that suit it; <b>All days</b> gives the whole fortnight and the skip lists. The three marks are <span class="tag t1">Touristy, worth it</span>, <span class="tag t2">Not touristy</span> and <span class="tag t3">Touristy, not worth it</span>. The small number on a day is how many ideas suit it. Every day has its own address, so a day can be sent to someone: use the button below the calendar.</p>
+    <ol class="acal" id="acal" aria-label="Pick a day"></ol>
+    <div class="acts-row">
+      <button type="button" data-acts="0">&#8592; The history</button>
+      <button type="button" id="actsLink">Copy the link</button>
+      <span class="said" id="actsSaid" role="status" aria-live="polite"></span>
+    </div>
+  </div>
+</section>
 <section class="howto" id="howto" aria-labelledby="howtoT">
   <div class="wrap">
     <h2 id="howtoT">Before the first night</h2>
     <p class="lead">Western Yunnan changed hands several times, and this page tells those stories one night at a time, in the places you will sleep: a Mongol army crossing the Jinsha on inflated hides in 1253, a sultan surrendering Dali in the last week of 1872, blacked-out convoys (no lights) on the Burma Road and air transports over the Hump, a guesthouse fire in Dukezong at one in the morning in 2014.</p>
     <p>So this is written for the hour after dinner: one chapter per hotel night, the history first and the plan second, so the practical block is always the last thing before the next chapter. The page asks at every stop whose lamp was lit here, and who put it out.</p>
     <h3 id="howtoH">How this page works</h3>
-    <p>The bar along the bottom of the screen always knows which night it is, where you are and how high; the row of fifteen small windows in it is the trip, past nights dimmed, tonight's lit. Tap the bar to pick any day, tap the moon for the map; on a wide screen the map and the list of nights sit on the left instead. Every night card carries the weather: the usual climate for that stop until the forecast opens, then the forecast itself, night low first, kept on the phone so it still shows offline. Under each date are sunset and moonrise for that stop, in China time, worked out on the phone. Add the page to your home screen (see Housekeeping) and it needs no signal at all. At the end of each stop, under the night cards, a button unfolds the <b>bonus activities</b>: museums, music, walks and tables the tour does not include, each with a link; those links are the one thing on the page that needs a signal.</p>
+    <p>The bar along the bottom of the screen always knows which night it is, where you are and how high; the row of fifteen small windows in it is the trip, past nights dimmed, tonight's lit. Tap the bar to pick any day, tap the moon for the map; on a wide screen the map and the list of nights sit on the left instead. Every night card carries the weather: the usual climate for that stop until the forecast opens, then the forecast itself, night low first, kept on the phone so it still shows offline. Under each date are sunset and moonrise for that stop, in China time, worked out on the phone. Add the page to your home screen (see Housekeeping) and it needs no signal at all. At the end of each stop, under the night cards, a button unfolds the <b>bonus activities</b>: museums, music, walks and tables the tour does not include, each with a link; those links are the one thing on the page that needs a signal. The <b>Activities &amp; calendar</b> button, on the cover and always in the bar, gathers all of that in one place with the history out of the way: pick a day there and the page keeps that day and the ideas that suit it, and nothing else. That view has its own address, so one day of the trip can be sent to someone.</p>
     <ol class="cal" id="cal" aria-label="The fifteen days"></ol>
     <figure class="fig prof" data-prof="howto">
       <div class="frame"></div>
@@ -1760,6 +1828,9 @@ html.cn .intl-only{display:none}
     <span class="l2" id="barL2">Dali &middot; 1,980 m</span>
     <span class="bar-cells" id="barCells" aria-hidden="true"></span>
   </button>
+  <button class="bar-acts" id="barActs" type="button" data-acts="t" aria-pressed="false" aria-label="Activities and calendar">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.6" width="18" height="16" rx="2.6"/><path d="M3 9.6h18M8 2.6v4M16 2.6v4"/></svg><span id="barActsL">PLAN</span>
+  </button>
   <button class="bar-btn" id="barMap" type="button" aria-expanded="false" aria-controls="sheet" aria-label="Open the night map">
     <svg viewBox="-30 -30 60 60" aria-hidden="true"><circle r="22" fill="#1b2140" stroke="#2c3560"/><path id="barMoon" fill="#F2B85A" d=""/></svg>
   </button>
@@ -2221,7 +2292,7 @@ function revealTo(ci){
 })();
 
 /* ---------- which night: state ---------- */
-var cur = 0, navLock = 0;
+var cur = 0, navLock = 0, actsPick = null;
 var chapters = $$(".chapter"), dayEls = $$(".day"), cover = $(".cover");
 var barL1 = $("#barL1"), barL2 = $("#barL2"), cells = $("#cells"), barCells = $("#barCells"), panelLab = $("#panelLab"), sheetLab = $("#sheetLab");
 (function(){
@@ -2262,6 +2333,7 @@ function scrollToEl(el){
   el.scrollIntoView({behavior: RM ? "auto" : "smooth", block: "start"});
 }
 function goDay(n, chapterFirst){
+  if (actsPick && actsPick(n)) return;   /* in the activities view, picking a day moves the filter instead */
   setNight(n);
   var ci = chapterOf(n);
   if (chapterFirst && n === CH[ci].first) scrollToEl(chapters[ci]); else scrollToEl(document.getElementById("day-" + n));
@@ -2312,8 +2384,9 @@ function syncNight(){
   ticking = false;
   if (Date.now() < navLock) return;
   var y = readLine(), n = 0, ci = -1, k;
-  for (k = 0; k < dayEls.length; k++) if (dayEls[k].getBoundingClientRect().top <= y) n = +dayEls[k].dataset.day;
-  for (k = 0; k < chapters.length; k++) if (chapters[k].getBoundingClientRect().top <= y) ci = k;
+  /* a card the activities filter has put away measures 0 and would otherwise read as scrolled past */
+  for (k = 0; k < dayEls.length; k++) if (dayEls[k].offsetParent && dayEls[k].getBoundingClientRect().top <= y) n = +dayEls[k].dataset.day;
+  for (k = 0; k < chapters.length; k++) if (chapters[k].offsetHeight && chapters[k].getBoundingClientRect().top <= y) ci = k;
   var want = ci < 0 ? 1 : (n >= CH[ci].first && n <= CH[ci].last ? n : CH[ci].first);
   if (want !== cur) { setNight(want, true); revealTo(chapterOf(want)); }
 }
@@ -2731,6 +2804,117 @@ $$(".bonus-btn").forEach(function(b){
   b.addEventListener("click", function(){ set(box.hidden); });
   addEventListener("beforeprint", function(){ set(true); });
 });
+
+/* ---------- activities: the plan and the suggestions on their own ----------
+   Which day an idea belongs to is read from the idea's own text ("Day 3", "Days 12 to 14"), so the
+   lists stay the one place a day is written down. #activities opens the view, #activities-5 opens it
+   on Day 5; a fragment never leaves the browser, so both work offline and both can be shared. */
+(function(){
+  var acal = $("#acal"); if (!acal) return;
+  var items = $$(".bonus-list li"), groups = $$(".bonus-list h4"), lists = $$(".days"), boxes = $$(".bonus");
+  var barBtn = $("#barActs"), barLab = $("#barActsL"), said = $("#actsSaid");
+  var count = {}, on = false, sel = 0, back = 0;
+
+  items.forEach(function(li){
+    var set = {}, m, a, b, k, re = /\bDays?\s+(\d+)(?:\s*(?:to|and|or|through|\u2013|\u2014|-)\s*(\d+))?/g;
+    if (!li.classList.contains("skip")) {
+      while ((m = re.exec(li.textContent))) {
+        a = +m[1]; b = m[2] ? +m[2] : a;
+        if (a >= 1 && a <= 15 && b >= a && b <= 15) for (k = a; k <= b; k++) set[k] = 1;
+      }
+    }
+    var days = Object.keys(set);
+    li.dataset.days = " " + days.join(" ") + " ";
+    days.forEach(function(d){ count[d] = (count[d] || 0) + 1; });
+  });
+
+  var h = '<li class="all"><button type="button" data-actday="0" aria-pressed="true"><b>All days</b><small>Nights I&ndash;XV</small><small>' + items.length + ' ideas</small></button></li>';
+  DAYS.forEach(function(d){
+    var p = d.d.split(" ");
+    h += '<li' + (d.n === 15 ? ' class="dawn"' : '') + '><button type="button" data-actday="' + d.n + '" aria-pressed="false"' +
+         ' aria-label="Day ' + d.n + ', ' + d.d + ', ' + d.place + (count[d.n] ? ', ' + count[d.n] + ' ideas' : '') + '">' +
+         '<b><span class="sr">Night </span>' + ROMAN[d.n] + '</b><small>' + p[0] + ' ' + p[1] + '</small><small class="pl">' + d.place + '</small>' +
+         (count[d.n] ? '<span class="k">' + count[d.n] + '</span>' : '') + '</button></li>';
+  });
+  acal.innerHTML = h;
+  var picks = $$("button", acal);
+
+  function off(el, v){ el.classList.toggle("a-off", v); }
+  function paint(){
+    var one = on && sel > 0;
+    picks.forEach(function(b){ b.setAttribute("aria-pressed", +b.dataset.actday === sel ? "true" : "false"); });
+    dayEls.forEach(function(li){ off(li, one && +li.dataset.day !== sel); });
+    items.forEach(function(li){ off(li, one && li.dataset.days.indexOf(" " + sel + " ") < 0); });
+    groups.forEach(function(g){
+      var ul = g.nextElementSibling, live = !one;
+      if (one && ul) live = $$("li", ul).some(function(li){ return !li.classList.contains("a-off"); });
+      off(g, !live); if (ul) off(ul, !live);
+    });
+    lists.forEach(function(ol){ off(ol, one && !$$(".day", ol).some(function(li){ return !li.classList.contains("a-off"); })); });
+    boxes.forEach(function(x){ off(x, one && !$$("li", x).some(function(li){ return !li.classList.contains("a-off"); })); });
+    chapters.forEach(function(c){ off(c, one && !$$(".day,.bonus-list li", c).some(function(el){ return !el.classList.contains("a-off"); })); });
+  }
+
+  function apply(want, day, quiet){
+    if (day != null) sel = Math.max(0, Math.min(15, day | 0));
+    if (want !== on) { on = want; document.body.classList.toggle("plan", on); }
+    paint();
+    /* one day at a time: the scroll position no longer says which night it is, so hold the bar on it */
+    if (on && sel) navLock = 8.64e15; else if (navLock === 8.64e15) navLock = 0;
+    $$('[data-acts="1"],[data-acts="t"]').forEach(function(b){ b.setAttribute("aria-pressed", on ? "true" : "false"); });
+    if (barLab) barLab.textContent = on ? "STORY" : "PLAN";
+    var want_h = on ? "#activities" + (sel ? "-" + sel : "") : "";
+    if ((location.hash || "") !== want_h && history.replaceState) {
+      var u = location.pathname + location.search + want_h;
+      try { history[quiet ? "replaceState" : "pushState"](null, "", u); } catch (x) {}
+    }
+  }
+
+  $$("[data-acts]").forEach(function(b){
+    b.addEventListener("click", function(){
+      var v = b.dataset.acts, want = v === "t" ? !on : v === "1";
+      if (want && !on) back = window.scrollY;
+      apply(want, want ? sel : 0);
+      if (want) window.scrollTo(0, 0); else { window.scrollTo(0, back); back = 0; }
+    });
+  });
+  picks.forEach(function(b){
+    b.addEventListener("click", function(){
+      if (!on) back = window.scrollY;
+      var d = +b.dataset.actday;
+      apply(true, d);
+      window.scrollTo(0, 0);
+      /* the bar should read the day that was picked, not day one, which is what the top of the page means */
+      if (d) setNight(d);
+    });
+  });
+
+  actsPick = function(n){
+    if (!on || !sel) return false;
+    if (n !== sel) { apply(true, n); window.scrollTo(0, 0); setNight(n); }
+    return true;
+  };
+
+  var lk = $("#actsLink");
+  if (lk) lk.addEventListener("click", function(){
+    var u = location.href;
+    function tell(s){ said.textContent = s; setTimeout(function(){ if (said.textContent === s) said.textContent = ""; }, 6000); }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(u).then(function(){ tell("Copied."); }, function(){ tell(u); });
+    else tell(u);
+  });
+
+  function fromHash(quiet){
+    var m = /^#activities(?:-(\d+))?$/.exec(location.hash || "");
+    if (m) { apply(true, m[1] ? +m[1] : 0, true); return true; }
+    if (on) apply(false, 0, true);
+    return false;
+  }
+  addEventListener("popstate", function(){ fromHash(true); });
+  if (fromHash(true)) setTimeout(function(){
+    window.scrollTo(0, 0);
+    if (sel) setNight(sel);
+  }, 0);
+})();
 
 /* ---------- start ---------- */
 setNight(1);

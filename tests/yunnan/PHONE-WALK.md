@@ -24,6 +24,7 @@ Build: `yunnan-__________`  Date: `________`  Phones: `________________`
 
 - [ ] **C9** Type a line in a night log, tap Postcard: the share sheet opens with a 1200×900 dark card, the numeral whole, the line under the picture. Send it to yourself on Signal.
 - [ ] **C10** Paste the page's link into Signal: the preview shows the Erhai card and the title Fourteen Nights.
+- [ ] **C15** Activities & calendar, pick a day, then Copy the link and send it to yourself: opening it on the other phone lands on that day.
 
 ## Accessibility
 
@@ -31,3 +32,4 @@ Build: `yunnan-__________`  Date: `________`  Phones: `________________`
 - [ ] **C12** Text size at the largest accessibility step: day cards and the night-log inputs do not clip, the bar still shows two lines.
 - [ ] **C13** Lamp set to noon in daylight: readable outdoors; the page is still dark.
 - [ ] **C14** A new build pushed while the page is open: on the next open it is simply there, no flash of the old page, no reload while typing.
+- [ ] **C16** In Activities & calendar with one day picked, the back gesture returns to the day before it, and again to the history.

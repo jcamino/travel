@@ -6,7 +6,7 @@ Regression checks for `/yunnan`, in four tiers. Everything runs against the buil
 | Tier | File | What | Needs | When |
 |------|------|------|-------|------|
 | A | `check.py` | Static build gate: build id triad, image inventory vs the worker's lists, manifest, link-preview tags, text hygiene, the fifteen day cards and their dates, internal targets, nothing private, size budgets, names and alt text, the worker, CSS rules that have vanished before | Python 3 | every build, right after assemble.py |
-| B | `ux_test.py` | Browser regression in Chromium: console, overflow, pictures shown whole, the bar, landing, panel and sheet, lightbox and galleries, postcards, night log, weather in three states, cover and tile under four clocks, wording flag under five timezones, offline and the new-build handover | Python 3, Playwright + Chromium, Pillow (optional, for the postcard pixels) | before a commit that touches the page |
+| B | `ux_test.py` | Browser regression in Chromium: console, overflow, pictures shown whole, the bar, landing, panel and sheet, lightbox and galleries, postcards, night log, weather in three states, cover and tile under four clocks, wording flag under five timezones, the activities view and its day filter, offline and the new-build handover | Python 3, Playwright + Chromium, Pillow (optional, for the postcard pixels) | before a commit that touches the page |
 | C | `PHONE-WALK.md` | Fourteen hand checks on a real iPhone and Android | the phones | before a build is shared |
 | D | `smoke.py` | Three requests against travel.jcamino.net | network | after a push |
 
@@ -27,7 +27,7 @@ postcard checks are specific to Fourteen Nights and will fail there; A1–A3 and
 
 Tier B serves `public/` over `http://127.0.0.1` from a thread so the worker can register, pins the
 clock, timezone and network per test, and mocks Open-Meteo with a generated fixture. The IDs in the
-output (A1 … A12, B1 … B20) match the proposal and `PHONE-WALK.md` (C1 … C14).
+output (A1 … A12, B1 … B21) match the proposal and `PHONE-WALK.md` (C1 … C14).
 
 ## Setting up tier B once
 

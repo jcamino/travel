@@ -340,6 +340,10 @@ rules = {
     ".lb-cap bounded": bool(re.search(r"\.lb-cap\{[^}]*max-height", css)),
     ".win.plate keeps its ratio": bool(re.search(r"\.win\.plate \.photo img\{aspect-ratio:var\(--ar\)", css)),
     "safe-area inset on the bar": "env(safe-area-inset-bottom)" in css,
+    "the activities view is hidden until asked for": ".acts{display:none" in css,
+    "activities mode puts the cover away": "body.plan .cover" in css,
+    "the mode's body class is not the section's": bool(re.search(r"body\.plan [^{]*\.bonus-btn", css)),
+    "the day filter's off switch": ".a-off{display:none !important}" in css,
 }
 phone = "\n".join(re.findall(r"@media \(max-width:599px\)\{(.*?)\n\}", css, re.S))
 rules["pairs stack on phones"] = bool(re.search(r"\.pair\{grid-template-columns:1fr\}", phone))
