@@ -122,9 +122,9 @@
         ]
       ],
       "price": "¥5,500",
-      "note": "advance, one drink included; ¥6,050 door",
+      "note": "2 held; pay at the desk before doors, one drink included",
       "tier": "Tier 1",
-      "status": "ON SALE",
+      "status": "HELD",
       "ref": "PI-2609201430"
     },
     {

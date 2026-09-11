@@ -1,10 +1,15 @@
 # Book: Shinjuku Pit Inn 昼の部, Sun 20 Sept 2026
 
-> **STATUS: form submitted 2026-09-07, 2 seats, auto-reply received.**
-> The auto-reply is **not** the confirmation. Staff send a separate
-> 予約完了メール within a few days. If it has not arrived by about
-> **2026-09-12**, chase `shinjuku@pit-inn.com` (that address takes replies;
-> the auto-reply's From does not). See "Check afterwards".
+> **STATUS: CONFIRMED. 予約完了メール received 2026-09-11, 2 seats, Sun 20
+> Sept daytime show.** It says the tickets are already held under the booking
+> name: give the name at reception, buy them before doors, enter in ticket
+> order. It carries **no 整理番号** and no reservation number.
+>
+> It also gives **doors 13:30, music 14:00**, which contradicts the venue's own
+> page for this date (**Open 14:00 / Start 14:30**, re-checked 2026-09-11).
+> 13:30/14:00 are Pit Inn's ordinary 昼の部 times, used by every other matinee
+> that month, so the mail reads like a template. Be at the desk from 13:00 and
+> the question does not arise. See "Check afterwards".
 
 Reserve **2 seats** at the Sunday matinee, 東京民謡倶楽部, inside Marty
 Holoubek's 3 Days / 6 Concerts residency. Read on the venue's own page
@@ -85,6 +90,9 @@ come from **13:00**, buy the ticket, then return for the **14:00** opening, so
 the desk is not swamped at 14:00.
 
 So: at the venue about 13:00, ticket in hand, back at 14:00, in at your 整理番号.
+Give the booking name at reception — the confirmation says the two tickets are
+already set aside under it. If the mail's 13:30 doors turn out to be the real
+ones, arriving at 13:00 still lands you inside the window.
 
 Expect cash. The music book says cash at the door; the venue page does not say
 either way, so carry enough, ¥11,000 for two.
@@ -94,9 +102,12 @@ either way, so carry enough, ¥11,000 for two.
 - [x] Auto-reply received at javier032@gmail.com 2026-09-07 23:19 UTC, subject
       「新宿PITINN　ご予約受付メール」, naming 2026年9月20日（Sun）,
       Open14:00/Start14:30, 2名様. Not the confirmation.
-- [ ] **予約完了メール received** (the real confirmation). Chase
-      `shinjuku@pit-inn.com` if nothing by 2026-09-12.
-- [ ] 整理番号 noted, if the reply carries one
+- [x] **予約完了メール received 2026-09-11** (the real confirmation): 2 people,
+      daytime show of 20 September, tickets already kept under the booking name,
+      buy them at reception before opening, entry in ticket-number order. Its
+      times, doors 13:30 / start 14:00, are the house defaults and not what the
+      show page says.
+- [ ] 整理番号 noted — the confirmation carries none, so ask at the desk
 - [ ] ¥5,500 advance price honoured at the counter, not ¥6,050. The show page
       calls all three routes 前売 sales, so reserving now should lock the
       advance price, but it is ¥1,100 across two tickets if that reading is

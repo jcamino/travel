@@ -24,7 +24,7 @@
   "musicPage": "/japan/music/",
   "openItems": [
     "Body & Soul Sept 21, 20:00 set: phone 03-6455-0088, their web form 403s from here",
-    "Pit Inn Sept 20: requested 7 Sept, waiting on the 予約完了メール (chase by 12 Sept)",
+    "Pit Inn Sept 20: confirmed for 2; tickets still to be bought at the desk, and their mail and their page disagree on the times",
     "御香宮 candle noh Sept 23: buy B seats on the web by Sun 13 Sept",
     "Kyoto dinners Sept 23, 24, 25, each needing one vegan menu, plus Shigetsu lunch Sept 25",
     "Haruka Sept 26 ~08:00",
@@ -115,18 +115,19 @@
 
 ### 14:30 | Music page: Pit Inn 昼の部, 東京民謡倶楽部
 {music}
-{status} pending
+{status} booked
 {ticket} pending
 {detail} Tsugaru shamisen, shakuhachi and wadaiko inside a jazz band. Open 14:00, start 14:30. ¥5,500 adv, ¥6,050 door, one drink included. The Sunday pick.
 {musicref} Sun 20 · 14:30 · Pit Inn 昼の部
+{conf} none issued; the tickets are held under the booking name
 {via} pit-inn.com reservation form, 7 Sept
 {place} Shinjuku Pit Inn
 {map} Shinjuku Pit Inn
 {url} https://pit-inn.com/artist_live_info/260920hirumarty/
-- Requested for 2 on 7 Sept through the venue's reservation form; the auto-reply came back the same night naming 2026年9月20日, Open14:00/Start14:30, 2名様.
-- Not confirmed yet. The auto-reply says so outright: staff send a separate 予約完了メール within a few days, and only that is the booking. Chase shinjuku@pit-inn.com if nothing by 12 Sept.
+- Confirmed. Requested for 2 on 7 Sept through the venue's form; the 予約完了メール came back for 2 people at the 20 September daytime show, and the tickets are being held.
+- The reservation is not a ticket. Give the booking name at the Pit Inn reception and buy the two held tickets before the doors open; the desk takes reservation-holders from 13:00 so it is not swamped at opening. Entry then runs in 整理番号 order, and the number was fixed when the form went in on 7 Sept.
+- The two sources disagree on the clock. The confirmation mail says doors 13:30 and music at 14:00, which are Pit Inn's ordinary matinee times; the venue's page for this date still says Open 14:00, Start 14:30 (checked 11 Sept), and its Japanese notice names 14:00 as the opening. Being at the desk from 13:00 covers both readings.
 - Headcount can still change until 23:00 on Sat 19; after that it is door price only.
-- The reservation is not a ticket. Buy it at the Pit Inn desk from 13:00, then come back for the 14:00 opening; entry runs in 整理番号 order and the number was fixed when the form went in.
 - 小山豊 leads; 石若駿 on drums, Marty Holoubek on bass. About a hundred seats.
 - Full booking notes in tools/japan/pit.md.
 

@@ -212,7 +212,7 @@ def run():
             page.click(".view-btn[data-view=bookings]")
             check("view=bookings" in page.url, f"{name}: bookings view in hash")
             n = page.locator(".bk").count()
-            check(n == 7, f"{name}: seven booked items (got {n})")
+            check(n == 8, f"{name}: eight booked items (got {n})")
             check(page.locator(".bk .blank").count() >= 14, f"{name}: blank confirmation fields present")
             no_overflow(page, name, "bookings")
             page.screenshot(path=str(SHOTS / f"japan-{name}-bookings.png"), full_page=True)
