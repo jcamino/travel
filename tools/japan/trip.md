@@ -25,6 +25,7 @@
   "openItems": [
     "Body & Soul Sept 21, 20:00 set: phone 03-6455-0088, their web form 403s from here",
     "Pit Inn Sept 20: confirmed for 2; tickets still to be bought at the desk, and their mail and their page disagree on the times",
+    "磔磔 Sept 24: requested for 2 by email 11 Sept, watch for the venue's reply; ¥11,000 cash at the door, nothing held until they answer",
     "御香宮 candle noh Sept 23: buy B seats on the web by Sun 13 Sept",
     "Kyoto dinners Sept 23, 24, 25, each needing one vegan menu, plus Shigetsu lunch Sept 25",
     "Haruka Sept 26 ~08:00",
@@ -399,15 +400,21 @@
 ### 19:00 | Music page: blues.the-butcher-590213 release show, 磔磔
 {music}
 {branch} evening | takutaku
-{status} suggested
-{detail} The domestic blues institution releasing "Live at Takutaku", the album they recorded in this room: a 1974 sake warehouse on Shijō-Takakura, 8 min walk from base. Open 18:00, start 19:00. ¥5,500 advance, ¥6,000 at the door.
+{status} pending
+{ticket} pending
+{detail} The domestic blues institution releasing "Live At Takutaku", the album they recorded in this room: a 1974 sake warehouse off Fuyachō, 8 min walk from base. Open 18:00, start 19:00. ¥5,500 advance, ¥6,000 at the door. 山岸潤史 guests.
 {musicref} Thu 24 · 19:00 · 磔磔 Takutaku
+{conf} none yet; two held under Camino Javier once the venue replies
+{via} info@takutaku.jp email reservation, 11 Sept
 {place} 磔磔 Takutaku
-{map} Takutaku, Shijo-Takakura, Kyoto
+{map} 京都市下京区富小路仏光寺下ル筋屋町136-9
 {url} https://takutaku.jp/
-- Clashes with UrBANGUILD below (19:30). One or the other.
-- 永井"ホトケ"隆, 沼澤尚, 中條卓 and KOTEZ. Tier 2 players in a Tier 1 room.
-- Advance tickets by email through the venue site, or over the counter at 磔磔.
+- Requested for 2 by email on 11 Sept. The venue answers in 1 to 2 days and that reply is the reservation; nothing is held until it arrives, and nothing is charged before the door.
+- Not a ticket and not prepaid. Give the name カミーノ ハビエル at the desk and pay ¥11,000 for the two there, in cash. Email reservations enter after advance-ticket holders, so come early for a good spot in a standing room.
+- Chosen over UrBANGUILD below (19:30), which this clashes with.
+- 永井"ホトケ"隆, 沼澤尚, 中條卓 and KOTEZ, with 山岸潤史 guesting. Tier 2 players in a Tier 1 room.
+- Sells only two ways: 磔磔's own counter, or the email reservation. No e-plus, no online checkout, no card.
+- To cancel, reply to the venue's confirmation. Email must land by the day before; mail sent on the day is void.
 
 ### 19:30 | Music page: Lukas Ligeti & 内橋和久 Uchihashi Kazuhisa, UrBANGUILD
 {music}
@@ -420,7 +427,7 @@
 {url} https://urbanguild.net/events
 - No external seller listed; reserve through the venue or pay at the door.
 - Other options tonight: Boris × DURAN at Yogibo META VALLEY, Osaka, 19:30, ¥5,000 + drink (TIGET, international path; Boris tours the US yearly); Blues The Butcher's release show in the 磔磔 sake warehouse, 19:00, ¥5,500, email; Sone in Kobe, three resident sets from 18:30, ¥2,200.
-- Clashes with the 磔磔 release show above (19:00). One or the other.
+- Clashes with the 磔磔 release show above (19:00), which is now the pick. This is the fallback if the venue cannot seat two.
 
 ### 21:30 | Jazz kissa night, or live jazz
 {status} suggested
