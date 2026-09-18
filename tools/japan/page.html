@@ -10,7 +10,7 @@
 <meta name="description" content="Day by day guide for Javier and Eric, Tokyo then Kyoto, September 2026.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@600;700&family=IBM+Plex+Sans+JP:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+JP:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 /* ---------- tokens ---------- */
 :root {
@@ -26,7 +26,9 @@
   --stone: #8A8578;
   --focus: #C43C1E;
   --serif: "Shippori Mincho B1", ui-serif, "New York", Georgia, "Times New Roman", serif;
-  --sans: "IBM Plex Sans JP", system-ui, -apple-system, "Segoe UI", "Hiragino Sans", "Yu Gothic UI", sans-serif;
+  /* Plex Sans first: the JP cut draws ō and ū as a bare letter with the macron
+     pushed onto the next one, so Kantō read as Kanto with a bar over the space */
+  --sans: "IBM Plex Sans", "IBM Plex Sans JP", system-ui, -apple-system, "Segoe UI", "Hiragino Sans", "Yu Gothic UI", sans-serif;
   --rail-time: 3rem;
   --rail-w: 2.3rem;
   --rail-gap: .5rem;
@@ -193,6 +195,21 @@ svg { display: block; }
 }
 
 /* ---------- filter chips ---------- */
+/* ---------- alert: a trip may carry one, above the days ---------- */
+.alert { margin-top: 1rem; padding: .85rem 1rem 1rem; border: 1px solid var(--rule); border-left: 3px solid var(--vermillion); background: var(--paper-2); border-radius: .25rem; }
+.alert h2 { font-size: 1.2rem; }
+.alert .issued { font-size: .75rem; color: var(--muted); margin-top: .15rem; }
+.alert ul { list-style: none; margin-top: .6rem; }
+.alert li { font-size: .88rem; padding: .2rem 0; }
+.alert .outlook { display: grid; grid-template-columns: repeat(auto-fit, minmax(6.5rem, 1fr)); gap: .4rem; margin-top: .75rem; }
+.alert .cell { border-top: 3px solid var(--stone); padding: .4rem .1rem 0; font-size: .78rem; color: var(--muted); }
+.alert .cell b { display: block; font-family: var(--serif); font-size: .95rem; color: var(--ink); font-weight: 600; }
+.alert .cell[data-risk="mid"] { border-top-color: var(--indigo); }
+.alert .cell[data-risk="high"] { border-top-color: var(--vermillion); }
+.alert .cell[data-risk="high"] b { color: var(--vermillion); }
+.alert .links { display: flex; flex-wrap: wrap; gap: .25rem 1rem; margin-top: .75rem; font-size: .8rem; }
+.alert .links a { color: var(--indigo); }
+
 .chips { display: flex; gap: .4rem; flex-wrap: wrap; padding: .75rem 0 .25rem; }
 .chip {
   display: inline-flex; align-items: center; gap: .3rem;
@@ -413,6 +430,7 @@ svg { display: block; }
 
   <main id="main">
     <section class="view-days" id="view-days">
+      <section class="alert" id="trip-alert" hidden aria-labelledby="alert-h"></section>
       <div class="chips" id="chips" role="group" aria-label="Filter by status"></div>
       <div id="days"></div>
       <section class="open" id="open" aria-labelledby="open-h">
@@ -427,7 +445,7 @@ svg { display: block; }
       <div id="bk-list"></div>
     </section>
     <footer class="foot">
-      <p>Source: tools/japan/trip.md. Music picks cross-referenced against <a href="/japan/music/">the Silver Week music page</a>.</p>
+      <p>Source: <span id="trip-source">tools/japan/trip.md</span>. Music picks cross-referenced against <a href="/japan/music/">the Silver Week music page</a>.</p>
       <p class="hint">Filters and the selected day live in the address, so a view can be shared. Print for a paper copy of the whole trip.</p>
     </footer>
   </main>
@@ -641,6 +659,21 @@ svg { display: block; }
   $("#music-link").href = TRIP.musicPage;
   const about = $("#trip-about");
   TRIP.about.forEach((line, i) => { if (i) about.append(document.createElement("br")); about.append(line); });
+  if (TRIP.source) $("#trip-source").textContent = TRIP.source;
+
+  /* ---------- alert ----------
+     Optional. Dated in its own words, because a forecast is only as good as
+     its issue time and this page does not refetch it. */
+  if (TRIP.alert) {
+    const a = TRIP.alert, box = $("#trip-alert");
+    box.append(h("h2", { id: "alert-h", text: a.title }), h("p", { class: "issued", text: a.issued }));
+    if (a.outlook) box.append(h("div", { class: "outlook" }, ...a.outlook.map(c =>
+      h("div", { class: "cell", "data-risk": c.risk }, h("b", { text: c.day }), c.text))));
+    box.append(h("ul", null, ...a.lines.map(t => h("li", { text: t }))));
+    if (a.links) box.append(h("p", { class: "links" }, ...a.links.map(l =>
+      h("a", { href: l.url, rel: "noopener", text: l.label }))));
+    box.hidden = false;
+  }
 
   /* ---------- day strip ---------- */
   const strip = $("#strip");
@@ -689,7 +722,7 @@ svg { display: block; }
      A branch is a set of items on one day of which only one can happen. The
      choice is this browser's, not the trip's: trip.md stays the source of
      truth, and a settled fork is written back there as {status} decided. */
-  const PICK_KEY = "japan-picks";
+  const PICK_KEY = TRIP.picksKey || "japan-picks";
   function readPicks() {
     try {
       const raw = localStorage.getItem(PICK_KEY);
@@ -910,7 +943,8 @@ svg { display: block; }
   }
   const initialHadDay = !!readHash().day;
   render();
-  if (TODAY && !initialHadDay) {
+  /* a trip with an alert opens at the top, so the alert is read before the day */
+  if (TODAY && !initialHadDay && !TRIP.alert) {
     const nowEl = $(".item.is-now");
     if (nowEl) requestAnimationFrame(() => nowEl.scrollIntoView({ block: "center" }));
   }
@@ -922,7 +956,7 @@ svg { display: block; }
 
   /* offline: keep a copy of this page only; nothing external is cached */
   if ("serviceWorker" in navigator && location.protocol === "https:") {
-    navigator.serviceWorker.register("./sw.js", { scope: "/japan/" }).catch(() => {});
+    navigator.serviceWorker.register("./sw.js", { scope: "./" }).catch(() => {});
   }
 })();
 </script>

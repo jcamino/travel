@@ -14,6 +14,28 @@ the HTML.
     python tests/japan/dialect_check.py # trip.md round-trips, branches are sound
     python tests/japan/ux_check.py      # renders and screenshots the result
 
+## /japan2, the typhoon copy
+
+`trip2.md` is the same week replanned around Typhoon No. 25 (Dujuan), written
+on the night of Fri 18 Sept 2026, and it builds through the same page:
+
+    python tools/japan/build.py public/japan2/index.html tools/japan/trip2.md
+    python tests/japan/dialect_check.py tools/japan/trip2.md
+    python tests/japan/ux_check2.py
+
+Three front-matter keys exist for it, and a trip that leaves them out builds
+exactly as before. `alert` is the box above the days: a title, an `issued`
+line saying when the forecast was read, an `outlook` of day cells with a
+`risk` of low, mid or high, the `lines`, and `links` to the live sources. The
+box is static on purpose, so the `issued` line has to be true. `source` names
+the file in the footer. `picksKey` is the localStorage key for branch picks,
+because two trips on one origin would otherwise share `japan-picks`, and both
+have a fork on the 19th. `public/japan2/sw.js` is its own worker for the same
+reason: its own cache name and its own page.
+
+A page with an alert opens at the top instead of scrolling to the current
+item, so the alert is read first.
+
 ## The dialect
 
     ## 2026-09-19 | Sat | 19 | Tokyo | Arrive Tokyo

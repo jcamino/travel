@@ -6,7 +6,7 @@ reading it and writing it back changes nothing. Everything else here checks
 that a branch -- a set of items only one of which can happen -- says who it
 belongs to and that its group was declared.
 
-usage: python tests/japan/dialect_check.py
+usage: python tests/japan/dialect_check.py [trip.md]
 """
 import sys
 from pathlib import Path
@@ -16,7 +16,8 @@ sys.path.insert(0, str(ROOT / "tools" / "japan"))
 
 import tripbook  # noqa: E402
 
-TRIP_MD = ROOT / "tools" / "japan" / "trip.md"
+TRIP_MD = (Path(sys.argv[1]).resolve() if len(sys.argv) > 1
+           else ROOT / "tools" / "japan" / "trip.md")
 
 fails = []
 

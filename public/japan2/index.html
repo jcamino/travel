@@ -459,13 +459,14 @@ svg { display: block; }
    Blank strings are fields still to fill in.
    ===================================================================== */
 const TRIP = {
-  title: "Japan",
+  title: "Japan, replanned",
   dates: "19 to 26 September 2026",
   who: "Javier and Eric",
   about: [
+    "The same week as /japan, moved around Typhoon No. 25. Javier came in a day early for Takanaka in Katsushika on the 18th, so Saturday is his alone until Eric lands at 14:30 and checks himself in.",
     "Two adults, first time in Japan. Javier is vegan, Eric is not. 30L Osprey packs each (no oversized-baggage seats needed).",
     "Sept 19 to 23 is Silver Week 2026: crowds and sellouts everywhere, all Nozomi seats reserved-only.",
-    "Bases: Hotel Son Shibuya (Tokyo, Sept 19 to 22) and BnA Alter Museum (Kyoto, Sept 23 to 25)."
+    "Bases: HOTEL 壮-soh-shibuya (Tokyo, to the morning of the 23rd) and BnA Alter Museum (Kyoto, Sept 23 to 25)."
   ],
   legend: {
     booked: "paid and confirmed",
@@ -477,29 +478,105 @@ const TRIP = {
   },
   holidays: ["2026-09-21", "2026-09-22", "2026-09-23"],
   musicPage: "/japan/music/",
+  alert: {"title": "Typhoon No. 25 Dujuan: Saturday is the dry day, Sunday and Monday are not", "issued": "Read on Fri 18 Sept at 23:00 JST: the JMA bulletin of 21:45, and forecasters' articles from that afternoon. This box does not refresh. The links under it do.", "outlook": [{"day": "Sat 19", "risk": "low", "text": "Cloudy, a shower or two, 26°C. Rain sets in overnight. The day to be outdoors."}, {"day": "Sun 20", "risk": "high", "text": "Rain all day, 30 mm an hour at times, north wind. Trains may thin out from the evening."}, {"day": "Mon 21", "risk": "high", "text": "Closest approach, east of Tokyo by night. Downpours from the morning. Trains may stop."}, {"day": "Tue 22", "risk": "mid", "text": "Clear and hot. Trains restart only after track checks, and trails may be shut."}, {"day": "Wed 23", "risk": "low", "text": "Cloudy. The Shinkansen day, with nothing posted against it so far."}], "lines": ["Large, 975 hPa, south of Chichijima on Friday night and heading west before it turns north. JMA has it a strong typhoon of 960 hPa passing about 230 km east of Tokyo around 21:00 on Monday, give or take 220 km, and gone by Tuesday night. JMA's odds that Tokyo ends up inside the storm-wind zone: 35%.", "The rain comes before the storm. The autumn front wakes up on Saturday night, and tenki.jp gives Kantō up to 200 mm in the day to Sunday evening and up to 200 mm more in the day to Monday evening, 300 mm or more in places in Tokyo.", "JR East has a warning on every Kantō line for delays and cancellations from Sunday evening through Monday, and says the Chiba-side lines, the Narita line among them, may stop for all of Monday. Nothing is posted for the Tōkaidō Shinkansen or by United.", "For Hagibis in 2019 the department stores, the museums, Kabuki-za and about a thousand 7-Elevens shut for the day, each saying so the day before. Buy Monday's water and food on Saturday.", "Kyoto from Wed 23 sits outside all of this: 20% rain, highs of 29 to 31°C."], "links": [{"label": "JMA typhoon map", "url": "https://www.jma.go.jp/bosai/map.html#contents=typhoon&lang=en"}, {"label": "JR East, Kantō lines now", "url": "https://traininfo.jreast.co.jp/train_info/kanto.aspx"}, {"label": "Tōkaidō Shinkansen now", "url": "https://traininfo.jr-central.co.jp/shinkansen/sp/ja/index.html"}, {"label": "tenki.jp on the typhoon", "url": "https://tenki.jp/bousai/typhoon/"}, {"label": "Safety tips app, alerts in English", "url": "https://www.jnto.go.jp/safety-tips/eng/app.html"}]},
+  source: "tools/japan/trip2.md",
+  picksKey: "japan2-picks",
   days: [
     {
-      date: "2026-09-19", label: "19", weekday: "Sat", city: "Tokyo", theme: "Arrive Tokyo",
-      base: "Hotel Son Shibuya",
-      branchGroups: [{ id: "landing", label: "Pick one: the Pit Inn late set, the Asakusa min’yō show, or MOGRA" }],
+      date: "2026-09-19", label: "19", weekday: "Sat", city: "Tokyo", theme: "The dry day: alone until Eric lands",
+      base: "HOTEL 壮-soh-shibuya",
+      dayNotes: ["Cloudy with a shower or two, 50% through the day, high of 26°C. It is the last day that is mostly dry until Tuesday: the front brings steady rain overnight. Anything outdoors belongs today.", "Before bed: buy Monday's water and food, look at JR East's Kantō page, and settle Sunday's Pit Inn headcount, which can change until 23:00."],
+      branchGroups: [{ id: "solo", label: "Pick one for the day alone, or chain two that share a train line" }, { id: "landing", label: "Pick one: the Pit Inn late set, the Asakusa min’yō show, or MOGRA" }],
       items: [
-        { time: "15:00", approx: true, title: "Both in Tokyo by about 15:00", status: "decided",
-          detail: "Eric lands NRT 14:30, UA79 from EWR. Javier arrives around the same time.",
-          place: "Narita Airport", mapQuery: "Narita International Airport", url: "",
-          notes: [] },
-        { time: "17:30", endTime: "18:15", approx: true, title: "Hotel Son Shibuya, check in", status: "booked",
-          detail: "Base for Sept 19 to 22.",
-          place: "Hotel Son Shibuya", mapQuery: "Hotel Son Shibuya, Tokyo", url: "",
+        { time: "10:00", endTime: "17:00", title: "日本民藝館, then Shimokitazawa down the same line", status: "walkup",
+          detail: "The Japan Folk Crafts Museum in Komaba has 琉球王国の染織, Ryūkyū textiles, for its 90th year. 10:00 to 17:00, last entry 16:30, ¥1,500, no timed tickets. Today is also one of the days Yanagi Sōetsu's own house across the road is open, 10:00 to 16:30.",
+          place: "日本民藝館", mapQuery: "日本民藝館 駒場", url: "https://mingeikan.or.jp/",
+          extraMap: { label: "Shimokitazawa, the 空き地 lot", query: "下北線路街 空き地" },
+          branch: { group: "solo", option: "mingei" },
           notes: [
-            "Narita to Shibuya is about 90 minutes on the N’EX plus a transfer, so the room is realistically yours around 17:30."
-          ],
+            "Komaba-Tōdaimae, west exit, seven minutes on foot. That is two stops from Shibuya on the Keiō Inokashira local, and Shimokitazawa is two stops further on.",
+            "Shimokitazawa today: Moon Art Night runs 15:00 to 21:00, free to walk, with a ¥1,500 wristband that is cashless only. 天高祭 has live music on the 空き地 lot 12:00 to 14:00 and 15:00 to 19:00.",
+            "Records there: Disk Union 11:00 to 20:00, JET SET 12:00 to 20:00, Flash Disc Ranch from 14:30 (imports, few Japanese LPs; its hours come from a third-party listing).",
+            "Vegan there: 明天好好 in reload, 11:00 to 20:00, Taiwanese, all vegan. Universal Bakes and Cafe by Setagaya-Daita station, 8:30 to 18:00."
+          ] },
+        { time: "11:00", endTime: "14:10", title: "Noh at 宝生能楽堂, the 宝生会 monthly programme", status: "suggested", music: true,
+          detail: "Two noh and a kyōgen per sitting, ¥5,500, unreserved seats. Morning: 六浦 at 11:00, 梟山伏 at 12:20, 項羽 at 12:55, out about 14:10. Afternoon, on a separate ticket: doors 14:45, 咸陽宮 at 15:30, 雷 at 16:15, 富士太鼓 at 16:50, out about 18:05.",
+          place: "宝生能楽堂", mapQuery: "宝生能楽堂 水道橋", url: "https://www.hosho.or.jp/ticket/",
+          branch: { group: "solo", option: "noh" },
+          notes: [
+            "Tickets: cnplayguide.com/hosho by card, or the office on 03-3811-4843 from 10:00, cash at the window. Both sittings were still listed for sale on Friday night. Whether there are 当日券 at the door is not stated for this date.",
+            "Hongō 1-5-9: one minute from Suidōbashi exit A1 on the Mita line, five from the east exit of JR Suidōbashi.",
+            "The other noh today is 坂口貴信之會 at the Kanze theatre under GINZA SIX, 13:00 to about 16:25, ¥5,000 to ¥13,000. Tickets bought online have to be printed at a 7-Eleven before you arrive."
+          ] },
+        { time: "11:00", endTime: "16:00", title: "Shibuya on foot: the 金王八幡宮 festival by day, d47, Lion", status: "walkup",
+          detail: "The lazy option, and the outdoor one. The shrine's 例大祭 is today and tomorrow, with stalls and food trucks 11:00 to 21:00 and a 神楽殿 stage that turns over on the hour: Indian classical dance at 11:00, tai chi at 12:00, 日本舞踊 at 13:00, Shibuya folk tales at 15:00. Free.",
+          place: "金王八幡宮", mapQuery: "金王八幡宮", url: "https://shibuyamatsuri.com/",
+          extraMap: { label: "d47 MUSEUM, Hikarie 8F", query: "渋谷ヒカリエ d47 MUSEUM" },
+          branch: { group: "solo", option: "matsuri" },
+          notes: [
+            "Shibuya 3-5-12, six minutes from exit C1. Tomorrow's mikoshi from the three Aoyama towns are already cancelled for the weather, so today is the day to see it.",
+            "d47 MUSEUM on Hikarie 8F, joined to the station: NIPPONの47人 2026 CULTURAL STAY opened yesterday. 12:00 to 20:00, by donation, no booking.",
+            "名曲喫茶ライオン, Dōgenzaka 2-19-13, 13:00 to 20:00. Today's programme is Monteux's last recording, Tchaikovsky's Fifth with the NDR orchestra. The site gives no clock time for it; the music page had the set concerts at 15:00 and 19:00.",
+            "Tower Records, 11:00 to 22:00, with the record floor on 6F, for when the shower comes."
+          ] },
+        { time: "12:00", endTime: "18:00", title: "ジャズ喫茶いーぐる, Yotsuya: its only open day of your trip", status: "walkup", music: true,
+          detail: "A 1967 jazz kissa that asks for silence until 18:00 and turns into a bar after. Saturday 12:00 to 23:20. It shuts on Sundays and holidays, which is every other day you have in Tokyo.",
+          place: "ジャズ喫茶いーぐる", mapQuery: "ジャズ喫茶いーぐる 四谷", url: "http://www.jazz-eagle.com/information.html",
+          musicRef: "ジャズ喫茶いーぐる Eagle",
+          branch: { group: "solo", option: "eagle" },
+          notes: [
+            "Yotsuya 1-8, ホリナカビル B1F, 03-3357-9857. No event today; its talks are on Sundays now.",
+            "Pairs with Shinjuku. Disk Union's ジャズ館 is open 11:00 to 20:00 at Shinjuku 3-34-1, ジュラクツインBビル 3F, and the Pit Inn matinee is 石崎忍 TRIO, doors 13:30, start 14:00, ¥2,500 plus tax with a drink."
+          ] },
+        { time: "12:00", endTime: "17:00", title: "Roppongi under a roof: 21_21, the automata, Ron Mueck", status: "suggested",
+          detail: "The all-indoor option, for a day that turns out wetter than forecast. 21_21 DESIGN SIGHT has Learning from \"Hōjōki\", on tiny architecture, 10:00 to 19:00, ¥1,700. Its Gallery 3 opens Mechanical Wonders today: historic automata and singing birds from the Sandoz Collection, free, 19 to 24 Sept only.",
+          place: "21_21 DESIGN SIGHT", mapQuery: "21_21 DESIGN SIGHT", url: "https://www.2121designsight.jp/en/",
+          extraMap: { label: "Mori Art Museum", query: "森美術館 六本木ヒルズ" },
+          branch: { group: "solo", option: "roppongi" },
+          notes: [
+            "Tokyo Midtown, five minutes from Roppongi or Nogizaka. Mechanical Wonders gives priority to reservations but takes walk-ins; expect a first-weekend queue.",
+            "Mori Art Museum, Roppongi Hills 53F: Ron Mueck, in its last weekend, ending Wed 23. Open 9:00 to 22:00 today, ¥2,300 online or ¥2,500. Tickets are timed, and once a slot fills there are no door sales, so buy online first.",
+            "teamLab Borderless at Azabudai Hills, Kamiyachō exit 5: at 23:00 on Friday the 10:00 and the 13:00 to 14:00 slots were sold out, with over a hundred left at 12:00 to 13:00 and 16:30 to 19:30, at ¥3,800.",
+            "These also fill a wet Sunday evening or Monday if they stay open, and 21_21 is open on the Tuesday holiday."
+          ] },
+        { time: "12:30", approx: true, title: "Eating today, all vegan", status: "suggested",
+          detail: "Each one checked as trading and open on Saturdays.",
+          place: "真さか, Shibuya PARCO B1F", mapQuery: "真さか 渋谷パルコ", url: "https://shibuya.parco.jp/shop/detail/?cd=025897",
+          notes: [
+            "真さか, Shibuya PARCO B1F: 12:00 to 22:00. Vegan gyōza and karaage, set meals at lunch. Twenty seats.",
+            "Falafel Brothers, PARCO 7F: 11:00 to 22:00.",
+            "Vegan Bistro Jangara, Jingūmae 1-13-21 2F, Harajuku: 11:00 to 22:00, lunch menu to 15:00, no reservations.",
+            "Hemp Cafe Tokyo, Higashi 3-17-14 8F, Ebisu: lunch 11:30 to 15:00, dinner 18:00 to 22:00, reservations on 03-6427-1984.",
+            "SHOJIN RAMEN 菜, Udagawa-chō 11-2: vegan ramen, opened in April, cashless only. Its hours could not be found; the site points to Instagram.",
+            "なぎ食堂 closed in December 2023, whatever the older guides say."
+          ] },
+        { time: "14:30", title: "Eric lands at Narita, UA79 from EWR", status: "decided",
+          detail: "He makes his own way in and checks himself in. United had no waiver up and Narita no notice on Friday night, and at 21:00 on Saturday the storm is still far to the south.",
+          place: "Narita Airport", mapQuery: "Narita International Airport", url: "",
+          notes: [
+            "Narita to Shibuya is about 90 minutes on the N’EX plus a transfer, so he is at the hotel around 17:30."
+          ] },
+        { time: "16:00", endTime: "19:30", title: "Music page: 金王八幡宮 例大祭, the evening stage", status: "walkup", music: true,
+          detail: "The music page's Saturday pick, and now you are here for all of it. おはら節, 渋谷音頭 and ハンヤ節 with a sword-school display at 16:00, chanson at 17:00, koto at 18:00, pantomime at 19:00. Free. Eric can walk over from the hotel in time for the koto.",
+          place: "金王八幡宮", mapQuery: "金王八幡宮", url: "https://shibuyamatsuri.com/",
+          musicRef: "金王八幡宮 例大祭 宵宮 stage",
+          notes: [
+            "The mikoshi go out from 18:00 tonight, at times that differ by neighbourhood.",
+            "No rain rule is published. The shrine says the programme may change, and the steady rain is due overnight."
+          ] },
+        { time: "17:30", endTime: "18:15", approx: true, title: "HOTEL 壮-soh-shibuya, Eric checks in", status: "booked",
+          detail: "Base for Sept 19 to 22.",
+          place: "HOTEL 壮-soh-shibuya", mapQuery: "HOTEL 壮-soh-shibuya", url: "",
+          notes: [],
           conf: "", via: "" },
         { time: "19:30", endTime: "22:00", title: "Shinjuku evening, late set at Shinjuku Pit Inn", status: "walkup",
-          detail: "Check lineup; usually walk-in.",
+          detail: "The Blend: 峰厚介 (ts, 82), 中村恵介 (tp), Hakuei Kim (p), 本田珠也 (ds). Doors 19:00, start 19:30, ¥3,500 with a drink.",
           place: "Shinjuku Pit Inn", mapQuery: "Shinjuku Pit Inn", url: "https://pit-inn.com/schedule-day/",
           branch: { group: "landing", option: "pitinn" },
           notes: [
-            "Music page: Sat 19 night set is The Blend with 峰厚介 (ts, 82) at 19:30, ¥3,500 incl. Arrive ~20:15 from the airport and catch the second half."
+            "Still listed on Friday night, with a member-change flag on the entry that was not read.",
+            "With Eric at the hotel by 17:30 the whole show is in reach, not just the second half.",
+            "Rain is due by the time you come out. Shinjuku-sanchōme to Shibuya is the Fukutoshin subway line."
           ] },
         { time: "20:00", endTime: "23:30", approx: true, title: "Backup: MOGRA Akihabara, Anison Index page.194", status: "suggested",
           detail: "Anison night, if Pit Inn lineup is weak.",
@@ -514,16 +591,25 @@ const TRIP = {
           musicRef: "Every night · 和ノ家追分 Kazunoya Oiwake",
           branch: { group: "landing", option: "oiwake" },
           notes: [
-            "Min'yō sakaba; landing night, only 20:00 onwards is realistic."
+            "Min'yō sakaba; landing night, only 20:00 onwards is realistic.",
+            "Checked for tonight: open 17:30 to 23:00, shows at 19:00 and 21:00, 木戸銭 ¥2,000 with an お通し whose vegan status is unknown. Asakusa 5-37-7, 03-3874-0722."
+          ] },
+        { time: "22:30", approx: true, title: "A sentō for the jet lag: 光明泉, Nakameguro", status: "suggested",
+          detail: "15:00 to 25:00, last entry 24:30, so it fits before the evening or after it. ¥550 by its own site, sauna ¥300 more, towel ¥100. Cash only. Its FAQ says tattoos are fine.",
+          place: "光明泉", mapQuery: "光明泉 中目黒", url: "https://kohmeisen.com/",
+          notes: [
+            "Kami-Meguro 1-6-1, three minutes from Nakameguro. A carbonated bath and a sauna; the rooftop open-air bath is on the women's side this week.",
+            "改良湯, the better-known one nearer Shibuya, is shut on Saturdays."
           ] }
       ]
     },
     {
-      date: "2026-09-20", label: "20", weekday: "Sun", city: "Tokyo", theme: "Old Tokyo and jazz",
-      base: "Hotel Son Shibuya",
+      date: "2026-09-20", label: "20", weekday: "Sun", city: "Tokyo", theme: "Rain day: bunraku, the Pit Inn, home by subway",
+      base: "HOTEL 壮-soh-shibuya",
+      dayNotes: ["Rain all day and heavy at times, up to 200 mm in Kantō by evening, with a fairly strong north wind. The two shows that matter are indoors and both still listed as on.", "JR East expects delays and cancellations from this evening. Come home by subway, and read tonight's notices: a Monday closure is announced the day before."],
       items: [
-        { time: "08:00", endTime: "10:30", title: "Asakusa and Ueno morning", status: "suggested",
-          detail: "",
+        { time: "08:00", endTime: "10:30", title: "Asakusa and Ueno, only if the rain is light", status: "suggested",
+          detail: "Most of this is outdoors. In a downpour, sleep in and go straight to the bunraku.",
           place: "Asakusa", mapQuery: "Asakusa, Tokyo", url: "",
           notes: [
             "Sensō-ji’s grounds never close and the main hall opens at 06:00; Nakamise shops wake up between 09:00 and 10:00. Ueno Park is open 05:00 to 23:00.",
@@ -535,7 +621,8 @@ const TRIP = {
           musicRef: "Sun 20 · 11:00, 14:30, 19:00 · Bunraku",
           notes: [
             "National Theatre ticket site, English button, foreign cards; 当日券 from 10:00 if seats remain.",
-            "Ends 13:45; 40 minutes to Shinjuku for the 14:30 show."
+            "Ends 13:45; 40 minutes to Shinjuku for the 14:30 show.",
+            "Typhoon: the listing stands, and neither the National Theatre nor the Kōtō hall had a weather notice up on Fri 18 Sept. No cancellation rule is published. Ticket centre 0570-07-9900, 10:00 to 18:00."
           ] },
         { time: "14:30", title: "Music page: Pit Inn 昼の部, 東京民謡倶楽部", status: "booked", ticket: "pending", music: true,
           detail: "Tsugaru shamisen, shakuhachi and wadaiko inside a jazz band. Open 14:00, start 14:30. ¥5,500 adv, ¥6,050 door, one drink included. The Sunday pick.",
@@ -547,13 +634,17 @@ const TRIP = {
             "The two sources disagree on the clock. The confirmation mail says doors 13:30 and music at 14:00, which are Pit Inn's ordinary matinee times; the venue's page for this date still says Open 14:00, Start 14:30 (checked 11 Sept), and its Japanese notice names 14:00 as the opening. Being at the desk from 13:00 covers both readings.",
             "Headcount can still change until 23:00 on Sat 19; after that it is door price only.",
             "小山豊 leads; 石若駿 on drums, Marty Holoubek on bass. About a hundred seats.",
-            "Full booking notes in tools/japan/pit.md."
+            "Full booking notes in tools/japan/pit.md.",
+            "Typhoon: nothing here is prepaid, so a cancelled show costs nothing. No notice on pit-inn.com on Fri 18 Sept. The club's phone is 03-3354-2024."
           ],
           conf: "none issued; the tickets are held under the booking name", via: "pit-inn.com reservation form, 7 Sept" },
         { time: "16:30", endTime: "18:30", title: "Free afternoon", status: "suggested",
-          detail: "Options: Yanaka, Kuramae, Tokyo Station area, or a long Shibuya-to-Daikanyama-to-Nakameguro walk.",
+          detail: "The walks this slot was for (Yanaka, Kuramae, Daikanyama to Nakameguro) are rained off. Stay under a roof in Shinjuku, or go back to Shibuya ahead of the evening.",
           place: "", mapQuery: "", url: "",
-          notes: [] },
+          notes: [
+            "Disk Union's Shinjuku ジャズ館 is in ジュラクツインBビル 3F, Shinjuku 3-34-1. Its Saturday hours are 11:00 to 20:00; Sunday's were not checked.",
+            "Disk Union's own shop list puts its Japanese floors in Shinjuku too, 昭和歌謡館 on 2F and a 平成J-POP store below. That is the likeliest shelf for a Takanaka LP; the address and hours were not checked."
+          ] },
         { time: "19:00", endTime: "22:00", title: "Jazz night", status: "suggested",
           detail: "Venue TBD from the jazz research.",
           place: "", mapQuery: "", url: "",
@@ -566,40 +657,55 @@ const TRIP = {
           place: "月花舎 Jimbōchō", mapQuery: "月花舎 神保町", url: "",
           musicRef: "Sun 20 · evening · 灰野敬二 Keiji Haino",
           notes: [
-            "Reserve now by email to sakaiki@modalbeats.com; cash at the door."
+            "Reserve now by email to sakaiki@modalbeats.com; cash at the door.",
+            "Typhoon: Jimbōchō and Shibuya are both on the Hanzōmon subway line, so getting home does not hang on JR. Violon in Asagaya does: it is on the JR Chūō line, which carries the Sunday-evening warning."
           ] }
       ]
     },
     {
-      date: "2026-09-21", label: "21", weekday: "Mon", city: "Tokyo", theme: "Harajuku, Ginza, Akihabara, Shibuya",
-      base: "Hotel Son Shibuya",
+      date: "2026-09-21", label: "21", weekday: "Mon", city: "Tokyo", theme: "Typhoon day: within a walk of the hotel",
+      base: "HOTEL 壮-soh-shibuya",
+      dayNotes: ["Closest approach is tonight, off the coast east of Tokyo. Downpours are forecast from the morning, and JR East may cancel trains through the day. Decide at breakfast from the JR East page, not from the window.", "When the trains stop, the city shuts with them. For Hagibis in 2019 the department stores, the museums and Kabuki-za all closed for the day and said so the evening before, so Sunday night's notices are Monday's plan.", "The Meiji Shrine and Harajuku morning has moved to Tuesday. A forest in a typhoon is the wrong place to be."],
+      branchGroups: [{ id: "storm", label: "Pick at breakfast: the trains are running, or a day on foot in Shibuya" }],
       items: [
-        { time: "09:00", endTime: "12:30", title: "Meiji Shrine, Harajuku, Cat Street, Omotesando", status: "walkup",
-          detail: "",
-          place: "Meiji Shrine", mapQuery: "Meiji Jingu, Tokyo", url: "",
+        { time: "11:00", endTime: "16:00", title: "On foot in Shibuya: the record shops, then Lion", status: "walkup",
+          detail: "All of it is central Shibuya, on foot from the hotel, so it works with every train stopped. The hours are the shops' ordinary ones; a typhoon closure would be posted the day before.",
+          place: "Tower Records Shibuya", mapQuery: "Tower Records Shibuya", url: "https://towershibuya.jp/",
+          extraMap: { label: "名曲喫茶ライオン", query: "名曲喫茶ライオン 道玄坂" },
+          branch: { group: "storm", option: "walk" },
           notes: [
-            "The shrine gates follow the sun: 05:20 to 17:20 in September. Free, and the Inner Garden is a separate ¥500."
+            "Tower Records, Jinnan 1-22-14: 11:00 to 22:00. 6F is TOWER VINYL, which the shop calls the largest record floor in Japan, with a standing beer bar.",
+            "HMV record shop, Udagawa-chō 36-2: 11:00 to 21:00, used and new on two floors.",
+            "Disk Union's ジャズ/レアグルーヴ館, Udagawa-chō 30-7, アンテナ21 5F: holidays 11:00 to 20:00. Its general shop is in PARCO B1F.",
+            "名曲喫茶ライオン, Dōgenzaka 2-19-13: 13:00 to 20:00, last order 19:30, open every day by its own account. A 1926 room built around its speakers. No loud talk, no photos."
           ] },
         { time: "13:25", endTime: "15:12", title: "Music page: Kabuki-za 幕見, ひらかな盛衰記〈逆櫓〉", status: "suggested", music: true,
           detail: "13:25 to 15:12, ¥2,800 (+¥110). 竹本 gidayū narration and a full 立廻り.",
           place: "Kabuki-za", mapQuery: "Kabukiza Theatre, Ginza", url: "",
           musicRef: "Mon 21 · 13:25 then 18:30 · Kabuki-za",
+          branch: { group: "storm", option: "trains" },
           notes: [
             "Reserved 4F seats go online at noon on Sunday (e-tix, card with 3-D Secure), or queue for the unreserved seats on the day.",
-            "Higashi-Ginza to Akihabara is about 12 minutes on the Hibiya line, so the 幕見 and the MOGRA party both fit in the same afternoon."
+            "Higashi-Ginza to Akihabara is about 12 minutes on the Hibiya line, so the 幕見 and the MOGRA party both fit in the same afternoon.",
+            "Typhoon: Shochiku cancelled every Kabuki-za show on 12 and 13 Oct 2019 for Hagibis, announced the day before, with full refunds. Read kabuki-bito.jp/news on Sunday evening. Nothing was posted on Fri 18 Sept.",
+            "The reserved 4F seats go on sale at noon on Sunday, which means paying before Monday is known; the refund rule for 幕見 could not be found. The unreserved queue on the day risks nothing."
           ] },
         { time: "15:45", endTime: "19:15", title: "MOGRA Akihabara, \"Blend New! P@rty!! / awa-ani\" anison night", status: "walkup",
           detail: "Door charge, cash, physical photo ID. The party itself runs 14:00 to 20:00 and you can come and go, so the Kabuki-za before it costs nothing.",
           place: "MOGRA Akihabara", mapQuery: "MOGRA Akihabara", url: "",
+          branch: { group: "storm", option: "trains" },
           notes: [
             "The one MOGRA date the music research confirms: a day party, 14:00 to 20:00, cash and physical ID.",
-            "Leaving at 19:15 still gives three and a half hours here. Akihabara to Shibuya is about 30 minutes, which makes the 20:00 set at Body & Soul comfortable."
+            "Leaving at 19:15 still gives three and a half hours here. Akihabara to Shibuya is about 30 minutes, which makes the 20:00 set at Body & Soul comfortable.",
+            "Typhoon: the door is ¥2,500 plus a ¥700 drink and nothing is prepaid. A cancellation would show on club-mogra.jp; none was there on Fri 18 Sept.",
+            "The way back must not be JR tonight. The Ginza subway line runs from Suehirochō, north of the club, straight to Shibuya. Leave earlier than 19:15 if the evening is when JR stops."
           ] },
         { time: "20:00", endTime: "21:30", title: "Music page: Body & Soul, last Monday before it closes", status: "pending", ticket: "pending", music: true,
           detail: "52-year-old club, five minutes from the hotel, closing 27 Sept. 河合代介 (Hammond organ), 佐野康夫 (drums), 宮崎隆睦 (sax). Open (祝)17:30, 1st 18:30, 2nd 20:00; take the second and the whole afternoon stays free. ¥7,700 with tax + drinks.",
           place: "Body & Soul, Udagawa-chō", mapQuery: "渋谷区宇田川町2-1 渋谷ホームズ B-15", url: "https://bodyandsoul.co.jp/event/260921",
           musicRef: "Mon 21 · 13:25 then 18:30 · Kabuki-za",
           notes: [
+            "Typhoon: the one fixed point of the day that needs no train. The club's FAQ says it charges no cancellation fee but wants a phone call or an email first. It closes for good on the 26th, so a lost night cannot be moved. No notice on its site on Fri 18 Sept.",
             "NOT REQUESTED YET, and it cannot be done from here. The venue's reservation form posts to its own wp-json endpoint, and the host (XSERVER) returns 403 to that endpoint for this network while ordinary pages load fine. Two attempts on 7 Sept hung at \"submitting\" and sent nothing; no auto-reply arrived, so there is no half-made booking to undo.",
             "The route left is the phone: 03-6455-0088, Japanese, from Japan hours. Ask for Mon 21 Sept, 2nd stage 20:00, two people, dinner yes, arriving 19:30.",
             "Monday is the only night of the closing week still open; every other date 19 to 26 Sept reads 予約〆切.",
@@ -612,13 +718,27 @@ const TRIP = {
       ]
     },
     {
-      date: "2026-09-22", label: "22", weekday: "Tue", city: "Tokyo", theme: "Mt Takao and Jingu",
-      base: "Hotel Son Shibuya",
+      date: "2026-09-22", label: "22", weekday: "Tue", city: "Tokyo", theme: "After the storm: Takao or Harajuku, then Jingu",
+      base: "HOTEL 壮-soh-shibuya",
+      dayNotes: ["Forecasters have today clear and hot. Trains restart only after the tracks are inspected, so the early run out to Takao may not exist, and a mountain that has taken 300 mm may have trails shut."],
+      branchGroups: [{ id: "morning", label: "Pick one: Takao if the trails and the trains are open, or the Harajuku morning that Monday lost" }],
       items: [
         { time: "07:30", title: "Mt Takao hike", status: "walkup",
           detail: "Start by 07:30, trail 6 up, Fuji views if clear, onsen at the base station after.",
-          place: "Mt Takao", mapQuery: "Takaosanguchi Station", url: "",
-          notes: [] },
+          place: "Mt Takao", mapQuery: "Takaosanguchi Station", url: "https://takaovc.ces-net.jp/",
+          branch: { group: "morning", option: "takao" },
+          notes: [
+            "Before leaving, read the Takao Visitor Center's 通行止め情報 at takaovc.ces-net.jp. Trail 6 is the one that follows the stream. The centre's last update, on 13 Sept, showed nothing shut on Takao itself, and it posted a heavy-rain closure as recently as 7 Sept.",
+            "The cable car gives no wind limit. It says only that its hours change in rough weather and that notices go on takaotozan.co.jp."
+          ] },
+        { time: "09:00", endTime: "12:30", title: "Meiji Shrine, Harajuku, Cat Street, Omotesando", status: "walkup",
+          detail: "Moved here from Monday. Needs no train that is likely to be late: it is one stop from Shibuya, or a walk.",
+          place: "Meiji Shrine", mapQuery: "Meiji Jingu, Tokyo", url: "",
+          branch: { group: "morning", option: "harajuku" },
+          notes: [
+            "The shrine gates follow the sun: 05:20 to 17:20 in September. Free, and the Inner Garden is a separate ¥500.",
+            "The Ōta Memorial Museum of Art is five minutes from Harajuku station: 鳥居言人, kabuki prints and shin-hanga, to 27 Sept. 10:30 to 17:30, ¥1,200, no timed tickets."
+          ] },
         { time: "16:00", title: "Music page: 代々木八幡宮 例大祭 宵宮", status: "suggested", music: true,
           detail: "Stalls and a 神楽殿 stage from dusk, free. Three stops from the hotel, 20 minutes from Jingu; fits 16:00 to 17:15.",
           place: "代々木八幡宮", mapQuery: "代々木八幡宮", url: "",
@@ -630,7 +750,9 @@ const TRIP = {
           detail: "Decided; tickets pending unless already bought. Outdoor 1926 ballpark, Hanshin traveling support, walkable from Shibuya.",
           place: "Meiji Jingu Stadium", mapQuery: "Meiji Jingu Stadium", url: "",
           notes: [
-            "Ends ~21:00."
+            "Ends ~21:00.",
+            "Typhoon: the forecast for tonight is clear. A rainout is called on the day and posted under NEWS on yakult-swallows.co.jp and on the club's X account, @swallowspr; on 6 Sept a 17:00 game was called at 13:00.",
+            "Refunds are not automatic, even on a card. スワチケ QR tickets go back through the purchase history, paper ones at the shop that issued them or at Jingu's Gate 9 box, within about two weeks, less the handling fee."
           ],
           conf: "", via: "" }
       ]
@@ -638,6 +760,7 @@ const TRIP = {
     {
       date: "2026-09-23", label: "23", weekday: "Wed", city: "Tokyo to Kyoto", theme: "Tokyo to Kyoto",
       base: "BnA Alter Museum from tonight",
+      dayNotes: ["Nothing is posted against the 14:30 Nozomi. Weathernews flagged strong rain or thunder in Tōkai for today, which can slow the corridor. If JR Central suspends or badly delays trains, Smart EX opens a fee-free refund on the booking screen, and any change has to be made before the booked train leaves Tokyo."],
       branchGroups: [{ id: "arrival", label: "Pick one: Tatsuro in Osaka, or Gion at dusk and a Kyoto dinner" }],
       items: [
         { time: "08:00", endTime: "10:30", title: "Last Tokyo morning, Tsukiji outer market", status: "suggested",
@@ -832,7 +955,7 @@ const TRIP = {
       ]
     }
   ],
-  openItems: ["Body & Soul Sept 21, 20:00 set: phone 03-6455-0088, their web form 403s from here", "Pit Inn Sept 20: confirmed for 2; tickets still to be bought at the desk, and their mail and their page disagree on the times", "磔磔 Sept 24: requested for 2 by email 11 Sept, watch for the venue's reply; ¥11,000 cash at the door, nothing held until they answer", "御香宮 candle noh Sept 23: buy B seats on the web by Sun 13 Sept", "Kyoto dinners Sept 23, 24, 25, each needing one vegan menu, plus Shigetsu lunch Sept 25", "Haruka Sept 26 ~08:00", "Jingu tickets Sept 22 (if not already in hand)", "Hozugawa boat Sept 25 (confirm booking status)"]
+  openItems: ["Sat 19: buy Monday's water and food, then check JR East's Kantō page in the evening and again on Sunday morning", "Sun 20 evening: read kabuki-bito.jp/news, club-mogra.jp and bodyandsoul.co.jp; a typhoon closure is announced the day before", "Tue 22 morning: the Takao Visitor Center's 通行止め情報 before leaving for the mountain", "Body & Soul Sept 21, 20:00 set: phone 03-6455-0088, their web form 403s from here", "Pit Inn Sept 20: confirmed for 2; tickets still to be bought at the desk, and their mail and their page disagree on the times", "磔磔 Sept 24: requested for 2 by email 11 Sept, watch for the venue's reply; ¥11,000 cash at the door, nothing held until they answer", "御香宮 candle noh Sept 23: buy B seats on the web by Sun 13 Sept", "Kyoto dinners Sept 23, 24, 25, each needing one vegan menu, plus Shigetsu lunch Sept 25", "Haruka Sept 26 ~08:00", "Jingu tickets Sept 22 (if not already in hand)", "Hozugawa boat Sept 25 (confirm booking status)"]
 };
 
 /* ===================================================================== */

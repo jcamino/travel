@@ -5,7 +5,10 @@
 `trip.md` is the trip. This puts the second inside the first, in place of
 the MARKER line, and writes public/japan/index.html.
 
-Usage: python tools/japan/build.py [output.html]
+Usage: python tools/japan/build.py [output.html] [trip.md]
+
+A second trip builds from the same page. /japan2 is
+    python tools/japan/build.py public/japan2/index.html tools/japan/trip2.md
 """
 import pathlib
 import sys
@@ -19,7 +22,9 @@ MARKER = '/* TRIP GOES HERE, FROM trip.md */'
 DST = pathlib.Path(sys.argv[1]) if len(sys.argv) > 1 else (
     ROOT / 'public' / 'japan' / 'index.html')
 
-trip = tripbook.load(HERE / 'trip.md')
+SRC = pathlib.Path(sys.argv[2]) if len(sys.argv) > 2 else HERE / 'trip.md'
+
+trip = tripbook.load(SRC)
 page = (HERE / 'page.html').read_text(encoding='utf-8')
 assert page.count(MARKER) == 1, 'page.html has no single TRIP marker'
 out = page.replace(MARKER, tripbook.trip_js(trip))

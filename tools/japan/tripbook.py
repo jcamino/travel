@@ -117,6 +117,12 @@ def trip_js(trip):
     L.append('  },')
     L.append('  holidays: [%s],' % ', '.join(_s(h) for h in trip['holidays']))
     L.append('  musicPage: %s,' % _s(trip['musicPage']))
+    # optional, and absent from a trip that does not set them, so the first
+    # trip's literal is unchanged: a banner, the file named in the footer, and
+    # the localStorage key, which two trips on one origin must not share
+    for k in ('alert', 'source', 'picksKey'):
+        if k in trip:
+            L.append('  %s: %s,' % (k, json.dumps(trip[k], ensure_ascii=False)))
     L.append('  days: [')
     for n, d in enumerate(trip['days']):
         L.append('    {')
