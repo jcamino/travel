@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fourteen Nights: what to book</title>
+<meta name="description" content="Western Yunnan, 24 September to 8 October 2026: what has to be booked before each stop, by when, through which channel, and the music worth an evening.">
+<meta name="build" content="yunnan-booking-2026-09-19">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="travel.jcamino.net">
+<meta property="og:title" content="Fourteen Nights: what to book">
+<meta property="og:description" content="What has to be booked before each stop in western Yunnan, by when and through which channel, and the music worth an evening.">
+<meta property="og:url" content="https://travel.jcamino.net/yunnan-booking/">
+<meta property="og:image" content="https://travel.jcamino.net/yunnan/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0E1326">
+<meta name="color-scheme" content="dark">
+<style>
+:root{
+  --night:#0E1326; --vat:#182042; --paper:#EDE6D6; --moth:#9AA0B8; --lamp:#F2B85A;
+  --ember:#D9663A; --erhai:#4F7F98; --lacquer:#5A3A1E; --leaf:#8fc7a6;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+  --han:"Songti SC","Noto Serif SC","PingFang SC","Hiragino Sans GB","STSong",serif;
+  --mono:"SF Mono",Menlo,Consolas,"Courier New",monospace;
+  --col:36rem;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%; background:var(--night); scroll-padding-top:16px}
+body{margin:0; background:var(--night); color:var(--paper); font-family:var(--serif); font-size:1.125rem; line-height:1.6; overflow-x:hidden;
+  padding:calc(24px + env(safe-area-inset-top)) 0 calc(48px + env(safe-area-inset-bottom))}
+h1,h2,h3,h4{margin:0; font-weight:400; line-height:1.15}
+p{margin:0 0 1.05rem; text-wrap:pretty}
+a{color:#7fb0c8; text-decoration-thickness:1px; text-underline-offset:3px}
+a:hover{color:#a5cde0}
+:focus-visible{outline:3px solid var(--lamp); outline-offset:3px; border-radius:3px}
+button{font:inherit; color:inherit; cursor:pointer; -webkit-tap-highlight-color:transparent}
+.wrap{max-width:var(--col); margin:0 auto; padding:0 20px}
+.mono{font-family:var(--mono); font-size:0.9375rem; letter-spacing:.04em; font-variant-numeric:tabular-nums}
+.han{font-family:var(--han); font-size:0.9375rem; color:var(--moth); letter-spacing:.04em}
+.kicker{font-family:var(--mono); font-size:0.875rem; letter-spacing:.16em; text-transform:uppercase; color:var(--lamp)}
+h1{font-size:2.5rem; margin:.5rem 0 1rem; letter-spacing:-.005em}
+.lead{font-size:1.25rem; line-height:1.5; color:#F5F0E4}
+.stamp{color:var(--moth); font-size:1rem}
+nav.toc{display:flex; flex-wrap:wrap; gap:8px; margin:1.4rem 0 0}
+nav.toc a{display:inline-flex; align-items:center; min-height:44px; padding:0 14px; border:1px solid var(--lacquer); border-radius:8px; color:var(--lamp); font-family:var(--mono); font-size:0.9375rem; letter-spacing:.04em; text-decoration:none}
+nav.toc a:hover{background:rgba(242,184,90,.1)}
+section{margin-top:3.2rem}
+h2{font-size:1.75rem; margin-bottom:.35rem}
+h2 + .sub{color:var(--moth); font-size:1rem; margin-bottom:1.2rem}
+h3{font-family:var(--mono); font-size:0.9375rem; letter-spacing:.14em; text-transform:uppercase; color:var(--lamp); margin:2rem 0 .2rem}
+h3 + .when{font-family:var(--mono); font-size:0.9375rem; color:var(--moth); margin-bottom:.7rem}
+
+/* the clock */
+ol.clock{list-style:none; margin:0; padding:0; border-top:1px solid var(--lacquer)}
+ol.clock li{display:grid; grid-template-columns:44px 1fr; border-bottom:1px solid var(--lacquer); padding:.85rem 0}
+ol.clock input{appearance:none; -webkit-appearance:none; width:26px; height:26px; margin:3px 0 0 2px; border:1.5px solid var(--moth); border-radius:6px; background:none; cursor:pointer; position:relative}
+ol.clock input:checked{background:var(--lamp); border-color:var(--lamp)}
+ol.clock input:checked::after{content:""; position:absolute; left:8px; top:3px; width:6px; height:12px; border:solid var(--night); border-width:0 2.5px 2.5px 0; transform:rotate(45deg)}
+ol.clock label{cursor:pointer}
+ol.clock .by{display:block; font-family:var(--mono); font-size:0.9375rem; letter-spacing:.04em; color:var(--lamp)}
+ol.clock .by.hot{color:var(--ember)}
+ol.clock .what{display:block; color:var(--paper)}
+ol.clock .why{display:block; color:#cfd3e2; font-size:1rem; line-height:1.5; margin-top:.15rem}
+ol.clock li.done .what{color:var(--moth); text-decoration:line-through; text-decoration-color:rgba(154,160,184,.5)}
+ol.clock li.done .why{display:none}
+ol.clock li.done .by{color:var(--moth)}
+
+/* items */
+ul.items{list-style:none; margin:0; padding:0 0 0 14px; border-left:2px solid var(--lacquer)}
+ul.items li{margin:0 0 1rem; font-size:1rem; line-height:1.5; color:#cfd3e2; overflow-wrap:anywhere}
+ul.items li b{font-weight:400; color:var(--paper); font-size:1.0625rem}
+ul.items .meta{display:block; font-family:var(--mono); font-size:0.875rem; letter-spacing:.02em; color:var(--moth); margin-top:.2rem}
+.tag{display:inline-block; margin:0 .5em .15em 0; padding:1px 9px; border-radius:999px; border:1px solid var(--lacquer); font-family:var(--mono); font-size:0.8125rem; letter-spacing:.06em; text-transform:uppercase; color:var(--moth); vertical-align:1px; white-space:nowrap}
+.tag.now{color:var(--ember); border-color:rgba(217,102,58,.55)}
+.tag.soon{color:var(--lamp); border-color:rgba(242,184,90,.45)}
+.tag.ask{color:#8fbcd4; border-color:rgba(127,176,200,.5)}
+.tag.walk{color:var(--leaf); border-color:rgba(143,199,166,.45)}
+.tag.in{color:var(--moth)}
+.tag.skip{color:var(--moth); text-decoration:line-through}
+.legend{display:flex; flex-wrap:wrap; gap:4px 2px; margin:0 0 .4rem}
+.unv{color:var(--ember); font-family:var(--mono); font-size:0.8125rem; letter-spacing:.06em; text-transform:uppercase}
+
+/* message */
+details{margin:1.2rem 0 0; border:1px solid var(--lacquer); border-radius:10px; background:var(--vat)}
+summary{min-height:48px; display:flex; align-items:center; padding:0 16px; cursor:pointer; color:var(--lamp); font-family:var(--mono); font-size:0.9375rem; letter-spacing:.04em; list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"+"; width:1.2em; color:var(--moth)}
+details[open] summary::before{content:"\2212"}
+.msg{padding:0 16px 16px}
+.msg pre{margin:0; white-space:pre-wrap; font-family:var(--serif); font-size:1rem; line-height:1.5; color:#F5F0E4}
+.copy{margin-top:12px; min-height:44px; padding:0 16px; border:1px solid var(--lamp); border-radius:8px; background:none; color:var(--lamp); font-family:var(--mono); font-size:0.9375rem}
+.copy:active{background:rgba(242,184,90,.12)}
+
+/* tables */
+.tw{overflow-x:auto; margin:0 -20px; padding:0 20px}
+table{border-collapse:collapse; width:100%; min-width:34rem; font-size:0.9375rem; line-height:1.4}
+th,td{text-align:left; vertical-align:top; padding:.55rem .7rem .55rem 0; border-bottom:1px solid var(--lacquer)}
+th{font-family:var(--mono); font-weight:400; font-size:0.8125rem; letter-spacing:.1em; text-transform:uppercase; color:var(--moth)}
+td:first-child{color:var(--paper)}
+td{color:#cfd3e2}
+
+ul.plain{margin:0; padding-left:1.1rem}
+ul.plain li{margin:0 0 .6rem; font-size:1rem; line-height:1.5; color:#cfd3e2}
+.foot{margin-top:3.5rem; padding-top:1.2rem; border-top:1px solid var(--lacquer); color:var(--moth); font-size:1rem}
+@media (max-width:640px){
+  table{min-width:0} thead{display:none}
+  tr{display:block; padding:.75rem 0; border-bottom:1px solid var(--lacquer)}
+  td{display:block; border:0; padding:.12rem 0; font-size:1rem}
+  td:first-child{font-size:1.0625rem}
+  td:nth-child(3){font-family:var(--mono); font-size:0.875rem; color:var(--moth)}
+}
+@media (max-width:420px){h1{font-size:2.125rem} body{font-size:1.0625rem}}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="kicker">Fourteen Nights &middot; 24 Sep to 8 Oct 2026</div>
+  <h1>What to book, and when</h1>
+  <p class="lead">Most of this trip needs no booking. The hotels, the car and five sets of tickets are in the contract, and nearly everything else is sold at a window or on Trip.com the same day. A short list is different, and the first deadline on it is Sunday 20 September.</p>
+  <p class="stamp">Every fact here was checked against a page on 19 September 2026 and carries its source. Where a page could not be read, the line says <span class="unv">unverified</span>. The days and the history are on <a href="/yunnan/">the main page</a>.</p>
+  <nav class="toc" aria-label="Sections">
+    <a href="#clock">The clock</a>
+    <a href="#stops">Stop by stop</a>
+    <a href="#music">Music</a>
+    <a href="#passport">Paying with a passport</a>
+    <a href="#open">Not confirmed</a>
+  </nav>
+</header>
+
+<section id="clock">
+  <h2>The clock</h2>
+  <p class="sub">In deadline order. Ticks are kept on this device only.</p>
+
+  <ol class="clock">
+    <li><input type="checkbox" id="c1" data-k="agency"><label for="c1">
+      <span class="by hot">Now, and no later than Thu 24 Sep</span>
+      <span class="what">One message to the agency, seven asks.</span>
+      <span class="why">The contract is for two travellers and Javier is with you from the evening of 26 September to midday on 6 October, so his tickets for Jade Dragon and Impression Lijiang on the 27th, the gorge on the 30th, and Pudacuo and Songzanlin on 1 October are not in it. Agencies draw Jade Dragon tickets from their own quota, and that channel closes three days before the visit. The message below carries the rest.</span></label></li>
+    <li><input type="checkbox" id="c2" data-k="glacier"><label for="c2">
+      <span class="by hot">Sun 20 Sep, 20:00 China time (21:00 in Japan)</span>
+      <span class="what">Jade Dragon tickets for Sunday 27 September go on sale.</span>
+      <span class="why">Only matters if the agency cannot add Javier or the Glacier Park cableway. Tickets are released seven days ahead, each evening at 20:00, in the operator's WeChat mini-program <span class="han">丽江旅游集团</span>. The seven-day count is our arithmetic from the published rule, so if the 27th is not there, look again on Monday at 20:00.</span></label></li>
+    <li><input type="checkbox" id="c3" data-k="oti"><label for="c3">
+      <span class="by hot">This week</span>
+      <span class="what">Write to the Old Theatre Inn in Shaxi.</span>
+      <span class="why">For Saturday 3 October: the Bai cooking class at Pear Orchard Temple, the walk or horse trek between the Shizhong grottoes and the valley, and whether the Dongjing music evening can be arranged. They ask for at least 24 hours and take only a few guests from other hotels, and it is Golden Week.</span></label></li>
+    <li><input type="checkbox" id="c4" data-k="pay"><label for="c4">
+      <span class="by">Before Thu 24 Sep</span>
+      <span class="what">Alipay, WeChat Pay, Didi and Trip.com on every phone, with one test payment.</span>
+      <span class="why">Alipay takes a passport, a foreign card and a home phone number. Didi runs inside it in English. Do this on home wifi, not in the arrivals hall.</span></label></li>
+    <li><input type="checkbox" id="c5" data-k="dlu"><label for="c5">
+      <span class="by">Before Thu 24 Sep</span>
+      <span class="what">A car from Dali airport for the 18:30 landing.</span>
+      <span class="why">Not in the contract, thirty kilometres, the evening before a three-day holiday, and Ic&iacute;ar's birthday dinner at the other end. Ask the inn for a pickup or book a transfer on Trip.com. The airport bus is the fallback.</span></label></li>
+    <li><input type="checkbox" id="c6" data-k="linden"><label for="c6">
+      <span class="by">By Thu 24 Sep, if wanted</span>
+      <span class="what">The Linden Centre heritage tour in Xizhou for Friday 25 September.</span>
+      <span class="why">One hour, open to non-guests, sold on GetYourGuide with free cancellation up to 24 hours before.</span></label></li>
+    <li><input type="checkbox" id="c6b" data-k="returndali"><label for="c6b">
+      <span class="by">By Thu 24 Sep, if wanted</span>
+      <span class="what">Seats for Return to Dali on Friday 25 September at 20:00.</span>
+      <span class="why">Mid-Autumn night at the Yang Liping Grand Theatre, the one staged evening in Dali. On Trip.com.</span></label></li>
+    <li><input type="checkbox" id="c7" data-k="embroidery"><label for="c7">
+      <span class="by">By Sat 26 Sep, if wanted</span>
+      <span class="what">The Baisha embroidery workshop for Monday 28 September.</span>
+      <span class="why">The institute asks for two days' notice, and an interpreter is a separate charge.</span></label></li>
+    <li><input type="checkbox" id="c8" data-k="pdcuo"><label for="c8">
+      <span class="by">Mon 28 Sep</span>
+      <span class="what">Read the Pudacuo site again for National Day hours.</span>
+      <span class="why">The latest notice on it is from May. On 1 October be at the gate when it opens at 08:00.</span></label></li>
+    <li><input type="checkbox" id="c9" data-k="heshun5"><label for="c9">
+      <span class="by">By Wed 30 Sep</span>
+      <span class="what">Decide whether the evening of Monday 5 October is spent in Heshun.</span>
+      <span class="why">Heshun's holiday programme, with the water show at 20:00 and the bonfire after nine, runs from 1 to 5 October only, and the ticket is good for seven days, so the same ticket serves Tuesday morning.</span></label></li>
+    <li><input type="checkbox" id="c10" data-k="spa"><label for="c10">
+      <span class="by">Sat 3 to Mon 5 Oct</span>
+      <span class="what">Book the hot spring for Tengchong.</span>
+      <span class="why">Angsana on Trip.com for the evening of the 7th, cancel any time. Or have the driver buy Bailian, beside Heshun, for the 6th.</span></label></li>
+    <li><input type="checkbox" id="c11" data-k="g56"><label for="c11">
+      <span class="by">Sat 3 Oct, and again Wed 7 Oct</span>
+      <span class="what">Ask the driver about the G56 between Shunbi and Pingpo.</span>
+      <span class="why">A rockfall cut both directions on 27 August and it reopened the next day on a single carriageway. It is on your road to Baoshan on the 4th and on the road to the airport on the 8th. Pickup on the 8th at 08:00.</span></label></li>
+  </ol>
+
+  <details>
+    <summary>The message to the agency, ready to copy</summary>
+    <div class="msg">
+<pre id="agencymsg">Hello,
+
+A few things before we arrive, all in one message.
+
+1. Javier joins us from the evening of 26 September until midday on 6 October. Could you add his tickets for Jade Dragon Snow Mountain (Spruce Meadow) and Impression Lijiang on 27 September, Tiger Leaping Gorge on 30 September, and Pudacuo and Songzanlin on 1 October, and tell us the cost? If his rooms for those nights are not yet settled, please quote those as well.
+
+2. Could you add the Glacier Park cableway (4,506 m) on 27 September for the three of us, either as well as Spruce Meadow or in place of it? We understand the agency quota closes about three days before.
+
+3. Which Impression Lijiang showtime and which cableway slot do you hold for us?
+
+4. Could you confirm the names and passport numbers registered on each real-name ticket, and whether the 50 yuan Lijiang old town fee is included?
+
+5. On 2 October, could we leave Shangri-La early enough to reach Shaxi by about 12:30? It is the Friday market and it winds down in mid-afternoon.
+
+6. In Tengchong, could the driver book the tethered balloon at the volcano park for the morning of 7 October, and make the You Yunnan reservation for the war memorial museum with our passports?
+
+7. We read that the G56 expressway between Shunbi and Pingpo was cut by a rockfall on 27 August and reopened on one carriageway. Could you check it before 4 October and again before 8 October, and set the pickup on 8 October for 08:00?
+
+Many thanks,
+Ic&iacute;ar and Gabriela</pre>
+      <button class="copy" type="button" data-copy="agencymsg">Copy the message</button>
+    </div>
+  </details>
+</section>
+
+<section id="stops">
+  <h2>Stop by stop</h2>
+  <p class="sub">What each mark means.</p>
+  <p class="legend"><span class="tag now">Book now</span><span class="tag soon">A day or two ahead</span><span class="tag ask">Ask the agency</span><span class="tag walk">Walk up</span><span class="tag in">In the contract</span></p>
+  <p>The calendar behind all of it: Mid-Autumn is Friday 25 to Sunday 27 September, and National Day runs from Thursday 1 to Wednesday 7 October, by the <a href="http://politics.people.com.cn/n1/2025/1104/c1001-40596715.html" target="_blank" rel="noopener">State Council notice</a> of 4 November 2025. Thursday 8 October is an ordinary working day.</p>
+
+  <h3>Dali</h3>
+  <p class="when">Thu 24 to Sat 26 Sep &middot; nothing here sells out</p>
+  <ul class="items">
+    <li><span class="tag soon">Before you fly</span><b>Airport to the old town, Thursday 18:30.</b> About thirty kilometres. The airport bus costs 25 yuan, meets every flight, waits until it is full and takes 60 to 90 minutes to the East Gate car park. A metered taxi was 60 to 70 yuan and 40 to 50 minutes in 2025; on a holiday eve allow an hour and up to 150. A pickup arranged by the inn, or a Trip.com transfer, removes the queue.<span class="meta"><a href="https://www.travelchinaguide.com/cityguides/yunnan/dali-airport.htm" target="_blank" rel="noopener">TravelChinaGuide, Aug 2025</a> &middot; <a href="https://www.sohu.com/a/1008431012_121117446" target="_blank" rel="noopener">the bus, Apr 2026</a> &middot; holiday fares <span class="unv">unverified</span></span></li>
+    <li><span class="tag walk">Walk up</span><b>The birthday table.</b> The main page's choice, Meizi Jing on Renmin Road, takes walk-ins. It is the eve of Mid-Autumn and you reach the old town towards eight, so ask the inn to telephone that afternoon and hold a table.<span class="meta">Not rechecked today</span></li>
+    <li><span class="tag soon">By the 24th</span><b>Linden Centre, Xizhou</b> <span class="han">喜林苑</span>. A one-hour architecture and heritage tour of the Yang courtyard house for non-guests, on Friday's road. The market and the Xizhou baba need nothing.<span class="meta"><a href="https://www.getyourguide.com/dali-l1042/dali-architecture-and-heritage-tour-at-linden-centre-xizhou-t1221935/" target="_blank" rel="noopener">GetYourGuide</a> &middot; free cancellation to 24 hours before &middot; price and start times not shown without a date</span></li>
+    <li><span class="tag walk">Walk up</span><b>Three Pagodas and the Cangshan cableways.</b> Both are sold the same day on Trip.com, the pagodas from about 11 US dollars and Cangshan from about 19. The Gantong and Ximatan cableways carry people up from 08:30 to 14:00 and down until 17:00. For the free morning of the 26th it is Gantong or Zhonghe; Ximatan takes too long.<span class="meta"><a href="https://www.dalitravel.cn/content/list/9.html" target="_blank" rel="noopener">Dali Tourism Group notices</a>, no closures listed on 19 Sep &middot; <a href="https://www.trip.com/travel-guide/attraction/dali-city/cangshan-mountain-75917" target="_blank" rel="noopener">Trip.com</a></span></li>
+    <li><span class="tag walk">Walk up</span><b>Tie-dye at Zhoucheng.</b> The workshops take people as they come. Have the driver ring ahead if you want a particular one.<span class="meta">Prices <span class="unv">unverified</span></span></li>
+    <li><span class="tag skip">Skip</span><b>The big Erhai cruise.</b> Fixed departures at 09:40 from Dali Port, and the day already runs along the shore by car.</li>
+  </ul>
+
+  <h3>Lijiang and Jade Dragon</h3>
+  <p class="when">Sat 26 to Tue 29 Sep &middot; the one place on this trip where tickets run out</p>
+  <ul class="items">
+    <li><span class="tag in">In the contract, for two</span><span class="tag now">Javier's: now</span><b>Spruce Meadow and Impression Lijiang, Sunday 27 September.</b> The last day of the Mid-Autumn holiday. Entrance, both cableways and the show are all released seven days ahead and are real-name. Ask the agency which showtime it holds; visitors report 11:00 and 13:30 or 14:00. Entrance tickets are sold at the new visitor centre in Baisha, no longer at the old south-west gate.<span class="meta">Entrance 100 yuan, official; Spruce Meadow cableway 60, eco-bus 20, unofficial &middot; <a href="https://finance.sina.com.cn/jjxw/2026-04-27/doc-inhvxpia9016070.shtml" target="_blank" rel="noopener">operator's notice, 26 Apr 2026</a> &middot; <a href="https://www.lijiang.cn/article/164510.html" target="_blank" rel="noopener">Lijiang.cn, Dec 2025</a> &middot; showtimes <span class="unv">unverified</span></span></li>
+    <li><span class="tag ask">Ask the agency, now</span><b>The Glacier Park cableway to 4,506 m</b> <span class="han">冰川公园大索道</span>. Not in the contract, and the ticket people fail to get. The operator sells it only in its own mini-program, with a face scan at purchase and at the gate, one purchase per passport every ninety days and at most five people an order, and says it has authorised no other platform to sell the cableway alone. Whether the scan accepts a foreign face and phone number nobody could tell us. The agency's quota is the dependable route. An early Glacier slot, then Blue Moon Valley and the show, is a full day; adding Spruce Meadow as well is tight, so a swap is cleaner. The Yak Meadow cableway is shut for rebuilding until 2028. Wind stops the big cableway often, and tickets are refunded when it does.<span class="meta">Cableway about 140 yuan, unofficial &middot; fallback: <a href="https://www.trip.com/travel-guide/attraction/yulong/yulong-snow-mountain-75919/" target="_blank" rel="noopener">Trip.com's cableway and show package</a>, from about 45 US dollars, the 27th not yet on sale when checked &middot; <a href="https://finance.sina.com.cn/roll/2026-03-03/doc-inhpsavy4808113.shtml" target="_blank" rel="noopener">Yak Meadow closure</a> &middot; <a href="https://chinafortravelers.com/guides/jade-dragon-snow-mountain/" target="_blank" rel="noopener">a Sept 2026 guide</a></span></li>
+    <li><span class="tag soon">By Sat 26 Sep</span><b>Baisha embroidery institute, Monday 28 September</b> <span class="han">白沙锦绣艺术院</span>. A sixty-minute lesson making a small piece was 120 yuan a head for two or three people, a ninety-minute one 250, with an interpreter at 200 a session, between 09:30 and 17:00. The institute wants two days' notice. The price page is from 2016, so expect more.<span class="meta"><a href="https://m.lijiangethnicembroidery.com/nd.jsp?groupId=0&amp;id=296&amp;mid=355" target="_blank" rel="noopener">the institute's booking page</a> &middot; current prices <span class="unv">unverified</span></span></li>
+    <li><span class="tag walk">Walk up</span><b>Baisha murals, Yuhu, Rock's house.</b> The murals at Dabaoji Palace are a separate ticket of about 30 yuan with no photographs; Rock's house about 25. Nothing to reserve.<span class="meta"><a href="https://travelnews.qunar.com/ugc/yulong-baisha-town-ticket" target="_blank" rel="noopener">Qunar, Apr 2026</a></span></li>
+    <li><span class="tag ask">Ask the agency</span><b>The old town fee.</b> 50 yuan, good for 365 days, under the rule in force since 1 August 2025, and checked mainly at Black Dragon Pool. Agency clients usually pay it through the agency, so ask whether yours is covered.<span class="meta"><a href="https://news.qq.com/rain/a/20250717A08XU800" target="_blank" rel="noopener">the 2025 rule</a></span></li>
+    <li><span class="tag walk">Same day</span><b>The big revues.</b> Lijiang Qianguqing and Lishui Jinsha sell on Trip.com on the day, and Tuesday the 29th is before the holiday. The main page rates neither above the Naxi concert.</li>
+  </ul>
+
+  <h3>Tiger Leaping Gorge</h3>
+  <p class="when">Wed 30 Sep &middot; the eve of the holiday</p>
+  <ul class="items">
+    <li><span class="tag in">In the contract, for two</span><b>The upper gorge.</b> Open. There was a rockfall on 1 September about 600 metres outside the visitor area, and the park shut for some days from 31 July after rain, so have the driver check that morning and ask the agency what the wet-weather plan is. Javier's ticket is bought at the gate, 45 yuan on the Shangri-La bank and 65 on the Lijiang bank by one guide.<span class="meta"><a href="https://news.qq.com/rain/a/20260902A0BKIC00" target="_blank" rel="noopener">the rockfall, 2 Sep 2026</a> &middot; gate prices <span class="unv">unverified</span></span></li>
+    <li><span class="tag skip">Closed</span><b>The descent to the river in the middle gorge.</b> Shangri-La's tourism bureau banned entry to the undeveloped areas on 29 March 2025 and the operator calls the middle gorge sealed. The high trail above it was being walked in April 2025. Do not plan on the ladders.<span class="meta"><a href="https://www.2bulu.com/community/gotohuatinfo.htm?id=UJQfY3HYZwLqPeDYMvyDPA%3D%3D" target="_blank" rel="noopener">a walker's report, Apr 2025</a></span></li>
+  </ul>
+
+  <h3>Shangri-La</h3>
+  <p class="when">Wed 30 Sep to Fri 2 Oct &middot; National Day itself</p>
+  <ul class="items">
+    <li><span class="tag in">In the contract, for two</span><b>Pudacuo, Thursday 1 October.</b> 138 yuan, which is 68 for entry and 70 for the park bus, open 08:00 to 16:30. Shudu Lake is fully open; Bita Lake is marked partly closed on the park's own site. No visitor cap or holiday notice had been posted when checked. Trip.com sells next-day tickets with a passport, which is the way to buy Javier's if the agency does not.<span class="meta"><a href="https://www.pdcuo.cn/" target="_blank" rel="noopener">pdcuo.cn</a> &middot; <a href="https://www.trip.com/travel-guide/attraction/shangri-la/pudacuo-national-park-85835/" target="_blank" rel="noopener">Trip.com</a></span></li>
+    <li><span class="tag in">In the contract, for two</span><b>Songzanlin.</b> Open 07:00 to 20:00 with last entry at 18:00, and sold for immediate entry on Trip.com from about 8 US dollars, so it is the afternoon. The yuan price differs from source to source.<span class="meta"><a href="https://www.trip.com/travel-guide/attraction/shangri-la/ganden-sumtseling-monastery-101306/" target="_blank" rel="noopener">Trip.com</a></span></li>
+    <li><span class="tag walk">Walk up</span><b>Napa Lake.</b> Paid at the grassland entrances, about 40 yuan.<span class="meta"><span class="unv">unverified</span></span></li>
+  </ul>
+
+  <h3>Shaxi</h3>
+  <p class="when">Fri 2 to Sun 4 Oct</p>
+  <ul class="items">
+    <li><span class="tag ask">Ask the agency</span><b>The Friday market, 2 October.</b> Nothing to book, but it is a morning market. The Old Theatre Inn says to arrive by ten and that it is over by two; a visitor in December 2025 gives 08:00 to 16:00 with noon the peak. Arriving at four you will see the stragglers. Ask for an early start from Shangri-La and aim to be in Shaxi by half past twelve.<span class="meta"><a href="https://www.oldtheatreinn.com/shaxi-friday-market/" target="_blank" rel="noopener">Old Theatre Inn</a> &middot; <a href="https://hk.trip.com/moments/detail/jianchuan-2215-139636456/" target="_blank" rel="noopener">a visitor, Dec 2025</a></span></li>
+    <li><span class="tag now">Write now</span><b>The Old Theatre Inn's cooking class, trek and music.</b> The Bai cooking class is held in the kitchen of Pear Orchard Temple in Diantou village and needs at least 24 hours' notice, with few places for guests of other hotels. It is normally built around Friday's market shopping, so ask for a Saturday session. The same people run the horse trek to Shibaoshan, and the Dongjing music on the Duan village stage is played for their own groups and otherwise on Bai holidays, so ask. No prices are published.<span class="meta"><a href="https://www.oldtheatreinn.com/shaxi-cooking-school/" target="_blank" rel="noopener">cooking school</a> &middot; <a href="https://www.oldtheatreinn.com/shaxi-horse-trek-to-shibaoshan/" target="_blank" rel="noopener">horse trek</a> &middot; <a href="https://www.oldtheatreinn.com/shaxi-music-dance/" target="_blank" rel="noopener">music</a> &middot; <a href="mailto:reservations@shaxichina.com">reservations@shaxichina.com</a></span></li>
+    <li><span class="tag walk">Walk up, at opening</span><b>Shibaoshan and the Shizhong grottoes, Saturday 3 October.</b> Open 09:00 to 17:00, last entry 16:20. 45 yuan, plus 40 for the shuttle that everyone must take from the visitor centre, then ten minutes of steps. There is no reservation system, and Trip.com lists the ticket as sold out, so it is the window with passports. Reviews say the shuttle queue can be long and that a guide at the grottoes is worth the money. With a car, drive up and walk down: four kilometres of stone path past the Shadengqing carvings to Shadeng village, where the driver can meet you.<span class="meta"><a href="https://you.ctrip.com/sight/jianchuan2215/4362.html" target="_blank" rel="noopener">Ctrip</a> &middot; <a href="https://www.oldtheatreinn.com/shaxi-shibaoshan/" target="_blank" rel="noopener">the path</a></span></li>
+    <li><span class="tag walk">Walk up</span><b>Xingjiao Temple, the stage, the bookshop.</b> The temple is listed as open 08:00 to 17:00; reviewers disagree on whether it is free or 20 yuan with the stage. The Librairie Avant-Garde bookshop with its caf&eacute; is in a converted grain station in Beilong village and takes no bookings.<span class="meta"><a href="https://you.ctrip.com/sight/jianchuan2215/144872.html" target="_blank" rel="noopener">Ctrip</a> &middot; <a href="https://m.thepaper.cn/baijiahao_7304963" target="_blank" rel="noopener">the bookshop</a></span></li>
+    <li><span class="tag soon">On arrival</span><b>Dinner both nights.</b> Shaxi is no longer empty: on May Day 2026 the county police were posting officers on the square for the crowds. Have the guesthouse telephone for a table on both evenings as soon as you arrive.<span class="meta"><a href="https://post.smzdm.com/p/avgxez8m/" target="_blank" rel="noopener">the May Day figures</a></span></li>
+  </ul>
+
+  <h3>Baoshan and the road west</h3>
+  <p class="when">Sun 4 and Mon 5 Oct</p>
+  <ul class="items">
+    <li><span class="tag ask">Ask the driver</span><b>The G56 at K2583.</b> On 27 August some 1,600 cubic metres of rock came down between the Shunbi and Pingpo toll stations and cut the expressway in both directions; the detour jammed and the Dali police told people to take the train. It reopened on the evening of the 28th with both directions sharing one carriageway. No notice that the second has reopened was found. The roadworks between Baoshan and Longling that stopped traffic daily are due to end on 24 September.<span class="meta"><a href="https://news.qq.com/rain/a/20260827A0DBHH00" target="_blank" rel="noopener">the closure</a> &middot; <a href="https://news.qq.com/rain/a/20260828A0A5MC00" target="_blank" rel="noopener">the reopening</a> &middot; <a href="https://www.baoshan.gov.cn/info/1032/10390624.htm" target="_blank" rel="noopener">the roadworks</a> &middot; present state <span class="unv">unverified</span></span></li>
+    <li><span class="tag walk">Walk up</span><b>Coffee at Lujiangba, Monday.</b> Two estates sit ten minutes from the expressway exit at the Salween crossing: Junhui, with a terrace over the river and the bridge, and Bidun, which does tastings and Dai dishes cooked with coffee. Picking is by appointment and runs from December to March, so in October it is a tasting. Have the driver ring Bidun if you want lunch there.<span class="meta"><a href="https://m.sohu.com/a/995225753_121106902/" target="_blank" rel="noopener">Sohu, Mar 2026</a></span></li>
+  </ul>
+
+  <h3>Tengchong and Heshun</h3>
+  <p class="when">Mon 5 to Thu 8 Oct &middot; every ticket here is refundable, so book late</p>
+  <ul class="items">
+    <li><span class="tag walk">Window, with passports</span><b>Heshun.</b> 55 yuan for everything inside, real-name, and valid for seven days. The gates are open 07:30 to 22:00. Buying online asks for a Chinese identity card and Trip.com sells no ticket, so buy at the window. The holiday programme runs from 1 to 5 October only: folk music at 10:00 and 15:00, the water show at the boat pier from 20:00 to 20:30, the fire-pot show at 21:00 and the bonfire to 21:30 on the bar street stage. Go in on Monday evening, the night you arrive, then come back at half past seven on Tuesday before the day trippers. The road in from Potou is on the traffic police's congestion list.<span class="meta"><a href="https://www.tchsgz.com/" target="_blank" rel="noopener">Heshun's own site</a>, programme posted 18 Sep 2026 &middot; <a href="https://youletour.com/yunnan/teng-chong-he-shun/goupiao" target="_blank" rel="noopener">ticket rules, Jan 2026</a></span></li>
+    <li><span class="tag ask">Ask the driver</span><b>The war cemetery and the Dianxi museum.</b> Free. Normally shut on Mondays, but open 09:00 to 17:30 through the holiday, so Monday the 5th works. Entry is by reservation on the You Yunnan app or by scanning the code at the gate; whether that form takes a passport number we could not confirm, so carry passports and let the driver do the scanning. It had 46,920 visitors in Golden Week 2024.<span class="meta"><a href="https://you.ctrip.com/sight/tengchong696/21980.html" target="_blank" rel="noopener">Ctrip</a> &middot; <a href="https://www.tengchong.gov.cn/info/34231/5501063.htm" target="_blank" rel="noopener">2024 holiday figures</a></span></li>
+    <li><span class="tag soon">Two or three days ahead</span><b>A hot spring.</b> Swimwear is required at all of them. The table below has the four. Angsana is the one that can be booked in English with a passport.</li>
+  </ul>
+  <div class="tw">
+  <table>
+    <thead><tr><th>Spring</th><th>Day visit</th><th>Hours</th><th>How</th></tr></thead>
+    <tbody>
+      <tr><td>Angsana <span class="han">悦椿温泉村</span><br>in the Mayu valley, north</td><td>238 yuan, 386 for two; on Trip.com 35.51 US dollars, 58 for two</td><td>12:00 to 21:30, last entry 20:30</td><td><a href="https://www.trip.com/travel-guide/attraction/tengchong/angsana-hot-spring-village-tengchong-10759153/" target="_blank" rel="noopener">Trip.com</a>: immediate entry, cancel any time, nothing to collect. Forty-three pools. The evening avoids the coach groups.</td></tr>
+      <tr><td>Bailian <span class="han">柏联和顺</span><br>beside Heshun</td><td>190 to 298 yuan, 375 for two</td><td>14:00 to 22:00, last entry 20:30</td><td>No English listing. <a href="https://touch.piao.qunar.com/touch/detail.htm?id=193756" target="_blank" rel="noopener">Qunar</a> sells it until 20:00 the same day, usable 45 minutes after purchase, refundable, so the driver or the inn buys it.</td></tr>
+      <tr><td>Rehai, Bath Valley or Beauty Pool <span class="han">热海 浴谷 美女池</span></td><td>180 to 198 yuan with the cart; 65 for the scenic area alone</td><td>Baths 09:30 to 23:00; area 08:00 to 20:00</td><td><a href="https://touch.piao.qunar.com/touch/detail.htm?id=9766" target="_blank" rel="noopener">Qunar</a>, refundable. Trip.com shows the baths as sold out. The best water and the busiest place in town: 47,542 visitors over National Day 2024.</td></tr>
+      <tr><td>Hehua, the Lotus spring <span class="han">荷花温泉</span><br>28 km out, in forest</td><td>26.56 US dollars with the park bus</td><td>10:30 to 22:00, last entry 21:00</td><td><a href="https://www.trip.com/travel-guide/attraction/tengchong/hehua-hot-spring-10759140/" target="_blank" rel="noopener">Trip.com</a>, already on sale for 1 October. Half a day with the drive.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <ul class="items" style="margin-top:1.2rem">
+    <li><span class="tag ask">Ask the driver</span><b>The balloon over the cones.</b> Tethered, about ten minutes, flying from 08:00 to 13:00 and most reliably before ten. It stops for wind and rain, and the operator telephones the evening before or at about 07:45 to say whether it flies. About 200 to 300 yuan. It is not sold on its own on Qunar or Trip.com, so the driver books it by telephone. Treat it as a bonus. Park entry with the shuttle is about 7.50 US dollars on Trip.com.<span class="meta"><a href="https://you.ctrip.com/sight/tengchong696/2487077.html" target="_blank" rel="noopener">Ctrip</a> &middot; <a href="https://k.sina.com.cn/article_7879922979_1d5ae152306801sy5m.html" target="_blank" rel="noopener">a June 2026 account</a> &middot; <a href="https://www.trip.com/travel-guide/attraction/tengchong/tengchong-volcanic-and-geothermal-national-geopark-93624/" target="_blank" rel="noopener">Trip.com</a></span></li>
+    <li><span class="tag walk">Walk up</span><b>Beihai wetland.</b> 55 yuan, about 8 US dollars on Trip.com, open 08:30 to 19:00, the boat about 40 more. The irises are an April thing; autumn reviewers describe yellow grass and poor value. Only with the boat and in good light.<span class="meta"><a href="https://www.trip.com/travel-guide/attraction/tengchong/beihai-wetland-80566/" target="_blank" rel="noopener">Trip.com</a> &middot; boat price <span class="unv">unverified</span></span></li>
+    <li><span class="tag walk">Walk up</span><b>Menghuan Tengchong and the shadow puppets.</b> The big show usually plays twice an evening, fifty minutes, a little over 200 yuan, and drew 1,443 people over seven performances in Golden Week 2024, so there is no rush. The Liu Yongzhou shadow theatre in town is open 09:00 to 18:00, about 25 minutes for 128 yuan, to lukewarm reviews.<span class="meta"><a href="https://you.ctrip.com/sight/tengchong696/1408162.html" target="_blank" rel="noopener">the show</a> &middot; <a href="https://you.ctrip.com/sight/tengchong696/1937027.html" target="_blank" rel="noopener">the puppets</a></span></li>
+    <li><span class="tag skip">Skip</span><b>The ginkgo village.</b> Green in early October. The 2025 calendar puts the gold between 20 November and 20 December.<span class="meta"><a href="https://www.lijiang.cn/article/160288.html" target="_blank" rel="noopener">the 2025 calendar</a></span></li>
+    <li><span class="tag ask">Ask the agency</span><b>Thursday 8 October, to Dali airport for the 17:40.</b> The first working day after the holiday: the free tolls ended at midnight and the return traffic peaked on the 6th and 7th. Dali to Tengchong is 313 kilometres, about four and a half hours in free flow, by the S10 and the G56 past the rockfall. Leave at 08:00 and no later than 08:30, and be at the airport by 15:00. Neither Tengchong nor Baoshan airport had a same-day way to Shanghai in the one search we ran.<span class="meta"><a href="https://www.icauto.com.cn/route/369_2383.html" target="_blank" rel="noopener">the route</a> &middot; <a href="https://www.gov.cn/zhengce/content/202511/content_7047090.htm" target="_blank" rel="noopener">the holiday notice</a></span></li>
+  </ul>
+</section>
+
+<section id="music">
+  <h2>Music</h2>
+  <p class="sub">Night by night. There is no concert ticket to buy anywhere on this route.</p>
+  <p>Showstart, where China's clubs sell their gigs, lists 41 venues in Dali and 19 in Lijiang and not one event in any of your towns between 24 September and 7 October; searches for Shangri-La, Shaxi, Jianchuan, Baoshan, Tengchong and Heshun came back empty as well. Damai, the other big seller, blocks every kind of automated reading and was not checked. No 2026 edition of the Lijiang Snow Mountain or COART festivals was found, and the one festival Lijiang has announced, Lychee Cloud, is on 17 and 18 October. So the music on this trip is the old kind: ensembles of elderly men playing scripture music, circle dances in the squares, and bars with a singer. Two evenings stand out, the Naxi concert in Lijiang and Heshun on 5 October.</p>
+
+  <h3>Dali</h3>
+  <p class="when">Thu 24 and Fri 25 Sep, Mid-Autumn night</p>
+  <ul class="items">
+    <li><span class="tag soon">A day ahead</span><b>Return to Dali, at the Yang Liping Grand Theatre</b> <span class="han">回到大理 杨丽萍大剧院</span>. The new sixty-minute show built on the folk song Xiao He Tang Shui, which opened on 1 July 2026: the audience walks and the stage turns, and a Bai woman waits a lifetime for a soldier who left in the 1950s. More theatre than concert, but it is the song's home ground. The main page has it at 16:00 and 20:00 with seats from 160 yuan on Trip.com; Friday at 20:00 is the slot that fits.<span class="meta"><a href="https://www.dalidaily.com/wl/wldt/2026/0610/72686.html" target="_blank" rel="noopener">Dali Daily, 10 Jun 2026</a> &middot; showtimes and price not rechecked today</span></li>
+    <li><span class="tag walk">Walk in</span><b>The bars of Foreigner Street and Renmin Road.</b> Huotang on Foreigner Street has a folk singer, by a post of August 2025; Wild Pigeons on the same street is listed with live folk every night; Ciwei Jim Live House at 452 Renmin Road is open from 18:00 with a band. Of the famous names, Bad Monkey, September and Tang Dynasty, no sign of life from 2025 or 2026 turned up, so look before you walk across town.<span class="meta"><a href="https://www.sina.cn/news/detail/5198434529186152.html" target="_blank" rel="noopener">Huotang, Aug 2025</a> &middot; <a href="https://au.trip.com/toplist/tripbest/recommend/dali/best-bars/100900007337" target="_blank" rel="noopener">Trip.com's bar list</a></span></li>
+    <li><span class="tag ask">Have the inn ring</span><b>Dabenqu and Dongjing at the Jiang ancestral hall</b> <span class="han">大本曲 洞经古乐 蒋公祠</span>. The intangible heritage centre at 123 Yu'er Road, free, 08:30 to 17:30, reopened in November 2023 with live Bai music on its stage. One listing gives Dabenqu from 09:30 to 11:30 and Dongjing from 13:30 to 16:30. That would make Saturday morning, before the car to Lijiang, the time to hear a Bai ballad singer with his sanxian.<span class="meta"><a href="https://news.qq.com/rain/a/20231127A004LN00" target="_blank" rel="noopener">the reopening, Nov 2023</a> &middot; the hours <span class="unv">unverified</span></span></li>
+    <li><span class="tag walk">Walk up</span><b>Three-course tea with song and dance, Xizhou.</b> The Yan family compound is listed as performing daily, 08:00 to 18:00, and you are in Xizhou on Friday. Touristy, short, and the only Bai singing on the day's road.<span class="meta">Session times <span class="unv">unverified</span></span></li>
+  </ul>
+
+  <h3>Lijiang and Shuhe</h3>
+  <p class="when">Sat 26 to Tue 29 Sep</p>
+  <ul class="items">
+    <li><span class="tag soon">Monday or Tuesday</span><b>The Naxi Ancient Music concert</b> <span class="han">宣科纳西古乐 密士巷86号</span>. The one to go to. It is playing: Ctrip has reviews from October 2025 and February 2026, and they describe a hall that is nearly empty. Ctrip now gives two short sittings a night, 19:20 to 20:00 and 20:30 to 21:10, where older pages say 20:00, so have the hotel ring on the day. Trip.com sells it from about 11 US dollars; a 2024 page had seats at 100, 130 and 160 yuan. Saturday is the holiday weekend and the night Javier lands at 20:50, so Monday or Tuesday, and then you can walk in.<span class="meta"><a href="https://you.ctrip.com/sight/lijiang32/132950.html" target="_blank" rel="noopener">Ctrip</a> &middot; <a href="https://www.trip.com/travel-guide/attraction/lijiang/dayan-naxi-ancient-music-performance-10758827/" target="_blank" rel="noopener">Trip.com</a></span></li>
+    <li><span class="tag walk">Free, by day</span><b>Baisha Xiyue, beside the murals</b> <span class="han">白沙细乐</span>. A volunteer ensemble of villagers plays the older Naxi suite in a pavilion by Dabaoji Palace, 09:00 to 12:30 and 13:30 to 16:30, for whatever you put on the plate. That was the arrangement in 2019, and a 2024 article says almost daily in high season. Monday's road goes to Baisha anyway.<span class="meta"><a href="http://culture.yunnan.cn/system/2019/12/19/030547959.shtml" target="_blank" rel="noopener">Yunnan.cn, Dec 2019</a> &middot; 2026 status <span class="unv">unverified</span></span></li>
+    <li><span class="tag walk">Free</span><b>The circle dance</b> <span class="han">打跳</span>. On Sifang Street in the old town and on Shuhe's own square after dinner. The only published hours, 19:00 to 20:30, are from the 2025 National Day list; Lijiang posted that list on 29 September last year, so this year's should appear while you are there. The city has also promised a folk music season in the squares from September to November, without dates.<span class="meta"><a href="https://www.lijiang.cn/article/159638.html" target="_blank" rel="noopener">the 2025 list</a> &middot; <a href="https://m.sohu.com/a/1036850155_120815119" target="_blank" rel="noopener">the folk season, Jun 2026</a></span></li>
+    <li><span class="tag walk">Same day</span><b>The revues, if it rains.</b> Lishui Jinsha plays at 19:30, 20:30 and 21:30 opposite Red Sun Square; Lijiang Qianguqing posts each day's sessions on Songcheng's site.<span class="meta"><a href="https://you.ctrip.com/sight/lijiang32/140681.html" target="_blank" rel="noopener">Lishui Jinsha</a> &middot; <a href="https://www.songcn.com/EternalLove/Lj.shtml" target="_blank" rel="noopener">Songcheng</a></span></li>
+  </ul>
+
+  <h3>Shangri-La</h3>
+  <p class="when">Wed 30 Sep and Thu 1 Oct</p>
+  <ul class="items">
+    <li><span class="tag walk">Free</span><b>Guozhuang on Sifang Street</b> <span class="han">锅庄</span>. Every evening after dark, north-west of Turtle Hill, the town dances in a ring and pulls visitors in; reviews from May and October 2025 say so. There are no instruments: the dancers sing as they go, men answering women. Moonlight Square next door has buskers. No programme for 1 October had been posted.<span class="meta"><a href="https://you.ctrip.com/sight/shangrila106/77032.html" target="_blank" rel="noopener">Ctrip reviews</a> &middot; the hours, about 19:00 to 21:00, <span class="unv">unverified</span></span></li>
+    <li><span class="tag soon">Through the homestay</span><b>The Zaya Tusi Manor dinner show</b> <span class="han">扎雅土司庄园</span>. Khampa song and dance over yak hotpot in a hall of three hundred, coach-tour style, about 180 yuan, reviewed up to August 2025. It is National Day, so if you want it, have the homestay book it when you arrive on the 30th.<span class="meta"><a href="https://you.ctrip.com/food/106/127739949.html" target="_blank" rel="noopener">Ctrip</a></span></li>
+  </ul>
+
+  <h3>Shaxi</h3>
+  <p class="when">Fri 2 and Sat 3 Oct</p>
+  <ul class="items">
+    <li><span class="tag ask">Ask your host</span><b>The Apeng folk season in Jianchuan</b> <span class="han">阿鹏音乐季</span>. The county's sixth season of Bai folk song runs from 29 August to 9 October in Jianchuan old town, half an hour away by car, not in Shaxi. Which nights it plays, nobody has published. The Shibaoshan song festival was 8 to 10 September, and the daily Dongjing on Shaxi's own stage ended with it.<span class="meta"><a href="https://news.qq.com/rain/a/20260903A0BCL800" target="_blank" rel="noopener">Tencent, 3 Sep 2026</a></span></li>
+    <li><span class="tag now">Write now</span><b>Dongjing on the Duan village stage.</b> The Old Theatre Inn's ensemble of village elders, in the clock above. The only music in the valley that can be arranged for a date.</li>
+    <li><span class="tag walk">On the night</span><b>The square.</b> The town is said to light bonfires and play Bai music at National Day, with no dates given. By most accounts the town is dark by nine.<span class="meta"><a href="https://news.qq.com/rain/a/20250306A05MVD00" target="_blank" rel="noopener">Tencent, Mar 2025</a></span></li>
+  </ul>
+
+  <h3>Baoshan</h3>
+  <p class="when">Sun 4 Oct</p>
+  <ul class="items">
+    <li><b>Nothing found.</b> An early night before the mountains.</li>
+  </ul>
+
+  <h3>Heshun and Tengchong</h3>
+  <p class="when">Mon 5 to Wed 7 Oct</p>
+  <ul class="items">
+    <li><span class="tag walk">Monday only</span><b>Heshun's last festival night, 5 October.</b> From the poster on the town's own site: the Heshun folk ensemble on the Dianshang hall stage at 10:00 and 15:00, the night show on the water at the boat pier from 20:00 to 20:30, the fire-pot show at 21:00 and the bonfire dance until 21:30 on the bar street stage. You arrive from Baoshan that afternoon. Whether the shows are inside the 55 yuan ticket the poster does not say.<span class="meta"><a href="https://www.tchsgz.com/details/uHYvxkCYp.html" target="_blank" rel="noopener">the poster, 18 Sep 2026</a></span></li>
+    <li><span class="tag soon">Two or three days ahead</span><b>Menghuan Tengchong</b> <span class="han">梦幻腾冲</span>. About seventy minutes of song and dance with a 1944 act, doors between 17:00 and 20:50. The theatre telephones the day before to confirm the sitting and hands over tickets against a name and number, which is awkward without a Chinese phone, so book it through the inn. Reviewed up to August 2026. The main page files it under not worth it; it is here because it is the only staged music in town.<span class="meta"><a href="https://you.ctrip.com/sight/tengchong696/1408162.html" target="_blank" rel="noopener">Ctrip</a> &middot; price <span class="unv">unverified</span></span></li>
+    <li><span class="tag ask">Have the inn ring</span><b>Liu Yongzhou's shadow theatre</b> <span class="han">刘永周皮影戏馆</span>. Twenty-five minutes of leather puppets with live singing in the high Tengchong style, a family tradition of some six centuries, in a hall open 09:00 to 18:00. 128 yuan and poor value by one 2024 review. Showtimes are not published.<span class="meta"><a href="https://you.ctrip.com/sight/tengchong696/1937027.html" target="_blank" rel="noopener">Ctrip</a> &middot; <a href="https://cn.chinadaily.com.cn/a/202212/27/WS63aa534fa3102ada8b228746.html" target="_blank" rel="noopener">the tradition, China Daily</a></span></li>
+  </ul>
+
+  <h3>What you are hearing</h3>
+  <ul class="plain">
+    <li><b style="font-weight:400;color:var(--paper)">Dongjing</b> <span class="han">洞经</span>. Daoist ritual music kept by lay associations that honoured Wenchang, the god of letters, and named for the scripture they chanted. Pipa, sanxian, reed pipe and zithers all play the same tune at once, each in its own way. The Naxi of Lijiang and the Bai of Dali and Shaxi have it from the same source. <a href="https://en.wikipedia.org/wiki/Dongjing_music" target="_blank" rel="noopener">Wikipedia</a></li>
+    <li><b style="font-weight:400;color:var(--paper)">Baisha Xiyue</b> <span class="han">白沙细乐</span>. A Naxi suite of instruments, song and dance of which eight of ten tunes survive. One story makes it Kublai's parting gift to the Naxi chief; another calls it mourning music, and it was played at funerals. Flutes, reed pipe, the plucked sugudu and small pipa, eight players or more. <a href="https://www.ynich.cn/item/12.html" target="_blank" rel="noopener">Yunnan heritage register</a></li>
+    <li><b style="font-weight:400;color:var(--paper)">Dabenqu</b> <span class="han">大本曲</span>. Bai sung storytelling: one singer and one sanxian carrying a whole long tale in the Bai language. Its best known bearer, Zhao Piding, is from Zuoyi village in Xizhou. <a href="https://article.xuexi.cn/html/17442182618821438868.html" target="_blank" rel="noopener">Xuexi</a></li>
+    <li><b style="font-weight:400;color:var(--paper)">Guozhuang and xianzi</b> <span class="han">锅庄 弦子</span>. Guozhuang is the Tibetan ring dance sung by its own dancers. In xianzi the men lead while bowing a horsehair fiddle and the women dance with long sleeves, slow at first and ending in spins; it belongs to Deqin and Weixi, north of where you sleep. <a href="http://www.xgll.com.cn/xwzx/2024-07/12/content_427889.htm" target="_blank" rel="noopener">Shangri-La news, Jul 2024</a></li>
+  </ul>
+</section>
+
+<section id="passport">
+  <h2>Paying with a passport</h2>
+  <p class="sub">Which channel works for whom.</p>
+  <ul class="plain">
+    <li><b style="font-weight:400;color:var(--paper)">Trip.com, in English.</b> Takes a foreign phone number, a passport and a foreign card. Type the name exactly as it is printed in the machine-readable lines at the foot of the passport page, and carry the passport itself to the gate. On this trip it sells Pudacuo, Songzanlin, the Three Pagodas, Cangshan, the Lijiang shows, Angsana, the Lotus spring, Beihai and the volcano park. <a href="https://www.trip.com/guide/attraction/book-china-attraction-tickets-with-passport.html" target="_blank" rel="noopener">Trip.com's own guide, Jul 2026</a></li>
+    <li><b style="font-weight:400;color:var(--paper)">Alipay and WeChat Pay.</b> Both register with a passport and a foreign card. Payments of 200 yuan or more with a foreign card carry a 3 per cent fee; below 200 it is waived. Didi runs inside Alipay in English. <a href="https://english.beijing.gov.cn/specials/paymentservices/news/202505/t20250528_4100629.html" target="_blank" rel="noopener">Beijing city guide, May 2025</a> &middot; <a href="https://www.trip.com/guide/transport/how-to-use-didi-in-china.html" target="_blank" rel="noopener">Didi for visitors, May 2026</a></li>
+    <li><b style="font-weight:400;color:var(--paper)">Mini-programs.</b> The official ones for Jade Dragon, Heshun and the war museum are built for a Chinese identity card and a Chinese phone number, and often fail a foreigner at the verification step. Do not count on them. <a href="https://chinasurvivalkit.com/blog/how-to-book-attraction-tickets-china-foreigners-2026" target="_blank" rel="noopener">a 2026 guide</a></li>
+    <li><b style="font-weight:400;color:var(--paper)">The window.</b> Heshun, Shibaoshan, Xingjiao Temple, Rehai and the gorge all have one. Passports in hand.</li>
+    <li><b style="font-weight:400;color:var(--paper)">The driver and the agency.</b> For anything capped and real-name, which means Jade Dragon above all, and for anything sold by telephone: the balloon, Bailian, the museum reservation, a restaurant table. This is the normal route, not a favour.</li>
+  </ul>
+</section>
+
+<section id="open">
+  <h2>Not confirmed</h2>
+  <p class="sub">What was looked for on 19 September and not found.</p>
+  <ul class="plain">
+    <li>Whether Javier's tickets and rooms are already arranged with the agency. Nothing in the contract or the correspondence says so.</li>
+    <li>Whether the Jade Dragon mini-program's face scan passes a foreign passport holder. Two guides say opposite things.</li>
+    <li>The Impression Lijiang showtimes for late September, and any Mid-Autumn opening hours for the mountain. The May Day notice had the gates open at 06:00 with last entry at 16:30.</li>
+    <li>How much of Bita Lake at Pudacuo is open, and any National Day cap there.</li>
+    <li>Whether the second carriageway of the G56 at K2583 has reopened.</li>
+    <li>Golden Week caps or surcharges at the Tengchong springs. None were found.</li>
+    <li>Any restaurant on the route that truly needs a reservation weeks ahead. None were found; a telephone call from the inn on the day is the custom.</li>
+    <li>The 2026 holiday programmes for Dali, Lijiang and the Shaxi stage, which the towns post about a week before.</li>
+  </ul>
+</section>
+
+<p class="foot">Checked 19 September 2026. Prices in yuan unless marked. Back to <a href="/yunnan/">Fourteen Nights</a>.</p>
+
+</div>
+<script>
+(function(){
+  var KEY='yunnan-booking-ticks-v1', s={};
+  try{ s=JSON.parse(localStorage.getItem(KEY)||'{}')||{} }catch(e){ s={} }
+  document.querySelectorAll('ol.clock input[data-k]').forEach(function(b){
+    var li=b.closest('li');
+    b.checked=!!s[b.dataset.k]; li.classList.toggle('done', b.checked);
+    b.addEventListener('change', function(){
+      s[b.dataset.k]=b.checked; li.classList.toggle('done', b.checked);
+      try{ localStorage.setItem(KEY, JSON.stringify(s)) }catch(e){}
+    });
+  });
+  document.querySelectorAll('button[data-copy]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var t=document.getElementById(btn.dataset.copy).textContent, done=function(){ btn.textContent='Copied'; setTimeout(function(){ btn.textContent='Copy the message' }, 1800) };
+      if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(t).then(done, function(){}) }
+      else{ var r=document.createRange(); r.selectNodeContents(document.getElementById(btn.dataset.copy)); var sel=getSelection(); sel.removeAllRanges(); sel.addRange(r); try{ document.execCommand('copy'); done() }catch(e){} }
+    });
+  });
+})();
+</script>
+</body>
+</html>
